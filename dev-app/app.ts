@@ -8,6 +8,7 @@ export class App {
   rdo1Checked = false;
   @observable
   rdo2Checked = true;
+  buttonDisabled = false;
 
 
   buttonSettings: ButtonModel = {
@@ -28,6 +29,7 @@ export class App {
 
   rdo1CheckedChanged() {
     console.log("radio 1 changed - new value", this.rdo1Checked);
+    this.buttonDisabled = this.rdo1Checked;
   }
 
   rdo2CheckedChanged() {

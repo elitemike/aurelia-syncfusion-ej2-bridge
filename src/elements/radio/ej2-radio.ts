@@ -71,7 +71,7 @@ export class Ej2Radio {
 
   detached() {
     this.checkedSubscription.dispose();
-    this.selectionChangedSubscription.dispose():
+    this.selectionChangedSubscription.dispose();
   }
 
 }
