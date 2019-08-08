@@ -1,3 +1,4 @@
+import { ProgressButtonModel } from '@syncfusion/ej2-splitbuttons';
 import { ButtonModel } from '@syncfusion/ej2-buttons';
 import { observable } from 'aurelia-binding';
 export class App {
@@ -11,12 +12,27 @@ export class App {
   buttonDisabled = false;
 
 
-  buttonSettings: ButtonModel = {
+  progressButtonModel: ProgressButtonModel = {
+    isPrimary: true,
+    created: () => { this.onCreated(); },
+    spinSettings: { position: "Right" }
+  };
+
+
+  onCreated() {
+    console.log("progress created")
+  }
+
+  buttonModel: ButtonModel = {
     isPrimary: true
   };
 
   buttonClick() {
     this.isChecked = !this.isChecked;
+  }
+
+  progressClicked() {
+    console.log("progress clicked")
   }
 
   checkboxClick() {
@@ -36,4 +52,6 @@ export class App {
     console.log("radio 2 changed - new value", this.rdo2Checked);
 
   }
+
+
 }

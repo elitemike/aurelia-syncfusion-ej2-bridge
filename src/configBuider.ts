@@ -1,12 +1,13 @@
+import { PLATFORM } from "aurelia-pal";
 import { Ej2Button } from "elements/button/ej2-button";
 import { Ej2Checkbox } from "elements/checkbox/ej2-checkbox";
-import { PLATFORM } from "aurelia-pal";
+
 import { Ej2Radio } from "elements/radio/ej2-radio";
+import { Ej2ProgressButton } from "elements/progressButton/ej2-progress-button";
 
 export class ConfigBuilder {
   public resources: any[] = [];
   public useGlobalResources: boolean = true;
-  private themeBase: string = "@syncfusion/ej2";
 
   /**
   * Globally register all EJ wrappers including templating support
@@ -14,6 +15,7 @@ export class ConfigBuilder {
   useAll(): ConfigBuilder {
     this.ej2Button()
       .ej2Checkbox()
+      .ej2ProgressButton()
       .ej2Radio()
     return this;
   }
@@ -76,6 +78,11 @@ export class ConfigBuilder {
 
   ej2Checkbox(): ConfigBuilder {
     this.resources.push(Ej2Checkbox);
+    return this;
+  }
+
+  ej2ProgressButton(): ConfigBuilder {
+    this.resources.push(Ej2ProgressButton);
     return this;
   }
 
