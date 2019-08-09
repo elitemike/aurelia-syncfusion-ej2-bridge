@@ -1,7 +1,10 @@
 <template>
-  <ej2-button title.bind="title" is-primary.bind="isPrimary" ej2-model.bind="buttonModel" disabled.bind="buttonDisabled"
+  <ej2-button is-primary.bind="isPrimary" ej2-model.bind="buttonModel" disabled.bind="buttonDisabled"
     on-click.call="buttonClick()">
     Click me
+  </ej2-button><br />
+  <ej2-button on-click.call="buttonClick()">
+    #2
   </ej2-button><br />
 
   <ej2-checkbox on-click.call="checkboxClick()" label="my value" checked.two-way="isChecked"></ej2-checkbox>

@@ -1,26 +1,18 @@
-import { ControlBase } from 'elements/controlBase';
 import { Button, ButtonModel } from '@syncfusion/ej2-buttons';
 import { bindable } from 'aurelia-framework';
 import { generateBindables } from 'elements/decorator';
+import { SyncfusionWrapper } from 'elements/syncfusionWrapper';
 
 
-@generateBindables(["title", "disabled", "isPrimary"])
-export class Ej2Button extends ControlBase<Button, ButtonModel> {
+@generateBindables(["disabled", "isPrimary"])
+export class Ej2Button extends SyncfusionWrapper<Button, ButtonModel> {
+  protected syncfusionControlType = Button
   @bindable
   private onClick: Function = null;
-
-  onCreateControl() {
-    this.ej2Model.disabled = this.disabled;
-
-    this.control = new Button(this.ej2Model);
-
-  }
 
   _onClick() {
     if (this.onClick) {
       this.onClick();
-
-      console.log("title", (<any>this).title)
     }
   }
 }
