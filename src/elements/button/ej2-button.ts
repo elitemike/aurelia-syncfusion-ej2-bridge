@@ -4,7 +4,7 @@ import { generateBindables } from 'elements/decorator';
 import { SyncfusionWrapper } from 'elements/syncfusionWrapper';
 
 
-@generateBindables(["disabled", "isPrimary"])
+@generateBindables("button")
 export class Ej2Button extends SyncfusionWrapper<Button, ButtonModel> {
   protected syncfusionControlType = Button
   @bindable

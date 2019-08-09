@@ -8,7 +8,7 @@ export class ControlBase<T, U> {
   public ej2Model: U = null;
 
   protected element: HTMLElement = null;
-  protected control: T = null;
+  public control: T = null;
   protected context: any = null;
 
   protected get controlType(): Function {
