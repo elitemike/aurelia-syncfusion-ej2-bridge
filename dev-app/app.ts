@@ -10,10 +10,12 @@ export class App {
   @observable
   rdo2Checked = true;
   buttonDisabled = false;
-
+  title = "Initial title";
+  index = 0;
+  isPrimary = true;
 
   progressButtonModel: ProgressButtonModel = {
-    isPrimary: true,
+
     created: () => { this.onCreated(); },
     spinSettings: { position: "Right" }
   };
@@ -29,10 +31,12 @@ export class App {
 
   buttonClick() {
     this.isChecked = !this.isChecked;
+    this.title = `Updated value ${this.index++}`;
   }
 
   progressClicked() {
     console.log("progress clicked")
+    this.isPrimary = false;
   }
 
   checkboxClick() {

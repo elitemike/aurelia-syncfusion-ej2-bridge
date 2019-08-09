@@ -1,4 +1,6 @@
-import { autoinject, BindingEngine, bindable, Disposable } from "aurelia-framework";
+import { autoinject, BindingEngine, bindable, Disposable, BindableProperty, HtmlBehaviorResource, bindingMode } from "aurelia-framework";
+import { metadata } from 'aurelia-metadata';
+import { Ej2Button } from "./button/ej2-button";
 
 @autoinject
 export class ControlBase<T, U> {
@@ -11,7 +13,7 @@ export class ControlBase<T, U> {
   protected control: T = null;
   protected context: any = null;
 
-  private disabledSubscription: Disposable = null;
+  private propertyChangedSubscriptions: Disposable[] = [];
 
   onBind() {
 
@@ -23,17 +25,35 @@ export class ControlBase<T, U> {
 
   constructor(protected bindingEngine: BindingEngine) {
     (<any>this.ej2Model) = {};
+
+  }
+
+  created() {
+
   }
 
   bind(context) {
+    this.createPropertySubscriptions();
     this.context = context;
-    this.disabledSubscription = this.bindingEngine.propertyObserver(this, "disabled").subscribe((newValue: boolean) => {
-      (<any>this.control).disabled = newValue;
-    });
+
     this.onCreateControl();
     console.log("control", this.control);
 
     this.onBind();
+  }
+
+  createPropertySubscriptions() {
+    console.log("this", this);
+    for (let property in this["__observers__"]) {
+      if (property !== "__propertiesDefined__") {
+        console.log("creating subscription", property)
+        this.propertyChangedSubscriptions.push(this.bindingEngine.propertyObserver(this, property).subscribe((newValue) => {
+          if ((<any>this.control).properties.hasOwnProperty(property)) {
+            (<any>this.control)[property] = newValue;
+          }
+        }));
+      }
+    }
   }
 
   attached() {
@@ -41,6 +61,6 @@ export class ControlBase<T, U> {
   }
 
   detached() {
-    this.disabledSubscription.dispose();
+    this.propertyChangedSubscriptions.forEach((subscription) => subscription.dispose());
   }
 }
