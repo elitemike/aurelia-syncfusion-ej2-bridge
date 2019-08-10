@@ -1,5 +1,5 @@
 import { autoinject, BindingEngine, bindable, Disposable } from "aurelia-framework";
-import { ControlContainer } from "./controlContainer";
+import { ControlContainer, Control } from "./controlContainer";
 
 
 @autoinject
@@ -35,45 +35,53 @@ export class ControlBase<T, U> {
   }
 
   bind(context) {
-    this.createControlPropertySubscriptions();
     this.context = context;
+
+    let _control = this.getBindableProperties();
+
+    // Get initial values from any bound properties
+    _control.bindables.forEach((property) => {
+      if (this[property] !== undefined && this.ej2Model[property] === undefined) {
+        this.ej2Model[property] = this[property];
+        console.log('has value', { name: property, value: this[property] })
+      }
+    });
+
+
+
+    this.createControlPropertySubscriptions(_control);
     this.onCreateControl();
     // console.log("control", this.control);
 
     this.onBind();
   }
 
-  createControlPropertySubscriptions() {
-    // console.log("this", this);
-
+  getBindableProperties() {
     let _control = this.controlContainer.get(this.controlType);
 
-    if (_control) {
-      _control.propertyChangeSubscriptions.forEach((binding) => {
-        // console.log("creating subscription from existing bindings", binding)
+    if (!_control) {
+      (<any>_control) = {};
+      _control.type = this.controlType;
+      _control.bindables = [];
+      for (let property in this["__observers__"]) {
+        if (ExcludedProperties.indexOf(property) === -1) {
+          _control.bindables.push(property);
+        }
+      }
+    }
+
+    return _control;
+  }
+
+  createControlPropertySubscriptions(control: Control) {
+    if (control) {
+      control.bindables.forEach((binding) => {
         this.propertyChangedSubscriptions.push(this.bindingEngine.propertyObserver(this, binding).subscribe((newValue) => {
           if ((<any>this.control).properties.hasOwnProperty(binding)) {
             (<any>this.control)[binding] = newValue;
           }
         }));
       });
-    } else {
-      (<any>_control) = {};
-      _control.type = this.controlType;
-      _control.propertyChangeSubscriptions = [];
-      for (let property in this["__observers__"]) {
-        if (ExcludedProperties.indexOf(property) === -1) {
-          // console.log("creating subscription for first time", property)
-          _control.propertyChangeSubscriptions.push(property);
-          this.propertyChangedSubscriptions.push(this.bindingEngine.propertyObserver(this, property).subscribe((newValue) => {
-            if ((<any>this.control).properties.hasOwnProperty(property)) {
-              (<any>this.control)[property] = newValue;
-            }
-          }));
-        }
-      }
-
-      this.controlContainer.add(_control);
     }
   }
 

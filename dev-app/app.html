@@ -1,6 +1,6 @@
 <template>
-  <ej2-button is-primary.bind="isPrimary" ej2-model.bind="buttonModel" disabled.bind="buttonDisabled"
-    on-click.call="buttonClick()">
+  <ej2-button is-primary.bind="isPrimary" content.bind="myContent" is-toggle.bind="isToggle"
+    ej2-model.bind="buttonModel" disabled.bind="buttonDisabled" on-click.call="buttonClick()">
     Click me
   </ej2-button><br />
   <ej2-button on-click.call="buttonClick()">

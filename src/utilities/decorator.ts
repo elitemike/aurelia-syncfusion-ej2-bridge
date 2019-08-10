@@ -7,12 +7,12 @@ import { ControlBindings } from '../controlBindings';
 
 export function generateBindables(controlName: string): any {
   return function (target, key, descriptor) {
-
-    console.log("generateBindales", { target: target, key: key, descriptor: descriptor })
     let behaviorResource = metadata.getOrCreateOwn(metadata.resource, HtmlBehaviorResource, target) as HtmlBehaviorResource;
 
-    for (let i = 0; i < ControlBindings[controlName].oneWay.length; i++) {
-      let option = ControlBindings[controlName].oneWay[i];
+    let oneWay = ControlBindings.common.oneWay.concat(ControlBindings[controlName].oneWay);
+
+    for (let i = 0; i < oneWay.length; i++) {
+      let option = oneWay[i];
 
       // set the name of the bindable property to the option
       let nameOrConfigOrTarget: any = {

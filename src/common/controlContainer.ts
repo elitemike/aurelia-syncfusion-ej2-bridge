@@ -16,7 +16,7 @@ export class ControlContainer {
 
 export interface Control {
   type: Function;
-  propertyChangeSubscriptions: string[];
+  bindables: string[];
 }
 
 export interface ControlBindings {

@@ -1,8 +1,9 @@
-import { bindable, autoinject } from "aurelia-framework";
+import { bindable } from "aurelia-framework";
 import { ProgressButton, ProgressButtonModel } from '@syncfusion/ej2-splitbuttons';
 import { SyncfusionWrapper } from 'common/syncfusionWrapper';
+import { generateBindables } from "utilities/decorator";
 
-@autoinject
+@generateBindables("progressButton")
 export class Ej2ProgressButton extends SyncfusionWrapper<ProgressButton, ProgressButtonModel> {
   @bindable
   private onClick: Function = null;

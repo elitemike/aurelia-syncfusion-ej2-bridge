@@ -12,6 +12,8 @@ export class App {
   buttonDisabled = false;
   index = 0;
   isPrimary = true;
+  myContent = "blah"
+  isToggle = true;
 
   progressButtonModel: ProgressButtonModel = {
 
@@ -25,11 +27,13 @@ export class App {
   }
 
   buttonModel: ButtonModel = {
-    isPrimary: true
+    isPrimary: true,
+    isToggle: false
   };
 
   buttonClick() {
     this.isChecked = !this.isChecked;
+    this.myContent = "button clicked"
   }
 
   progressClicked() {
