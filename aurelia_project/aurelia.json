@@ -5,6 +5,9 @@
     "root": "dev-app",
     "resources": "../src",
     "elements": "../src/elements",
+    "controls": "../src/controls",
+    "utilities": "../src/utilities",
+    "common": "../src/common",
     "attributes": "../src/attributes",
     "valueConverters": "../src/value-converters",
     "bindingBehaviors": "../src/binding-behaviors"
