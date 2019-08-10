@@ -4,6 +4,7 @@ import { metadata } from 'aurelia-metadata';
 import { bindingMode } from 'aurelia-binding';
 import { TaskQueue } from 'aurelia-task-queue';
 import { ControlBindings } from '../controlBindings';
+import { constants } from 'common/constants';
 
 export function generateBindables(controlName: string): any {
   return function (target, key, descriptor) {
@@ -16,7 +17,7 @@ export function generateBindables(controlName: string): any {
 
       // set the name of the bindable property to the option
       let nameOrConfigOrTarget: any = {
-        name: option,
+        name: `${constants.bindablePrefix}${option}`,
         defaultBindingMode: bindingMode.toView
       };
 

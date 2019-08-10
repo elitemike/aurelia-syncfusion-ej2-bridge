@@ -3,7 +3,7 @@ import { ControlBase } from "./controlBase";
 export abstract class SyncfusionWrapper<T, U> extends ControlBase<T, U> {
   protected abstract syncfusionControlType: any = null;
   onCreateControl() {
-    this.control = new this.syncfusionControlType(this.ej2Model);
+    this.syncfusionControl = new this.syncfusionControlType(this.eModel);
   }
 
   protected get controlType() {

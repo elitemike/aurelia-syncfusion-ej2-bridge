@@ -1,15 +1,19 @@
 import { autoinject, BindingEngine, bindable, Disposable } from "aurelia-framework";
 import { ControlContainer, Control } from "./controlContainer";
+import { constants } from "./constants";
 
 
 @autoinject
 export class ControlBase<T, U> {
   @bindable
-  public ej2Model: U = null;
+  public eModel: U = null;
 
   protected element: HTMLElement = null;
-  public control: T = null;
+  public syncfusionControl: T = null;
   protected context: any = null;
+
+  // this controls if the indivual bindings override the model values at initial binding
+  private propertyPriority = true;
 
   protected get controlType(): Function {
     throw "syncfusionControlType is not set";
@@ -18,7 +22,7 @@ export class ControlBase<T, U> {
   private propertyChangedSubscriptions: Disposable[] = [];
 
   constructor(protected bindingEngine: BindingEngine, private controlContainer: ControlContainer) {
-    (<any>this.ej2Model) = {};
+    (<any>this.eModel) = {};
 
   }
 
@@ -39,15 +43,16 @@ export class ControlBase<T, U> {
 
     let _control = this.getBindableProperties();
 
+    let bindablePrefixLength = constants.bindablePrefix.length;
+
     // Get initial values from any bound properties
     _control.bindables.forEach((property) => {
-      if (this[property] !== undefined && this.ej2Model[property] === undefined) {
-        this.ej2Model[property] = this[property];
-        console.log('has value', { name: property, value: this[property] })
+      let modelProperty = property.substr(bindablePrefixLength)
+      if (this[property] !== undefined && (this.propertyPriority || this.eModel[modelProperty] === undefined)) {
+        this.eModel[modelProperty] = this[property];
+        console.log('has value', { name: modelProperty, value: this[property] })
       }
     });
-
-
 
     this.createControlPropertySubscriptions(_control);
     this.onCreateControl();
@@ -75,10 +80,13 @@ export class ControlBase<T, U> {
 
   createControlPropertySubscriptions(control: Control) {
     if (control) {
+      let bindablePrefixLength = constants.bindablePrefix.length;
+
       control.bindables.forEach((binding) => {
+        let modelBinding = binding.substr(bindablePrefixLength);
         this.propertyChangedSubscriptions.push(this.bindingEngine.propertyObserver(this, binding).subscribe((newValue) => {
-          if ((<any>this.control).properties.hasOwnProperty(binding)) {
-            (<any>this.control)[binding] = newValue;
+          if ((<any>this.syncfusionControl).properties.hasOwnProperty(modelBinding)) {
+            (<any>this.syncfusionControl)[modelBinding] = newValue;
           }
         }));
       });
@@ -86,7 +94,7 @@ export class ControlBase<T, U> {
   }
 
   attached() {
-    (<any>this.control).appendTo(this.element);
+    (<any>this.syncfusionControl).appendTo(this.element);
   }
 
   detached() {
