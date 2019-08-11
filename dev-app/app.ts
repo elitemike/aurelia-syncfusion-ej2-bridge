@@ -1,6 +1,7 @@
 import { ProgressButtonModel } from '@syncfusion/ej2-splitbuttons';
 import { ButtonModel } from '@syncfusion/ej2-buttons';
 import { observable } from 'aurelia-binding';
+import { Ej2Button } from 'controls/button/ej2-button';
 export class App {
 
   @observable
@@ -13,7 +14,8 @@ export class App {
   index = 0;
   isPrimary = true;
   myContent = "blah"
-  isToggle = true;
+  isToggle = false;
+  ej2Button: Ej2Button = null;
 
   progressButtonModel: ProgressButtonModel = {
 
@@ -27,8 +29,7 @@ export class App {
   }
 
   buttonModel: ButtonModel = {
-    isPrimary: true,
-    isToggle: false
+
   };
 
   buttonClick() {
@@ -38,11 +39,11 @@ export class App {
 
   progressClicked() {
     // console.log("progress clicked")
-    this.isPrimary = false;
+    this.ej2Button.refresh();
   }
 
   checkboxClick() {
-    // console.log("checkbox clicked", this.isChecked);
+    console.log("checkbox clicked", this.isChecked);
   }
 
   isCheckedChanged() {
@@ -56,6 +57,7 @@ export class App {
 
   rdo2CheckedChanged() {
     //   console.log("radio 2 changed - new value", this.rdo2Checked);
+    this.isToggle = true;
 
   }
 

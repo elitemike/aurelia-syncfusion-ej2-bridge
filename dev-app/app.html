@@ -1,13 +1,13 @@
 <template>
-  <ej2-button e-is-primary.bind="isPrimary" e-is-toggle.bind="isToggle" e-model.bind="buttonModel"
-    e-disabled.bind="buttonDisabled" on-click.call="buttonClick()">
+  <ej2-button view-model.ref="ej2Button" e-is-primary.bind="isPrimary" e-is-toggle.bind="isToggle"
+    e-model.bind="buttonModel" e-disabled.bind="buttonDisabled" on-click.call="buttonClick()">
     Click me
   </ej2-button><br />
   <ej2-button on-click.call="buttonClick()">
     #2
   </ej2-button><br />
 
-  <ej2-checkbox on-click.call="checkboxClick()" label="my value" checked.two-way="isChecked"></ej2-checkbox>
+  <ej2-checkbox on-click.call="checkboxClick()" e-label="my value" e-checked.two-way="isChecked"></ej2-checkbox>
   <ej2-radio label="1st" name="ab" checked.two-way="rdo1Checked"></ej2-radio>
   <ej2-radio label="2nd" name="ab" checked.two-way="rdo2Checked"></ej2-radio><br />
   <ej2-progress-button e-disabled.bind="rdo2Checked" e-model.bind="progressButtonModel"

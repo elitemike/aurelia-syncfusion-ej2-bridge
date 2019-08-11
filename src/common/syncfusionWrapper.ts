@@ -1,14 +1,15 @@
 import { ControlBase } from "./controlBase";
 
 export abstract class SyncfusionWrapper<T, U> extends ControlBase<T, U> {
-  protected abstract syncfusionControlType: any = null;
+  protected abstract syncfusionWidgetType: any = null;
+
   onCreateControl() {
-    this.syncfusionControl = new this.syncfusionControlType(this.eModel);
+    this.widget = new this.syncfusionWidgetType(this.eModel);
   }
 
   protected get controlType() {
-    if (this.syncfusionControlType) {
-      return this.syncfusionControlType;
+    if (this.syncfusionWidgetType) {
+      return this.syncfusionWidgetType;
     }
 
     throw "syncfusionControlType is not set";

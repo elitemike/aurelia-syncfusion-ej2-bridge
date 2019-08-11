@@ -1,3 +1,4 @@
+import { TaskQueue } from 'aurelia-task-queue';
 import { autoinject, BindingEngine, bindable, Disposable } from "aurelia-framework";
 import { ControlContainer, Control } from "./controlContainer";
 import { constants } from "./constants";
@@ -9,7 +10,7 @@ export class ControlBase<T, U> {
   public eModel: U = null;
 
   protected element: HTMLElement = null;
-  public syncfusionControl: T = null;
+  public widget: T = null;
   protected context: any = null;
 
   // this controls if the indivual bindings override the model values at initial binding
@@ -21,7 +22,7 @@ export class ControlBase<T, U> {
 
   private propertyChangedSubscriptions: Disposable[] = [];
 
-  constructor(protected bindingEngine: BindingEngine, private controlContainer: ControlContainer) {
+  constructor(protected bindingEngine: BindingEngine, private controlContainer: ControlContainer, protected taskQueue: TaskQueue) {
     (<any>this.eModel) = {};
 
   }
@@ -45,12 +46,13 @@ export class ControlBase<T, U> {
 
     let bindablePrefixLength = constants.bindablePrefix.length;
 
+    console.log("bindables", _control.bindables)
     // Get initial values from any bound properties
     _control.bindables.forEach((property) => {
       let modelProperty = property.substr(bindablePrefixLength)
       if (this[property] !== undefined && (this.propertyPriority || this.eModel[modelProperty] === undefined)) {
         this.eModel[modelProperty] = this[property];
-        console.log('has value', { name: modelProperty, value: this[property] })
+        console.log('has value', { name: property, value: this[property] })
       }
     });
 
@@ -85,8 +87,8 @@ export class ControlBase<T, U> {
       control.bindables.forEach((binding) => {
         let modelBinding = binding.substr(bindablePrefixLength);
         this.propertyChangedSubscriptions.push(this.bindingEngine.propertyObserver(this, binding).subscribe((newValue) => {
-          if ((<any>this.syncfusionControl).properties.hasOwnProperty(modelBinding)) {
-            (<any>this.syncfusionControl)[modelBinding] = newValue;
+          if ((<any>this.widget).properties.hasOwnProperty(modelBinding)) {
+            (<any>this.widget)[modelBinding] = newValue;
           }
         }));
       });
@@ -94,16 +96,17 @@ export class ControlBase<T, U> {
   }
 
   attached() {
-    (<any>this.syncfusionControl).appendTo(this.element);
+    (<any>this.widget).appendTo(this.element);
   }
 
   detached() {
     this.propertyChangedSubscriptions.forEach((subscription) => subscription.dispose());
   }
+
 }
 
 export const ExcludedProperties = [
   "__propertiesDefined__",
-  "ej2Model",
+  "eModel",
   "onClick"
 ];

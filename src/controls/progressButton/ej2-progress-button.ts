@@ -8,11 +8,39 @@ export class Ej2ProgressButton extends SyncfusionWrapper<ProgressButton, Progres
   @bindable
   private onClick: Function = null;
 
-  protected syncfusionControlType = ProgressButton;
+  protected syncfusionWidgetType = ProgressButton;
 
   _onClick() {
     if (this.onClick) {
       this.onClick();
     }
+  }
+
+  public refresh() {
+    this.widget.refresh();
+  }
+
+  public focusIn() {
+    this.widget.focusIn();
+  }
+
+  public click() {
+    this.widget.click();
+  }
+
+  public dataBind() {
+    this.widget.dataBind();
+  }
+
+  public progressComplete() {
+    this.widget.progressComplete();
+  }
+
+  public start() {
+    this.widget.start();
+  }
+
+  public stop() {
+    this.widget.stop();
   }
 }
