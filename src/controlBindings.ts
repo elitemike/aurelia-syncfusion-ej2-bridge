@@ -10,5 +10,8 @@ export const ControlBindings = {
   },
   progressButton: {
     oneWay: ["animationSettings", "content", "cssClass", "duration", "enablePersistence", "enableProgress", "enableRtl", "iconCss", "iconPosition", "isPrimary", "isToggle", "spinSettings"]
+  },
+  radio: {
+    oneWay: ["checked", "cssClass", "enablePersistence", "enableRtl", "label", "labelPosition", "locale", "name", "value"]
   }
 }

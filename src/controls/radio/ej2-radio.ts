@@ -1,79 +1,46 @@
 import { TaskQueue } from 'aurelia-task-queue';
-import { BindingEngine, Disposable } from 'aurelia-binding';
-import { bindable, autoinject } from 'aurelia-framework';
-import { EventAggregator, Subscription } from "aurelia-event-aggregator"
+import { Disposable } from 'aurelia-binding';
+import { Subscription } from "aurelia-event-aggregator"
 import { RadioButtonModel, RadioButton } from '@syncfusion/ej2-buttons';
+import { SyncfusionWrapper } from 'common/syncfusionWrapper';
+import { constants } from 'common/constants';
+import { generateBindables } from 'utilities/decorator';
 
-@autoinject
-export class Ej2Radio {
-  @bindable
-  label: string = "No label provided";
-  @bindable
-  name: string = "";
-  @bindable
-  settings = null;
-  @bindable
-  checked: boolean = false
+@generateBindables("radio")
+export class Ej2Radio extends SyncfusionWrapper<RadioButton, RadioButtonModel> {
+  protected syncfusionWidgetType = RadioButton;
 
-  radioButton: RadioButton = null;
-  radioButtonModel: RadioButtonModel = {};
-  context: any = null;
-  radioElement: HTMLInputElement = null;
   checkedSubscription: Disposable = null;
   selectionChangedSubscription: Subscription = null;
 
-  constructor(private bindingEngine: BindingEngine, private taskQueue: TaskQueue, private eventAggregator: EventAggregator) {
 
-  }
-
-  bind(context) {
-
-    this.context = context;
-
-    this.radioButtonModel.label = this.label;
-    this.radioButtonModel.name = this.name;
-    if (this.checked) {
-      this.radioButtonModel.checked = this.checked;
+  onBind() {
+    if (!this.eModel.name) {
+      throw "Radio e-name is required";
     }
 
-
-    if (this.settings) {
-      Object.assign(this.radioButtonModel, this.settings);
-    }
-
-    if (!this.radioButtonModel.name) {
-      throw "Radio name is required";
-    }
-
-
-
-    this.radioButton = new RadioButton(this.radioButtonModel);
-    let _this = this;
-    this.radioButton.change = () => {
-      this.checked = this.radioButton.checked;
-      this.eventAggregator.publish(`ej2-radio-${this.radioButtonModel.name}-changed`, this.label);
+    this.widget.change = () => {
+      this[`${constants.bindablePrefix}checked`] = this.widget.checked;
+      this.eventAggregator.publish(`ej2-radio-${this.eModel.name}-changed`, this[`${constants.bindablePrefix}label`]);
     };
 
-    this.checkedSubscription = this.bindingEngine.propertyObserver(this, "checked").subscribe((newValue) => {
-      this.radioButton.checked = newValue;
+    this.checkedSubscription = this.bindingEngine.propertyObserver(this, this[`${constants.bindablePrefix}checked`]).subscribe((newValue) => {
+      this.widget.checked = newValue;
     });
 
-    this.selectionChangedSubscription = this.eventAggregator.subscribe(`ej2-radio-${this.radioButtonModel.name}-changed`, (selectedLabel: string) => {
-      if (this.label !== selectedLabel) {
-        this.checked = false;
+    this.selectionChangedSubscription = this.eventAggregator.subscribe(`ej2-radio-${this.eModel.name}-changed`, (selectedLabel: string) => {
+      if (this[`${constants.bindablePrefix}label`] !== selectedLabel) {
+        this[`${constants.bindablePrefix}checked`] = false;
       }
     });
   }
 
-  attached() {
-    this.radioButton.appendTo(this.radioElement);
-  }
 
   detached() {
     this.checkedSubscription.dispose();
     this.selectionChangedSubscription.dispose();
+    super.detached();
   }
-
 }
 
 

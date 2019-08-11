@@ -2,6 +2,7 @@ import { TaskQueue } from 'aurelia-task-queue';
 import { autoinject, BindingEngine, bindable, Disposable } from "aurelia-framework";
 import { ControlContainer, Control } from "./controlContainer";
 import { constants } from "./constants";
+import { EventAggregator } from 'aurelia-event-aggregator';
 
 
 @autoinject
@@ -22,9 +23,9 @@ export class ControlBase<T, U> {
 
   private propertyChangedSubscriptions: Disposable[] = [];
 
-  constructor(protected bindingEngine: BindingEngine, private controlContainer: ControlContainer, protected taskQueue: TaskQueue) {
+  constructor(protected bindingEngine: BindingEngine, private controlContainer: ControlContainer,
+    protected taskQueue: TaskQueue, protected eventAggregator: EventAggregator) {
     (<any>this.eModel) = {};
-
   }
 
   onBind() {
