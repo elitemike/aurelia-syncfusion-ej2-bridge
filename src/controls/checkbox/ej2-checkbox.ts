@@ -1,15 +1,15 @@
-import { TaskQueue } from 'aurelia-task-queue';
-import { BindingEngine, Disposable } from 'aurelia-binding';
+import { Disposable } from 'aurelia-binding';
 import { CheckBox, CheckBoxModel } from '@syncfusion/ej2-buttons';
 import { bindable, autoinject } from 'aurelia-framework';
 import { SyncfusionWrapper } from 'common/syncfusionWrapper';
 import { generateBindables } from 'utilities/decorator';
-import { basename } from 'path';
 import { constants } from 'common/constants';
 
 @autoinject
 @generateBindables("checkbox")
 export class Ej2Checkbox extends SyncfusionWrapper<CheckBox, CheckBoxModel> {
+  protected onCreated() {
+  }
   protected syncfusionWidgetType = CheckBox;
 
   @bindable

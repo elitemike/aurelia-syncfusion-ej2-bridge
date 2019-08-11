@@ -1,9 +1,11 @@
 import { TaskQueue } from 'aurelia-task-queue';
-import { autoinject, BindingEngine, bindable, Disposable } from "aurelia-framework";
+import { autoinject, BindingEngine, bindable, Disposable, LogManager } from "aurelia-framework";
 import { ControlContainer, Control } from "./controlContainer";
 import { constants } from "./constants";
 import { EventAggregator } from 'aurelia-event-aggregator';
+import { Logger } from 'aurelia-logging';
 
+let logger: Logger = LogManager.getLogger("SyncfusionBridge");
 
 @autoinject
 export class ControlBase<T, U> {
@@ -13,7 +15,7 @@ export class ControlBase<T, U> {
   protected element: HTMLElement = null;
   public widget: T = null;
   protected context: any = null;
-
+  protected logName: string = "";
   // this controls if the indivual bindings override the model values at initial binding
   private propertyPriority = true;
 
@@ -26,6 +28,7 @@ export class ControlBase<T, U> {
   constructor(protected bindingEngine: BindingEngine, private controlContainer: ControlContainer,
     protected taskQueue: TaskQueue, protected eventAggregator: EventAggregator) {
     (<any>this.eModel) = {};
+
   }
 
   onBind() {
@@ -37,7 +40,23 @@ export class ControlBase<T, U> {
   }
 
   created() {
+    this.logName = this.controlType.name;
+  }
 
+  protected debug(message: string, ...rest: any[]) {
+    logger.debug(`[${this.logName}] - ${message}`, rest);
+  }
+
+  protected info(message: string, ...rest: any[]) {
+    logger.info(`[${this.logName}] - ${message}`, rest);
+  }
+
+  protected error(message: string, ...rest: any[]) {
+    logger.error(`[${this.logName}] - ${message}`, rest);
+  }
+
+  protected warn(message: string, ...rest: any[]) {
+    logger.warn(`[${this.logName}] - ${message}`, rest);
   }
 
   bind(context) {
@@ -47,19 +66,20 @@ export class ControlBase<T, U> {
 
     let bindablePrefixLength = constants.bindablePrefix.length;
 
-    console.log("bindables", _control.bindables)
+    this.debug("bindables", _control.bindables)
     // Get initial values from any bound properties
     _control.bindables.forEach((property) => {
       let modelProperty = property.substr(bindablePrefixLength)
       if (this[property] !== undefined && (this.propertyPriority || this.eModel[modelProperty] === undefined)) {
         this.eModel[modelProperty] = this[property];
-        console.log('has value', { name: property, value: this[property] })
+        this.info('has value', { name: property, value: this[property] })
       }
     });
 
     this.createControlPropertySubscriptions(_control);
     this.onCreateControl();
     // console.log("control", this.control);
+
 
     this.onBind();
   }

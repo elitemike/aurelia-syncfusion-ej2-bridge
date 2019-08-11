@@ -6,6 +6,8 @@ import { SyncfusionWrapper } from 'common/syncfusionWrapper';
 
 @generateBindables("button")
 export class Ej2Button extends SyncfusionWrapper<Button, ButtonModel> {
+  protected onCreated() {
+  }
   protected syncfusionWidgetType = Button
   @bindable
   private onClick: Function = null;

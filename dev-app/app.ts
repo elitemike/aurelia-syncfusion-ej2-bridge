@@ -17,16 +17,16 @@ export class App {
   myContent = "blah"
   isToggle = false;
   ej2Button: Ej2Button = null;
+  gridDataSource = data;
+  gridColumns = [
+    { field: 'OrderID', headerText: 'Order ID', textAlign: 'Right', width: 120, type: 'number' },
+    { field: 'CustomerID', width: 140, headerText: 'Customer ID', type: 'string' },
+    { field: 'Freight', headerText: 'Freight', textAlign: 'Right', width: 120, format: 'C' },
+    { field: 'OrderDate', headerText: 'Order Date', width: 140, format: 'yMd' }
+  ];
 
   gridModel: GridModel = {
-    dataSource: data,
-    columns: [
-      { field: 'OrderID', headerText: 'Order ID', textAlign: 'Right', width: 120, type: 'number' },
-      { field: 'CustomerID', width: 140, headerText: 'Customer ID', type: 'string' },
-      { field: 'Freight', headerText: 'Freight', textAlign: 'Right', width: 120, format: 'C' },
-      { field: 'OrderDate', headerText: 'Order Date', width: 140, format: 'yMd' }
-    ],
-    height: 315
+
   }
 
   progressButtonModel: ProgressButtonModel = {

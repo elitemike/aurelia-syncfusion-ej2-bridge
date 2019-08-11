@@ -13,5 +13,6 @@
   <ej2-progress-button e-disabled.bind="rdo2Checked" e-model.bind="progressButtonModel"
     on-click.call="progressClicked()">Help</ej2-progress-button>
 
-  <ej2-grid e-model.bind="gridModel"></ej2-grid>
+  <ej2-grid e-height="400" e-columns.bind="gridColumns" e-data-source.bind="gridDataSource" e-model.bind="gridModel">
+  </ej2-grid>
 </template>

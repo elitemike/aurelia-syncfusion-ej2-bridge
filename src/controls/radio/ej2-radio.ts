@@ -1,4 +1,3 @@
-import { TaskQueue } from 'aurelia-task-queue';
 import { Disposable } from 'aurelia-binding';
 import { Subscription } from "aurelia-event-aggregator"
 import { RadioButtonModel, RadioButton } from '@syncfusion/ej2-buttons';
@@ -8,6 +7,8 @@ import { generateBindables } from 'utilities/decorator';
 
 @generateBindables("radio")
 export class Ej2Radio extends SyncfusionWrapper<RadioButton, RadioButtonModel> {
+  protected onCreated() {
+  }
   protected syncfusionWidgetType = RadioButton;
 
   checkedSubscription: Disposable = null;
@@ -34,7 +35,6 @@ export class Ej2Radio extends SyncfusionWrapper<RadioButton, RadioButtonModel> {
       }
     });
   }
-
 
   detached() {
     this.checkedSubscription.dispose();

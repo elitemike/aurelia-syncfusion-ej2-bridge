@@ -5,6 +5,8 @@ import { generateBindables } from "utilities/decorator";
 
 @generateBindables("progressButton")
 export class Ej2ProgressButton extends SyncfusionWrapper<ProgressButton, ProgressButtonModel> {
+  protected onCreated() {
+  }
   @bindable
   private onClick: Function = null;
 
