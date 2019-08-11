@@ -8,6 +8,9 @@ export const ControlBindings = {
   checkbox: {
     oneWay: ["checked", "cssClass", "enablePersistence", "enableRtl", "indeterminate", "label", "labelPosition", "locale", "name", "value"]
   },
+  grid: {
+    oneWay: []
+  },
   progressButton: {
     oneWay: ["animationSettings", "content", "cssClass", "duration", "enablePersistence", "enableProgress", "enableRtl", "iconCss", "iconPosition", "isPrimary", "isToggle", "spinSettings"]
   },

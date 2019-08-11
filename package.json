@@ -96,6 +96,7 @@
     ]
   },
   "dependencies": {
-    "@syncfusion/ej2": "^17.2.40"
+    "@syncfusion/ej2": "^17.2.40",
+    "@syncfusion/ej2-data": "^17.2.39"
   }
 }
