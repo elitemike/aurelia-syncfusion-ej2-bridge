@@ -1,0 +1,6 @@
+<template>
+  <div repeat.for="option of dataSource">
+    <ej2-checkbox e-label.bind="option[optionModel.label]" e-checked.bind="selectedItems.indexOf(option) !== -1">
+    </ej2-checkbox>
+  </div>
+</template>
