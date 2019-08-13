@@ -107,6 +107,7 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
     if (this.onRemoving !== undefined && typeof this.onRemoving === "function") {
       this.onRemoving.call(this, args);
       if (args.cancel) {
+        // Not sure how to stop the spinner
         return;
       }
     }

@@ -1,4 +1,4 @@
-import { UploaderModel } from "@syncfusion/ej2-inputs";
+import { UploaderModel, RemovingEventArgs } from "@syncfusion/ej2-inputs";
 import * as uid from "uuid/v4";
 import { Ej2UploaderDataAdapter } from "controls/uploader/ej2-uploader";
 import { HttpClient, json } from "aurelia-fetch-client";
@@ -63,5 +63,9 @@ export class UploaderDemo {
     metadata.fileContextId = uid();
 
     return metadata;
+  }
+
+  onRemoving(args: RemovingEventArgs) {
+    // args.cancel = true;
   }
 }
