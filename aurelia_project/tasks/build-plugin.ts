@@ -1,9 +1,9 @@
 import * as gulp from 'gulp';
 import * as del from 'del';
-import {pluginMarkup} from './process-markup';
-import {pluginCSS} from './process-css';
-import {pluginJson} from './process-json';
-import {buildPluginJavaScript} from './transpile';
+import { pluginMarkup } from './process-markup';
+import { pluginCSS } from './process-css';
+import { pluginJson } from './process-json';
+import { buildPluginJavaScript } from './transpile';
 
 function clean() {
   return del('dist');

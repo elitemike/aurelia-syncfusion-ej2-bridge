@@ -1,4 +1,3 @@
-import { Control } from './../../dist/commonjs/common/controlContainer.d';
 import { BindableProperty, HtmlBehaviorResource } from 'aurelia-templating';
 import { Container } from 'aurelia-dependency-injection';
 import { metadata } from 'aurelia-metadata';

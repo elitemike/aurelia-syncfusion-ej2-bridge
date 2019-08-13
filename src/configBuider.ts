@@ -5,6 +5,7 @@ import { Ej2Checkbox } from "controls/checkbox/ej2-checkbox";
 import { Ej2Radio } from "controls/radio/ej2-radio";
 import { Ej2ProgressButton } from "controls/progressButton/ej2-progress-button";
 import { Ej2Grid } from "controls/grid/ej2-grid";
+import { Ej2Uploader } from "controls/uploader/ej2-uploader";
 
 export class ConfigBuilder {
   public resources: any[] = [];
@@ -19,6 +20,7 @@ export class ConfigBuilder {
       .ej2Grid()
       .ej2ProgressButton()
       .ej2Radio()
+      .ej2Uploader()
     return this;
   }
 
@@ -95,6 +97,11 @@ export class ConfigBuilder {
 
   ej2Radio(): ConfigBuilder {
     this.resources.push(Ej2Radio);
+    return this;
+  }
+
+  ej2Uploader(): ConfigBuilder {
+    this.resources.push(Ej2Uploader);
     return this;
   }
 }

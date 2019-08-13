@@ -1,3 +1,4 @@
+import { UploaderDemo } from './uploader/uploaderDemo';
 import { ConfigBuilder } from './../src/configBuider';
 import { Aurelia } from 'aurelia-framework'
 import environment from './environment';
@@ -15,5 +16,5 @@ export function configure(aurelia: Aurelia) {
     aurelia.use.plugin('aurelia-testing');
   }
 
-  aurelia.start().then(() => aurelia.setRoot());
+  aurelia.start().then(() => aurelia.setRoot(UploaderDemo));
 }

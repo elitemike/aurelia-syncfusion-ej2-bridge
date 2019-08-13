@@ -1,15 +1,15 @@
 export const ControlBindings = {
   common: {
-    oneWay: ["disabled"]
+    oneWay: []
   },
   button: {
-    oneWay: ["isPrimary", "content", "cssClass", "enablePersistence", "iconCss", "iconPosition", "isToggle", "enableRtl"],
+    oneWay: ["disabled", "isPrimary", "content", "cssClass", "enablePersistence", "iconCss", "iconPosition", "isToggle", "enableRtl"],
   },
   checkbox: {
-    oneWay: ["checked", "cssClass", "enablePersistence", "enableRtl", "indeterminate", "label", "labelPosition", "locale", "name", "value"]
+    oneWay: ["checked", "cssClass", "disabled", "enablePersistence", "enableRtl", "indeterminate", "label", "labelPosition", "locale", "name", "value"]
   },
   grid: {
-    oneWay: ["aggregates", "allowExcelExport", "allowFiltering", "allowGrouping", "allowMultiSorting", "allowPaging", "allowPdfExport",
+    oneWay: ["aggregates", "allowExcelExport", "disabled", "allowFiltering", "allowGrouping", "allowMultiSorting", "allowPaging", "allowPdfExport",
       "allowReordering", "allowResizing", "allowRowDragAndDrop", "allowSelection", "allowSorting", "allowTextWrap", "childGrid", "clipboardModule",
       "columnMenuItems", "columnMenuModule", "columnQueryMode", "columns", "contextMenuItems", "contextMenuModule", "dataSource",
       "detailTemplate", "editModule", "editSettings", "enableAltRow", "enableAutoFill", "enableColumnVirtualization", "enableHover", "enablePersistence", "enableRtl", "enableVirtualiziation",
@@ -23,9 +23,12 @@ export const ControlBindings = {
     twoWay: ["selectedRowIndex"]
   },
   progressButton: {
-    oneWay: ["animationSettings", "content", "cssClass", "duration", "enablePersistence", "enableProgress", "enableRtl", "iconCss", "iconPosition", "isPrimary", "isToggle", "spinSettings"]
+    oneWay: ["animationSettings", "content", "cssClass", "disabled", "duration", "enablePersistence", "enableProgress", "enableRtl", "iconCss", "iconPosition", "isPrimary", "isToggle", "spinSettings"]
   },
   radio: {
-    oneWay: ["checked", "cssClass", "enablePersistence", "enableRtl", "label", "labelPosition", "locale", "name", "value"]
+    oneWay: ["checked", "cssClass", "disabled", "enablePersistence", "enableRtl", "label", "labelPosition", "locale", "name", "value"]
+  },
+  uploader: {
+    oneWay: ["allowedExtensions", "asyncSettings", "autoUpload", "buttons", "cssClass", "directoryUpload", "dropArea", "enablePersistence", "enableRtl", "enabled", "files", "htmlAttributes", "locale", "maxFileSize", "minFileSize", "multiple", "sequentialUpload", "showFileList", "template", "formData"]
   }
 }
