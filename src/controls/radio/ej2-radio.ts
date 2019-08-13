@@ -7,7 +7,9 @@ import { generateBindables } from 'utilities/decorator';
 
 @generateBindables("radio")
 export class Ej2Radio extends SyncfusionWrapper<RadioButton, RadioButtonModel> {
-  protected onCreated() {
+  protected onWidgetCreated() {
+  }
+  protected onWrapperCreated() {
   }
   protected syncfusionWidgetType = RadioButton;
 
@@ -42,6 +44,3 @@ export class Ej2Radio extends SyncfusionWrapper<RadioButton, RadioButtonModel> {
     super.detached();
   }
 }
-
-
-

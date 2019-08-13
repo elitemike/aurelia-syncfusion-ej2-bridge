@@ -8,8 +8,11 @@ import { constants } from 'common/constants';
 @autoinject
 @generateBindables("checkbox")
 export class Ej2Checkbox extends SyncfusionWrapper<CheckBox, CheckBoxModel> {
-  protected onCreated() {
+  protected onWidgetCreated() {
   }
+  protected onWrapperCreated() {
+  }
+
   protected syncfusionWidgetType = CheckBox;
 
   @bindable

@@ -1,12 +1,17 @@
 import { constants } from 'common/constants';
-import { Uploader, UploaderModel, UploadingEventArgs } from "@syncfusion/ej2-inputs";
+import { Uploader, UploaderModel, UploadingEventArgs, RemovingEventArgs } from "@syncfusion/ej2-inputs";
 import { SyncfusionWrapper } from "common/syncfusionWrapper";
 import { generateBindables } from "utilities/decorator";
 import { bindable } from 'aurelia-framework';
+import { RemoveEventArgs } from '@syncfusion/ej2-navigations';
+import * as uid from "uuid/v4";
 
 @generateBindables("uploader")
 export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
+  private _filesProperty = `${constants.bindablePrefix}files`;
+  private _privateIdProperty = "__id";
   protected syncfusionWidgetType = Uploader;
+
   public mapAdditionalFilePropertiesToFiles: boolean = true;
   public sendAdditionalFilePropertiesAsFormData: boolean = true;
 
@@ -17,42 +22,134 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
   @bindable
   public onUploading: (args: UploadingEventArgs) => void;
   @bindable
-  onSuccess: (args: any, context: any) => void;
+  public onSuccess: (args: any) => void;
+  @bindable
+  public onFailure: (args: any) => void;
+  @bindable
+  public onRemoving: (args: RemoveEventArgs) => void;
   @bindable
   public metadataGenerator: (file: object) => object = null;
   @bindable
   public uploadResultModel: object = null;
+  @bindable
+  public dataAdapter: Ej2UploaderDataAdapter = null;
+  @bindable
+  public autoRemoveServerFiles = true;
 
 
-  protected onCreated() {
-    if (this.mapAdditionalFilePropertiesToFiles && this.widget.files) {
-      let filesPropertyName = `${constants.bindablePrefix}files`;
+  protected onWrapperCreated() {
+    this.widget.uploading = (args) => { this.onFileUpload(args); };
+    this.widget.success = (args: any) => { this.success(args); };
+    this.widget.failure = (args) => { this.failure(args); };
+    this.widget.removing = (args) => { this.removing(args); };
+    this.widget.change = (args) => { this.change(); };
 
-      let extraProperties = this.getAdditionalFileProperties();
-      if (extraProperties.length > 0) {
-        for (let i = 0; i < this.widget.files.length; i++) {
-          const file = this.widget.files[i];
+    if (this.dataAdapter) {
+      if (this.dataAdapter.remove) {
+        let _this = this;
+        // This is done to short circuit the built in ajax method being called
+        // onFileRemoving will trigger the completed/failed callback
+        (<any>this.widget).removeUploadedFile = function async(file, eventArgs, removeDirectly, custom) {
+          let formData = new FormData();
+          let selectedFiles = file;
 
-          extraProperties.forEach((prop) => {
-            file[prop] = this[filesPropertyName][i][prop];
+          (<any>_this.widget).trigger("removing", eventArgs, function (eventArgs) {
+            (<any>_this.widget).removingEventCallback(eventArgs, formData, selectedFiles, file);
           });
+        };
+      }
+    }
+  }
+
+  protected onWidgetCreated() {
+    if (this.widget.files) {
+      let extraProperties = [];
+      let widgetFiles = this.widget.getFilesData();
+
+      if (this.mapAdditionalFilePropertiesToFiles) {
+        extraProperties = this.getAdditionalFileProperties();
+      }
+
+      for (let i = 0; i < widgetFiles.length; i++) {
+        const file = widgetFiles[i];
+        let __id = uid();
+        file[this._privateIdProperty] = __id;
+        this[this._filesProperty][i][this._privateIdProperty] = __id;
+
+        extraProperties.forEach((prop) => {
+          file[prop] = this[this._filesProperty][i][prop];
+        });
+      }
+    }
+  }
+
+  change() {
+    if (this.autoRemoveServerFiles) {
+      this.getFilesToDelete();
+    }
+  }
+
+  async getFilesToDelete() {
+    let widgetFiles = this.widget.getFilesData();
+    if (this[this._filesProperty].length !== widgetFiles.length) {
+      for (let i = 0; i < this[this._filesProperty].length; i++) {
+        const file = this[this._filesProperty][i];
+        if (!widgetFiles.find((x) => x[this._privateIdProperty] === file[this._privateIdProperty])) {
+          this.info("file not found", file);
+
+          this.widget.remove(file);
         }
       }
     }
+  }
 
-    this.widget.uploading = (args) => { this.onFileUpload(args); };
-    this.widget.success = (args: any) => { this.success(args); };
+  async removing(args: RemovingEventArgs) {
+    if (this.onRemoving !== undefined && typeof this.onRemoving === "function") {
+      this.onRemoving.call(this, args);
+      if (args.cancel) {
+        return;
+      }
+    }
+
+    if (this.dataAdapter && this.dataAdapter.remove) {
+      try {
+        await this.dataAdapter.remove(args.filesData[0]);
+        this.onRemoveSuccess(args);
+        this.onWidgetRemoveComplete(null, args);
+      } catch (error) {
+        this.onWidgetRemoveFailed(error, args);
+      }
+    }
+
+    this.onRemoveSuccess(args)
+  }
+
+  onWidgetRemoveComplete(response, args) {
+    (<any>this.widget).removeCompleted(response, args.filesData[0], false);
+  }
+
+  onWidgetRemoveFailed(e, args) {
+    (<any>this.widget).removeFailed(e, args.filesData[0], false);
+  }
+
+  onRemoveSuccess(args) {
+    let _file: any = args.filesData[0];
+    let index = this[this._filesProperty].findIndex((x: any) => x.__id === _file.__id);
+    this[this._filesProperty].splice(index, 1);
+
+    this.onSuccess.call(this, args);
   }
 
   success(args: any): void {
     if (args.operation === "upload") {
       let response = JSON.parse(args.e.target.response);
-      let filesPropertyName = `${constants.bindablePrefix}files`;
       let _uploadedFile = args.file;
       let fileName = (<string>_uploadedFile.name).substr(0, _uploadedFile.name.length - (_uploadedFile.type.length + 1));
 
       // map response values
       let additionalProperties = {};
+      additionalProperties[this._privateIdProperty] = uid();
+
       if (this.uploadResultModel) {
         for (let prop in this.uploadResultModel) {
           additionalProperties[this.uploadResultModel[prop]] = response[prop];
@@ -68,27 +165,32 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
       Object.assign(_uploadedFile, additionalProperties);
       Object.assign(file, additionalProperties);
 
-      if (this[filesPropertyName] === null) {
-        this[filesPropertyName] = [];
+      if (this[this._filesProperty] === null) {
+        this[this._filesProperty] = [];
       }
 
-      this[filesPropertyName].push(file);
+      this[this._filesProperty].push(file);
 
       if (this.onSuccess !== undefined && typeof this.onSuccess === "function") {
         this.onSuccess.call(this, args);
       }
     }
-    else {
-      this.info("something else happened")
+    else if (args.operation === "remove") {
+
+    }
+  }
+
+  failure(args: any): void {
+    if (this.onFailure !== undefined && typeof this.onFailure === "function") {
+      this.onFailure.call(this, args);
     }
   }
 
   private getAdditionalFileProperties() {
     let extraProperties: string[] = [];
 
-    let filesPropertyName = `${constants.bindablePrefix}files`;
-    if (this[filesPropertyName] && this[filesPropertyName].length > 0) {
-      for (let prop in this[filesPropertyName][0]) {
+    if (this[this._filesProperty] && this[this._filesProperty].length > 0) {
+      for (let prop in this[this._filesProperty][0]) {
         if (prop !== "name" && prop !== "size" && prop !== "type") {
           extraProperties.push(prop);
         }
@@ -118,7 +220,7 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
     }
 
     if (this.onUploading !== undefined && typeof this.onUploading === "function") {
-      this.onUploading(args);
+      this.onUploading.call(this, args);
     }
   }
 
@@ -160,7 +262,7 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
 
 
 export interface Ej2UploaderDataAdapter {
-  removeUploadedFile(file, eventArgs, removeDirectly, custom): Promise<void>;
+  remove(file: any): Promise<void>;
 }
 
 export interface Ej2UploaderRemove {

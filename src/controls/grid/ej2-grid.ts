@@ -4,7 +4,9 @@ import { generateBindables } from 'utilities/decorator';
 
 @generateBindables("grid")
 export class Ej2Grid extends SyncfusionWrapper<Grid, GridModel> {
-  protected onCreated() {
+  protected onWidgetCreated() {
+  }
+  protected onWrapperCreated() {
 
   }
   protected syncfusionWidgetType = Grid;
