@@ -3,7 +3,7 @@
     <ej2-checkbox view-model.ref="viewModels[$index]" e-label.bind="optionModel? option[optionModel.label]: option"
       e-name.bind="optionModel? option[optionModel.name]: option"
       on-click.call="checkboxClick(option, viewModels[$index])"
-      e-checked.bind="selectedItems.length >0 && selectedItems.indexOf(option) !== -1">
+      e-checked.bind="selectedItems.length >0 && matcher? isMatch(option) : selectedItems.indexOf(option) !== -1">
     </ej2-checkbox>
   </div>
 </template>
