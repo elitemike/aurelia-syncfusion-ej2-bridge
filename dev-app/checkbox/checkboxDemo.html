@@ -1,6 +1,42 @@
 <template>
-  <ej2-checkbox e-label="my value"></ej2-checkbox>
 
-  <ej2-checkbox-list data-source.bind="dataSource" option-model.bind="optionModel" selected-items.bind="selectedItems">
+  <!-- <ej2-checkbox e-label="my value"></ej2-checkbox> -->
+  <h4>Object bound</h4>
+  <ej2-checkbox-list data-source.bind="dataSource1" option-model.bind="optionModel1"
+    selected-items.bind="selectedItems1" orientation="vertical">
   </ej2-checkbox-list>
+  <div>
+    <span>Selected items ${selectedItems1.length}</span>
+    <ul>
+      <li repeat.for="option of selectedItems1">
+        ${option.label}
+      </li>
+    </ul>
+  </div>
+
+  <h4>String bound</h4>
+  <ej2-checkbox-list data-source.bind="dataSource2" selected-items.bind="selectedItems2" orientation="vertical">
+  </ej2-checkbox-list>
+  <div>
+    <span>Selected items ${selectedItems2.length}</span>
+    <ul>
+      <li repeat.for="option of selectedItems2">
+        ${option}
+      </li>
+    </ul>
+  </div>
+
+  <h4>Object bound with matcher</h4>
+  <ej2-checkbox-list data-source.bind="dataSource3" option-model.bind="optionModel3"
+    selected-items.bind="selectedItems3" matcher.bind="matcher" orientation="horizontal">
+  </ej2-checkbox-list>
+  <div>
+    <span>Selected items ${selectedItems3.length}</span>
+    <ul>
+      <li repeat.for="option of selectedItems3">
+        ${option.label}
+      </li>
+    </ul>
+  </div>
+
 </template>

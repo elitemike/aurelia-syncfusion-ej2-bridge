@@ -2,7 +2,7 @@ import { IOptionModel } from "controls/checkbox/ej2-checkbox-list";
 
 
 export class CheckboxDemo {
-  dataSource = [
+  dataSource1 = [
     {
       label: "Item 1",
       name: "blah"
@@ -17,21 +17,55 @@ export class CheckboxDemo {
     }
   ]
 
-  selectedItems = [];
+  dataSource2 = ["A", "B", "C", "D"]
 
-  optionModel: IOptionModel = {
+  dataSource3 = [
+    {
+      label: "Item 1",
+      name: "blah",
+      id: "AAA"
+    },
+    {
+      label: "Item 2",
+      name: "boo",
+      id: "asdfa"
+    },
+    {
+      label: "item 3",
+      name: "basdf",
+      id: "3rfsdfga"
+    }
+  ]
+
+  matcher = (a, b) => { return a.id === b.id };
+
+  selectedItems1 = [];
+  selectedItems2 = [];
+  selectedItems3 = [{
+    label: "Item 2",
+    name: "boo",
+    id: "asdfa"
+  }];
+
+  optionModel1: IOptionModel = {
+    label: "label",
+    name: "name",
+    value: "value"
+  }
+
+  optionModel3: IOptionModel = {
     label: "label",
     name: "name",
     value: "value"
   }
 
   constructor() {
-    this.selectedItems.push(this.dataSource[1]);
+    this.selectedItems1.push(this.dataSource1[1]);
 
     let _this = this;
-    setTimeout(() => {
-      _this.selectedItems.push(_this.dataSource[2]);
-      console.log("selected tiems", _this.selectedItems)
-    }, 5000);
+    // setTimeout(() => {
+    //   _this.selectedItems.push(_this.dataSource[2]);
+    //   console.log("selected tiems", _this.selectedItems)
+    // }, 5000);
   }
 }
