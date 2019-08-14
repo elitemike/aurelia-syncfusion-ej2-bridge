@@ -5,19 +5,21 @@ import { generateBindables } from "../../utilities/decorator";
 
 @generateBindables("progressButton")
 export class Ej2ProgressButton extends SyncfusionWrapper<ProgressButton, ProgressButtonModel> {
+  clickEvent: Event = null;
+
   protected onWidgetCreated() {
   }
   protected onWrapperCreated() {
+    this.clickEvent = new CustomEvent("on-click", {
+      bubbles: true
+    });
   }
-  @bindable
-  private onClick: Function = null;
 
   protected syncfusionWidgetType = ProgressButton;
 
-  _onClick() {
-    if (this.onClick) {
-      this.onClick();
-    }
+  _onClick(event: Event) {
+    this.element.dispatchEvent(this.clickEvent);
+    event.stopPropagation();
   }
 
   public refresh() {
