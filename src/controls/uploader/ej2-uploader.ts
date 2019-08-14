@@ -35,6 +35,8 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
   public dataAdapter: Ej2UploaderDataAdapter = null;
   @bindable
   public autoRemoveServerFiles = true;
+  @bindable
+  public functionContext: any = null;
 
 
   protected onWrapperCreated() {
@@ -105,7 +107,7 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
 
   async removing(args: RemovingEventArgs) {
     if (this.onRemoving !== undefined && typeof this.onRemoving === "function") {
-      this.onRemoving.call(this, args);
+      this.onRemoving.call(this.context || this, args);
       if (args.cancel) {
         // Not sure how to stop the spinner
         return;
@@ -138,7 +140,7 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
     let index = this[this._filesProperty].findIndex((x: any) => x.__id === _file.__id);
     this[this._filesProperty].splice(index, 1);
 
-    this.onSuccess.call(this, args);
+    this.onSuccess.call(this.context || this, args);
   }
 
   success(args: any): void {
@@ -173,7 +175,8 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
       this[this._filesProperty].push(file);
 
       if (this.onSuccess !== undefined && typeof this.onSuccess === "function") {
-        this.onSuccess.call(this, args);
+        this.info("context", this.context);
+        this.onSuccess.call(this.functionContext || this, args);
       }
     }
     else if (args.operation === "remove") {
@@ -183,7 +186,7 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
 
   failure(args: any): void {
     if (this.onFailure !== undefined && typeof this.onFailure === "function") {
-      this.onFailure.call(this, args);
+      this.onFailure.call(this.context || this, args);
     }
   }
 
@@ -221,7 +224,7 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
     }
 
     if (this.onUploading !== undefined && typeof this.onUploading === "function") {
-      this.onUploading.call(this, args);
+      this.onUploading.call(this.context || this, args);
     }
   }
 
@@ -252,7 +255,7 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
       if (_metadata === null) {
         _metadata = {};
       }
-      let _generatedMetadata = this.metadataGenerator.call(this, file);
+      let _generatedMetadata = this.metadataGenerator.call(this.context || this, file);
       Object.assign(_metadata, _generatedMetadata);
     }
 

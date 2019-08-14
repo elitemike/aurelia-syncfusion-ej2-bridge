@@ -44,9 +44,10 @@ export class App {
 
   };
 
-  buttonClick() {
+  buttonClick(a) {
+    console.log("button clicked from custom event", a);
     this.isChecked = !this.isChecked;
-    this.myContent = "button clicked"
+    this.myContent = "button clicked";
   }
 
   progressClicked() {
@@ -54,8 +55,9 @@ export class App {
     this.ej2Button.refresh();
   }
 
-  checkboxClick() {
-    console.log("checkbox clicked", this.isChecked);
+  checkboxClick($event) {
+    console.log("checkbox clicked", $event);
+    return true;
   }
 
   isCheckedChanged() {

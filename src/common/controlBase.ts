@@ -12,7 +12,7 @@ export class ControlBase<T, U> {
   @bindable
   public eModel: U = null;
 
-  protected element: HTMLElement = null;
+  protected widgetElement: HTMLElement = null;
   public widget: T = null;
   protected context: any = null;
   protected logName: string = "";
@@ -26,7 +26,7 @@ export class ControlBase<T, U> {
   private propertyChangedSubscriptions: Disposable[] = [];
 
   constructor(protected bindingEngine: BindingEngine, private controlContainer: ControlContainer,
-    protected taskQueue: TaskQueue, protected eventAggregator: EventAggregator) {
+    protected taskQueue: TaskQueue, protected eventAggregator: EventAggregator, protected element: Element) {
     (<any>this.eModel) = {};
 
   }
@@ -39,7 +39,8 @@ export class ControlBase<T, U> {
     throw "onCreateControl is not implemented";
   }
 
-  created() {
+  created(view) {
+    logger.debug("view", view)
     this.logName = this.controlType.name;
   }
 
@@ -117,7 +118,7 @@ export class ControlBase<T, U> {
   }
 
   attached() {
-    (<any>this.widget).appendTo(this.element);
+    (<any>this.widget).appendTo(this.widgetElement);
   }
 
   detached() {

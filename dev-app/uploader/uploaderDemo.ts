@@ -1,13 +1,12 @@
-import { UploaderModel, RemovingEventArgs } from "@syncfusion/ej2-inputs";
-import * as uid from "uuid/v4";
+import { UploaderModel } from "@syncfusion/ej2-inputs";
 import { Ej2UploaderDataAdapter } from "controls/uploader/ej2-uploader";
 import { HttpClient, json } from "aurelia-fetch-client";
 import { autoinject } from "aurelia-framework";
+import { UploaderFunctions } from "./uploaderFunctions";
+
 @autoinject
-
 export class UploaderDemo {
-
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private uploaderFunctions: UploaderFunctions) {
 
   }
 
@@ -50,22 +49,5 @@ export class UploaderDemo {
           }
         });
     }
-  }
-
-  onSuccess(args: any) {
-    console.log("success args", args);
-  }
-
-
-  generateMetaData(file) {
-    let metadata: any = {};
-
-    metadata.fileContextId = uid();
-
-    return metadata;
-  }
-
-  onRemoving(args: RemovingEventArgs) {
-    // args.cancel = true;
   }
 }

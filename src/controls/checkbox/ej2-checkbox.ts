@@ -1,3 +1,4 @@
+import { DOM } from 'aurelia-pal';
 import { Disposable } from 'aurelia-binding';
 import { CheckBox, CheckBoxModel } from '@syncfusion/ej2-buttons';
 import { bindable, autoinject } from 'aurelia-framework';
@@ -8,15 +9,13 @@ import { constants } from '../../common/constants';
 @autoinject
 @generateBindables("checkbox")
 export class Ej2Checkbox extends SyncfusionWrapper<CheckBox, CheckBoxModel> {
+
   protected onWidgetCreated() {
   }
   protected onWrapperCreated() {
   }
 
   protected syncfusionWidgetType = CheckBox;
-
-  @bindable
-  private onClick: Function = null;
 
 
   checkedSubscription: Disposable = null;
@@ -32,15 +31,17 @@ export class Ej2Checkbox extends SyncfusionWrapper<CheckBox, CheckBoxModel> {
   }
 
 
-  _onClick() {
-    if (this.onClick) {
-      this.taskQueue.queueTask(() => {
-
-        this.onClick(this[`${constants.bindablePrefix}checked`]);
+  _onClick(event: Event) {
+    event.stopPropagation();
+    event.preventDefault();
+    this.taskQueue.queueTask(() => {
+      let clickEvent = new CustomEvent("on-click", {
+        bubbles: true,
+        detail: { checked: this[`${constants.bindablePrefix}checked`] }
       });
 
-      return true;
-    }
+      this.element.dispatchEvent(clickEvent);
+    });
   }
 
 
