@@ -1,7 +1,7 @@
 <template>
   <ej2-uploader e-files.bind="files" e-model.bind="uploaderModel" metadata.bind="metadata"
-    on-success.bind="uploaderFunctions.onSuccess" metadata-generator.bind="uploaderFunctions.generateMetaData"
-    upload-result-model.bind="uploadResultModel" data-adapter.bind="dataAdapter"
-    on-removing.bind="uploaderFunctions.onRemoving" function-context.bind="uploaderFunctions">
+    metadata-generator.bind="uploaderFunctions.generateMetaData" upload-result-model.bind="uploadResultModel"
+    data-adapter.bind="dataAdapter" on-success.delegate="uploaderFunctions.onSuccess($event)"
+    on-removing.delegate="uploaderFunctions.onRemoving($event)" function-context.bind="uploaderFunctions">
   </ej2-uploader>
 </template>
