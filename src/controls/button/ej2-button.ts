@@ -1,7 +1,7 @@
 import { Button, ButtonModel } from '@syncfusion/ej2-buttons';
 import { bindable } from 'aurelia-framework';
-import { generateBindables } from 'utilities/decorator';
-import { SyncfusionWrapper } from 'common/syncfusionWrapper';
+import { generateBindables } from '../../utilities/decorator';
+import { SyncfusionWrapper } from '../../common/syncfusionWrapper';
 
 
 @generateBindables("button")

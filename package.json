@@ -1,5 +1,5 @@
 {
-  "name": "aurelia-syncfusion-ej-2-bridge",
+  "name": "aurelia-syncfusion-ej2-bridge",
   "description": "An Aurelia plugin wrapper for syncfusion EJ2 controls",
   "version": "0.1.0",
   "repository": {
@@ -96,7 +96,8 @@
       "html"
     ]
   },
-  "dependencies": {
+  "dependencies": {},
+  "peerDependencies": {
     "@syncfusion/ej2": "^17.2.40",
     "@syncfusion/ej2-data": "^17.2.39"
   }

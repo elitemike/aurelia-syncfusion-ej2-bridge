@@ -1,9 +1,9 @@
 import { Disposable } from 'aurelia-binding';
 import { CheckBox, CheckBoxModel } from '@syncfusion/ej2-buttons';
 import { bindable, autoinject } from 'aurelia-framework';
-import { SyncfusionWrapper } from 'common/syncfusionWrapper';
-import { generateBindables } from 'utilities/decorator';
-import { constants } from 'common/constants';
+import { SyncfusionWrapper } from '../../common/syncfusionWrapper';
+import { generateBindables } from '../../utilities/decorator';
+import { constants } from '../../common/constants';
 
 @autoinject
 @generateBindables("checkbox")

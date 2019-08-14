@@ -4,7 +4,7 @@ import { metadata } from 'aurelia-metadata';
 import { bindingMode } from 'aurelia-binding';
 import { TaskQueue } from 'aurelia-task-queue';
 import { ControlBindings } from '../controlBindings';
-import { constants } from 'common/constants';
+import { constants } from '../common/constants';
 
 export function generateBindables(controlName: string): any {
   return function (target, key, descriptor) {

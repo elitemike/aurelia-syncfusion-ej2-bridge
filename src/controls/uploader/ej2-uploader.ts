@@ -1,7 +1,7 @@
-import { constants } from 'common/constants';
+import { constants } from '../../common/constants';
 import { Uploader, UploaderModel, UploadingEventArgs, RemovingEventArgs } from "@syncfusion/ej2-inputs";
-import { SyncfusionWrapper } from "common/syncfusionWrapper";
-import { generateBindables } from "utilities/decorator";
+import { SyncfusionWrapper } from "../../common/syncfusionWrapper";
+import { generateBindables } from "../../utilities/decorator";
 import { bindable } from 'aurelia-framework';
 import { RemoveEventArgs } from '@syncfusion/ej2-navigations';
 import * as uid from "uuid/v4";

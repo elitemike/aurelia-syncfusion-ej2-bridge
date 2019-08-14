@@ -1,12 +1,11 @@
 import { PLATFORM } from "aurelia-pal";
-import { Ej2Button } from "controls/button/ej2-button";
-import { Ej2Checkbox } from "controls/checkbox/ej2-checkbox";
-
-import { Ej2Radio } from "controls/radio/ej2-radio";
-import { Ej2ProgressButton } from "controls/progressButton/ej2-progress-button";
-import { Ej2Grid } from "controls/grid/ej2-grid";
-import { Ej2Uploader } from "controls/uploader/ej2-uploader";
-import { Ej2CheckboxList } from "controls/checkbox/ej2-checkbox-list";
+import { Ej2Button } from "./controls/button/ej2-button";
+import { Ej2Checkbox } from "./controls/checkbox/ej2-checkbox";
+import { Ej2Radio } from "./controls/radio/ej2-radio";
+import { Ej2ProgressButton } from "./controls/progressButton/ej2-progress-button";
+import { Ej2Grid } from "./controls/grid/ej2-grid";
+import { Ej2Uploader } from "./controls/uploader/ej2-uploader";
+import { Ej2CheckboxList } from "./controls/checkbox/ej2-checkbox-list";
 
 export class ConfigBuilder {
   public resources: any[] = [];

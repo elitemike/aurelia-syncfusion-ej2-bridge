@@ -1,9 +1,9 @@
 import { Disposable } from 'aurelia-binding';
 import { Subscription } from "aurelia-event-aggregator"
 import { RadioButtonModel, RadioButton } from '@syncfusion/ej2-buttons';
-import { SyncfusionWrapper } from 'common/syncfusionWrapper';
-import { constants } from 'common/constants';
-import { generateBindables } from 'utilities/decorator';
+import { SyncfusionWrapper } from '../../common/syncfusionWrapper';
+import { constants } from '../../common/constants';
+import { generateBindables } from '../../utilities/decorator';
 
 @generateBindables("radio")
 export class Ej2Radio extends SyncfusionWrapper<RadioButton, RadioButtonModel> {

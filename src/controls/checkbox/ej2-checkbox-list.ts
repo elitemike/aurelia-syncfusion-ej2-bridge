@@ -1,6 +1,6 @@
 import { bindable } from "aurelia-framework";
 import { Ej2Checkbox } from "./ej2-checkbox";
-import { constants } from "common/constants";
+import { constants } from "../../common/constants";
 
 export class Ej2CheckboxList {
   @bindable
