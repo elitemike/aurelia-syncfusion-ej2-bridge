@@ -27,8 +27,15 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
   public dataAdapter: Ej2UploaderDataAdapter = null;
   @bindable
   public autoRemoveServerFiles = true;
+  @bindable
+  public context: any = null;
+
+  /* only applicable if the data adapter remove method is used */
+  @bindable
+  public serverDelete: boolean = true;
 
   protected onWrapperCreated() {
+    this.info("testing ")
     this.widget.uploading = (args) => { this.onFileUpload(args); };
     this.widget.success = (args: any) => { this.success(args); };
     this.widget.failure = (args) => { this.failure(args); };
@@ -76,22 +83,30 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
 
   change() {
     if (this.autoRemoveServerFiles) {
-      this.getFilesToDelete();
+      this.getFilesToDelete().forEach((file) => {
+        this.removeFile(file);
+      });
     }
   }
 
-  async getFilesToDelete() {
+  getFilesToDelete(): any[] {
+    let filesToRemove = [];
     let widgetFiles = this.widget.getFilesData();
     if (this[this._filesProperty].length !== widgetFiles.length) {
       for (let i = 0; i < this[this._filesProperty].length; i++) {
         const file = this[this._filesProperty][i];
         if (!widgetFiles.find((x) => x[this._privateIdProperty] === file[this._privateIdProperty])) {
-          this.info("file not found", file);
-
-          this.widget.remove(file);
+          //  this.info("file not found", file);        
+          filesToRemove.push(file);
         }
       }
     }
+
+    return filesToRemove;
+  }
+
+  public removeFile(file) {
+    this.widget.remove(file);
   }
 
   async removing(args: RemovingEventArgs) {
@@ -111,7 +126,9 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
 
     if (this.dataAdapter && this.dataAdapter.remove) {
       try {
-        await this.dataAdapter.remove(args.filesData[0]);
+        if (this.serverDelete) {
+          await this.dataAdapter.remove(args.filesData[0]);
+        }
         this.onRemoveSuccess(args);
         this.onWidgetRemoveComplete(null, args);
       } catch (error) {
@@ -260,10 +277,14 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
     }
 
     if (this.metadataGenerator) {
+      if (!this.context) {
+        this.error("context is required to be bound");
+      }
+
       if (_metadata === null) {
         _metadata = {};
       }
-      let _generatedMetadata = this.metadataGenerator.call(this.context || this, file);
+      let _generatedMetadata = this.metadataGenerator.call(this.context, file);
       Object.assign(_metadata, _generatedMetadata);
     }
 

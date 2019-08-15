@@ -1,13 +1,16 @@
 import { UploaderModel } from "@syncfusion/ej2-inputs";
 import { Ej2UploaderDataAdapter } from "controls/uploader/ej2-uploader";
 import { HttpClient, json } from "aurelia-fetch-client";
-import { autoinject } from "aurelia-framework";
+import { autoinject, observable, BindingEngine } from "aurelia-framework";
 import { UploaderFunctions } from "./uploaderFunctions";
 
 @autoinject
 export class UploaderDemo {
-  constructor(private httpClient: HttpClient, private uploaderFunctions: UploaderFunctions) {
+  constructor(private httpClient: HttpClient, private uploaderFunctions: UploaderFunctions, private bindingEngine: BindingEngine) {
 
+    this.bindingEngine.collectionObserver(this.files).subscribe(() => {
+      this.filesChanged();
+    });
   }
 
   uploaderModel: UploaderModel = {
@@ -34,7 +37,7 @@ export class UploaderDemo {
   uploadResultModel = {
     id: "id",
     fileContextId: "fileContextId",
-    sha256: "sha256",
+    sha256: "sha256"
   };
 
   dataAdapter: Ej2UploaderDataAdapter = {
@@ -49,5 +52,9 @@ export class UploaderDemo {
           }
         });
     }
+  }
+
+  filesChanged() {
+    console.log("files updated", this.files);
   }
 }

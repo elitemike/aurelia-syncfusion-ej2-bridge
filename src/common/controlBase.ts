@@ -14,7 +14,7 @@ export class ControlBase<T, U> {
 
   protected widgetElement: HTMLElement = null;
   public widget: T = null;
-  protected context: any = null;
+  protected bindingContext: any = null;
   protected logName: string = "";
   // this controls if the indivual bindings override the model values at initial binding
   private propertyPriority = true;
@@ -28,7 +28,6 @@ export class ControlBase<T, U> {
   constructor(protected bindingEngine: BindingEngine, private controlContainer: ControlContainer,
     protected taskQueue: TaskQueue, protected eventAggregator: EventAggregator, protected element: Element) {
     (<any>this.eModel) = {};
-
   }
 
   onBind() {
@@ -39,10 +38,7 @@ export class ControlBase<T, U> {
     throw "onCreateControl is not implemented";
   }
 
-  created(view) {
-    logger.debug("view", view)
-    this.logName = this.controlType.name;
-  }
+
 
   protected debug(message: string, ...rest: any[]) {
     logger.debug(`[${this.logName}] - ${message}`, rest);
@@ -61,19 +57,21 @@ export class ControlBase<T, U> {
   }
 
   bind(context) {
-    this.context = context;
+    this.logName = this.controlType.name;
+
+    this.bindingContext = context;
 
     let _control = this.getBindableProperties();
 
     let bindablePrefixLength = constants.bindablePrefix.length;
 
-    this.debug("bindables", _control.bindables)
+    //  this.debug("bindables", _control.bindables)
     // Get initial values from any bound properties
     _control.bindables.forEach((property) => {
       let modelProperty = property.substr(bindablePrefixLength)
       if (this[property] !== undefined && (this.propertyPriority || this.eModel[modelProperty] === undefined)) {
         this.eModel[modelProperty] = this[property];
-        this.info('has value', { name: property, value: this[property] })
+        //    this.info('has value', { name: property, value: this[property] })
       }
     });
 

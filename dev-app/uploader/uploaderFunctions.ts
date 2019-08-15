@@ -4,11 +4,11 @@ export class UploaderFunctions {
   private name = "Uploader Functions";
 
   onSuccess(args: any) {
-    console.log(`${this.name} -success args`, args);
+    // console.log(`${this.name} -success args`, args);
   }
 
   onUploading(args: any) {
-    console.log("uploading args", args);
+    //  console.log("uploading args", args);
   }
 
 
