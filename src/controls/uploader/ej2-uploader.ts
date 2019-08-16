@@ -69,17 +69,20 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
     this.widget.clearAll();
     //  this.widget.getFilesData().splice(0, this.widget.getFilesData().length);
     this._filesCollectionSubscription.dispose();
-    this.widget.files = this._files;
-    this.initializeFileCollection();
-    this._filesCollectionSubscription = this.createFilesCollectionSubscription();
+    this.taskQueue.queueTask(() => {
+      this.widget.files = this._files;
+      this.initializeFileCollection();
+      this._filesCollectionSubscription = this.createFilesCollectionSubscription();
+    });
+
   }
 
   initializeFileCollection() {
     if (this.widget.files) {
       // this.debug("widget files init", this.widget.getFilesData())
       let extraProperties = [];
-      let widgetFiles = this.widget.getFilesData();
-
+      let widgetFiles = this.widget.files;
+      this.debug("widget files length", widgetFiles.length)
       if (this.mapAdditionalFilePropertiesToFiles) {
         extraProperties = this.getAdditionalFileProperties();
       }
@@ -90,7 +93,7 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
         this.initializeFile(file, i, extraProperties);
       }
     }
-    this.debug("post init widget files", this.widget.getFilesData())
+    this.debug("post init widget files", this.widget.files)
     this.debug("post init files", this._files);
   }
 
@@ -113,21 +116,23 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
 
   createFilesCollectionSubscription() {
     return this.bindingEngine.collectionObserver(this._files).subscribe((changed) => {
-      this._files.forEach((file) => {
-        if (!file.hasOwnProperty(this._privateIdProperty)) {
-          console.log('new file found')
-          let widgetFiles = this.widget.getFilesData();
-          let index = this._files.indexOf(file);
-          widgetFiles.push(file);
-          let extraProps = this.getAdditionalFileProperties();
-          this.initializeFile(widgetFiles[widgetFiles.length - 1], index, extraProps);
-          // this.widget.dataBind();
+      // this._files.forEach((file) => {
+      //   if (!file.hasOwnProperty(this._privateIdProperty)) {
+      //     console.log('new file found')
+      //     let widgetFiles = this.widget.getFilesData();
+      //     let index = this._files.indexOf(file);
+      //     widgetFiles.push(file);
+      //     let extraProps = this.getAdditionalFileProperties();
+      //     this.initializeFile(widgetFiles[widgetFiles.length - 1], index, extraProps);
+      //     // this.widget.dataBind();
 
-          // recreate seems heavy here
-          this.recreate();
-        }
-        //console.log("file", file);
-      });
+      //     // recreate seems heavy here
+      //     this.recreate();
+      //   }
+      //   //console.log("file", file);
+      // });
+
+      this.filesChanged();
       console.log("widget files", this.widget.getFilesData());
       console.log("files", this._files);
     });
