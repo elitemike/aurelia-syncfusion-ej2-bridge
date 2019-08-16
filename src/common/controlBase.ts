@@ -23,7 +23,7 @@ export class ControlBase<T, U> {
     throw "syncfusionControlType is not set";
   }
 
-  private propertyChangedSubscriptions: Disposable[] = [];
+  protected subscriptions: Disposable[] = [];
 
   constructor(protected bindingEngine: BindingEngine, private controlContainer: ControlContainer,
     protected taskQueue: TaskQueue, protected eventAggregator: EventAggregator, protected element: Element) {
@@ -58,9 +58,15 @@ export class ControlBase<T, U> {
 
   bind(context) {
     this.logName = this.controlType.name;
-
     this.bindingContext = context;
 
+    this.createBindables();
+    this.onCreateControl();
+    this.onBind();
+  }
+
+  protected createBindables() {
+    this.debug("create bindables")
     let _control = this.getBindableProperties();
 
     let bindablePrefixLength = constants.bindablePrefix.length;
@@ -76,12 +82,8 @@ export class ControlBase<T, U> {
     });
 
     this.createControlPropertySubscriptions(_control);
-    this.onCreateControl();
-    // console.log("control", this.control);
-
-
-    this.onBind();
   }
+
 
   getBindableProperties() {
     let _control = this.controlContainer.get(this.controlType);
@@ -101,14 +103,32 @@ export class ControlBase<T, U> {
   }
 
   createControlPropertySubscriptions(control: Control) {
+    this.debug("create control property subscriptions");
     if (control) {
       let bindablePrefixLength = constants.bindablePrefix.length;
 
+      // control.bindables.forEach((binding) => {
+      //   let modelBinding = binding.substr(bindablePrefixLength);
+      //   this.propertyChangedSubscriptions.push(this.bindingEngine.propertyObserver(this, binding).subscribe((newValue) => {
+      //     if ((<any>this.widget).properties.hasOwnProperty(modelBinding)) {
+      //       logger.debug(`changed - ${modelBinding}`, newValue);
+      //       (<any>this.widget)[modelBinding] = newValue;
+      //     }
+      //   }));
+      // });
       control.bindables.forEach((binding) => {
         let modelBinding = binding.substr(bindablePrefixLength);
-        this.propertyChangedSubscriptions.push(this.bindingEngine.propertyObserver(this, binding).subscribe((newValue) => {
+        this.subscriptions.push(this.bindingEngine.propertyObserver(this, binding).subscribe((newValue) => {
           if ((<any>this.widget).properties.hasOwnProperty(modelBinding)) {
-            (<any>this.widget)[modelBinding] = newValue;
+            let customFunc = `${modelBinding}Changed`;
+            // this.debug('custom func', customFunc)
+            if (typeof this[customFunc] === "function") {
+              this.debug('custom changed')
+              this[customFunc].call(this, newValue);
+            } else {
+              this.debug(`changed - ${modelBinding}`, newValue);
+              (<any>this.widget)[modelBinding] = newValue;
+            }
           }
         }));
       });
@@ -116,12 +136,18 @@ export class ControlBase<T, U> {
   }
 
   attached() {
+    this.appendWidget();
+  }
+
+  protected appendWidget() {
     (<any>this.widget).appendTo(this.widgetElement);
   }
 
   detached() {
-    this.propertyChangedSubscriptions.forEach((subscription) => subscription.dispose());
+    this.subscriptions.forEach((subscription) => subscription.dispose());
   }
+
+
 
 }
 

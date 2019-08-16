@@ -3,15 +3,62 @@ import { Ej2UploaderDataAdapter } from "controls/uploader/ej2-uploader";
 import { HttpClient, json } from "aurelia-fetch-client";
 import { autoinject, observable, BindingEngine } from "aurelia-framework";
 import { UploaderFunctions } from "./uploaderFunctions";
+import { Ej2Uploader } from "index";
 
 @autoinject
 export class UploaderDemo {
+  files = [];
+
   constructor(private httpClient: HttpClient, private uploaderFunctions: UploaderFunctions, private bindingEngine: BindingEngine) {
 
     this.bindingEngine.collectionObserver(this.files).subscribe(() => {
       this.filesChanged();
     });
+
+    this.files = [{
+      "type": ".txt",
+      "id": "file1",
+      "size": 3500,
+      "name": "initial file"
+    }];
+
+    let _this = this;
+    setTimeout(() => {
+      _this.files = [{
+        "type": ".txt",
+        "id": "file1",
+        "size": 3500,
+        "name": "File Text"
+      }];
+      //  this.widget.dataBind();
+
+      this.bindingEngine.collectionObserver(this.files).subscribe(() => {
+        this.filesChanged();
+      });
+
+      setTimeout(() => {
+        _this.files = [{
+          "type": ".txt",
+          "id": "fileasdf1",
+          "size": 3500,
+          "name": "2nd Text"
+        }];
+
+        setTimeout(() => {
+          _this.files.push({
+            "type": ".txt",
+            "id": "fileaseertdf1",
+            "size": 3500,
+            "name": "last Text"
+          });
+          console.log("file pushed")
+        }, 3000);
+      }, 3000);
+    }, 3000);
+
   }
+
+  widget: Ej2Uploader = null;
 
   uploaderModel: UploaderModel = {
     asyncSettings: {
@@ -22,12 +69,7 @@ export class UploaderDemo {
   }
 
 
-  files = [{
-    id: "ABB",
-    name: "test",
-    type: "xml",
-    size: "500"
-  }];
+
 
   metadata = {
     name: "Joe Smith",
@@ -56,5 +98,13 @@ export class UploaderDemo {
 
   filesChanged() {
     console.log("files updated", this.files);
+
+    // let _this = this;
+    // setTimeout(() => {
+    //   if (_this.files.length > 0) {
+    //     _this.widget.removeFile(_this.files[0]);
+    //     _this.widget.refresh();
+    //   }
+    // }, 5000);
   }
 }

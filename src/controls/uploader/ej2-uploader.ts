@@ -1,3 +1,5 @@
+import { data } from './../../../dev-app/app';
+import { Disposable } from 'aurelia-binding';
 import { constants } from '../../common/constants';
 import { Uploader, UploaderModel, UploadingEventArgs, RemovingEventArgs } from "@syncfusion/ej2-inputs";
 import { SyncfusionWrapper } from "../../common/syncfusionWrapper";
@@ -9,6 +11,7 @@ import * as uid from "uuid/v4";
 @generateBindables("uploader")
 export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
   private _filesProperty = `${constants.bindablePrefix}files`;
+  private _filesCollectionSubscription: Disposable = null;
   private _privateIdProperty = "__id";
   protected syncfusionWidgetType = Uploader;
 
@@ -29,13 +32,16 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
   public autoRemoveServerFiles = true;
   @bindable
   public context: any = null;
+  private get _files(): any[] {
+    return this[this._filesProperty];
+  }
 
   /* only applicable if the data adapter remove method is used */
   @bindable
   public serverDelete: boolean = true;
 
   protected onWrapperCreated() {
-    this.info("testing ")
+    this.debug("wrapper created")
     this.widget.uploading = (args) => { this.onFileUpload(args); };
     this.widget.success = (args: any) => { this.success(args); };
     this.widget.failure = (args) => { this.failure(args); };
@@ -59,8 +65,18 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
     }
   }
 
-  protected onWidgetCreated() {
+  filesChanged() {
+    this.widget.clearAll();
+    //  this.widget.getFilesData().splice(0, this.widget.getFilesData().length);
+    this._filesCollectionSubscription.dispose();
+    this.widget.files = this._files;
+    this.initializeFileCollection();
+    this._filesCollectionSubscription = this.createFilesCollectionSubscription();
+  }
+
+  initializeFileCollection() {
     if (this.widget.files) {
+      // this.debug("widget files init", this.widget.getFilesData())
       let extraProperties = [];
       let widgetFiles = this.widget.getFilesData();
 
@@ -69,16 +85,52 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
       }
 
       for (let i = 0; i < widgetFiles.length; i++) {
+        this.debug("init loop");
         const file = widgetFiles[i];
-        let __id = uid();
-        file[this._privateIdProperty] = __id;
-        this[this._filesProperty][i][this._privateIdProperty] = __id;
-
-        extraProperties.forEach((prop) => {
-          file[prop] = this[this._filesProperty][i][prop];
-        });
+        this.initializeFile(file, i, extraProperties);
       }
     }
+    this.debug("post init widget files", this.widget.getFilesData())
+    this.debug("post init files", this._files);
+  }
+
+  initializeFile(widgetFile, i, extraProperties) {
+    // this.debug('init file', widgetFile);
+    let __id = uid();
+    widgetFile[this._privateIdProperty] = __id;
+    this._files[i][this._privateIdProperty] = __id;
+
+    extraProperties.forEach((prop) => {
+      widgetFile[prop] = this._files[i][prop];
+    });
+  }
+
+  protected onWidgetCreated() {
+    this.initializeFileCollection();
+    this._filesCollectionSubscription = this.createFilesCollectionSubscription();
+    this.subscriptions.push(this._filesCollectionSubscription);
+  }
+
+  createFilesCollectionSubscription() {
+    return this.bindingEngine.collectionObserver(this._files).subscribe((changed) => {
+      this._files.forEach((file) => {
+        if (!file.hasOwnProperty(this._privateIdProperty)) {
+          console.log('new file found')
+          let widgetFiles = this.widget.getFilesData();
+          let index = this._files.indexOf(file);
+          widgetFiles.push(file);
+          let extraProps = this.getAdditionalFileProperties();
+          this.initializeFile(widgetFiles[widgetFiles.length - 1], index, extraProps);
+          // this.widget.dataBind();
+
+          // recreate seems heavy here
+          this.recreate();
+        }
+        //console.log("file", file);
+      });
+      console.log("widget files", this.widget.getFilesData());
+      console.log("files", this._files);
+    });
   }
 
   change() {
@@ -106,8 +158,11 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
   }
 
   public removeFile(file) {
+    this.debug("remove file", file);
     this.widget.remove(file);
   }
+
+
 
   async removing(args: RemovingEventArgs) {
     let event = new CustomEvent("on-removing", {

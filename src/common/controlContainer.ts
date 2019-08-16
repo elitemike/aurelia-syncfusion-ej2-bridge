@@ -16,9 +16,9 @@ export class ControlContainer {
 
 export interface Control {
   type: Function;
-  bindables: string[];
+  bindables: any[];
 }
 
 export interface ControlBindings {
-  oneWayBindings: string[];
+  oneWayBindings: any[];
 }

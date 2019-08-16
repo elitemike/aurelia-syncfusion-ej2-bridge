@@ -7,6 +7,11 @@
     "url": "???"
   },
   "license": "UNLICENSED",
+  "dependencies": {},
+  "peerDependencies": {
+    "@syncfusion/ej2": "^17.2.40",
+    "@syncfusion/ej2-data": "^17.2.39"
+  },
   "devDependencies": {
     "@types/jest": "^24.0.9",
     "@types/node": "^10.11.6",
@@ -95,10 +100,5 @@
       "text",
       "html"
     ]
-  },
-  "dependencies": {},
-  "peerDependencies": {
-    "@syncfusion/ej2": "^17.2.40",
-    "@syncfusion/ej2-data": "^17.2.39"
   }
 }
