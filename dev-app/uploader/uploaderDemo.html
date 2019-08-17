@@ -1,8 +1,6 @@
 <template>
   <ej2-uploader e-files.bind="files" view-model.ref="widget" e-model.bind="uploaderModel" metadata.bind="metadata"
-    metadata-generator.bind="uploaderFunctions.generateMetaData" upload-result-model.bind="uploadResultModel"
-    data-adapter.bind="dataAdapter" on-success.delegate="uploaderFunctions.onSuccess($event)"
-    on-removing.delegate="uploaderFunctions.onRemoving($event)" function-context.bind="uploaderFunctions"
-    context.bind="uploaderFunctions">
+    metadata-generator.bind="generateMetaData" upload-result-model.bind="uploadResultModel"
+    data-adapter.bind="dataAdapter" on-success.delegate="onSuccess($event)" on-removing.delegate="onRemoving($event)">
   </ej2-uploader>
 </template>

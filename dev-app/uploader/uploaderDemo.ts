@@ -1,15 +1,15 @@
-import { UploaderModel } from "@syncfusion/ej2-inputs";
+import { UploaderModel, RemovingEventArgs } from "@syncfusion/ej2-inputs";
 import { Ej2UploaderDataAdapter } from "controls/uploader/ej2-uploader";
 import { HttpClient, json } from "aurelia-fetch-client";
 import { autoinject, observable, BindingEngine } from "aurelia-framework";
-import { UploaderFunctions } from "./uploaderFunctions";
 import { Ej2Uploader } from "index";
+import * as uid from "uuid/v4";
 
 @autoinject
 export class UploaderDemo {
   files = [];
 
-  constructor(private httpClient: HttpClient, private uploaderFunctions: UploaderFunctions, private bindingEngine: BindingEngine) {
+  constructor(private httpClient: HttpClient, private bindingEngine: BindingEngine) {
 
     this.bindingEngine.collectionObserver(this.files).subscribe(() => {
       this.filesChanged();
@@ -23,38 +23,38 @@ export class UploaderDemo {
     }];
 
     let _this = this;
-    setTimeout(() => {
-      _this.files = [{
-        "type": ".txt",
-        "id": "file1",
-        "size": 3500,
-        "name": "File Text"
-      }];
-      //  this.widget.dataBind();
+    // setTimeout(() => {
+    //   _this.files = [{
+    //     "type": ".txt",
+    //     "id": "file1",
+    //     "size": 3500,
+    //     "name": "File Text"
+    //   }];
+    //   //  this.widget.dataBind();
 
-      this.bindingEngine.collectionObserver(this.files).subscribe(() => {
-        this.filesChanged();
-      });
+    //   this.bindingEngine.collectionObserver(this.files).subscribe(() => {
+    //     this.filesChanged();
+    //   });
 
-      setTimeout(() => {
-        _this.files = [{
-          "type": ".txt",
-          "id": "fileasdf1",
-          "size": 3500,
-          "name": "2nd Text"
-        }];
+    //   setTimeout(() => {
+    //     _this.files = [{
+    //       "type": ".txt",
+    //       "id": "fileasdf1",
+    //       "size": 3500,
+    //       "name": "2nd Text"
+    //     }];
 
-        setTimeout(() => {
-          _this.files.push({
-            "type": ".txt",
-            "id": "fileaseertdf1",
-            "size": 3500,
-            "name": "last Text"
-          });
-          console.log("file pushed")
-        }, 3000);
-      }, 3000);
-    }, 3000);
+    //     setTimeout(() => {
+    //       _this.files.push({
+    //         "type": ".txt",
+    //         "id": "fileaseertdf1",
+    //         "size": 3500,
+    //         "name": "last Text"
+    //       });
+    //       console.log("file pushed")
+    //     }, 3000);
+    //   }, 3000);
+    // }, 3000);
 
   }
 
@@ -106,5 +106,26 @@ export class UploaderDemo {
     //     _this.widget.refresh();
     //   }
     // }, 5000);
+  }
+
+  onSuccess(args: any) {
+    // console.log(`${this.name} -success args`, args);
+  }
+
+  onUploading(args: any) {
+    //  console.log("uploading args", args);
+  }
+
+
+  generateMetaData(file) {
+    let metadata: any = {};
+
+    metadata.fileContextId = uid();
+
+    return metadata;
+  }
+
+  onRemoving(args: RemovingEventArgs) {
+    // args.cancel = true;
   }
 }

@@ -1,6 +1,11 @@
 import * as uid from "uuid/v4";
 import { RemovingEventArgs } from "@syncfusion/ej2-inputs";
 export class UploaderFunctions {
+
+  constructor(private context: any) {
+
+  }
+
   private name = "Uploader Functions";
 
   onSuccess(args: any) {

@@ -7,6 +7,7 @@ import { generateBindables } from "../../utilities/decorator";
 import { bindable } from 'aurelia-framework';
 import { RemoveEventArgs } from '@syncfusion/ej2-navigations';
 import * as uid from "uuid/v4";
+import { thisExpression } from '@babel/types';
 
 @generateBindables("uploader")
 export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
@@ -65,8 +66,14 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
     }
   }
 
+
+  /* 
+   Files changed fires too often.  files property actually changing is safer to call recreate,
+   any file pushed needs to be handled a little more graceful
+  */
   filesChanged() {
-    this.widget.clearAll();
+    this.debug("files Changed");
+    this.recreate();
     //  this.widget.getFilesData().splice(0, this.widget.getFilesData().length);
     this._filesCollectionSubscription.dispose();
     this.taskQueue.queueTask(() => {
@@ -81,7 +88,7 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
     if (this.widget.files) {
       // this.debug("widget files init", this.widget.getFilesData())
       let extraProperties = [];
-      let widgetFiles = this.widget.files;
+      let widgetFiles = this.widget.getFilesData();
       // this.debug("widget files length", widgetFiles.length)
       if (this.mapAdditionalFilePropertiesToFiles) {
         extraProperties = this.getAdditionalFileProperties();
@@ -132,9 +139,12 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
       //   //console.log("file", file);
       // });
 
-      this.filesChanged();
+
       // console.log("widget files", this.widget.getFilesData());
       // console.log("files", this._files);
+
+      // this.filesChanged();
+      //  this.recreate();
     });
   }
 
@@ -163,13 +173,14 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
   }
 
   public removeFile(file) {
-    this.debug("remove file", file);
+    this.debug("removeFile", file);
     this.widget.remove(file);
   }
 
 
 
   async removing(args: RemovingEventArgs) {
+    this.debug("removing", args);
     let event = new CustomEvent("on-removing", {
       bubbles: true,
       detail: args
@@ -187,7 +198,7 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
     if (this.dataAdapter && this.dataAdapter.remove) {
       try {
         if (this.serverDelete) {
-          await this.dataAdapter.remove(args.filesData[0]);
+          await this.dataAdapter.remove.call(this.context || this.bindingContext, args.filesData[0]);
         }
         this.onRemoveSuccess(args);
         this.onWidgetRemoveComplete(null, args);
@@ -208,6 +219,7 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
   }
 
   onRemoveSuccess(args) {
+    this.debug("onRemoveSuccess", args);
     let _file: any = args.filesData[0];
     let index = this[this._filesProperty].findIndex((x: any) => x.__id === _file.__id);
     this[this._filesProperty].splice(index, 1);
@@ -256,6 +268,7 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
         detail: args
       });
 
+      console.log("file after upload", _uploadedFile)
       this.element.dispatchEvent(event);
     }
     else if (args.operation === "remove") {
@@ -337,14 +350,14 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
     }
 
     if (this.metadataGenerator) {
-      if (!this.context) {
-        this.error("context is required to be bound");
-      }
+      // if (!this.context) {
+      //   this.error("context is required to be bound");
+      // }
 
       if (_metadata === null) {
         _metadata = {};
       }
-      let _generatedMetadata = this.metadataGenerator.call(this.context, file);
+      let _generatedMetadata = this.metadataGenerator.call(this.context || this.bindingContext, file);
       Object.assign(_metadata, _generatedMetadata);
     }
 

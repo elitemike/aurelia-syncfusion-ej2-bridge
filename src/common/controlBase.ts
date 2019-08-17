@@ -123,10 +123,9 @@ export class ControlBase<T, U> {
             let customFunc = `${modelBinding}Changed`;
             // this.debug('custom func', customFunc)
             if (typeof this[customFunc] === "function") {
-              this.debug('custom changed')
               this[customFunc].call(this, newValue);
             } else {
-              this.debug(`changed - ${modelBinding}`, newValue);
+              // this.debug(`changed - ${modelBinding}`, newValue);
               (<any>this.widget)[modelBinding] = newValue;
             }
           }
