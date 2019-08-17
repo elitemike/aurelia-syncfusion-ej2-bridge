@@ -82,19 +82,19 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
       // this.debug("widget files init", this.widget.getFilesData())
       let extraProperties = [];
       let widgetFiles = this.widget.files;
-      this.debug("widget files length", widgetFiles.length)
+      // this.debug("widget files length", widgetFiles.length)
       if (this.mapAdditionalFilePropertiesToFiles) {
         extraProperties = this.getAdditionalFileProperties();
       }
 
       for (let i = 0; i < widgetFiles.length; i++) {
-        this.debug("init loop");
+        //  this.debug("init loop");
         const file = widgetFiles[i];
         this.initializeFile(file, i, extraProperties);
       }
     }
-    this.debug("post init widget files", this.widget.files)
-    this.debug("post init files", this._files);
+    // this.debug("post init widget files", this.widget.files)
+    // this.debug("post init files", this._files);
   }
 
   initializeFile(widgetFile, i, extraProperties) {
@@ -133,8 +133,8 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
       // });
 
       this.filesChanged();
-      console.log("widget files", this.widget.getFilesData());
-      console.log("files", this._files);
+      // console.log("widget files", this.widget.getFilesData());
+      // console.log("files", this._files);
     });
   }
 
