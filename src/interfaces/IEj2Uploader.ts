@@ -13,11 +13,11 @@ export interface IEj2Uplaoder extends IEJWidget {
   context: any;
   serverDelete: boolean;
   removeFile(file): void;
+  removeAll(): void;
 }
 
 export interface IEJWidget {
- refresh(): void;
+  refresh(): void;
   recreate(): void;
   dataBind(): void;
 }
-  

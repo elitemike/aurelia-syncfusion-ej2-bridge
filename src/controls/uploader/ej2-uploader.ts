@@ -150,13 +150,13 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
 
   change() {
     if (this.autoRemoveServerFiles) {
-      this.getFilesToDelete().forEach((file) => {
+      this.getFilesThatWereRemoved().forEach((file) => {
         this.removeFile(file);
       });
     }
   }
 
-  getFilesToDelete(): any[] {
+  getFilesThatWereRemoved(): any[] {
     let filesToRemove = [];
     let widgetFiles = this.widget.getFilesData();
     if (this[this._filesProperty].length !== widgetFiles.length) {
@@ -172,12 +172,16 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
     return filesToRemove;
   }
 
+  public removeAll() {
+    this.widget.getFilesData().forEach((file) => {
+      this.removeFile(file);
+    });
+  }
+
   public removeFile(file) {
     this.debug("removeFile", file);
     this.widget.remove(file);
   }
-
-
 
   async removing(args: RemovingEventArgs) {
     this.debug("removing", args);
