@@ -112,16 +112,24 @@ export class ControlBase<T, U> {
 
   createControlEvents(control: Control) {
     control.bindableEvents.forEach((event) => {
-
       let eventName = event.substr(constants.eventPrefix.length);
-      logger.debug("create event", eventName)
-      this.widget[eventName] = (args) => {
-        this.element.dispatchEvent(new CustomEvent(event, {
-          bubbles: true,
-          detail: args
-        }));
-      };
-    });
+      //  logger.debug("create event", eventName);
+
+      (<any>this.widget).addEventListener(eventName,
+        (args) => {
+          this.element.dispatchEvent(new CustomEvent(event, {
+            bubbles: true,
+            detail: args
+          }))
+        }
+      );
+      // this.widget[eventName] = (args) => {
+      //   this.element.dispatchEvent(new CustomEvent(event, {
+      //     bubbles: true,
+      //     detail: args
+      //   }));
+    }
+    );
   }
 
   createControlPropertySubscriptions(control: Control) {
@@ -166,6 +174,9 @@ export class ControlBase<T, U> {
 
   detached() {
     this.subscriptions.forEach((subscription) => subscription.dispose());
+    if ((<any>this.widget).destroy) {
+      (<any>this.widget).destroy();
+    }
   }
 
 

@@ -1,4 +1,8 @@
 <template>
-  <ej2-text-box e-on-input.delegate="onInput($event)" e-placeholder="My placeholder" e-float-label-type="auto">
+  <ej2-text-box e-value.bind="textBoxValue" view-model.ref="textBox" e-on-input.delegate="onInput($event)"
+    e-on-focus.delegate="onFocus()" e-on-blur.delegate="onBlur()" e-placeholder="My placeholder"
+    e-float-label-type="auto">
   </ej2-text-box>
+
+  <span>${textBoxValue} </span>
 </template>

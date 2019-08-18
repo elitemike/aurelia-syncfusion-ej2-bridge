@@ -3,7 +3,7 @@ export const ControlBindings = {
     oneWay: []
   },
   button: {
-    oneWay: ["disabled", "isPrimary", "content", "cssClass", "enablePersistence", "iconCss", "iconPosition", "isToggle", "enableRtl"],
+    oneWay: ["disabled", "isPrimary", "content", "cssClass", "enablePersistence", "iconCss", "iconPosition", "isToggle", "enableRtl"]
   },
   checkbox: {
     oneWay: ["checked", "cssClass", "disabled", "enablePersistence", "enableRtl", "indeterminate", "label", "labelPosition", "locale", "name", "value"]
@@ -29,7 +29,8 @@ export const ControlBindings = {
     oneWay: ["checked", "cssClass", "disabled", "enablePersistence", "enableRtl", "label", "labelPosition", "locale", "name", "value"]
   },
   textBox: {
-    oneWay: ["cssClass", "enablePersistence", "enableRtl", "enabled", "floatLabelType", "htmlAttributes", "locale", "multiline", "placeholder", "readonly", "showClearButton", "type", "value"],
+    oneWay: ["cssClass", "enablePersistence", "enableRtl", "enabled", "floatLabelType", "htmlAttributes", "locale", "multiline", "placeholder", "readonly", "showClearButton", "type"],
+    twoWay: ["value"],
     events: ["blur", "change", "created", "destroyed", "focus", "input"]
   },
   uploader: {

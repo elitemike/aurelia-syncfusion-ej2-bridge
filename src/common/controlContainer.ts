@@ -19,7 +19,3 @@ export interface Control {
   bindableProperties: string[];
   bindableEvents: string[];
 }
-
-export interface ControlBindings {
-  oneWayBindings: string[];
-}
