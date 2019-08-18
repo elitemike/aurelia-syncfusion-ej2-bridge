@@ -3,6 +3,8 @@ import { ConfigBuilder } from './../src/configBuider';
 import { Aurelia } from 'aurelia-framework'
 import environment from './environment';
 import { CheckboxDemo } from './checkbox/checkboxDemo';
+import { TextBoxDemo } from './textBox/textBoxDemo';
+
 
 export function configure(aurelia: Aurelia) {
   aurelia.use
@@ -17,5 +19,5 @@ export function configure(aurelia: Aurelia) {
     aurelia.use.plugin('aurelia-testing');
   }
 
-  aurelia.start().then(() => aurelia.setRoot(UploaderDemo));
+  aurelia.start().then(() => aurelia.setRoot(TextBoxDemo));
 }

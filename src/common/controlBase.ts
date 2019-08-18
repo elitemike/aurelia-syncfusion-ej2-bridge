@@ -60,46 +60,68 @@ export class ControlBase<T, U> {
     this.logName = this.controlType.name;
     this.bindingContext = context;
 
-    this.createBindables();
+    this.setInitialBindings();
     this.onCreateControl();
     this.onBind();
   }
 
-  protected createBindables() {
-    this.debug("create bindables")
-    let _control = this.getBindableProperties();
+  protected setInitialBindings() {
+    this.debug("set initial bindables")
+    let _control = this.getBindables();
 
     let bindablePrefixLength = constants.bindablePrefix.length;
 
     //  this.debug("bindables", _control.bindables)
     // Get initial values from any bound properties
-    _control.bindables.forEach((property) => {
-      let modelProperty = property.substr(bindablePrefixLength)
-      if (this[property] !== undefined && (this.propertyPriority || this.eModel[modelProperty] === undefined)) {
-        this.eModel[modelProperty] = this[property];
-        //    this.info('has value', { name: property, value: this[property] })
+    _control.bindableProperties.forEach((property) => {
+      if (!property.startsWith(constants.eventPrefix)) {
+        let modelProperty = property.substr(bindablePrefixLength)
+        if (this[property] !== undefined && (this.propertyPriority || this.eModel[modelProperty] === undefined)) {
+          this.eModel[modelProperty] = this[property];
+          //    this.info('has value', { name: property, value: this[property] })
+        }
       }
+
     });
 
     this.createControlPropertySubscriptions(_control);
   }
 
 
-  getBindableProperties() {
+  getBindables() {
     let _control = this.controlContainer.get(this.controlType);
 
     if (!_control) {
       (<any>_control) = {};
       _control.type = this.controlType;
-      _control.bindables = [];
+      _control.bindableProperties = [];
+      _control.bindableEvents = [];
       for (let property in this["__observers__"]) {
         if (ExcludedProperties.indexOf(property) === -1) {
-          _control.bindables.push(property);
+          if (property.startsWith(constants.eventPrefix)) {
+            _control.bindableEvents.push(property);
+          } else {
+            _control.bindableProperties.push(property);
+          }
         }
       }
     }
 
     return _control;
+  }
+
+  createControlEvents(control: Control) {
+    control.bindableEvents.forEach((event) => {
+
+      let eventName = event.substr(constants.eventPrefix.length);
+      logger.debug("create event", eventName)
+      this.widget[eventName] = (args) => {
+        this.element.dispatchEvent(new CustomEvent(event, {
+          bubbles: true,
+          detail: args
+        }));
+      };
+    });
   }
 
   createControlPropertySubscriptions(control: Control) {
@@ -116,7 +138,7 @@ export class ControlBase<T, U> {
       //     }
       //   }));
       // });
-      control.bindables.forEach((binding) => {
+      control.bindableProperties.forEach((binding) => {
         let modelBinding = binding.substr(bindablePrefixLength);
         this.subscriptions.push(this.bindingEngine.propertyObserver(this, binding).subscribe((newValue) => {
           if ((<any>this.widget).properties.hasOwnProperty(modelBinding)) {

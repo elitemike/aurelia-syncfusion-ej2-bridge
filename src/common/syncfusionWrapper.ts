@@ -9,12 +9,13 @@ export abstract class SyncfusionWrapper<T, U> extends ControlBase<T, U> {
     this.widget = new this.syncfusionWidgetType(this.eModel);
     (<any>this.widget).created = () => { this.onWidgetCreated(); };
     this.onWrapperCreated();
+    this.createControlEvents(this.getBindables());
   }
 
   public recreate() {
     this.debug("recreate");
     (<any>this.widget).destroy();
-    this.createBindables();
+    this.setInitialBindings();
     this.onCreateControl();
     this.appendWidget();
   }

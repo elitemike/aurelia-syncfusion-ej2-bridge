@@ -17,9 +17,9 @@ export function generateBindables(controlName: string): any {
       oneWay = ControlBindings.common.oneWay;
     }
 
-    let createBinding = (name: string, bindingMode: bindingMode) => {
+    let createBinding = (name: string, bindingMode: bindingMode, prefix) => {
       let nameOrConfigOrTarget: any = {
-        name: `${constants.bindablePrefix}${name}`,
+        name: `${prefix}${name}`,
         defaultBindingMode: bindingMode
       };
 
@@ -30,21 +30,30 @@ export function generateBindables(controlName: string): any {
     // One way bindings
     for (let i = 0; i < oneWay.length; i++) {
       let option = oneWay[i];
-      createBinding(option, bindingMode.oneWay);
+      createBinding(option, bindingMode.oneWay, constants.bindablePrefix);
     }
 
     // From view bindings
     if (ControlBindings[controlName].fromView) {
       for (let i = 0; i < ControlBindings[controlName].fromView.length; i++) {
         let option = ControlBindings[controlName].fromView[i];
-        createBinding(option, bindingMode.fromView);
+        createBinding(option, bindingMode.fromView, constants.bindablePrefix);
       }
     }
 
+    // Two way
     if (ControlBindings[controlName].twoWay) {
       for (let i = 0; i < ControlBindings[controlName].twoWay.length; i++) {
         let option = ControlBindings[controlName].twoWay[i];
-        createBinding(option, bindingMode.twoWay);
+        createBinding(option, bindingMode.twoWay, constants.bindablePrefix);
+      }
+    }
+
+    // Events
+    if (ControlBindings[controlName].events) {
+      for (let i = 0; i < ControlBindings[controlName].events.length; i++) {
+        let option = ControlBindings[controlName].events[i];
+        createBinding(option, bindingMode.oneTime, constants.eventPrefix);
       }
     }
   };
