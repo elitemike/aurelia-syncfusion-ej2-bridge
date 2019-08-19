@@ -11,6 +11,11 @@ export const ControlBindings = {
     twoWay: ["checked"],
     events: ["change", "created"]
   },
+  dashboardLayout: {
+    oneWay: ["allowDragging", "allowFloating", "allowResizing", "cellSpacing", "columns", "draggableHandle", "enablePersistence", "enableRtl", "mediaQuery", "panels", "resizableHandles", "showGridLines"],
+    events: ["change", "created", "detroyed", "drag", "dragStart", "dragStop", "resize", "resizeStart", "resizeStop"]
+  },
+
   grid: {
     oneWay: ["aggregates", "allowExcelExport", "disabled", "allowFiltering", "allowGrouping", "allowMultiSorting", "allowPaging", "allowPdfExport",
       "allowReordering", "allowResizing", "allowRowDragAndDrop", "allowSelection", "allowSorting", "allowTextWrap", "childGrid", "clipboardModule",
@@ -25,6 +30,11 @@ export const ControlBindings = {
     ],
     twoWay: ["selectedRowIndex"],
     events: ["actionBegins", "actionComplete", "actionFailure", "batchAdd", "batchCancel", "batchDelete", "beforeBatchAdd", "beforeBatchDelete", "beforeBatchSave", "beforeCopy", "beforeDataBound", "beforeExcelExport", "beforeOpenColumnChooser", "beforePaste", "beforePdfExport", "beforePrint", "beginEdit", "cellDeselected", "cellDeselecting", "cellEdit", "cellSave", "cellSaved", "cellSelected", "cellSelecting", "checkBoxChange", "columnDrag", "columnDragStart", "columnDrop", "columnMenuClick", "columnMenuOpen", "commandClick", "contextMenuClick", "contextMenuOpen", "created", "dataBound", "dataSourceChanged", "dataStateChange", "destroyed", "detailDataBound", "excelExportComplete", "excelHeaderQueryCellInfo", "excelQueryCellInfo", "exportDetailDataBound", "headerCellInfo", "keyPressed", "load", "pdfExportComplete", "pdfHeaderQueryCellInfo", "pdfQueryCellInfo", "printComplete", "queryCellInfo", "recordDoubleClick", "resizeStart", "resizeStop", "resizing", "rowDataBound", "rowDeselected", "rowDeselecting", "rowDrag", "rowDragStart", "rowDragStartHelper", "rowDrop", "rowSelected", "rowSelecting", "toolbarClick"]
+  },
+  maskedTextBox: {
+    oneWay: ["cssClass", "customCharacters", "enablePersistence", "enableRtl", "enabled", "floatLabelType", "htmlAttributes", "locale", "mask", "placeholder", "promptChar", "showClearButton", "width"],
+    twoWay: ["value"],
+    events: ["blur", "change", "created", "destroyed", "focus", "input"]
   },
   progressButton: {
     oneWay: ["animationSettings", "content", "cssClass", "disabled", "duration", "enablePersistence", "enableProgress", "enableRtl", "iconCss", "iconPosition", "isPrimary", "isToggle", "spinSettings"],

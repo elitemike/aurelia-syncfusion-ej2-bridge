@@ -1,9 +1,11 @@
+import { MaskedTextBoxDemo } from './maskedTextBox/maskedTextBoxDemo';
 import { UploaderDemo } from './uploader/uploaderDemo';
 import { ConfigBuilder } from './../src/configBuider';
 import { Aurelia } from 'aurelia-framework'
 import environment from './environment';
 import { CheckboxDemo } from './checkbox/checkboxDemo';
 import { TextBoxDemo } from './textBox/textBoxDemo';
+import { DashboardLayoutDemo } from './dashboardLayout/dashboardLayoutDemo';
 
 
 export function configure(aurelia: Aurelia) {
@@ -19,5 +21,5 @@ export function configure(aurelia: Aurelia) {
     aurelia.use.plugin('aurelia-testing');
   }
 
-  aurelia.start().then(() => aurelia.setRoot(TextBoxDemo));
+  aurelia.start().then(() => aurelia.setRoot(DashboardLayoutDemo));
 }

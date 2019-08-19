@@ -1,3 +1,4 @@
+import { Ej2MaskedTextBox } from './controls/maskedTextBox/ej2-maskedTextBox';
 import { PLATFORM } from "aurelia-pal";
 import { Ej2Button } from "./controls/button/ej2-button";
 import { Ej2Checkbox } from "./controls/checkbox/ej2-checkbox";
@@ -7,6 +8,7 @@ import { Ej2Grid } from "./controls/grid/ej2-grid";
 import { Ej2Uploader } from "./controls/uploader/ej2-uploader";
 import { Ej2CheckboxList } from "./controls/checkbox/ej2-checkbox-list";
 import { Ej2TextBox } from "controls/textBox/ej2-textBox";
+import { Ej2DashboardLayout } from 'controls/dashboardLayout/ej2-dashboardLayout';
 
 export class ConfigBuilder {
   public resources: any[] = [];
@@ -16,11 +18,14 @@ export class ConfigBuilder {
   * Globally register all EJ wrappers including templating support
   */
   useAll(): ConfigBuilder {
-    this.ej2Button()
+    this
+      .ej2Button()
       .ej2Checkbox()
       .ej2CheckboxList()
+      .ej2DashboardLayout()
       .ej2Grid()
       .ej2ProgressButton()
+      .ej2MaskedTextBox()
       .ej2Radio()
       .ej2TextBox()
       .ej2Uploader()
@@ -93,6 +98,11 @@ export class ConfigBuilder {
     return this;
   }
 
+  ej2DashboardLayout(): ConfigBuilder {
+    this.resources.push(Ej2DashboardLayout);
+    return this;
+  }
+
   ej2Grid(): ConfigBuilder {
     this.resources.push(Ej2Grid);
     return this;
@@ -100,6 +110,10 @@ export class ConfigBuilder {
 
   ej2ProgressButton(): ConfigBuilder {
     this.resources.push(Ej2ProgressButton);
+    return this;
+  }
+  ej2MaskedTextBox(): ConfigBuilder {
+    this.resources.push(Ej2MaskedTextBox);
     return this;
   }
 
