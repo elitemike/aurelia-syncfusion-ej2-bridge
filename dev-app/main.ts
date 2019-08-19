@@ -10,6 +10,7 @@ import { DashboardLayoutDemo } from './dashboardLayout/dashboardLayoutDemo';
 import { DatePickerDemo } from './datePicker/datePickerDemo';
 import { DateRangePickerDemo } from './dateRangePicker/dateRangePickerDemo';
 import { AccordionDemo } from './accordion/accordionDemo';
+import { DropDownListDemo } from './dropDownList/dropDownListDemo';
 
 
 export function configure(aurelia: Aurelia) {
@@ -25,5 +26,5 @@ export function configure(aurelia: Aurelia) {
     aurelia.use.plugin('aurelia-testing');
   }
 
-  aurelia.start().then(() => aurelia.setRoot(AccordionDemo));
+  aurelia.start().then(() => aurelia.setRoot(DropDownListDemo));
 }

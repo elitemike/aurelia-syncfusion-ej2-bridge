@@ -34,6 +34,11 @@ export const ControlBindings = {
     twoWay: ["value"],
     events: ["blur", "change", "close", "created", "destroyed", "focus", "navigated", "open", "renderDayCell"]
   },
+  dropDownList: {
+    oneWay: ["actionFailureTemplate", "allowFiltering", "cssClass", "dataSource", "enablePersistence", "enableRtl", "enabled", "fields", "filterBarPlaceholder", "floatLabelType", "footerTemplate", "groupTemplate", "headerTemplate", "htmlAttributes", "ignoreAccent", "index", "itemTemplate", "locale", "noRecordsTemplate", "placeholder", "popupHeight", "popupWidth", "query", "readonly", "showClearButton", "sortOrder", "text", "valueTemplate", "width", "zindex"],
+    twoWay: ["value"],
+    events: ["actionBegin", "actionComplete", "actionFailure", "beforeOpen", "blur", "change", "close", "created", "dataBound", "destroyed", "filtering", "focus", "open", "select"]
+  },
   grid: {
     oneWay: ["aggregates", "allowExcelExport", "disabled", "allowFiltering", "allowGrouping", "allowMultiSorting", "allowPaging", "allowPdfExport",
       "allowReordering", "allowResizing", "allowRowDragAndDrop", "allowSelection", "allowSorting", "allowTextWrap", "childGrid", "clipboardModule",

@@ -13,6 +13,7 @@ import { Ej2DatePicker } from './widgets/datePicker/ej2-DatePicker';
 import { Ej2DateRangePicker } from './widgets/dateRangePicker/ej2-dateRangePicker';
 import { Ej2DateTimePicker } from './widgets/dateTimePicker/ej2-dateTimePicker';
 import { Ej2Accordion } from './widgets/accordion/ej2-accordion';
+import { Ej2DropDownList } from 'widgets/dropDownList/ej2-dropDownList';
 
 export class ConfigBuilder {
   public resources: any[] = [];
@@ -31,6 +32,7 @@ export class ConfigBuilder {
       .ej2DateRangePicker()
       .ej2DateTimePicker()
       .ej2DashboardLayout()
+      .ej2DropDownList()
       .ej2Grid()
       .ej2ProgressButton()
       .ej2MaskedTextBox()
@@ -128,6 +130,11 @@ export class ConfigBuilder {
 
   ej2DateTimePicker(): ConfigBuilder {
     this.resources.push(Ej2DateTimePicker);
+    return this;
+  }
+
+  ej2DropDownList(): ConfigBuilder {
+    this.resources.push(Ej2DropDownList);
     return this;
   }
 
