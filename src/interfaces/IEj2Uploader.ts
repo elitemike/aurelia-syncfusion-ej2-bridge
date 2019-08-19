@@ -1,4 +1,4 @@
-import { Ej2UploaderDataAdapter } from '../controls/uploader/ej2-uploader';
+import { Ej2UploaderDataAdapter } from '../widgets/uploader/ej2-uploader';
 
 export interface IEj2Uplaoder extends IEJWidget {
   mapAdditionalFilePropertiesToFiles: boolean;

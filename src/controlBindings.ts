@@ -15,7 +15,21 @@ export const ControlBindings = {
     oneWay: ["allowDragging", "allowFloating", "allowResizing", "cellSpacing", "columns", "draggableHandle", "enablePersistence", "enableRtl", "mediaQuery", "panels", "resizableHandles", "showGridLines"],
     events: ["change", "created", "detroyed", "drag", "dragStart", "dragStop", "resize", "resizeStart", "resizeStop"]
   },
-
+  datePicker: {
+    oneWay: ["allowEdit", "calendarMode", "cssClass", "dayHeaderFormat", "depth", "enablePersistence", "enableRtl", "enabled", "firstDayOfWeek", "floatLabelType", "format", "htmlAttributes", "keyConfigs", "locale", "max", "min", "placeholder", "readonly", "showClearButton", "showTodayButton", "start", "strictMode", "weekNumber", "width", "zindex"],
+    twoWay: ["value"],
+    events: ["blur", "change", "close", "created", "destroyed", "focus", "navigated", "open", "renderDayCell"]
+  },
+  dateRangePicker: {
+    oneWay: ["allowEdit", "cssClass", "dayHeaderFormat", "depth", "enablePersistence", "enableRtl", "enabled", "endDate", "firstDayOfWeek", "floatLabelType", "format", "htmlAttributes", "keyConfigs", "locale", "max", "maxDays", "min", "minDays", "placeholder", "presets", "readonly", "separator", "showClearButton", "start", "startDate", "strictMode", "weekNumber", "width", "zindex"],
+    twoWay: ["value"],
+    events: ["blur", "change", "close", "created", "destroyed", "focus", "navigated", "open", "renderDayCell", "select"]
+  },
+  dateTimePicker: {
+    oneWay: ["allowEdit", "calendarMode", "cssClass", "dayHeaderFormat", "depth", "enablePersistence", "enableRtl", "enabled", "firstDayOfWeek", "floatLabelType", "format", "htmlAttributes", "keyConfigs", "locale", "max", "min", "placeholder", "readonly", "scrollTo", "showClearButton", "showTodayButton", "start", "step", "strictMode", "timeFormat", "weekNumber", "width", "zindex"],
+    twoWay: ["value"],
+    events: ["blur", "change", "close", "created", "destroyed", "focus", "navigated", "open", "renderDayCell"]
+  },
   grid: {
     oneWay: ["aggregates", "allowExcelExport", "disabled", "allowFiltering", "allowGrouping", "allowMultiSorting", "allowPaging", "allowPdfExport",
       "allowReordering", "allowResizing", "allowRowDragAndDrop", "allowSelection", "allowSorting", "allowTextWrap", "childGrid", "clipboardModule",

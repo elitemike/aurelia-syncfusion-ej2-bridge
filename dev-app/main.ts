@@ -1,3 +1,4 @@
+import { DateTimePickerDemo } from './dateTimePicker/dateTimePickerDemo';
 import { MaskedTextBoxDemo } from './maskedTextBox/maskedTextBoxDemo';
 import { UploaderDemo } from './uploader/uploaderDemo';
 import { ConfigBuilder } from './../src/configBuider';
@@ -6,6 +7,8 @@ import environment from './environment';
 import { CheckboxDemo } from './checkbox/checkboxDemo';
 import { TextBoxDemo } from './textBox/textBoxDemo';
 import { DashboardLayoutDemo } from './dashboardLayout/dashboardLayoutDemo';
+import { DatePickerDemo } from './datePicker/datePickerDemo';
+import { DateRangePickerDemo } from './dateRangePicker/dateRangePickerDemo';
 
 
 export function configure(aurelia: Aurelia) {
@@ -21,5 +24,5 @@ export function configure(aurelia: Aurelia) {
     aurelia.use.plugin('aurelia-testing');
   }
 
-  aurelia.start().then(() => aurelia.setRoot(DashboardLayoutDemo));
+  aurelia.start().then(() => aurelia.setRoot(DateTimePickerDemo));
 }

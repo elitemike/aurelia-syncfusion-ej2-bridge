@@ -1,14 +1,17 @@
-import { Ej2MaskedTextBox } from './controls/maskedTextBox/ej2-maskedTextBox';
+import { Ej2MaskedTextBox } from './widgets/maskedTextBox/ej2-maskedTextBox';
 import { PLATFORM } from "aurelia-pal";
-import { Ej2Button } from "./controls/button/ej2-button";
-import { Ej2Checkbox } from "./controls/checkbox/ej2-checkbox";
-import { Ej2Radio } from "./controls/radio/ej2-radio";
-import { Ej2ProgressButton } from "./controls/progressButton/ej2-progress-button";
-import { Ej2Grid } from "./controls/grid/ej2-grid";
-import { Ej2Uploader } from "./controls/uploader/ej2-uploader";
-import { Ej2CheckboxList } from "./controls/checkbox/ej2-checkbox-list";
-import { Ej2TextBox } from "controls/textBox/ej2-textBox";
-import { Ej2DashboardLayout } from 'controls/dashboardLayout/ej2-dashboardLayout';
+import { Ej2Button } from "./widgets/button/ej2-button";
+import { Ej2Checkbox } from "./widgets/checkbox/ej2-checkbox";
+import { Ej2Radio } from "./widgets/radio/ej2-radio";
+import { Ej2ProgressButton } from "./widgets/progressButton/ej2-progress-button";
+import { Ej2Grid } from "./widgets/grid/ej2-grid";
+import { Ej2Uploader } from "./widgets/uploader/ej2-uploader";
+import { Ej2CheckboxList } from "./widgets/checkbox/ej2-checkbox-list";
+import { Ej2TextBox } from "widgets/textBox/ej2-textBox";
+import { Ej2DashboardLayout } from 'widgets/dashboardLayout/ej2-dashboardLayout';
+import { Ej2DatePicker } from 'widgets/datePicker/ej2-DatePicker';
+import { Ej2DateRangePicker } from 'widgets/dateRangePicker/ej2-dateRangePicker';
+import { Ej2DateTimePicker } from 'widgets/dateTimePicker/ej2-dateTimePicker';
 
 export class ConfigBuilder {
   public resources: any[] = [];
@@ -22,6 +25,9 @@ export class ConfigBuilder {
       .ej2Button()
       .ej2Checkbox()
       .ej2CheckboxList()
+      .ej2DatePicker()
+      .ej2DateRangePicker()
+      .ej2DateTimePicker()
       .ej2DashboardLayout()
       .ej2Grid()
       .ej2ProgressButton()
@@ -100,6 +106,21 @@ export class ConfigBuilder {
 
   ej2DashboardLayout(): ConfigBuilder {
     this.resources.push(Ej2DashboardLayout);
+    return this;
+  }
+
+  ej2DatePicker(): ConfigBuilder {
+    this.resources.push(Ej2DatePicker);
+    return this;
+  }
+
+  ej2DateRangePicker(): ConfigBuilder {
+    this.resources.push(Ej2DateRangePicker);
+    return this;
+  }
+
+  ej2DateTimePicker(): ConfigBuilder {
+    this.resources.push(Ej2DateTimePicker);
     return this;
   }
 

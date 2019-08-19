@@ -1,7 +1,7 @@
 import { ProgressButtonModel } from '@syncfusion/ej2-splitbuttons';
 import { ButtonModel } from '@syncfusion/ej2-buttons';
 import { observable } from 'aurelia-binding';
-import { Ej2Button } from 'controls/button/ej2-button';
+import { Ej2Button } from 'widgets/button/ej2-button';
 import { GridModel } from '@syncfusion/ej2-grids';
 export class App {
 

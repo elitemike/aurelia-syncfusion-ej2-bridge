@@ -1,4 +1,4 @@
-import { constants } from './../../common/constants';
+import { constants } from '../../common/constants';
 import { SyncfusionWrapper } from "../../common/syncfusionWrapper";
 import { TextBox, TextBoxModel } from "@syncfusion/ej2-inputs";
 import { generateBindables } from "utilities/decorator";

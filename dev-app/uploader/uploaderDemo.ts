@@ -1,5 +1,5 @@
 import { UploaderModel, RemovingEventArgs } from "@syncfusion/ej2-inputs";
-import { Ej2UploaderDataAdapter } from "controls/uploader/ej2-uploader";
+import { Ej2UploaderDataAdapter } from "widgets/uploader/ej2-uploader";
 import { HttpClient, json } from "aurelia-fetch-client";
 import { autoinject, observable, BindingEngine } from "aurelia-framework";
 import { Ej2Uploader } from "index";

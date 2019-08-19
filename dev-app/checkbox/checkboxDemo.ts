@@ -1,4 +1,4 @@
-import { IOptionModel } from "controls/checkbox/ej2-checkbox-list";
+import { IOptionModel } from "widgets/checkbox/ej2-checkbox-list";
 
 
 export class CheckboxDemo {

@@ -5,7 +5,7 @@
     "root": "dev-app",
     "resources": "../src",
     "elements": "../src/elements",
-    "controls": "../src/controls",
+    "widgets": "../src/widgets",
     "utilities": "../src/utilities",
     "common": "../src/common",
     "attributes": "../src/attributes",

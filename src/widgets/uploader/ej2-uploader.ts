@@ -1,4 +1,4 @@
-import { data } from './../../../dev-app/app';
+import { data } from '../../../dev-app/app';
 import { Disposable } from 'aurelia-binding';
 import { constants } from '../../common/constants';
 import { Uploader, UploaderModel, UploadingEventArgs, RemovingEventArgs } from "@syncfusion/ej2-inputs";
