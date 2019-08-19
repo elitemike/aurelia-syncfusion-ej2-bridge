@@ -9,6 +9,7 @@ import { TextBoxDemo } from './textBox/textBoxDemo';
 import { DashboardLayoutDemo } from './dashboardLayout/dashboardLayoutDemo';
 import { DatePickerDemo } from './datePicker/datePickerDemo';
 import { DateRangePickerDemo } from './dateRangePicker/dateRangePickerDemo';
+import { AccordionDemo } from './accordion/accordionDemo';
 
 
 export function configure(aurelia: Aurelia) {
@@ -24,5 +25,5 @@ export function configure(aurelia: Aurelia) {
     aurelia.use.plugin('aurelia-testing');
   }
 
-  aurelia.start().then(() => aurelia.setRoot(DateTimePickerDemo));
+  aurelia.start().then(() => aurelia.setRoot(AccordionDemo));
 }

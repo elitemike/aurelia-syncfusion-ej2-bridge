@@ -7,11 +7,12 @@ import { Ej2ProgressButton } from "./widgets/progressButton/ej2-progress-button"
 import { Ej2Grid } from "./widgets/grid/ej2-grid";
 import { Ej2Uploader } from "./widgets/uploader/ej2-uploader";
 import { Ej2CheckboxList } from "./widgets/checkbox/ej2-checkbox-list";
-import { Ej2TextBox } from "widgets/textBox/ej2-textBox";
-import { Ej2DashboardLayout } from 'widgets/dashboardLayout/ej2-dashboardLayout';
-import { Ej2DatePicker } from 'widgets/datePicker/ej2-DatePicker';
-import { Ej2DateRangePicker } from 'widgets/dateRangePicker/ej2-dateRangePicker';
-import { Ej2DateTimePicker } from 'widgets/dateTimePicker/ej2-dateTimePicker';
+import { Ej2TextBox } from "./widgets/textBox/ej2-textBox";
+import { Ej2DashboardLayout } from './widgets/dashboardLayout/ej2-dashboardLayout';
+import { Ej2DatePicker } from './widgets/datePicker/ej2-DatePicker';
+import { Ej2DateRangePicker } from './widgets/dateRangePicker/ej2-dateRangePicker';
+import { Ej2DateTimePicker } from './widgets/dateTimePicker/ej2-dateTimePicker';
+import { Ej2Accordion } from './widgets/accordion/ej2-accordion';
 
 export class ConfigBuilder {
   public resources: any[] = [];
@@ -22,6 +23,7 @@ export class ConfigBuilder {
   */
   useAll(): ConfigBuilder {
     this
+      .ej2Accordion()
       .ej2Button()
       .ej2Checkbox()
       .ej2CheckboxList()
@@ -86,6 +88,11 @@ export class ConfigBuilder {
 
   withoutGlobalResources(): ConfigBuilder {
     this.useGlobalResources = false;
+    return this;
+  }
+
+  ej2Accordion(): ConfigBuilder {
+    this.resources.push(Ej2Accordion);
     return this;
   }
 

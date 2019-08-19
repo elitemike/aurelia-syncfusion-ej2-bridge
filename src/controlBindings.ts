@@ -2,6 +2,10 @@ export const ControlBindings = {
   common: {
     oneWay: []
   },
+  accordion: {
+    oneWay: ["animation", "enablePersistence", "enableRtl", "expandMode", "height", "items", "locale", "width"],
+    events: ["clicked", "created", "destroyed", "expanded", "expanding"]
+  },
   button: {
     oneWay: ["disabled", "isPrimary", "content", "cssClass", "enablePersistence", "iconCss", "iconPosition", "isToggle", "enableRtl"],
     events: ["created"]
