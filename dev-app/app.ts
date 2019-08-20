@@ -32,6 +32,7 @@ export class App {
       { route: "slider", name: "slider", moduleId: PLATFORM.moduleName("slider/sliderDemo") },
       { route: "switch", name: "switch", moduleId: PLATFORM.moduleName("switch/switchDemo") },
       { route: "textBox", name: "textBox", moduleId: PLATFORM.moduleName("textBox/textBoxDemo") },
+      { route: "treeView", name: "treeView", moduleId: PLATFORM.moduleName("treeView/treeViewDemo") },
       { route: "uploader", name: "uploader", moduleId: PLATFORM.moduleName("uploader/uploaderDemo") }
     ]);
   }

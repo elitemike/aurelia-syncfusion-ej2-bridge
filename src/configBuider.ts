@@ -1,3 +1,4 @@
+import { Ej2TreeView } from './widgets/treeView/ej2-treeView';
 import { Ej2Switch } from './widgets/switch/ej2-switch';
 import { Ej2Slider } from './widgets/slider/ej2-slider';
 import { Ej2MaskedTextBox } from './widgets/maskedTextBox/ej2-maskedTextBox';
@@ -44,6 +45,7 @@ export class ConfigBuilder {
       .ej2Slider()
       .ej2Switch()
       .ej2TextBox()
+      .ej2TreeView()
       .ej2Uploader()
     return this;
   }
@@ -181,6 +183,11 @@ export class ConfigBuilder {
 
   ej2TextBox(): ConfigBuilder {
     this.resources.push(Ej2TextBox);
+    return this;
+  }
+
+  ej2TreeView(): ConfigBuilder {
+    this.resources.push(Ej2TreeView);
     return this;
   }
 
