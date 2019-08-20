@@ -77,6 +77,11 @@ export const ControlBindings = {
     twoWay: ["value"],
     events: ["change", "changed", "created", "renderedTicks", "renderingTicks", "tooltipChange"]
   },
+  switch: {
+    oneWay: ["cssClass", "disabled", "enablePersistence", "enableRtl", "locale", "name", "offLabel", "onLabel"],
+    twoWay: ["value", "checked"],
+    events: ["change", "created"]
+  },
   textBox: {
     oneWay: ["cssClass", "enablePersistence", "enableRtl", "enabled", "floatLabelType", "htmlAttributes", "locale", "multiline", "placeholder", "readonly", "showClearButton", "type"],
     twoWay: ["value"],

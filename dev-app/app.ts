@@ -30,6 +30,7 @@ export class App {
       { route: "progressButton", name: "progressButton", moduleId: PLATFORM.moduleName("progressButton/progressButtonDemo") },
       { route: "radio", name: "radio", moduleId: PLATFORM.moduleName("radio/radioDemo") },
       { route: "slider", name: "slider", moduleId: PLATFORM.moduleName("slider/sliderDemo") },
+      { route: "switch", name: "switch", moduleId: PLATFORM.moduleName("switch/switchDemo") },
       { route: "textBox", name: "textBox", moduleId: PLATFORM.moduleName("textBox/textBoxDemo") },
       { route: "uploader", name: "uploader", moduleId: PLATFORM.moduleName("uploader/uploaderDemo") }
     ]);
