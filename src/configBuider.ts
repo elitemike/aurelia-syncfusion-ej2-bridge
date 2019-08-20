@@ -16,8 +16,8 @@ import { Ej2DatePicker } from './widgets/datePicker/ej2-DatePicker';
 import { Ej2DateRangePicker } from './widgets/dateRangePicker/ej2-dateRangePicker';
 import { Ej2DateTimePicker } from './widgets/dateTimePicker/ej2-dateTimePicker';
 import { Ej2Accordion } from './widgets/accordion/ej2-accordion';
-import { Ej2DropDownList } from 'widgets/dropDownList/ej2-dropDownList';
-import { Ej2NumericTextBox } from 'widgets/numericTextBox/ej2-numericTextBox';
+import { Ej2DropDownList } from './widgets/dropDownList/ej2-dropDownList';
+import { Ej2NumericTextBox } from './widgets/numericTextBox/ej2-numericTextBox';
 
 export class ConfigBuilder {
   public resources: any[] = [];

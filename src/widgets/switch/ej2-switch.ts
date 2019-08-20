@@ -1,6 +1,6 @@
-import { SyncfusionWrapper } from 'common/syncfusionWrapper';
+import { SyncfusionWrapper } from '../../common/syncfusionWrapper';
 import { Switch, SwitchModel } from '@syncfusion/ej2-buttons';
-import { generateBindables } from 'utilities/decorator';
+import { generateBindables } from '../../utilities/decorator';
 
 @generateBindables("switch")
 export class Ej2Switch extends SyncfusionWrapper<Switch, SwitchModel> {

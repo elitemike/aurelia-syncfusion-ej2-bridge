@@ -1,7 +1,7 @@
 import { constants } from '../../common/constants';
 import { SyncfusionWrapper } from "../../common/syncfusionWrapper";
 import { TextBox, TextBoxModel } from "@syncfusion/ej2-inputs";
-import { generateBindables } from "utilities/decorator";
+import { generateBindables } from "../../utilities/decorator";
 import { enableRipple } from '@syncfusion/ej2-base';
 enableRipple(true);
 
