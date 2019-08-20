@@ -1,3 +1,4 @@
+import { Ej2Slider } from './widgets/slider/ej2-slider';
 import { Ej2MaskedTextBox } from './widgets/maskedTextBox/ej2-maskedTextBox';
 import { PLATFORM } from "aurelia-pal";
 import { Ej2Button } from "./widgets/button/ej2-button";
@@ -39,6 +40,7 @@ export class ConfigBuilder {
       .ej2NumericTextBox()
       .ej2ProgressButton()
       .ej2Radio()
+      .ej2Slider()
       .ej2TextBox()
       .ej2Uploader()
     return this;
@@ -162,6 +164,11 @@ export class ConfigBuilder {
 
   ej2Radio(): ConfigBuilder {
     this.resources.push(Ej2Radio);
+    return this;
+  }
+
+  ej2Slider(): ConfigBuilder {
+    this.resources.push(Ej2Slider);
     return this;
   }
 

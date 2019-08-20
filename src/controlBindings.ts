@@ -72,6 +72,11 @@ export const ControlBindings = {
     oneWay: ["checked", "cssClass", "disabled", "enablePersistence", "enableRtl", "label", "labelPosition", "locale", "name", "value"],
     events: ["change", "created"]
   },
+  slider: {
+    oneWay: ["cssClass", "customValues", "enableAnimation", "enablePersistence", "enableRtl", "enabled", "limits", "locale", "max", "min", "orientation", "readonly", "showButtons", "step", "ticks", "tooltip", "type"],
+    twoWay: ["value"],
+    events: ["change", "changed", "created", "renderedTicks", "renderingTicks", "tooltipChange"]
+  },
   textBox: {
     oneWay: ["cssClass", "enablePersistence", "enableRtl", "enabled", "floatLabelType", "htmlAttributes", "locale", "multiline", "placeholder", "readonly", "showClearButton", "type"],
     twoWay: ["value"],
