@@ -1,109 +1,11 @@
-import { ProgressButtonModel } from '@syncfusion/ej2-splitbuttons';
-import { ButtonModel } from '@syncfusion/ej2-buttons';
-import { observable } from 'aurelia-binding';
-import { Ej2Button } from 'widgets/button/ej2-button';
-import { GridModel } from '@syncfusion/ej2-grids';
-import { RouterConfiguration, Router } from "aurelia-router";
-import { PLATFORM } from 'aurelia-pal';
-import { autoinject } from 'aurelia-framework';
-
-@autoinject
-export class App {
-
-  configureRouter(config: RouterConfiguration, router: Router) {
-    config.options.root = "/";
-    config.options.pushState = true;
-    config.map([
-      { route: "", redirect: "home" },
-      { route: "home", name: "home", moduleId: PLATFORM.moduleName("home") },
-      { route: "accordion", name: "accordion", moduleId: PLATFORM.moduleName("accordion/accordionDemo") },
-      { route: "button", name: "button", moduleId: PLATFORM.moduleName("button/buttonDemo") },
-      { route: "checkbox", name: "checkbox", moduleId: PLATFORM.moduleName("checkbox/checkboxDemo") },
-      { route: "dashboardLayout", name: "dashboardLayout", moduleId: PLATFORM.moduleName("dashboardLayout/dashboardLayoutDemo") },
-      { route: "datePicker", name: "datePicker", moduleId: PLATFORM.moduleName("datePicker/datePickerDemo") },
-      { route: "dateRangePicker", name: "dateRangePicker", moduleId: PLATFORM.moduleName("dateRangePicker/dateRangePickerDemo") },
-      { route: "dateTimePicker", name: "dateTimePicker", moduleId: PLATFORM.moduleName("dateTimePicker/dateTimePickerDemo") },
-      { route: "dropDownList", name: "dropDownList", moduleId: PLATFORM.moduleName("dropDownList/dropDownListDemo") },
-      { route: "grid", name: "grid", moduleId: PLATFORM.moduleName("grid/gridDemo") },
-      { route: "maskedTextBox", name: "maskedTextBox", moduleId: PLATFORM.moduleName("maskedTextBox/maskedTextBoxDemo") },
-      { route: "numericTextBox", name: "numericTextBox", moduleId: PLATFORM.moduleName("numericTextBox/numericTextBoxDemo") },
-      { route: "radio", name: "radio", moduleId: PLATFORM.moduleName("radio/radioDemo") },
-      { route: "textBox", name: "textBox", moduleId: PLATFORM.moduleName("textBox/textBoxDemo") },
-      { route: "uploader", name: "uploader", moduleId: PLATFORM.moduleName("uploader/uploaderDemo") }
-    ]);
-  }
-
-  // @observable
-  // isChecked = false
-  // @observable
-  // rdo1Checked = false;
-  // @observable
-  // rdo2Checked = true;
-  // buttonDisabled = false;
-  // index = 0;
-  // isPrimary = true;
-  // myContent = "blah"
-  // isToggle = false;
-  // ej2Button: Ej2Button = null;
-  // gridDataSource = data;
-  // gridColumns = [
-  //   { field: 'OrderID', headerText: 'Order ID', textAlign: 'Right', width: 120, type: 'number' },
-  //   { field: 'CustomerID', width: 140, headerText: 'Customer ID', type: 'string' },
-  //   { field: 'Freight', headerText: 'Freight', textAlign: 'Right', width: 120, format: 'C' },
-  //   { field: 'OrderDate', headerText: 'Order Date', width: 140, format: 'yMd' }
-  // ];
-
-  // gridModel: GridModel = {
-
-  // }
-
-  // progressButtonModel: ProgressButtonModel = {
-
-  //   created: () => { this.onCreated(); },
-  //   spinSettings: { position: "Right" }
-  // };
-
-
-  // onCreated() {
-  //   console.log("progress created")
-  // }
-
-  // buttonModel: ButtonModel = {
-
-  // };
-
-  // buttonClick(a) {
-  //   console.log("button clicked from custom event", a);
-  //   this.isChecked = !this.isChecked;
-  //   this.myContent = "button clicked";
-  // }
-
-  // progressClicked() {
-  //   // console.log("progress clicked")
-  //   this.ej2Button.refresh();
-  // }
-
-  // checkboxClick($event) {
-  //   console.log("checkbox clicked", $event);
-  //   return true;
-  // }
-
-  // isCheckedChanged() {
-  //   // console.log("checkbox changed - new value", this.isChecked);
-  // }
-
-  // rdo1CheckedChanged() {
-  //   // console.log("radio 1 changed - new value", this.rdo1Checked);
-  //   this.buttonDisabled = this.rdo1Checked;
-  // }
-
-  // rdo2CheckedChanged() {
-  //   //   console.log("radio 2 changed - new value", this.rdo2Checked);
-  //   this.isToggle = true;
-
-  // }
-
-
+export class GridDemo {
+  gridDataSource = data;
+  gridColumns = [
+    { field: 'OrderID', headerText: 'Order ID', textAlign: 'Right', width: 120, type: 'number' },
+    { field: 'CustomerID', width: 140, headerText: 'Customer ID', type: 'string' },
+    { field: 'Freight', headerText: 'Freight', textAlign: 'Right', width: 120, format: 'C' },
+    { field: 'OrderDate', headerText: 'Order Date', width: 140, format: 'yMd' }
+  ];
 }
 
 

@@ -59,6 +59,11 @@ export const ControlBindings = {
     twoWay: ["value"],
     events: ["blur", "change", "created", "destroyed", "focus", "input"]
   },
+  numericTextBox: {
+    oneWay: ["cssClass", "currency", "decimals", "enablePersistence", "enableRtl", "enabled", "floatLabelType", "format", "htmlAttributes", "locale", "max", "min", "placeholder", "readonly", "showClearButon", "showSpinButton", "step", "StrictMode", "validateDecimalOnType", "width"],
+    twoWay: ["value"],
+    events: ["blur", "change", "created", "destroyed", "focus"]
+  },
   progressButton: {
     oneWay: ["animationSettings", "content", "cssClass", "disabled", "duration", "enablePersistence", "enableProgress", "enableRtl", "iconCss", "iconPosition", "isPrimary", "isToggle", "spinSettings"],
     events: ["begin", "created", "end", "fail", "progress"]
