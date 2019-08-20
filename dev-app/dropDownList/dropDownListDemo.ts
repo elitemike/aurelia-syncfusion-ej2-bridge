@@ -1,3 +1,4 @@
+import { data } from './../app';
 import { DropDownListModel } from "@syncfusion/ej2-dropdowns";
 
 export class DropDownListDemo {
@@ -6,6 +7,7 @@ export class DropDownListDemo {
 
   model: DropDownListModel = {
     fields: { text: "text", value: "value" },
-    placeholder: "select a value"
+    placeholder: "select a value",
+    dataSource: this.data
   };
 }
