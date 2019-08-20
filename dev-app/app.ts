@@ -27,6 +27,7 @@ export class App {
       { route: "grid", name: "grid", moduleId: PLATFORM.moduleName("grid/gridDemo") },
       { route: "maskedTextBox", name: "maskedTextBox", moduleId: PLATFORM.moduleName("maskedTextBox/maskedTextBoxDemo") },
       { route: "numericTextBox", name: "numericTextBox", moduleId: PLATFORM.moduleName("numericTextBox/numericTextBoxDemo") },
+      { route: "progressButton", name: "progressButton", moduleId: PLATFORM.moduleName("progressButton/progressButtonDemo") },
       { route: "radio", name: "radio", moduleId: PLATFORM.moduleName("radio/radioDemo") },
       { route: "textBox", name: "textBox", moduleId: PLATFORM.moduleName("textBox/textBoxDemo") },
       { route: "uploader", name: "uploader", moduleId: PLATFORM.moduleName("uploader/uploaderDemo") }
