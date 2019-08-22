@@ -25,8 +25,8 @@ export const ControlBindings = {
     events: ["blur", "change", "close", "created", "destroyed", "focus", "navigated", "open", "renderDayCell"]
   },
   dateRangePicker: {
-    oneWay: ["allowEdit", "cssClass", "dayHeaderFormat", "depth", "enablePersistence", "enableRtl", "enabled", "endDate", "firstDayOfWeek", "floatLabelType", "format", "htmlAttributes", "keyConfigs", "locale", "max", "maxDays", "min", "minDays", "placeholder", "presets", "readonly", "separator", "showClearButton", "start", "startDate", "strictMode", "weekNumber", "width", "zindex"],
-    twoWay: ["value"],
+    oneWay: ["allowEdit", "cssClass", "dayHeaderFormat", "depth", "enablePersistence", "enableRtl", "enabled", "firstDayOfWeek", "floatLabelType", "format", "htmlAttributes", "keyConfigs", "locale", "max", "maxDays", "min", "minDays", "placeholder", "presets", "readonly", "separator", "showClearButton", "start", "strictMode", "weekNumber", "width", "zindex"],
+    twoWay: ["value", "startDate", "endDate"],
     events: ["blur", "change", "close", "created", "destroyed", "focus", "navigated", "open", "renderDayCell", "select"]
   },
   dateTimePicker: {
