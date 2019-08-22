@@ -37,3 +37,4 @@ node_modules
 /test/coverage-karma
 yarn.lock
 .chrome
+/npm-packages-offline-cache

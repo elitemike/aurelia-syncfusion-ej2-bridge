@@ -66,7 +66,7 @@ export class ControlBase<T, U> {
   }
 
   protected setInitialBindings() {
-    this.debug("set initial bindables")
+    //  this.debug("set initial bindables")
     let _control = this.getBindables();
 
     let bindablePrefixLength = constants.bindablePrefix.length;
@@ -133,7 +133,7 @@ export class ControlBase<T, U> {
   }
 
   createControlPropertySubscriptions(control: Control) {
-    this.debug("create control property subscriptions");
+    //  this.debug("create control property subscriptions");
     if (control) {
       let bindablePrefixLength = constants.bindablePrefix.length;
 
