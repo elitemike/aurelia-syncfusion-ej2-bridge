@@ -87,6 +87,11 @@ export const ControlBindings = {
     twoWay: ["value"],
     events: ["blur", "change", "created", "destroyed", "focus", "input"]
   },
+  timePicker: {
+    oneWay: ["allowEdit", "cssClass", "enablePersistence", "enableRtl", "enabled", "floatLabelType", "format", "htmlAttributes", "keyConfigs", "locale", "placeholder", "readonly", "scrollTo", "showClearButton", "step", "strictMode", "width", "zIndex"],
+    twoWay: ["value", "min", "max"],
+    events: ["blur", "change", "close", "created", "destroyed", "focus", "itemRender", "open"]
+  },
   treeView: {
     oneWay: ["allowDragAndDrop", "allowEditing", "allowMultiSelection", "animation", "autoCheck", "checkedNodes", "cssClass", "enablePersistence", "enableRtl", "expandOn", "expandedNodes", "fields", "fullRowSelect", "loadOnDemand", "locale", "nodeTemplate", "showCheckBox", "sortOrder"],
     twoWay: ["selectedNodes"],
