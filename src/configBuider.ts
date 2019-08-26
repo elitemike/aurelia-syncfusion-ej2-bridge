@@ -19,6 +19,7 @@ import { Ej2Accordion } from './widgets/accordion/ej2-accordion';
 import { Ej2DropDownList } from './widgets/dropDownList/ej2-dropDownList';
 import { Ej2NumericTextBox } from './widgets/numericTextBox/ej2-numericTextBox';
 import { Ej2TimePicker } from './widgets/timePicker/ej2-timePicker';
+import { Ej2AutoComplete } from './widgets/autoComplete/ej2-autoComplete';
 
 export class ConfigBuilder {
   public resources: any[] = [];
@@ -30,6 +31,7 @@ export class ConfigBuilder {
   useAll(): ConfigBuilder {
     this
       .ej2Accordion()
+      .ej2AutoComplete()
       .ej2Button()
       .ej2Checkbox()
       .ej2CheckboxList()
@@ -105,6 +107,11 @@ export class ConfigBuilder {
 
   ej2Accordion(): ConfigBuilder {
     this.resources.push(Ej2Accordion);
+    return this;
+  }
+
+  ej2AutoComplete(): ConfigBuilder {
+    this.resources.push(Ej2AutoComplete);
     return this;
   }
 

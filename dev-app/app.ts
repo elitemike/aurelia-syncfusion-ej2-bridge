@@ -17,6 +17,7 @@ export class App {
       { route: "", redirect: "home" },
       { route: "home", name: "home", moduleId: PLATFORM.moduleName("home") },
       { route: "accordion", name: "accordion", moduleId: PLATFORM.moduleName("accordion/accordionDemo") },
+      { route: "autoComplete", name: "autoComplete", moduleId: PLATFORM.moduleName("autoComplete/autoCompleteDemo") },
       { route: "button", name: "button", moduleId: PLATFORM.moduleName("button/buttonDemo") },
       { route: "checkbox", name: "checkbox", moduleId: PLATFORM.moduleName("checkbox/checkboxDemo") },
       { route: "dashboardLayout", name: "dashboardLayout", moduleId: PLATFORM.moduleName("dashboardLayout/dashboardLayoutDemo") },

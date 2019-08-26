@@ -6,6 +6,11 @@ export const ControlBindings = {
     oneWay: ["animation", "enablePersistence", "enableRtl", "expandMode", "height", "items", "locale", "width"],
     events: ["clicked", "created", "destroyed", "expanded", "expanding"]
   },
+  autoComplete: {
+    oneWay: ["actionFailureTemplate", "allowCustom", "autofill", "cssClass", "dataSource", "enablePersistence", "enableRtl", "enabled", "fields", "filterType", "floatLabelType", "footerTemplate", "groupTemplate", "headerTemplate", "highlight", "htmlAttributes", "ignoreAccent", "ignoreCase", "itemTemplate", "locale", "minLength", "noRecordsTemplate", "placeholder", "popupHeight", "popupWidth", "query", "readonly", "showClearButton", "showPopupButton", "sortOrder", "suggestionCount", "width", "zIndex"],
+    twoWay: ["value"],
+    events: ["actionBegin", "actionComplete", "actionFailure", "beforeOpen", "blur", "change", "close", "created", "customValueSpecifier", "dataBound", "destroyed", "filtering", "focus", "open", "select"]
+  },
   button: {
     oneWay: ["disabled", "isPrimary", "content", "cssClass", "enablePersistence", "iconCss", "iconPosition", "isToggle", "enableRtl"],
     events: ["created"]
