@@ -26,6 +26,7 @@ export class App {
       { route: "dateTimePicker", name: "dateTimePicker", moduleId: PLATFORM.moduleName("dateTimePicker/dateTimePickerDemo") },
       { route: "dropDownList", name: "dropDownList", moduleId: PLATFORM.moduleName("dropDownList/dropDownListDemo") },
       { route: "grid", name: "grid", moduleId: PLATFORM.moduleName("grid/gridDemo") },
+      { route: "listView", name: "listview", moduleId: PLATFORM.moduleName("listView/listViewDemo") },
       { route: "maskedTextBox", name: "maskedTextBox", moduleId: PLATFORM.moduleName("maskedTextBox/maskedTextBoxDemo") },
       { route: "numericTextBox", name: "numericTextBox", moduleId: PLATFORM.moduleName("numericTextBox/numericTextBoxDemo") },
       { route: "progressButton", name: "progressButton", moduleId: PLATFORM.moduleName("progressButton/progressButtonDemo") },

@@ -5,6 +5,7 @@ import { constants } from "./constants";
 import { EventAggregator } from 'aurelia-event-aggregator';
 import { Logger } from 'aurelia-logging';
 
+
 let logger: Logger = LogManager.getLogger("SyncfusionBridge");
 
 @autoinject

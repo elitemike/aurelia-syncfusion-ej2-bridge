@@ -59,6 +59,10 @@ export const ControlBindings = {
     twoWay: ["selectedRowIndex"],
     events: ["actionBegins", "actionComplete", "actionFailure", "batchAdd", "batchCancel", "batchDelete", "beforeBatchAdd", "beforeBatchDelete", "beforeBatchSave", "beforeCopy", "beforeDataBound", "beforeExcelExport", "beforeOpenColumnChooser", "beforePaste", "beforePdfExport", "beforePrint", "beginEdit", "cellDeselected", "cellDeselecting", "cellEdit", "cellSave", "cellSaved", "cellSelected", "cellSelecting", "checkBoxChange", "columnDrag", "columnDragStart", "columnDrop", "columnMenuClick", "columnMenuOpen", "commandClick", "contextMenuClick", "contextMenuOpen", "created", "dataBound", "dataSourceChanged", "dataStateChange", "destroyed", "detailDataBound", "excelExportComplete", "excelHeaderQueryCellInfo", "excelQueryCellInfo", "exportDetailDataBound", "headerCellInfo", "keyPressed", "load", "pdfExportComplete", "pdfHeaderQueryCellInfo", "pdfQueryCellInfo", "printComplete", "queryCellInfo", "recordDoubleClick", "resizeStart", "resizeStop", "resizing", "rowDataBound", "rowDeselected", "rowDeselecting", "rowDrag", "rowDragStart", "rowDragStartHelper", "rowDrop", "rowSelected", "rowSelecting", "toolbarClick"]
   },
+  listView: {
+    oneWay: ["animation", "checkBoxPosition", "cssClass", "dataSource", "enable", "enablePersistence", "enableRtl", "enableVirtualization", "fields", "groupTemplate", "fields", "groupTemplate", "headerTemplate", "headerTitle", "height", "htmlAttributes", "locale", "query", "showCheckBox", "showHeader", "showIcon", "sortOrder", "template", "width"],
+    events: ["actionBegin", "actionComplete", "actionFailure", "select"]
+  },
   maskedTextBox: {
     oneWay: ["cssClass", "customCharacters", "enablePersistence", "enableRtl", "enabled", "floatLabelType", "htmlAttributes", "locale", "mask", "placeholder", "promptChar", "showClearButton", "width"],
     twoWay: ["value"],

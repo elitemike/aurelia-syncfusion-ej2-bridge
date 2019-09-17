@@ -1,4 +1,6 @@
 <template>
-  <ej2-grid e-height="400" e-columns.bind="gridColumns" e-data-source.bind="gridDataSource">
+  <ej2-grid e-height="400" e-columns.bind="gridColumns" e-data-source.bind="gridDataSource" e-allow-selection="true"
+    e-allow-sorting="true" e-allow-paging="true" e-show-column-chooser="true" e-allow-reordering="true"
+    e-toolbar.bind="['ColumnChooser']">
   </ej2-grid>
 </template>

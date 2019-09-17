@@ -20,6 +20,7 @@ import { Ej2DropDownList } from './widgets/dropDownList/ej2-dropDownList';
 import { Ej2NumericTextBox } from './widgets/numericTextBox/ej2-numericTextBox';
 import { Ej2TimePicker } from './widgets/timePicker/ej2-timePicker';
 import { Ej2AutoComplete } from './widgets/autoComplete/ej2-autoComplete';
+import { Ej2ListView } from 'widgets/listView/ej2-listView';
 
 export class ConfigBuilder {
   public resources: any[] = [];
@@ -41,6 +42,7 @@ export class ConfigBuilder {
       .ej2DashboardLayout()
       .ej2DropDownList()
       .ej2Grid()
+      .ej2ListView()
       .ej2MaskedTextBox()
       .ej2NumericTextBox()
       .ej2ProgressButton()
@@ -157,6 +159,11 @@ export class ConfigBuilder {
 
   ej2Grid(): ConfigBuilder {
     this.resources.push(Ej2Grid);
+    return this;
+  }
+
+  ej2ListView(): ConfigBuilder {
+    this.resources.push(Ej2ListView);
     return this;
   }
 
