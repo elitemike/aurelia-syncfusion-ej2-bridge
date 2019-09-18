@@ -1,51 +1,51 @@
 export const ControlBindings = {
   common: {
-    oneWay: []
+    oneWay: ["enablePersistence", "enableRtl", "locale"]
   },
   accordion: {
-    oneWay: ["animation", "enablePersistence", "enableRtl", "expandMode", "height", "items", "locale", "width"],
+    oneWay: ["animation", "expandMode", "height", "items", "width"],
     events: ["clicked", "created", "destroyed", "expanded", "expanding"]
   },
   autoComplete: {
-    oneWay: ["actionFailureTemplate", "allowCustom", "autofill", "cssClass", "dataSource", "enablePersistence", "enableRtl", "enabled", "fields", "filterType", "floatLabelType", "footerTemplate", "groupTemplate", "headerTemplate", "highlight", "htmlAttributes", "ignoreAccent", "ignoreCase", "itemTemplate", "locale", "minLength", "noRecordsTemplate", "placeholder", "popupHeight", "popupWidth", "query", "readonly", "showClearButton", "showPopupButton", "sortOrder", "suggestionCount", "width", "zIndex"],
+    oneWay: ["actionFailureTemplate", "allowCustom", "autofill", "cssClass", "dataSource", "enabled", "fields", "filterType", "floatLabelType", "footerTemplate", "groupTemplate", "headerTemplate", "highlight", "htmlAttributes", "ignoreAccent", "ignoreCase", "itemTemplate", "minLength", "noRecordsTemplate", "placeholder", "popupHeight", "popupWidth", "query", "readonly", "showClearButton", "showPopupButton", "sortOrder", "suggestionCount", "width", "zIndex"],
     twoWay: ["value"],
     events: ["actionBegin", "actionComplete", "actionFailure", "beforeOpen", "blur", "change", "close", "created", "customValueSpecifier", "dataBound", "destroyed", "filtering", "focus", "open", "select"]
   },
   button: {
-    oneWay: ["disabled", "isPrimary", "content", "cssClass", "enablePersistence", "iconCss", "iconPosition", "isToggle", "enableRtl"],
+    oneWay: ["disabled", "isPrimary", "content", "cssClass", "iconCss", "iconPosition", "isToggle", "enableRtl"],
     events: ["created"]
   },
   checkbox: {
-    oneWay: ["cssClass", "disabled", "enablePersistence", "enableRtl", "indeterminate", "label", "labelPosition", "locale", "name", "value"],
+    oneWay: ["cssClass", "disabled", "indeterminate", "label", "labelPosition", "name", "value"],
     twoWay: ["checked"],
     events: ["change", "created"]
   },
   comboBox: {
-    oneWay: ["actionFailureTemplate", "allowCustom", "allowFiltering", "autofill", "cssClass", "dataSource", "enablePersistence", "enableRtl", "enabled", "fields", "floatLabelType", "footerTemplate", "groupTemplate", "headerTemplate", "htmlAttributes", "ignoreAccent", "index", "itemTemplate", "locale", "noRecordsTemplate", "placeholder", "popupHeight", "popupWidth", "query", "readonly", "showClearButton", "sortOrder", "text", "width", "zIndex"],
+    oneWay: ["actionFailureTemplate", "allowCustom", "allowFiltering", "autofill", "cssClass", "dataSource", "enabled", "fields", "floatLabelType", "footerTemplate", "groupTemplate", "headerTemplate", "htmlAttributes", "ignoreAccent", "index", "itemTemplate", "noRecordsTemplate", "placeholder", "popupHeight", "popupWidth", "query", "readonly", "showClearButton", "sortOrder", "text", "width", "zIndex"],
     twoWay: ["value"],
     events: ["actionBegin", "actionComplete", "actionFailure", "beforeOpen", "blur", "change", "close", "created", "customValueSpecifier", "dataBound", "destroyed", "filtering", "focus", "open", "select"]
   },
   dashboardLayout: {
-    oneWay: ["allowDragging", "allowFloating", "allowResizing", "cellSpacing", "columns", "draggableHandle", "enablePersistence", "enableRtl", "mediaQuery", "panels", "resizableHandles", "showGridLines"],
+    oneWay: ["allowDragging", "allowFloating", "allowResizing", "cellSpacing", "columns", "draggableHandle", "mediaQuery", "panels", "resizableHandles", "showGridLines"],
     events: ["change", "created", "detroyed", "drag", "dragStart", "dragStop", "resize", "resizeStart", "resizeStop"]
   },
   datePicker: {
-    oneWay: ["allowEdit", "calendarMode", "cssClass", "dayHeaderFormat", "depth", "enablePersistence", "enableRtl", "enabled", "firstDayOfWeek", "floatLabelType", "format", "htmlAttributes", "keyConfigs", "locale", "max", "min", "placeholder", "readonly", "showClearButton", "showTodayButton", "start", "strictMode", "weekNumber", "width", "zindex"],
+    oneWay: ["allowEdit", "calendarMode", "cssClass", "dayHeaderFormat", "depth", "enabled", "firstDayOfWeek", "floatLabelType", "format", "htmlAttributes", "keyConfigs", "max", "min", "placeholder", "readonly", "showClearButton", "showTodayButton", "start", "strictMode", "weekNumber", "width", "zindex"],
     twoWay: ["value"],
     events: ["blur", "change", "close", "created", "destroyed", "focus", "navigated", "open", "renderDayCell"]
   },
   dateRangePicker: {
-    oneWay: ["allowEdit", "cssClass", "dayHeaderFormat", "depth", "enablePersistence", "enableRtl", "enabled", "firstDayOfWeek", "floatLabelType", "format", "htmlAttributes", "keyConfigs", "locale", "max", "maxDays", "min", "minDays", "placeholder", "presets", "readonly", "separator", "showClearButton", "start", "strictMode", "weekNumber", "width", "zindex"],
+    oneWay: ["allowEdit", "cssClass", "dayHeaderFormat", "depth", "enabled", "firstDayOfWeek", "floatLabelType", "format", "htmlAttributes", "keyConfigs", "max", "maxDays", "min", "minDays", "placeholder", "presets", "readonly", "separator", "showClearButton", "start", "strictMode", "weekNumber", "width", "zindex"],
     twoWay: ["value", "startDate", "endDate"],
     events: ["blur", "change", "close", "created", "destroyed", "focus", "navigated", "open", "renderDayCell", "select"]
   },
   dateTimePicker: {
-    oneWay: ["allowEdit", "calendarMode", "cssClass", "dayHeaderFormat", "depth", "enablePersistence", "enableRtl", "enabled", "firstDayOfWeek", "floatLabelType", "format", "htmlAttributes", "keyConfigs", "locale", "max", "min", "placeholder", "readonly", "scrollTo", "showClearButton", "showTodayButton", "start", "step", "strictMode", "timeFormat", "weekNumber", "width", "zindex"],
+    oneWay: ["allowEdit", "calendarMode", "cssClass", "dayHeaderFormat", "depth", "enabled", "firstDayOfWeek", "floatLabelType", "format", "htmlAttributes", "keyConfigs", "max", "min", "placeholder", "readonly", "scrollTo", "showClearButton", "showTodayButton", "start", "step", "strictMode", "timeFormat", "weekNumber", "width", "zindex"],
     twoWay: ["value"],
     events: ["blur", "change", "close", "created", "destroyed", "focus", "navigated", "open", "renderDayCell"]
   },
   dropDownList: {
-    oneWay: ["actionFailureTemplate", "allowFiltering", "cssClass", "dataSource", "enablePersistence", "enableRtl", "enabled", "fields", "filterBarPlaceholder", "floatLabelType", "footerTemplate", "groupTemplate", "headerTemplate", "htmlAttributes", "ignoreAccent", "index", "itemTemplate", "locale", "noRecordsTemplate", "placeholder", "popupHeight", "popupWidth", "query", "readonly", "showClearButton", "sortOrder", "text", "valueTemplate", "width", "zindex"],
+    oneWay: ["actionFailureTemplate", "allowFiltering", "cssClass", "dataSource", "enabled", "fields", "filterBarPlaceholder", "floatLabelType", "footerTemplate", "groupTemplate", "headerTemplate", "htmlAttributes", "ignoreAccent", "index", "itemTemplate", "noRecordsTemplate", "placeholder", "popupHeight", "popupWidth", "query", "readonly", "showClearButton", "sortOrder", "text", "valueTemplate", "width", "zindex"],
     twoWay: ["value"],
     events: ["actionBegin", "actionComplete", "actionFailure", "beforeOpen", "blur", "change", "close", "created", "dataBound", "destroyed", "filtering", "focus", "open", "select"]
   },
@@ -53,8 +53,8 @@ export const ControlBindings = {
     oneWay: ["aggregates", "allowExcelExport", "disabled", "allowFiltering", "allowGrouping", "allowMultiSorting", "allowPaging", "allowPdfExport",
       "allowReordering", "allowResizing", "allowRowDragAndDrop", "allowSelection", "allowSorting", "allowTextWrap", "childGrid", "clipboardModule",
       "columnMenuItems", "columnMenuModule", "columnQueryMode", "columns", "contextMenuItems", "contextMenuModule", "dataSource",
-      "detailTemplate", "editModule", "editSettings", "enableAltRow", "enableAutoFill", "enableColumnVirtualization", "enableHover", "enablePersistence", "enableRtl", "enableVirtualiziation",
-      "excelExportModule", "filterModule", "filterSettings", "frozenColumns", "frozenRows", "gridLines", "groupModule", "groupSettings", "height", "hierarchyPrintMode", "keyboardModule", "locale",
+      "detailTemplate", "editModule", "editSettings", "enableAltRow", "enableAutoFill", "enableColumnVirtualization", "enableHover", "enableVirtualiziation",
+      "excelExportModule", "filterModule", "filterSettings", "frozenColumns", "frozenRows", "gridLines", "groupModule", "groupSettings", "height", "hierarchyPrintMode", "keyboardModule",
       "pageSettings", "pagerModule", "pagerTemplate", "pdfExportModule", "printMode", "printModule", "query", "queryString", "reorderModule", "rowDragAndDropModule", "rowDropSettings", "rowHeight",
       "rowTemplate", "scrollModule", "searchModule", "searchSettings", "selectionModule", "selectionSettings", "showColumnChooser", "showColumnMenu", "showHider", "sortModule",
       "sortSettings", "textWrapSettings", "toolbar", "toolbarModule", "toolbarTemplate", "width"],
@@ -65,54 +65,54 @@ export const ControlBindings = {
     events: ["actionBegins", "actionComplete", "actionFailure", "batchAdd", "batchCancel", "batchDelete", "beforeBatchAdd", "beforeBatchDelete", "beforeBatchSave", "beforeCopy", "beforeDataBound", "beforeExcelExport", "beforeOpenColumnChooser", "beforePaste", "beforePdfExport", "beforePrint", "beginEdit", "cellDeselected", "cellDeselecting", "cellEdit", "cellSave", "cellSaved", "cellSelected", "cellSelecting", "checkBoxChange", "columnDrag", "columnDragStart", "columnDrop", "columnMenuClick", "columnMenuOpen", "commandClick", "contextMenuClick", "contextMenuOpen", "created", "dataBound", "dataSourceChanged", "dataStateChange", "destroyed", "detailDataBound", "excelExportComplete", "excelHeaderQueryCellInfo", "excelQueryCellInfo", "exportDetailDataBound", "headerCellInfo", "keyPressed", "load", "pdfExportComplete", "pdfHeaderQueryCellInfo", "pdfQueryCellInfo", "printComplete", "queryCellInfo", "recordDoubleClick", "resizeStart", "resizeStop", "resizing", "rowDataBound", "rowDeselected", "rowDeselecting", "rowDrag", "rowDragStart", "rowDragStartHelper", "rowDrop", "rowSelected", "rowSelecting", "toolbarClick"]
   },
   listView: {
-    oneWay: ["animation", "checkBoxPosition", "cssClass", "dataSource", "enable", "enablePersistence", "enableRtl", "enableVirtualization", "fields", "groupTemplate", "fields", "groupTemplate", "headerTemplate", "headerTitle", "height", "htmlAttributes", "locale", "query", "showCheckBox", "showHeader", "showIcon", "sortOrder", "template", "width"],
+    oneWay: ["animation", "checkBoxPosition", "cssClass", "dataSource", "enable", "enableVirtualization", "fields", "groupTemplate", "fields", "groupTemplate", "headerTemplate", "headerTitle", "height", "htmlAttributes", "query", "showCheckBox", "showHeader", "showIcon", "sortOrder", "template", "width"],
     events: ["actionBegin", "actionComplete", "actionFailure", "select"]
   },
   maskedTextBox: {
-    oneWay: ["cssClass", "customCharacters", "enablePersistence", "enableRtl", "enabled", "floatLabelType", "htmlAttributes", "locale", "mask", "placeholder", "promptChar", "showClearButton", "width"],
+    oneWay: ["cssClass", "customCharacters", "enabled", "floatLabelType", "htmlAttributes", "mask", "placeholder", "promptChar", "showClearButton", "width"],
     twoWay: ["value"],
     events: ["blur", "change", "created", "destroyed", "focus", "input"]
   },
   numericTextBox: {
-    oneWay: ["cssClass", "currency", "decimals", "enablePersistence", "enableRtl", "enabled", "floatLabelType", "format", "htmlAttributes", "locale", "max", "min", "placeholder", "readonly", "showClearButon", "showSpinButton", "step", "StrictMode", "validateDecimalOnType", "width"],
+    oneWay: ["cssClass", "currency", "decimals", "enabled", "floatLabelType", "format", "htmlAttributes", "max", "min", "placeholder", "readonly", "showClearButon", "showSpinButton", "step", "StrictMode", "validateDecimalOnType", "width"],
     twoWay: ["value"],
     events: ["blur", "change", "created", "destroyed", "focus"]
   },
   progressButton: {
-    oneWay: ["animationSettings", "content", "cssClass", "disabled", "duration", "enablePersistence", "enableProgress", "enableRtl", "iconCss", "iconPosition", "isPrimary", "isToggle", "spinSettings"],
+    oneWay: ["animationSettings", "content", "cssClass", "disabled", "duration", "enableProgress", "iconCss", "iconPosition", "isPrimary", "isToggle", "spinSettings"],
     events: ["begin", "created", "end", "fail", "progress"]
   },
   radio: {
-    oneWay: ["checked", "cssClass", "disabled", "enablePersistence", "enableRtl", "label", "labelPosition", "locale", "name", "value"],
+    oneWay: ["checked", "cssClass", "disabled", "label", "labelPosition", "name", "value"],
     events: ["change", "created"]
   },
   slider: {
-    oneWay: ["cssClass", "customValues", "enableAnimation", "enablePersistence", "enableRtl", "enabled", "limits", "locale", "max", "min", "orientation", "readonly", "showButtons", "step", "ticks", "tooltip", "type"],
+    oneWay: ["cssClass", "customValues", "enableAnimation", "enabled", "limits", "max", "min", "orientation", "readonly", "showButtons", "step", "ticks", "tooltip", "type"],
     twoWay: ["value"],
     events: ["change", "changed", "created", "renderedTicks", "renderingTicks", "tooltipChange"]
   },
   switch: {
-    oneWay: ["cssClass", "disabled", "enablePersistence", "enableRtl", "locale", "name", "offLabel", "onLabel"],
+    oneWay: ["cssClass", "disabled", "locale", "name", "offLabel", "onLabel"],
     twoWay: ["value", "checked"],
     events: ["change", "created"]
   },
   textBox: {
-    oneWay: ["cssClass", "enablePersistence", "enableRtl", "enabled", "floatLabelType", "htmlAttributes", "locale", "multiline", "placeholder", "readonly", "showClearButton", "type"],
+    oneWay: ["cssClass", "enabled", "floatLabelType", "htmlAttributes", "multiline", "placeholder", "readonly", "showClearButton", "type"],
     twoWay: ["value"],
     events: ["blur", "change", "created", "destroyed", "focus", "input"]
   },
   timePicker: {
-    oneWay: ["allowEdit", "cssClass", "enablePersistence", "enableRtl", "enabled", "floatLabelType", "format", "htmlAttributes", "keyConfigs", "locale", "placeholder", "readonly", "scrollTo", "showClearButton", "step", "strictMode", "width", "zIndex"],
+    oneWay: ["allowEdit", "cssClass", "enabled", "floatLabelType", "format", "htmlAttributes", "keyConfigs", "placeholder", "readonly", "scrollTo", "showClearButton", "step", "strictMode", "width", "zIndex"],
     twoWay: ["value", "min", "max"],
     events: ["blur", "change", "close", "created", "destroyed", "focus", "itemRender", "open"]
   },
   treeView: {
-    oneWay: ["allowDragAndDrop", "allowEditing", "allowMultiSelection", "animation", "autoCheck", "checkedNodes", "cssClass", "enablePersistence", "enableRtl", "expandOn", "expandedNodes", "fields", "fullRowSelect", "loadOnDemand", "locale", "nodeTemplate", "showCheckBox", "sortOrder"],
+    oneWay: ["allowDragAndDrop", "allowEditing", "allowMultiSelection", "animation", "autoCheck", "checkedNodes", "cssClass", "expandOn", "expandedNodes", "fields", "fullRowSelect", "loadOnDemand", "nodeTemplate", "showCheckBox", "sortOrder"],
     twoWay: ["selectedNodes"],
     events: ["created", "dataBound", "dataSourceChanged", "destroyed", "drawNode", "keyPress", "nodeChecked", "nodeChecking", "nodeClicked", "nodeCollapsed", "nodeCollapsing", "nodeDragStart", "nodeDragStop", "nodeDragging", "nodeDropped", "nodeEdited", "nodeEditing", "nodeExpanded", "nodeExpanding", "nodeSelected", "nodeSelecting"]
   },
   uploader: {
-    oneWay: ["allowedExtensions", "asyncSettings", "autoUpload", "buttons", "cssClass", "directoryUpload", "dropArea", "enablePersistence", "enableRtl", "enabled", "files", "htmlAttributes", "locale", "maxFileSize", "minFileSize", "multiple", "sequentialUpload", "showFileList", "template", "formData"],
+    oneWay: ["allowedExtensions", "asyncSettings", "autoUpload", "buttons", "cssClass", "directoryUpload", "dropArea", "enabled", "files", "htmlAttributes", "maxFileSize", "minFileSize", "multiple", "sequentialUpload", "showFileList", "template", "formData"],
     events: ["actionComplete", "canceling", "change", "chunkFailure", "chunkSuccess", "chunkUploading", "clearing", "created", "failure", "fileListRendering", "pausing", "progress", "removing", "rendering", "resuming", "selected", "success", "uploading"]
   }
 }
