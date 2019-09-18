@@ -1,3 +1,4 @@
+import { Ej2ComboBox } from './widgets/comboBox/ej2-comboBox';
 import { Ej2TreeView } from './widgets/treeView/ej2-treeView';
 import { Ej2Switch } from './widgets/switch/ej2-switch';
 import { Ej2Slider } from './widgets/slider/ej2-slider';
@@ -20,7 +21,7 @@ import { Ej2DropDownList } from './widgets/dropDownList/ej2-dropDownList';
 import { Ej2NumericTextBox } from './widgets/numericTextBox/ej2-numericTextBox';
 import { Ej2TimePicker } from './widgets/timePicker/ej2-timePicker';
 import { Ej2AutoComplete } from './widgets/autoComplete/ej2-autoComplete';
-import { Ej2ListView } from 'widgets/listView/ej2-listView';
+import { Ej2ListView } from './widgets/listView/ej2-listView';
 
 export class ConfigBuilder {
   public resources: any[] = [];
@@ -36,6 +37,7 @@ export class ConfigBuilder {
       .ej2Button()
       .ej2Checkbox()
       .ej2CheckboxList()
+      .ej2ComboBox()
       .ej2DatePicker()
       .ej2DateRangePicker()
       .ej2DateTimePicker()
@@ -129,6 +131,11 @@ export class ConfigBuilder {
 
   ej2CheckboxList(): ConfigBuilder {
     this.resources.push(Ej2CheckboxList);
+    return this;
+  }
+
+  ej2ComboBox(): ConfigBuilder {
+    this.resources.push(Ej2ComboBox);
     return this;
   }
 

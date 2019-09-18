@@ -20,6 +20,7 @@ export class App {
       { route: "autoComplete", name: "autoComplete", moduleId: PLATFORM.moduleName("autoComplete/autoCompleteDemo") },
       { route: "button", name: "button", moduleId: PLATFORM.moduleName("button/buttonDemo") },
       { route: "checkbox", name: "checkbox", moduleId: PLATFORM.moduleName("checkbox/checkboxDemo") },
+      { route: "combobox", name: "combobox", moduleId: PLATFORM.moduleName("comboBox/comboBoxDemo") },
       { route: "dashboardLayout", name: "dashboardLayout", moduleId: PLATFORM.moduleName("dashboardLayout/dashboardLayoutDemo") },
       { route: "datePicker", name: "datePicker", moduleId: PLATFORM.moduleName("datePicker/datePickerDemo") },
       { route: "dateRangePicker", name: "dateRangePicker", moduleId: PLATFORM.moduleName("dateRangePicker/dateRangePickerDemo") },
