@@ -24,7 +24,6 @@ export class Ej2Switch extends SyncfusionWrapper<Switch, SwitchModel> {
   }
 
   onChange(args) {
-    console.log("args", args)
     this[`${constants.bindablePrefix}checked`] = args.checked;
   }
 
