@@ -16,11 +16,8 @@ export class Ej2DateRangePicker extends SyncfusionWrapper<DateRangePicker, DateR
   }
 
   onChange(args) {
-    console.log("onChange", args)
-    console.log("pre", this)
     this[`${constants.bindablePrefix}value`] = args.value;
     this[`${constants.bindablePrefix}startDate`] = args.startDate;
     this[`${constants.bindablePrefix}endDate`] = args.endDate;
-    console.log("state", this)
   }
 }
