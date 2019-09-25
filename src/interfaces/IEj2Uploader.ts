@@ -1,6 +1,8 @@
 import { Ej2UploaderDataAdapter } from '../widgets/uploader/ej2-uploader';
+import { Uploader } from '@syncfusion/ej2-inputs';
+import { IEJ2WidgetBridge } from './IEJ2WidgetBridge';
 
-export interface IEj2Uplaoder extends IEJWidget {
+export interface IEj2Uplaoder extends IEJ2WidgetBridge<Uploader> {
   mapAdditionalFilePropertiesToFiles: boolean;
   sendAdditionalFilePropertiesAsFormData: boolean;
 
@@ -16,8 +18,4 @@ export interface IEj2Uplaoder extends IEJWidget {
   removeAll(): void;
 }
 
-export interface IEJWidget {
-  refresh(): void;
-  recreate(): void;
-  dataBind(): void;
-}
+
