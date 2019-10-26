@@ -22,6 +22,7 @@ import { Ej2NumericTextBox } from './widgets/numericTextBox/ej2-numericTextBox';
 import { Ej2TimePicker } from './widgets/timePicker/ej2-timePicker';
 import { Ej2AutoComplete } from './widgets/autoComplete/ej2-autoComplete';
 import { Ej2ListView } from './widgets/listView/ej2-listView';
+import { Ej2Pager } from './widgets/pager/ej2-pager';
 
 export class ConfigBuilder {
   public resources: any[] = [];
@@ -47,6 +48,7 @@ export class ConfigBuilder {
       .ej2ListView()
       .ej2MaskedTextBox()
       .ej2NumericTextBox()
+      .ej2Pager()
       .ej2ProgressButton()
       .ej2Radio()
       .ej2Slider()
@@ -181,6 +183,11 @@ export class ConfigBuilder {
 
   ej2NumericTextBox(): ConfigBuilder {
     this.resources.push(Ej2NumericTextBox);
+    return this;
+  }
+
+  ej2Pager(): ConfigBuilder {
+    this.resources.push(Ej2Pager);
     return this;
   }
 

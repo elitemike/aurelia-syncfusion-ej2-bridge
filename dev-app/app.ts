@@ -30,6 +30,7 @@ export class App {
       { route: "listView", name: "listview", moduleId: PLATFORM.moduleName("listView/listViewDemo") },
       { route: "maskedTextBox", name: "maskedTextBox", moduleId: PLATFORM.moduleName("maskedTextBox/maskedTextBoxDemo") },
       { route: "numericTextBox", name: "numericTextBox", moduleId: PLATFORM.moduleName("numericTextBox/numericTextBoxDemo") },
+      { route: "pager", name: "pager", moduleId: PLATFORM.moduleName("pager/pagerDemo") },
       { route: "progressButton", name: "progressButton", moduleId: PLATFORM.moduleName("progressButton/progressButtonDemo") },
       { route: "radio", name: "radio", moduleId: PLATFORM.moduleName("radio/radioDemo") },
       { route: "slider", name: "slider", moduleId: PLATFORM.moduleName("slider/sliderDemo") },
