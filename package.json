@@ -1,7 +1,15 @@
 {
   "name": "aurelia-syncfusion-ej2-bridge",
   "description": "An Aurelia plugin wrapper for syncfusion EJ2 controls",
-  "version": "0.1.0",
+  "version": "0.1.0-alpha.0",
+  "keywords": [
+    "aurelia",
+    "syncfusion"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "Refactored Technology Solutions"
+  },
   "dependencies": {},
   "peerDependencies": {
     "@syncfusion/ej2": "^17.4.42"
@@ -47,7 +55,7 @@
   },
   "main": "dist/commonjs/index.js",
   "module": "dist/native-modules/index.js",
-  "private": true,
+  "private": false,
   "files": [
     "dist"
   ],

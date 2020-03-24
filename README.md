@@ -1,5 +1,7 @@
 # `aurelia-syncfusion-ej-2-bridge`
 
+This is an early release and is not recommended for use
+
 This project is bootstrapped by [aurelia-cli](https://github.com/aurelia/cli).
 
 This Aurelia plugin project has a built-in dev app (with CLI built-in bundler and RequireJS) to simplify development.
