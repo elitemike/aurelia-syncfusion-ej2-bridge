@@ -1,6 +1,28 @@
+import { Ej2DatePicker } from './widgets/datePicker/ej2-DatePicker';
 import { PLATFORM } from "aurelia-pal";
 import { Ej2TextBox } from './widgets/textBox/ej2-textBox';
-//require("@syncfusion/ej2/material.css");
+import { Ej2DateRangePicker } from './widgets/dateRangePicker/ej2-dateRangePicker';
+import { Ej2DateTimePicker } from './widgets/dateTimePicker/ej2-dateTimePicker';
+import { Ej2DashboardLayout } from './widgets/dashboardLayout/ej2-dashboardLayout';
+import { Ej2ComboBox } from './widgets/comboBox/ej2-comboBox';
+import { Ej2CheckboxList } from './widgets/checkbox/ej2-checkbox-list';
+import { Ej2Checkbox } from './widgets/checkbox/ej2-checkbox';
+import { Ej2Button } from './widgets/button/ej2-button';
+import { Ej2AutoComplete } from './widgets/autoComplete/ej2-autoComplete';
+import { Ej2Accordion } from './widgets/accordion/ej2-accordion';
+import { Ej2DropDownList } from './widgets/dropDownList/ej2-dropDownList';
+import { Ej2Grid } from './widgets/grid/ej2-grid';
+import { Ej2ListView } from './widgets/listView/ej2-listView';
+import { Ej2MaskedTextBox } from './widgets/maskedTextBox/ej2-maskedTextBox';
+import { Ej2NumericTextBox } from './widgets/numericTextBox/ej2-numericTextBox';
+import { Ej2Pager } from './widgets/pager/ej2-pager';
+import { Ej2ProgressButton } from './widgets/progressButton/ej2-progress-button';
+import { Ej2Radio } from './widgets/radio/ej2-radio';
+import { Ej2Slider } from './widgets/slider/ej2-slider';
+import { Ej2Switch } from './widgets/switch/ej2-switch';
+import { Ej2TimePicker } from './widgets/timePicker/ej2-timePicker';
+import { Ej2TreeView } from './widgets/treeView/ej2-treeView';
+import { Ej2Uploader } from './widgets/uploader/ej2-uploader';
 
 export class ConfigBuilder {
   public resources: any[] = [];
@@ -25,7 +47,7 @@ export class ConfigBuilder {
       // .ej2Grid()
       // .ej2ListView()
       // .ej2MaskedTextBox()
-      // .ej2NumericTextBox()
+      .ej2NumericTextBox()
       // .ej2Pager()
       // .ej2ProgressButton()
       // .ej2Radio()
@@ -90,102 +112,102 @@ export class ConfigBuilder {
   }
 
   ej2Accordion(): ConfigBuilder {
-    this.resources.push(PLATFORM.moduleName('./widgets/accordion/ej2-accordion'));
+    this.resources.push(Ej2Accordion);
     return this;
   }
 
   ej2AutoComplete(): ConfigBuilder {
-    this.resources.push(PLATFORM.moduleName('./widgets/autoComplete/ej2-autoComplete'));
+    this.resources.push(Ej2AutoComplete);
     return this;
   }
 
   ej2Button(): ConfigBuilder {
-    this.resources.push(PLATFORM.moduleName("./widgets/button/ej2-button"));
+    this.resources.push(Ej2Button);
     return this;
   }
 
   ej2Checkbox(): ConfigBuilder {
-    this.resources.push(PLATFORM.moduleName("./widgets/checkbox/ej2-checkbox"));
+    this.resources.push(Ej2Checkbox);
     return this;
   }
 
   ej2CheckboxList(): ConfigBuilder {
-    this.resources.push(PLATFORM.moduleName("./widgets/checkbox/ej2-checkbox-list"));
+    this.resources.push(Ej2CheckboxList);
     return this;
   }
 
   ej2ComboBox(): ConfigBuilder {
-    this.resources.push(PLATFORM.moduleName('./widgets/comboBox/ej2-comboBox'));
+    this.resources.push(Ej2ComboBox);
     return this;
   }
 
   ej2DashboardLayout(): ConfigBuilder {
-    this.resources.push(PLATFORM.moduleName('./widgets/dashboardLayout/ej2-dashboardLayout'));
+    this.resources.push(Ej2DashboardLayout);
     return this;
   }
 
   ej2DatePicker(): ConfigBuilder {
-    this.resources.push(PLATFORM.moduleName('./widgets/datePicker/ej2-DatePicker'));
+    this.resources.push(Ej2DatePicker);
     return this;
   }
 
   ej2DateRangePicker(): ConfigBuilder {
-    this.resources.push(PLATFORM.moduleName('./widgets/dateRangePicker/ej2-dateRangePicker'));
+    this.resources.push(Ej2DateRangePicker);
     return this;
   }
 
   ej2DateTimePicker(): ConfigBuilder {
-    this.resources.push(PLATFORM.moduleName('./widgets/dateTimePicker/ej2-dateTimePicker'));
+    this.resources.push(Ej2DateTimePicker);
     return this;
   }
 
   ej2DropDownList(): ConfigBuilder {
-    this.resources.push(PLATFORM.moduleName('./widgets/dropDownList/ej2-dropDownList'));
+    this.resources.push(Ej2DropDownList);
     return this;
   }
 
   ej2Grid(): ConfigBuilder {
-    this.resources.push(PLATFORM.moduleName("./widgets/grid/ej2-grid"));
+    this.resources.push(Ej2Grid);
     return this;
   }
 
   ej2ListView(): ConfigBuilder {
-    this.resources.push(PLATFORM.moduleName('./widgets/listView/ej2-listView'));
+    this.resources.push(Ej2ListView);
     return this;
   }
 
   ej2MaskedTextBox(): ConfigBuilder {
-    this.resources.push(PLATFORM.moduleName('./widgets/maskedTextBox/ej2-maskedTextBox'));
+    this.resources.push(Ej2MaskedTextBox);
     return this;
   }
 
   ej2NumericTextBox(): ConfigBuilder {
-    this.resources.push(PLATFORM.moduleName('./widgets/numericTextBox/ej2-numericTextBox'));
+    this.resources.push(Ej2NumericTextBox);
     return this;
   }
 
   ej2Pager(): ConfigBuilder {
-    this.resources.push(PLATFORM.moduleName('./widgets/pager/ej2-pager'));
+    this.resources.push(Ej2Pager);
     return this;
   }
 
   ej2ProgressButton(): ConfigBuilder {
-    this.resources.push(PLATFORM.moduleName("./widgets/progressButton/ej2-progress-button"));
+    this.resources.push(Ej2ProgressButton);
     return this;
   }
 
   ej2Radio(): ConfigBuilder {
-    this.resources.push(PLATFORM.moduleName("./widgets/radio/ej2-radio"));
+    this.resources.push(Ej2Radio);
     return this;
   }
 
   ej2Slider(): ConfigBuilder {
-    this.resources.push(PLATFORM.moduleName('./widgets/slider/ej2-slider'));
+    this.resources.push(Ej2Slider);
     return this;
   }
 
   ej2Switch(): ConfigBuilder {
-    this.resources.push(PLATFORM.moduleName('./widgets/switch/ej2-switch'));
+    this.resources.push(Ej2Switch);
     return this;
   }
 
@@ -195,17 +217,17 @@ export class ConfigBuilder {
   }
 
   ej2TimePicker(): ConfigBuilder {
-    this.resources.push(PLATFORM.moduleName('./widgets/timePicker/ej2-timePicker'));
+    this.resources.push(Ej2TimePicker);
     return this;
   }
 
   ej2TreeView(): ConfigBuilder {
-    this.resources.push(PLATFORM.moduleName('./widgets/treeView/ej2-treeView'));
+    this.resources.push(Ej2TreeView);
     return this;
   }
 
   ej2Uploader(): ConfigBuilder {
-    this.resources.push(PLATFORM.moduleName("./widgets/uploader/ej2-uploader"));
+    this.resources.push(Ej2Uploader);
     return this;
   }
 }
