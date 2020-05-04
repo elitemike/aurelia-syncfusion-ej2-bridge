@@ -1,7 +1,9 @@
-import { bindable } from "aurelia-framework";
+import { bindable, customElement, useView, PLATFORM } from "aurelia-framework";
 import { Ej2Checkbox } from "./ej2-checkbox";
 import { constants } from "../../common/constants";
 
+@customElement("ej2-checkbox-list")
+@useView(PLATFORM.moduleName("./ej2-checkbox-list.html"))
 export class Ej2CheckboxList {
   @bindable
   public dataSource: any[] = [];

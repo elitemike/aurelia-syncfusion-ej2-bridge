@@ -1,13 +1,14 @@
-import { DOM } from 'aurelia-pal';
 import { Disposable } from 'aurelia-binding';
 import { CheckBox, CheckBoxModel } from '@syncfusion/ej2-buttons';
-import { bindable, autoinject } from 'aurelia-framework';
+import { autoinject, inlineView, customElement } from 'aurelia-framework';
 import { SyncfusionWrapper } from '../../common/syncfusionWrapper';
 import { generateBindables } from '../../utilities/decorator';
 import { constants } from '../../common/constants';
 
 @autoinject
 @generateBindables("checkbox")
+@customElement("ej2-checkbox")
+@inlineView(`<template><input element.ref="widgetElement" type="checkbox" click.delegate="_onClick($event)" /></template>`)
 export class Ej2Checkbox extends SyncfusionWrapper<CheckBox, CheckBoxModel> {
 
   protected onWidgetCreated() {
