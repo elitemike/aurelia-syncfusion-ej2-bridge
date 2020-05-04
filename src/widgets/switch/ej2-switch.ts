@@ -2,8 +2,11 @@ import { constants } from './../../common/constants';
 import { SyncfusionWrapper } from '../../common/syncfusionWrapper';
 import { Switch, SwitchModel } from '@syncfusion/ej2-buttons';
 import { generateBindables } from '../../utilities/decorator';
+import { inlineView, customElement } from 'aurelia-framework';
 
 @generateBindables("switch")
+@inlineView(`<template><slot></slot><input element.ref="widgetElement" type="checkbox" /></template>`)
+@customElement('ej2-switch')
 export class Ej2Switch extends SyncfusionWrapper<Switch, SwitchModel> {
   protected syncfusionWidgetType = Switch;
   private id = null;

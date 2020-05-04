@@ -4,8 +4,11 @@ import { RadioButtonModel, RadioButton } from '@syncfusion/ej2-buttons';
 import { SyncfusionWrapper } from '../../common/syncfusionWrapper';
 import { constants } from '../../common/constants';
 import { generateBindables } from '../../utilities/decorator';
+import { inlineView, customElement } from 'aurelia-framework';
 
 @generateBindables("radio")
+@inlineView(`<template><input element.ref="widgetElement" type="radio" /></template>`)
+@customElement('ej2-radio')
 export class Ej2Radio extends SyncfusionWrapper<RadioButton, RadioButtonModel> {
   protected onWidgetCreated() {
   }

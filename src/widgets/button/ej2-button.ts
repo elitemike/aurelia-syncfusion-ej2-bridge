@@ -1,11 +1,12 @@
 import { Button, ButtonModel } from '@syncfusion/ej2-buttons';
-import { bindable, autoinject } from 'aurelia-framework';
+import { inlineView, customElement } from 'aurelia-framework';
 import { generateBindables } from '../../utilities/decorator';
 import { SyncfusionWrapper } from '../../common/syncfusionWrapper';
-import { DOM } from 'aurelia-pal';
 
 
 @generateBindables("button")
+@inlineView('<template><button element.ref="widgetElement" click.delegate="_onClick($event)"><slot></slot></button></template>')
+@customElement('ej2-button')
 export class Ej2Button extends SyncfusionWrapper<Button, ButtonModel> {
   clickEvent: Event = null;
 

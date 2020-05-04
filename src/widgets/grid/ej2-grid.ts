@@ -2,9 +2,11 @@
 import { SyncfusionWrapper } from '../../common/syncfusionWrapper';
 import { generateBindables } from '../../utilities/decorator';
 import { Grid, Selection, GridModel, Page, Edit, Reorder, Sort, ColumnChooser, Toolbar, Filter, Group, Aggregate, ColumnMenu, DetailRow, ContextMenu, Freeze, Resize, RowDD, Search, Print, VirtualScroll, ExcelExport, PdfExport } from '@syncfusion/ej2-grids';
-
+import { inlineView, customElement } from "aurelia-framework"
 
 @generateBindables("grid")
+@inlineView(`<template><div element.ref="widgetElement"></div></template>`)
+@customElement('ej2-grid')
 export class Ej2Grid extends SyncfusionWrapper<Grid, GridModel> {
   onBeforeWidgetInstantiation() {
     if (this.eModel.allowPaging) {
