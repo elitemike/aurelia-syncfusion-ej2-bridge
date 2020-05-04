@@ -12,7 +12,7 @@
   },
   "dependencies": {},
   "peerDependencies": {
-    "@syncfusion/ej2": "^17.4.42"
+    "@syncfusion/ej2": "^18.1.46"
   },
   "devDependencies": {
     "@syncfusion/ej2": "^18.1.46",
