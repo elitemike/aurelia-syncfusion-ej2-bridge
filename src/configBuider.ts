@@ -1,4 +1,6 @@
 import { PLATFORM } from "aurelia-pal";
+import { Ej2TextBox } from './widgets/textBox/ej2-textBox';
+//require("@syncfusion/ej2/material.css");
 
 export class ConfigBuilder {
   public resources: any[] = [];
@@ -7,40 +9,40 @@ export class ConfigBuilder {
   /**
   * Globally register all EJ wrappers including templating support
   */
-  useAll(): ConfigBuilder {
+  public useAll(): ConfigBuilder {
     this
-      .ej2Accordion()
-      .ej2AutoComplete()
-      .ej2Button()
-      .ej2Checkbox()
-      .ej2CheckboxList()
-      .ej2ComboBox()
-      .ej2DatePicker()
-      .ej2DateRangePicker()
-      .ej2DateTimePicker()
-      .ej2DashboardLayout()
-      .ej2DropDownList()
-      .ej2Grid()
-      .ej2ListView()
-      .ej2MaskedTextBox()
-      .ej2NumericTextBox()
-      .ej2Pager()
-      .ej2ProgressButton()
-      .ej2Radio()
-      .ej2Slider()
-      .ej2Switch()
+      // .ej2Accordion()
+      // .ej2AutoComplete()
+      // .ej2Button()
+      // .ej2Checkbox()
+      // .ej2CheckboxList()
+      // .ej2ComboBox()
+      // .ej2DatePicker()
+      // .ej2DateRangePicker()
+      // .ej2DateTimePicker()
+      // .ej2DashboardLayout()
+      // .ej2DropDownList()
+      // .ej2Grid()
+      // .ej2ListView()
+      // .ej2MaskedTextBox()
+      // .ej2NumericTextBox()
+      // .ej2Pager()
+      // .ej2ProgressButton()
+      // .ej2Radio()
+      // .ej2Slider()
+      // .ej2Switch()
       .ej2TextBox()
-      .ej2TimePicker()
-      .ej2TreeView()
-      .ej2Uploader()
+    // .ej2TimePicker()
+    // .ej2TreeView()
+    // .ej2Uploader()
     return this;
   }
 
-  useDefaults() {
+  public useDefaults() {
     return this.useAll().useTheme("material");
   }
 
-  useTheme(theme: "material" | "bootstrap" | "bootstrap4" | "fabric" | "highcontrast") {
+  public useTheme(theme: "material" | "bootstrap" | "bootstrap4" | "fabric" | "highcontrast") {
     switch (theme) {
       case "material":
         return this.materialTheme();
@@ -188,7 +190,7 @@ export class ConfigBuilder {
   }
 
   ej2TextBox(): ConfigBuilder {
-    this.resources.push(PLATFORM.moduleName("./widgets/textBox/ej2-textBox"));
+    this.resources.push(Ej2TextBox);
     return this;
   }
 
