@@ -1,4 +1,3 @@
-import { data } from '../../../dev-app/app';
 import { Disposable } from 'aurelia-binding';
 import { constants } from '../../common/constants';
 import { Uploader, UploaderModel, UploadingEventArgs, RemovingEventArgs } from "@syncfusion/ej2-inputs";
@@ -7,9 +6,11 @@ import { generateBindables } from "../../utilities/decorator";
 import { bindable } from 'aurelia-framework';
 import { RemoveEventArgs } from '@syncfusion/ej2-navigations';
 import * as uid from "uuid/v4";
-import { thisExpression } from '@babel/types';
+import { inlineView, customElement } from 'aurelia-framework';
 
 @generateBindables("uploader")
+@inlineView(`<template><input element.ref="widgetElement" type="file" name="UploadFiles" /></template>`)
+@customElement('ej2-uploader')
 export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
   private _filesProperty = `${constants.bindablePrefix}files`;
   private _filesCollectionSubscription: Disposable = null;

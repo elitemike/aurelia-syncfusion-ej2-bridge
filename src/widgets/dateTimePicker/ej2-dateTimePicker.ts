@@ -2,8 +2,11 @@ import { constants } from './../../common/constants';
 import { SyncfusionWrapper } from "../../common/syncfusionWrapper";
 import { DateTimePicker, DateTimePickerModel } from "@syncfusion/ej2-calendars";
 import { generateBindables } from "../../utilities/decorator";
+import { inlineView, customElement } from "aurelia-framework";
 
 @generateBindables("dateTimePicker")
+@inlineView(`<template><input element.ref="widgetElement" /></template>`)
+@customElement('ej2-date-time-picker')
 export class Ej2DateTimePicker extends SyncfusionWrapper<DateTimePicker, DateTimePickerModel> {
   protected syncfusionWidgetType = DateTimePicker;
 
