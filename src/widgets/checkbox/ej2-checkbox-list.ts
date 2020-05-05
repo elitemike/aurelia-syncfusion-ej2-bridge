@@ -1,9 +1,17 @@
-import { bindable, customElement, useView, PLATFORM } from "aurelia-framework";
+import { bindable, customElement, inlineView, PLATFORM } from "aurelia-framework";
 import { Ej2Checkbox } from "./ej2-checkbox";
 import { constants } from "../../common/constants";
 
 @customElement("ej2-checkbox-list")
-@useView(PLATFORM.moduleName("./ej2-checkbox-list.html"))
+@inlineView(`<template>
+  <div repeat.for="option of dataSource" css="\${orientation === 'horizontal' ? 'display: inline;' : ''}">
+    <ej2-checkbox view-model.ref="viewModels[$index]" e-label.bind="optionModel? option[optionModel.label]: option"
+      e-name.bind="optionModel? option[optionModel.name]: option"
+      click.delegate="checkboxClick(option, viewModels[$index])"
+      e-checked.bind="selectedItems.length >0 && matcher? isMatch(option) : selectedItems.indexOf(option) !== -1">
+    </ej2-checkbox>
+  </div>
+</template>`)
 export class Ej2CheckboxList {
   @bindable
   public dataSource: any[] = [];
