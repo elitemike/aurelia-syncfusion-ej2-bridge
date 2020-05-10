@@ -1,0 +1,60 @@
+<template>
+  <style>
+    .expand-content a,
+    .expand-content p {
+      padding: 10px;
+    }
+
+    #target {
+      margin: 20px auto;
+      max-width: 820px;
+    }
+
+    .control-section {
+      min-height: 370px;
+    }
+
+    .splitter-expand .expand-content {
+      padding: 12px;
+    }
+
+    @media screen and (max-width: 768px) {
+      #source_link {
+        margin-top: 10px;
+        margin-right: 0px;
+      }
+    }
+
+    /* styles to hide scroll bars */
+    .splitter-expand .e-pane.e-pane-horizontal.e-scrollable::-webkit-scrollbar,
+    .splitter-expand .e-pane.e-pane-vertical.e-scrollable::-webkit-scrollbar {
+      display: none;
+    }
+
+    .splitter-expand .e-pane.e-pane-horizontal.e-scrollable,
+    .splitter-expand .e-pane.e-pane-vertical.e-scrollable {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+  </style>
+  <ej2-splitter view-model.ref="horizontalSplitter" e-model.bind="horizontalModel" e-css-class="splitter-expand">
+
+    <div class="expand-content">
+      Left Pane
+    </div>
+    <div>
+      <ej2-splitter e-model.bind="verticalModel">
+        <div>
+          <div class="expand-content">
+            Right Top Pane
+          </div>
+        </div>
+        <div>
+          <div class="expand-content">
+            Right Bottom Pane
+          </div>
+        </div>
+      </ej2-splitter>
+    </div>
+  </ej2-splitter>
+</template>

@@ -23,6 +23,7 @@ import { Ej2Switch } from './widgets/switch/ej2-switch';
 import { Ej2TimePicker } from './widgets/timePicker/ej2-timePicker';
 import { Ej2TreeView } from './widgets/treeView/ej2-treeView';
 import { Ej2Uploader } from './widgets/uploader/ej2-uploader';
+import { Ej2Splitter } from './widgets/splitter/ej2-splitter';
 
 export class ConfigBuilder {
   public resources: any[] = [];
@@ -52,6 +53,7 @@ export class ConfigBuilder {
       .ej2ProgressButton()
       .ej2Radio()
       .ej2Slider()
+      .ej2Splitter()
       .ej2Switch()
       .ej2TextBox()
       .ej2TimePicker()
@@ -203,6 +205,11 @@ export class ConfigBuilder {
 
   ej2Slider(): ConfigBuilder {
     this.resources.push(Ej2Slider);
+    return this;
+  }
+
+  ej2Splitter(): ConfigBuilder {
+    this.resources.push(Ej2Splitter);
     return this;
   }
 

@@ -1,3 +1,4 @@
+import { Splitter } from '@syncfusion/ej2-layouts';
 export const ControlBindings = {
   common: {
     oneWay: ["enablePersistence", "enableRtl", "locale"]
@@ -95,8 +96,12 @@ export const ControlBindings = {
     twoWay: ["value"],
     events: ["change", "changed", "created", "renderedTicks", "renderingTicks", "tooltipChange"]
   },
+  splitter: {
+    oneWay: ["cssClass", "enableHtmlSanitizer", "enabled", "height", "orientation", "paneSettings", "separatorSize", "width"],
+    events: ["beforeCollapse", "beforeExpand", "beforeSanitizeHtml", "collapsed", "created", "expanded", "resizeStart", "resizeStop", "resizing"]
+  },
   switch: {
-    oneWay: ["cssClass", "disabled", "locale", "name", "offLabel", "onLabel"],
+    oneWay: ["cssClass", "disabled", , "name", "offLabel", "onLabel"],
     twoWay: ["value", "checked"],
     events: ["change", "created"]
   },
