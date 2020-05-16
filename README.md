@@ -2,6 +2,35 @@
 
 This is an early release and is not recommended for use
 
+# Supported controls
+* Accoridon
+* Auto Complete
+* Button
+* Checkbox
+* Combobox
+* Dashboard Layout
+* Date Picker
+* Date Time Picker
+* Dropdown List
+* Grid
+* List View
+* Masked Textbox
+* Numeric Textbox
+* Pager
+* Progress Button
+* Radio
+* Sidebar
+* Slider
+* Splitter
+* Switch
+* Textbox
+* Time Picker
+* Tree View
+* Uploader
+
+
+The below text has not been updated and may not be relevant.
+
 This project is bootstrapped by [aurelia-cli](https://github.com/aurelia/cli).
 
 This Aurelia plugin project has a built-in dev app (with CLI built-in bundler and RequireJS) to simplify development.
