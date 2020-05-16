@@ -91,6 +91,10 @@ export const ControlBindings = {
     oneWay: ["checked", "cssClass", "disabled", "label", "labelPosition", "name", "value"],
     events: ["change", "created"]
   },
+  sidebar: {
+    oneWay: ["animate", "closeOnDocumentClick", "dockSize", "enableDock", "enableGestures", "isOpen", "mediaQuery", "position", "showBackdrop", "target", "type", "width", "zIndex"],
+    events: ["change", "close", "created", "destroyed", "open"]
+  },
   slider: {
     oneWay: ["cssClass", "customValues", "enableAnimation", "enabled", "limits", "max", "min", "orientation", "readonly", "showButtons", "step", "ticks", "tooltip", "type"],
     twoWay: ["value"],

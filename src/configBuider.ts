@@ -1,3 +1,4 @@
+import { Ej2Sidebar } from './widgets/sidebar/ej2-sidebar';
 import { Ej2DatePicker } from './widgets/datePicker/ej2-DatePicker';
 import { PLATFORM } from "aurelia-pal";
 import { Ej2TextBox } from './widgets/textBox/ej2-textBox';
@@ -52,6 +53,7 @@ export class ConfigBuilder {
       .ej2Pager()
       .ej2ProgressButton()
       .ej2Radio()
+      .ej2Sidebar()
       .ej2Slider()
       .ej2Splitter()
       .ej2Switch()
@@ -200,6 +202,11 @@ export class ConfigBuilder {
 
   ej2Radio(): ConfigBuilder {
     this.resources.push(Ej2Radio);
+    return this;
+  }
+
+  ej2Sidebar(): ConfigBuilder {
+    this.resources.push(Ej2Sidebar);
     return this;
   }
 
