@@ -1,6 +1,6 @@
 <template>
-  <ej2-sidebar view-model.ref="sidebar">Some content</ej2-sidebar>
-
-  <div>Main content</div>
-  <button click.delegate="toggleSidebar()">Toggle sidebar</button>
+  <ej2-sidebar e-width="25%" e-is-open.bind="true" e-type="Push" view-model.ref="sidebar">
+    <div slot="side-bar">Some content</div>
+    <div slot='content'>Main content <button click.delegate="sidebar.widget.toggle()">Toggle sidebar</button></div>
+  </ej2-sidebar>
 </template>

@@ -28,7 +28,7 @@ export const ControlBindings = {
   },
   dashboardLayout: {
     oneWay: ["allowDragging", "allowFloating", "allowResizing", "cellSpacing", "columns", "draggableHandle", "mediaQuery", "panels", "resizableHandles", "showGridLines"],
-    events: ["change", "created", "detroyed", "drag", "dragStart", "dragStop", "resize", "resizeStart", "resizeStop"]
+    events: ["change", "created", "destroyed", "drag", "dragStart", "dragStop", "resize", "resizeStart", "resizeStop"]
   },
   datePicker: {
     oneWay: ["allowEdit", "calendarMode", "cssClass", "dayHeaderFormat", "depth", "enabled", "firstDayOfWeek", "floatLabelType", "format", "htmlAttributes", "keyConfigs", "max", "min", "placeholder", "readonly", "showClearButton", "showTodayButton", "start", "strictMode", "weekNumber", "width", "zindex"],
