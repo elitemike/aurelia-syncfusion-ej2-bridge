@@ -1,7 +1,11 @@
 <template>
-  <aside as-element="ej2-sidebar" e-width="25%" e-is-open.bind="false" view-model.ref="sidebar">
+  <!-- <aside as-element="ej2-sidebar" e-width="25%" e-is-open.bind="false" view-model.ref="sidebar">
     <div>Some content</div>
-  </aside>
+  </aside> -->
+
+  <ej2-sidebar e-width="25%" e-is-open.bind="false" view-model.ref="sidebar">
+    <div>Some content</div>
+  </ej2-sidebar>
   <div>Main content <button click.delegate="sidebar.widget.toggle()">Toggle sidebar</button></div>
 
 </template>
