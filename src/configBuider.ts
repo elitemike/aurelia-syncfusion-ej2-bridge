@@ -1,3 +1,4 @@
+import { Ej2FileManager } from './widgets/fileManager/ej2-fileManager';
 import { Ej2Sidebar } from './widgets/sidebar/ej2-sidebar';
 import { Ej2DatePicker } from './widgets/datePicker/ej2-DatePicker';
 import { PLATFORM } from "aurelia-pal";
@@ -46,6 +47,7 @@ export class ConfigBuilder {
       .ej2DateTimePicker()
       .ej2DashboardLayout()
       .ej2DropDownList()
+      .ej2FileManager()
       .ej2Grid()
       .ej2ListView()
       .ej2MaskedTextBox()
@@ -167,6 +169,11 @@ export class ConfigBuilder {
 
   ej2DropDownList(): ConfigBuilder {
     this.resources.push(Ej2DropDownList);
+    return this;
+  }
+
+  ej2FileManager(): ConfigBuilder {
+    this.resources.push(Ej2FileManager);
     return this;
   }
 

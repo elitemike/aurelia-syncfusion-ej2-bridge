@@ -50,6 +50,11 @@ export const ControlBindings = {
     twoWay: ["value"],
     events: ["actionBegin", "actionComplete", "actionFailure", "beforeOpen", "blur", "change", "close", "created", "dataBound", "destroyed", "filtering", "focus", "open", "select"]
   },
+  fileManager: {
+    oneWay: ["ajaxSettings", "allowDragAndDrop", "allowMultiSelection", "contextMenuSettings", "cssClass", "detailsViewSettings", "enableHtmlSanitizer", "height", "navigationPaneSettings", "path", "popupTarget", "rootAliasName", "searchSettings", "selectedItems", "showFileExtension", "showHiddenItems", "showThumbnail", "sortOrder", "toolbarSettings", "uploadSettings", "view", "width"],
+    twoWay: [],
+    events: ["beforeDownload", "beforeImageLoad", "beforePopupClose", "beforePopupOpen", "beforeSend", "created", "destroyed", "failure", "fileDragStart", "fileDragStop", "fileDragging", "fileDropped", "fileLoad", "fileOpen", "fileSelect", "fileSelection", "menuClick", "menuOpen", "popupClose", "popupOpen", "success", "toolbarClick", "toolbarCreate", "uploadListCreate"]
+  },
   grid: {
     oneWay: ["aggregates", "allowExcelExport", "disabled", "allowFiltering", "allowGrouping", "allowMultiSorting", "allowPaging", "allowPdfExport",
       "allowReordering", "allowResizing", "allowRowDragAndDrop", "allowSelection", "allowSorting", "allowTextWrap", "childGrid", "clipboardModule",
