@@ -12,14 +12,14 @@
   },
   "dependencies": {},
   "peerDependencies": {
-    "@syncfusion/ej2": "^18.1.46"
+    "@syncfusion/ej2": "^18.2.48"
   },
   "scripts": {
     "start": "au run",
     "build": "au build-plugin"
   },
   "devDependencies": {
-    "@syncfusion/ej2": "^18.1.46",
+    "@syncfusion/ej2": "^18.2.48",
     "@types/jest": "^24.0.9",
     "@types/node": "^10.11.6",
     "aurelia-animator-css": "^1.0.4",
