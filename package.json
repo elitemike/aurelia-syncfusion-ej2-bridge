@@ -1,7 +1,7 @@
 {
   "name": "aurelia-syncfusion-ej2-bridge",
   "description": "An Aurelia plugin wrapper for syncfusion EJ2 controls",
-  "version": "0.1.0-beta.1",
+  "version": "0.1.0-beta.4",
   "keywords": [
     "aurelia",
     "syncfusion"
@@ -12,14 +12,14 @@
   },
   "dependencies": {},
   "peerDependencies": {
-    "@syncfusion/ej2": "^18.1.46"
+    "@syncfusion/ej2": "^18.2.54"
   },
   "scripts": {
     "start": "au run",
     "build": "au build-plugin"
   },
   "devDependencies": {
-    "@syncfusion/ej2": "^18.2.48",
+    "@syncfusion/ej2": "^18.2.54",
     "@types/jest": "^24.0.9",
     "@types/node": "^10.11.6",
     "aurelia-animator-css": "^1.0.4",
