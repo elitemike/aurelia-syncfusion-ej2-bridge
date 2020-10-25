@@ -50,6 +50,11 @@ export const ControlBindings = {
     twoWay: ["value"],
     events: ["actionBegin", "actionComplete", "actionFailure", "beforeOpen", "blur", "change", "close", "created", "dataBound", "destroyed", "filtering", "focus", "open", "select"]
   },
+  dropDownTree: {
+    oneWay: ["actionFailureTemplate", "allowFiltering", "allowMultiSelection", "changeOnBlur", "cssClass", "delimiterChar", "enabled", "fields", "filterBarPlaceholder", "filterType", "floatLabelType", "footerTemplate", "headerTemplate", "htmlAttributes", "ignoreAccent", "ignoreCase", "itemTemplate", "mode", "noRecordsTemplate", "placeholder", "popupHeight", "popupWidth", "readonly", "selectAllText", "showCheckBox", "showClearButton", "showDropDownIcon", "showSelectAll", "sortOrder", "treeSettings", "unSelectAllText", "wrapText", "zIndex"],
+    twoWay: ["text", "value"],
+    events: ["actionFailure", "beforeOpen", "blur", "change", "close", "created", "dataBound", "destroyed", "filtering", "focus", "keyPress", "open", "select"]
+  },
   fileManager: {
     oneWay: ["ajaxSettings", "allowDragAndDrop", "allowMultiSelection", "contextMenuSettings", "cssClass", "detailsViewSettings", "enableHtmlSanitizer", "height", "navigationPaneSettings", "path", "popupTarget", "rootAliasName", "searchSettings", "selectedItems", "showFileExtension", "showHiddenItems", "showThumbnail", "sortOrder", "toolbarSettings", "uploadSettings", "view", "width"],
     twoWay: [],
