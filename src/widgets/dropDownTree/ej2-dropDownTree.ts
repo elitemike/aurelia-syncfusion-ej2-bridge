@@ -21,11 +21,6 @@ export class Ej2DropDownTree extends SyncfusionWrapper<DropDownTree, DropDownTre
   }
 
   onChange(args) {
-    console.log("changed", args)
-    // console.log("this", this)
-    //  console.log("current value", this[`${constants.bindablePrefix}value`])
     this[`${constants.bindablePrefix}value`] = args.value;
-
-    //  console.log("current value after update", this[`${constants.bindablePrefix}value`])
   }
 }

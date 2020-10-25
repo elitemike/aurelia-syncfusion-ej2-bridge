@@ -37,6 +37,7 @@ export class DropDownTreeDemo {
         text: 'nodeText',
         child: 'nodeChild'
       },
+      changeOnBlur: false
     };
   }
 
@@ -44,7 +45,7 @@ export class DropDownTreeDemo {
 
     let _this = this;
     setTimeout(() => {
-      _this.selectedValue = "03-03"
+      _this.selectedValue = ["03-03"]
     }, 30000);
   }
 }
