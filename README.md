@@ -12,6 +12,7 @@ This is an early release and is not recommended for use
 * Date Picker
 * Date Time Picker
 * Dropdown List
+* Dropdown Tree
 * File Manager
 * Grid
 * List View
