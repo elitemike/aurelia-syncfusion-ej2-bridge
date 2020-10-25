@@ -1,7 +1,7 @@
 import { DropDownTreeModel } from '@syncfusion/ej2-dropdowns';
 export class DropDownTreeDemo {
   private ddtModel: DropDownTreeModel = null;
-  private selectedValue: any = null;
+  private selectedValue: any = ["03-03"];
 
   constructor() {
     let data: { [key: string]: Object }[] = [
@@ -36,7 +36,7 @@ export class DropDownTreeDemo {
         value: 'nodeId',
         text: 'nodeText',
         child: 'nodeChild'
-      }
+      },
     };
   }
 
