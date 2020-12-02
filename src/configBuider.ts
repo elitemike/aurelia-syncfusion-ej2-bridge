@@ -26,6 +26,7 @@ import { Ej2TimePicker } from './widgets/timePicker/ej2-timePicker';
 import { Ej2TreeView } from './widgets/treeView/ej2-treeView';
 import { Ej2Uploader } from './widgets/uploader/ej2-uploader';
 import { Ej2Splitter } from './widgets/splitter/ej2-splitter';
+import { Ej2DropDownTree } from './widgets/dropDownTree/ej2-dropDownTree';
 
 export class ConfigBuilder {
   public resources: any[] = [];
@@ -47,6 +48,7 @@ export class ConfigBuilder {
       .ej2DateTimePicker()
       .ej2DashboardLayout()
       .ej2DropDownList()
+      .ej2DropDownTree()
       .ej2FileManager()
       .ej2Grid()
       .ej2ListView()
@@ -169,6 +171,11 @@ export class ConfigBuilder {
 
   ej2DropDownList(): ConfigBuilder {
     this.resources.push(Ej2DropDownList);
+    return this;
+  }
+
+  ej2DropDownTree(): ConfigBuilder {
+    this.resources.push(Ej2DropDownTree);
     return this;
   }
 
