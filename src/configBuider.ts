@@ -74,14 +74,14 @@ export class ConfigBuilder {
     switch (theme) {
       case "material":
         return this.materialTheme();
-      case "fabric":
-        return this.fabricTheme();
-      case "bootstrap":
-        return this.bootstrapTheme();
-      case "bootstrap4":
-        return this.bootstrap4Theme();
-      case "highcontrast":
-        return this.highcontrastTheme();
+      // case "fabric":
+      //   return this.fabricTheme();
+      // case "bootstrap":
+      //   return this.bootstrapTheme();
+      // case "bootstrap4":
+      //   return this.bootstrap4Theme();
+      // case "highcontrast":
+      //   return this.highcontrastTheme();
       default:
         return this;
     }
@@ -92,25 +92,25 @@ export class ConfigBuilder {
     return this;
   }
 
-  fabricTheme() {
-    this.resources.push(PLATFORM.moduleName("@syncfusion/ej2/fabric.css"));
-    return this;
-  }
+  // fabricTheme() {
+  //   this.resources.push(PLATFORM.moduleName("@syncfusion/ej2/fabric.css"));
+  //   return this;
+  // }
 
-  bootstrapTheme() {
-    this.resources.push(PLATFORM.moduleName("@syncfusion/ej2/bootstrap.css"));
-    return this;
-  }
+  // bootstrapTheme() {
+  //   this.resources.push(PLATFORM.moduleName("@syncfusion/ej2/bootstrap.css"));
+  //   return this;
+  // }
 
-  bootstrap4Theme() {
-    this.resources.push(PLATFORM.moduleName("@syncfusion/ej2/bootstrap4.css"));
-    return this;
-  }
+  // bootstrap4Theme() {
+  //   this.resources.push(PLATFORM.moduleName("@syncfusion/ej2/bootstrap4.css"));
+  //   return this;
+  // }
 
-  highcontrastTheme() {
-    this.resources.push(PLATFORM.moduleName("@syncfusion/ej2/highcontrast.css"));
-    return this;
-  }
+  // highcontrastTheme() {
+  //   this.resources.push(PLATFORM.moduleName("@syncfusion/ej2/highcontrast.css"));
+  //   return this;
+  // }
 
   withoutGlobalResources(): ConfigBuilder {
     this.useGlobalResources = false;
