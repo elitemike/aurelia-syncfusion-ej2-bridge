@@ -27,6 +27,7 @@ import { Ej2TreeView } from './widgets/treeView/ej2-treeView';
 import { Ej2Uploader } from './widgets/uploader/ej2-uploader';
 import { Ej2Splitter } from './widgets/splitter/ej2-splitter';
 import { Ej2DropDownTree } from './widgets/dropDownTree/ej2-dropDownTree';
+import { Ej2Chart } from 'widgets/chart/ej2-chart';
 
 export class ConfigBuilder {
   public resources: any[] = [];
@@ -40,6 +41,7 @@ export class ConfigBuilder {
       .ej2Accordion()
       .ej2AutoComplete()
       .ej2Button()
+      .ej2Chart()
       .ej2Checkbox()
       .ej2CheckboxList()
       .ej2ComboBox()
@@ -131,6 +133,11 @@ export class ConfigBuilder {
 
   ej2Button(): ConfigBuilder {
     this.resources.push(Ej2Button);
+    return this;
+  }
+
+  ej2Chart(): ConfigBuilder {
+    this.resources.push(Ej2Chart);
     return this;
   }
 
