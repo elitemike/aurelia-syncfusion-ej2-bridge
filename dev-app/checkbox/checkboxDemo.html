@@ -1,5 +1,8 @@
 <template>
 
+  <ej2-checkbox e-label="test" e-checked.two-way="testChecked" on-click.delegate="testClicked()"></ej2-checkbox>
+  <br /> <span>test checked</span> ${testChecked}
+
   <!-- <ej2-checkbox e-label="my value"></ej2-checkbox> -->
   <h4>Object bound</h4>
   <ej2-checkbox-list data-source.bind="dataSource1" option-model.bind="optionModel1"

@@ -11,6 +11,7 @@ export class Ej2Button extends SyncfusionWrapper<Button, ButtonModel> {
   clickEvent: Event = null;
 
   protected onWidgetCreated() {
+    this.widget.element.addEventListener("click", this._onClick.bind(this));
   }
   protected onWrapperCreated() {
     this.clickEvent = new CustomEvent("on-click", {
@@ -41,5 +42,9 @@ export class Ej2Button extends SyncfusionWrapper<Button, ButtonModel> {
 
   public dataBind() {
     this.widget.dataBind();
+  }
+
+  public detached() {
+    this.widget.element.removeEventListener("click", this._onClick);
   }
 }

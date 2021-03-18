@@ -5,12 +5,13 @@ import { generateBindables } from "../../utilities/decorator";
 import { inlineView, customElement } from 'aurelia-framework';
 
 @generateBindables("progressButton")
-@inlineView(`<template><button element.ref="widgetElement" click.delegate="_onClick($event)"><slot></slot></button></template>`)
+@inlineView(`<template><button element.ref="widgetElement"><slot></slot></button></template>`)
 @customElement('ej2-progress-button')
 export class Ej2ProgressButton extends SyncfusionWrapper<ProgressButton, ProgressButtonModel> {
   clickEvent: Event = null;
 
   protected onWidgetCreated() {
+    this.widget.element.addEventListener("click", this._onClick.bind(this));
   }
   protected onWrapperCreated() {
     this.clickEvent = new CustomEvent("on-click", {
@@ -51,5 +52,9 @@ export class Ej2ProgressButton extends SyncfusionWrapper<ProgressButton, Progres
 
   public stop() {
     this.widget.stop();
+  }
+
+  public detached() {
+    this.widget.element.removeEventListener("click", this._onClick);
   }
 }

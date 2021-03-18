@@ -2,6 +2,14 @@ import { IOptionModel } from "widgets/checkbox/ej2-checkbox-list";
 
 
 export class CheckboxDemo {
+
+  testChecked: boolean = false;
+
+
+  testClicked() {
+    console.log("test Clicked")
+  }
+
   dataSource1 = [
     {
       label: "Item 1",
