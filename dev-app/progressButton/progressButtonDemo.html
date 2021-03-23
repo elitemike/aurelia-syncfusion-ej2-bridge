@@ -1,4 +1,10 @@
 <template>
-  <ej2-progress-button e-model.bind="progressButtonModel" on-click.delegate="buttonClicked()">
+  <ej2-progress-button if.bind="showButton" e-model.bind="progressButtonModel" on-click.delegate="buttonClicked()">
     Help</ej2-progress-button>
+
+    <ej2-button on-click.trigger="restart()">Restart progress button</ej2-button>
+    <ej2-progress-button view-model.ref="progressButtonVM" e-model.bind="progressButtonModelStarted" on-click.delegate="buttonClicked()">
+      Help auto start</ej2-progress-button>
+      <ej2-button on-click.delegate="hideClicked()">Hide</ej2-button>
+
 </template>

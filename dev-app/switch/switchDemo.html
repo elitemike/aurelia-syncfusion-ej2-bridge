@@ -1,5 +1,6 @@
 <template>
-  <ej2-switch e-checked.two-way="isChecked" e-value="test" id="checked">
+  <button click.delegate="hideCheck()">Hide</button>
+  <ej2-switch if.bind="showCheck" e-checked.two-way="isChecked" e-value="test" id="checked">
     <label for="checked" style="padding: 10px 70px 10px 0"> USB Tethering</label>
   </ej2-switch>
 </template>

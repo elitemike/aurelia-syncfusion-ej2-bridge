@@ -5,14 +5,22 @@ import { SyncfusionWrapper } from '../../common/syncfusionWrapper';
 
 
 @generateBindables("button")
-@inlineView('<template><button element.ref="widgetElement" click.delegate="_onClick($event)"><slot></slot></button></template>')
+@inlineView('<template><button element.ref="widgetElement"><slot></slot></button></template>')
 @customElement('ej2-button')
 export class Ej2Button extends SyncfusionWrapper<Button, ButtonModel> {
   clickEvent: Event = null;
+  _onClick: (event: Event)=> void = null;
 
   protected onWidgetCreated() {
-    this.widget.element.addEventListener("click", this._onClick.bind(this));
+    let _this = this;
+    this._onClick = (event: Event) => {
+      _this.element.dispatchEvent(_this.clickEvent);
+      event.stopPropagation();
+    }
+
+    this.widget.element.addEventListener("click", this._onClick, false);
   }
+
   protected onWrapperCreated() {
     this.clickEvent = new CustomEvent("on-click", {
       bubbles: true
@@ -20,13 +28,7 @@ export class Ej2Button extends SyncfusionWrapper<Button, ButtonModel> {
   }
 
 
-  protected syncfusionWidgetType = Button
-
-
-  _onClick(event: Event) {
-    this.element.dispatchEvent(this.clickEvent);
-    event.stopPropagation();
-  }
+  protected syncfusionWidgetType = Button  
 
   public refresh() {
     this.widget.refresh();
@@ -45,6 +47,6 @@ export class Ej2Button extends SyncfusionWrapper<Button, ButtonModel> {
   }
 
   public detached() {
-    this.widget.element.removeEventListener("click", this._onClick);
+    this.widget.element.removeEventListener("click", this._onClick, false);
   }
 }

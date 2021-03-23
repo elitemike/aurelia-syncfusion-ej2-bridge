@@ -9,10 +9,19 @@ import { inlineView, customElement } from 'aurelia-framework';
 @customElement('ej2-progress-button')
 export class Ej2ProgressButton extends SyncfusionWrapper<ProgressButton, ProgressButtonModel> {
   clickEvent: Event = null;
+  _onClick: (event: Event)=> void = null;
 
   protected onWidgetCreated() {
-    this.widget.element.addEventListener("click", this._onClick.bind(this));
+    let _this = this;
+    this._onClick = (event: Event) => {
+      _this.element.dispatchEvent(_this.clickEvent);
+      event.stopPropagation();
+    }
+
+    this.widget.element.addEventListener("click", this._onClick, false);
   }
+
+ 
   protected onWrapperCreated() {
     this.clickEvent = new CustomEvent("on-click", {
       bubbles: true
@@ -20,11 +29,6 @@ export class Ej2ProgressButton extends SyncfusionWrapper<ProgressButton, Progres
   }
 
   protected syncfusionWidgetType = ProgressButton;
-
-  _onClick(event: Event) {
-    this.element.dispatchEvent(this.clickEvent);
-    event.stopPropagation();
-  }
 
   public refresh() {
     this.widget.refresh();
@@ -55,6 +59,6 @@ export class Ej2ProgressButton extends SyncfusionWrapper<ProgressButton, Progres
   }
 
   public detached() {
-    this.widget.element.removeEventListener("click", this._onClick);
+    this.widget.element.removeEventListener("click", this._onClick, false);    
   }
 }

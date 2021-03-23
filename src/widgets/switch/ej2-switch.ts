@@ -10,6 +10,7 @@ import { inlineView, customElement } from 'aurelia-framework';
 export class Ej2Switch extends SyncfusionWrapper<Switch, SwitchModel> {
   protected syncfusionWidgetType = Switch;
   private id = null;
+  private onChange: (args: any)=> void = null;
 
   protected onWrapperCreated() {
     this.id = this.element.getAttribute("id");
@@ -23,12 +24,13 @@ export class Ej2Switch extends SyncfusionWrapper<Switch, SwitchModel> {
 
   protected onWidgetCreated() {
     let _this = this;
-    this.widget.addEventListener("change", (args) => { _this.onChange(args) });
+    this.onChange = (args) => {
+      _this[`${constants.bindablePrefix}checked`] = args.checked;
+    };
+
+    this.widget.addEventListener("change", this.onChange);
   }
 
-  onChange(args) {
-    this[`${constants.bindablePrefix}checked`] = args.checked;
-  }
 
   public recreate() {
     if (this.id) {
@@ -37,5 +39,9 @@ export class Ej2Switch extends SyncfusionWrapper<Switch, SwitchModel> {
 
     this.element.setAttribute("id", this.id);
     super.recreate();
+  }
+
+  public detached() {
+    this.widget.removeEventListener("change", this.onChange);    
   }
 }
