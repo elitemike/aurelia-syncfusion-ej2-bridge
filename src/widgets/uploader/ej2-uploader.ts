@@ -63,6 +63,7 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
             (<any>_this.widget).removingEventCallback(eventArgs, formData, selectedFiles, file);
           });
         };
+        this.widget.asyncSettings.removeUrl = null;
       }
     }
   }
@@ -124,28 +125,6 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
 
   createFilesCollectionSubscription() {
     return this.bindingEngine.collectionObserver(this._files).subscribe((changed) => {
-      // this._files.forEach((file) => {
-      //   if (!file.hasOwnProperty(this._privateIdProperty)) {
-      //     console.log('new file found')
-      //     let widgetFiles = this.widget.getFilesData();
-      //     let index = this._files.indexOf(file);
-      //     widgetFiles.push(file);
-      //     let extraProps = this.getAdditionalFileProperties();
-      //     this.initializeFile(widgetFiles[widgetFiles.length - 1], index, extraProps);
-      //     // this.widget.dataBind();
-
-      //     // recreate seems heavy here
-      //     this.recreate();
-      //   }
-      //   //console.log("file", file);
-      // });
-
-
-      // console.log("widget files", this.widget.getFilesData());
-      // console.log("files", this._files);
-
-      // this.filesChanged();
-      //  this.recreate();
     });
   }
 
@@ -193,7 +172,6 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
 
     this.element.dispatchEvent(event);
 
-
     if (args.cancel) {
       // Not sure how to stop the spinner
       return;
@@ -212,7 +190,7 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
       }
     }
 
-    this.onRemoveSuccess(args)
+    // this.onRemoveSuccess(args)
   }
 
   onWidgetRemoveComplete(response, args) {
@@ -355,10 +333,6 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
     }
 
     if (this.metadataGenerator) {
-      // if (!this.context) {
-      //   this.error("context is required to be bound");
-      // }
-
       if (_metadata === null) {
         _metadata = {};
       }

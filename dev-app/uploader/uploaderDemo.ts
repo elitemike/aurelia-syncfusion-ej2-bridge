@@ -15,12 +15,7 @@ export class UploaderDemo {
       this.filesChanged();
     });
 
-    this.files = [{
-      "type": ".txt",
-      "id": "file1",
-      "size": 3500,
-      "name": "initial file"
-    }];
+    this.files = [];
 
     let _this = this;
     // setTimeout(() => {
