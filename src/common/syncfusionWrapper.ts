@@ -18,7 +18,7 @@ export abstract class SyncfusionWrapper<T, U> extends ControlBase<T, U> {
   }
 
   public recreate() {
-    this.debug("recreate");
+    // this.debug("recreate");
     (<any>this.widget).destroy();
     this.setInitialBindings();
     this.onCreateControl();

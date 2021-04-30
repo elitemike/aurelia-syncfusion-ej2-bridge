@@ -24,9 +24,9 @@ export class Ej2Checkbox extends SyncfusionWrapper<CheckBox, CheckBoxModel> {
 
   onBind() {
     this.widget.change = () => {
-      console.log("changed", this.widget.checked)
+      // console.log("changed", this.widget.checked)
 
-      console.log("current widget value", this[`${constants.bindablePrefix}checked`])
+      // console.log("current widget value", this[`${constants.bindablePrefix}checked`])
       this[`${constants.bindablePrefix}checked`] = this.widget.checked;
     };
 

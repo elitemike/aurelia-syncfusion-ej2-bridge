@@ -3,7 +3,7 @@ import { Ej2UploaderDataAdapter } from "widgets/uploader/ej2-uploader";
 import { HttpClient, json } from "aurelia-fetch-client";
 import { autoinject, observable, BindingEngine } from "aurelia-framework";
 import { Ej2Uploader } from "index";
-import * as uid from "uuid/v4";
+import { v4 as uuid } from "uuid";
 
 @autoinject
 export class UploaderDemo {
@@ -92,7 +92,7 @@ export class UploaderDemo {
   }
 
   filesChanged() {
-    console.log("files updated", this.files);
+    // console.log("files updated", this.files);
 
     // let _this = this;
     // setTimeout(() => {
@@ -115,7 +115,7 @@ export class UploaderDemo {
   generateMetaData(file) {
     let metadata: any = {};
 
-    metadata.fileContextId = uid();
+    metadata.fileContextId = uuid();
 
     return metadata;
   }

@@ -31,7 +31,7 @@ export class Ej2CheckboxList {
   }
 
   checkboxClick(option: any, ej2Checkbox: Ej2Checkbox) {
-    console.log("matcher", this.matcher)
+    //console.log("matcher", this.matcher)
     if (ej2Checkbox[`${constants.bindablePrefix}checked`]) {
       if ((this.matcher && this.selectedItems.find((x) => this.matcher(x, option))) || !this.selectedItems.includes(option)) {
         this.selectedItems.push(option);

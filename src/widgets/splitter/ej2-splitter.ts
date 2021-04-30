@@ -8,11 +8,11 @@ import { Splitter, SplitterModel } from '@syncfusion/ej2-layouts';
 @customElement('ej2-splitter')
 export class Ej2Splitter extends SyncfusionWrapper<Splitter, SplitterModel> {
   protected onWrapperCreated() {
-    this.debug("splitter wrapper created")
+    // this.debug("splitter wrapper created")
 
   }
   protected onWidgetCreated() {
-    this.debug("splitter widget created", this.widget)
+    //  this.debug("splitter widget created", this.widget)
 
   }
 

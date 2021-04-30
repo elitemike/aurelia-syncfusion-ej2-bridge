@@ -5,7 +5,7 @@ import { SyncfusionWrapper } from "../../common/syncfusionWrapper";
 import { generateBindables } from "../../utilities/decorator";
 import { bindable } from 'aurelia-framework';
 import { RemoveEventArgs } from '@syncfusion/ej2-navigations';
-import * as uid from "uuid/v4";
+import { v4 as uuid } from "uuid";
 import { inlineView, customElement } from 'aurelia-framework';
 
 @generateBindables("uploader")
@@ -43,7 +43,7 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
   public serverDelete: boolean = true;
 
   protected onWrapperCreated() {
-    this.debug("wrapper created")
+    // this.debug("wrapper created")
     this.widget.uploading = (args) => { this.onFileUpload(args); };
     this.widget.success = (args: any) => { this.success(args); };
     this.widget.failure = (args) => { this.failure(args); };
@@ -74,7 +74,7 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
    any file pushed needs to be handled a little more graceful
   */
   filesChanged() {
-    this.debug("files Changed");
+    // this.debug("files Changed");
     this.recreate();
     //  this.widget.getFilesData().splice(0, this.widget.getFilesData().length);
     this._filesCollectionSubscription.dispose();
@@ -108,7 +108,7 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
 
   initializeFile(widgetFile, i, extraProperties) {
     // this.debug('init file', widgetFile);
-    let __id = uid();
+    let __id = uuid();
     widgetFile[this._privateIdProperty] = __id;
     this._files[i][this._privateIdProperty] = __id;
 
@@ -159,12 +159,12 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
   }
 
   public removeFile(file) {
-    this.debug("removeFile", file);
+    // this.debug("removeFile", file);
     this.widget.remove(file);
   }
 
   async removing(args: RemovingEventArgs) {
-    this.debug("removing", args);
+    // this.debug("removing", args);
     let event = new CustomEvent("on-removing", {
       bubbles: true,
       detail: args
@@ -202,11 +202,12 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
   }
 
   onRemoveSuccess(args) {
-    this.debug("onRemoveSuccess", args);
+    // ("onRemoveSuccess", args);
     let _file: any = args.filesData[0];
     let index = this[this._filesProperty].findIndex((x: any) => x.__id === _file.__id);
     this[this._filesProperty].splice(index, 1);
 
+    // this.info("files", this[this._filesProperty]);
     let event = new CustomEvent("on-remove-success", {
       bubbles: true,
       detail: args
@@ -223,7 +224,7 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
 
       // map response values
       let additionalProperties = {};
-      additionalProperties[this._privateIdProperty] = uid();
+      additionalProperties[this._privateIdProperty] = uuid();
 
       if (this.uploadResultModel) {
         for (let prop in this.uploadResultModel) {
@@ -251,8 +252,9 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
         detail: args
       });
 
-      console.log("file after upload", _uploadedFile)
+      // console.log("file after upload", _uploadedFile)
       this.element.dispatchEvent(event);
+      //  this.info("files", this[this._filesProperty])
     }
     else if (args.operation === "remove") {
 
