@@ -4,7 +4,7 @@ import {
   PopupOpenEventArgs, RenderCellEventArgs, EventRenderedArgs, ActionEventArgs, 
   Resize, DragAndDrop, Day, Week, WorkWeek, Month, Agenda, TimelineYear, ExcelExport,ICalendarExport, ICalendarImport, Print
 } from '@syncfusion/ej2-schedule';
-import { generateBindables } from 'utilities/decorator';
+import { generateBindables } from '../../utilities/decorator';
 import { SyncfusionWrapper } from  '../../common/syncfusionWrapper';
 
 
