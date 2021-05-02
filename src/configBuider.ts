@@ -1,3 +1,4 @@
+import { Ej2Schedule } from './widgets/schedule/ej2-schedule';
 import { Ej2FileManager } from './widgets/fileManager/ej2-fileManager';
 import { Ej2Sidebar } from './widgets/sidebar/ej2-sidebar';
 import { Ej2DatePicker } from './widgets/datePicker/ej2-DatePicker';
@@ -57,6 +58,7 @@ export class ConfigBuilder {
       .ej2Pager()
       .ej2ProgressButton()
       .ej2Radio()
+      .ej2Schedule()
       .ej2Sidebar()
       .ej2Slider()
       .ej2Splitter()
@@ -216,6 +218,11 @@ export class ConfigBuilder {
 
   ej2Radio(): ConfigBuilder {
     this.resources.push(Ej2Radio);
+    return this;
+  }
+
+  ej2Schedule(): ConfigBuilder {
+    this.resources.push(Ej2Schedule);
     return this;
   }
 

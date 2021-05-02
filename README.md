@@ -21,6 +21,7 @@ This is an early release and is not recommended for use
 * Pager
 * Progress Button
 * Radio
+* Schedule
 * Sidebar
 * Slider
 * Splitter

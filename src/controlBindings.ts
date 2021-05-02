@@ -101,6 +101,10 @@ export const ControlBindings = {
     oneWay: ["checked", "cssClass", "disabled", "label", "labelPosition", "name", "value"],
     events: ["change", "created"]
   },
+  schedule: {
+    oneWay: ["agendaDaysCount", "allowDragAndDrop", "allowInline","allowKeyboardInteraction", "allowMultiCellSelection","allowMultiDrag", "allowMultiRowSelection", "allowResizing", "calendarMode", "cellHeaderTemplate", "cellTemplate", "cssClass", "currentView","dateFormat", "dateHeaderTemplate", "editorTemplate", "enableRecurrenceValidation", "endHour", "eventDragArea", "eventSettings", "firstDayOfWeek", "group", "headerRows", "height", "hideEmptyAgendaDays", "maxDate", "minDate", "quickInfoOnSelectionEnd", "quickInfoTemplates", "readonly", "resourceHeaderTemplate", "resources", "rowAutoHeight", "selectedDate", "showHeaderBar", "showQuickInfo", "showTimeIndicator", "showWeekNumber", "showWeekend", "startHour", "timeFormat", "timeScale", "timezone", "views", "weekRule", "width", "workDays", "workHours"],
+    events: ["actionBegin", "actionComplete", "actionFailure", "cellClick", "cellDoubleClick", "created", "dataBinding", "dataBound", "destroyed", "drag", "dragStart", "dragStop", "eventClick", "eventRendered", "hover", "moreEventsClick", "navigating", "popupClose", "popupOpen", "renderCell", "resizeStart", "resizeStop", "resizing", "select" ]
+  },
   sidebar: {
     oneWay: ["animate", "closeOnDocumentClick", "dockSize", "enableDock", "enableGestures", "isOpen", "mediaQuery", "position", "showBackdrop", "target", "type", "width", "zIndex"],
     events: ["change", "close", "created", "destroyed", "open"]

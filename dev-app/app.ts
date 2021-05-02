@@ -35,6 +35,7 @@ export class App {
       { route: "pager", name: "pager", moduleId: PLATFORM.moduleName("pager/pagerDemo") },
       { route: "progressButton", name: "progressButton", moduleId: PLATFORM.moduleName("progressButton/progressButtonDemo") },
       { route: "radio", name: "radio", moduleId: PLATFORM.moduleName("radio/radioDemo") },
+      { route: "schedule", name: "schedule", moduleId: PLATFORM.moduleName("schedule/scheduleDemo") },
       { route: "sidebar", name: "sidebar", moduleId: PLATFORM.moduleName("sidebar/sidebarDemo") },
       { route: "slider", name: "slider", moduleId: PLATFORM.moduleName("slider/sliderDemo") },
       { route: "splitter", name: "splitter", moduleId: PLATFORM.moduleName("splitter/splitterDemo") },
