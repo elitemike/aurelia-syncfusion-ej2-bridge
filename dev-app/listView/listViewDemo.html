@@ -1,3 +1,8 @@
 <template>
-  <ej2-list-view e-model.bind="model"></ej2-list-view>
+  <div style="width:400px; height:300px;">
+    <ej2-list-view e-model.bind="model"></ej2-list-view>
+  </div>
+  <div  style="width:800px; height:400px;">
+    ${dataSource.length}
+     <ej2-list-view view-model.ref="streamingWidget" e-model.bind="modelForTemplate"></ej2-list-view></div>
 </template>

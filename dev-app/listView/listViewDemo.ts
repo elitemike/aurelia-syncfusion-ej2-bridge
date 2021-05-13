@@ -1,6 +1,13 @@
-import { ListViewModel } from "@syncfusion/ej2-lists";
+import { observable } from 'aurelia-binding';
+import { IEJ2WidgetBridge } from './../../src/interfaces/IEJ2WidgetBridge';
+import { ListViewModel, ListView } from "@syncfusion/ej2-lists";
+import { virtualizationData } from './datasource';
 
 export class ListViewDemo {
+  modelForTemplate: ListViewModel = {};
+  dataSource: any[] = [];
+  @observable streamingWidget: IEJ2WidgetBridge<ListView> = null;
+
   model: ListViewModel = {
     dataSource: nestedListData,
 
@@ -17,6 +24,101 @@ export class ListViewDemo {
     showHeader: true,
     showCheckBox: true
   };
+
+  throttle = (fn, delay) => {
+    let lastCalled = 0;
+    return (...args) => {
+      let now = new Date().getTime();
+      if(now - lastCalled < delay) {
+        return;
+      }
+      lastCalled = now;
+      return fn(...args);
+    }
+  }
+
+  debounce(func: () => void, wait: number, immediate?: boolean): () => void {
+    let timeout: any = null;
+    return function (): void {
+        // eslint-disable-next-line @typescript-eslint/no-this-alias
+        const context: {} = this;
+        // eslint-disable-next-line prefer-rest-params
+        const args = arguments;
+
+        const later = function (): void {
+            timeout = null;
+            // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+            if (!immediate) func.apply(context, <[]>(<any>args));
+        };
+
+        const callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+        if (callNow) func.apply(context, <[]>(<any>args));
+    };
+}
+
+  throttleRefresh: ()=> void = null;
+  debounceRefresh: () => void = null;
+
+
+ 
+  constructor() {
+    let _this = this;
+    this.throttleRefresh = this.throttle(() => {
+      _this.streamingWidget.widget.refresh(); 
+      _this.streamingWidget.widget.element.scrollTo(0, _this.streamingWidget.widget.element.scrollHeight)
+    }, 1000);
+    this.debounceRefresh = this.debounce(() => {
+      _this.streamingWidget.widget.refresh(); 
+      _this.streamingWidget.widget.element.scrollTo(0, _this.streamingWidget.widget.element.scrollHeight)
+    }, 1500);
+   
+    let template: string = '<div class="e-list-wrapper e-list-avatar">' +
+      '<span>${timestamp}</span> <span>[${severity}]</span> <span>${message}</span>  </div>';
+
+    this.dataSource.push({ timestamp: Date(), severity: "info", message: "initial message" })
+
+    this.modelForTemplate = {
+      dataSource: this.dataSource,
+
+      //enable UI virtualization
+      enableVirtualization: true,
+
+      //Set built-in cssClass for templates
+      cssClass: 'e-list-template',
+
+      //Set height
+      height: 500,
+
+      //Set defined customized template
+      template: template
+    }; 
+  }
+
+  streamingWidgetChanged() {
+    if (this.streamingWidget) {
+     this.addEntry();
+    }
+  }
+
+  entryCount = 0;
+  maxEntries = 2000;
+  addEntry(){
+    let _this = this;
+    this.entryCount++;
+    this.dataSource.push({ timestamp: Date(), severity: "info", message: `streamed message ${this.entryCount}` });
+    if(this.streamingWidget.widget){
+      this.throttleRefresh();
+      this.debounceRefresh();
+    }
+    if(this.entryCount <this.maxEntries){     
+      setTimeout(() => {
+        _this.addEntry()
+      }, 10);
+    }
+  }
 }
 
 
