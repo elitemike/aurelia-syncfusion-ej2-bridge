@@ -50,7 +50,7 @@
     ]
   },
   "platform": {
-    "port": 9000,
+    "port": 8090,
     "index": "index.html",
     "baseDir": ".",
     "output": "scripts"
@@ -58,7 +58,7 @@
   "build": {
     "targets": [
       {
-        "port": 9000,
+        "port": 8090,
         "index": "index.html",
         "baseDir": ".",
         "output": "scripts"

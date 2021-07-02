@@ -8,14 +8,15 @@ import { v4 as uuid } from "uuid";
 @autoinject
 export class UploaderDemo {
   files = [];
+  files2 = [];
+  widget: Ej2Uploader = null;
+  widget2: Ej2Uploader = null;
 
   constructor(private httpClient: HttpClient, private bindingEngine: BindingEngine) {
 
-    this.bindingEngine.collectionObserver(this.files).subscribe(() => {
-      this.filesChanged();
-    });
-
-    this.files = [];
+    // this.bindingEngine.collectionObserver(this.files).subscribe(() => {
+    //   this.filesChanged();
+    // });
 
     let _this = this;
     // setTimeout(() => {
@@ -53,7 +54,7 @@ export class UploaderDemo {
 
   }
 
-  widget: Ej2Uploader = null;
+
 
   uploaderModel: UploaderModel = {
     asyncSettings: {
@@ -63,12 +64,23 @@ export class UploaderDemo {
     multiple: true
   }
 
-
+  uploaderModel2: UploaderModel = {
+    asyncSettings: {
+      saveUrl: "http://localhost:5000/api/file/upload/test",
+      removeUrl: "http://localhost:5000/api/file/RemoveWithMetaData/test"
+    },
+    multiple: false
+  }
 
 
   metadata = {
     name: "Joe Smith",
     age: 50
+  };
+
+  metadata2 = {
+    name: "Jane Doe",
+    age: 62
   };
 
   uploadResultModel = {
