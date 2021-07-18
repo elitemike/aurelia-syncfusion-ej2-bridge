@@ -35,6 +35,10 @@ export class ControlBase<T, U> {
 
   }
 
+  onAttached() {
+
+  }
+
   onCreateControl() {
     throw "onCreateControl is not implemented";
   }
@@ -167,6 +171,7 @@ export class ControlBase<T, U> {
 
   attached() {
     this.appendWidget();
+    this.onAttached();
   }
 
   protected appendWidget() {
@@ -174,7 +179,7 @@ export class ControlBase<T, U> {
   }
 
   detached() {
-    this.subscriptions.forEach((subscription) => subscription.dispose());
+    this.subscriptions.forEach((subscription) => { if (subscription) { subscription.dispose(); } });
     if ((<any>this.widget).destroy) {
       this.debug("destroy method", null);
       (<any>this.widget).destroy();

@@ -13,6 +13,7 @@ import { inlineView, customElement } from 'aurelia-framework';
 @customElement('ej2-uploader')
 export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
   private _filesProperty = `${constants.bindablePrefix}files`;
+  private originalFiles = null;
   private _filesCollectionSubscription: Disposable = null;
   private _privateIdProperty = "__id";
   protected syncfusionWidgetType = Uploader;
@@ -34,6 +35,11 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
   public autoRemoveServerFiles = true;
   @bindable
   public context: any = null;
+  @bindable
+  public files: any[] = null;
+
+  private firstBind = true;
+
   private get _files(): any[] {
     return this[this._filesProperty];
   }
@@ -43,7 +49,6 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
   public serverDelete: boolean = true;
 
   protected onWrapperCreated() {
-    // this.debug("wrapper created")
     this.widget.uploading = (args) => { this.onFileUpload(args); };
     this.widget.success = (args: any) => { this.success(args); };
     this.widget.failure = (args) => { this.failure(args); };
@@ -69,24 +74,29 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
   }
 
 
-  /* 
-   Files changed fires too often.  files property actually changing is safer to call recreate,
-   any file pushed needs to be handled a little more graceful
-  */
-  filesChanged() {
-    // this.debug("files Changed");
-    this.recreate();
-    //  this.widget.getFilesData().splice(0, this.widget.getFilesData().length);
-    this._filesCollectionSubscription.dispose();
-    this.taskQueue.queueTask(() => {
-      this.widget.files = this._files;
-      this.initializeFileCollection();
-      this._filesCollectionSubscription = this.createFilesCollectionSubscription();
-    });
+  onfilesChanged() {
+    if (!this.firstBind) {
+      this.widget.clearAll();
+      this.recreate();
+    }
+  }
 
+  recreating() {
+    this._filesCollectionSubscription.dispose();
+    (this[this._filesProperty] as any[]).splice(0, (this[this._filesProperty] as any[]).length, ...this.originalFiles);
+  }
+
+  recreated() {
+    this.initializeFileCollection();
+    this._filesCollectionSubscription = this.createFilesCollectionSubscription();
   }
 
   initializeFileCollection() {
+    if (this.files && Array.isArray(this.files)) {
+      // Only want a copy of the items to eliminate values updated by ref
+      this.widget.files.push(...(JSON.parse(JSON.stringify(this.files)) as Array<any>));
+    }
+
     if (this.widget.files) {
       // this.debug("widget files init", this.widget.getFilesData())
       let extraProperties = [];
@@ -121,11 +131,27 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
     this.initializeFileCollection();
     this._filesCollectionSubscription = this.createFilesCollectionSubscription();
     this.subscriptions.push(this._filesCollectionSubscription);
+
+  }
+
+  onBind() {
+    this.firstBind = false;
+    this.subscriptions.push(this.bindingEngine.propertyObserver(this, "files").subscribe(() => { this.onfilesChanged(); }))
+    if (this[this._filesProperty] && Array.isArray(this[this._filesProperty])) {
+      this.originalFiles = (JSON.parse(JSON.stringify(this[this._filesProperty])) as Array<any>);
+    } else if (this.files && Array.isArray(this.files)) {
+      this.originalFiles = (JSON.parse(JSON.stringify(this.files)) as Array<any>);
+    } else {
+      this.originalFiles = [];
+    }
   }
 
   createFilesCollectionSubscription() {
-    return this.bindingEngine.collectionObserver(this._files).subscribe((changed) => {
-    });
+    if (!this._files) {
+      this[this._filesProperty] = [];
+    }
+
+    return this.bindingEngine.collectionObserver(this._files).subscribe((changed) => { });
   }
 
   change() {
@@ -205,15 +231,17 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
     // ("onRemoveSuccess", args);
     let _file: any = args.filesData[0];
     let index = this[this._filesProperty].findIndex((x: any) => x.__id === _file.__id);
-    this[this._filesProperty].splice(index, 1);
+    if (index !== -1) {
+      const removedFile = this[this._filesProperty].splice(index, 1)[0];
 
-    // this.info("files", this[this._filesProperty]);
-    let event = new CustomEvent("on-remove-success", {
-      bubbles: true,
-      detail: args
-    });
+      // this.info("files", this[this._filesProperty]);
+      let event = new CustomEvent("on-remove-success", {
+        bubbles: true,
+        detail: { args: args, removedFile: removedFile }
+      });
 
-    this.element.dispatchEvent(event);
+      this.element.dispatchEvent(event);
+    }
   }
 
   success(args: any): void {
@@ -247,18 +275,26 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
 
       this[this._filesProperty].push(file);
 
-      let event = new CustomEvent("on-success", {
-        bubbles: true,
-        detail: args
-      });
 
+      let uploadedEvent = new CustomEvent("on-uploaded", {
+        bubbles: true,
+        detail: { args: args, uploadedFile: file }
+      });
       // console.log("file after upload", _uploadedFile)
-      this.element.dispatchEvent(event);
+
+      this.element.dispatchEvent(uploadedEvent);
       //  this.info("files", this[this._filesProperty])
     }
     else if (args.operation === "remove") {
 
     }
+
+    let successEvent = new CustomEvent("on-success", {
+      bubbles: true,
+      detail: args
+    });
+
+    this.element.dispatchEvent(successEvent);
   }
 
   failure(args: any): void {
