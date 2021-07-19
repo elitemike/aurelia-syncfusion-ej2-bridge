@@ -157,7 +157,13 @@ export class Ej2Uploader extends SyncfusionWrapper<Uploader, UploaderModel> {
   change() {
     if (this.autoRemoveServerFiles) {
       this.getFilesThatWereRemoved().forEach((file) => {
-        this.removeFile(file);
+        this.removing({
+          filesData: [file],
+          customFormData: null,
+          event: null,
+          cancel: false
+        });
+        //this.removeFile(file);
       });
     }
   }
