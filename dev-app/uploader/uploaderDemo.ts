@@ -9,8 +9,10 @@ import { v4 as uuid } from "uuid";
 export class UploaderDemo {
   files = [];
   files2 = [];
+  files3 = [];
   widget: Ej2Uploader = null;
   widget2: Ej2Uploader = null;
+  widget3: Ej2Uploader = null;
 
   constructor(private httpClient: HttpClient, private bindingEngine: BindingEngine) {
 
@@ -64,7 +66,7 @@ export class UploaderDemo {
     multiple: true
   }
 
-  uploaderModel2: UploaderModel = {
+  singleUploadModel: UploaderModel = {
     asyncSettings: {
       saveUrl: "http://localhost:5000/api/file/upload/test",
       removeUrl: "http://localhost:5000/api/file/RemoveWithMetaData/test"
@@ -116,11 +118,29 @@ export class UploaderDemo {
   }
 
   onSuccess(args: any) {
-    // console.log(`${this.name} -success args`, args);
+    console.log(`success args`, args);
+  }
+
+  onFile3Uploaded(args: any) {
+    console.log('file uploaded successsfully', args);
+    this.files3.push(args.detail.uploadedFile);
+  }
+
+  onRemoved(args: any) {
+    console.log('file removed successsfully', args);
+  }
+
+  onFile3Removed(args: any) {
+    console.log('file removed successsfully', args);
+    this.files3.splice(this.files3.findIndex((x) => x.__id === args.detail.removedFile.__id), 1);
   }
 
   onUploading(args: any) {
     //  console.log("uploading args", args);
+  }
+
+  onClearFiles3() {
+    this.files3 = [];
   }
 
 
