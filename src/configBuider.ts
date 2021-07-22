@@ -1,3 +1,4 @@
+import { Ej2MultiSelect } from './widgets/multiSelect/ej2-multiSelect';
 import { Ej2Schedule } from './widgets/schedule/ej2-schedule';
 import { Ej2FileManager } from './widgets/fileManager/ej2-fileManager';
 import { Ej2Sidebar } from './widgets/sidebar/ej2-sidebar';
@@ -54,6 +55,7 @@ export class ConfigBuilder {
       .ej2Grid()
       .ej2ListView()
       .ej2MaskedTextBox()
+      .ej2MultiSelect()
       .ej2NumericTextBox()
       .ej2Pager()
       .ej2ProgressButton()
@@ -198,6 +200,11 @@ export class ConfigBuilder {
 
   ej2MaskedTextBox(): ConfigBuilder {
     this.resources.push(Ej2MaskedTextBox);
+    return this;
+  }
+
+  ej2MultiSelect(): ConfigBuilder {
+    this.resources.push(Ej2MultiSelect);
     return this;
   }
 
