@@ -6,7 +6,7 @@ import { enableRipple } from '@syncfusion/ej2-base';
 import { inlineView, customElement } from 'aurelia-framework';
 enableRipple(true);
 
-@generateBindables("maskedTextBox")
+@generateBindables("multiSelect")
 @inlineView(`<template><div><slot><input /></slot></div></template>`)
 @customElement('ej2-multi-select')
 export class Ej2MultiSelect extends SyncfusionWrapper<MultiSelect, MultiSelectModel>{
