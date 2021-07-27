@@ -21,20 +21,20 @@ export class Ej2Radio extends SyncfusionWrapper<RadioButton, RadioButtonModel> {
 
 
   onBind() {
-    if (!this.eModel.name) {
+    if (!this._eModel.name) {
       throw "Radio e-name is required";
     }
 
     this.widget.change = () => {
       this[`${constants.bindablePrefix}checked`] = this.widget.checked;
-      this.eventAggregator.publish(`ej2-radio-${this.eModel.name}-changed`, this[`${constants.bindablePrefix}label`]);
+      this.eventAggregator.publish(`ej2-radio-${this._eModel.name}-changed`, this[`${constants.bindablePrefix}label`]);
     };
 
     this.checkedSubscription = this.bindingEngine.propertyObserver(this, this[`${constants.bindablePrefix}checked`]).subscribe((newValue) => {
       this.widget.checked = newValue;
     });
 
-    this.selectionChangedSubscription = this.eventAggregator.subscribe(`ej2-radio-${this.eModel.name}-changed`, (selectedLabel: string) => {
+    this.selectionChangedSubscription = this.eventAggregator.subscribe(`ej2-radio-${this._eModel.name}-changed`, (selectedLabel: string) => {
       if (this[`${constants.bindablePrefix}label`] !== selectedLabel) {
         this[`${constants.bindablePrefix}checked`] = false;
       }

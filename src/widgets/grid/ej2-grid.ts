@@ -9,91 +9,91 @@ import { inlineView, customElement } from "aurelia-framework"
 @customElement('ej2-grid')
 export class Ej2Grid extends SyncfusionWrapper<Grid, GridModel> {
   onBeforeWidgetInstantiation() {
-    if (this.eModel.allowPaging) {
+    if (this._eModel.allowPaging) {
       Grid.Inject(Page);
     }
 
-    if (this.eModel.allowSelection) {
+    if (this._eModel.allowSelection) {
       Grid.Inject(Selection);
     }
 
-    if (this.eModel.editSettings) {
+    if (this._eModel.editSettings) {
       Grid.Inject(Edit);
     }
 
-    if (this.eModel.allowReordering) {
+    if (this._eModel.allowReordering) {
       Grid.Inject(Reorder)
     }
 
-    if (this.eModel.allowSorting) {
+    if (this._eModel.allowSorting) {
       Grid.Inject(Sort);
     }
 
-    if (this.eModel.showColumnChooser) {
+    if (this._eModel.showColumnChooser) {
       Grid.Inject(ColumnChooser);
     }
 
-    if (this.eModel.toolbar) {
+    if (this._eModel.toolbar) {
       Grid.Inject(Toolbar);
     }
 
-    if (this.eModel.editSettings) {
+    if (this._eModel.editSettings) {
       Grid.Inject(Edit);
     }
 
-    if (this.eModel.filterSettings) {
+    if (this._eModel.filterSettings) {
       Grid.Inject(Filter);
     }
 
-    if (this.eModel.groupSettings) {
+    if (this._eModel.groupSettings) {
       Grid.Inject(Group);
     }
 
-    if (this.eModel.aggregates) {
+    if (this._eModel.aggregates) {
       Grid.Inject(Aggregate);
     }
 
-    if (this.eModel.showColumnMenu) {
+    if (this._eModel.showColumnMenu) {
       Grid.Inject(ColumnMenu);
     }
 
-    if (this.eModel.detailTemplate) {
+    if (this._eModel.detailTemplate) {
       Grid.Inject(DetailRow);
     }
 
-    if (this.eModel.contextMenuItems) {
+    if (this._eModel.contextMenuItems) {
       Grid.Inject(ContextMenu);
     }
 
-    if (this.eModel.frozenColumns || this.eModel.frozenRows) {
+    if (this._eModel.frozenColumns || this._eModel.frozenRows) {
       Grid.Inject(Freeze);
     }
 
-    if (this.eModel.allowResizing) {
+    if (this._eModel.allowResizing) {
       Grid.Inject(Resize);
     }
 
-    if (this.eModel.allowRowDragAndDrop) {
+    if (this._eModel.allowRowDragAndDrop) {
       Grid.Inject(RowDD);
     }
 
-    if (this.eModel.searchSettings) {
+    if (this._eModel.searchSettings) {
       Grid.Inject(Search);
     }
 
-    if (this.eModel.printMode) {
+    if (this._eModel.printMode) {
       Grid.Inject(Print);
     }
 
-    if (this.eModel.enableVirtualization) {
+    if (this._eModel.enableVirtualization) {
       Grid.Inject(VirtualScroll);
     }
 
-    if (this.eModel.allowExcelExport) {
+    if (this._eModel.allowExcelExport) {
       Grid.Inject(ExcelExport);
     }
 
-    if (this.eModel.allowPdfExport) {
+    if (this._eModel.allowPdfExport) {
       Grid.Inject(PdfExport);
     }
 

@@ -11,7 +11,7 @@ let logger: Logger = LogManager.getLogger("SyncfusionBridge");
 @autoinject
 export class ControlBase<T, U> {
   @bindable
-  public eModel: U = null;
+  private eModel: U = null;
   protected _eModel: U = null;
   protected widgetElement: HTMLElement = null;
   public widget: T = null;

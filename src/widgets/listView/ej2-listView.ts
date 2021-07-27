@@ -16,7 +16,7 @@ export class Ej2ListView extends SyncfusionWrapper<ListView, ListViewModel> {
   }
 
   onBeforeWidgetInstantiation() {
-    if (this.eModel.enableVirtualization) {
+    if (this._eModel.enableVirtualization) {
       ListView.Inject(Virtualization);
     }
   }
