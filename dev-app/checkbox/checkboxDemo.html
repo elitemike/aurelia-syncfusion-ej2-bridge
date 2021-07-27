@@ -1,6 +1,9 @@
 <template>
+  <button click.delegate="toggle()">Toggle checkbox visibility</button>
 
-  <ej2-checkbox e-label="test" e-checked.two-way="testChecked" on-click.delegate="testClicked()"></ej2-checkbox>
+  <ej2-checkbox if.bind="showCheckbox" e-label.bind="label1" e-checked.two-way="testChecked"
+    on-click.delegate="testClicked()">
+  </ej2-checkbox>
   <br /> <span>test checked</span> ${testChecked}
 
   <!-- <ej2-checkbox e-label="my value"></ej2-checkbox> -->

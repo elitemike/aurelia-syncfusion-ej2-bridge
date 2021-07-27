@@ -12,7 +12,7 @@ let logger: Logger = LogManager.getLogger("SyncfusionBridge");
 export class ControlBase<T, U> {
   @bindable
   public eModel: U = null;
-
+  protected _eModel: U = null;
   protected widgetElement: HTMLElement = null;
   public widget: T = null;
   protected bindingContext: any = null;
@@ -28,7 +28,6 @@ export class ControlBase<T, U> {
 
   constructor(protected bindingEngine: BindingEngine, private controlContainer: ControlContainer,
     protected taskQueue: TaskQueue, protected eventAggregator: EventAggregator, protected element: Element) {
-    (<any>this.eModel) = {};
   }
 
   onBind() {
@@ -64,7 +63,7 @@ export class ControlBase<T, U> {
   bind(context) {
     this.logName = this.controlType.name;
     this.bindingContext = context;
-
+    this._eModel = Object.assign({}, this.eModel);
     this.setInitialBindings();
     this.onCreateControl();
     this.onBind();
@@ -81,8 +80,8 @@ export class ControlBase<T, U> {
     _control.bindableProperties.forEach((property) => {
       if (!property.startsWith(constants.eventPrefix)) {
         let modelProperty = property.substr(bindablePrefixLength)
-        if (this[property] !== undefined && (this.propertyPriority || this.eModel[modelProperty] === undefined)) {
-          this.eModel[modelProperty] = this[property];
+        if (this[property] !== undefined && (this.propertyPriority || this._eModel[modelProperty] === undefined)) {
+          this._eModel[modelProperty] = this[property];
           //    this.info('has value', { name: property, value: this[property] })
         }
       }
@@ -185,7 +184,7 @@ export class ControlBase<T, U> {
       (<any>this.widget).destroy();
     }
     this.widget = null;
-    this.eModel = null;
+    this._eModel = null;
     this.widgetElement = null;
   }
 

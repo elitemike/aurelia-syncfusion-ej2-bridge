@@ -2,12 +2,16 @@ import { IOptionModel } from "widgets/checkbox/ej2-checkbox-list";
 
 
 export class CheckboxDemo {
-
+  label1 = "this is my label";
   testChecked: boolean = false;
-
+  showCheckbox: boolean = true;
 
   testClicked() {
     console.log("test Clicked")
+  }
+
+  toggle() {
+    this.showCheckbox = !this.showCheckbox;
   }
 
   dataSource1 = [
