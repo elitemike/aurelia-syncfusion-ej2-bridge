@@ -84,8 +84,13 @@ export const ControlBindings = {
     twoWay: ["value"],
     events: ["blur", "change", "created", "destroyed", "focus", "input"]
   },
+  multiSelect: {
+    oneWay: ["actionFailureTemplate", "allowCustomValue", "allowFiltering", "changeOnBlur", "closePopupOnSelect", "cssClass", "dataSource", "delimiterChar", "enableGroupCheckBox", "enableHtmlSanitizer", "enableSelectionOrder", "enabled", "fields", "filterBarPlaceholder", "filterType", "floatLabelType", "footerTemplate", "groupTemplate", "headerTemplate", "hideSelectedItem", "htmlAttributes", "ignoreAccent", "ignoreCase", "itemTemplate", "locale", "maximumSelectionLength", "mode", "noRecordsTemplate", "openOnClick", "placeholder", "popupHeight", "popupWidth", "query", "readonly", "selectAllText", "showClearButton", "showDropDownIcon", "showSelectAll", "sortOrder", "text", "unSelectAllText", "valueTemplate", "width", "zIndex"],
+    twoWay: ["value"],
+    events: ["actionBegin", "actionComplete", "actionFailure", "beforeOpen", "blur", "change", "chipSelection", "close", "created", "customValueSelection", "dataBound", "destroyed", "filtering", "focus", "open", "removed", "removing", "select", "selectedAll", "tagging"]
+  },
   numericTextBox: {
-    oneWay: ["cssClass", "currency", "decimals", "enabled", "floatLabelType", "format", "htmlAttributes", "max", "min", "placeholder", "readonly", "showClearButon", "showSpinButton", "step", "StrictMode", "validateDecimalOnType", "width"],
+    oneWay: ["cssClass", "currency", "decimals", "enabled", "floatLabelType", "format", "htmlAttributes", "max", "min", "placeholder", "readonly", "showClearButton", "showSpinButton", "step", "StrictMode", "validateDecimalOnType", "width"],
     twoWay: ["value"],
     events: ["blur", "change", "created", "destroyed", "focus"]
   },
@@ -102,8 +107,8 @@ export const ControlBindings = {
     events: ["change", "created"]
   },
   schedule: {
-    oneWay: ["agendaDaysCount", "allowDragAndDrop", "allowInline","allowKeyboardInteraction", "allowMultiCellSelection","allowMultiDrag", "allowMultiRowSelection", "allowResizing", "calendarMode", "cellHeaderTemplate", "cellTemplate", "cssClass", "currentView","dateFormat", "dateHeaderTemplate", "editorTemplate", "enableRecurrenceValidation", "endHour", "eventDragArea", "eventSettings", "firstDayOfWeek", "group", "headerRows", "height", "hideEmptyAgendaDays", "maxDate", "minDate", "quickInfoOnSelectionEnd", "quickInfoTemplates", "readonly", "resourceHeaderTemplate", "resources", "rowAutoHeight", "selectedDate", "showHeaderBar", "showQuickInfo", "showTimeIndicator", "showWeekNumber", "showWeekend", "startHour", "timeFormat", "timeScale", "timezone", "views", "weekRule", "width", "workDays", "workHours"],
-    events: ["actionBegin", "actionComplete", "actionFailure", "cellClick", "cellDoubleClick", "created", "dataBinding", "dataBound", "destroyed", "drag", "dragStart", "dragStop", "eventClick", "eventRendered", "hover", "moreEventsClick", "navigating", "popupClose", "popupOpen", "renderCell", "resizeStart", "resizeStop", "resizing", "select" ]
+    oneWay: ["agendaDaysCount", "allowDragAndDrop", "allowInline", "allowKeyboardInteraction", "allowMultiCellSelection", "allowMultiDrag", "allowMultiRowSelection", "allowResizing", "calendarMode", "cellHeaderTemplate", "cellTemplate", "cssClass", "currentView", "dateFormat", "dateHeaderTemplate", "editorTemplate", "enableRecurrenceValidation", "endHour", "eventDragArea", "eventSettings", "firstDayOfWeek", "group", "headerRows", "height", "hideEmptyAgendaDays", "maxDate", "minDate", "quickInfoOnSelectionEnd", "quickInfoTemplates", "readonly", "resourceHeaderTemplate", "resources", "rowAutoHeight", "selectedDate", "showHeaderBar", "showQuickInfo", "showTimeIndicator", "showWeekNumber", "showWeekend", "startHour", "timeFormat", "timeScale", "timezone", "views", "weekRule", "width", "workDays", "workHours"],
+    events: ["actionBegin", "actionComplete", "actionFailure", "cellClick", "cellDoubleClick", "created", "dataBinding", "dataBound", "destroyed", "drag", "dragStart", "dragStop", "eventClick", "eventRendered", "hover", "moreEventsClick", "navigating", "popupClose", "popupOpen", "renderCell", "resizeStart", "resizeStop", "resizing", "select"]
   },
   sidebar: {
     oneWay: ["animate", "closeOnDocumentClick", "dockSize", "enableDock", "enableGestures", "isOpen", "mediaQuery", "position", "showBackdrop", "target", "type", "width", "zIndex"],
