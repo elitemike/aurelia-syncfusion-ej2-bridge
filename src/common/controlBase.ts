@@ -180,7 +180,6 @@ export class ControlBase<T, U> {
   detached() {
     this.subscriptions.forEach((subscription) => { if (subscription) { subscription.dispose(); } });
     if ((<any>this.widget).destroy) {
-      this.debug("destroy method", null);
       (<any>this.widget).destroy();
     }
     this.widget = null;
