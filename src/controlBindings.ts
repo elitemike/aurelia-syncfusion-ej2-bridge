@@ -8,7 +8,7 @@ export const ControlBindings = {
     events: ["clicked", "created", "destroyed", "expanded", "expanding"]
   },
   autoComplete: {
-    oneWay: ["actionFailureTemplate", "allowCustom", "autofill", "cssClass", "dataSource", "enabled", "fields", "filterType", "floatLabelType", "footerTemplate", "groupTemplate", "headerTemplate", "highlight", "htmlAttributes", "ignoreAccent", "ignoreCase", "itemTemplate", "minLength", "noRecordsTemplate", "placeholder", "popupHeight", "popupWidth", "query", "readonly", "showClearButton", "showPopupButton", "sortOrder", "suggestionCount", "width", "zIndex"],
+    oneWay: ["actionFailureTemplate", "allowCustom", "autofill", "cssClass", "dataSource", "enabled", "fields", "ignoreAccent", "ignoreCase", "itemTemplate", "minLength", "noRecordsTemplate", "placeholder", "popupHeight", "popupWidth", "query", "readonly", "showClearButton", "showPopupButton", "sortOrder", "suggestionCount", "width", "zIndex"],
     twoWay: ["value"],
     events: ["actionBegin", "actionComplete", "actionFailure", "beforeOpen", "blur", "change", "close", "created", "customValueSpecifier", "dataBound", "destroyed", "filtering", "focus", "open", "select"]
   },
