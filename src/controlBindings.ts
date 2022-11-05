@@ -4,7 +4,7 @@ export const ControlBindings = {
     oneWay: ["enablePersistence", "enableRtl", "locale"]
   },
   accordion: {
-    oneWay: ["animation", "expandMode", "height", "items", "width"],
+    oneWay: ["animation", "dataSource", "enableHtmlSanitizer", "expandMode", "expandedIndices", "height", "itemTemplate", "items", "width"],
     events: ["clicked", "created", "destroyed", "expanded", "expanding"]
   },
   autoComplete: {
