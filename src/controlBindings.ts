@@ -17,7 +17,7 @@ export const ControlBindings = {
     events: ["created"]
   },
   checkbox: {
-    oneWay: ["cssClass", "disabled", "indeterminate", "label", "labelPosition", "name", "value"],
+    oneWay: ["cssClass", "disabled", "enableHtmlSanitizer", "htmlAttributes", "indeterminate", "label", "labelPosition", "name", "value"],
     twoWay: ["checked"],
     events: ["change", "created"]
   },
