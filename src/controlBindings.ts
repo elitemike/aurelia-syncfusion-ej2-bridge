@@ -13,7 +13,7 @@ export const ControlBindings = {
     events: ["actionBegin", "actionComplete", "actionFailure", "beforeOpen", "blur", "change", "close", "created", "customValueSpecifier", "dataBound", "destroyed", "filtering", "focus", "open", "select"]
   },
   button: {
-    oneWay: ["disabled", "isPrimary", "content", "cssClass", "iconCss", "iconPosition", "isToggle", "enableRtl"],
+    oneWay: ["disabled", "isPrimary", "content", "cssClass", "enableHtmlSanitizer", "iconCss", "iconPosition", "isToggle", "enableRtl"],
     events: ["created"]
   },
   checkbox: {
