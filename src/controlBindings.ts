@@ -154,9 +154,14 @@ export const ControlBindings = {
     events: ["blur", "change", "cleared", "close", "created", "destroyed", "focus", "itemRender", "open"]
   },
   treeView: {
-    oneWay: ["allowDragAndDrop", "allowEditing", "allowMultiSelection", "animation", "autoCheck", "checkedNodes", "cssClass", "expandOn", "expandedNodes", "fields", "fullRowSelect", "loadOnDemand", "nodeTemplate", "showCheckBox", "sortOrder"],
-    twoWay: ["selectedNodes"],
-    events: ["created", "dataBound", "dataSourceChanged", "destroyed", "drawNode", "keyPress", "nodeChecked", "nodeChecking", "nodeClicked", "nodeCollapsed", "nodeCollapsing", "nodeDragStart", "nodeDragStop", "nodeDragging", "nodeDropped", "nodeEdited", "nodeEditing", "nodeExpanded", "nodeExpanding", "nodeSelected", "nodeSelecting"]
+    oneWay: ["allowDragAndDrop", "allowEditing", "allowMultiSelection",
+      "allowTextWrap", "animation", "autoCheck", "cssClass",
+      "disabled", "dragArea",
+      "enableHtmlSanitizer", "expandOn", "fields",
+      "fullRowNavigable", "fullRowSelect", "loadOnDemand", "nodeTemplate", "showCheckBox", "sortOrder"],
+    twoWay: ["selectedNodes", "checkedNodes",
+      "expandedNodes"],
+    events: ["actionFailure", "created", "dataBound", "dataSourceChanged", "destroyed", "drawNode", "keyPress", "nodeChecked", "nodeChecking", "nodeClicked", "nodeCollapsed", "nodeCollapsing", "nodeDragStart", "nodeDragStop", "nodeDragging", "nodeDropped", "nodeEdited", "nodeEditing", "nodeExpanded", "nodeExpanding", "nodeSelected", "nodeSelecting"]
   },
   uploader: {
     oneWay: ["allowedExtensions", "asyncSettings", "autoUpload", "buttons", "cssClass", "directoryUpload", "dropArea", "enabled", "files", "htmlAttributes", "maxFileSize", "minFileSize", "multiple", "sequentialUpload", "showFileList", "template", "formData"],
