@@ -43,9 +43,9 @@ export const ControlBindings = {
     events: ["blur", "change", "cleared", "close", "created", "destroyed", "focus", "navigated", "open", "renderDayCell", "select"]
   },
   dateTimePicker: {
-    oneWay: ["allowEdit", "calendarMode", "cssClass", "dayHeaderFormat", "depth", "enabled", "firstDayOfWeek", "floatLabelType", "format", "htmlAttributes", "keyConfigs", "max", "min", "placeholder", "readonly", "scrollTo", "showClearButton", "showTodayButton", "start", "step", "strictMode", "timeFormat", "weekNumber", "width", "zindex"],
+    oneWay: ["allowEdit", "calendarMode", "cssClass", "dayHeaderFormat", "depth", "enableMask", "enabled", "firstDayOfWeek", "floatLabelType", "format", "htmlAttributes", "keyConfigs", "maskPlaceholder", "max", "min", "openOnFocus", "placeholder", "readonly", "scrollTo", "serverTimezoneOffset", "showClearButton", "showTodayButton", "start", "step", "strictMode", "timeFormat", "weekNumber", "weekRule", "width", "zindex"],
     twoWay: ["value"],
-    events: ["blur", "change", "close", "created", "destroyed", "focus", "navigated", "open", "renderDayCell"]
+    events: ["blur", "change", "cleared", "close", "created", "destroyed", "focus", "navigated", "open", "renderDayCell"]
   },
   dropDownList: {
     oneWay: ["actionFailureTemplate", "allowFiltering", "cssClass", "dataSource", "enabled", "fields", "filterBarPlaceholder", "floatLabelType", "footerTemplate", "groupTemplate", "headerTemplate", "htmlAttributes", "ignoreAccent", "index", "itemTemplate", "noRecordsTemplate", "placeholder", "popupHeight", "popupWidth", "query", "readonly", "showClearButton", "sortOrder", "text", "valueTemplate", "width", "zindex"],
