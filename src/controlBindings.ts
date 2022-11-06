@@ -142,7 +142,9 @@ export const ControlBindings = {
     events: ["change", "created"]
   },
   textBox: {
-    oneWay: ["cssClass", "enabled", "floatLabelType", "htmlAttributes", "multiline", "placeholder", "readonly", "showClearButton", "type"],
+    oneWay: [
+      "autocomplete",
+      "cssClass", "enabled", "floatLabelType", "htmlAttributes", "multiline", "placeholder", "readonly", "showClearButton", "type"],
     twoWay: ["value"],
     events: ["blur", "change", "created", "destroyed", "focus", "input"]
   },
