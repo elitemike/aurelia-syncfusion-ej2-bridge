@@ -115,7 +115,11 @@ export const ControlBindings = {
     events: ["change", "created"]
   },
   schedule: {
-    oneWay: ["agendaDaysCount", "allowDragAndDrop", "allowInline", "allowKeyboardInteraction", "allowMultiCellSelection", "allowMultiDrag", "allowMultiRowSelection", "allowResizing", "calendarMode", "cellHeaderTemplate", "cellTemplate", "cssClass", "currentView", "dateFormat", "dateHeaderTemplate", "editorTemplate", "enableRecurrenceValidation", "endHour", "eventDragArea", "eventSettings", "firstDayOfWeek", "group", "headerRows", "height", "hideEmptyAgendaDays", "maxDate", "minDate", "quickInfoOnSelectionEnd", "quickInfoTemplates", "readonly", "resourceHeaderTemplate", "resources", "rowAutoHeight", "selectedDate", "showHeaderBar", "showQuickInfo", "showTimeIndicator", "showWeekNumber", "showWeekend", "startHour", "timeFormat", "timeScale", "timezone", "views", "weekRule", "width", "workDays", "workHours"],
+    oneWay: ["agendaDaysCount", "allowDragAndDrop", "allowInline", "allowKeyboardInteraction", "allowMultiCellSelection", "allowMultiDrag", "allowMultiRowSelection", "allowResizing",
+      "allowSwiping", "calendarMode", "cellHeaderTemplate", "cellTemplate", "cssClass", "currentView", "dateFormat", "dateHeaderTemplate",
+      "dayHeaderTemplate",
+      "enableAdaptiveUI",
+      "enableAllDayScroll", "editorTemplate", "enableRecurrenceValidation", "endHour", "eventDragArea", "eventSettings", "firstDayOfWeek", "firstMonthOfYear", "group", "headerIndentTemplate", "headerRows", "height", "hideEmptyAgendaDays", "maxDate", "minDate", "monthHeaderTemplate", "monthsCount", "quickInfoOnSelectionEnd", "quickInfoTemplates", "readonly", "resourceHeaderTemplate", "resources", "rowAutoHeight", "selectedDate", "showHeaderBar", "showQuickInfo", "showTimeIndicator", "showWeekNumber", "showWeekend", "startHour", "timeFormat", "timeScale", "timezone", "timezoneDataSource", "views", "weekRule", "width", "workDays", "workHours"],
     events: ["actionBegin", "actionComplete", "actionFailure", "cellClick", "cellDoubleClick", "created", "dataBinding", "dataBound", "destroyed", "drag", "dragStart", "dragStop", "eventClick", "eventRendered", "hover", "moreEventsClick", "navigating", "popupClose", "popupOpen", "renderCell", "resizeStart", "resizeStop", "resizing", "select"]
   },
   sidebar: {
