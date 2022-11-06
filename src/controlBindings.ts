@@ -107,7 +107,7 @@ export const ControlBindings = {
     events: ["click", "created", "dropDownChanged"]
   },
   progressButton: {
-    oneWay: ["animationSettings", "content", "cssClass", "disabled", "duration", "enableProgress", "iconCss", "iconPosition", "isPrimary", "isToggle", "spinSettings"],
+    oneWay: ["animationSettings", "content", "cssClass", "disabled", "duration", "enableHtmlSanitizer", "enableProgress", "iconCss", "iconPosition", "isPrimary", "isToggle", "spinSettings"],
     events: ["begin", "created", "end", "fail", "progress"]
   },
   radio: {
