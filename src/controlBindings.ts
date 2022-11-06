@@ -48,7 +48,8 @@ export const ControlBindings = {
     events: ["blur", "change", "cleared", "close", "created", "destroyed", "focus", "navigated", "open", "renderDayCell"]
   },
   dropDownList: {
-    oneWay: ["actionFailureTemplate", "allowFiltering", "cssClass", "dataSource", "enabled", "fields", "filterBarPlaceholder", "floatLabelType", "footerTemplate", "groupTemplate", "headerTemplate", "htmlAttributes", "ignoreAccent", "index", "itemTemplate", "noRecordsTemplate", "placeholder", "popupHeight", "popupWidth", "query", "readonly", "showClearButton", "sortOrder", "text", "valueTemplate", "width", "zindex"],
+    oneWay: ["actionFailureTemplate", "allowFiltering", "cssClass", "dataSource", "enabled", "fields", "filterBarPlaceholder",
+      "filterType", "floatLabelType", "footerTemplate", "groupTemplate", "headerTemplate", "htmlAttributes", "ignoreAccent", "ignoreCase", "index", "itemTemplate", "noRecordsTemplate", "placeholder", "popupHeight", "popupWidth", "query", "readonly", "showClearButton", "sortOrder", "text", "valueTemplate", "width", "zindex"],
     twoWay: ["value"],
     events: ["actionBegin", "actionComplete", "actionFailure", "beforeOpen", "blur", "change", "close", "created", "dataBound", "destroyed", "filtering", "focus", "open", "select"]
   },
