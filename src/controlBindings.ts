@@ -132,11 +132,12 @@ export const ControlBindings = {
     events: ["change", "changed", "created", "renderedTicks", "renderingTicks", "tooltipChange"]
   },
   splitter: {
-    oneWay: ["cssClass", "enableHtmlSanitizer", "enabled", "height", "orientation", "paneSettings", "separatorSize", "width"],
+    oneWay: ["cssClass", "enableHtmlSanitizer",
+      "enableReversePanes", "enabled", "height", "orientation", "paneSettings", "separatorSize", "width"],
     events: ["beforeCollapse", "beforeExpand", "beforeSanitizeHtml", "collapsed", "created", "expanded", "resizeStart", "resizeStop", "resizing"]
   },
   switch: {
-    oneWay: ["cssClass", "disabled", , "name", "offLabel", "onLabel"],
+    oneWay: ["cssClass", "disabled", "name", "offLabel", "onLabel"],
     twoWay: ["value", "checked"],
     events: ["change", "created"]
   },
