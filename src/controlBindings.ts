@@ -22,23 +22,25 @@ export const ControlBindings = {
     events: ["change", "created"]
   },
   comboBox: {
-    oneWay: ["actionFailureTemplate", "allowCustom", "allowFiltering", "autofill", "cssClass", "dataSource", "enabled", "fields", "floatLabelType", "footerTemplate", "groupTemplate", "headerTemplate", "htmlAttributes", "ignoreAccent", "index", "itemTemplate", "noRecordsTemplate", "placeholder", "popupHeight", "popupWidth", "query", "readonly", "showClearButton", "sortOrder", "text", "width", "zIndex"],
+    oneWay: ["actionFailureTemplate", "allowCustom", "allowFiltering", "autofill", "cssClass", "dataSource", "enabled", "fields",
+      "filterType", "floatLabelType", "footerTemplate", "groupTemplate", "headerTemplate", "htmlAttributes", "ignoreAccent", "ignoreCase", "index", "itemTemplate", "noRecordsTemplate", "placeholder", "popupHeight", "popupWidth", "query", "readonly", "showClearButton", "sortOrder", "text", "width", "zIndex"],
     twoWay: ["value"],
     events: ["actionBegin", "actionComplete", "actionFailure", "beforeOpen", "blur", "change", "close", "created", "customValueSpecifier", "dataBound", "destroyed", "filtering", "focus", "open", "select"]
   },
   dashboardLayout: {
-    oneWay: ["allowDragging", "allowFloating", "allowResizing", "cellSpacing", "columns", "draggableHandle", "mediaQuery", "panels", "resizableHandles", "showGridLines"],
+    oneWay: ["allowDragging", "allowFloating", "allowResizing", "cellSpacing", "columns", "draggableHandle",
+      "enableHtmlSanitizer", "mediaQuery", "panels", "resizableHandles", "showGridLines"],
     events: ["change", "created", "destroyed", "drag", "dragStart", "dragStop", "resize", "resizeStart", "resizeStop"]
   },
   datePicker: {
-    oneWay: ["allowEdit", "calendarMode", "cssClass", "dayHeaderFormat", "depth", "enabled", "firstDayOfWeek", "floatLabelType", "format", "htmlAttributes", "keyConfigs", "max", "min", "placeholder", "readonly", "showClearButton", "showTodayButton", "start", "strictMode", "weekNumber", "width", "zindex"],
+    oneWay: ["allowEdit", "calendarMode", "cssClass", "dayHeaderFormat", "depth", "enableMask", "enabled", "firstDayOfWeek", "floatLabelType", "format", "htmlAttributes", "keyConfigs", "max", "min", "openOnFocus", "placeholder", "readonly", "serverTimezoneOffset", "showClearButton", "showTodayButton", "start", "strictMode", "weekNumber", "weekRule", "width", "zindex"],
     twoWay: ["value"],
     events: ["blur", "change", "close", "created", "destroyed", "focus", "navigated", "open", "renderDayCell"]
   },
   dateRangePicker: {
-    oneWay: ["allowEdit", "cssClass", "dayHeaderFormat", "depth", "enabled", "firstDayOfWeek", "floatLabelType", "format", "htmlAttributes", "keyConfigs", "max", "maxDays", "min", "minDays", "placeholder", "presets", "readonly", "separator", "showClearButton", "start", "strictMode", "weekNumber", "width", "zindex"],
+    oneWay: ["allowEdit", "cssClass", "dayHeaderFormat", "depth", "enabled", "firstDayOfWeek", "floatLabelType", "format", "htmlAttributes", "keyConfigs", "max", "maxDays", "min", "minDays", "openOnFocus", "placeholder", "presets", "readonly", "separator", "serverTimezoneOffset", "showClearButton", "start", "strictMode", "weekNumber", "weekRule", "width", "zindex"],
     twoWay: ["value", "startDate", "endDate"],
-    events: ["blur", "change", "close", "created", "destroyed", "focus", "navigated", "open", "renderDayCell", "select"]
+    events: ["blur", "change", "cleared", "close", "created", "destroyed", "focus", "navigated", "open", "renderDayCell", "select"]
   },
   dateTimePicker: {
     oneWay: ["allowEdit", "calendarMode", "cssClass", "dayHeaderFormat", "depth", "enabled", "firstDayOfWeek", "floatLabelType", "format", "htmlAttributes", "keyConfigs", "max", "min", "placeholder", "readonly", "scrollTo", "showClearButton", "showTodayButton", "start", "step", "strictMode", "timeFormat", "weekNumber", "width", "zindex"],
