@@ -88,9 +88,11 @@ export const ControlBindings = {
     events: ["blur", "change", "created", "destroyed", "focus"]
   },
   multiSelect: {
-    oneWay: ["actionFailureTemplate", "allowCustomValue", "allowFiltering", "changeOnBlur", "closePopupOnSelect", "cssClass", "dataSource", "delimiterChar", "enableGroupCheckBox", "enableHtmlSanitizer", "enableSelectionOrder", "enabled", "fields", "filterBarPlaceholder", "filterType", "floatLabelType", "footerTemplate", "groupTemplate", "headerTemplate", "hideSelectedItem", "htmlAttributes", "ignoreAccent", "ignoreCase", "itemTemplate", "locale", "maximumSelectionLength", "mode", "noRecordsTemplate", "openOnClick", "placeholder", "popupHeight", "popupWidth", "query", "readonly", "selectAllText", "showClearButton", "showDropDownIcon", "showSelectAll", "sortOrder", "text", "unSelectAllText", "valueTemplate", "width", "zIndex"],
+    oneWay: ["actionFailureTemplate",
+      "addTagOnBlur", "allowCustomValue", "allowFiltering", "changeOnBlur", "closePopupOnSelect", "cssClass", "dataSource", "delimiterChar", "enableGroupCheckBox", "enableHtmlSanitizer", "enableSelectionOrder", "enabled", "fields", "filterBarPlaceholder", "filterType", "floatLabelType", "footerTemplate", "groupTemplate", "headerTemplate", "hideSelectedItem", "htmlAttributes", "ignoreAccent", "ignoreCase", "itemTemplate", "locale", "maximumSelectionLength", "mode", "noRecordsTemplate", "openOnClick", "placeholder", "popupHeight", "popupWidth", "query", "readonly", "selectAllText", "showClearButton", "showDropDownIcon", "showSelectAll", "sortOrder", "text", "unSelectAllText", "valueTemplate", "width", "zIndex"],
     twoWay: ["value"],
-    events: ["actionBegin", "actionComplete", "actionFailure", "beforeOpen", "blur", "change", "chipSelection", "close", "created", "customValueSelection", "dataBound", "destroyed", "filtering", "focus", "open", "removed", "removing", "select", "selectedAll", "tagging"]
+    events: ["actionBegin", "actionComplete", "actionFailure", "beforeOpen",
+      "beforeSelectAll", "blur", "change", "chipSelection", "close", "created", "customValueSelection", "dataBound", "destroyed", "filtering", "focus", "open", "removed", "removing", "select", "selectedAll", "tagging"]
   },
   numericTextBox: {
     oneWay: ["cssClass", "currency", "decimals", "enabled", "floatLabelType", "format", "htmlAttributes", "max", "min", "placeholder", "readonly", "showClearButton", "showSpinButton", "step", "StrictMode", "validateDecimalOnType", "width"],
