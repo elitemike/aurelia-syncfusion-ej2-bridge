@@ -95,7 +95,7 @@ export const ControlBindings = {
       "beforeSelectAll", "blur", "change", "chipSelection", "close", "created", "customValueSelection", "dataBound", "destroyed", "filtering", "focus", "open", "removed", "removing", "select", "selectedAll", "tagging"]
   },
   numericTextBox: {
-    oneWay: ["cssClass", "currency", "decimals", "enabled", "floatLabelType", "format", "htmlAttributes", "max", "min", "placeholder", "readonly", "showClearButton", "showSpinButton", "step", "StrictMode", "validateDecimalOnType", "width"],
+    oneWay: ["cssClass", "currency", "decimals", "enabled", "floatLabelType", "format", "htmlAttributes", "max", "min", "placeholder", "readonly", "showClearButton", "showSpinButton", "step", "strictMode", "validateDecimalOnType", "width"],
     twoWay: ["value"],
     events: ["blur", "change", "created", "destroyed", "focus"]
   },
