@@ -127,7 +127,7 @@ export const ControlBindings = {
     events: ["change", "close", "created", "destroyed", "open"]
   },
   slider: {
-    oneWay: ["cssClass", "customValues", "enableAnimation", "enabled", "limits", "max", "min", "orientation", "readonly", "showButtons", "step", "ticks", "tooltip", "type"],
+    oneWay: ["colorRange", "cssClass", "customValues", "enableAnimation", "enableHtmlSanitizer", "enabled", "limits", "max", "min", "orientation", "readonly", "showButtons", "step", "ticks", "tooltip", "type", "width"],
     twoWay: ["value"],
     events: ["change", "changed", "created", "renderedTicks", "renderingTicks", "tooltipChange"]
   },
