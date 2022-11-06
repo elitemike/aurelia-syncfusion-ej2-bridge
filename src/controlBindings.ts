@@ -111,7 +111,7 @@ export const ControlBindings = {
     events: ["begin", "created", "end", "fail", "progress"]
   },
   radio: {
-    oneWay: ["checked", "cssClass", "disabled", "label", "labelPosition", "name", "value"],
+    oneWay: ["checked", "cssClass", "disabled", "enableHtmlSanitizer", "htmlAttributes", "label", "labelPosition", "name", "value"],
     events: ["change", "created"]
   },
   schedule: {
