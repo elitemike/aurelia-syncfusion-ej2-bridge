@@ -85,7 +85,7 @@ export const ControlBindings = {
   maskedTextBox: {
     oneWay: ["cssClass", "customCharacters", "enabled", "floatLabelType", "htmlAttributes", "mask", "placeholder", "promptChar", "showClearButton", "width"],
     twoWay: ["value"],
-    events: ["blur", "change", "created", "destroyed", "focus", "input"]
+    events: ["blur", "change", "created", "destroyed", "focus"]
   },
   multiSelect: {
     oneWay: ["actionFailureTemplate", "allowCustomValue", "allowFiltering", "changeOnBlur", "closePopupOnSelect", "cssClass", "dataSource", "delimiterChar", "enableGroupCheckBox", "enableHtmlSanitizer", "enableSelectionOrder", "enabled", "fields", "filterBarPlaceholder", "filterType", "floatLabelType", "footerTemplate", "groupTemplate", "headerTemplate", "hideSelectedItem", "htmlAttributes", "ignoreAccent", "ignoreCase", "itemTemplate", "locale", "maximumSelectionLength", "mode", "noRecordsTemplate", "openOnClick", "placeholder", "popupHeight", "popupWidth", "query", "readonly", "selectAllText", "showClearButton", "showDropDownIcon", "showSelectAll", "sortOrder", "text", "unSelectAllText", "valueTemplate", "width", "zIndex"],
