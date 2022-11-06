@@ -100,7 +100,10 @@ export const ControlBindings = {
     events: ["blur", "change", "created", "destroyed", "focus"]
   },
   pager: {
-    twoWay: ["currentPage", "customText", "enableExternalMessage", "enablePagerMessage", "enableQueryString", "externalMessage", "pageCount", "pageSize", "pageSizes", "template", "totalRecordsCount"],
+    oneWay: ["cssClass", "customText", "enableExternalMessage", "enablePagerMessage", "enableQueryString", "externalMessage",
+      "pageCount", "pageSize", "pageSizes",
+      "template"],
+    twoWay: ["currentPage", "totalRecordsCount"],
     events: ["click", "created", "dropDownChanged"]
   },
   progressButton: {
