@@ -94,7 +94,7 @@ export class ConfigBuilder {
   }
 
   materialTheme() {
-    this.resources.push(PLATFORM.moduleName("@syncfusion/ej2/material.css"));
+    // this.resources.push(PLATFORM.moduleName("@syncfusion/ej2/material.css"));
     return this;
   }
 
