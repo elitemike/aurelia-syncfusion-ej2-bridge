@@ -2,7 +2,7 @@ import { ControlBase } from "./controlBase";
 
 
 export abstract class SyncfusionWrapper<T, U> extends ControlBase<T, U> {
-  protected abstract syncfusionWidgetType: any = null;
+  protected abstract syncfusionWidgetType: any;
   protected abstract onWrapperCreated();
   protected abstract onWidgetCreated();
 

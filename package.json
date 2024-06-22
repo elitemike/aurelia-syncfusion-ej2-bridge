@@ -10,7 +10,9 @@
   "author": {
     "name": "Refactored Technology Solutions"
   },
-  "dependencies": {},
+  "dependencies": {
+    "lodash": "^4.17.21"
+  },
   "peerDependencies": {
     "@syncfusion/ej2": "^26.1.38"
   },
@@ -21,7 +23,7 @@
   "devDependencies": {
     "@syncfusion/ej2": "^26.1.38",
     "@types/jest": "^24.0.9",
-    "@types/node": "^10.11.6",
+    "@types/node": "^20.12.7",
     "aurelia-animator-css": "^1.0.4",
     "aurelia-bootstrapper": "^2.3.2",
     "aurelia-cli": "^1.1.1",
@@ -51,7 +53,7 @@
     "through2": "^3.0.0",
     "ts-jest": "^24.0.0",
     "tslint": "^5.13.0",
-    "typescript": "^3.1.2",
+    "typescript": "^5.5.2",
     "vinyl-fs": "^3.0.3"
   },
   "engines": {
