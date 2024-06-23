@@ -12,7 +12,7 @@ export class Ej2Slider extends SyncfusionWrapper<Slider, SliderModel> {
   private containerResizeObserver: ResizeObserver = null;
   private resize = _.debounce(() => {
     this.taskQueue.queueTask(() => {
-      this.widget.refresh();
+      this.widget?.refresh();
     });
   }, 100);
 
