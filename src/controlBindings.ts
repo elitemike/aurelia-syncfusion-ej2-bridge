@@ -114,6 +114,11 @@ export const ControlBindings = {
     oneWay: ["checked", "cssClass", "disabled", "enableHtmlSanitizer", "htmlAttributes", "label", "labelPosition", "name", "value"],
     events: ["change", "created"]
   },
+  richTextEditor: {
+    oneWay: ["autoSaveOnIdle", "backgroundColor", "bulletFormatList", "cssClass", "editorMode", "emojiPickerSettings", "enableAutoUrl", "enableHtmlEncode", "enableHtmlSanitizer", "enableResize", "enableTabKey", "enableXhtml", "enabled", "enterKey", "exportPdf", "exportWord", "fileManagerSettings", "floatingToolbarOffset", "fontColor", "fontFamily", "fontSize", "format", "formatPainterSettings", "formatter", "height", "htmlAttributes", "iframeSettings", "importWord", "inlineMode", "insertAudioSettings", "insertImageSettings", "insertVideoSettings", "keyConfig", "maxLength", "numberFormatList", "pasteCleanupSettings", "placeholder", "quickToolbarSettings", "readonly", "saveInterval", "shiftEnterKey", "showCharCount", "showTooltip", "slashMenuSettings", "tableSettings", "toolbarSettings", "undoRedoSteps", "undoRedoTimer", "value", "valueTemplate", "width"],
+    twoWay: ["value"],
+    events: ["actionBegin", "actionComplete", "afterImageDelete", "afterMediaDelete", "afterPasteCleanup", "beforeDialogClose", "beforeDialogOpen", "beforeFileUpload", "beforeImageDrop", "beforeImageUpload", "beforePasteCleanup", "beforeQuickToolbarOpen", "beforeSanitizeHtml", "blur", "change", "created", "destroyed", "dialogClose", "dialogOpen", "fileRemoving", "fileSelected", "fileUploadFailed", "fileUploadSuccess", "fileUploading", "focus", "imageRemoving", "imageSelected", "imageUploadFailed", "imageUploadSuccess", "imageUploading", "quickToolbarClose", "quickToolbarOpen", "resizeStart", "resizeStop", "resizing", "slashMenuItemSelect", "toolbarClick", "toolbarStatusUpdate", "updatedToolbarStatus"]
+  },
   schedule: {
     oneWay: ["agendaDaysCount", "allowDragAndDrop", "allowInline", "allowKeyboardInteraction", "allowMultiCellSelection", "allowMultiDrag", "allowMultiRowSelection", "allowResizing",
       "allowSwiping", "calendarMode", "cellHeaderTemplate", "cellTemplate", "cssClass", "currentView", "dateFormat", "dateHeaderTemplate",
@@ -152,6 +157,10 @@ export const ControlBindings = {
     oneWay: ["allowEdit", "cssClass", "enableMask", "enabled", "floatLabelType", "format", "htmlAttributes", "keyConfigs", "maskPlaceholder", "openOnFocus", "placeholder", "readonly", "scrollTo", "showClearButton", "step", "strictMode", "width", "zIndex"],
     twoWay: ["value", "min", "max"],
     events: ["blur", "change", "cleared", "close", "created", "destroyed", "focus", "itemRender", "open"]
+  },
+  timeline: {
+    oneWay: ["align", "cssClass", "items", "orientation", "reverse", "template"],
+    events: ["beforeItemRender", "created"]
   },
   treeView: {
     oneWay: ["allowDragAndDrop", "allowEditing", "allowMultiSelection",

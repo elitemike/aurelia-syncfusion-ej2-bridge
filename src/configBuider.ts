@@ -29,6 +29,8 @@ import { Ej2TreeView } from './widgets/treeView/ej2-treeView';
 import { Ej2Uploader } from './widgets/uploader/ej2-uploader';
 import { Ej2Splitter } from './widgets/splitter/ej2-splitter';
 import { Ej2DropDownTree } from './widgets/dropDownTree/ej2-dropDownTree';
+import { Ej2RichTextEditor } from "./widgets/richTextEditor/ej2-richTextEditor";
+import { Ej2Timeline } from "./widgets/timeline/ej2-timeline";
 
 export class ConfigBuilder {
   public resources: any[] = [];
@@ -60,12 +62,14 @@ export class ConfigBuilder {
       .ej2Pager()
       .ej2ProgressButton()
       .ej2Radio()
+      .ej2RichTextEditor()
       .ej2Schedule()
       .ej2Sidebar()
       .ej2Slider()
       .ej2Splitter()
       .ej2Switch()
       .ej2TextBox()
+      .ej2Timeline()
       .ej2TimePicker()
       .ej2TreeView()
       .ej2Uploader()
@@ -263,6 +267,12 @@ export class ConfigBuilder {
     return this;
   }
 
+  ej2Timeline(): ConfigBuilder {
+    this.resources.push(Ej2Timeline);
+    return this;
+  }
+
+
   ej2TreeView(): ConfigBuilder {
     this.resources.push(Ej2TreeView);
     return this;
@@ -270,6 +280,11 @@ export class ConfigBuilder {
 
   ej2Uploader(): ConfigBuilder {
     this.resources.push(Ej2Uploader);
+    return this;
+  }
+
+  ej2RichTextEditor(): ConfigBuilder {
+    this.resources.push(Ej2RichTextEditor);
     return this;
   }
 }
