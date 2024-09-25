@@ -1,6 +1,6 @@
 # `aurelia-syncfusion-ej-2-bridge`
 
-This is an early release and is not recommended for use
+This wrapper is not fully supported, use at your own risk
 
 # Supported controls
 * Accoridon
@@ -21,12 +21,14 @@ This is an early release and is not recommended for use
 * Pager
 * Progress Button
 * Radio
+* Rich Text Editor
 * Schedule
 * Sidebar
 * Slider
 * Splitter
 * Switch
 * Textbox
+* Timeline
 * Time Picker
 * Tree View
 * Uploader

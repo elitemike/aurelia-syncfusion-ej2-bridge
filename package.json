@@ -1,7 +1,7 @@
 {
   "name": "aurelia-syncfusion-ej2-bridge",
   "description": "An Aurelia plugin wrapper for syncfusion EJ2 controls",
-  "version": "0.1.0-beta.28",
+  "version": "1.0.4",
   "keywords": [
     "aurelia",
     "syncfusion"
@@ -10,18 +10,20 @@
   "author": {
     "name": "Refactored Technology Solutions"
   },
-  "dependencies": {},
+  "dependencies": {
+    "lodash": "^4.17.21"
+  },
   "peerDependencies": {
-    "@syncfusion/ej2": "^20.1.51"
+    "@syncfusion/ej2": "^26.1.38"
   },
   "scripts": {
     "start": "au run",
     "build": "au build-plugin"
   },
   "devDependencies": {
-    "@syncfusion/ej2": "^20.1.51",
+    "@syncfusion/ej2": "^27.1.50",
     "@types/jest": "^24.0.9",
-    "@types/node": "^10.11.6",
+    "@types/node": "^20.12.7",
     "aurelia-animator-css": "^1.0.4",
     "aurelia-bootstrapper": "^2.3.2",
     "aurelia-cli": "^1.1.1",
@@ -51,7 +53,7 @@
     "through2": "^3.0.0",
     "ts-jest": "^24.0.0",
     "tslint": "^5.13.0",
-    "typescript": "^3.1.2",
+    "typescript": "^5.5.2",
     "vinyl-fs": "^3.0.3"
   },
   "engines": {
@@ -99,5 +101,6 @@
       "text",
       "html"
     ]
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }

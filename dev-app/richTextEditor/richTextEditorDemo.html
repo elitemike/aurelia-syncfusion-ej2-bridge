@@ -1,0 +1,6 @@
+<template>
+    <ej2-rich-text-editor view-model.ref="editor" e-model.bind="model"></ej2-rich-text-editor>
+
+    <button click.delegate="getContent()">Get rte content</button>
+    <textarea value.bind="rteContent"></textarea>
+</template>
