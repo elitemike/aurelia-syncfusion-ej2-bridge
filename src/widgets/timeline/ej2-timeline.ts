@@ -1,7 +1,7 @@
 
 import { SyncfusionWrapper } from "../../common/syncfusionWrapper";
 import { inlineView, customElement } from 'aurelia-framework';
-import { generateBindables } from 'utilities/decorator';
+import { generateBindables } from "../../utilities/decorator";
 import { Timeline, TimelineModel } from '@syncfusion/ej2/layouts';
 
 @generateBindables("timeline")
