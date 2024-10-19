@@ -31,6 +31,7 @@ import { Ej2Splitter } from './widgets/splitter/ej2-splitter';
 import { Ej2DropDownTree } from './widgets/dropDownTree/ej2-dropDownTree';
 import { Ej2RichTextEditor } from "./widgets/richTextEditor/ej2-richTextEditor";
 import { Ej2Timeline } from "./widgets/timeline/ej2-timeline";
+import { Ej2ColorPicker } from './widgets/colorPicker/ej2-colorPicker';
 
 export class ConfigBuilder {
   public resources: any[] = [];
@@ -46,6 +47,7 @@ export class ConfigBuilder {
       .ej2Button()
       .ej2Checkbox()
       .ej2CheckboxList()
+      .ej2ColorPicker()
       .ej2ComboBox()
       .ej2DatePicker()
       .ej2DateRangePicker()
@@ -149,6 +151,11 @@ export class ConfigBuilder {
 
   ej2CheckboxList(): ConfigBuilder {
     this.resources.push(Ej2CheckboxList);
+    return this;
+  }
+
+  ej2ColorPicker(): ConfigBuilder {
+    this.resources.push(Ej2ColorPicker);
     return this;
   }
 

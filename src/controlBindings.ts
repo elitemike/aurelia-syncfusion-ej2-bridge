@@ -21,6 +21,11 @@ export const ControlBindings = {
     twoWay: ["checked"],
     events: ["change", "created"]
   },
+  colorPicker: {
+    oneWay: ["columns", "createPopupOnClick", "cssClass", "disabled", "enableOpacity", "inline", "mode", "modeSwitcher", "noColor", "presetColors", "showButtons", "showRecentColors"],
+    twoWay: ["value"],
+    events: ["beforeClose", "beforeModeSwitch", "beforeOpen", "beforeTileRender", "change", "created", "onModeSwitch", "open", "select"]
+  },
   comboBox: {
     oneWay: ["actionFailureTemplate", "allowCustom", "allowFiltering", "autofill", "cssClass", "dataSource", "enabled", "fields",
       "filterType", "floatLabelType", "footerTemplate", "groupTemplate", "headerTemplate", "htmlAttributes", "ignoreAccent", "ignoreCase", "index", "itemTemplate", "noRecordsTemplate", "placeholder", "popupHeight", "popupWidth", "query", "readonly", "showClearButton", "sortOrder", "text", "width", "zIndex"],

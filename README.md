@@ -7,6 +7,7 @@ This wrapper is not fully supported, use at your own risk
 * Auto Complete
 * Button
 * Checkbox
+* Color Picker
 * Combobox
 * Dashboard Layout
 * Date Picker
