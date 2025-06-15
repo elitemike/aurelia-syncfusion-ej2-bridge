@@ -1,4 +1,4 @@
-import { inlineView, customElement, bindable } from 'aurelia-framework';
+import { inlineView, customElement } from 'aurelia-framework';
 import { generateBindables } from '../../utilities/decorator';
 import { SyncfusionWrapper } from '../../common/syncfusionWrapper';
 import { constants } from '../../common/constants';
@@ -6,8 +6,7 @@ import {
     RichTextEditor, RichTextEditorModel, Count, FileManager, EmojiPicker,
     FormatPainter, Toolbar, SlashMenu, ImportExport, Link, Image, HtmlEditor,
     QuickToolbar, Table, Video, Audio, PasteCleanup,
-    ToolbarConfigItems,
-    ToolbarType
+    ToolbarConfigItems
 } from '@syncfusion/ej2-richtexteditor';
 
 @generateBindables("richTextEditor")
@@ -62,8 +61,6 @@ export class Ej2RichTextEditor extends SyncfusionWrapper<RichTextEditor, RichTex
     }
 
     onBeforeWidgetInstantiation() {
-        this.info("e-toolbarSettings", this['e-toolbarSettings'])
-
         if (!this['e-toolbarSettings'] && !this._eModel.toolbarSettings?.items) {
             this._eModel.toolbarSettings = {
                 items: this.defaultToolbarItems
