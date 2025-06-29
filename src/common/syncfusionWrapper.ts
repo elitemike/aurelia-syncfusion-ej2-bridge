@@ -6,13 +6,22 @@ export abstract class SyncfusionWrapper<T, U> extends ControlBase<T, U> {
   protected abstract onWrapperCreated();
   protected abstract onWidgetCreated();
 
-
-
-
   onCreateControl() {
     this.onBeforeWidgetInstantiation();
     this.widget = new this.syncfusionWidgetType(this._eModel);
-    (<any>this.widget).created = () => { this.onWidgetCreated(); };
+    let _modelCreated: () => void = null;
+
+    if (this._eModel["created"]) {
+      _modelCreated = this._eModel["created"];
+    }
+
+    (<any>this.widget).created = () => {
+      if (_modelCreated) {
+        _modelCreated();
+      }
+
+      this.onWidgetCreated();
+    };
     this.onWrapperCreated();
     this.createControlEvents(this.getBindables());
   }
