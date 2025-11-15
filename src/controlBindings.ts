@@ -16,6 +16,16 @@ export const ControlBindings = {
     oneWay: ["disabled", "isPrimary", "content", "cssClass", "enableHtmlSanitizer", "iconCss", "iconPosition", "isToggle", "enableRtl"],
     events: ["created"]
   },
+  chatUI: {
+    oneWay: ["autoScrollToBottom", "emptyChatTemplate",
+      "enableCompactMode", "footerTemplate", "headerIconCss", "headerText", "headerToolbar",
+      "height", "loadOnDemand", "mentionTriggerChar", "mentionUsers", "messageTemplate",
+      "messageToolbarSettings", "placeholder", "showFooter", "showHeader", "showTimeBreak",
+      "showTimeStamp", "suggestionTemplate", "suggestions", "timeBreakTemplate", "timeStampFormat", "typingUsers", "typingUsersTemplate", "user", "width"],
+    twoWay: ["messages"],
+    events: ["created", "mentionSelect", "messageSend", "userTyping"]
+
+  },
   checkbox: {
     oneWay: ["cssClass", "disabled", "enableHtmlSanitizer", "htmlAttributes", "indeterminate", "label", "labelPosition", "name", "value"],
     twoWay: ["checked"],

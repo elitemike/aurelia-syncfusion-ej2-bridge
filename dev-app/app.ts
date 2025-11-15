@@ -19,6 +19,7 @@ export class App {
       { route: "accordion", name: "accordion", moduleId: PLATFORM.moduleName("accordion/accordionDemo") },
       { route: "autoComplete", name: "autoComplete", moduleId: PLATFORM.moduleName("autoComplete/autoCompleteDemo") },
       { route: "button", name: "button", moduleId: PLATFORM.moduleName("button/buttonDemo") },
+      { route: "chatUI", name: "chatUI", moduleId: PLATFORM.moduleName("chatUI/chatUIDemo") },
       { route: "checkbox", name: "checkbox", moduleId: PLATFORM.moduleName("checkbox/checkboxDemo") },
       { route: "colorPicker", name: "colorPicker", moduleId: PLATFORM.moduleName("colorPicker/colorPickerDemo") },
       { route: "combobox", name: "combobox", moduleId: PLATFORM.moduleName("comboBox/comboBoxDemo") },

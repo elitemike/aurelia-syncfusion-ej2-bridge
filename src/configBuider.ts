@@ -1,3 +1,4 @@
+import { Ej2ChatUI } from './widgets/chatUI/ej2-chatUI';
 import { Ej2MultiSelect } from './widgets/multiSelect/ej2-multiSelect';
 import { Ej2Schedule } from './widgets/schedule/ej2-schedule';
 import { Ej2FileManager } from './widgets/fileManager/ej2-fileManager';
@@ -45,6 +46,7 @@ export class ConfigBuilder {
       .ej2Accordion()
       .ej2AutoComplete()
       .ej2Button()
+      .ej2ChatUI()
       .ej2Checkbox()
       .ej2CheckboxList()
       .ej2ColorPicker()
@@ -141,6 +143,11 @@ export class ConfigBuilder {
 
   ej2Button(): ConfigBuilder {
     this.resources.push(Ej2Button);
+    return this;
+  }
+
+  ej2ChatUI(): ConfigBuilder {
+    this.resources.push(Ej2ChatUI);
     return this;
   }
 
