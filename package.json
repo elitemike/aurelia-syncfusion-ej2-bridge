@@ -1,7 +1,7 @@
 {
   "name": "aurelia-syncfusion-ej2-bridge",
   "description": "An Aurelia plugin wrapper for syncfusion EJ2 controls",
-  "version": "1.0.22",
+  "version": "1.0.23",
   "keywords": [
     "aurelia",
     "syncfusion"
