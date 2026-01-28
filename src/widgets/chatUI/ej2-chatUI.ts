@@ -9,18 +9,12 @@ import { ChatUI, ChatUIModel } from '@syncfusion/ej2/interactive-chat';
 @inlineView('<template><div element.ref="widgetElement"></div></template>')
 @customElement('ej2-chat-ui')
 export class Ej2ChatUI extends SyncfusionWrapper<ChatUI, ChatUIModel> {
-  clickEvent: Event = null;
+  protected onWrapperCreated() {
+  }
 
   protected onWidgetCreated() {
 
   }
-
-  protected onWrapperCreated() {
-    this.clickEvent = new CustomEvent("on-click", {
-      bubbles: true
-    });
-  }
-
 
   protected syncfusionWidgetType = ChatUI
 
@@ -28,19 +22,10 @@ export class Ej2ChatUI extends SyncfusionWrapper<ChatUI, ChatUIModel> {
     this.widget.refresh();
   }
 
-  public focusIn() {
-    this.widget.focusIn();
-  }
-
-  public click() {
-    this.widget.click();
-  }
-
   public dataBind() {
     this.widget.dataBind();
   }
 
   public detached() {
-    this.widget.element.removeEventListener("click", this._onClick, false);
   }
 }
