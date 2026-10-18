@@ -1,4 +1,5 @@
 import { inlineView, customElement } from 'aurelia-framework';
+import { constants } from '../../common/constants';
 import { generateBindables } from '../../utilities/decorator';
 import { SyncfusionWrapper } from '../../common/syncfusionWrapper';
 import { RichTextEditor, RichTextEditorModel, Count, FileManager, EmojiPicker, FormatPainter, Toolbar, SlashMenu, ImportExport, Link, Image, HtmlEditor, QuickToolbar, Table, Video, Audio, PasteCleanup } from '@syncfusion/ej2-richtexteditor';
@@ -13,6 +14,11 @@ export class Ej2RichTextEditor extends SyncfusionWrapper<RichTextEditor, RichTex
     protected onWrapperCreated() {
     }
     protected onWidgetCreated() {
+        this.widget.addEventListener("change", (args: any) => { this.onChange(args); });
+    }
+
+    onChange(args: any) {
+        this[`${constants.bindablePrefix}value`] = args.value;
     }
 
     onBeforeWidgetInstantiation() {

@@ -1,158 +1,55 @@
-import { UploaderModel, RemovingEventArgs } from "@syncfusion/ej2-inputs";
-import { Ej2UploaderDataAdapter } from "widgets/uploader/ej2-uploader";
-import { HttpClient, json } from "aurelia-fetch-client";
-import { autoinject, observable, BindingEngine } from "aurelia-framework";
-import { Ej2Uploader } from "index";
-import { v4 as uuid } from "uuid";
+import { UploaderModel, RemovingEventArgs } from '@syncfusion/ej2-inputs';
+import { Ej2UploaderDataAdapter } from 'widgets/uploader/ej2-uploader';
+import { HttpClient, json } from 'aurelia-fetch-client';
+import { autoinject } from 'aurelia-framework';
+import { v4 as uuid } from 'uuid';
+
+// These endpoints need a backend, the e2e tests stub them with page.route.
+const saveUrl = '/api/file/upload/test';
+const removeUrl = '/api/file/remove/test';
 
 @autoinject
 export class UploaderDemo {
-  files = [];
-  files2 = [];
-  files3 = [];
-  widget: Ej2Uploader = null;
-  widget2: Ej2Uploader = null;
-  widget3: Ej2Uploader = null;
+  files: any[] = [];
+  existing: any[] = [{ name: 'existing', size: 3500, type: '.txt', id: 'file-1' }];
+  eventFiles: any[] = [];
+  uploadedEvents = 0;
+  removedEvents = 0;
+  removingEvents = 0;
 
-  constructor(private httpClient: HttpClient, private bindingEngine: BindingEngine) {
+  multipleModel: UploaderModel = { asyncSettings: { saveUrl, removeUrl }, multiple: true };
+  singleModel: UploaderModel = { asyncSettings: { saveUrl, removeUrl }, multiple: false };
+  restrictedModel: UploaderModel = { asyncSettings: { saveUrl, removeUrl }, allowedExtensions: '.txt', maxFileSize: 1000 };
 
-    // this.bindingEngine.collectionObserver(this.files).subscribe(() => {
-    //   this.filesChanged();
-    // });
-
-    let _this = this;
-    // setTimeout(() => {
-    //   _this.files = [{
-    //     "type": ".txt",
-    //     "id": "file1",
-    //     "size": 3500,
-    //     "name": "File Text"
-    //   }];
-    //   //  this.widget.dataBind();
-
-    //   this.bindingEngine.collectionObserver(this.files).subscribe(() => {
-    //     this.filesChanged();
-    //   });
-
-    //   setTimeout(() => {
-    //     _this.files = [{
-    //       "type": ".txt",
-    //       "id": "fileasdf1",
-    //       "size": 3500,
-    //       "name": "2nd Text"
-    //     }];
-
-    //     setTimeout(() => {
-    //       _this.files.push({
-    //         "type": ".txt",
-    //         "id": "fileaseertdf1",
-    //         "size": 3500,
-    //         "name": "last Text"
-    //       });
-    //       console.log("file pushed")
-    //     }, 3000);
-    //   }, 3000);
-    // }, 3000);
-
-  }
-
-
-
-  uploaderModel: UploaderModel = {
-    asyncSettings: {
-      saveUrl: "http://localhost:5000/api/file/upload/test",
-      removeUrl: "http://localhost:5000/api/file/RemoveWithMetaData/test"
-    },
-    multiple: true
-  }
-
-  singleUploadModel: UploaderModel = {
-    asyncSettings: {
-      saveUrl: "http://localhost:5000/api/file/upload/test",
-      removeUrl: "http://localhost:5000/api/file/RemoveWithMetaData/test"
-    },
-    multiple: false
-  }
-
-
-  metadata = {
-    name: "Joe Smith",
-    age: 50
-  };
-
-  metadata2 = {
-    name: "Jane Doe",
-    age: 62
-  };
-
-  uploadResultModel = {
-    id: "id",
-    fileContextId: "fileContextId",
-    sha256: "sha256"
-  };
+  metadata = { name: 'Joe Smith' };
+  uploadResultModel = { id: 'id', fileContextId: 'fileContextId', sha256: 'sha256' };
 
   dataAdapter: Ej2UploaderDataAdapter = {
     remove: async (file: any) => {
-      await this.httpClient.fetch(this.uploaderModel.asyncSettings.removeUrl + "/" + file.id, { method: "post", body: json(this.metadata) })
-        .catch((e) => {
-          throw "File could not be delete"
-        })
-        .then((response: Response) => {
-          if (!response.ok) {
-            throw "File could not be delete"
-          }
-        });
+      const response = await this.httpClient.fetch(`${removeUrl}/${file.id}`, { method: 'post', body: json(this.metadata) });
+      if (!response.ok) {
+        throw 'File could not be deleted';
+      }
     }
-  }
+  };
 
-  filesChanged() {
-    // console.log("files updated", this.files);
-
-    // let _this = this;
-    // setTimeout(() => {
-    //   if (_this.files.length > 0) {
-    //     _this.widget.removeFile(_this.files[0]);
-    //     _this.widget.refresh();
-    //   }
-    // }, 5000);
-  }
-
-  onSuccess(args: any) {
-    console.log(`success args`, args);
-  }
-
-  onFile3Uploaded(args: any) {
-    console.log('file uploaded successsfully', args);
-    this.files3.push(args.detail.uploadedFile);
-  }
-
-  onRemoved(args: any) {
-    console.log('file removed successsfully', args);
-  }
-
-  onFile3Removed(args: any) {
-    console.log('file removed successsfully', args);
-    this.files3.splice(this.files3.findIndex((x) => x.__id === args.detail.removedFile.__id), 1);
-  }
-
-  onUploading(args: any) {
-    //  console.log("uploading args", args);
-  }
-
-  onClearFiles3() {
-    this.files3 = [];
-  }
-
+  constructor(private httpClient: HttpClient) { }
 
   generateMetaData(file) {
-    let metadata: any = {};
-
-    metadata.fileContextId = uuid();
-
-    return metadata;
+    return { fileContextId: uuid() };
   }
 
-  onRemoving(args: RemovingEventArgs) {
-    // args.cancel = true;
+  onRemoving(args: CustomEvent<RemovingEventArgs>) {
+    this.removingEvents++;
+  }
+
+  onUploaded(args: CustomEvent) {
+    this.uploadedEvents++;
+    this.eventFiles.push(args.detail.uploadedFile);
+  }
+
+  onRemoved(args: CustomEvent) {
+    this.removedEvents++;
+    this.eventFiles.splice(this.eventFiles.findIndex((x) => x.__id === args.detail.removedFile.__id), 1);
   }
 }

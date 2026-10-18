@@ -24,6 +24,7 @@ export const test = base.extend<{ app: DemoApp }>({
   app: async ({ page }, use) => {
     const app = new DemoApp(page);
     await mockFileManagerService(page);
+    await mockUploadService(page);
     await use(app);
     expect(app.errors, 'unexpected browser errors').toEqual([]);
   }
@@ -46,4 +47,15 @@ async function mockFileManagerService(page: Page) {
       files: [entry('Documents', false), entry('readme.txt', true)]
     })
   }));
+}
+
+/** Upload endpoints used by the uploader demo, there is no backend behind the dev server. */
+async function mockUploadService(page: Page) {
+  await page.route('**/api/file/**', route => {
+    const url = route.request().url();
+    const body = url.includes('/upload/')
+      ? { id: `id-${Date.now()}`, fileContextId: 'ctx-1', sha256: 'abc123' }
+      : {};
+    return route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(body) });
+  });
 }

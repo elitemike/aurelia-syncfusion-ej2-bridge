@@ -1,44 +1,36 @@
 <template>
-  <h3>Files 1</h3>
-  <ej2-uploader e-files.bind="files" view-model.ref="widget" e-model.bind="uploaderModel" metadata.bind="metadata"
-    metadata-generator.bind="generateMetaData" upload-result-model.bind="uploadResultModel"
-    data-adapter.bind="dataAdapter" on-success.delegate="onSuccess($event)" on-removing.delegate="onRemoving($event)">
-  </ej2-uploader>
+  <h2>Uploader</h2>
 
+  <demo-section id="up-multiple" title="Multiple files" description="Selected files upload immediately, e-files lists the uploaded results.">
+    <ej2-uploader data-testid="up-multiple" e-files.bind="files" e-model.bind="multipleModel" metadata.bind="metadata"
+      metadata-generator.bind="generateMetaData" upload-result-model.bind="uploadResultModel"
+      data-adapter.bind="dataAdapter" on-removing.delegate="onRemoving($event)"></ej2-uploader>
+    <div class="demo-output">Files: <span data-testid="up-multiple-count">${files.length}</span>
+      <ul data-testid="up-multiple-list"><li repeat.for="file of files">${file.name}</li></ul></div>
+  </demo-section>
 
-  ${files.length}
-  <ul>
-    <li repeat.for="file of files">
-      ${file.name}
-    </li>
-  </ul>
+  <demo-section id="up-single" title="Single file" description="multiple false allows one file at a time.">
+    <ej2-uploader data-testid="up-single" e-files.bind="files" e-model.bind="singleModel"
+      upload-result-model.bind="uploadResultModel" data-adapter.bind="dataAdapter"></ej2-uploader>
+  </demo-section>
 
+  <demo-section id="up-existing" title="Preloaded files" description="Files already on the server show in the list and can be removed.">
+    <ej2-uploader data-testid="up-existing" e-files.bind="existing" e-model.bind="multipleModel"
+      data-adapter.bind="dataAdapter" on-removing.delegate="onRemoving($event)"
+      on-remove-success.delegate="onRemoved($event)"></ej2-uploader>
+    <div class="demo-output">Files: <span data-testid="up-existing-count">${existing.length}</span>
+      Removing events: <span data-testid="up-removing-events">${removingEvents}</span>
+      Removed events: <span data-testid="up-removed-events">${removedEvents}</span></div>
+  </demo-section>
 
-  <h3>Files 2</h3>
-  <ej2-uploader e-files.bind="files2" view-model.ref="widget2" e-model.bind="singleUploadModel"
-    metadata.bind="metadata2" metadata-generator.bind="generateMetaData" upload-result-model.bind="uploadResultModel"
-    data-adapter.bind="dataAdapter" on-success.delegate="onSuccess($event)" on-removing.delegate="onRemoving($event)">
-  </ej2-uploader>
+  <demo-section id="up-events" title="Upload events" description="on-uploaded and on-remove-success carry the file.">
+    <ej2-uploader data-testid="up-events" e-files.bind="eventFiles" e-model.bind="multipleModel"
+      upload-result-model.bind="uploadResultModel" data-adapter.bind="dataAdapter"
+      on-uploaded.delegate="onUploaded($event)" on-remove-success.delegate="onRemoved($event)"></ej2-uploader>
+    <div class="demo-output">Uploaded events: <span data-testid="up-uploaded-events">${uploadedEvents}</span></div>
+  </demo-section>
 
-  ${files2.length}
-  <ul>
-    <li repeat.for="file of files2">
-      ${file.name}
-    </li>
-  </ul>
-
-  <h3>Files 3</h3>
-  <button click.delegate="onClearFiles3()">Clear files</button>
-  <ej2-uploader files.bind="files3" view-model.ref="widget3" e-model.bind="singleUploadModel" metadata.bind="metadata2"
-    metadata-generator.bind="generateMetaData" upload-result-model.bind="uploadResultModel"
-    data-adapter.bind="dataAdapter" on-success.delegate="onSuccess($event)" on-removing.delegate="onRemoving($event)"
-    on-uploaded.delegate="onFile3Uploaded($event)" on-remove-success.delegate="onFile3Removed($event)">
-  </ej2-uploader>
-
-  ${files3.length}
-  <ul>
-    <li repeat.for="file of files3">
-      ${file.name}
-    </li>
-  </ul>
+  <demo-section id="up-restricted" title="Validation" description="allowedExtensions and maxFileSize reject files.">
+    <ej2-uploader data-testid="up-restricted" e-model.bind="restrictedModel"></ej2-uploader>
+  </demo-section>
 </template>
