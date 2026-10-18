@@ -1,0 +1,19 @@
+:root { --nav-width: 260px; --border: #e0e0e0; --accent: #6750a4; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: "Segoe UI", Roboto, sans-serif; color: #1c1b1f; }
+.shell { display: flex; min-height: 100vh; }
+.shell__nav { width: var(--nav-width); flex: none; border-right: 1px solid var(--border); padding: 12px; overflow-y: auto; height: 100vh; position: sticky; top: 0; background: #fafafa; }
+.shell__nav h1 { font-size: 16px; margin: 4px 0 12px; }
+.shell__nav h1 a { color: inherit; text-decoration: none; }
+.shell__nav input { width: 100%; padding: 6px 8px; margin-bottom: 10px; border: 1px solid var(--border); border-radius: 4px; }
+.nav-category h2 { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: #777; margin: 14px 0 4px; }
+.nav-category a { display: block; padding: 5px 8px; border-radius: 4px; color: inherit; text-decoration: none; font-size: 14px; }
+.nav-category a:hover { background: #eee; }
+.nav-category a.active { background: var(--accent); color: #fff; }
+.shell__content { flex: 1; min-width: 0; padding: 20px 28px; }
+.demo-section { border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px; margin-bottom: 18px; }
+.demo-section__title { margin: 0 0 4px; font-size: 16px; }
+.demo-section__desc { margin: 0 0 12px; color: #666; font-size: 13px; }
+.demo-output { margin-top: 10px; font-size: 13px; color: #444; }
+.demo-output code { background: #f3f3f3; padding: 1px 5px; border-radius: 3px; }
+.demo-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }

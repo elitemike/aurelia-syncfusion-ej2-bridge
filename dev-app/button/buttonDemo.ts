@@ -1,14 +1,15 @@
 export class ButtonDemo {
   showButton = true;
-  
-  hideClicked(){
-    this.showButton = false;
-    let _this = this;
-    setTimeout(() => {
-      _this.showButton =true;
-    }, 2000);
+  disabled = false;
+  isPrimary = false;
+  isToggle = false;
+  clickCount = 0;
+
+  onClick() {
+    this.clickCount++;
   }
-  buttonClicked() {
-    console.log("button clicked")
+
+  toggleLifecycle() {
+    this.showButton = !this.showButton;
   }
 }

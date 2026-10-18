@@ -1,4 +1,30 @@
 <template>
-  <ej2-button if.bind="showButton" on-click.delegate="buttonClicked()">My Button</ej2-button>
-  <ej2-button on-click.delegate="hideClicked()">Hide</ej2-button>
+  <h2>Button</h2>
+
+  <demo-section id="button-default" title="Default" description="Content comes from the element body via slot.">
+    <ej2-button data-testid="btn-default">My Button</ej2-button>
+  </demo-section>
+
+  <demo-section id="button-click" title="Click event" description="on-click is re-dispatched from the wrapper element.">
+    <ej2-button data-testid="btn-click" on-click.delegate="onClick()">Click me</ej2-button>
+    <div class="demo-output">Clicks: <span data-testid="btn-click-count">${clickCount}</span></div>
+  </demo-section>
+
+  <demo-section id="button-properties" title="Bound properties" description="disabled, isPrimary and isToggle follow the view-model.">
+    <div class="demo-row">
+      <ej2-button data-testid="btn-bound" e-disabled.bind="disabled" e-is-primary.bind="isPrimary" e-is-toggle.bind="isToggle">Bound</ej2-button>
+      <label><input type="checkbox" data-testid="chk-disabled" checked.bind="disabled" /> disabled</label>
+      <label><input type="checkbox" data-testid="chk-primary" checked.bind="isPrimary" /> primary</label>
+      <label><input type="checkbox" data-testid="chk-toggle" checked.bind="isToggle" /> toggle</label>
+    </div>
+  </demo-section>
+
+  <demo-section id="button-icon" title="Icon" description="iconCss and iconPosition.">
+    <ej2-button data-testid="btn-icon" e-icon-css="e-icons e-add" e-icon-position="Right">Add</ej2-button>
+  </demo-section>
+
+  <demo-section id="button-lifecycle" title="Lifecycle" description="Widget is destroyed and recreated with if.bind.">
+    <ej2-button if.bind="showButton" data-testid="btn-lifecycle">I come and go</ej2-button>
+    <ej2-button data-testid="btn-lifecycle-toggle" on-click.delegate="toggleLifecycle()">Toggle</ej2-button>
+  </demo-section>
 </template>

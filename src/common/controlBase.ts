@@ -121,10 +121,15 @@ export class ControlBase<T, U> {
 
       (<any>this.widget).addEventListener(eventName,
         (args) => {
-          this.element.dispatchEvent(new CustomEvent(event, {
-            bubbles: true,
-            detail: args
-          }))
+          // HTML attributes are case-insensitive, so `e-on-rowSelected.delegate` in a template listens for
+          // `e-on-rowselected` and `e-on-row-selected.delegate` for the kebab form. Dispatch every spelling.
+          const names = new Set([event, event.toLowerCase(), toKebabCase(event)]);
+          names.forEach((name) => {
+            this.element.dispatchEvent(new CustomEvent(name, {
+              bubbles: true,
+              detail: args
+            }));
+          });
         }
       );
       // this.widget[eventName] = (args) => {
@@ -189,6 +194,10 @@ export class ControlBase<T, U> {
 
 
 
+}
+
+function toKebabCase(value: string) {
+  return value.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
 }
 
 export const ExcludedProperties = [

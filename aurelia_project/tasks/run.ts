@@ -14,6 +14,9 @@ let serve = gulp.series(
       open: CLIOptions.hasFlag('open'),
       port: CLIOptions.getFlagValue('port') || project.platform.port,
       logLevel: 'silent',
+      // ghost mode mirrors clicks/scrolls across every connected browser, which breaks parallel e2e runs
+      ghostMode: false,
+      notify: false,
       server: {
         baseDir: [project.platform.baseDir],
         middleware: [historyApiFallback(), function(req, res, next) {

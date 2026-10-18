@@ -6,6 +6,18 @@ export class GridDemo {
     { field: 'Freight', headerText: 'Freight', textAlign: 'Right', width: 120, format: 'C' },
     { field: 'OrderDate', headerText: 'Order Date', width: 140, format: 'yMd' }
   ];
+  pageSettings = { pageSize: 5 };
+  selectionSettings = { type: 'Single' };
+  selectedOrder: number = null;
+  created = false;
+
+  onCreated() {
+    this.created = true;
+  }
+
+  onRowSelected(event: CustomEvent) {
+    this.selectedOrder = event.detail.data.OrderID;
+  }
 }
 
 

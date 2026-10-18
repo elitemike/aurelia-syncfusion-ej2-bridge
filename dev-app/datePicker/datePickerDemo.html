@@ -1,7 +1,21 @@
 <template>
-  <ej2-date-picker e-value.bind="value"></ej2-date-picker>
-  <h4>
-    Selected value
-  </h4>
-  <span>${value}</span>
+  <h2>DatePicker</h2>
+
+  <demo-section id="dp-value" title="Two-way value" description="e-value.two-way stays in sync with the picked date.">
+    <ej2-date-picker data-testid="dp-value" e-value.two-way="value" e-format="yyyy-MM-dd"
+      e-on-change.delegate="onChange()"></ej2-date-picker>
+    <div class="demo-output">Value: <code data-testid="dp-value-out">${value | dateIso}</code>
+      Changes: <span data-testid="dp-change-count">${changeCount}</span></div>
+    <button data-testid="dp-set" click.delegate="setDate()">Set 2024-05-20</button>
+  </demo-section>
+
+  <demo-section id="dp-range" title="Min / max" description="Dates outside the range are disabled in the popup.">
+    <ej2-date-picker data-testid="dp-range" e-value.bind="value" e-min.bind="min" e-max.bind="max" e-format="yyyy-MM-dd"></ej2-date-picker>
+  </demo-section>
+
+  <demo-section id="dp-options" title="Options" description="placeholder, floatLabelType, showClearButton, readonly.">
+    <ej2-date-picker data-testid="dp-options" e-placeholder="Pick a date" e-float-label-type="Auto"
+      e-show-clear-button="true"></ej2-date-picker>
+    <ej2-date-picker data-testid="dp-readonly" e-readonly="true" e-value.bind="value" e-format="yyyy-MM-dd"></ej2-date-picker>
+  </demo-section>
 </template>

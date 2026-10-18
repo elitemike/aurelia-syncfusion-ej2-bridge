@@ -1,6 +1,16 @@
 <template>
-  <ej2-grid e-height="400" e-columns.bind="gridColumns" e-data-source.bind="gridDataSource" e-allow-selection="true"
-    e-allow-sorting="true" e-allow-paging="true" e-show-column-chooser="true" e-allow-reordering="true"
-    e-toolbar.bind="['ColumnChooser']">
-  </ej2-grid>
+  <h2>Grid</h2>
+
+  <demo-section id="grid-default" title="Paging, sorting and selection" description="Module injection (Page, Sort, Selection) is driven by the bound options.">
+    <ej2-grid data-testid="grid-main" e-columns.bind="gridColumns" e-data-source.bind="gridDataSource"
+      e-allow-paging="true" e-page-settings.bind="pageSettings" e-allow-sorting="true" e-allow-selection="true"
+      e-selection-settings.bind="selectionSettings" e-on-created.delegate="onCreated()"
+      e-on-row-selected.delegate="onRowSelected($event)"></ej2-grid>
+    <div class="demo-output">Selected order: <code data-testid="grid-selected">${selectedOrder}</code></div>
+  </demo-section>
+
+  <demo-section id="grid-chooser" title="Column chooser and reordering" description="showColumnChooser with a ColumnChooser toolbar item.">
+    <ej2-grid data-testid="grid-chooser" e-height="250" e-columns.bind="gridColumns" e-data-source.bind="gridDataSource"
+      e-allow-reordering="true" e-show-column-chooser="true" e-toolbar.bind="['ColumnChooser']"></ej2-grid>
+  </demo-section>
 </template>
