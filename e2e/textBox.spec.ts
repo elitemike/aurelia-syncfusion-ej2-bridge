@@ -45,3 +45,12 @@ test('readonly, disabled and multiline', async ({ app }) => {
   await expect(section.getByTestId('tb-disabled').locator('input')).toBeDisabled();
   await expect(section.getByTestId('tb-multiline').locator('textarea')).toBeVisible();
 });
+
+test('width and maxLength are bindable', async ({ app }) => {
+  const section = app.section('tb-width');
+  await expect.poll(async () => (await section.locator('.e-input-group').boundingBox()).width).toBeCloseTo(180, 0);
+  const input = section.locator('input.e-textbox');
+  await input.click();
+  await input.pressSequentially('123456789');
+  await expect(input).toHaveValue('abc12');
+});

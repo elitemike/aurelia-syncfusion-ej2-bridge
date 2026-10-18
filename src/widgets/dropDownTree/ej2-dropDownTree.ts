@@ -22,5 +22,6 @@ export class Ej2DropDownTree extends SyncfusionWrapper<DropDownTree, DropDownTre
 
   onChange(args) {
     this[`${constants.bindablePrefix}value`] = args.value;
+    this[`${constants.bindablePrefix}text`] = this.widget.text;
   }
 }

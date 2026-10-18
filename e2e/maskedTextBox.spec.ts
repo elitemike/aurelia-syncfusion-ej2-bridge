@@ -49,3 +49,7 @@ test('floating label and clear button', async ({ app, page }) => {
   await section.locator('.e-clear-icon').click();
   await expect(input).toHaveValue('____');
 });
+
+test('readonly is bindable', async ({ app }) => {
+  await expect(app.section('mtb-readonly').locator('input.e-maskedtextbox')).toHaveAttribute('readonly', '');
+});

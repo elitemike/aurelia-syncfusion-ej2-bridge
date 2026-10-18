@@ -10,6 +10,7 @@ export class DropDownTreeDemo {
   ];
   fields = { dataSource: this.data, value: 'id', text: 'name', child: 'children' };
   selected: string[] = ['03-02'];
+  selectedText = '';
   changeCount = 0;
 
   onChange() {

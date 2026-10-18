@@ -1,182 +1,496 @@
-import { Splitter } from '@syncfusion/ej2-layouts';
+// Bindable names per control. Keep in sync with the Syncfusion models: node tools/check-bindings.js --write
 export const ControlBindings = {
   common: {
-    oneWay: ["enablePersistence", "enableRtl", "locale"]
+    oneWay: [
+      "enablePersistence", "enableRtl", "locale"
+    ]
   },
   accordion: {
-    oneWay: ["animation", "dataSource", "enableHtmlSanitizer", "expandMode", "expandedIndices", "height", "itemTemplate", "items", "width"],
-    events: ["clicked", "created", "destroyed", "expanded", "expanding"]
+    oneWay: [
+      "animation", "dataSource", "enableHtmlSanitizer", "expandMode", "expandedIndices", "height",
+      "itemTemplate", "items", "width", "headerTemplate"
+    ],
+    events: [
+      "clicked", "created", "destroyed", "expanded", "expanding"
+    ]
   },
   autoComplete: {
-    oneWay: ["actionFailureTemplate", "allowCustom", "autofill", "cssClass", "dataSource", "enabled", "fields", "ignoreAccent", "ignoreCase", "itemTemplate", "minLength", "noRecordsTemplate", "placeholder", "popupHeight", "popupWidth", "query", "readonly", "showClearButton", "showPopupButton", "sortOrder", "suggestionCount", "width", "zIndex"],
-    twoWay: ["value"],
-    events: ["actionBegin", "actionComplete", "actionFailure", "beforeOpen", "blur", "change", "close", "created", "customValueSpecifier", "dataBound", "destroyed", "filtering", "focus", "open", "select"]
+    oneWay: [
+      "actionFailureTemplate", "allowCustom", "autofill", "cssClass", "dataSource", "enabled", "fields",
+      "ignoreAccent", "ignoreCase", "itemTemplate", "minLength", "noRecordsTemplate", "placeholder",
+      "popupHeight", "popupWidth", "query", "readonly", "showClearButton", "showPopupButton", "sortOrder",
+      "suggestionCount", "width", "zIndex", "highlight", "htmlAttributes", "filterType", "index",
+      "floatLabelType", "valueTemplate", "filterBarPlaceholder", "allowFiltering", "text",
+      "isDeviceFullScreen", "headerTemplate", "footerTemplate", "allowObjectBinding", "debounceDelay",
+      "enableVirtualization", "allowResize", "groupTemplate"
+    ],
+    twoWay: [
+      "value"
+    ],
+    events: [
+      "actionBegin", "actionComplete", "actionFailure", "beforeOpen", "blur", "change", "close", "created",
+      "customValueSpecifier", "dataBound", "destroyed", "filtering", "focus", "open", "select",
+      "resizeStop", "resizing", "resizeStart"
+    ]
   },
   button: {
-    oneWay: ["disabled", "isPrimary", "content", "cssClass", "enableHtmlSanitizer", "iconCss", "iconPosition", "isToggle", "enableRtl"],
-    events: ["created"]
+    oneWay: [
+      "disabled", "isPrimary", "content", "cssClass", "enableHtmlSanitizer", "iconCss", "iconPosition",
+      "isToggle", "enableRtl", "enableRepeat", "repeatDelay", "repeatInterval"
+    ],
+    events: [
+      "created", "clicked"
+    ]
   },
   checkbox: {
-    oneWay: ["cssClass", "disabled", "enableHtmlSanitizer", "htmlAttributes", "indeterminate", "label", "labelPosition", "name", "value"],
-    twoWay: ["checked"],
-    events: ["change", "created"]
+    oneWay: [
+      "cssClass", "disabled", "enableHtmlSanitizer", "htmlAttributes", "indeterminate", "label",
+      "labelPosition", "name", "value"
+    ],
+    twoWay: [
+      "checked"
+    ],
+    events: [
+      "change", "created"
+    ]
   },
   comboBox: {
-    oneWay: ["actionFailureTemplate", "allowCustom", "allowFiltering", "autofill", "cssClass", "dataSource", "enabled", "fields",
-      "filterType", "floatLabelType", "footerTemplate", "groupTemplate", "headerTemplate", "htmlAttributes", "ignoreAccent", "ignoreCase", "index", "itemTemplate", "noRecordsTemplate", "placeholder", "popupHeight", "popupWidth", "query", "readonly", "showClearButton", "sortOrder", "text", "width", "zIndex"],
-    twoWay: ["value"],
-    events: ["actionBegin", "actionComplete", "actionFailure", "beforeOpen", "blur", "change", "close", "created", "customValueSpecifier", "dataBound", "destroyed", "filtering", "focus", "open", "select"]
+    oneWay: [
+      "actionFailureTemplate", "allowCustom", "allowFiltering", "autofill", "cssClass", "dataSource",
+      "enabled", "fields", "filterType", "floatLabelType", "footerTemplate", "groupTemplate",
+      "headerTemplate", "htmlAttributes", "ignoreAccent", "ignoreCase", "index", "itemTemplate",
+      "noRecordsTemplate", "placeholder", "popupHeight", "popupWidth", "query", "readonly",
+      "showClearButton", "sortOrder", "text", "width", "zIndex", "isDeviceFullScreen", "valueTemplate",
+      "filterBarPlaceholder", "allowObjectBinding", "debounceDelay", "enableVirtualization", "allowResize"
+    ],
+    twoWay: [
+      "value"
+    ],
+    events: [
+      "actionBegin", "actionComplete", "actionFailure", "beforeOpen", "blur", "change", "close", "created",
+      "customValueSpecifier", "dataBound", "destroyed", "filtering", "focus", "open", "select",
+      "resizeStop", "resizing", "resizeStart"
+    ]
   },
   dashboardLayout: {
-    oneWay: ["allowDragging", "allowFloating", "allowResizing", "cellSpacing", "columns", "draggableHandle",
-      "enableHtmlSanitizer", "mediaQuery", "panels", "resizableHandles", "showGridLines"],
-    events: ["change", "created", "destroyed", "drag", "dragStart", "dragStop", "resize", "resizeStart", "resizeStop"]
+    oneWay: [
+      "allowDragging", "allowFloating", "allowResizing", "cellSpacing", "columns", "draggableHandle",
+      "enableHtmlSanitizer", "mediaQuery", "panels", "resizableHandles", "showGridLines", "allowPushing",
+      "cellAspectRatio"
+    ],
+    events: [
+      "change", "created", "destroyed", "drag", "dragStart", "dragStop", "resize", "resizeStart",
+      "resizeStop"
+    ]
   },
   datePicker: {
-    oneWay: ["allowEdit", "calendarMode", "cssClass", "dayHeaderFormat", "depth", "enableMask", "enabled", "firstDayOfWeek", "floatLabelType", "format", "htmlAttributes", "keyConfigs", "max", "min", "openOnFocus", "placeholder", "readonly", "serverTimezoneOffset", "showClearButton", "showTodayButton", "start", "strictMode", "weekNumber", "weekRule", "width", "zindex"],
-    twoWay: ["value"],
-    events: ["blur", "change", "close", "created", "destroyed", "focus", "navigated", "open", "renderDayCell"]
+    oneWay: [
+      "allowEdit", "calendarMode", "cssClass", "dayHeaderFormat", "depth", "enableMask", "enabled",
+      "firstDayOfWeek", "floatLabelType", "format", "htmlAttributes", "keyConfigs", "max", "min",
+      "openOnFocus", "placeholder", "readonly", "serverTimezoneOffset", "showClearButton",
+      "showTodayButton", "start", "strictMode", "weekNumber", "weekRule", "width", "zIndex",
+      "inputFormats", "fullScreenMode", "values", "isMultiSelection", "maskPlaceholder"
+    ],
+    twoWay: [
+      "value"
+    ],
+    events: [
+      "blur", "change", "close", "created", "destroyed", "focus", "navigated", "open", "renderDayCell",
+      "cleared"
+    ]
   },
   dateRangePicker: {
-    oneWay: ["allowEdit", "cssClass", "dayHeaderFormat", "depth", "enabled", "firstDayOfWeek", "floatLabelType", "format", "htmlAttributes", "keyConfigs", "max", "maxDays", "min", "minDays", "openOnFocus", "placeholder", "presets", "readonly", "separator", "serverTimezoneOffset", "showClearButton", "start", "strictMode", "weekNumber", "weekRule", "width", "zindex"],
-    twoWay: ["value", "startDate", "endDate"],
-    events: ["blur", "change", "cleared", "close", "created", "destroyed", "focus", "navigated", "open", "renderDayCell", "select"]
+    oneWay: [
+      "allowEdit", "cssClass", "dayHeaderFormat", "depth", "enabled", "firstDayOfWeek", "floatLabelType",
+      "format", "htmlAttributes", "keyConfigs", "max", "maxDays", "min", "minDays", "openOnFocus",
+      "placeholder", "presets", "readonly", "separator", "serverTimezoneOffset", "showClearButton",
+      "start", "strictMode", "weekNumber", "weekRule", "width", "zIndex", "calendarMode", "fullScreenMode",
+      "showTodayButton", "inputFormats"
+    ],
+    twoWay: [
+      "value", "startDate", "endDate"
+    ],
+    events: [
+      "blur", "change", "cleared", "close", "created", "destroyed", "focus", "navigated", "open",
+      "renderDayCell", "select"
+    ]
   },
   dateTimePicker: {
-    oneWay: ["allowEdit", "calendarMode", "cssClass", "dayHeaderFormat", "depth", "enableMask", "enabled", "firstDayOfWeek", "floatLabelType", "format", "htmlAttributes", "keyConfigs", "maskPlaceholder", "max", "min", "openOnFocus", "placeholder", "readonly", "scrollTo", "serverTimezoneOffset", "showClearButton", "showTodayButton", "start", "step", "strictMode", "timeFormat", "weekNumber", "weekRule", "width", "zindex"],
-    twoWay: ["value"],
-    events: ["blur", "change", "cleared", "close", "created", "destroyed", "focus", "navigated", "open", "renderDayCell"]
+    oneWay: [
+      "allowEdit", "calendarMode", "cssClass", "dayHeaderFormat", "depth", "enableMask", "enabled",
+      "firstDayOfWeek", "floatLabelType", "format", "htmlAttributes", "keyConfigs", "maskPlaceholder",
+      "max", "min", "openOnFocus", "placeholder", "readonly", "scrollTo", "serverTimezoneOffset",
+      "showClearButton", "showTodayButton", "start", "step", "strictMode", "timeFormat", "weekNumber",
+      "weekRule", "width", "zIndex", "isMultiSelection", "values", "fullScreenMode", "minTime", "maxTime",
+      "inputFormats"
+    ],
+    twoWay: [
+      "value"
+    ],
+    events: [
+      "blur", "change", "cleared", "close", "created", "destroyed", "focus", "navigated", "open",
+      "renderDayCell"
+    ]
   },
   dropDownList: {
-    oneWay: ["actionFailureTemplate", "allowFiltering", "cssClass", "dataSource", "enabled", "fields", "filterBarPlaceholder",
-      "filterType", "floatLabelType", "footerTemplate", "groupTemplate", "headerTemplate", "htmlAttributes", "ignoreAccent", "ignoreCase", "index", "itemTemplate", "noRecordsTemplate", "placeholder", "popupHeight", "popupWidth", "query", "readonly", "showClearButton", "sortOrder", "text", "valueTemplate", "width", "zindex"],
-    twoWay: ["value"],
-    events: ["actionBegin", "actionComplete", "actionFailure", "beforeOpen", "blur", "change", "close", "created", "dataBound", "destroyed", "filtering", "focus", "open", "select"]
+    oneWay: [
+      "actionFailureTemplate", "allowFiltering", "cssClass", "dataSource", "enabled", "fields",
+      "filterBarPlaceholder", "filterType", "floatLabelType", "footerTemplate", "groupTemplate",
+      "headerTemplate", "htmlAttributes", "ignoreAccent", "ignoreCase", "index", "itemTemplate",
+      "noRecordsTemplate", "placeholder", "popupHeight", "popupWidth", "query", "readonly",
+      "showClearButton", "sortOrder", "text", "valueTemplate", "width", "zIndex", "debounceDelay",
+      "isDeviceFullScreen", "enableVirtualization", "allowResize", "allowObjectBinding"
+    ],
+    twoWay: [
+      "value"
+    ],
+    events: [
+      "actionBegin", "actionComplete", "actionFailure", "beforeOpen", "blur", "change", "close", "created",
+      "dataBound", "destroyed", "filtering", "focus", "open", "select", "resizeStop", "resizing",
+      "resizeStart"
+    ]
   },
   dropDownTree: {
-    oneWay: ["actionFailureTemplate", "allowFiltering", "allowMultiSelection", "changeOnBlur", "cssClass", "customTemplate", "delimiterChar", "enabled", "fields", "filterBarPlaceholder", "filterType", "floatLabelType", "footerTemplate", "headerTemplate", "htmlAttributes", "ignoreAccent", "ignoreCase", "itemTemplate", "mode", "noRecordsTemplate", "placeholder", "popupHeight", "popupWidth", "readonly", "selectAllText", "showCheckBox", "showClearButton", "showDropDownIcon", "showSelectAll", "sortOrder", "treeSettings", "unSelectAllText", "width", "wrapText", "zIndex"],
-    twoWay: ["text", "value"],
-    events: ["actionFailure", "beforeOpen", "blur", "change", "close", "created", "dataBound", "destroyed", "filtering", "focus", "keyPress", "open", "select"]
+    oneWay: [
+      "actionFailureTemplate", "allowFiltering", "allowMultiSelection", "changeOnBlur", "cssClass",
+      "customTemplate", "delimiterChar", "enabled", "fields", "filterBarPlaceholder", "filterType",
+      "floatLabelType", "footerTemplate", "headerTemplate", "htmlAttributes", "ignoreAccent", "ignoreCase",
+      "itemTemplate", "mode", "noRecordsTemplate", "placeholder", "popupHeight", "popupWidth", "readonly",
+      "selectAllText", "showCheckBox", "showClearButton", "showDropDownIcon", "showSelectAll", "sortOrder",
+      "treeSettings", "unSelectAllText", "width", "wrapText", "zIndex", "destroyPopupOnHide",
+      "enableHtmlSanitizer", "disableHtmlEncode", "valueTemplate"
+    ],
+    twoWay: [
+      "text", "value"
+    ],
+    events: [
+      "actionFailure", "beforeOpen", "blur", "change", "close", "created", "dataBound", "destroyed",
+      "filtering", "focus", "keyPress", "open", "select"
+    ]
   },
   fileManager: {
-    oneWay: ["ajaxSettings", "allowDragAndDrop", "allowMultiSelection", "contextMenuSettings", "cssClass", "detailsViewSettings", "enableHtmlSanitizer", "height", "navigationPaneSettings", "path", "popupTarget", "rootAliasName", "searchSettings", "selectedItems", "showFileExtension", "showHiddenItems", "showThumbnail", "sortBy", "sortOrder", "toolbarSettings", "uploadSettings", "view", "width"],
-    twoWay: [],
-    events: ["beforeDownload", "beforeImageLoad", "beforePopupClose", "beforePopupOpen", "beforeSend", "created", "destroyed", "failure", "fileDragStart", "fileDragStop", "fileDragging", "fileDropped", "fileLoad", "fileOpen", "fileSelect", "fileSelection", "menuClick", "menuOpen", "popupClose", "popupOpen", "success", "toolbarClick", "toolbarCreate", "uploadListCreate"]
+    oneWay: [
+      "ajaxSettings", "allowDragAndDrop", "allowMultiSelection", "contextMenuSettings", "cssClass",
+      "detailsViewSettings", "enableHtmlSanitizer", "height", "navigationPaneSettings", "path",
+      "popupTarget", "rootAliasName", "searchSettings", "selectedItems", "showFileExtension",
+      "showHiddenItems", "showThumbnail", "sortBy", "sortOrder", "toolbarSettings", "uploadSettings",
+      "view", "width", "fileSystemData", "navigationPaneTemplate", "largeIconsTemplate",
+      "showItemCheckBoxes", "enableVirtualization", "sortComparer", "enableRangeSelection", "toolbarItems",
+      "enableWebMcp", "webMcpSettings"
+    ],
+    events: [
+      "beforeDownload", "beforeImageLoad", "beforePopupClose", "beforePopupOpen", "beforeSend", "created",
+      "destroyed", "failure", "fileDragStart", "fileDragStop", "fileDragging", "fileDropped", "fileLoad",
+      "fileOpen", "fileSelect", "fileSelection", "menuClick", "menuOpen", "popupClose", "popupOpen",
+      "success", "toolbarClick", "toolbarCreate", "uploadListCreate", "beforeFolderCreate", "folderCreate",
+      "beforeDelete", "delete", "beforeRename", "rename", "beforeMove", "move", "search", "menuClose",
+      "beforeWebMcpToolExecute"
+    ]
   },
   grid: {
-    oneWay: ["aggregates", "allowExcelExport", "disabled", "allowFiltering", "allowGrouping", "allowKeyboard", "allowMultiSorting", "allowPaging", "allowPdfExport",
-      "allowReordering", "allowResizing", "allowRowDragAndDrop", "allowSelection", "allowSorting", "allowTextWrap", "childGrid", "clipMode", "clipboardModule", "columnChooserSettings",
-      "columnMenuItems", "columnMenuModule", "columnQueryMode", "columns", "contextMenuItems", "contextMenuModule", "cssClass", "currentAction", "currentViewData", "dataSource",
-      "detailTemplate", "editModule", "editSettings", "ej2StatePersistenceVersion", "enableAdaptiveUI", "enableAltRow", "enableAutoFill", "enableColumnVirtualization", "enableHeaderFocus", "enableHover", "enableImmutableMode", "enableInfiniteScrolling", "enableStickyHeader", "enableVirtualMaskRow", "enableVirtualization",
-      "excelExportModule", "filterModule", "filterSettings", "frozenColumns", "frozenRows", "gridLines", "groupModule", "groupSettings", "height", "hierarchyPrintMode", "infiniteScrollModule", "infiniteScrollSettings", "keyboardModule", "loadingIndicator",
-      "pageSettings", "pagerModule", "pagerTemplate", "parentDetails", "pdfExportModule", "printMode", "printModule", "query", "queryString", "reorderModule", "resizeSettings", "rowDragAndDropModule", "rowDropSettings", "rowHeight", "rowRenderingMode",
-      "rowTemplate", "scrollModule", "searchModule", "searchSettings", "selectionModule", "selectionSettings", "showColumnChooser", "showColumnMenu", "showHider", "sortModule",
-      "sortSettings", "textWrapSettings", "toolbar", "toolbarModule", "toolbarTemplate", "width"],
+    oneWay: [
+      "aggregates", "allowExcelExport", "allowFiltering", "allowGrouping", "allowKeyboard",
+      "allowMultiSorting", "allowPaging", "allowPdfExport", "allowReordering", "allowResizing",
+      "allowRowDragAndDrop", "allowSelection", "allowSorting", "allowTextWrap", "childGrid", "clipMode",
+      "columnChooserSettings", "columnMenuItems", "columnQueryMode", "columns", "contextMenuItems",
+      "cssClass", "currentAction", "currentViewData", "dataSource", "detailTemplate", "editSettings",
+      "ej2StatePersistenceVersion", "enableAdaptiveUI", "enableAltRow", "enableAutoFill",
+      "enableColumnVirtualization", "enableHeaderFocus", "enableHover", "enableImmutableMode",
+      "enableInfiniteScrolling", "enableStickyHeader", "enableVirtualMaskRow", "enableVirtualization",
+      "filterSettings", "frozenColumns", "frozenRows", "gridLines", "groupSettings", "height",
+      "hierarchyPrintMode", "infiniteScrollSettings", "loadingIndicator", "pageSettings", "pagerTemplate",
+      "parentDetails", "printMode", "query", "queryString", "resizeSettings", "rowDropSettings",
+      "rowHeight", "rowRenderingMode", "rowTemplate", "searchSettings", "selectionSettings",
+      "showColumnChooser", "showColumnMenu", "showHider", "sortSettings", "textWrapSettings", "toolbar",
+      "toolbarTemplate", "width", "enableHtmlSanitizer", "enableDomVirtualization",
+      "domVirtualizationSettings", "detailTemplateHeight", "allowAdvancedFiltering",
+      "advancedFilterSettings", "adaptiveUIMode", "enableRowSpan", "enableColumnSpan", "autoFit",
+      "formulaSettings", "emptyRecordTemplate", "emptyRecordMode", "headerRowHeight", "footerRowHeight",
+      "currencyCode", "exportGrids", "isRowSelectable", "isRowPinned", "setRowHeight", "enableWebMcp",
+      "webMcpSettings"
+    ],
+    twoWay: [
+      "selectedRowIndex"
+    ],
     fromView: [
       "currentViewData"
     ],
-    twoWay: ["selectedRowIndex"],
-    events: ["actionBegin", "actionComplete", "actionFailure", "batchAdd", "batchCancel", "batchDelete", "beforeAutoFill", "beforeBatchAdd", "beforeBatchDelete", "beforeBatchSave", "beforeCopy", "beforeDataBound", "beforeExcelExport", "beforeOpenAdaptiveDialog", "beforeOpenColumnChooser", "beforePaste", "beforePdfExport", "beforePrint", "beginEdit", "cellDeselected", "cellDeselecting", "cellEdit", "cellSave", "cellSaved", "cellSelected", "cellSelecting", "checkBoxChange", "columnDataStateChange", "columnDeselected", "columnDeselecting", "columnDrag", "columnDragStart", "columnDrop", "columnMenuClick", "columnMenuOpen", "columnSelected", "columnSelecting", "commandClick", "contextMenuClick", "contextMenuOpen", "created", "dataBound", "dataSourceChanged", "dataStateChange", "destroyed", "detailDataBound", "excelAggregateQueryCellInfo", "excelExportComplete", "excelHeaderQueryCellInfo", "excelQueryCellInfo", "exportDetailDataBound", "exporeGroupCaption", "headerCellInfo", "keyPressed", "lazyLoadGroupCollapse", "lazyLoadGroupExpand", "load", "pdfAggregateQueryCellInfo", "pdfExportComplete", "pdfHeaderQueryCellInfo", "pdfQueryCellInfo", "printComplete", "queryCellInfo", "recordClick", "recordDoubleClick", "resizeStart", "resizeStop", "resizing", "rowDataBound", "rowDeselected", "rowDeselecting", "rowDrag", "rowDragStart", "rowDragStartHelper", "rowDrop", "rowSelected", "rowSelecting", "toolbarClick"]
+    events: [
+      "actionBegin", "actionComplete", "actionFailure", "batchAdd", "batchCancel", "batchDelete",
+      "beforeAutoFill", "beforeBatchAdd", "beforeBatchDelete", "beforeBatchSave", "beforeCopy",
+      "beforeDataBound", "beforeExcelExport", "beforeOpenAdaptiveDialog", "beforeOpenColumnChooser",
+      "beforePaste", "beforePdfExport", "beforePrint", "beginEdit", "cellDeselected", "cellDeselecting",
+      "cellEdit", "cellSave", "cellSaved", "cellSelected", "cellSelecting", "checkBoxChange",
+      "columnDataStateChange", "columnDeselected", "columnDeselecting", "columnDrag", "columnDragStart",
+      "columnDrop", "columnMenuClick", "columnMenuOpen", "columnSelected", "columnSelecting",
+      "commandClick", "contextMenuClick", "contextMenuOpen", "created", "dataBound", "dataSourceChanged",
+      "dataStateChange", "destroyed", "detailDataBound", "excelAggregateQueryCellInfo",
+      "excelExportComplete", "excelHeaderQueryCellInfo", "excelQueryCellInfo", "exportDetailDataBound",
+      "exportGroupCaption", "headerCellInfo", "keyPressed", "lazyLoadGroupCollapse", "lazyLoadGroupExpand",
+      "load", "pdfAggregateQueryCellInfo", "pdfExportComplete", "pdfHeaderQueryCellInfo",
+      "pdfQueryCellInfo", "printComplete", "queryCellInfo", "recordClick", "recordDoubleClick",
+      "resizeStart", "resizeStop", "resizing", "rowDataBound", "rowDeselected", "rowDeselecting",
+      "rowDrag", "rowDragStart", "rowDragStartHelper", "rowDrop", "rowSelected", "rowSelecting",
+      "toolbarClick", "cellFocus", "exportDetailTemplate", "detailExpand", "detailCollapse",
+      "detailExpanded", "detailCollapsed", "contextMenuClose", "columnMenuClose",
+      "beforeWebMcpToolExecute", "beforeDetailTemplateDetach", "beforeCustomFilterOpen",
+      "advancedFilterOpen", "advancedFilterClose", "advancedFilterBegin", "advancedFilterComplete"
+    ]
   },
   listView: {
-    oneWay: ["animation", "checkBoxPosition", "cssClass", "dataSource", "enable", "enableHtmlSanitizer", "enableVirtualization", "fields", "groupTemplate", "headerTemplate", "headerTitle", "height", "htmlAttributes", "query", "showCheckBox", "showHeader", "showIcon", "sortOrder", "template", "width"],
-    events: ["actionBegin", "actionComplete", "actionFailure", "select"]
+    oneWay: [
+      "animation", "checkBoxPosition", "cssClass", "dataSource", "enable", "enableHtmlSanitizer",
+      "enableVirtualization", "fields", "groupTemplate", "headerTemplate", "headerTitle", "height",
+      "htmlAttributes", "query", "showCheckBox", "showHeader", "showIcon", "sortOrder", "template",
+      "width", "enabled", "disableHtmlEncode"
+    ],
+    events: [
+      "actionBegin", "actionComplete", "actionFailure", "select", "scroll"
+    ]
   },
   maskedTextBox: {
-    oneWay: ["cssClass", "customCharacters", "enabled", "floatLabelType", "htmlAttributes", "mask", "placeholder", "promptChar", "showClearButton", "width"],
-    twoWay: ["value"],
-    events: ["blur", "change", "created", "destroyed", "focus"]
+    oneWay: [
+      "cssClass", "customCharacters", "enabled", "floatLabelType", "htmlAttributes", "mask", "placeholder",
+      "promptChar", "showClearButton", "width", "readonly", "prependTemplate", "appendTemplate"
+    ],
+    twoWay: [
+      "value"
+    ],
+    events: [
+      "blur", "change", "created", "destroyed", "focus"
+    ]
   },
   multiSelect: {
-    oneWay: ["actionFailureTemplate",
-      "addTagOnBlur", "allowCustomValue", "allowFiltering", "changeOnBlur", "closePopupOnSelect", "cssClass", "dataSource", "delimiterChar", "enableGroupCheckBox", "enableHtmlSanitizer", "enableSelectionOrder", "enabled", "fields", "filterBarPlaceholder", "filterType", "floatLabelType", "footerTemplate", "groupTemplate", "headerTemplate", "hideSelectedItem", "htmlAttributes", "ignoreAccent", "ignoreCase", "itemTemplate", "locale", "maximumSelectionLength", "mode", "noRecordsTemplate", "openOnClick", "placeholder", "popupHeight", "popupWidth", "query", "readonly", "selectAllText", "showClearButton", "showDropDownIcon", "showSelectAll", "sortOrder", "text", "unSelectAllText", "valueTemplate", "width", "zIndex"],
-    twoWay: ["value"],
-    events: ["actionBegin", "actionComplete", "actionFailure", "beforeOpen",
-      "beforeSelectAll", "blur", "change", "chipSelection", "close", "created", "customValueSelection", "dataBound", "destroyed", "filtering", "focus", "open", "removed", "removing", "select", "selectedAll", "tagging"]
+    oneWay: [
+      "actionFailureTemplate", "addTagOnBlur", "allowCustomValue", "allowFiltering", "changeOnBlur",
+      "closePopupOnSelect", "cssClass", "dataSource", "delimiterChar", "enableGroupCheckBox",
+      "enableHtmlSanitizer", "enableSelectionOrder", "enabled", "fields", "filterBarPlaceholder",
+      "filterType", "floatLabelType", "footerTemplate", "groupTemplate", "headerTemplate",
+      "hideSelectedItem", "htmlAttributes", "ignoreAccent", "ignoreCase", "itemTemplate", "locale",
+      "maximumSelectionLength", "mode", "noRecordsTemplate", "openOnClick", "placeholder", "popupHeight",
+      "popupWidth", "query", "readonly", "selectAllText", "showClearButton", "showDropDownIcon",
+      "showSelectAll", "sortOrder", "text", "unSelectAllText", "valueTemplate", "width", "zIndex",
+      "enableVirtualization", "debounceDelay", "isDeviceFullScreen", "allowResize", "allowObjectBinding",
+      "summaryTagCount", "summaryTagTemplate"
+    ],
+    twoWay: [
+      "value"
+    ],
+    events: [
+      "actionBegin", "actionComplete", "actionFailure", "beforeOpen", "beforeSelectAll", "blur", "change",
+      "chipSelection", "close", "created", "customValueSelection", "dataBound", "destroyed", "filtering",
+      "focus", "open", "removed", "removing", "select", "selectedAll", "tagging", "resizeStop", "resizing",
+      "resizeStart"
+    ]
   },
   numericTextBox: {
-    oneWay: ["cssClass", "currency", "decimals", "enabled", "floatLabelType", "format", "htmlAttributes", "max", "min", "placeholder", "readonly", "showClearButton", "showSpinButton", "step", "strictMode", "validateDecimalOnType", "width"],
-    twoWay: ["value"],
-    events: ["blur", "change", "created", "destroyed", "focus"]
+    oneWay: [
+      "cssClass", "currency", "decimals", "enabled", "floatLabelType", "format", "htmlAttributes", "max",
+      "min", "placeholder", "readonly", "showClearButton", "showSpinButton", "step", "strictMode",
+      "validateDecimalOnType", "width", "currencyCode", "allowMouseWheel", "prependTemplate",
+      "appendTemplate"
+    ],
+    twoWay: [
+      "value"
+    ],
+    events: [
+      "blur", "change", "created", "destroyed", "focus"
+    ]
   },
   pager: {
-    oneWay: ["cssClass", "customText", "enableExternalMessage", "enablePagerMessage", "enableQueryString", "externalMessage",
-      "pageCount", "pageSize", "pageSizes",
-      "template"],
-    twoWay: ["currentPage", "totalRecordsCount"],
-    events: ["click", "created", "dropDownChanged"]
+    oneWay: [
+      "cssClass", "customText", "enableExternalMessage", "enablePagerMessage", "enableQueryString",
+      "externalMessage", "pageCount", "pageSize", "pageSizes", "template"
+    ],
+    twoWay: [
+      "currentPage", "totalRecordsCount"
+    ],
+    events: [
+      "click", "created", "dropDownChanged"
+    ]
   },
   progressButton: {
-    oneWay: ["animationSettings", "content", "cssClass", "disabled", "duration", "enableHtmlSanitizer", "enableProgress", "iconCss", "iconPosition", "isPrimary", "isToggle", "spinSettings"],
-    events: ["begin", "created", "end", "fail", "progress"]
+    oneWay: [
+      "animationSettings", "content", "cssClass", "disabled", "duration", "enableHtmlSanitizer",
+      "enableProgress", "iconCss", "iconPosition", "isPrimary", "isToggle", "spinSettings"
+    ],
+    events: [
+      "begin", "created", "end", "fail", "progress"
+    ]
   },
   radio: {
-    oneWay: ["checked", "cssClass", "disabled", "enableHtmlSanitizer", "htmlAttributes", "label", "labelPosition", "name", "value"],
-    events: ["change", "created"]
+    oneWay: [
+      "checked", "cssClass", "disabled", "enableHtmlSanitizer", "htmlAttributes", "label", "labelPosition",
+      "name", "value"
+    ],
+    events: [
+      "change", "created"
+    ]
   },
   richTextEditor: {
-    oneWay: ["autoSaveOnIdle", "backgroundColor", "bulletFormatList", "cssClass", "editorMode", "emojiPickerSettings", "enableAutoUrl", "enableHtmlEncode", "enableHtmlSanitizer", "enableResize", "enableTabKey", "enableXhtml", "enabled", "enterKey", "exportPdf", "exportWord", "fileManagerSettings", "floatingToolbarOffset", "fontColor", "fontFamily", "fontSize", "format", "formatPainterSettings", "formatter", "height", "htmlAttributes", "iframeSettings", "importWord", "inlineMode", "insertAudioSettings", "insertImageSettings", "insertVideoSettings", "keyConfig", "maxLength", "numberFormatList", "pasteCleanupSettings", "placeholder", "quickToolbarSettings", "readonly", "saveInterval", "shiftEnterKey", "showCharCount", "showTooltip", "slashMenuSettings", "tableSettings", "toolbarSettings", "undoRedoSteps", "undoRedoTimer", "value", "valueTemplate", "width"],
-    twoWay: ["value"],
-    events: ["actionBegin", "actionComplete", "afterImageDelete", "afterMediaDelete", "afterPasteCleanup", "beforeDialogClose", "beforeDialogOpen", "beforeFileUpload", "beforeImageDrop", "beforeImageUpload", "beforePasteCleanup", "beforeQuickToolbarOpen", "beforeSanitizeHtml", "blur", "change", "created", "destroyed", "dialogClose", "dialogOpen", "fileRemoving", "fileSelected", "fileUploadFailed", "fileUploadSuccess", "fileUploading", "focus", "imageRemoving", "imageSelected", "imageUploadFailed", "imageUploadSuccess", "imageUploading", "quickToolbarClose", "quickToolbarOpen", "resizeStart", "resizeStop", "resizing", "slashMenuItemSelect", "toolbarClick", "toolbarStatusUpdate", "updatedToolbarStatus"]
+    oneWay: [
+      "autoSaveOnIdle", "backgroundColor", "bulletFormatList", "cssClass", "editorMode",
+      "emojiPickerSettings", "enableAutoUrl", "enableHtmlEncode", "enableHtmlSanitizer", "enableResize",
+      "enableTabKey", "enableXhtml", "enabled", "enterKey", "exportPdf", "exportWord",
+      "fileManagerSettings", "floatingToolbarOffset", "fontColor", "fontFamily", "fontSize", "format",
+      "formatPainterSettings", "formatter", "height", "htmlAttributes", "iframeSettings", "importWord",
+      "inlineMode", "insertAudioSettings", "insertImageSettings", "insertVideoSettings", "keyConfig",
+      "maxLength", "numberFormatList", "pasteCleanupSettings", "placeholder", "quickToolbarSettings",
+      "readonly", "saveInterval", "shiftEnterKey", "showCharCount", "showTooltip", "slashMenuSettings",
+      "tableSettings", "toolbarSettings", "undoRedoSteps", "undoRedoTimer", "value", "valueTemplate",
+      "width", "aiAssistantSettings", "enableClipboardCleanup", "enableMarkdownAutoFormat",
+      "codeBlockSettings", "lineHeight", "enableWebMcp", "webMcpSettings"
+    ],
+    twoWay: [
+      "value"
+    ],
+    events: [
+      "actionBegin", "actionComplete", "afterImageDelete", "afterMediaDelete", "afterPasteCleanup",
+      "beforeDialogClose", "beforeDialogOpen", "beforeFileUpload", "beforeImageDrop", "beforeImageUpload",
+      "beforePasteCleanup", "beforeQuickToolbarOpen", "beforeSanitizeHtml", "blur", "change", "created",
+      "destroyed", "dialogClose", "dialogOpen", "fileRemoving", "fileSelected", "fileUploadFailed",
+      "fileUploadSuccess", "fileUploading", "focus", "imageRemoving", "imageSelected", "imageUploadFailed",
+      "imageUploadSuccess", "imageUploading", "quickToolbarClose", "quickToolbarOpen", "resizeStart",
+      "resizeStop", "resizing", "slashMenuItemSelect", "toolbarClick", "toolbarStatusUpdate",
+      "updatedToolbarStatus", "beforeClipboardWrite", "beforeMediaDrop", "selectionChanged",
+      "aiAssistantToolbarClick", "aiAssistantPromptRequest", "aiAssistantStopRespondingClick",
+      "beforePopupOpen", "beforePopupClose", "wordImporting", "documentExporting",
+      "beforeWebMcpToolExecute"
+    ]
   },
   schedule: {
-    oneWay: ["agendaDaysCount", "allowDragAndDrop", "allowInline", "allowKeyboardInteraction", "allowMultiCellSelection", "allowMultiDrag", "allowMultiRowSelection", "allowResizing",
-      "allowSwiping", "calendarMode", "cellHeaderTemplate", "cellTemplate", "cssClass", "currentView", "dateFormat", "dateHeaderTemplate",
-      "dayHeaderTemplate",
-      "enableAdaptiveUI",
-      "enableAllDayScroll", "editorTemplate", "enableRecurrenceValidation", "endHour", "eventDragArea", "eventSettings", "firstDayOfWeek", "firstMonthOfYear", "group", "headerIndentTemplate", "headerRows", "height", "hideEmptyAgendaDays", "maxDate", "minDate", "monthHeaderTemplate", "monthsCount", "quickInfoOnSelectionEnd", "quickInfoTemplates", "readonly", "resourceHeaderTemplate", "resources", "rowAutoHeight", "selectedDate", "showHeaderBar", "showQuickInfo", "showTimeIndicator", "showWeekNumber", "showWeekend", "startHour", "timeFormat", "timeScale", "timezone", "timezoneDataSource", "views", "weekRule", "width", "workDays", "workHours"],
-    events: ["actionBegin", "actionComplete", "actionFailure", "cellClick", "cellDoubleClick", "created", "dataBinding", "dataBound", "destroyed", "drag", "dragStart", "dragStop", "eventClick", "eventRendered", "hover", "moreEventsClick", "navigating", "popupClose", "popupOpen", "renderCell", "resizeStart", "resizeStop", "resizing", "select"]
+    oneWay: [
+      "agendaDaysCount", "allowDragAndDrop", "allowInline", "allowKeyboardInteraction",
+      "allowMultiCellSelection", "allowMultiDrag", "allowMultiRowSelection", "allowResizing",
+      "allowSwiping", "calendarMode", "cellHeaderTemplate", "cellTemplate", "cssClass", "currentView",
+      "dateFormat", "dateHeaderTemplate", "dayHeaderTemplate", "enableAdaptiveUI", "enableAllDayScroll",
+      "editorTemplate", "enableRecurrenceValidation", "endHour", "eventDragArea", "eventSettings",
+      "firstDayOfWeek", "firstMonthOfYear", "group", "headerIndentTemplate", "headerRows", "height",
+      "hideEmptyAgendaDays", "maxDate", "minDate", "monthHeaderTemplate", "monthsCount",
+      "quickInfoOnSelectionEnd", "quickInfoTemplates", "readonly", "resourceHeaderTemplate", "resources",
+      "rowAutoHeight", "selectedDate", "showHeaderBar", "showQuickInfo", "showTimeIndicator",
+      "showWeekNumber", "showWeekend", "startHour", "timeFormat", "timeScale", "timezone",
+      "timezoneDataSource", "views", "weekRule", "width", "workDays", "workHours",
+      "currentTimeIndicatorSettings", "allowOverlap", "overscanCount", "enableWebMcp", "webMcpSettings",
+      "toolbarItems", "enableHtmlSanitizer", "dateRangeTemplate", "prerenderDialogs",
+      "editorHeaderTemplate", "editorFooterTemplate", "selectedResource", "allowClipboard"
+    ],
+    events: [
+      "actionBegin", "actionComplete", "actionFailure", "cellClick", "cellDoubleClick", "created",
+      "dataBinding", "dataBound", "destroyed", "drag", "dragStart", "dragStop", "eventClick",
+      "eventRendered", "hover", "moreEventsClick", "navigating", "popupClose", "popupOpen", "renderCell",
+      "resizeStart", "resizeStop", "resizing", "select", "eventDoubleClick", "virtualScrollStart",
+      "virtualScrollStop", "beforePaste", "beforePrint", "excelExport", "tooltipOpen",
+      "beforeWebMcpToolExecute"
+    ]
   },
   sidebar: {
-    oneWay: ["animate", "closeOnDocumentClick", "dockSize", "enableDock", "enableGestures", "mediaQuery", "position", "showBackdrop", "target", "type", "width", "zIndex"],
-    twoWay: ["isOpen"],
-    events: ["change", "close", "created", "destroyed", "open"]
+    oneWay: [
+      "animate", "closeOnDocumentClick", "dockSize", "enableDock", "enableGestures", "mediaQuery",
+      "position", "showBackdrop", "target", "type", "width", "zIndex", "height"
+    ],
+    twoWay: [
+      "isOpen"
+    ],
+    events: [
+      "change", "close", "created", "destroyed", "open"
+    ]
   },
   slider: {
-    oneWay: ["colorRange", "cssClass", "customValues", "enableAnimation", "enableHtmlSanitizer", "enabled", "limits", "max", "min", "orientation", "readonly", "showButtons", "step", "ticks", "tooltip", "type", "width"],
-    twoWay: ["value"],
-    events: ["change", "changed", "created", "renderedTicks", "renderingTicks", "tooltipChange"]
+    oneWay: [
+      "colorRange", "cssClass", "customValues", "enableAnimation", "enableHtmlSanitizer", "enabled",
+      "limits", "max", "min", "orientation", "readonly", "showButtons", "step", "ticks", "tooltip", "type",
+      "width"
+    ],
+    twoWay: [
+      "value"
+    ],
+    events: [
+      "change", "changed", "created", "renderedTicks", "renderingTicks", "tooltipChange"
+    ]
   },
   splitter: {
-    oneWay: ["cssClass", "enableHtmlSanitizer",
-      "enableReversePanes", "enabled", "height", "orientation", "paneSettings", "separatorSize", "width"],
-    events: ["beforeCollapse", "beforeExpand", "beforeSanitizeHtml", "collapsed", "created", "expanded", "resizeStart", "resizeStop", "resizing"]
+    oneWay: [
+      "cssClass", "enableHtmlSanitizer", "enableReversePanes", "enabled", "height", "orientation",
+      "paneSettings", "separatorSize", "width"
+    ],
+    events: [
+      "beforeCollapse", "beforeExpand", "beforeSanitizeHtml", "collapsed", "created", "expanded",
+      "resizeStart", "resizeStop", "resizing"
+    ]
   },
   switch: {
-    oneWay: ["cssClass", "disabled", "name", "offLabel", "onLabel"],
-    twoWay: ["value", "checked"],
-    events: ["change", "created"]
+    oneWay: [
+      "cssClass", "disabled", "name", "offLabel", "onLabel", "htmlAttributes"
+    ],
+    twoWay: [
+      "value", "checked"
+    ],
+    events: [
+      "change", "created", "beforeChange"
+    ]
   },
   textBox: {
     oneWay: [
-      "autocomplete",
-      "cssClass", "enabled", "floatLabelType", "htmlAttributes", "multiline", "placeholder", "readonly", "showClearButton", "type"],
-    twoWay: ["value"],
-    events: ["blur", "change", "created", "destroyed", "focus", "input"]
+      "autocomplete", "cssClass", "enabled", "floatLabelType", "htmlAttributes", "multiline",
+      "placeholder", "readonly", "showClearButton", "type", "width", "maxLength", "prependTemplate",
+      "appendTemplate"
+    ],
+    twoWay: [
+      "value"
+    ],
+    events: [
+      "blur", "change", "created", "destroyed", "focus", "input"
+    ]
   },
   timePicker: {
-    oneWay: ["allowEdit", "cssClass", "enableMask", "enabled", "floatLabelType", "format", "htmlAttributes", "keyConfigs", "maskPlaceholder", "openOnFocus", "placeholder", "readonly", "scrollTo", "showClearButton", "step", "strictMode", "width", "zIndex"],
-    twoWay: ["value", "min", "max"],
-    events: ["blur", "change", "cleared", "close", "created", "destroyed", "focus", "itemRender", "open"]
+    oneWay: [
+      "allowEdit", "cssClass", "enableMask", "enabled", "floatLabelType", "format", "htmlAttributes",
+      "keyConfigs", "maskPlaceholder", "openOnFocus", "placeholder", "readonly", "scrollTo",
+      "showClearButton", "step", "strictMode", "width", "zIndex", "fullScreenMode", "serverTimezoneOffset"
+    ],
+    twoWay: [
+      "value", "min", "max"
+    ],
+    events: [
+      "blur", "change", "cleared", "close", "created", "destroyed", "focus", "itemRender", "open"
+    ]
   },
   timeline: {
-    oneWay: ["align", "cssClass", "items", "orientation", "reverse", "template"],
-    events: ["beforeItemRender", "created"]
+    oneWay: [
+      "align", "cssClass", "items", "orientation", "reverse", "template"
+    ],
+    events: [
+      "beforeItemRender", "created"
+    ]
   },
   treeView: {
-    oneWay: ["allowDragAndDrop", "allowEditing", "allowMultiSelection",
-      "allowTextWrap", "animation", "autoCheck", "cssClass",
-      "disabled", "dragArea",
-      "enableHtmlSanitizer", "expandOn", "fields",
-      "fullRowNavigable", "fullRowSelect", "loadOnDemand", "nodeTemplate", "showCheckBox", "sortOrder"],
-    twoWay: ["selectedNodes", "checkedNodes",
-      "expandedNodes"],
-    events: ["actionFailure", "created", "dataBound", "dataSourceChanged", "destroyed", "drawNode", "keyPress", "nodeChecked", "nodeChecking", "nodeClicked", "nodeCollapsed", "nodeCollapsing", "nodeDragStart", "nodeDragStop", "nodeDragging", "nodeDropped", "nodeEdited", "nodeEditing", "nodeExpanded", "nodeExpanding", "nodeSelected", "nodeSelecting"]
+    oneWay: [
+      "allowDragAndDrop", "allowEditing", "allowMultiSelection", "allowTextWrap", "animation", "autoCheck",
+      "cssClass", "disabled", "dragArea", "enableHtmlSanitizer", "expandOn", "fields", "fullRowNavigable",
+      "fullRowSelect", "loadOnDemand", "nodeTemplate", "showCheckBox", "sortOrder", "enableVirtualization",
+      "height", "checkDisabledChildren", "disableHtmlEncode", "checkOnClick"
+    ],
+    twoWay: [
+      "selectedNodes", "checkedNodes", "expandedNodes"
+    ],
+    events: [
+      "actionFailure", "created", "dataBound", "dataSourceChanged", "destroyed", "drawNode", "keyPress",
+      "nodeChecked", "nodeChecking", "nodeClicked", "nodeCollapsed", "nodeCollapsing", "nodeDragStart",
+      "nodeDragStop", "nodeDragging", "nodeDropped", "nodeEdited", "nodeEditing", "nodeExpanded",
+      "nodeExpanding", "nodeSelected", "nodeSelecting"
+    ]
   },
   uploader: {
-    oneWay: ["allowedExtensions", "asyncSettings", "autoUpload", "buttons", "cssClass", "directoryUpload", "dropArea",
-      "dropEffect", "enabled", "files", "htmlAttributes", "maxFileSize", "minFileSize", "multiple", "sequentialUpload", "showFileList", "template", "formData"],
-    events: ["actionComplete",
-      "beforeRemove", "beforeUpload", "canceling", "change", "chunkFailure", "chunkSuccess", "chunkUploading", "clearing", "created", "failure", "fileListRendering", "pausing", "progress", "removing", "rendering", "resuming", "selected", "success", "uploading"]
+    oneWay: [
+      "allowedExtensions", "asyncSettings", "autoUpload", "buttons", "cssClass", "directoryUpload",
+      "dropArea", "dropEffect", "enabled", "files", "htmlAttributes", "maxFileSize", "minFileSize",
+      "multiple", "sequentialUpload", "showFileList", "template", "enableHtmlSanitizer"
+    ],
+    events: [
+      "actionComplete", "beforeRemove", "beforeUpload", "canceling", "change", "chunkFailure",
+      "chunkSuccess", "chunkUploading", "clearing", "created", "failure", "fileListRendering", "pausing",
+      "progress", "removing", "rendering", "resuming", "selected", "success", "uploading"
+    ]
   }
-}
+};

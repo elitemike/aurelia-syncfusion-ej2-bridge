@@ -42,3 +42,6 @@ Samples are wrapped in `<demo-section id="...">` and located in tests through `d
 * `smoke.spec.ts` visits every registered control and fails on any console or page error.
 * One spec per control (`e2e/<control>.spec.ts`) covering bindings, events, widget API and lifecycle (`if.bind`).
 * Add a control: register it in `nav.ts`, build the demo sections, add `e2e/<control>.spec.ts`.
+
+`yarn check:bindings` verifies every bindable name in `src/controlBindings.ts` exists on the Syncfusion model of its wrapper,
+`yarn sync:bindings` adds members that Syncfusion introduced since (properties as one-way, `EmitType` members as events).

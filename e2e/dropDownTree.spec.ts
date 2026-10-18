@@ -15,6 +15,7 @@ test('two-way value: view to model', async ({ app, page }) => {
   await popup.getByText('Naturals.mp4', { exact: true }).click({ force: true });
   await page.locator('main h2').click(); // change is raised on blur (changeOnBlur)
   await expect(section.getByTestId('ddt-value-out')).toHaveText('02-01');
+  await expect(section.getByTestId('ddt-text-out')).toHaveText('Naturals.mp4');
   await expect(section.getByTestId('ddt-change-count')).toHaveText('1');
 });
 
