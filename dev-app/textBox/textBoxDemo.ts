@@ -1,23 +1,21 @@
 export class TextBoxDemo {
-  textBox = null;
-  textBoxValue = "asdf"
-  onInput(args: CustomEvent) {
-    // console.log("input clicked", args.detail);
+  value = 'initial';
+  inputCount = 0;
+  focused = false;
+
+  onInput() {
+    this.inputCount++;
   }
 
   onFocus() {
-    // console.log("focus")
+    this.focused = true;
   }
 
   onBlur() {
-    //  console.log("blur")
+    this.focused = false;
   }
 
-  attached() {
-    let _this = this;
-
-    setTimeout(() => {
-      this.textBoxValue = "Updated "
-    }, 5000);
+  setValue() {
+    this.value = 'from view-model';
   }
 }

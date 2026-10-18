@@ -1,3 +1,20 @@
 <template>
-  <ej2-masked-text-box e-mask="000-000-0000"></ej2-masked-text-box>
+  <h2>Masked TextBox</h2>
+
+  <demo-section id="mtb-value" title="Two-way value" description="The model holds the raw value without mask characters.">
+    <ej2-masked-text-box data-testid="mtb-value" e-mask="000-000-0000" e-value.two-way="phone"
+      e-on-change.delegate="onChange()"></ej2-masked-text-box>
+    <div class="demo-output">Value: <code data-testid="mtb-value-out">${phone}</code>
+      Changes: <span data-testid="mtb-change-count">${changeCount}</span></div>
+    <button data-testid="mtb-set" click.delegate="setPhone()">Set 5551234567</button>
+  </demo-section>
+
+  <demo-section id="mtb-prompt" title="Prompt character" description="promptChar fills the unfilled mask positions.">
+    <ej2-masked-text-box data-testid="mtb-prompt" e-mask="00/00/0000" e-prompt-char="#"></ej2-masked-text-box>
+  </demo-section>
+
+  <demo-section id="mtb-float" title="Floating label and clear button" description="floatLabelType and showClearButton.">
+    <ej2-masked-text-box data-testid="mtb-float" e-mask="AAAA" e-placeholder="Code" e-float-label-type="Always"
+      e-show-clear-button="true"></ej2-masked-text-box>
+  </demo-section>
 </template>

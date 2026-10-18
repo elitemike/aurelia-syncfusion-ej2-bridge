@@ -81,7 +81,7 @@ export class ControlBase<T, U> {
       if (!property.startsWith(constants.eventPrefix)) {
         let modelProperty = property.substr(bindablePrefixLength)
         if (this[property] !== undefined && (this.propertyPriority || this._eModel[modelProperty] === undefined)) {
-          this._eModel[modelProperty] = this[property];
+          this._eModel[modelProperty] = coerceLiteral(modelProperty, this[property]);
           //    this.info('has value', { name: property, value: this[property] })
         }
       }
@@ -167,7 +167,7 @@ export class ControlBase<T, U> {
               // Observer callbacks are delivered asynchronously, so by now `newValue` may be stale: widget `change`
               // events write the binding back and programmatic widget updates raise `change` themselves. Always
               // sync the latest bound value and skip no-op writes, otherwise stale values echo back and win.
-              const latest = this[binding];
+              const latest = coerceLiteral(modelBinding, this[binding]);
               if (!isSameValue((<any>this.widget)[modelBinding], latest)) {
                 (<any>this.widget)[modelBinding] = latest;
               }
@@ -199,6 +199,16 @@ export class ControlBase<T, U> {
 
 
 
+}
+
+// Plain attributes like `e-enabled="false"` reach the bridge as the string "false", which is truthy. Turn the
+// boolean literals into booleans, except for properties that legitimately carry text.
+const textProperties = ['value', 'text', 'placeholder', 'label', 'content', 'name', 'title', 'format', 'mask', 'onLabel', 'offLabel'];
+function coerceLiteral(property: string, value: any) {
+  if ((value === 'true' || value === 'false') && textProperties.indexOf(property) === -1) {
+    return value === 'true';
+  }
+  return value;
 }
 
 function isSameValue(a: any, b: any) {

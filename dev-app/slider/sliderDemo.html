@@ -1,3 +1,27 @@
 <template>
-  <ej2-slider e-type="Range" e-value.bind="value"></ej2-slider>
+  <h2>Slider</h2>
+
+  <demo-section id="sl-default" title="Default slider" description="Keyboard and mouse change the value, changed is raised when the change is committed.">
+    <ej2-slider data-testid="sl-default" e-value.two-way="value" e-min.bind="0" e-max.bind="100" e-step.bind="10"
+      e-on-changed.delegate="onChanged()"></ej2-slider>
+    <div class="demo-output">Value: <code data-testid="sl-value-out">${value}</code>
+      Changed: <span data-testid="sl-changed">${changedCount}</span></div>
+    <button data-testid="sl-set" click.delegate="setValue()">Set 80</button>
+  </demo-section>
+
+  <demo-section id="sl-range" title="Range slider" description="type Range binds a [start, end] array.">
+    <ej2-slider data-testid="sl-range" e-type="Range" e-value.two-way="range" e-min.bind="0" e-max.bind="100"></ej2-slider>
+    <div class="demo-output">Range: <code data-testid="sl-range-out">${range.join('-')}</code></div>
+  </demo-section>
+
+  <demo-section id="sl-ticks" title="Ticks and tooltip" description="ticks and tooltip settings.">
+    <ej2-slider data-testid="sl-ticks" e-value.one-way="30" e-min.bind="0" e-max.bind="100" e-step.bind="10"
+      e-ticks.bind="{ placement: 'After', largeStep: 20, smallStep: 10, showSmallTicks: true }"
+      e-tooltip.bind="{ isVisible: true, placement: 'Before', showOn: 'Focus' }"></ej2-slider>
+  </demo-section>
+
+  <demo-section id="sl-vertical" title="Orientation and readonly" description="orientation Vertical and readonly.">
+    <ej2-slider data-testid="sl-vertical" e-value.one-way="50" e-orientation="Vertical" e-readonly.bind="true" e-width="120px"
+      style="height: 150px; display: block"></ej2-slider>
+  </demo-section>
 </template>

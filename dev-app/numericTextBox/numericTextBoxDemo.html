@@ -1,7 +1,26 @@
 <template>
-  <ej2-numeric-text-box e-value.bind="value"></ej2-numeric-text-box>
-  <h4>
-    Value
-  </h4>
-  <span>${value}</span>
+  <h2>Numeric TextBox</h2>
+
+  <demo-section id="ntb-value" title="Two-way value" description="Spin buttons, typing and the view-model all update the same value.">
+    <ej2-numeric-text-box data-testid="ntb-value" e-value.two-way="value" e-min.bind="0" e-max.bind="100" e-step.bind="5"
+      e-on-change.delegate="onChange()"></ej2-numeric-text-box>
+    <div class="demo-output">Value: <code data-testid="ntb-value-out">${value}</code>
+      Changes: <span data-testid="ntb-change-count">${changeCount}</span></div>
+    <button data-testid="ntb-set" click.delegate="setValue()">Set 42</button>
+  </demo-section>
+
+  <demo-section id="ntb-format" title="Currency format" description="format and decimals.">
+    <ej2-numeric-text-box data-testid="ntb-format" e-value.two-way="price" e-format="c2" e-decimals.bind="2"></ej2-numeric-text-box>
+    <div class="demo-output">Price: <code data-testid="ntb-price-out">${price}</code></div>
+  </demo-section>
+
+  <demo-section id="ntb-strict" title="Strict mode" description="strictMode clamps typed values to min/max.">
+    <ej2-numeric-text-box data-testid="ntb-strict" e-value.one-way="5" e-min.bind="1" e-max.bind="10" e-strict-mode.bind="true"
+      e-show-spin-button.bind="false"></ej2-numeric-text-box>
+  </demo-section>
+
+  <demo-section id="ntb-options" title="Placeholder and clear button" description="placeholder, showClearButton and floatLabelType.">
+    <ej2-numeric-text-box data-testid="ntb-options" e-placeholder="Amount" e-float-label-type="Auto"
+      e-show-clear-button="true"></ej2-numeric-text-box>
+  </demo-section>
 </template>

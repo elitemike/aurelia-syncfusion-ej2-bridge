@@ -16,10 +16,11 @@ export class Ej2MaskedTextBox extends SyncfusionWrapper<MaskedTextBox, MaskedTex
 
   protected onWidgetCreated() {
     let _this = this;
-    this.widget.addEventListener("input", (args) => { _this.onInput(args) });
+    // MaskedTextBox has no `input` event, `change` is the only one that carries the value
+    this.widget.addEventListener("change", (args) => { _this.onChange(args) });
   }
 
-  onInput(args) {
+  onChange(args) {
     this[`${constants.bindablePrefix}value`] = args.value;
   }
 }

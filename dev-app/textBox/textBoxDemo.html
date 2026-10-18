@@ -1,8 +1,26 @@
 <template>
-  <ej2-text-box e-value.bind="textBoxValue" view-model.ref="textBox" e-on-input.delegate="onInput($event)"
-    e-on-focus.delegate="onFocus()" e-on-blur.delegate="onBlur()" e-placeholder="My placeholder"
-    e-float-label-type="Auto">
-  </ej2-text-box>
+  <h2>TextBox</h2>
 
-  <span>${textBoxValue} </span>
+  <demo-section id="tb-value" title="Two-way value" description="Typing updates the view-model on every keystroke, and the view-model updates the input.">
+    <ej2-text-box data-testid="tb-value" e-value.two-way="value" e-placeholder="Type here"
+      e-on-input.delegate="onInput()" e-on-focus.delegate="onFocus()" e-on-blur.delegate="onBlur()"></ej2-text-box>
+    <div class="demo-output">Value: <code data-testid="tb-value-out">${value}</code>
+      Input events: <span data-testid="tb-input-count">${inputCount}</span>
+      Focused: <span data-testid="tb-focused">${focused}</span></div>
+    <button data-testid="tb-set" click.delegate="setValue()">Set from view-model</button>
+  </demo-section>
+
+  <demo-section id="tb-float" title="Floating label" description="floatLabelType Auto moves the placeholder above the value.">
+    <ej2-text-box data-testid="tb-float" e-placeholder="Enter name" e-float-label-type="Auto"></ej2-text-box>
+  </demo-section>
+
+  <demo-section id="tb-clear" title="Clear button" description="showClearButton adds a clear icon while the box has a value.">
+    <ej2-text-box data-testid="tb-clear" e-value="clear me" e-show-clear-button="true"></ej2-text-box>
+  </demo-section>
+
+  <demo-section id="tb-states" title="Readonly, disabled, multiline" description="readonly, enabled and multiline.">
+    <ej2-text-box data-testid="tb-readonly" e-value="readonly" e-readonly="true"></ej2-text-box>
+    <ej2-text-box data-testid="tb-disabled" e-value="disabled" e-enabled="false"></ej2-text-box>
+    <ej2-text-box data-testid="tb-multiline" e-multiline="true" e-placeholder="Multiline"></ej2-text-box>
+  </demo-section>
 </template>
