@@ -1,11 +1,28 @@
 <template>
-  <!-- <aside as-element="ej2-sidebar" e-width="25%" e-is-open.bind="false" view-model.ref="sidebar">
-    <div>Some content</div>
-  </aside> -->
+  <h2>Sidebar</h2>
 
-  <ej2-sidebar e-width="25%" e-is-open.bind="false" view-model.ref="sidebar">
-    <div>Some content</div>
-  </ej2-sidebar>
-  <div>Main content <button click.delegate="sidebar.widget.toggle()">Toggle sidebar</button></div>
+  <demo-section id="sb-main" title="Open state" description="isOpen opens and closes the sidebar from the view-model, open and close events are raised.">
+    <div id="sidebar-target" data-testid="sb-target" style="position: relative; height: 200px; overflow: hidden; border: 1px solid #ccc">
+      <ej2-sidebar view-model.ref="sidebar" e-target="#sidebar-target" e-width="160px" e-type.bind="type"
+        e-is-open.two-way="isOpen" e-on-open.delegate="onOpen()" e-on-close.delegate="onClose()">
+        <div style="padding: 10px" data-testid="sb-content">Sidebar content</div>
+      </ej2-sidebar>
+      <div style="padding: 10px">Main content</div>
+    </div>
+    <div class="demo-output">isOpen: <code data-testid="sb-open-out">${isOpen}</code>
+      Open events: <span data-testid="sb-opened">${opened}</span> Close events: <span data-testid="sb-closed">${closed}</span></div>
+    <div class="demo-row">
+      <button data-testid="sb-open" click.delegate="isOpen = true">Open</button>
+      <button data-testid="sb-close" click.delegate="isOpen = false">Close</button>
+      <button data-testid="sb-api" click.delegate="toggleApi()">toggle() via widget</button>
+    </div>
+  </demo-section>
 
+  <demo-section id="sb-dock" title="Dock" description="enableDock keeps a narrow strip visible while closed.">
+    <div id="dock-target" style="position: relative; height: 150px; overflow: hidden; border: 1px solid #ccc">
+      <ej2-sidebar data-testid="sb-dock" e-target="#dock-target" e-type="Push" e-is-open.one-way="false" e-enable-dock.bind="true" e-dock-size="50px" e-width="200px">
+        <div style="padding: 10px">Docked</div>
+      </ej2-sidebar>
+    </div>
+  </demo-section>
 </template>

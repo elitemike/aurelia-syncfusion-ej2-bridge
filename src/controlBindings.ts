@@ -128,7 +128,8 @@ export const ControlBindings = {
     events: ["actionBegin", "actionComplete", "actionFailure", "cellClick", "cellDoubleClick", "created", "dataBinding", "dataBound", "destroyed", "drag", "dragStart", "dragStop", "eventClick", "eventRendered", "hover", "moreEventsClick", "navigating", "popupClose", "popupOpen", "renderCell", "resizeStart", "resizeStop", "resizing", "select"]
   },
   sidebar: {
-    oneWay: ["animate", "closeOnDocumentClick", "dockSize", "enableDock", "enableGestures", "isOpen", "mediaQuery", "position", "showBackdrop", "target", "type", "width", "zIndex"],
+    oneWay: ["animate", "closeOnDocumentClick", "dockSize", "enableDock", "enableGestures", "mediaQuery", "position", "showBackdrop", "target", "type", "width", "zIndex"],
+    twoWay: ["isOpen"],
     events: ["change", "close", "created", "destroyed", "open"]
   },
   slider: {

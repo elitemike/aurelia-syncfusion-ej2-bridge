@@ -1,60 +1,29 @@
 <template>
-  <style>
-    .expand-content a,
-    .expand-content p {
-      padding: 10px;
-    }
+  <h2>Splitter</h2>
 
-    #target {
-      margin: 20px auto;
-      max-width: 820px;
-    }
-
-    .control-section {
-      min-height: 370px;
-    }
-
-    .splitter-expand .expand-content {
-      padding: 12px;
-    }
-
-    @media screen and (max-width: 768px) {
-      #source_link {
-        margin-top: 10px;
-        margin-right: 0px;
-      }
-    }
-
-    /* styles to hide scroll bars */
-    .splitter-expand .e-pane.e-pane-horizontal.e-scrollable::-webkit-scrollbar,
-    .splitter-expand .e-pane.e-pane-vertical.e-scrollable::-webkit-scrollbar {
-      display: none;
-    }
-
-    .splitter-expand .e-pane.e-pane-horizontal.e-scrollable,
-    .splitter-expand .e-pane.e-pane-vertical.e-scrollable {
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-    }
-  </style>
-  <ej2-splitter view-model.ref="horizontalSplitter" e-model.bind="horizontalModel" e-css-class="splitter-expand">
-
-    <div class="expand-content">
-      Left Pane
+  <demo-section id="sp-horizontal" title="Horizontal with collapsible panes" description="Resize by dragging the bar, collapse with the arrows.">
+    <ej2-splitter data-testid="sp-horizontal" view-model.ref="splitter" e-model.bind="horizontalModel" e-on-collapsed.delegate="onCollapsed()"
+      e-on-expanded.delegate="onExpanded()" e-on-resize-stop.delegate="onResizeStop()">
+      <div data-testid="sp-left" style="padding: 8px">Left pane</div>
+      <div data-testid="sp-right" style="padding: 8px">Right pane</div>
+    </ej2-splitter>
+    <div class="demo-row">
+      <button data-testid="sp-collapse" click.delegate="collapseLeft()">Collapse left</button>
+      <button data-testid="sp-expand" click.delegate="expandLeft()">Expand left</button>
     </div>
-    <div>
-      <ej2-splitter e-model.bind="verticalModel">
-        <div>
-          <div class="expand-content">
-            Right Top Pane
-          </div>
-        </div>
-        <div>
-          <div class="expand-content">
-            Right Bottom Pane
-          </div>
-        </div>
-      </ej2-splitter>
-    </div>
-  </ej2-splitter>
+    <div class="demo-output">Collapsed: <span data-testid="sp-collapsed">${collapsed}</span>
+      Expanded: <span data-testid="sp-expanded">${expanded}</span> Resize stops: <span data-testid="sp-resized">${resizeStops}</span></div>
+  </demo-section>
+
+  <demo-section id="sp-nested" title="Nested vertical splitter" description="A vertical splitter inside a horizontal pane.">
+    <ej2-splitter data-testid="sp-nested" e-model.bind="horizontalModel">
+      <div style="padding: 8px">Left</div>
+      <div>
+        <ej2-splitter e-model.bind="verticalModel" e-height="200px">
+          <div style="padding: 8px">Top</div>
+          <div style="padding: 8px">Bottom</div>
+        </ej2-splitter>
+      </div>
+    </ej2-splitter>
+  </demo-section>
 </template>

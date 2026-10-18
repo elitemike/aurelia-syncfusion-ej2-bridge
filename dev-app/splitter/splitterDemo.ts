@@ -1,27 +1,44 @@
+import { Splitter, SplitterModel } from '@syncfusion/ej2-layouts';
 import { IEJ2WidgetBridge } from './../../src/interfaces/IEJ2WidgetBridge';
-import { SplitterModel, Splitter } from '@syncfusion/ej2-layouts';
 
 export class SplitterDemo {
-  private horizontalSplitter: IEJ2WidgetBridge<Splitter> = null;
+  splitter: IEJ2WidgetBridge<Splitter> = null;
+  collapsed = 0;
+  expanded = 0;
+  resizeStops = 0;
 
-  public horizontalModel: SplitterModel = {
-    height: '385px',
-    paneSettings: [
-      { size: '48%', collapsible: true },
-      { collapsible: true }
-    ],
-    separatorSize: 3,
-    width: '100%'
+  horizontalModel: SplitterModel = {
+    height: '200px',
+    width: '100%',
+    separatorSize: 6,
+    paneSettings: [{ size: '40%', collapsible: true, min: '100px' }, { collapsible: true }]
   };
 
-  public verticalModel: SplitterModel = {
-    paneSettings: [
-      { size: '50%', collapsible: true },
-      { collapsible: true }
-    ],
-    separatorSize: 3,
+  verticalModel: SplitterModel = {
+    height: '240px',
+    width: '100%',
     orientation: 'Vertical',
-    width: "100%",
-    height: "385px"
+    separatorSize: 6,
+    paneSettings: [{ size: '50%' }, {}]
   };
+
+  onCollapsed() {
+    this.collapsed++;
+  }
+
+  onExpanded() {
+    this.expanded++;
+  }
+
+  onResizeStop() {
+    this.resizeStops++;
+  }
+
+  collapseLeft() {
+    this.splitter.widget.collapse(0);
+  }
+
+  expandLeft() {
+    this.splitter.widget.expand(0);
+  }
 }

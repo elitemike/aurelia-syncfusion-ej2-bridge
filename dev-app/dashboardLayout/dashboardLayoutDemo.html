@@ -1,41 +1,21 @@
 <template>
-  <style>
-  </style>
-  <ej2-dashboard-layout e-model.bind="model">
-    <div id="one" class="e-panel" data-row="0" data-col="0" data-sizeX="1" data-sizeY="1">
-      <div class="e-panel-container">
-        <div class="content">0</div>
-      </div>
+  <h2>Dashboard Layout</h2>
+
+  <demo-section id="dl-panels" title="Bound panels" description="e-panels, e-columns and e-show-grid-lines.">
+    <ej2-dashboard-layout data-testid="dl-panels" e-panels.bind="panels" e-columns.bind="columns"
+      e-cell-spacing.bind="[10, 10]" e-show-grid-lines.bind="showGridLines" e-allow-dragging.bind="allowDragging"
+      e-on-change.delegate="onChange()"></ej2-dashboard-layout>
+    <div class="demo-row">
+      <label><input type="checkbox" data-testid="dl-grid" checked.bind="showGridLines" /> grid lines</label>
+      <label><input type="checkbox" data-testid="dl-drag" checked.bind="allowDragging" /> allow dragging</label>
     </div>
-    <div id="two" class="e-panel" data-row="0" data-col="1" data-sizeX="3" data-sizeY="2">
-      <div class="e-panel-container">
-        <div class="content">1</div>
-      </div>
-    </div>
-    <div id="three" class="e-panel" data-row="0" data-col="4" data-sizeX="1" data-sizeY="3">
-      <div class="e-panel-container">
-        <div class="content">2</div>
-      </div>
-    </div>
-    <div id="four" class="e-panel" data-row="1" data-col="0" data-sizeX="1" data-sizeY="1">
-      <div class="e-panel-container">
-        <div class="content">3</div>
-      </div>
-    </div>
-    <div id="five" class="e-panel" data-row="2" data-col="0" data-sizeX="2" data-sizeY="1">
-      <div class="e-panel-container">
-        <div class="content">4</div>
-      </div>
-    </div>
-    <div id="six" class="e-panel" data-row="2" data-col="2" data-sizeX="1" data-sizeY="1">
-      <div class="e-panel-container">
-        <div class="content">5</div>
-      </div>
-    </div>
-    <div id="seven" class="e-panel" data-row="2" data-col="3" data-sizeX="1" data-sizeY="1">
-      <div class="e-panel-container">
-        <div class="content">6</div>
-      </div>
-    </div>
-  </ej2-dashboard-layout>
+    <div class="demo-output">Changes: <span data-testid="dl-changes">${changes}</span></div>
+  </demo-section>
+
+  <demo-section id="dl-markup" title="Panels from markup" description="Panel elements slotted into the layout are picked up.">
+    <ej2-dashboard-layout data-testid="dl-markup" e-columns.bind="3" e-cell-spacing.bind="[8, 8]">
+      <div class="e-panel" data-row="0" data-col="0" data-sizeX="1" data-sizeY="1"><div class="e-panel-container">A</div></div>
+      <div class="e-panel" data-row="0" data-col="1" data-sizeX="2" data-sizeY="1"><div class="e-panel-container">B</div></div>
+    </ej2-dashboard-layout>
+  </demo-section>
 </template>

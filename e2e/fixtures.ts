@@ -16,7 +16,7 @@ export class DemoApp {
   }
 
   section(id: string) {
-    return this.page.getByTestId(id);
+    return this.page.getByTestId(`section-${id}`);
   }
 }
 
