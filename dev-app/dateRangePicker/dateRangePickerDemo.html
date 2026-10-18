@@ -1,7 +1,27 @@
 <template>
-  <ej2-date-range-picker e-value.bind="value"></ej2-date-range-picker>
-  <h4>
-    Selected value
-  </h4>
-  <span>${value}</span>
+  <h2>DateRangePicker</h2>
+
+  <demo-section id="drp-range" title="Two-way start and end date" description="e-start-date and e-end-date bind in both directions.">
+    <ej2-date-range-picker data-testid="drp-range" e-start-date.two-way="startDate" e-end-date.two-way="endDate"
+      e-format="yyyy-MM-dd" e-on-change.delegate="onChange()"></ej2-date-range-picker>
+    <div class="demo-output">Start: <code data-testid="drp-start-out">${startDate | dateIso}</code>
+      End: <code data-testid="drp-end-out">${endDate | dateIso}</code>
+      Changes: <span data-testid="drp-change-count">${changeCount}</span></div>
+    <button data-testid="drp-set" click.delegate="setRange()">Set May 1 - 3</button>
+  </demo-section>
+
+  <demo-section id="drp-presets" title="Presets" description="presets render shortcut buttons in the popup.">
+    <ej2-date-range-picker data-testid="drp-presets" e-presets.bind="presets" e-format="yyyy-MM-dd"
+      e-start-date.one-way="startDate" e-end-date.one-way="endDate"></ej2-date-range-picker>
+  </demo-section>
+
+  <demo-section id="drp-limits" title="Min and max days" description="minDays and maxDays limit the selectable span.">
+    <ej2-date-range-picker data-testid="drp-limits" e-min-days.bind="2" e-max-days.bind="3" e-format="yyyy-MM-dd"
+      e-start-date.one-way="startDate"></ej2-date-range-picker>
+  </demo-section>
+
+  <demo-section id="drp-options" title="Options" description="placeholder, separator and showClearButton.">
+    <ej2-date-range-picker data-testid="drp-options" e-placeholder="Select a range" e-separator="to"
+      e-show-clear-button.bind="true"></ej2-date-range-picker>
+  </demo-section>
 </template>

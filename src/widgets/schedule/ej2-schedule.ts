@@ -8,7 +8,7 @@ import { generateBindables } from '../../utilities/decorator';
 import { SyncfusionWrapper } from  '../../common/syncfusionWrapper';
 
 
-@generateBindables("radio")
+@generateBindables("schedule")
 @inlineView(`<template><div element.ref="widgetElement"></div></template>`)
 @customElement('ej2-schedule')
 export class Ej2Schedule extends SyncfusionWrapper<Schedule, ScheduleModel> {

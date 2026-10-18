@@ -1,10 +1,12 @@
-import { observable } from "aurelia-binding";
-
 export class DateTimePickerDemo {
-  @observable
-  value = new Date();
+  value = new Date(2024, 4, 15, 9, 30);
+  changeCount = 0;
 
-  valueChanged(nv) {
-    console.log("value changed", nv)
+  onChange() {
+    this.changeCount++;
+  }
+
+  setValue() {
+    this.value = new Date(2024, 4, 20, 14, 0);
   }
 }

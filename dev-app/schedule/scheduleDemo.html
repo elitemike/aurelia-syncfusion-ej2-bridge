@@ -1,4 +1,19 @@
 <template>
-  <button click.delegate="toggle()">Toggle Schedule</button>
-  <ej2-schedule if.bind="showSchedule"></ej2-schedule>
+  <h2>Schedule</h2>
+
+  <demo-section id="sch-week" title="Views and events" description="Bound selectedDate, currentView and eventSettings. Switch views from the header toolbar.">
+    <ej2-schedule data-testid="sch-week" e-height="480px" e-selected-date.bind="selectedDate" e-current-view.bind="currentView"
+      e-event-settings.bind="eventSettings" e-on-event-click.delegate="onEventClick($event)"></ej2-schedule>
+    <div class="demo-output">Clicked: <code data-testid="sch-clicked">${lastEvent}</code>
+      Count: <span data-testid="sch-click-count">${eventClicks}</span></div>
+  </demo-section>
+
+  <demo-section id="sch-model" title="Model configuration" description="The same widget configured through e-model, starting in Month view.">
+    <ej2-schedule data-testid="sch-model" e-height="480px" e-model.bind="modelConfigured"></ej2-schedule>
+  </demo-section>
+
+  <demo-section id="sch-lifecycle" title="Lifecycle" description="Widget is destroyed and recreated with if.bind.">
+    <ej2-schedule if.bind="showSchedule" data-testid="sch-lifecycle" e-height="320px" e-selected-date.bind="selectedDate"></ej2-schedule>
+    <button data-testid="sch-toggle" click.delegate="toggle()">Toggle</button>
+  </demo-section>
 </template>

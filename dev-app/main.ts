@@ -11,7 +11,8 @@ export function configure(aurelia: Aurelia) {
     .feature('resources', (configBuilder: ConfigBuilder) => configBuilder.useDefaults())
     .globalResources([
       PLATFORM.moduleName('demo-resources/demo-section'),
-      PLATFORM.moduleName('demo-resources/date-iso-value-converter')
+      PLATFORM.moduleName('demo-resources/date-iso-value-converter'),
+      PLATFORM.moduleName('demo-resources/date-time-iso-value-converter')
     ]);
 
   aurelia.use.developmentLogging(environment.debug ? 'debug' : 'warn');

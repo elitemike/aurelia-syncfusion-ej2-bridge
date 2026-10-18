@@ -1,3 +1,20 @@
 <template>
-  <ej2-time-picker></ej2-time-picker>
+  <h2>TimePicker</h2>
+
+  <demo-section id="tp-value" title="Two-way value" description="Popup selection, typing and the view-model share one Date.">
+    <ej2-time-picker data-testid="tp-value" e-value.two-way="value" e-format="HH:mm" e-step.bind="30"
+      e-on-change.delegate="onChange()"></ej2-time-picker>
+    <div class="demo-output">Value: <code data-testid="tp-value-out">${display}</code>
+      Changes: <span data-testid="tp-change-count">${changeCount}</span></div>
+    <button data-testid="tp-set" click.delegate="setValue()">Set 11:00</button>
+  </demo-section>
+
+  <demo-section id="tp-limits" title="Min and max" description="Only times inside the range are listed.">
+    <ej2-time-picker data-testid="tp-limits" e-min.bind="min" e-max.bind="max" e-format="HH:mm" e-step.bind="60"></ej2-time-picker>
+  </demo-section>
+
+  <demo-section id="tp-options" title="Options" description="placeholder, showClearButton and readonly.">
+    <ej2-time-picker data-testid="tp-options" e-placeholder="Pick a time" e-show-clear-button.bind="true"></ej2-time-picker>
+    <ej2-time-picker data-testid="tp-readonly" e-value.one-way="value" e-readonly.bind="true" e-format="HH:mm"></ej2-time-picker>
+  </demo-section>
 </template>

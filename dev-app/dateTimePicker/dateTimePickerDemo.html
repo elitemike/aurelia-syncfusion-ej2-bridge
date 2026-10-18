@@ -1,7 +1,20 @@
 <template>
-  <ej2-date-time-picker e-value.bind="value"></ej2-date-time-picker>
-  <h4>
-    Selected value
-  </h4>
-  <span>${value}</span>
+  <h2>DateTimePicker</h2>
+
+  <demo-section id="dtp-value" title="Two-way value" description="Date and time are bound as one Date.">
+    <ej2-date-time-picker data-testid="dtp-value" e-value.two-way="value" e-format="yyyy-MM-dd HH:mm"
+      e-on-change.delegate="onChange()"></ej2-date-time-picker>
+    <div class="demo-output">Value: <code data-testid="dtp-value-out">${value | dateTimeIso}</code>
+      Changes: <span data-testid="dtp-change-count">${changeCount}</span></div>
+    <button data-testid="dtp-set" click.delegate="setValue()">Set 2024-05-20 14:00</button>
+  </demo-section>
+
+  <demo-section id="dtp-step" title="Time step" description="step controls the time list interval.">
+    <ej2-date-time-picker data-testid="dtp-step" e-value.one-way="value" e-step.bind="120" e-format="yyyy-MM-dd HH:mm"></ej2-date-time-picker>
+  </demo-section>
+
+  <demo-section id="dtp-options" title="Options" description="placeholder, floatLabelType and readonly.">
+    <ej2-date-time-picker data-testid="dtp-options" e-placeholder="Pick date and time" e-float-label-type="Auto"></ej2-date-time-picker>
+    <ej2-date-time-picker data-testid="dtp-readonly" e-value.one-way="value" e-readonly.bind="true" e-format="yyyy-MM-dd HH:mm"></ej2-date-time-picker>
+  </demo-section>
 </template>
