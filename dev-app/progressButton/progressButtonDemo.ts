@@ -1,50 +1,34 @@
-import { observable } from 'aurelia-binding';
 import { IEJ2WidgetBridge } from './../../src/interfaces/IEJ2WidgetBridge';
-import { ProgressButtonModel, ProgressButton } from "@syncfusion/ej2-splitbuttons";
+import { ProgressButtonModel, ProgressButton } from '@syncfusion/ej2-splitbuttons';
 
 export class ProgressButtonDemo {
   showButton = true;
-  
-  hideClicked(){
-    this.showButton = false;
-    let _this = this;
-    setTimeout(() => {
-      _this.showButton =true;
-    }, 2000);
+  clickCount = 0;
+  begun = 0;
+  ended = 0;
+
+  spinnerModel: ProgressButtonModel = { spinSettings: { position: 'Right' }, duration: 600 };
+  progressModel: ProgressButtonModel = { duration: 1500, enableProgress: true, cssClass: 'e-hide-spinner' };
+
+  progressVm: IEJ2WidgetBridge<ProgressButton> = null;
+
+  onClick() {
+    this.clickCount++;
   }
 
-  @observable
-  progressButtonVM: IEJ2WidgetBridge<ProgressButton> = null;
-
-  progressButtonModel: ProgressButtonModel = {
-    spinSettings: { position: "Right" }
-  };
-
-  progressButtonModelStarted: ProgressButtonModel = {
-   // spinSettings: { position: "Right" },
-    duration:30000,
-    cssClass: 'e-hide-spinner',
-    enableProgress:true
+  onBegin() {
+    this.begun++;
   }
 
-
-  buttonClicked() {
-    console.log("button clicked");
+  onEnd() {
+    this.ended++;
   }
 
-  attached() {
+  start() {
+    this.progressVm.widget.start();
   }
 
-  progressButtonVMChanged(){
-    if(this.progressButtonVM){
-      let _this = this;
-      setTimeout(() => {
-        _this.progressButtonVM.widget.start();
-
-      }, 1000);
-    }
-  }
-  restart(){
-    this.progressButtonVM.widget.start();
+  toggle() {
+    this.showButton = !this.showButton;
   }
 }

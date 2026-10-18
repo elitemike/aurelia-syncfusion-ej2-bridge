@@ -1,9 +1,14 @@
 export class RadioDemo {
   showRadio = true;
+  first = false;
+  second = true;
+  disabled = false;
+
   toggle() {
     this.showRadio = !this.showRadio;
   }
-  rdo1Checked = false;
 
-  rdo2Checked = true;
+  selectFirst() {
+    this.first = true;
+  }
 }

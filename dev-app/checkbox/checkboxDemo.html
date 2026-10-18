@@ -1,48 +1,37 @@
 <template>
-  <button click.delegate="toggle()">Toggle checkbox visibility</button>
+  <h2>CheckBox</h2>
 
-  <ej2-checkbox if.bind="showCheckbox" e-label.bind="label1" e-checked.two-way="testChecked"
-    on-click.delegate="testClicked()">
-  </ej2-checkbox>
-  <br /> <span>test checked</span> ${testChecked}
+  <demo-section id="chk-single" title="Two-way checked" description="e-checked.two-way, label and on-click.">
+    <ej2-checkbox data-testid="chk-single" e-label.bind="label" e-checked.two-way="checked" e-disabled.bind="disabled"
+      on-click.delegate="onClick()"></ej2-checkbox>
+    <div class="demo-output">Checked: <code data-testid="chk-single-out">${checked}</code>
+      Clicks: <span data-testid="chk-click-count">${clickCount}</span></div>
+    <div class="demo-row">
+      <button data-testid="chk-set" click.delegate="checked = true">Check from view-model</button>
+      <label><input type="checkbox" data-testid="chk-disable" checked.bind="disabled" /> disabled</label>
+    </div>
+  </demo-section>
 
-  <!-- <ej2-checkbox e-label="my value"></ej2-checkbox> -->
-  <h4>Object bound</h4>
-  <ej2-checkbox-list data-source.bind="dataSource1" option-model.bind="optionModel1"
-    selected-items.bind="selectedItems1" orientation="vertical">
-  </ej2-checkbox-list>
-  <div>
-    <span>Selected items ${selectedItems1.length}</span>
-    <ul>
-      <li repeat.for="option of selectedItems1">
-        ${option.label}
-      </li>
-    </ul>
-  </div>
+  <demo-section id="chk-lifecycle" title="Lifecycle" description="Widget is destroyed and recreated with if.bind.">
+    <ej2-checkbox if.bind="showCheckbox" data-testid="chk-lifecycle" e-label="I come and go"></ej2-checkbox>
+    <button data-testid="chk-toggle" click.delegate="toggle()">Toggle</button>
+  </demo-section>
 
-  <h4>String bound</h4>
-  <ej2-checkbox-list data-source.bind="dataSource2" selected-items.bind="selectedItems2" orientation="vertical">
-  </ej2-checkbox-list>
-  <div>
-    <span>Selected items ${selectedItems2.length}</span>
-    <ul>
-      <li repeat.for="option of selectedItems2">
-        ${option}
-      </li>
-    </ul>
-  </div>
+  <demo-section id="chk-objects" title="List: object items" description="ej2-checkbox-list with an option-model mapping.">
+    <ej2-checkbox-list data-testid="chk-objects" data-source.bind="objectSource" option-model.bind="objectModel"
+      selected-items.bind="objectSelected" orientation="vertical"></ej2-checkbox-list>
+    <div class="demo-output">Selected: <span data-testid="chk-objects-out">${objectSelected.length}</span></div>
+  </demo-section>
 
-  <h4>Object bound with matcher</h4>
-  <ej2-checkbox-list data-source.bind="dataSource3" option-model.bind="optionModel3"
-    selected-items.bind="selectedItems3" matcher.bind="matcher" orientation="horizontal">
-  </ej2-checkbox-list>
-  <div>
-    <span>Selected items ${selectedItems3.length}</span>
-    <ul>
-      <li repeat.for="option of selectedItems3">
-        ${option.label}
-      </li>
-    </ul>
-  </div>
+  <demo-section id="chk-strings" title="List: string items" description="Plain strings need no option-model.">
+    <ej2-checkbox-list data-testid="chk-strings" data-source.bind="stringSource" selected-items.bind="stringSelected"
+      orientation="vertical"></ej2-checkbox-list>
+    <div class="demo-output">Selected: <code data-testid="chk-strings-out"><template repeat.for="item of stringSelected">${item}${$last ? '' : ','}</template></code></div>
+  </demo-section>
 
+  <demo-section id="chk-matcher" title="List: matcher" description="matcher compares items that are not the same instance.">
+    <ej2-checkbox-list data-testid="chk-matcher" data-source.bind="matcherSource" option-model.bind="objectModel"
+      selected-items.bind="matcherSelected" matcher.bind="matcher" orientation="horizontal"></ej2-checkbox-list>
+    <div class="demo-output">Selected: <span data-testid="chk-matcher-out">${matcherSelected.length}</span></div>
+  </demo-section>
 </template>

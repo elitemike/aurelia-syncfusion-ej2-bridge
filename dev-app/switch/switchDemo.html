@@ -1,6 +1,25 @@
 <template>
-  <button click.delegate="hideCheck()">Hide</button>
-  <ej2-switch if.bind="showCheck" e-checked.two-way="isChecked" e-value="test" id="checked">
-    <label for="checked" style="padding: 10px 70px 10px 0"> USB Tethering</label>
-  </ej2-switch>
+  <h2>Switch</h2>
+
+  <demo-section id="sw-checked" title="Two-way checked" description="e-checked.two-way and the change event.">
+    <ej2-switch data-testid="sw-checked" e-checked.two-way="checked" e-disabled.bind="disabled"
+      e-on-change.delegate="onChange()"></ej2-switch>
+    <div class="demo-output">Checked: <code data-testid="sw-out">${checked}</code>
+      Changes: <span data-testid="sw-change-count">${changeCount}</span></div>
+    <div class="demo-row">
+      <button data-testid="sw-off" click.delegate="checked = false">Turn off from view-model</button>
+      <label><input type="checkbox" data-testid="sw-disable" checked.bind="disabled" /> disabled</label>
+    </div>
+  </demo-section>
+
+  <demo-section id="sw-labels" title="On/off labels" description="onLabel and offLabel are drawn inside the switch.">
+    <ej2-switch data-testid="sw-labels" e-on-label="ON" e-off-label="OFF"></ej2-switch>
+  </demo-section>
+
+  <demo-section id="sw-label" title="Slotted label with id" description="An id on the host is moved to the input so a label for= works.">
+    <ej2-switch if.bind="showSwitch" id="usb" data-testid="sw-label" e-checked="true">
+      <label for="usb" data-testid="sw-usb-label" style="padding-right: 12px">USB Tethering</label>
+    </ej2-switch>
+    <button data-testid="sw-toggle" click.delegate="toggle()">Toggle</button>
+  </demo-section>
 </template>

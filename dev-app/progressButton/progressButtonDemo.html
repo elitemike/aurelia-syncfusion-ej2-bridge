@@ -1,10 +1,20 @@
 <template>
-  <ej2-progress-button if.bind="showButton" e-model.bind="progressButtonModel" on-click.delegate="buttonClicked()">
-    Help</ej2-progress-button>
+  <h2>Progress Button</h2>
 
-    <ej2-button on-click.trigger="restart()">Restart progress button</ej2-button>
-    <ej2-progress-button view-model.ref="progressButtonVM" e-model.bind="progressButtonModelStarted" on-click.delegate="buttonClicked()">
-      Help auto start</ej2-progress-button>
-      <ej2-button on-click.delegate="hideClicked()">Hide</ej2-button>
+  <demo-section id="pb-spinner" title="Spinner" description="Clicking starts the spinner, on-click and begin/end events are raised.">
+    <ej2-progress-button data-testid="pb-spinner" e-model.bind="spinnerModel" on-click.delegate="onClick()"
+      e-on-begin.delegate="onBegin()" e-on-end.delegate="onEnd()">Save</ej2-progress-button>
+    <div class="demo-output">Clicks: <span data-testid="pb-clicks">${clickCount}</span>
+      Begin: <span data-testid="pb-begin">${begun}</span> End: <span data-testid="pb-end">${ended}</span></div>
+  </demo-section>
 
+  <demo-section id="pb-progress" title="Progress bar" description="enableProgress shows a progress bar, started through the widget API.">
+    <ej2-progress-button data-testid="pb-progress" view-model.ref="progressVm" e-model.bind="progressModel">Upload</ej2-progress-button>
+    <button data-testid="pb-start" click.delegate="start()">Start via API</button>
+  </demo-section>
+
+  <demo-section id="pb-lifecycle" title="Lifecycle" description="Widget is destroyed and recreated with if.bind.">
+    <ej2-progress-button if.bind="showButton" data-testid="pb-lifecycle">I come and go</ej2-progress-button>
+    <button data-testid="pb-toggle" click.delegate="toggle()">Toggle</button>
+  </demo-section>
 </template>

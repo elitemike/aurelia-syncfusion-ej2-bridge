@@ -1,20 +1,14 @@
-import { observable } from "aurelia-binding";
-
 export class SwitchDemo {
-  showCheck = true;
+  showSwitch = true;
+  checked = true;
+  disabled = false;
+  changeCount = 0;
 
-  hideCheck(){
-    let _this = this;
-    this.showCheck = false;
-    setTimeout(() => {
-      _this.showCheck = true;
-    }, 2000);
+  onChange() {
+    this.changeCount++;
   }
 
-  @observable
-  isChecked = true;
-
-  isCheckedChanged() {
-    console.log("isChecked", this.isChecked)
+  toggle() {
+    this.showSwitch = !this.showSwitch;
   }
 }

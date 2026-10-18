@@ -1,83 +1,37 @@
-import { IOptionModel } from "widgets/checkbox/ej2-checkbox-list";
-
+import { IOptionModel } from 'widgets/checkbox/ej2-checkbox-list';
 
 export class CheckboxDemo {
-  label1 = "this is my label";
-  testChecked: boolean = false;
-  showCheckbox: boolean = true;
+  label = 'Accept terms';
+  checked = false;
+  disabled = false;
+  showCheckbox = true;
+  clickCount = 0;
 
-  testClicked() {
-    console.log("test Clicked")
+  onClick() {
+    this.clickCount++;
   }
 
   toggle() {
     this.showCheckbox = !this.showCheckbox;
   }
 
-  dataSource1 = [
-    {
-      label: "Item 1",
-      name: "blah"
-    },
-    {
-      label: "Item 2",
-      name: "boo"
-    },
-    {
-      label: "item 3",
-      name: "basdf"
-    }
-  ]
+  objectSource = [
+    { label: 'Item 1', name: 'one' },
+    { label: 'Item 2', name: 'two' },
+    { label: 'Item 3', name: 'three' }
+  ];
+  objectSelected = [this.objectSource[1]];
+  objectModel: IOptionModel = { label: 'label', name: 'name', value: 'value' };
 
-  dataSource2 = ["A", "B", "C", "D"]
+  stringSource = ['A', 'B', 'C', 'D'];
+  stringSelected: string[] = [];
 
-  dataSource3 = [
-    {
-      label: "Item 1",
-      name: "blah",
-      id: "AAA"
-    },
-    {
-      label: "Item 2",
-      name: "boo",
-      id: "asdfa"
-    },
-    {
-      label: "item 3",
-      name: "basdf",
-      id: "3rfsdfga"
-    }
-  ]
-
-  matcher = (a, b) => { return a.id === b.id };
-
-  selectedItems1 = [];
-  selectedItems2 = [];
-  selectedItems3 = [{
-    label: "Item 2",
-    name: "boo",
-    id: "asdfa"
-  }];
-
-  optionModel1: IOptionModel = {
-    label: "label",
-    name: "name",
-    value: "value"
-  }
-
-  optionModel3: IOptionModel = {
-    label: "label",
-    name: "name",
-    value: "value"
-  }
-
-  constructor() {
-    this.selectedItems1.push(this.dataSource1[1]);
-
-    let _this = this;
-    // setTimeout(() => {
-    //   _this.selectedItems.push(_this.dataSource[2]);
-    //   console.log("selected tiems", _this.selectedItems)
-    // }, 5000);
-  }
+  matcherSource = [
+    { label: 'Item 1', name: 'one', id: 'AAA' },
+    { label: 'Item 2', name: 'two', id: 'BBB' },
+    { label: 'Item 3', name: 'three', id: 'CCC' }
+  ];
+  // a different instance with the same id, resolved through the matcher
+  matcherSelected = [{ label: 'Item 2', name: 'two', id: 'BBB' }];
+  matcher = (a, b) => a.id === b.id;
 }

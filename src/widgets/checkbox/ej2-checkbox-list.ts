@@ -7,8 +7,8 @@ import { constants } from "../../common/constants";
   <div repeat.for="option of dataSource" css="\${orientation === 'horizontal' ? 'display: inline;' : ''}">
     <ej2-checkbox view-model.ref="viewModels[$index]" e-label.bind="optionModel? option[optionModel.label]: option"
       e-name.bind="optionModel? option[optionModel.name]: option"
-      click.delegate="checkboxClick(option, viewModels[$index])"
-      e-checked.bind="selectedItems.length >0 && matcher? isMatch(option) : selectedItems.indexOf(option) !== -1">
+      on-click.delegate="checkboxClick(option, viewModels[$index])"
+      e-checked.one-way="selectedItems.length >0 && matcher? isMatch(option) : selectedItems.indexOf(option) !== -1">
     </ej2-checkbox>
   </div>
 </template>`)

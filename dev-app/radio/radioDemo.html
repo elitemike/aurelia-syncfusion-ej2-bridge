@@ -1,5 +1,22 @@
 <template>
-  <button click.delegate="toggle()">Toggle visibility</button>
-  <ej2-radio if.bind="showRadio" e-label="1st" e-name="ab" e-checked.two-way="rdo1Checked"></ej2-radio>
-  <ej2-radio if.bind="showRadio" e-label="2nd" e-name="ab" e-checked.two-way="rdo2Checked"></ej2-radio><br />
+  <h2>Radio Button</h2>
+
+  <demo-section id="rdo-group" title="Group with two-way checked" description="Radios sharing e-name behave as one group; each e-checked.two-way stays in sync.">
+    <ej2-radio data-testid="rdo-first" e-label="First" e-name="choice" e-checked.two-way="first" e-disabled.bind="disabled"></ej2-radio>
+    <ej2-radio data-testid="rdo-second" e-label="Second" e-name="choice" e-checked.two-way="second" e-disabled.bind="disabled"></ej2-radio>
+    <div class="demo-output">First: <code data-testid="rdo-first-out">${first}</code> Second: <code data-testid="rdo-second-out">${second}</code></div>
+    <div class="demo-row">
+      <button data-testid="rdo-select-first" click.delegate="selectFirst()">Select first from view-model</button>
+      <label><input type="checkbox" data-testid="rdo-disable" checked.bind="disabled" /> disabled</label>
+    </div>
+  </demo-section>
+
+  <demo-section id="rdo-lifecycle" title="Lifecycle" description="Widgets are destroyed and recreated with if.bind.">
+    <ej2-radio if.bind="showRadio" data-testid="rdo-life" e-label="Ephemeral" e-name="ephemeral"></ej2-radio>
+    <button data-testid="rdo-toggle" click.delegate="toggle()">Toggle</button>
+  </demo-section>
+
+  <demo-section id="rdo-label" title="Label position" description="labelPosition Before places the label left of the radio.">
+    <ej2-radio data-testid="rdo-before" e-label="Before" e-name="pos" e-label-position="Before"></ej2-radio>
+  </demo-section>
 </template>
