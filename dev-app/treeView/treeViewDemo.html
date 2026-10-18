@@ -1,5 +1,27 @@
 <template>
-  <ej2-tree-view e-model.bind="model">
+  <h2>TreeView</h2>
 
-  </ej2-tree-view>
+  <demo-section id="tv-select" title="Selection" description="selectedNodes binds in both directions, nodeSelected is raised.">
+    <ej2-tree-view data-testid="tv-select" e-fields.bind="fields" e-selected-nodes.two-way="selected"
+      e-on-node-selected.delegate="onNodeSelected($event)"></ej2-tree-view>
+    <div class="demo-output">Selected: <code data-testid="tv-selected-out">${selected.join(',')}</code>
+      Last: <code data-testid="tv-last">${lastSelected}</code>
+      Events: <span data-testid="tv-events">${selectedEvents}</span></div>
+    <button data-testid="tv-select-program-files" click.delegate="selectProgramFiles()">Select Program Files</button>
+  </demo-section>
+
+  <demo-section id="tv-check" title="Checkboxes" description="showCheckBox with checkedNodes bound.">
+    <ej2-tree-view data-testid="tv-check" e-fields.bind="fields" e-show-check-box.bind="true"
+      e-checked-nodes.two-way="checked"></ej2-tree-view>
+    <div class="demo-output">Checked: <code data-testid="tv-checked-out">${checked.join(',')}</code></div>
+  </demo-section>
+
+  <demo-section id="tv-expand" title="Expanded nodes" description="expandedNodes follows expand and collapse.">
+    <ej2-tree-view data-testid="tv-expand" e-fields.bind="fields" e-expanded-nodes.two-way="expanded"></ej2-tree-view>
+    <div class="demo-output">Expanded: <code data-testid="tv-expanded-out">${expanded.join(',')}</code></div>
+  </demo-section>
+
+  <demo-section id="tv-sort" title="Sorting and multi-selection" description="sortOrder Descending, allowMultiSelection.">
+    <ej2-tree-view data-testid="tv-sort" e-fields.bind="fields" e-sort-order="Descending" e-allow-multi-selection.bind="true"></ej2-tree-view>
+  </demo-section>
 </template>

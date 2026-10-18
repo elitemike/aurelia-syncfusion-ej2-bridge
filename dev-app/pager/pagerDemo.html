@@ -1,5 +1,21 @@
 <template>
-  <ej2-pager e-total-records-count="20" e-page-size="1">
+  <h2>Pager</h2>
 
-  </ej2-pager>
+  <demo-section id="pg-current" title="Two-way current page" description="Clicking the pager updates currentPage, the view-model can move the pager.">
+    <ej2-pager data-testid="pg-current" e-total-records-count.bind="total" e-page-size.bind="pageSize"
+      e-current-page.two-way="currentPage" e-on-click.delegate="onClick()"></ej2-pager>
+    <div class="demo-output">Current page: <code data-testid="pg-current-out">${currentPage}</code>
+      Clicks: <span data-testid="pg-click-count">${clickCount}</span></div>
+    <button data-testid="pg-goto-5" click.delegate="goTo(5)">Go to page 5</button>
+  </demo-section>
+
+  <demo-section id="pg-size" title="Page sizes" description="pageSizes adds a page size dropdown, pageCount sets the number of numeric buttons.">
+    <ej2-pager data-testid="pg-size" e-total-records-count.bind="total" e-page-size.bind="10"
+      e-page-sizes.bind="[10, 20, 50]" e-page-count.bind="3"></ej2-pager>
+  </demo-section>
+
+  <demo-section id="pg-message" title="External message" description="enableExternalMessage and externalMessage add custom text.">
+    <ej2-pager data-testid="pg-message" e-total-records-count.bind="45" e-page-size.bind="10"
+      e-enable-external-message.bind="true" e-external-message="Custom pager message"></ej2-pager>
+  </demo-section>
 </template>

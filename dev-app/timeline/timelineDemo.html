@@ -1,31 +1,20 @@
 <template>
-    <style>
-        /* Customized dot color */
-        .default-timeline-section .state-progress {
-            outline-color: #007bff;
-            background-color: #007bff;
-            --dot-size: 25px;
-        }
+  <h2>Timeline</h2>
 
-        .default-timeline-section .state-success {
-            outline-color: #28a745;
-            background-color: #28a745;
-        }
+  <demo-section id="tl-bound" title="Bound items and options" description="items, orientation and reverse follow the view-model.">
+    <ej2-timeline data-testid="tl-bound" e-items.bind="items" e-orientation.bind="orientation" e-reverse.bind="reverse"></ej2-timeline>
+    <div class="demo-row">
+      <button data-testid="tl-horizontal" click.delegate="orientation = 'Horizontal'">Horizontal</button>
+      <button data-testid="tl-vertical" click.delegate="orientation = 'Vertical'">Vertical</button>
+      <label><input type="checkbox" data-testid="tl-reverse" checked.bind="reverse" /> reverse</label>
+    </div>
+  </demo-section>
 
-        /* Customized connector color */
-        .default-timeline-section .completed.e-connector::after {
-            border-color: #28a745;
-        }
+  <demo-section id="tl-css" title="Custom item css" description="dotCss and cssClass are applied to each item.">
+    <ej2-timeline data-testid="tl-css" e-items.bind="items"></ej2-timeline>
+  </demo-section>
 
-        .default-timeline-section .intermediate.e-connector::after {
-            border-style: dashed;
-        }
-
-        .default-timeline-section {
-            height: 350px;
-            width: 290px;
-            margin: 30px auto;
-        }
-    </style>
-    <ej2-timeline e-model.bind="timelineModel" class="default-timeline-section"></ej2-timeline>
+  <demo-section id="tl-align" title="Alignment" description="align After places the content after the dot.">
+    <ej2-timeline data-testid="tl-align" e-items.bind="items" e-align="After"></ej2-timeline>
+  </demo-section>
 </template>

@@ -1,8 +1,23 @@
 <template>
-  <div style="width:400px; height:300px;">
-    <ej2-list-view e-model.bind="model"></ej2-list-view>
-  </div>
-  <div  style="width:800px; height:400px;">
-    ${dataSource.length}
-     <ej2-list-view view-model.ref="streamingWidget" e-model.bind="modelForTemplate"></ej2-list-view></div>
+  <h2>ListView</h2>
+
+  <demo-section id="lv-default" title="Default with header" description="showHeader with headerTitle, select event carries the item.">
+    <ej2-list-view data-testid="lv-default" e-data-source.bind="items" e-fields.bind="fields" e-show-header.bind="true"
+      e-header-title="Folders" e-on-select.delegate="onSelect($event)"></ej2-list-view>
+    <div class="demo-output">Selected: <code data-testid="lv-selected">${selectedText}</code>
+      Events: <span data-testid="lv-select-count">${selectCount}</span></div>
+  </demo-section>
+
+  <demo-section id="lv-checkbox" title="Checkboxes" description="showCheckBox adds a check box to every item.">
+    <ej2-list-view data-testid="lv-checkbox" e-data-source.bind="items" e-fields.bind="fields"
+      e-show-check-box.bind="true"></ej2-list-view>
+  </demo-section>
+
+  <demo-section id="lv-grouped" title="Grouping" description="fields.groupBy renders group headers.">
+    <ej2-list-view data-testid="lv-grouped" e-data-source.bind="grouped" e-fields.bind="groupedFields"></ej2-list-view>
+  </demo-section>
+
+  <demo-section id="lv-sorted" title="Sorting" description="sortOrder Descending.">
+    <ej2-list-view data-testid="lv-sorted" e-data-source.bind="items" e-fields.bind="fields" e-sort-order="Descending"></ej2-list-view>
+  </demo-section>
 </template>

@@ -1,3 +1,19 @@
 <template>
-  <ej2-file-manager e-model.bind="model"></ej2-file-manager>
+  <h2>File Manager</h2>
+
+  <demo-section id="fm-details" title="Details view" description="Configured through e-model, the e-view binding switches between Details and LargeIcons.">
+    <div class="demo-row">
+      <button data-testid="fm-details-btn" click.delegate="setView('Details')">Details</button>
+      <button data-testid="fm-icons-btn" click.delegate="setView('LargeIcons')">Large icons</button>
+    </div>
+    <ej2-file-manager data-testid="fm-details" e-model.bind="model" e-view.bind="view"
+      e-on-file-open.delegate="onFileOpen($event)"></ej2-file-manager>
+    <div class="demo-output">Opened: <code data-testid="fm-opened">${lastOpened}</code>
+      Events: <span data-testid="fm-open-count">${opened}</span></div>
+  </demo-section>
+
+  <demo-section id="fm-minimal" title="Without navigation pane" description="navigationPaneSettings visible false and a restricted toolbar.">
+    <ej2-file-manager data-testid="fm-minimal" e-model.bind="model" e-navigation-pane-settings.bind="{ visible: false }"
+      e-toolbar-settings.bind="{ items: ['NewFolder', 'Refresh'] }"></ej2-file-manager>
+  </demo-section>
 </template>
