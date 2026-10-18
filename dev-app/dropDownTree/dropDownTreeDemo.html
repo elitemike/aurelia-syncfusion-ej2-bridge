@@ -1,5 +1,21 @@
 <template>
-  <ej2-drop-down-tree e-model.bind="ddtModel" e-value.bind="selectedValue"></ej2-drop-down-tree>
+  <h2>DropDownTree</h2>
 
-  Selected Value: <span>${selectedValue}</span><br />
+  <demo-section id="ddt-value" title="Two-way value" description="value is an array of selected node ids.">
+    <ej2-drop-down-tree data-testid="ddt-value" e-fields.bind="fields" e-value.two-way="selected"
+      e-on-change.delegate="onChange()"></ej2-drop-down-tree>
+    <div class="demo-output">Value: <code data-testid="ddt-value-out">${selected.join(',')}</code>
+      Changes: <span data-testid="ddt-change-count">${changeCount}</span></div>
+    <button data-testid="ddt-set" click.delegate="setSelected()">Select Naturals.mp4</button>
+  </demo-section>
+
+  <demo-section id="ddt-checkbox" title="Multi-select with checkboxes" description="showCheckBox, showSelectAll and mode Box.">
+    <ej2-drop-down-tree data-testid="ddt-checkbox" e-fields.bind="fields" e-show-check-box="true" e-show-select-all="true"
+      e-placeholder="Select files"></ej2-drop-down-tree>
+  </demo-section>
+
+  <demo-section id="ddt-filter" title="Filtering" description="allowFiltering shows a filter box in the popup.">
+    <ej2-drop-down-tree data-testid="ddt-filter" e-fields.bind="fields" e-allow-filtering="true"
+      e-placeholder="Search files"></ej2-drop-down-tree>
+  </demo-section>
 </template>

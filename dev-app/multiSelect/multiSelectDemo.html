@@ -1,17 +1,31 @@
 <template>
-  <ej2-multi-select e-allow-custom-value="true">
-    <select>
-      <option value="Game1">American Football</option>
-      <option value="Game2">Badminton</option>
-      <option value="Game3">Basketball</option>
-      <option value="Game4">Cricket</option>
-      <option value="Game5">Football</option>
-      <option value="Game6">Golf</option>
-      <option value="Game7">Hockey</option>
-      <option value="Game8">Rugby</option>
-      <option value="Game9">Snooker</option>
-      <option value="Game10">Tennis</option>
-    </select>
-  </ej2-multi-select>
+  <h2>MultiSelect</h2>
 
+  <demo-section id="ms-value" title="Two-way value" description="value is an array bound in both directions.">
+    <ej2-multi-select data-testid="ms-value" e-data-source.bind="sports" e-fields.bind="fields" e-value.two-way="values"
+      e-on-change.delegate="onChange()"></ej2-multi-select>
+    <div class="demo-output">Values: <code data-testid="ms-value-out">${values.join(',')}</code>
+      Changes: <span data-testid="ms-change-count">${changeCount}</span></div>
+    <button data-testid="ms-set" click.delegate="setValues()">Set American Football</button>
+  </demo-section>
+
+  <demo-section id="ms-checkbox" title="Checkbox mode" description="mode CheckBox with Select All.">
+    <ej2-multi-select data-testid="ms-checkbox" e-data-source.bind="sports" e-fields.bind="fields" e-mode="CheckBox"
+      e-show-select-all="true" e-placeholder="Pick games"></ej2-multi-select>
+  </demo-section>
+
+  <demo-section id="ms-limit" title="Selection limit" description="maximumSelectionLength caps the chips.">
+    <ej2-multi-select data-testid="ms-limit" e-data-source.bind="sports" e-fields.bind="fields"
+      e-maximum-selection-length="2" e-placeholder="Max two"></ej2-multi-select>
+  </demo-section>
+
+  <demo-section id="ms-select" title="From &lt;select&gt;" description="Markup in the element body is the data source.">
+    <ej2-multi-select data-testid="ms-select" e-allow-custom-value="true" e-placeholder="Choose">
+      <select>
+        <option value="g1">Golf</option>
+        <option value="g2">Hockey</option>
+        <option value="g3">Rugby</option>
+      </select>
+    </ej2-multi-select>
+  </demo-section>
 </template>

@@ -1,3 +1,29 @@
 <template>
-  <ej2-combo-box e-data-source.bind="dataSource" e-enabled="false" e-model.bind="model"></ej2-combo-box>
+  <h2>ComboBox</h2>
+
+  <demo-section id="cb-value" title="Two-way value" description="Selection updates the view-model and the other way round.">
+    <ej2-combo-box data-testid="cb-value" e-data-source.bind="games" e-fields.bind="fields" e-value.two-way="value"
+      e-enabled.bind="enabled" e-on-change.delegate="onChange()"></ej2-combo-box>
+    <div class="demo-output">Value: <code data-testid="cb-value-out">${value}</code>
+      Changes: <span data-testid="cb-change-count">${changeCount}</span></div>
+    <div class="demo-row">
+      <button data-testid="cb-set" click.delegate="setValue()">Set Football</button>
+      <label><input type="checkbox" data-testid="cb-enabled" checked.bind="enabled" /> enabled</label>
+    </div>
+  </demo-section>
+
+  <demo-section id="cb-custom" title="Custom values" description="allowCustom accepts text that is not in the list.">
+    <ej2-combo-box data-testid="cb-custom" e-data-source.bind="games" e-fields.bind="fields" e-allow-custom="true"
+      e-placeholder="Type anything"></ej2-combo-box>
+  </demo-section>
+
+  <demo-section id="cb-filter" title="Filtering" description="Typing filters the popup list (StartsWith by default).">
+    <ej2-combo-box data-testid="cb-filter" e-data-source.bind="games" e-fields.bind="fields" e-allow-filtering="true"
+      e-placeholder="Filter games"></ej2-combo-box>
+  </demo-section>
+
+  <demo-section id="cb-sorted" title="Sorting and clear button" description="sortOrder and showClearButton.">
+    <ej2-combo-box data-testid="cb-sorted" e-data-source.bind="games" e-fields.bind="fields" e-sort-order="Descending"
+      e-show-clear-button="true"></ej2-combo-box>
+  </demo-section>
 </template>

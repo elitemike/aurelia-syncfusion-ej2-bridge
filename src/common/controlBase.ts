@@ -164,8 +164,13 @@ export class ControlBase<T, U> {
             if (typeof this[customFunc] === "function") {
               this[customFunc].call(this, newValue);
             } else {
-              // this.debug(`changed - ${modelBinding}`, newValue);
-              (<any>this.widget)[modelBinding] = newValue;
+              // Observer callbacks are delivered asynchronously, so by now `newValue` may be stale: widget `change`
+              // events write the binding back and programmatic widget updates raise `change` themselves. Always
+              // sync the latest bound value and skip no-op writes, otherwise stale values echo back and win.
+              const latest = this[binding];
+              if (!isSameValue((<any>this.widget)[modelBinding], latest)) {
+                (<any>this.widget)[modelBinding] = latest;
+              }
             }
           }
         }));
@@ -194,6 +199,13 @@ export class ControlBase<T, U> {
 
 
 
+}
+
+function isSameValue(a: any, b: any) {
+  if (a === b) { return true; }
+  if (a instanceof Date && b instanceof Date) { return a.getTime() === b.getTime(); }
+  if (Array.isArray(a) && Array.isArray(b)) { return a.length === b.length && a.every((v, i) => isSameValue(v, b[i])); }
+  return false;
 }
 
 function toKebabCase(value: string) {

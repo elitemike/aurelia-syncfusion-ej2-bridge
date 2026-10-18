@@ -1,13 +1,17 @@
-import { AutoCompleteModel } from '@syncfusion/ej2-dropdowns';
 export class AutoCompleteDemo {
+  sports: string[] = ['Badminton', 'Basketball', 'Cricket', 'Football', 'Golf', 'Gymnastics', 'Hockey', 'Rugby', 'Snooker', 'Tennis'];
+  records = [
+    { id: 'g1', game: 'Badminton' }, { id: 'g2', game: 'Basketball' }, { id: 'g3', game: 'Cricket' }
+  ];
+  fields = { value: 'game', text: 'game' };
+  value: string = null;
+  changeCount = 0;
 
-  sportsData: string[] = ['Badminton', 'Basketball', 'Cricket', 'Football', 'Golf', 'Gymnastics', 'Hockey', 'Rugby', 'Snooker', 'Tennis'];
+  onChange() {
+    this.changeCount++;
+  }
 
-  model: AutoCompleteModel = null;
-
-  constructor() {
-    this.model = {
-      dataSource: this.sportsData
-    };
+  setValue() {
+    this.value = 'Hockey';
   }
 }

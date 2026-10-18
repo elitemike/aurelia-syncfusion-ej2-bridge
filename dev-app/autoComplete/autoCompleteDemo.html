@@ -1,3 +1,25 @@
 <template>
-  <ej2-auto-complete e-model.bind="model"></ej2-auto-complete>
+  <h2>AutoComplete</h2>
+
+  <demo-section id="ac-default" title="Default" description="Suggestions appear after the minimum number of characters is typed.">
+    <ej2-auto-complete data-testid="ac-default" e-data-source.bind="sports" e-placeholder="Find a game"></ej2-auto-complete>
+  </demo-section>
+
+  <demo-section id="ac-value" title="Two-way value" description="e-value.two-way syncs the text in both directions.">
+    <ej2-auto-complete data-testid="ac-value" e-data-source.bind="sports" e-value.two-way="value"
+      e-on-change.delegate="onChange()"></ej2-auto-complete>
+    <div class="demo-output">Value: <code data-testid="ac-value-out">${value}</code>
+      Changes: <span data-testid="ac-change-count">${changeCount}</span></div>
+    <button data-testid="ac-set" click.delegate="setValue()">Set Hockey</button>
+  </demo-section>
+
+  <demo-section id="ac-fields" title="Object data source" description="fields maps the text and value properties.">
+    <ej2-auto-complete data-testid="ac-fields" e-data-source.bind="records" e-fields.bind="fields"
+      e-min-length="1" e-placeholder="Find a record"></ej2-auto-complete>
+  </demo-section>
+
+  <demo-section id="ac-options" title="Options" description="showClearButton and suggestionCount.">
+    <ej2-auto-complete data-testid="ac-options" e-data-source.bind="sports" e-show-clear-button="true" e-suggestion-count="3"
+      e-min-length="1"></ej2-auto-complete>
+  </demo-section>
 </template>

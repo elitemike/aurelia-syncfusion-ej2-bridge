@@ -1,51 +1,22 @@
-import { DropDownTreeModel } from '@syncfusion/ej2-dropdowns';
 export class DropDownTreeDemo {
-  private ddtModel: DropDownTreeModel = null;
-  private selectedValue: any = ["03-03"];
+  data = [
+    { id: '01', name: 'Music', children: [{ id: '01-01', name: 'Gouttes.mp3' }] },
+    { id: '02', name: 'Videos', expanded: true, children: [{ id: '02-01', name: 'Naturals.mp4' }, { id: '02-02', name: 'Wild.mpeg' }] },
+    {
+      id: '03', name: 'Documents', children: [
+        { id: '03-01', name: 'Pollution.docx' }, { id: '03-02', name: 'Warming.ppt' }, { id: '03-03', name: 'Network.pdf' }
+      ]
+    }
+  ];
+  fields = { dataSource: this.data, value: 'id', text: 'name', child: 'children' };
+  selected: string[] = ['03-02'];
+  changeCount = 0;
 
-  constructor() {
-    let data: { [key: string]: Object }[] = [
-      {
-        nodeId: '01', nodeText: 'Music',
-        nodeChild: [
-          { nodeId: '01-01', nodeText: 'Gouttes.mp3' }
-        ]
-      },
-      {
-        nodeId: '02', nodeText: 'Videos', expanded: true,
-        nodeChild: [
-          { nodeId: '02-01', nodeText: 'Naturals.mp4' },
-          { nodeId: '02-02', nodeText: 'Wild.mpeg' },
-        ]
-      },
-      {
-        nodeId: '03', nodeText: 'Documents',
-        nodeChild: [
-          { nodeId: '03-01', nodeText: 'Environment Pollution.docx' },
-          { nodeId: '03-02', nodeText: 'Global Water, Sanitation, & Hygiene.docx' },
-          { nodeId: '03-03', nodeText: 'Global Warming.ppt' },
-          { nodeId: '03-04', nodeText: 'Social Network.pdf' },
-          { nodeId: '03-05', nodeText: 'Youth Empowerment.pdf' },
-        ]
-      },
-    ];
-
-    this.ddtModel = {
-      fields: {
-        dataSource: data,
-        value: 'nodeId',
-        text: 'nodeText',
-        child: 'nodeChild'
-      },
-      changeOnBlur: false
-    };
+  onChange() {
+    this.changeCount++;
   }
 
-  attached() {
-
-    let _this = this;
-    setTimeout(() => {
-      _this.selectedValue = ["03-03"]
-    }, 30000);
+  setSelected() {
+    this.selected = ['02-01'];
   }
 }

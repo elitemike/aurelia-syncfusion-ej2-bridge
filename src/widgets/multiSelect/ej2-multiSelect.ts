@@ -1,6 +1,6 @@
 import { constants } from '../../common/constants';
 import { SyncfusionWrapper } from "../../common/syncfusionWrapper";
-import { MultiSelect, MultiSelectModel } from "@syncfusion/ej2-dropdowns";
+import { MultiSelect, MultiSelectModel, CheckBoxSelection } from "@syncfusion/ej2-dropdowns";
 import { generateBindables } from "../../utilities/decorator";
 import { enableRipple } from '@syncfusion/ej2-base';
 import { inlineView, customElement } from 'aurelia-framework';
@@ -11,6 +11,12 @@ enableRipple(true);
 @customElement('ej2-multi-select')
 export class Ej2MultiSelect extends SyncfusionWrapper<MultiSelect, MultiSelectModel>{
   protected syncfusionWidgetType = MultiSelect;
+
+  onBeforeWidgetInstantiation() {
+    // mode="CheckBox" and showSelectAll need this module
+    MultiSelect.Inject(CheckBoxSelection);
+  }
+
   protected onWrapperCreated() {
   }
 
@@ -24,7 +30,8 @@ export class Ej2MultiSelect extends SyncfusionWrapper<MultiSelect, MultiSelectMo
   }
 
   onChange(args) {
-    this[`${constants.bindablePrefix}value`] = args.value;
+    // the widget can hand back the same array instance it mutated, which Aurelia's observer would ignore
+    this[`${constants.bindablePrefix}value`] = Array.isArray(args.value) ? args.value.slice() : args.value;
   }
 
 
