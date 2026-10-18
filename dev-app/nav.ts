@@ -35,6 +35,7 @@ export const demoRoutes: DemoRoute[] = [
   { route: 'schedule', title: 'Schedule', category: 'Calendars', moduleId: PLATFORM.moduleName('schedule/scheduleDemo') },
 
   { route: 'grid', title: 'Grid', category: 'Data', moduleId: PLATFORM.moduleName('grid/gridDemo') },
+  { route: 'gridFlags', title: 'Grid (feature flags)', category: 'Data', moduleId: PLATFORM.moduleName('grid/gridFlagsDemo') },
   { route: 'pager', title: 'Pager', category: 'Data', moduleId: PLATFORM.moduleName('pager/pagerDemo') },
   { route: 'listView', title: 'ListView', category: 'Data', moduleId: PLATFORM.moduleName('listView/listViewDemo') },
   { route: 'treeView', title: 'TreeView', category: 'Data', moduleId: PLATFORM.moduleName('treeView/treeViewDemo') },

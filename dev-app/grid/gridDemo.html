@@ -13,4 +13,39 @@
     <ej2-grid data-testid="grid-chooser" e-height="250" e-columns.bind="gridColumns" e-data-source.bind="gridDataSource"
       e-allow-reordering="true" e-show-column-chooser="true" e-toolbar.bind="['ColumnChooser']"></ej2-grid>
   </demo-section>
+
+  <demo-section id="grid-filter" title="Filtering" description="allowFiltering with the FilterBar row.">
+    <ej2-grid data-testid="grid-filter" e-columns.bind="gridColumns" e-data-source.bind="filterData"
+      e-allow-filtering.bind="true" e-filter-settings.bind="filterSettings" e-allow-paging.bind="true"
+      e-page-settings.bind="pageSettings"></ej2-grid>
+  </demo-section>
+
+  <demo-section id="grid-group" title="Grouping" description="allowGrouping with a pre-grouped column.">
+    <ej2-grid data-testid="grid-group" e-columns.bind="groupColumns" e-data-source.bind="groupData"
+      e-allow-grouping.bind="true" e-group-settings.bind="groupSettings" e-allow-sorting.bind="true"></ej2-grid>
+  </demo-section>
+
+  <demo-section id="grid-edit" title="Editing" description="Normal edit mode with toolbar, validation and actionComplete.">
+    <ej2-grid data-testid="grid-edit" e-columns.bind="editColumns" e-data-source.bind="editData"
+      e-edit-settings.bind="editSettings" e-toolbar.bind="editToolbar" e-allow-selection.bind="true"
+      e-on-action-complete.delegate="onActionComplete($event)"></ej2-grid>
+    <div class="demo-output">Last action: <code data-testid="grid-last-action">${lastAction}</code></div>
+  </demo-section>
+
+  <demo-section id="grid-search" title="Search" description="The Search toolbar item filters across all columns.">
+    <ej2-grid data-testid="grid-search" e-columns.bind="gridColumns" e-data-source.bind="searchData"
+      e-toolbar.bind="searchToolbar"></ej2-grid>
+  </demo-section>
+
+  <demo-section id="grid-aggregate" title="Aggregates" description="A footer Sum aggregate.">
+    <ej2-grid data-testid="grid-aggregate" e-columns.bind="gridColumns" e-data-source.bind="aggregateData"
+      e-aggregates.bind="aggregates"></ej2-grid>
+  </demo-section>
+
+  <demo-section id="grid-selected-index" title="Selected row index" description="selectedRowIndex is two-way bound.">
+    <ej2-grid data-testid="grid-selected-index" e-columns.bind="gridColumns" e-data-source.bind="multiData"
+      e-allow-selection.bind="true" e-selected-row-index.two-way="selectedRowIndex"></ej2-grid>
+    <div class="demo-output">Index: <code data-testid="grid-index-out">${selectedRowIndex}</code></div>
+    <button data-testid="grid-index-4" click.delegate="selectedRowIndex = 4">Select row 4</button>
+  </demo-section>
 </template>

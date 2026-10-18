@@ -11,12 +11,50 @@ export class GridDemo {
   selectedOrder: number = null;
   created = false;
 
+  // every editable / mutable sample works on its own copy of the data
+  copy = () => (data as any[]).map(row => ({ ...row }));
+
+  filterData = this.copy();
+  filterSettings = { type: 'FilterBar' };
+
+  groupData = this.copy();
+  groupSettings = { columns: ['ShipCountry'] };
+  groupColumns = [
+    { field: 'OrderID', headerText: 'Order ID', width: 110, textAlign: 'Right' },
+    { field: 'CustomerID', headerText: 'Customer ID', width: 130 },
+    { field: 'ShipCountry', headerText: 'Ship Country', width: 140 },
+    { field: 'Freight', headerText: 'Freight', width: 110, format: 'C2', textAlign: 'Right' }
+  ];
+
+  editData = this.copy();
+  editSettings = { allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'Normal' };
+  editToolbar = ['Add', 'Edit', 'Delete', 'Update', 'Cancel'];
+  editColumns = [
+    { field: 'OrderID', headerText: 'Order ID', isPrimaryKey: true, width: 110, textAlign: 'Right', validationRules: { required: true, number: true } },
+    { field: 'CustomerID', headerText: 'Customer ID', width: 130, validationRules: { required: true } },
+    { field: 'Freight', headerText: 'Freight', width: 110, format: 'C2', textAlign: 'Right', editType: 'numericedit' }
+  ];
+  lastAction = '';
+
+  searchData = this.copy();
+  searchToolbar = ['Search'];
+
+  aggregateData = this.copy();
+  aggregates = [{ columns: [{ type: 'Sum', field: 'Freight', format: 'C2', footerTemplate: 'Sum: ${Sum}' }] }];
+
+  multiData = this.copy();
+  selectedRowIndex = 2;
+
   onCreated() {
     this.created = true;
   }
 
   onRowSelected(event: CustomEvent) {
     this.selectedOrder = event.detail.data.OrderID;
+  }
+
+  onActionComplete(event: CustomEvent) {
+    this.lastAction = event.detail.requestType;
   }
 }
 
