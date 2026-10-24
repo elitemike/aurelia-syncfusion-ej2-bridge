@@ -1,7 +1,43 @@
 <template>
-  <h2>Otp Input</h2>
+  <h2>OTP Input</h2>
 
-  <demo-section id="otpInput-basic" title="Basic" description="Otp Input rendered with its default options.">
-    <ej2-otp-input data-testid="otpInput-basic"></ej2-otp-input>
+  <demo-section id="otp-basic" title="Default with two-way value" description="Typing digits updates the view-model, the view-model fills the boxes. input, focus, blur, valueChanged and created are raised.">
+    <ej2-otp-input data-testid="otp-basic" e-value.two-way="value" e-on-created.delegate="createdCount = createdCount + 1"
+      e-on-value-changed.delegate="onValueChanged($event)" e-on-input.delegate="onInput($event)"
+      e-on-focus.delegate="onFocus($event)" e-on-blur.delegate="onBlur($event)"></ej2-otp-input>
+    <div class="demo-output">Value: <code data-testid="otp-value-out">${value}</code>
+      Changed: <span data-testid="otp-change-count">${changeCount}</span>
+      Changed value: <span data-testid="otp-change-value">${changeValue}</span>
+      Interacted: <span data-testid="otp-interacted">${interacted}</span>
+      Inputs: <span data-testid="otp-input-count">${inputCount}</span>
+      Input index: <span data-testid="otp-input-index">${inputIndex}</span>
+      Focus index: <span data-testid="otp-focus-index">${focusIndex}</span>
+      Blur index: <span data-testid="otp-blur-index">${blurIndex}</span>
+      Created: <span data-testid="otp-created">${createdCount}</span></div>
+    <button data-testid="otp-set" click.delegate="value = '4321'">Set 4321 from view-model</button>
+  </demo-section>
+
+  <demo-section id="otp-length" title="Length and separator" description="length and separator.">
+    <ej2-otp-input data-testid="otp-length" e-length.bind="length" e-separator.bind="separator"></ej2-otp-input>
+    <button data-testid="otp-separator-change" click.delegate="separator = '-'">Dash separator</button>
+    <button data-testid="otp-length-change" click.delegate="length = 6">6 boxes</button>
+  </demo-section>
+
+  <demo-section id="otp-type" title="Type and text transform" description="type text, password and number; textTransform Uppercase and Lowercase.">
+    <ej2-otp-input data-testid="otp-text" e-type.bind="type" e-text-transform.bind="transform" e-value="ab12"></ej2-otp-input>
+    <button data-testid="otp-type-change" click.delegate="changeType()">Password and uppercase</button>
+  </demo-section>
+
+  <demo-section id="otp-style" title="Styling mode and placeholder" description="stylingMode outlined, underlined and filled, placeholder, cssClass.">
+    <ej2-otp-input data-testid="otp-style" e-styling-mode.bind="stylingMode" e-placeholder.bind="placeholder"
+      e-css-class.bind="cssClass"></ej2-otp-input>
+    <button data-testid="otp-style-change" click.delegate="changeStyle()">Filled</button>
+  </demo-section>
+
+  <demo-section id="otp-state" title="Disabled, auto focus, html attributes, aria labels and RTL" description="disabled, autoFocus, htmlAttributes, ariaLabels, enableRtl.">
+    <ej2-otp-input data-testid="otp-disabled" e-disabled.bind="disabled" e-value="1234"></ej2-otp-input>
+    <ej2-otp-input data-testid="otp-attrs" e-html-attributes.bind="htmlAttrs" e-aria-labels.bind="ariaLabels"
+      e-auto-focus="true" e-enable-rtl="true"></ej2-otp-input>
+    <button data-testid="otp-state-toggle" click.delegate="disabled = !disabled">Toggle disabled</button>
   </demo-section>
 </template>

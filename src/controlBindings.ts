@@ -1036,8 +1036,11 @@ export const ControlBindings = {
   },
   otpInput: {
     oneWay: [
-      "length", "value", "type", "separator", "placeholder", "stylingMode", "disabled", "cssClass",
-      "autoFocus", "textTransform", "htmlAttributes", "ariaLabels"
+      "length", "type", "separator", "placeholder", "stylingMode", "disabled", "cssClass", "autoFocus",
+      "textTransform", "htmlAttributes", "ariaLabels"
+    ],
+    twoWay: [
+      "value"
     ],
     events: [
       "created", "valueChanged", "focus", "blur", "input"
