@@ -1,7 +1,71 @@
 <template>
   <h2>Toast</h2>
 
-  <demo-section id="toast-basic" title="Basic" description="Toast rendered with its default options.">
-    <ej2-toast data-testid="toast-basic"></ej2-toast>
+  <demo-section id="toast-basic" title="Default toast" description="show and hide the toast from code. title, content, size, icon, css class, close button and the lifecycle events.">
+    <ej2-toast data-testid="ts-basic" view-model.ref="basic" e-title="Saved" e-content.bind="content" e-width="320px" e-height="auto" e-icon="e-icons e-check" e-css-class="e-toast-success ts-basic-class"
+      e-show-close-button.bind="showClose" e-time-out.bind="0" e-enable-html-sanitizer.bind="true"
+      e-on-created.delegate="created = created + 1" e-on-before-open.delegate="beforeOpen = beforeOpen + 1" e-on-open.delegate="opened = opened + 1"
+      e-on-before-close.delegate="beforeClose = beforeClose + 1" e-on-close.delegate="closed = closed + 1" e-on-click.delegate="clicks = clicks + 1"></ej2-toast>
+    <div class="demo-row">
+      <button data-testid="ts-show" class="e-btn" click.delegate="basic.widget.show()">Show</button>
+      <button data-testid="ts-hide" class="e-btn" click.delegate="basic.widget.hide('All')">Hide all</button>
+      <button data-testid="ts-content" class="e-btn" click.delegate="content = 'Updated content'">Change content</button>
+      <label><input type="checkbox" data-testid="ts-chk-close" checked.bind="showClose" /> close button</label>
+    </div>
+    <div class="demo-output">created <span data-testid="ts-created">${created}</span> beforeOpen <span data-testid="ts-before-open">${beforeOpen}</span>
+      open <span data-testid="ts-opened">${opened}</span> beforeClose <span data-testid="ts-before-close">${beforeClose}</span>
+      close <span data-testid="ts-closed">${closed}</span> click <span data-testid="ts-clicks">${clicks}</span></div>
+  </demo-section>
+
+  <demo-section id="toast-timeout" title="Time out and progress bar" description="timeOut closes the toast automatically, showProgressBar and progressDirection show the remaining time, extendedTimeout applies after hovering.">
+    <ej2-toast data-testid="ts-timeout" view-model.ref="timeout" e-title="Auto close" e-content="Closes by itself" e-time-out.bind="900" e-extended-timeout.bind="3000"
+      e-show-progress-bar.bind="true" e-progress-direction="Ltr" e-css-class="ts-timeout-class"></ej2-toast>
+    <button data-testid="ts-timeout-show" class="e-btn" click.delegate="timeout.widget.show()">Show</button>
+  </demo-section>
+
+  <demo-section id="toast-position" title="Position and target" description="position and target place the toast inside a container.">
+    <div id="ts-target-box" data-testid="ts-target-box" style="position: relative; height: 260px; border: 1px solid #aaa; overflow: hidden;">
+      <ej2-toast data-testid="ts-position" view-model.ref="position" e-title="Positioned" e-content="Bottom left of the box" e-time-out.bind="0" e-target="#ts-target-box"
+        e-position.bind="{ X: 'Left', Y: 'Bottom' }" e-css-class="ts-position-class"></ej2-toast>
+    </div>
+    <button data-testid="ts-position-show" class="e-btn" click.delegate="position.widget.show()">Show</button>
+  </demo-section>
+
+  <demo-section id="toast-animation" title="Animation" description="animation configures the show and hide effects.">
+    <ej2-toast data-testid="ts-anim" view-model.ref="anim" e-title="Animated" e-content="Zooming" e-time-out.bind="0" e-animation.bind="animation" e-css-class="ts-anim-class"></ej2-toast>
+    <button data-testid="ts-anim-show" class="e-btn" click.delegate="anim.widget.show()">Show</button>
+  </demo-section>
+
+  <demo-section id="toast-buttons" title="Buttons" description="buttons add action buttons to the toast.">
+    <ej2-toast data-testid="ts-buttons" view-model.ref="buttonsToast" e-title="Update" e-content="A new version is available" e-time-out.bind="0" e-buttons.bind="buttons" e-css-class="ts-buttons-class"></ej2-toast>
+    <button data-testid="ts-buttons-show" class="e-btn" click.delegate="buttonsToast.widget.show()">Show</button>
+    <div class="demo-output">Action: <code data-testid="ts-action">${action}</code></div>
+  </demo-section>
+
+  <demo-section id="toast-template" title="Template" description="template renders custom html instead of the default layout.">
+    <ej2-toast data-testid="ts-template" view-model.ref="template" e-time-out.bind="0" e-template.bind="toastTemplate" e-css-class="ts-template-class"></ej2-toast>
+    <button data-testid="ts-template-show" class="e-btn" click.delegate="template.widget.show()">Show</button>
+  </demo-section>
+
+  <demo-section id="toast-order" title="Newest on top" description="newestOnTop stacks new toasts above the previous ones.">
+    <ej2-toast data-testid="ts-order" view-model.ref="order" e-time-out.bind="0" e-newest-on-top.bind="true" e-css-class="ts-order-class" e-width="200px" e-target="#ts-order-box"></ej2-toast>
+    <div id="ts-order-box" data-testid="ts-order-box" style="position: relative; height: 220px; border: 1px solid #aaa; overflow: hidden;"></div>
+    <div class="demo-row">
+      <button data-testid="ts-order-first" class="e-btn" click.delegate="order.widget.show({ content: 'First', title: 'one' })">First</button>
+      <button data-testid="ts-order-second" class="e-btn" click.delegate="order.widget.show({ content: 'Second', title: 'two' })">Second</button>
+    </div>
+  </demo-section>
+
+  <demo-section id="toast-sanitize" title="Html sanitizer" description="enableHtmlSanitizer strips scripts and raises beforeSanitizeHtml.">
+    <ej2-toast data-testid="ts-sanitize" view-model.ref="sanitize" e-title="Html" e-content.bind="htmlContent" e-time-out.bind="0" e-enable-html-sanitizer.bind="true"
+      e-css-class="ts-sanitize-class" e-on-before-sanitize-html.delegate="sanitized = sanitized + 1"></ej2-toast>
+    <button data-testid="ts-sanitize-show" class="e-btn" click.delegate="sanitize.widget.show()">Show</button>
+    <div class="demo-output">beforeSanitizeHtml: <span data-testid="ts-sanitized">${sanitized}</span></div>
+  </demo-section>
+
+  <demo-section id="toast-destroy" title="Destroyed" description="destroyed is raised when the toast is removed.">
+    <label><input type="checkbox" data-testid="ts-chk-exists" checked.bind="exists" /> toast exists</label>
+    <ej2-toast if.bind="exists" e-content="Short lived" e-on-destroyed.trigger="destroyed = destroyed + 1"></ej2-toast>
+    <div class="demo-output">Destroyed: <span data-testid="ts-destroyed">${destroyed}</span></div>
   </demo-section>
 </template>

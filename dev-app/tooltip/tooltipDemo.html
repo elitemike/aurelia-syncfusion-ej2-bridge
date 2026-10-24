@@ -1,7 +1,100 @@
 <template>
   <h2>Tooltip</h2>
 
-  <demo-section id="tooltip-basic" title="Basic" description="Tooltip rendered with its default options.">
-    <ej2-tooltip data-testid="tooltip-basic"></ej2-tooltip>
+  <demo-section id="tooltip-basic" title="Default tooltip" description="The tooltip attaches to the targets inside its element. content, width, height, position, offsets, tip pointer, css class, html attributes and the lifecycle events.">
+    <ej2-tooltip data-testid="tt-basic" e-target=".tt-basic-target" e-content.bind="content" e-width="220px" e-height="auto" e-position.bind="position"
+      e-offset-x.bind="offsetX" e-offset-y.bind="0" e-show-tip-pointer.bind="showTip" e-tip-pointer-position="Middle" e-css-class="tt-basic-class"
+      e-html-attributes.bind="{ 'data-tt': 'basic' }" e-window-collision.bind="false"
+      e-on-created.delegate="created = created + 1" e-on-before-render.delegate="beforeRender = beforeRender + 1"
+      e-on-before-open.delegate="beforeOpen = beforeOpen + 1" e-on-after-open.delegate="afterOpen = afterOpen + 1"
+      e-on-before-close.delegate="beforeClose = beforeClose + 1" e-on-after-close.delegate="afterClose = afterClose + 1">
+      <div style="padding: 50px 120px;">
+        <button class="e-btn tt-basic-target" data-testid="tt-basic-target">Hover me</button>
+        <button class="e-btn" data-testid="tt-basic-outside">Not a target</button>
+      </div>
+    </ej2-tooltip>
+    <div class="demo-output">created <span data-testid="tt-created">${created}</span> beforeRender <span data-testid="tt-before-render">${beforeRender}</span>
+      beforeOpen <span data-testid="tt-before-open">${beforeOpen}</span> afterOpen <span data-testid="tt-after-open">${afterOpen}</span>
+      beforeClose <span data-testid="tt-before-close">${beforeClose}</span> afterClose <span data-testid="tt-after-close">${afterClose}</span></div>
+    <div class="demo-row">
+      <button data-testid="tt-content-change" click.delegate="content = 'Updated tooltip content'">Change content</button>
+      <button data-testid="tt-position-bottom" click.delegate="position = 'BottomCenter'">Bottom</button>
+      <button data-testid="tt-offset" click.delegate="offsetX = 30">Offset X 30</button>
+      <label><input type="checkbox" data-testid="tt-chk-tip" checked.bind="showTip" /> tip pointer</label>
+    </div>
+  </demo-section>
+
+  <demo-section id="tooltip-title" title="Title attribute" description="Without content the tooltip shows the title of the target.">
+    <ej2-tooltip data-testid="tt-title" e-target=".tt-title-target" e-css-class="tt-title-class">
+      <div style="padding: 40px 60px;">
+        <span class="e-btn tt-title-target" data-testid="tt-title-target" title="Title from the attribute">Title target</span>
+      </div>
+    </ej2-tooltip>
+  </demo-section>
+
+  <demo-section id="tooltip-opens" title="Opens on" description="opensOn Click opens the tooltip on click instead of hover.">
+    <ej2-tooltip data-testid="tt-opens" e-target=".tt-opens-target" e-content="Opened by click" e-opens-on="Click" e-css-class="tt-opens-class">
+      <div style="padding: 40px 60px;">
+        <button class="e-btn tt-opens-target" data-testid="tt-opens-target">Click me</button>
+      </div>
+    </ej2-tooltip>
+  </demo-section>
+
+  <demo-section id="tooltip-sticky" title="Sticky" description="isSticky keeps the tooltip open and adds a close icon.">
+    <ej2-tooltip data-testid="tt-sticky" e-target=".tt-sticky-target" e-content="Sticky tooltip" e-is-sticky.bind="true" e-css-class="tt-sticky-class">
+      <div style="padding: 40px 60px;">
+        <button class="e-btn tt-sticky-target" data-testid="tt-sticky-target">Sticky</button>
+      </div>
+    </ej2-tooltip>
+  </demo-section>
+
+  <demo-section id="tooltip-trail" title="Mouse trail" description="mouseTrail makes the tooltip follow the pointer.">
+    <ej2-tooltip data-testid="tt-trail" e-content="Following the pointer" e-mouse-trail.bind="true" e-css-class="tt-trail-class" e-open-delay.bind="0">
+      <div data-testid="tt-trail-area" style="width: 300px; height: 80px; border: 1px dashed #888; display: flex; align-items: center; justify-content: center;">Move the pointer here</div>
+    </ej2-tooltip>
+  </demo-section>
+
+  <demo-section id="tooltip-delay" title="Delays" description="openDelay and closeDelay postpone opening and closing.">
+    <ej2-tooltip data-testid="tt-delay" e-target=".tt-delay-target" e-content="Delayed" e-open-delay.bind="700" e-close-delay.bind="700" e-css-class="tt-delay-class">
+      <div style="padding: 40px 60px;">
+        <button class="e-btn tt-delay-target" data-testid="tt-delay-target">Delayed</button>
+      </div>
+    </ej2-tooltip>
+  </demo-section>
+
+  <demo-section id="tooltip-html" title="Html content and container" description="enableHtmlParse, enableHtmlSanitizer and container.">
+    <div id="tt-container" data-testid="tt-container" style="position: relative;">
+      <ej2-tooltip data-testid="tt-html" e-target=".tt-html-target" e-content.bind="html" e-enable-html-parse.bind="parse" e-enable-html-sanitizer.bind="true"
+        e-container="#tt-container" e-css-class="tt-html-class">
+        <div style="padding: 40px 60px;">
+          <button class="e-btn tt-html-target" data-testid="tt-html-target">Html</button>
+        </div>
+      </ej2-tooltip>
+    </div>
+    <label><input type="checkbox" data-testid="tt-chk-parse" checked.bind="parse" /> parse html</label>
+  </demo-section>
+
+  <demo-section id="tooltip-animation" title="Animation" description="animation configures the open and close effects.">
+    <ej2-tooltip data-testid="tt-anim" e-target=".tt-anim-target" e-content="Animated" e-animation.bind="animation" e-css-class="tt-anim-class">
+      <div style="padding: 40px 60px;">
+        <button class="e-btn tt-anim-target" data-testid="tt-anim-target">Animated</button>
+      </div>
+    </ej2-tooltip>
+  </demo-section>
+
+  <demo-section id="tooltip-collision" title="Window collision" description="windowCollision keeps the tooltip inside the window and raises beforeCollision.">
+    <ej2-tooltip data-testid="tt-collision" e-target=".tt-collision-target" e-content="A fairly wide tooltip that cannot fit next to the right edge of the window" e-width="400px"
+      e-position="RightCenter" e-window-collision.bind="true" e-css-class="tt-collision-class" e-on-before-collision.delegate="collisions = collisions + 1">
+      <div style="display: flex; justify-content: flex-end; padding: 20px 0;">
+        <button class="e-btn tt-collision-target" data-testid="tt-collision-target">Right edge</button>
+      </div>
+    </ej2-tooltip>
+    <div class="demo-output">beforeCollision: <span data-testid="tt-collisions">${collisions}</span></div>
+  </demo-section>
+
+  <demo-section id="tooltip-destroy" title="Destroyed" description="destroyed is raised when the tooltip is removed.">
+    <label><input type="checkbox" data-testid="tt-chk-exists" checked.bind="exists" /> tooltip exists</label>
+    <ej2-tooltip if.bind="exists" e-content="Short lived" e-on-destroyed.trigger="destroyed = destroyed + 1"><span>Host</span></ej2-tooltip>
+    <div class="demo-output">Destroyed: <span data-testid="tt-destroyed">${destroyed}</span></div>
   </demo-section>
 </template>
