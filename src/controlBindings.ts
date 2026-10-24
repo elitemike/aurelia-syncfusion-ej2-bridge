@@ -964,11 +964,12 @@ export const ControlBindings = {
   },
   inPlaceEditor: {
     oneWay: [
-      "name", "value", "template", "enableHtmlSanitizer", "enableHtmlParse", "cssClass", "primaryKey",
+      "name", "template", "enableHtmlSanitizer", "enableHtmlParse", "cssClass", "primaryKey",
       "emptyText", "url", "mode", "adaptor", "type", "editableOn", "textOption", "actionOnBlur",
       "disabled", "showButtons", "enableEditMode", "submitOnEnter", "popupSettings", "model", "saveButton",
       "cancelButton", "validationRules"
     ],
+    twoWay: ["value"],
     events: [
       "created", "beforeSanitizeHtml", "actionBegin", "actionSuccess", "actionFailure", "validating",
       "beginEdit", "endEdit", "change", "submitClick", "cancelClick", "destroyed"
