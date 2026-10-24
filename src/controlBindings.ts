@@ -546,9 +546,10 @@ export const ControlBindings = {
   chipList: {
     oneWay: [
       "chips", "text", "avatarText", "avatarIconCss", "htmlAttributes", "leadingIconCss",
-      "trailingIconCss", "leadingIconUrl", "trailingIconUrl", "cssClass", "enabled", "selectedChips",
+      "trailingIconCss", "leadingIconUrl", "trailingIconUrl", "cssClass", "enabled",
       "selection", "enableDelete", "allowDragAndDrop", "dragArea"
     ],
+    twoWay: ["selectedChips"],
     events: [
       "created", "click", "beforeClick", "delete", "deleted", "dragStart", "dragging", "dragStop"
     ]
@@ -1228,8 +1229,9 @@ export const ControlBindings = {
   },
   message: {
     oneWay: [
-      "content", "cssClass", "showIcon", "showCloseIcon", "severity", "variant", "visible"
+      "content", "cssClass", "showIcon", "showCloseIcon", "severity", "variant"
     ],
+    twoWay: ["visible"],
     events: [
       "created", "destroyed", "closed"
     ]
@@ -1367,10 +1369,11 @@ export const ControlBindings = {
   },
   dialog: {
     oneWay: [
-      "content", "enableHtmlSanitizer", "showCloseIcon", "isModal", "header", "visible", "enableResize",
+      "content", "enableHtmlSanitizer", "showCloseIcon", "isModal", "header", "enableResize",
       "resizeHandles", "height", "minHeight", "width", "cssClass", "zIndex", "target", "footerTemplate",
       "allowDragging", "buttons", "closeOnEscape", "animationSettings", "position"
     ],
+    twoWay: ["visible"],
     events: [
       "created", "open", "beforeSanitizeHtml", "beforeOpen", "close", "beforeClose", "dragStart",
       "dragStop", "drag", "overlayClick", "resizeStart", "resizing", "resizeStop", "destroyed"

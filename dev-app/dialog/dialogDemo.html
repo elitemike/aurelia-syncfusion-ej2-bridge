@@ -1,7 +1,70 @@
 <template>
   <h2>Dialog</h2>
 
-  <demo-section id="dialog-basic" title="Basic" description="Dialog rendered with its default options.">
-    <ej2-dialog data-testid="dialog-basic"></ej2-dialog>
+  <demo-section id="dialog-basic" title="Modal dialog" description="Two-way visible, header, content from the element body, close icon, modal overlay, escape key, size and css class.">
+    <button data-testid="dlg-open" class="e-btn" click.delegate="basicVisible = true">Open dialog</button>
+    <div class="demo-output">Visible: <code data-testid="dlg-visible">${basicVisible}</code>
+      beforeOpen: <span data-testid="dlg-before-open">${beforeOpen}</span> open: <span data-testid="dlg-open-count">${openCount}</span>
+      beforeClose: <span data-testid="dlg-before-close">${beforeClose}</span> close: <span data-testid="dlg-close-count">${closeCount}</span>
+      overlay clicks: <span data-testid="dlg-overlay">${overlayClicks}</span> created: <span data-testid="dlg-created">${created}</span></div>
+    <ej2-dialog data-testid="dlg-basic" e-visible.two-way="basicVisible" e-header="Basic dialog" e-width="360px" e-min-height="120px" e-height="auto"
+      e-show-close-icon.bind="showClose" e-is-modal.bind="isModal" e-close-on-escape.bind="closeOnEscape" e-css-class="dlg-basic-class"
+      e-z-index.bind="2000" e-enable-html-sanitizer.bind="true"
+      e-on-created.delegate="created = created + 1" e-on-before-open.delegate="beforeOpen = beforeOpen + 1" e-on-open.delegate="openCount = openCount + 1"
+      e-on-before-close.delegate="beforeClose = beforeClose + 1" e-on-close.delegate="closeCount = closeCount + 1"
+      e-on-overlay-click.delegate="overlayClicks = overlayClicks + 1">
+      <span data-testid="dlg-body">Dialog body from the element content.</span>
+    </ej2-dialog>
+    <div class="demo-row">
+      <label><input type="checkbox" data-testid="dlg-chk-close" checked.bind="showClose" /> show close icon</label>
+      <label><input type="checkbox" data-testid="dlg-chk-modal" checked.bind="isModal" /> modal</label>
+      <label><input type="checkbox" data-testid="dlg-chk-escape" checked.bind="closeOnEscape" /> close on escape</label>
+      <button data-testid="dlg-close-vm" click.delegate="basicVisible = false">Close from view-model</button>
+    </div>
+  </demo-section>
+
+  <demo-section id="dialog-content" title="Content property and sanitizer" description="content as an html string, enableHtmlSanitizer strips scripts and raises beforeSanitizeHtml.">
+    <button data-testid="dlg-content-open" class="e-btn" click.delegate="contentVisible = true">Open</button>
+    <ej2-dialog data-testid="dlg-content" e-visible.two-way="contentVisible" e-header="Sanitized" e-width="320px" e-content.bind="htmlContent"
+      e-enable-html-sanitizer.bind="sanitize" e-css-class="dlg-content-class" e-on-before-sanitize-html.delegate="sanitized = sanitized + 1"></ej2-dialog>
+    <div class="demo-output">beforeSanitizeHtml: <span data-testid="dlg-sanitized">${sanitized}</span></div>
+    <button data-testid="dlg-content-change" click.delegate="htmlContent = '<b data-testid=&quot;dlg-new-content&quot;>Changed content</b>'">Change content</button>
+  </demo-section>
+
+  <demo-section id="dialog-target" title="Dialog in a container" description="target renders the dialog inside an element instead of the page, position places it.">
+    <div id="dlg-target-box" data-testid="dlg-target-box" style="position: relative; height: 300px; border: 1px solid #aaa; overflow: hidden;">
+      <button data-testid="dlg-target-open" class="e-btn" click.delegate="targetVisible = true">Open in container</button>
+      <ej2-dialog data-testid="dlg-target" e-visible.two-way="targetVisible" e-target="#dlg-target-box" e-header="Container" e-width="200px"
+        e-content="Inside the container" e-is-modal="true" e-position.bind="{ X: 'right', Y: 'top' }" e-css-class="dlg-target-class"></ej2-dialog>
+    </div>
+  </demo-section>
+
+  <demo-section id="dialog-drag" title="Draggable and resizable" description="allowDragging, enableResize and resizeHandles with the drag and resize events.">
+    <button data-testid="dlg-drag-open" class="e-btn" click.delegate="dragVisible = true">Open</button>
+    <div class="demo-output">dragStart <span data-testid="dlg-drag-start">${dragStart}</span> drag <span data-testid="dlg-drag-move">${dragMove}</span> dragStop <span data-testid="dlg-drag-stop">${dragStop}</span>
+      resizeStart <span data-testid="dlg-resize-start">${resizeStart}</span> resizing <span data-testid="dlg-resizing">${resizing}</span> resizeStop <span data-testid="dlg-resize-stop">${resizeStop}</span></div>
+    <ej2-dialog data-testid="dlg-drag" e-visible.two-way="dragVisible" e-header="Move or resize me" e-width="300px" e-height="200px" e-content="Drag the header or the edges."
+      e-allow-dragging.bind="true" e-enable-resize.bind="true" e-resize-handles.bind="['All']" e-css-class="dlg-drag-class"
+      e-on-drag-start.delegate="dragStart = dragStart + 1" e-on-drag.delegate="dragMove = dragMove + 1" e-on-drag-stop.delegate="dragStop = dragStop + 1"
+      e-on-resize-start.delegate="resizeStart = resizeStart + 1" e-on-resizing.delegate="resizing = resizing + 1" e-on-resize-stop.delegate="resizeStop = resizeStop + 1"></ej2-dialog>
+  </demo-section>
+
+  <demo-section id="dialog-buttons" title="Footer buttons and animation" description="buttons render in the footer, animationSettings controls the open and close effect.">
+    <button data-testid="dlg-buttons-open" class="e-btn" click.delegate="buttonsVisible = true">Open</button>
+    <ej2-dialog data-testid="dlg-buttons" e-visible.two-way="buttonsVisible" e-header="Confirm" e-width="320px" e-content="Do you want to continue?"
+      e-buttons.bind="buttons" e-animation-settings.bind="{ effect: 'Zoom', duration: 100, delay: 0 }" e-css-class="dlg-buttons-class"></ej2-dialog>
+    <div class="demo-output">Answer: <code data-testid="dlg-answer">${answer}</code></div>
+  </demo-section>
+
+  <demo-section id="dialog-footer" title="Footer template" description="footerTemplate replaces the footer content.">
+    <button data-testid="dlg-footer-open" class="e-btn" click.delegate="footerVisible = true">Open</button>
+    <ej2-dialog data-testid="dlg-footer" e-visible.two-way="footerVisible" e-header="Footer" e-width="300px" e-content="Body"
+      e-footer-template.bind="footerTemplate" e-css-class="dlg-footer-class"></ej2-dialog>
+  </demo-section>
+
+  <demo-section id="dialog-destroy" title="Destroyed" description="destroyed is raised when the dialog is removed, use .trigger because the element is detached.">
+    <label><input type="checkbox" data-testid="dlg-chk-exists" checked.bind="exists" /> dialog exists</label>
+    <ej2-dialog if.bind="exists" data-testid="dlg-destroy" e-visible="false" e-header="Short lived" e-on-destroyed.trigger="destroyed = destroyed + 1"></ej2-dialog>
+    <div class="demo-output">Destroyed: <span data-testid="dlg-destroyed">${destroyed}</span></div>
   </demo-section>
 </template>

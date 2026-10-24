@@ -1,7 +1,70 @@
 <template>
   <h2>Popup</h2>
 
-  <demo-section id="popup-basic" title="Basic" description="Popup rendered with its default options.">
-    <ej2-popup data-testid="popup-basic"></ej2-popup>
+  <demo-section id="popup-basic" title="Basic" description="A popup relates to an anchor element and is shown or hidden by code. width, height, content, zIndex, relateTo plus the open and close events.">
+    <div class="demo-row">
+      <button data-testid="popup-basic-show" click.delegate="basic.widget.show()">Show</button>
+      <button data-testid="popup-basic-hide" click.delegate="basic.widget.hide()">Hide</button>
+      <button data-testid="popup-basic-content" click.delegate="content = 'Updated content'">Change content</button>
+    </div>
+    <div class="demo-output">Opened: <span data-testid="popup-opened">${opened}</span> Closed: <span data-testid="popup-closed">${closed}</span></div>
+    <button id="popup-basic-anchor" data-testid="popup-basic-anchor" class="e-btn">Anchor</button>
+    <ej2-popup data-testid="popup-basic" view-model.ref="basic" e-content.bind="content" e-width="200" e-height="80" e-z-index="1500"
+      e-relate-to="#popup-basic-anchor" e-on-open.delegate="opened = opened + 1" e-on-close.delegate="closed = closed + 1"></ej2-popup>
+    <div style="height: 100px"></div>
+  </demo-section>
+
+  <demo-section id="popup-position" title="Position and offsets" description="position places the popup relative to the anchor, offsetX and offsetY move it further.">
+    <div style="padding: 60px 120px">
+      <button id="popup-pos-anchor" data-testid="popup-pos-anchor" class="e-btn">Anchor</button>
+    </div>
+    <ej2-popup data-testid="popup-pos" view-model.ref="pos" e-content="Positioned" e-width="100" e-height="40" e-relate-to="#popup-pos-anchor"
+      e-target-type="relative" e-position.bind="position" e-offset-x.bind="offsetX" e-offset-y.bind="10"></ej2-popup>
+    <div class="demo-row">
+      <button data-testid="popup-pos-show" click.delegate="pos.widget.show()">Show</button>
+      <button data-testid="popup-pos-move" click.delegate="offsetX = 40">Offset X 40</button>
+      <button data-testid="popup-pos-left" click.delegate="position = { X: 'left', Y: 'top' }">Position left top</button>
+    </div>
+  </demo-section>
+
+  <demo-section id="popup-collision" title="Collision" description="collision decides how a popup that leaves its viewport is corrected.">
+    <div style="position: relative; height: 60px;">
+      <button id="popup-col-anchor" data-testid="popup-col-anchor" class="e-btn" style="position: absolute; right: 0">Right edge</button>
+    </div>
+    <ej2-popup data-testid="popup-col" view-model.ref="col" e-content="Colliding" e-width="300" e-relate-to="#popup-col-anchor"
+      e-collision.bind="{ X: 'flip', Y: 'none' }" e-position.bind="{ X: 'right', Y: 'bottom' }"></ej2-popup>
+    <button data-testid="popup-col-show" click.delegate="col.widget.show()">Show</button>
+  </demo-section>
+
+  <demo-section id="popup-animation" title="Show and hide animation" description="showAnimation and hideAnimation configure the transition.">
+    <button id="popup-anim-anchor" data-testid="popup-anim-anchor" class="e-btn">Anchor</button>
+    <ej2-popup data-testid="popup-anim" view-model.ref="anim" e-content="Animated" e-width="120" e-relate-to="#popup-anim-anchor"
+      e-show-animation.bind="showAnim" e-hide-animation.bind="hideAnim"></ej2-popup>
+    <div class="demo-row">
+      <button data-testid="popup-anim-show" click.delegate="anim.widget.show()">Show</button>
+      <button data-testid="popup-anim-hide" click.delegate="anim.widget.hide()">Hide</button>
+      <button data-testid="popup-anim-change" click.delegate="showAnim = { name: 'ZoomIn', duration: 50 }">Zoom</button>
+    </div>
+  </demo-section>
+
+  <demo-section id="popup-container" title="Container target" description="targetType container keeps the popup inside viewPortElement.">
+    <div id="popup-container-box" data-testid="popup-container-box" style="position: relative; width: 300px; height: 150px; border: 1px solid #aaa;">
+      <ej2-popup data-testid="popup-container" view-model.ref="container" e-content="Inside" e-width="100" e-height="40"
+        e-target-type="container" e-view-port-element="#popup-container-box" e-relate-to="#popup-container-box"
+        e-position.bind="{ X: 'left', Y: 'top' }"></ej2-popup>
+    </div>
+    <button data-testid="popup-container-show" click.delegate="container.widget.show()">Show</button>
+  </demo-section>
+
+  <demo-section id="popup-scroll" title="Scrolling" description="actionOnScroll hides the popup on scroll, targetExitViewport is raised when the anchor leaves the viewport.">
+    <div id="popup-scroll-box" data-testid="popup-scroll-box" style="height: 120px; overflow: auto; border: 1px solid #aaa; position: relative;">
+      <div style="height: 400px; padding-top: 20px;">
+        <button id="popup-scroll-anchor" data-testid="popup-scroll-anchor" class="e-btn">Scroll anchor</button>
+      </div>
+    </div>
+    <ej2-popup data-testid="popup-scroll" view-model.ref="scroll" e-content="Scroll popup" e-width="140" e-relate-to="#popup-scroll-anchor"
+      e-action-on-scroll="hide" e-on-target-exit-viewport.delegate="exited = exited + 1"></ej2-popup>
+    <button data-testid="popup-scroll-show" click.delegate="scroll.widget.show()">Show</button>
+    <div class="demo-output">Exited viewport: <span data-testid="popup-exited">${exited}</span></div>
   </demo-section>
 </template>
