@@ -19,7 +19,7 @@ export default defineConfig({
   projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
   webServer: {
     // builds the dev-app bundle, then serves it with history-api fallback
-    command: `npx au run --port ${port}`,
+    command: `node tools/downlevel-vendor.js && npx au run --port ${port}`,
     url: `http://localhost:${port}`,
     reuseExistingServer: !process.env.CI,
     timeout: 300_000

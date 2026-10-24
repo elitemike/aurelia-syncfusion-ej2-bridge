@@ -92,7 +92,12 @@
             "env": "dev"
           },
           "lodash",
-          "text"
+          "text",
+          {
+            "name": "prosemirror-tables",
+            "path": "../tools/vendor/prosemirror-tables",
+            "main": "index"
+          }
         ]
       }
     ],
