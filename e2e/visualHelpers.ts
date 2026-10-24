@@ -33,7 +33,7 @@ export async function widgetCall<T = any>(control: Locator, fn: (widget: any, ar
 
 /** Move the real mouse over an svg shape. Stroke-only paths have no visible area for locator.hover(), so use the box. */
 export async function moveOver(target: Locator, fx = 0.5, fy = 0.5) {
-  await target.evaluate((el: Element) => el.scrollIntoView({ block: 'center', inline: 'center' }));
+  await target.evaluate((el: Element) => el.scrollIntoView({ block: 'center', inline: 'center', behavior: 'instant' as ScrollBehavior }));
   const box = await target.boundingBox();
   if (!box) { throw new Error('element has no bounding box'); }
   const x = box.x + box.width * fx;
@@ -48,6 +48,16 @@ export async function clickOver(target: Locator, fx = 0.5, fy = 0.5) {
   await target.page().mouse.down();
   await target.page().mouse.up();
   return { x, y };
+}
+
+/** Screen coordinates of a point along an svg path, `fraction` of the way along its outline. */
+export async function pointOnPath(target: Locator, fraction: number) {
+  await target.evaluate((el: Element) => el.scrollIntoView({ block: 'center', inline: 'center', behavior: 'instant' as ScrollBehavior }));
+  return target.evaluate((el: any, f: number) => {
+    const p = el.getPointAtLength(el.getTotalLength() * f);
+    const m = el.getScreenCTM();
+    return { x: m.a * p.x + m.c * p.y + m.e, y: m.b * p.x + m.d * p.y + m.f };
+  }, fraction);
 }
 
 /** Current value of a demo output element as a number (counters). */

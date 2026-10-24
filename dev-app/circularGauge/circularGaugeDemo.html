@@ -1,7 +1,88 @@
 <template>
   <h2>Circular Gauge</h2>
 
-  <demo-section id="circularGauge-basic" title="Basic" description="Circular Gauge rendered with its default options.">
-    <ej2-circular-gauge data-testid="circularGauge-basic"></ej2-circular-gauge>
+  <demo-section id="cg-basic" title="Default gauge" description="A needle pointer on a 0-2000 axis with title, border, background, margin, description and grouped labels.">
+    <ej2-circular-gauge data-testid="cg-basic" e-width="420" e-height="320" e-title="Engine speed" e-title-style.bind="titleStyle"
+      e-border.bind="border" e-background="#f5f5f5" e-margin.bind="margin" e-animation-duration.bind="0" e-axes.bind="basicAxes"
+      e-use-grouping-separator.bind="true" e-description="Engine speed gauge" e-tab-index.bind="3" e-theme="Material3"></ej2-circular-gauge>
+  </demo-section>
+
+  <demo-section id="cg-ranges" title="Ranges and legend" description="Ranges colour parts of the axis and show up in the legend.">
+    <ej2-circular-gauge data-testid="cg-ranges" e-width="420" e-height="320" e-animation-duration.bind="0" e-axes.bind="rangeAxes"
+      e-legend-settings.bind="legend" e-allow-range-pre-render.bind="true"></ej2-circular-gauge>
+  </demo-section>
+
+  <demo-section id="cg-pointers" title="Pointer types and multiple axes" description="RangeBar and Marker pointers on two axes.">
+    <ej2-circular-gauge data-testid="cg-pointers" e-width="420" e-height="320" e-animation-duration.bind="0" e-axes.bind="pointerAxes"></ej2-circular-gauge>
+  </demo-section>
+
+  <demo-section id="cg-annotations" title="Annotations" description="Custom HTML placed inside the gauge.">
+    <ej2-circular-gauge data-testid="cg-annotations" e-width="420" e-height="320" e-animation-duration.bind="0" e-axes.bind="annotationAxes"
+      e-on-annotation-render.delegate="log('annotationRender', $event)"></ej2-circular-gauge>
+    <div class="demo-output">Annotation renders: <span data-testid="cg-annotation-count">${counts.annotationRender}</span></div>
+  </demo-section>
+
+  <demo-section id="cg-semi" title="Semi circle" description="A 180 degree arc moved to the centre with explicit centre coordinates.">
+    <ej2-circular-gauge data-testid="cg-semi" e-width="420" e-height="260" e-animation-duration.bind="0" e-axes.bind="semiAxes"
+      e-center-x="50%" e-center-y="75%" e-move-to-center.bind="true" e-allow-margin.bind="false"></ej2-circular-gauge>
+  </demo-section>
+
+  <demo-section id="cg-tooltip" title="Tooltip" description="Hovering the pointer shows a formatted tooltip.">
+    <ej2-circular-gauge data-testid="cg-tooltip" e-width="420" e-height="320" e-animation-duration.bind="0" e-axes.bind="tooltipAxes" e-tooltip.bind="tooltip"
+      e-on-tooltip-render.delegate="log('tooltipRender', $event)"></ej2-circular-gauge>
+    <div class="demo-output">Tooltip renders: <span data-testid="cg-tooltip-count">${counts.tooltipRender}</span>
+      Content: <code data-testid="cg-tooltip-content">${tooltipContent}</code></div>
+  </demo-section>
+
+  <demo-section id="cg-drag" title="Drag pointer and range" description="enablePointerDrag and enableRangeDrag let the user change values with the mouse.">
+    <ej2-circular-gauge data-testid="cg-drag" e-width="420" e-height="320" e-animation-duration.bind="0" e-axes.bind="dragAxes"
+      e-enable-pointer-drag.bind="true" e-enable-range-drag.bind="true"
+      e-on-drag-start.delegate="log('dragStart', $event)" e-on-drag-move.delegate="log('dragMove', $event)" e-on-drag-end.delegate="log('dragEnd', $event)"></ej2-circular-gauge>
+    <div class="demo-output">
+      dragStart <span data-testid="cg-ev-dragStart">${counts.dragStart}</span>
+      dragMove <span data-testid="cg-ev-dragMove">${counts.dragMove}</span>
+      dragEnd <span data-testid="cg-ev-dragEnd">${counts.dragEnd}</span>
+      Dragged value <span data-testid="cg-drag-value">${dragValue}</span>
+    </div>
+  </demo-section>
+
+  <demo-section id="cg-events" title="Events" description="Rendering, mouse, animation, resize and print events.">
+    <ej2-circular-gauge data-testid="cg-events" e-width="100%" e-height="300" e-animation-duration.bind="500" e-axes.bind="eventAxes" e-allow-print.bind="true"
+      e-legend-settings.bind="legend"
+      e-on-load.delegate="log('load', $event)" e-on-loaded.delegate="log('loaded', $event)"
+      e-on-animation-complete.delegate="log('animationComplete', $event)" e-on-axis-label-render.delegate="onAxisLabelRender($event)"
+      e-on-radius-calculate.delegate="log('radiusCalculate', $event)" e-on-legend-render.delegate="log('legendRender', $event)"
+      e-on-gauge-mouse-move.delegate="log('gaugeMouseMove', $event)" e-on-gauge-mouse-leave.delegate="log('gaugeMouseLeave', $event)"
+      e-on-gauge-mouse-down.delegate="log('gaugeMouseDown', $event)" e-on-gauge-mouse-up.delegate="log('gaugeMouseUp', $event)"
+      e-on-resized.delegate="log('resized', $event)" e-on-before-print.delegate="onBeforePrint($event)"></ej2-circular-gauge>
+    <div class="demo-output">
+      <div>
+        load <span data-testid="cg-ev-load">${counts.load}</span>
+        loaded <span data-testid="cg-ev-loaded">${counts.loaded}</span>
+        animationComplete <span data-testid="cg-ev-animationComplete">${counts.animationComplete}</span>
+        axisLabelRender <span data-testid="cg-ev-axisLabelRender">${counts.axisLabelRender}</span>
+        radiusCalculate <span data-testid="cg-ev-radiusCalculate">${counts.radiusCalculate}</span>
+        legendRender <span data-testid="cg-ev-legendRender">${counts.legendRender}</span>
+      </div>
+      <div>
+        gaugeMouseMove <span data-testid="cg-ev-gaugeMouseMove">${counts.gaugeMouseMove}</span>
+        gaugeMouseLeave <span data-testid="cg-ev-gaugeMouseLeave">${counts.gaugeMouseLeave}</span>
+        gaugeMouseDown <span data-testid="cg-ev-gaugeMouseDown">${counts.gaugeMouseDown}</span>
+        gaugeMouseUp <span data-testid="cg-ev-gaugeMouseUp">${counts.gaugeMouseUp}</span>
+        resized <span data-testid="cg-ev-resized">${counts.resized}</span>
+        beforePrint <span data-testid="cg-ev-beforePrint">${counts.beforePrint}</span>
+      </div>
+    </div>
+  </demo-section>
+
+  <demo-section id="cg-export" title="Export" description="allowImageExport and allowPdfExport enable exporting the gauge.">
+    <ej2-circular-gauge data-testid="cg-export" e-width="420" e-height="320" e-animation-duration.bind="0" e-axes.bind="basicAxes"
+      e-allow-image-export.bind="true" e-allow-pdf-export.bind="true"></ej2-circular-gauge>
+  </demo-section>
+
+  <demo-section id="cg-dynamic" title="Dynamic properties" description="Properties follow the view-model.">
+    <ej2-circular-gauge data-testid="cg-dynamic" e-width.bind="dynWidth" e-height="300" e-title.bind="dynTitle" e-background.bind="dynBackground"
+      e-animation-duration.bind="0" e-axes.bind="dynAxes" e-theme.bind="dynTheme"></ej2-circular-gauge>
+    <button data-testid="cg-dyn-change" click.delegate="change()">Change</button>
   </demo-section>
 </template>
