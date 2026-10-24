@@ -1,7 +1,59 @@
 <template>
   <h2>Toolbar</h2>
 
-  <demo-section id="toolbar-basic" title="Basic" description="Toolbar rendered with its default options.">
-    <ej2-toolbar data-testid="toolbar-basic"></ej2-toolbar>
+  <demo-section id="tb-default" title="Default functionalities" description="Text and icon items, a separator, a disabled item and a right aligned item. The clicked, created, beforeCreate and keyDown events report back.">
+    <ej2-toolbar data-testid="tb-default" e-items.bind="items" e-on-clicked.delegate="onClicked($event)"
+      e-on-created.delegate="onCreated()" e-on-before-create.delegate="onBeforeCreate()"
+      e-on-key-down.delegate="onKeyDown($event)"></ej2-toolbar>
+    <div class="demo-output">Clicked: <code data-testid="tb-clicked">${clickedText}</code>
+      Count: <span data-testid="tb-clicked-count">${clickedCount}</span>
+      Created: <span data-testid="tb-created">${createdCount}</span>
+      BeforeCreate: <span data-testid="tb-before-create">${beforeCreateCount}</span>
+      KeyDown: <span data-testid="tb-keydown">${keyDownCount}</span>
+      Key: <code data-testid="tb-key">${lastKey}</code></div>
+  </demo-section>
+
+  <demo-section id="tb-popup" title="Popup overflow" description="overflowMode Popup moves items that do not fit into a popup, enableCollision keeps the popup inside the viewport.">
+    <ej2-toolbar data-testid="tb-popup" e-items.bind="popupItems" e-overflow-mode="Popup" e-width.bind="popupWidth"
+      e-enable-collision.bind="collision"></ej2-toolbar>
+    <div class="demo-row">
+      <button data-testid="tb-narrow" click.delegate="narrow()">Narrow</button>
+      <button data-testid="tb-collide" click.delegate="collide()">Enable collision</button>
+    </div>
+  </demo-section>
+
+  <demo-section id="tb-scroll" title="Scrollable overflow" description="overflowMode Scrollable adds navigation arrows, scrollStep sets the distance per click.">
+    <ej2-toolbar data-testid="tb-scroll" e-items.bind="scrollItems" e-overflow-mode="Scrollable" e-width="260px"
+      e-scroll-step.bind="scrollStep"></ej2-toolbar>
+    <button data-testid="tb-step" click.delegate="stepMore()">Step 100</button>
+  </demo-section>
+
+  <demo-section id="tb-multirow" title="Multi row and extended overflow" description="MultiRow wraps the items into rows, Extended shows the overflowing items in an expandable area.">
+    <ej2-toolbar data-testid="tb-multirow" e-items.bind="multiItems" e-overflow-mode="MultiRow" e-width="260px"></ej2-toolbar>
+    <ej2-toolbar data-testid="tb-extended" e-items.bind="multiItems" e-overflow-mode="Extended" e-width="260px"></ej2-toolbar>
+  </demo-section>
+
+  <demo-section id="tb-template" title="Template items and HTML sanitizer" description="Items can carry a template. enableHtmlSanitizer removes inline handlers from item text markup.">
+    <ej2-toolbar data-testid="tb-template" e-items.bind="templateItems" e-enable-html-sanitizer.bind="sanitize"></ej2-toolbar>
+    <ej2-toolbar data-testid="tb-unsafe" e-items.bind="templateItems" e-enable-html-sanitizer="false"></ej2-toolbar>
+    <button data-testid="tb-unsanitize" click.delegate="unsanitize()">Disable sanitizer</button>
+  </demo-section>
+
+  <demo-section id="tb-dynamic" title="Model updates" description="items, width, height, cssClass and allowKeyboard follow the view-model.">
+    <ej2-toolbar data-testid="tb-dynamic" e-items.bind="dynamicItems" e-width.bind="dynamicWidth" e-height.bind="dynamicHeight"
+      e-css-class.bind="cssClass" e-allow-keyboard.bind="allowKeyboard"></ej2-toolbar>
+    <div class="demo-row">
+      <button data-testid="tb-add" click.delegate="addItem()">Add item</button>
+      <button data-testid="tb-resize" click.delegate="resize()">Resize</button>
+      <button data-testid="tb-restyle" click.delegate="restyle()">Restyle</button>
+      <button data-testid="tb-nokeys" click.delegate="disableKeyboard()">Disable keyboard</button>
+    </div>
+  </demo-section>
+
+  <demo-section id="tb-lifecycle" title="Lifecycle" description="The toolbar is destroyed and recreated with if.bind.">
+    <ej2-toolbar if.bind="showToolbar" data-testid="tb-lifecycle" e-items.bind="dynamicItems"
+      e-on-destroyed.trigger="onDestroyed()"></ej2-toolbar>
+    <button data-testid="tb-toggle" click.delegate="toggle()">Toggle</button>
+    <div class="demo-output">Destroyed: <span data-testid="tb-destroyed">${destroyedCount}</span></div>
   </demo-section>
 </template>

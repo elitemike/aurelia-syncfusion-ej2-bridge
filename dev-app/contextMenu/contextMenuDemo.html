@@ -1,7 +1,77 @@
 <template>
+  <require from="./contextMenuDemo.css"></require>
   <h2>Context Menu</h2>
 
-  <demo-section id="contextMenu-basic" title="Basic" description="Context Menu rendered with its default options.">
-    <ej2-context-menu data-testid="contextMenu-basic"></ej2-context-menu>
+  <demo-section id="cm-default" title="Default functionalities" description="Right-click the target to open a menu with icons, a separator and a Find submenu. All events report back.">
+    <div id="cm-target" class="cm-target e-cm-target" data-testid="cm-target">Right-click here</div>
+    <ej2-context-menu if.bind="showMenu" data-testid="cm-default" e-target="#cm-target" e-items.bind="items"
+      e-css-class="cm-default"
+      e-on-before-item-render.delegate="onBeforeItemRender()" e-on-before-open.delegate="onBeforeOpen($event)"
+      e-on-on-open.delegate="onOpen()" e-on-before-close.delegate="onBeforeClose()" e-on-on-close.delegate="onClose()"
+      e-on-select.delegate="onSelect($event)" e-on-created.delegate="onCreated()"></ej2-context-menu>
+    <div class="demo-output">BeforeItemRender: <span data-testid="cm-bir">${beforeItemRenderCount}</span>
+      BeforeOpen: <span data-testid="cm-before-open">${beforeOpenCount}</span>
+      Open: <span data-testid="cm-open">${openCount}</span>
+      BeforeClose: <span data-testid="cm-before-close">${beforeCloseCount}</span>
+      Close: <span data-testid="cm-close">${closeCount}</span>
+      Created: <span data-testid="cm-created">${createdCount}</span>
+      Selected: <code data-testid="cm-selected">${selectedText}</code>
+      Select count: <span data-testid="cm-select-count">${selectCount}</span></div>
+    <div class="demo-row">
+      <button data-testid="cm-block" click.delegate="block()">Cancel opening</button>
+      <button data-testid="cm-add" click.delegate="addItem()">Add item</button>
+      <button data-testid="cm-toggle" click.delegate="toggle()">Toggle</button>
+    </div>
+  </demo-section>
+
+  <demo-section id="cm-filter" title="Filter" description="filter limits the menu to elements inside the target that match a selector.">
+    <div id="cm-filter-target" class="cm-target e-cm-target" data-testid="cm-filter-target">
+      <p class="cm-row" data-testid="cm-row-yes">Menu row</p>
+      <p class="cm-plain" data-testid="cm-row-no">Plain row, no menu</p>
+    </div>
+    <ej2-context-menu data-testid="cm-filter" e-target="#cm-filter-target" e-filter="cm-row" e-items.bind="filterItems"
+      e-css-class="cm-filter" e-on-select.delegate="onFilterSelect($event)"></ej2-context-menu>
+    <div class="demo-output">Selected: <code data-testid="cm-filter-selected">${filterSelected}</code></div>
+  </demo-section>
+
+  <demo-section id="cm-template" title="Item template" description="itemTemplate renders custom markup for every item.">
+    <div id="cm-template-target" class="cm-target e-cm-target" data-testid="cm-template-target">Right-click for templated menu</div>
+    <ej2-context-menu data-testid="cm-template" e-target="#cm-template-target" e-items.bind="templateItems"
+      e-item-template.bind="itemTemplate" e-css-class="cm-template"></ej2-context-menu>
+  </demo-section>
+
+  <demo-section id="cm-submenu" title="Submenu behavior" description="showItemOnClick opens submenus on click instead of hover, hoverDelay delays hover opening.">
+    <div id="cm-click-target" class="cm-target e-cm-target" data-testid="cm-click-target">Right-click (submenus open on click)</div>
+    <ej2-context-menu data-testid="cm-click" e-target="#cm-click-target" e-items.bind="clickItems"
+      e-show-item-on-click.bind="showItemOnClick" e-hover-delay.bind="hoverDelay" e-css-class="cm-click"></ej2-context-menu>
+    <div class="demo-row">
+      <button data-testid="cm-hover-mode" click.delegate="hoverMode()">Open on hover</button>
+      <button data-testid="cm-slow" click.delegate="slowHover()">Hover delay 300</button>
+    </div>
+  </demo-section>
+
+  <demo-section id="cm-scroll" title="Scrolling" description="enableScrolling adds scroll arrows to tall menus.">
+    <div id="cm-scroll-target" class="cm-target e-cm-target" data-testid="cm-scroll-target">Right-click for a long menu</div>
+    <ej2-context-menu data-testid="cm-scroll" e-target="#cm-scroll-target" e-items.bind="scrollItems"
+      e-enable-scrolling="true" e-css-class="cm-scroll"></ej2-context-menu>
+  </demo-section>
+
+  <demo-section id="cm-fields" title="Field mapping" description="fields maps custom data names onto menu item members.">
+    <div id="cm-fields-target" class="cm-target e-cm-target" data-testid="cm-fields-target">Right-click for mapped menu</div>
+    <ej2-context-menu data-testid="cm-fields" e-target="#cm-fields-target" e-items.bind="fieldItems" e-fields.bind="fields"
+      e-css-class="cm-fields" e-on-select.delegate="onFieldSelect($event)"></ej2-context-menu>
+    <div class="demo-output">Selected: <code data-testid="cm-field-selected">${fieldSelected}</code></div>
+  </demo-section>
+
+  <demo-section id="cm-custom" title="Customization" description="cssClass, animationSettings, enableHtmlSanitizer and template follow the view-model.">
+    <div id="cm-custom-target" class="cm-target e-cm-target" data-testid="cm-custom-target">Right-click for custom menu</div>
+    <ej2-context-menu data-testid="cm-custom" e-target="#cm-custom-target" e-items.bind="customItems"
+      e-css-class.bind="cssClass" e-animation-settings.bind="animationSettings" e-enable-html-sanitizer.bind="sanitize"
+      e-template.bind="customTemplate"></ej2-context-menu>
+    <div class="demo-row">
+      <button data-testid="cm-restyle" click.delegate="restyle()">Restyle</button>
+      <button data-testid="cm-fade" click.delegate="fade()">Fade in</button>
+      <button data-testid="cm-unsanitize" click.delegate="unsanitize()">Disable sanitizer</button>
+    </div>
   </demo-section>
 </template>
