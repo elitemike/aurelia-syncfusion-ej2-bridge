@@ -19,6 +19,44 @@
       e-show-spin-button.bind="false"></ej2-numeric-text-box>
   </demo-section>
 
+  <demo-section id="ntb-currency" title="Currency and currency code" description="currency and currencyCode choose the symbol used by a currency format.">
+    <ej2-numeric-text-box data-testid="ntb-currency" e-value.one-way="12.5" e-format="c2" e-currency="EUR"></ej2-numeric-text-box>
+    <ej2-numeric-text-box data-testid="ntb-currency-code" e-value.one-way="12.5" e-format="c2" e-currency-code.bind="currencyCode"></ej2-numeric-text-box>
+    <button data-testid="ntb-gbp" click.delegate="currencyCode = 'GBP'">Switch to GBP</button>
+  </demo-section>
+
+  <demo-section id="ntb-decimals" title="Validate decimals on type" description="validateDecimalOnType blocks typing more decimals than allowed.">
+    <ej2-numeric-text-box data-testid="ntb-decimals" e-decimals.bind="2" e-validate-decimal-on-type.bind="true"
+      e-format="n2"></ej2-numeric-text-box>
+  </demo-section>
+
+  <demo-section id="ntb-wheel" title="Mouse wheel and readonly" description="allowMouseWheel, readonly, enabled and focus/blur events.">
+    <ej2-numeric-text-box data-testid="ntb-wheel" e-value.one-way="10" e-step.bind="1" e-allow-mouse-wheel.bind="allowWheel"
+      e-readonly.bind="readonly" e-enabled.bind="enabled" e-on-focus.delegate="focusCount = focusCount + 1"
+      e-on-blur.delegate="blurCount = blurCount + 1"></ej2-numeric-text-box>
+    <div class="demo-output">Focus: <span data-testid="ntb-focus">${focusCount}</span>
+      Blur: <span data-testid="ntb-blur">${blurCount}</span></div>
+    <div class="demo-row">
+      <label><input type="checkbox" data-testid="ntb-allow-wheel" checked.bind="allowWheel" /> allowMouseWheel</label>
+      <label><input type="checkbox" data-testid="ntb-readonly" checked.bind="readonly" /> readonly</label>
+      <label><input type="checkbox" data-testid="ntb-enabled" checked.bind="enabled" /> enabled</label>
+    </div>
+  </demo-section>
+
+  <demo-section id="ntb-more" title="Css class, attributes, width and templates" description="cssClass, htmlAttributes, width, prependTemplate, appendTemplate.">
+    <ej2-numeric-text-box data-testid="ntb-more" e-css-class.bind="cssClass" e-html-attributes.bind="htmlAttrs" e-width="220px"
+      e-prepend-template.bind="prepend" e-append-template.bind="append"></ej2-numeric-text-box>
+    <button data-testid="ntb-css" click.delegate="cssClass = 'ntb-custom-two'">Change cssClass</button>
+  </demo-section>
+
+  <demo-section id="ntb-life" title="Lifecycle events" description="created and destroyed.">
+    <ej2-numeric-text-box if.bind="showBox" data-testid="ntb-life" e-on-created.delegate="createdCount = createdCount + 1"
+      e-on-destroyed.trigger="destroyedCount = destroyedCount + 1"></ej2-numeric-text-box>
+    <div class="demo-output">Created: <span data-testid="ntb-created">${createdCount}</span>
+      Destroyed: <span data-testid="ntb-destroyed">${destroyedCount}</span></div>
+    <button data-testid="ntb-toggle" click.delegate="showBox = !showBox">Toggle</button>
+  </demo-section>
+
   <demo-section id="ntb-options" title="Placeholder and clear button" description="placeholder, showClearButton and floatLabelType.">
     <ej2-numeric-text-box data-testid="ntb-options" e-placeholder="Amount" e-float-label-type="Auto"
       e-show-clear-button="true"></ej2-numeric-text-box>

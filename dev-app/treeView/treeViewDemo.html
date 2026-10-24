@@ -14,14 +14,96 @@
     <ej2-tree-view data-testid="tv-check" e-fields.bind="fields" e-show-check-box.bind="true"
       e-checked-nodes.two-way="checked"></ej2-tree-view>
     <div class="demo-output">Checked: <code data-testid="tv-checked-out">${checked.join(',')}</code></div>
+    <button data-testid="tv-check-set" click.delegate="setChecked()">Check Program Files and Users</button>
   </demo-section>
 
   <demo-section id="tv-expand" title="Expanded nodes" description="expandedNodes follows expand and collapse.">
     <ej2-tree-view data-testid="tv-expand" e-fields.bind="fields" e-expanded-nodes.two-way="expanded"></ej2-tree-view>
     <div class="demo-output">Expanded: <code data-testid="tv-expanded-out">${expanded.join(',')}</code></div>
+    <button data-testid="tv-collapse-all" click.delegate="collapseAll()">Collapse all</button>
   </demo-section>
 
   <demo-section id="tv-sort" title="Sorting and multi-selection" description="sortOrder Descending, allowMultiSelection.">
-    <ej2-tree-view data-testid="tv-sort" e-fields.bind="fields" e-sort-order="Descending" e-allow-multi-selection.bind="true"></ej2-tree-view>
+    <ej2-tree-view data-testid="tv-sort" e-fields.bind="fields" e-sort-order.bind="sortOrder" e-allow-multi-selection.bind="true"></ej2-tree-view>
+  </demo-section>
+
+  <demo-section id="tv-events" title="Node events" description="created, dataBound, drawNode, nodeSelecting, nodeClicked, keyPress, expand/collapse and check events.">
+    <ej2-tree-view data-testid="tv-events-tree" e-fields.bind="eventFields" e-show-check-box.bind="true"
+      e-on-created.delegate="rec('tree', 'created')" e-on-data-bound.delegate="rec('tree', 'dataBound')"
+      e-on-draw-node.delegate="rec('tree', 'drawNode')" e-on-node-selecting.delegate="rec('tree', 'nodeSelecting')"
+      e-on-node-clicked.delegate="rec('tree', 'nodeClicked')" e-on-key-press.delegate="rec('tree', 'keyPress')"
+      e-on-node-expanding.delegate="rec('tree', 'nodeExpanding')" e-on-node-expanded.delegate="rec('tree', 'nodeExpanded')"
+      e-on-node-collapsing.delegate="rec('tree', 'nodeCollapsing')" e-on-node-collapsed.delegate="rec('tree', 'nodeCollapsed')"
+      e-on-node-checking.delegate="rec('tree', 'nodeChecking')" e-on-node-checked.delegate="rec('tree', 'nodeChecked')"></ej2-tree-view>
+    <div class="demo-output">Events: <code data-testid="tv-tree-ev">${ev.tree}</code></div>
+  </demo-section>
+
+  <demo-section id="tv-checkbehaviour" title="Check behaviour" description="autoCheck, checkOnClick and checkDisabledChildren.">
+    <ej2-tree-view data-testid="tv-checkbehaviour" e-fields.bind="checkFields" e-show-check-box.bind="true"
+      e-auto-check.bind="autoCheck" e-check-on-click.bind="checkOnClick" e-check-disabled-children.bind="checkDisabledChildren"
+      e-checked-nodes.two-way="checkedBehaviour"></ej2-tree-view>
+    <div class="demo-output">Checked: <code data-testid="tv-checkbehaviour-out">${checkedBehaviour.join(',')}</code></div>
+    <button data-testid="tv-autocheck-btn" click.delegate="enableAutoCheck()">Enable autoCheck</button>
+  </demo-section>
+
+  <demo-section id="tv-expandbehaviour" title="Expand behaviour" description="expandOn, loadOnDemand and animation.">
+    <ej2-tree-view data-testid="tv-expandbehaviour" e-fields.bind="expandFields" e-expand-on.bind="expandOn"
+      e-load-on-demand.bind="loadOnDemand" e-animation.bind="animation"></ej2-tree-view>
+  </demo-section>
+
+  <demo-section id="tv-appearance" title="Appearance" description="cssClass, height, fullRowSelect, fullRowNavigable, allowTextWrap and disabled.">
+    <ej2-tree-view data-testid="tv-appearance" e-fields.bind="appearanceFields" e-css-class.bind="cssClass" e-height.bind="height"
+      e-full-row-select.bind="fullRowSelect" e-full-row-navigable.bind="fullRowNavigable"
+      e-allow-text-wrap.bind="allowTextWrap" e-disabled.bind="disabled"></ej2-tree-view>
+    <button data-testid="tv-restyle" click.delegate="restyle()">Restyle from view-model</button>
+  </demo-section>
+
+  <demo-section id="tv-template" title="Node template" description="nodeTemplate renders custom markup for every node.">
+    <ej2-tree-view data-testid="tv-template" e-fields.bind="templateFields" e-node-template.bind="nodeTemplate"></ej2-tree-view>
+  </demo-section>
+
+  <demo-section id="tv-html" title="HTML encoding" description="enableHtmlSanitizer and disableHtmlEncode control how node text is rendered.">
+    <ej2-tree-view data-testid="tv-html" e-fields.bind="htmlFields" e-enable-html-sanitizer.bind="false"
+      e-disable-html-encode.bind="false"></ej2-tree-view>
+  </demo-section>
+
+  <demo-section id="tv-edit" title="Editing" description="allowEditing lets the user rename a node with F2, nodeEditing and nodeEdited are raised.">
+    <ej2-tree-view data-testid="tv-edit" e-fields.bind="editFields" e-allow-editing.bind="allowEditing"
+      e-on-node-editing.delegate="rec('edit', 'nodeEditing')" e-on-node-edited.delegate="rec('edit', 'nodeEdited')"></ej2-tree-view>
+    <div class="demo-output">Events: <code data-testid="tv-edit-ev">${ev.edit}</code></div>
+  </demo-section>
+
+  <demo-section id="tv-drag" title="Drag and drop" description="allowDragAndDrop within dragArea raises the drag events.">
+    <div id="tv-drag-area" data-testid="tv-drag-area" style="padding: 8px; border: 1px dashed #999;">
+      <ej2-tree-view data-testid="tv-drag" e-fields.bind="dragFields" e-allow-drag-and-drop.bind="allowDragAndDrop"
+        e-drag-area.bind="dragArea" e-on-node-drag-start.delegate="rec('drag', 'nodeDragStart')"
+        e-on-node-dragging.delegate="rec('drag', 'nodeDragging')" e-on-node-drag-stop.delegate="rec('drag', 'nodeDragStop')"
+        e-on-node-dropped.delegate="rec('drag', 'nodeDropped')"></ej2-tree-view>
+    </div>
+    <div class="demo-output">Events: <code data-testid="tv-drag-ev">${ev.drag}</code></div>
+  </demo-section>
+
+  <demo-section id="tv-datasource" title="Data source changes" description="dataSourceChanged is raised when nodes are added through the widget API.">
+    <ej2-tree-view data-testid="tv-datasource" e-fields.bind="dataSourceFields"
+      e-on-data-source-changed.delegate="rec('data', 'dataSourceChanged')"></ej2-tree-view>
+    <div class="demo-output">Events: <code data-testid="tv-data-ev">${ev.data}</code></div>
+  </demo-section>
+
+  <demo-section id="tv-virtual" title="Virtualization" description="enableVirtualization renders only the visible nodes of a long list.">
+    <ej2-tree-view data-testid="tv-virtual" e-fields.bind="bigFields" e-enable-virtualization.bind="true"
+      e-height="200px"></ej2-tree-view>
+  </demo-section>
+
+  <demo-section id="tv-remote" title="Remote failure" description="actionFailure is raised when the data request fails.">
+    <ej2-tree-view data-testid="tv-remote" e-fields.bind="remoteFields"
+      e-on-action-failure.delegate="rec('remote', 'actionFailure')"></ej2-tree-view>
+    <div class="demo-output">Events: <code data-testid="tv-remote-ev">${ev.remote}</code></div>
+  </demo-section>
+
+  <demo-section id="tv-destroy" title="Destroyed event" description="destroyed is raised when the wrapper is removed from the page.">
+    <ej2-tree-view if.bind="showDestroy" data-testid="tv-destroy" e-fields.bind="destroyFields"
+      e-on-destroyed.trigger="onDestroyed()"></ej2-tree-view>
+    <div class="demo-output">Destroyed: <span data-testid="tv-destroyed-count">${destroyedCount}</span></div>
+    <button data-testid="tv-destroy-btn" click.delegate="showDestroy = false">Remove</button>
   </demo-section>
 </template>

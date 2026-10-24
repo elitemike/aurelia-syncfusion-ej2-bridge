@@ -1,7 +1,7 @@
 <template>
   <h2>DropDownTree</h2>
 
-  <demo-section id="ddt-value" title="Two-way value" description="value is an array of selected node ids.">
+  <demo-section id="ddt-value" title="Two-way value" description="value is an array of selected node ids, text follows the selection.">
     <ej2-drop-down-tree data-testid="ddt-value" e-fields.bind="fields" e-value.two-way="selected" e-text.two-way="selectedText"
       e-on-change.delegate="onChange()"></ej2-drop-down-tree>
     <div class="demo-output">Value: <code data-testid="ddt-value-out">${selected.join(',')}</code>
@@ -10,13 +10,74 @@
     <button data-testid="ddt-set" click.delegate="setSelected()">Select Naturals.mp4</button>
   </demo-section>
 
-  <demo-section id="ddt-checkbox" title="Multi-select with checkboxes" description="showCheckBox, showSelectAll and mode Box.">
+  <demo-section id="ddt-events" title="Lifecycle, popup and selection events" description="created, dataBound, focus, blur, beforeOpen, open, close, select and keyPress.">
+    <ej2-drop-down-tree data-testid="ddt-events" e-fields.bind="fields" e-placeholder="Events"
+      e-on-created.delegate="rec('life', 'created')" e-on-data-bound.delegate="rec('life', 'dataBound')"
+      e-on-focus.delegate="rec('life', 'focus')" e-on-blur.delegate="rec('life', 'blur')"
+      e-on-before-open.delegate="rec('life', 'beforeOpen')" e-on-open.delegate="rec('life', 'open')"
+      e-on-close.delegate="rec('life', 'close')" e-on-select.delegate="rec('select', 'select')"
+      e-on-key-press.delegate="rec('select', 'keyPress')"></ej2-drop-down-tree>
+    <div class="demo-output">Popup events: <code data-testid="ddt-life-ev">${ev.life}</code>
+      Selection events: <code data-testid="ddt-select-ev">${ev.select}</code></div>
+  </demo-section>
+
+  <demo-section id="ddt-checkbox" title="Multi-select with checkboxes" description="showCheckBox, showSelectAll, select-all labels, mode Box and treeSettings.">
     <ej2-drop-down-tree data-testid="ddt-checkbox" e-fields.bind="fields" e-show-check-box="true" e-show-select-all="true"
+      e-select-all-text.bind="selectAllText" e-un-select-all-text.bind="unSelectAllText" e-mode="Box"
+      e-tree-settings.bind="treeSettings" e-value.bind="checkValues"
       e-placeholder="Select files"></ej2-drop-down-tree>
   </demo-section>
 
-  <demo-section id="ddt-filter" title="Filtering" description="allowFiltering shows a filter box in the popup.">
+  <demo-section id="ddt-multi" title="Multi selection and delimiter" description="allowMultiSelection, mode Delimiter, delimiterChar, wrapText and changeOnBlur.">
+    <ej2-drop-down-tree data-testid="ddt-multi" e-fields.bind="fields" e-allow-multi-selection.bind="true" e-mode="Delimiter" e-show-check-box="true"
+      e-delimiter-char.bind="delimiterChar" e-wrap-text.bind="wrapText" e-change-on-blur.bind="changeOnBlur"
+      e-value.bind="multiValues"></ej2-drop-down-tree>
+  </demo-section>
+
+  <demo-section id="ddt-filter" title="Filtering" description="allowFiltering with filterType, ignoreCase, ignoreAccent, placeholder and noRecordsTemplate.">
     <ej2-drop-down-tree data-testid="ddt-filter" e-fields.bind="fields" e-allow-filtering="true"
-      e-placeholder="Search files"></ej2-drop-down-tree>
+      e-filter-type.bind="filterType" e-filter-bar-placeholder.bind="filterBarPlaceholder" e-ignore-case.bind="ignoreCase"
+      e-ignore-accent.bind="ignoreAccent" e-no-records-template.bind="noRecordsTemplate"
+      e-on-filtering.delegate="rec('filter', 'filtering')" e-placeholder="Search files"></ej2-drop-down-tree>
+    <div class="demo-output">Events: <code data-testid="ddt-filter-ev">${ev.filter}</code></div>
+  </demo-section>
+
+  <demo-section id="ddt-appearance" title="Appearance" description="cssClass, width, popup size, placeholder, floatLabelType, icons, htmlAttributes, zIndex, sortOrder, enabled and readonly.">
+    <ej2-drop-down-tree data-testid="ddt-appearance" e-fields.bind="fields" e-value.bind="appValue"
+      e-css-class.bind="cssClass" e-width.bind="width" e-popup-height.bind="popupHeight" e-popup-width.bind="popupWidth"
+      e-placeholder.bind="placeholder" e-float-label-type.bind="floatLabelType" e-show-clear-button.bind="showClearButton"
+      e-show-drop-down-icon.bind="showDropDownIcon" e-html-attributes.bind="htmlAttributes" e-z-index.bind="zIndex"
+      e-sort-order.bind="sortOrder" e-enabled.bind="enabled" e-readonly.bind="readonly"></ej2-drop-down-tree>
+    <button data-testid="ddt-restyle" click.delegate="restyle()">Restyle from view-model</button>
+  </demo-section>
+
+  <demo-section id="ddt-templates" title="Templates" description="itemTemplate, valueTemplate, headerTemplate and footerTemplate.">
+    <ej2-drop-down-tree data-testid="ddt-templates" e-fields.bind="fields" e-value.bind="tplValue"
+      e-item-template.bind="itemTemplate" e-value-template.bind="valueTemplate" e-header-template.bind="headerTemplate"
+      e-footer-template.bind="footerTemplate"></ej2-drop-down-tree>
+  </demo-section>
+
+  <demo-section id="ddt-custom" title="Custom template" description="mode Custom renders the selection with customTemplate.">
+    <ej2-drop-down-tree data-testid="ddt-custom" e-fields.bind="fields" e-value.bind="tplValue" e-mode="Custom"
+      e-show-check-box="true" e-custom-template.bind="customTemplate"></ej2-drop-down-tree>
+  </demo-section>
+
+  <demo-section id="ddt-html" title="HTML encoding" description="enableHtmlSanitizer and disableHtmlEncode control how node text is rendered.">
+    <ej2-drop-down-tree data-testid="ddt-html" e-fields.bind="sanitizedFields" e-enable-html-sanitizer.bind="false"
+      e-disable-html-encode.bind="false"></ej2-drop-down-tree>
+  </demo-section>
+
+  <demo-section id="ddt-remote" title="Remote failure" description="actionFailure and actionFailureTemplate when the data request fails.">
+    <ej2-drop-down-tree data-testid="ddt-remote" e-fields.bind="remoteFields"
+      e-action-failure-template.bind="actionFailureTemplate"
+      e-on-action-failure.delegate="rec('remote', 'actionFailure')"></ej2-drop-down-tree>
+    <div class="demo-output">Events: <code data-testid="ddt-remote-ev">${ev.remote}</code></div>
+  </demo-section>
+
+  <demo-section id="ddt-destroy" title="Destroyed event and destroyPopupOnHide" description="destroyed is raised when the wrapper is removed, destroyPopupOnHide removes the popup when it closes.">
+    <ej2-drop-down-tree if.bind="showDestroy" data-testid="ddt-destroy" e-fields.bind="fields" e-destroy-popup-on-hide.bind="true"
+      e-on-destroyed.trigger="onDestroyed()"></ej2-drop-down-tree>
+    <div class="demo-output">Destroyed: <span data-testid="ddt-destroyed-count">${destroyedCount}</span></div>
+    <button data-testid="ddt-destroy-btn" click.delegate="showDestroy = false">Remove</button>
   </demo-section>
 </template>

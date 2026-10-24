@@ -12,6 +12,17 @@ export class ProgressButtonDemo {
 
   progressVm: IEJ2WidgetBridge<ProgressButton> = null;
 
+  content = 'Submit';
+  cssClass = 'pb-custom';
+  disabled = false;
+  events = { created: 0, begin: 0, progress: 0, end: 0, fail: 0 };
+  lastPercent: number = null;
+
+  onProgress(event: CustomEvent) {
+    this.events.progress++;
+    this.lastPercent = event.detail.percent;
+  }
+
   onClick() {
     this.clickCount++;
   }

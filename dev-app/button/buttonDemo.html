@@ -23,6 +23,24 @@
     <ej2-button data-testid="btn-icon" e-icon-css="e-icons e-add" e-icon-position="Right">Add</ej2-button>
   </demo-section>
 
+  <demo-section id="button-content" title="Content, css class, rtl and created" description="content, cssClass, enableRtl, enableHtmlSanitizer and the created event.">
+    <ej2-button data-testid="btn-content" e-content.bind="content" e-css-class.bind="cssClass" e-enable-rtl.bind="rtl"
+      e-enable-html-sanitizer.bind="false" e-on-created.delegate="createdCount = createdCount + 1"></ej2-button>
+    <div class="demo-output">Created: <span data-testid="btn-created">${createdCount}</span></div>
+    <div class="demo-row">
+      <button data-testid="btn-content-change" click.delegate="content = 'Updated content'">Change content</button>
+      <button data-testid="btn-css-change" click.delegate="cssClass = 'btn-custom-two'">Change cssClass</button>
+      <label><input type="checkbox" data-testid="btn-rtl" checked.bind="rtl" /> rtl</label>
+    </div>
+  </demo-section>
+
+  <demo-section id="button-repeat" title="Hold to repeat" description="enableRepeat, repeatDelay and repeatInterval raise clicked repeatedly while the button is held.">
+    <ej2-button data-testid="btn-repeat" e-enable-repeat.bind="true" e-repeat-delay.bind="100" e-repeat-interval.bind="50"
+      e-on-clicked.delegate="onClicked($event)">Hold me</ej2-button>
+    <div class="demo-output">Clicked: <span data-testid="btn-clicked">${clickedCount}</span>
+      Repeats: <span data-testid="btn-repeats">${repeatCount}</span></div>
+  </demo-section>
+
   <demo-section id="button-lifecycle" title="Lifecycle" description="Widget is destroyed and recreated with if.bind.">
     <ej2-button if.bind="showButton" data-testid="btn-lifecycle">I come and go</ej2-button>
     <ej2-button data-testid="btn-lifecycle-toggle" on-click.delegate="toggleLifecycle()">Toggle</ej2-button>

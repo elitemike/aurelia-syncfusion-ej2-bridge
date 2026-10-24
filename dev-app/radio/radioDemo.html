@@ -11,6 +11,20 @@
     </div>
   </demo-section>
 
+  <demo-section id="rdo-more" title="Value, css class, html attributes, change and created" description="value, cssClass, htmlAttributes, enableHtmlSanitizer, change and created.">
+    <ej2-radio data-testid="rdo-more" e-label.bind="moreLabel" e-name="more" e-value.bind="inputValue" e-css-class.bind="cssClass"
+      e-html-attributes.bind="htmlAttrs" e-enable-html-sanitizer.bind="false" e-on-change.delegate="onChange($event)"
+      e-on-created.delegate="createdCount = createdCount + 1"></ej2-radio>
+    <ej2-radio data-testid="rdo-more-other" e-label="Other" e-name="more" e-value="other"></ej2-radio>
+    <div class="demo-output">Changes: <span data-testid="rdo-change-count">${changeCount}</span>
+      Last change value: <code data-testid="rdo-change-value">${changeValue}</code>
+      Created: <span data-testid="rdo-created">${createdCount}</span></div>
+    <div class="demo-row">
+      <button data-testid="rdo-value" click.delegate="inputValue = 'changed'">Change value</button>
+      <button data-testid="rdo-css" click.delegate="cssClass = 'rdo-custom-two'">Change cssClass</button>
+    </div>
+  </demo-section>
+
   <demo-section id="rdo-lifecycle" title="Lifecycle" description="Widgets are destroyed and recreated with if.bind.">
     <ej2-radio if.bind="showRadio" data-testid="rdo-life" e-label="Ephemeral" e-name="ephemeral"></ej2-radio>
     <button data-testid="rdo-toggle" click.delegate="toggle()">Toggle</button>

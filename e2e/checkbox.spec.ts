@@ -33,6 +33,45 @@ test('label is rendered', async ({ app }) => {
   await expect(app.section('chk-single').locator('.e-label')).toHaveText('Accept terms');
 });
 
+test('name, value, cssClass, htmlAttributes and labelPosition', async ({ app }) => {
+  const section = app.section('chk-more');
+  const input = section.locator('input.e-checkbox');
+  await expect(input).toHaveAttribute('name', 'opts');
+  await expect(input).toHaveAttribute('value', 'v1');
+  await expect(section.locator('.e-checkbox-wrapper')).toHaveClass(/chk-custom/);
+  await expect(section.locator('.e-checkbox-wrapper')).toHaveAttribute('data-foo', 'bar');
+  await expect(section.locator('.e-checkbox-wrapper .e-label')).toHaveClass(/e-label/);
+  // labelPosition Before renders the label ahead of the frame
+  expect(await section.locator('.e-checkbox-wrapper').evaluate(el => !!(el.querySelector('.e-label').compareDocumentPosition(el.querySelector('.e-frame')) & Node.DOCUMENT_POSITION_FOLLOWING))).toBe(true);
+  await section.getByTestId('chk-css').click();
+  await expect(section.locator('.e-checkbox-wrapper')).toHaveClass(/chk-custom-two/);
+});
+
+test('indeterminate follows the view-model', async ({ app }) => {
+  const section = app.section('chk-more');
+  await expect(section.locator('.e-checkbox-wrapper .e-frame')).toHaveClass(/e-stop/);
+  await section.getByTestId('chk-clear-indeterminate').click();
+  await expect(section.locator('.e-checkbox-wrapper .e-frame')).not.toHaveClass(/e-stop/);
+});
+
+test('enableHtmlSanitizer reaches the widget and html labels render', async ({ app, page }) => {
+  const section = app.section('chk-more');
+  await expect(section.locator('.e-label .chk-bold')).toHaveText('options');
+  const sanitize = await page.evaluate(
+    () => (document.querySelector('[data-testid="chk-more"]') as any).au['ej2-checkbox'].viewModel.widget.enableHtmlSanitizer);
+  expect(sanitize).toBe(false);
+});
+
+test('change and created events', async ({ app }) => {
+  const section = app.section('chk-more');
+  await expect(section.getByTestId('chk-created')).toHaveText('1');
+  await section.getByTestId('chk-clear-indeterminate').click();
+  await section.locator('.e-checkbox-wrapper').click();
+  await expect(section.getByTestId('chk-change-count')).toHaveText('1');
+  await expect(section.getByTestId('chk-change-checked')).toHaveText('true');
+  await expect(section.getByTestId('chk-more-out')).toHaveText('true');
+});
+
 test('if.bind destroys and recreates the widget', async ({ app }) => {
   const section = app.section('chk-lifecycle');
   await expect(section.locator('.e-checkbox-wrapper')).toHaveCount(1);

@@ -3,9 +3,11 @@
 
   <demo-section id="acc-items" title="Items and events" description="e-items renders the panes, expanding and expanded events carry the item.">
     <ej2-accordion data-testid="acc-items" e-items.bind="items" e-expand-mode.bind="expandMode"
-      e-on-expanding.delegate="onExpanding()" e-on-expanded.delegate="onExpanded($event)"></ej2-accordion>
+      e-on-expanding.delegate="onExpanding()" e-on-expanded.delegate="onExpanded($event)"
+      e-on-clicked.delegate="onClicked()"></ej2-accordion>
     <div class="demo-output">Expanding: <span data-testid="acc-expanding">${expanding}</span>
-      Expanded: <span data-testid="acc-expanded">${expanded}</span> Last: <code data-testid="acc-last">${lastHeader}</code></div>
+      Expanded: <span data-testid="acc-expanded">${expanded}</span> Last: <code data-testid="acc-last">${lastHeader}</code>
+      Clicked: <span data-testid="acc-clicked">${clicked}</span></div>
     <div class="demo-row">
       <button data-testid="acc-single" click.delegate="setMode('Single')">Single</button>
       <button data-testid="acc-multiple" click.delegate="setMode('Multiple')">Multiple</button>
@@ -16,8 +18,21 @@
     <ej2-accordion data-testid="acc-indices" e-items.bind="plainItems" e-expand-mode="Multiple" e-expanded-indices.bind="[1, 2]"></ej2-accordion>
   </demo-section>
 
+  <demo-section id="acc-data" title="Data source and templates" description="e-data-source with e-header-template, e-item-template, e-width, e-height, e-animation and e-enable-html-sanitizer.">
+    <ej2-accordion data-testid="acc-data" e-data-source.bind="records" e-header-template.bind="headerTemplate"
+      e-item-template.bind="itemTemplate" e-width="420px" e-height="auto" e-animation.bind="animation"
+      e-enable-html-sanitizer.bind="sanitize"></ej2-accordion>
+  </demo-section>
+
+  <demo-section id="acc-sized" title="Fixed height" description="e-height constrains the accordion.">
+    <ej2-accordion data-testid="acc-sized" e-items.bind="plainItems" e-height="200px" e-width="50%"></ej2-accordion>
+  </demo-section>
+
   <demo-section id="acc-lifecycle" title="Lifecycle" description="Widget is destroyed and recreated with if.bind.">
-    <ej2-accordion if.bind="showAccordion" data-testid="acc-lifecycle" e-items.bind="items"></ej2-accordion>
+    <ej2-accordion if.bind="showAccordion" data-testid="acc-lifecycle" e-items.bind="items"
+      e-on-created.delegate="created = created + 1" e-on-destroyed.trigger="destroyed = destroyed + 1"></ej2-accordion>
     <button data-testid="acc-toggle" click.delegate="toggle()">Toggle</button>
+    <div class="demo-output">Created: <span data-testid="acc-created">${created}</span>
+      Destroyed: <span data-testid="acc-destroyed">${destroyed}</span></div>
   </demo-section>
 </template>

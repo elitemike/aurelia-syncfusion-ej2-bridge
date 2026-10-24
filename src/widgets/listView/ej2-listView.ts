@@ -16,6 +16,10 @@ export class Ej2ListView extends SyncfusionWrapper<ListView, ListViewModel> {
   }
 
   onBeforeWidgetInstantiation() {
+    // the list only wires its scroll listener when a scroll handler is defined, event listeners added later are not enough
+    if (!this._eModel.scroll) {
+      this._eModel.scroll = () => { };
+    }
     if (this._eModel.enableVirtualization) {
       ListView.Inject(Virtualization);
     }

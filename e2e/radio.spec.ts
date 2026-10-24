@@ -31,6 +31,33 @@ test('disabled binding', async ({ app }) => {
   await expect(section.getByTestId('rdo-first').locator('input')).toBeDisabled();
 });
 
+test('value, cssClass and htmlAttributes reach the radio', async ({ app }) => {
+  const section = app.section('rdo-more');
+  const radio = section.getByTestId('rdo-more');
+  await expect(radio.locator('input')).toHaveAttribute('value', 'r1');
+  await expect(radio.locator('.e-radio-wrapper')).toHaveClass(/rdo-custom/);
+  await expect(radio.locator('.e-radio-wrapper')).toHaveAttribute('data-foo', 'bar');
+  await section.getByTestId('rdo-value').click();
+  await expect(radio.locator('input')).toHaveAttribute('value', 'changed');
+  await section.getByTestId('rdo-css').click();
+  await expect(radio.locator('.e-radio-wrapper')).toHaveClass(/rdo-custom-two/);
+});
+
+test('enableHtmlSanitizer reaches the widget and html labels render', async ({ app, page }) => {
+  await expect(app.section('rdo-more').locator('.e-label .rdo-bold')).toHaveText('choice');
+  const sanitize = await page.evaluate(
+    () => (document.querySelector('[data-testid="rdo-more"]') as any).au['ej2-radio'].viewModel.widget.enableHtmlSanitizer);
+  expect(sanitize).toBe(false);
+});
+
+test('created and change events', async ({ app }) => {
+  const section = app.section('rdo-more');
+  await expect(section.getByTestId('rdo-created')).toHaveText('1');
+  await section.getByTestId('rdo-more').locator('label').click();
+  await expect(section.getByTestId('rdo-change-count')).toHaveText('1');
+  await expect(section.getByTestId('rdo-change-value')).toHaveText('r1');
+});
+
 test('if.bind destroys and recreates the widget', async ({ app }) => {
   const section = app.section('rdo-lifecycle');
   await expect(section.locator('.e-radio-wrapper')).toHaveCount(1);

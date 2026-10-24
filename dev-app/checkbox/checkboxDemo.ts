@@ -7,6 +7,20 @@ export class CheckboxDemo {
   showCheckbox = true;
   clickCount = 0;
 
+  moreLabel = 'More <b class="chk-bold">options</b>';
+  moreChecked = false;
+  cssClass = 'chk-custom';
+  htmlAttrs = { 'data-foo': 'bar' };
+  indeterminate = true;
+  changeCount = 0;
+  changeChecked: boolean = null;
+  createdCount = 0;
+
+  onChange(event: CustomEvent) {
+    this.changeCount++;
+    this.changeChecked = event.detail.checked;
+  }
+
   onClick() {
     this.clickCount++;
   }

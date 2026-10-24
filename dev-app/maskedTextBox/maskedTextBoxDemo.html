@@ -18,6 +18,27 @@
       e-show-clear-button="true"></ej2-masked-text-box>
   </demo-section>
 
+  <demo-section id="mtb-more" title="Custom characters, css class, attributes, width and templates" description="customCharacters, cssClass, htmlAttributes, width, enabled, prependTemplate, appendTemplate, focus, blur.">
+    <ej2-masked-text-box data-testid="mtb-more" e-mask="P-P" e-custom-characters.bind="customChars" e-css-class.bind="cssClass"
+      e-html-attributes.bind="htmlAttrs" e-width="220px" e-enabled.bind="enabled" e-prepend-template.bind="prepend"
+      e-append-template.bind="append" e-on-focus.delegate="focusCount = focusCount + 1"
+      e-on-blur.delegate="blurCount = blurCount + 1"></ej2-masked-text-box>
+    <div class="demo-output">Focus: <span data-testid="mtb-focus">${focusCount}</span>
+      Blur: <span data-testid="mtb-blur">${blurCount}</span></div>
+    <div class="demo-row">
+      <button data-testid="mtb-css" click.delegate="cssClass = 'mtb-custom-two'">Change cssClass</button>
+      <label><input type="checkbox" data-testid="mtb-enable" checked.bind="enabled" /> enabled</label>
+    </div>
+  </demo-section>
+
+  <demo-section id="mtb-life" title="Lifecycle events" description="created and destroyed.">
+    <ej2-masked-text-box if.bind="showBox" data-testid="mtb-life" e-mask="000" e-on-created.delegate="createdCount = createdCount + 1"
+      e-on-destroyed.trigger="destroyedCount = destroyedCount + 1"></ej2-masked-text-box>
+    <div class="demo-output">Created: <span data-testid="mtb-created">${createdCount}</span>
+      Destroyed: <span data-testid="mtb-destroyed">${destroyedCount}</span></div>
+    <button data-testid="mtb-toggle" click.delegate="showBox = !showBox">Toggle</button>
+  </demo-section>
+
   <demo-section id="mtb-readonly" title="Readonly" description="readonly was added to the bindable set from the Syncfusion model.">
     <ej2-masked-text-box data-testid="mtb-readonly" e-mask="000" e-value="123" e-readonly.bind="true"></ej2-masked-text-box>
   </demo-section>

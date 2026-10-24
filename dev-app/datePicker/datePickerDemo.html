@@ -18,4 +18,73 @@
       e-show-clear-button="true"></ej2-date-picker>
     <ej2-date-picker data-testid="dp-readonly" e-readonly="true" e-value.bind="value" e-format="yyyy-MM-dd"></ej2-date-picker>
   </demo-section>
+
+  <demo-section id="dp-events" title="Events" description="Every widget event is logged by name.">
+    <ej2-date-picker data-testid="dp-events" e-value.bind="evValue" e-format="yyyy-MM-dd" e-show-clear-button.bind="true"
+      e-on-created.delegate="log('created')" e-on-focus.delegate="log('focus')" e-on-blur.delegate="log('blur')"
+      e-on-open.delegate="log('open')" e-on-close.delegate="log('close')" e-on-change.delegate="log('change', $event)"
+      e-on-cleared.delegate="log('cleared')" e-on-navigated.delegate="log('navigated')"></ej2-date-picker>
+    <div class="demo-output">Log: <code data-testid="dp-log">${events.join(',')}</code>
+      Last change: <code data-testid="dp-last-change">${lastChange}</code></div>
+  </demo-section>
+
+  <demo-section id="dp-render" title="renderDayCell" description="The handler marks the 15th of each month.">
+    <ej2-date-picker data-testid="dp-render" e-value.bind="evValue" e-format="yyyy-MM-dd"
+      e-on-render-day-cell.delegate="renderCell($event)"></ej2-date-picker>
+    <div class="demo-output">Cells rendered: <span data-testid="dp-render-count">${renderCount}</span></div>
+  </demo-section>
+
+  <demo-section id="dp-destroy" title="destroyed" description="Removing the picker from the DOM destroys the widget.">
+    <ej2-date-picker if.bind="showDestroyable" data-testid="dp-destroy" e-on-destroyed.trigger="destroyedCount = destroyedCount + 1"></ej2-date-picker>
+    <button data-testid="dp-destroy-btn" click.delegate="showDestroyable = false">Remove</button>
+    <div class="demo-output">Destroyed: <span data-testid="dp-destroyed">${destroyedCount}</span></div>
+  </demo-section>
+
+  <demo-section id="dp-dynamic" title="Model to widget" description="Toggling one flag changes every bound property.">
+    <ej2-date-picker data-testid="dp-dynamic" e-value.bind="value"
+      e-enabled.bind="!alt" e-readonly.bind="alt" e-allow-edit.bind="!alt" e-strict-mode.bind="alt"
+      e-css-class.bind="alt ? 'cls-b' : 'cls-a'" e-placeholder.bind="alt ? 'Beta' : 'Alpha'"
+      e-float-label-type.bind="alt ? 'Always' : 'Never'" e-format.bind="alt ? 'dd/MM/yyyy' : 'yyyy-MM-dd'"
+      e-width.bind="alt ? 260 : 200" e-z-index.bind="alt ? 2000 : 1500" e-open-on-focus.bind="alt"
+      e-show-clear-button.bind="alt" e-show-today-button.bind="!alt" e-week-number.bind="alt"
+      e-first-day-of-week.bind="alt ? 1 : 0" e-day-header-format.bind="alt ? 'Narrow' : 'Short'"
+      e-week-rule.bind="alt ? 'FirstFullWeek' : 'FirstDay'" e-depth.bind="alt ? 'Year' : 'Month'"
+      e-start.bind="alt ? 'Year' : 'Month'" e-min.bind="alt ? min : defaultMin" e-max.bind="alt ? max : defaultMax"
+      e-html-attributes.bind="alt ? htmlAttrsB : htmlAttrsA" e-server-timezone-offset.bind="alt ? 2 : 0"
+      e-full-screen-mode.bind="alt" e-enable-mask.bind="alt"></ej2-date-picker>
+    <button data-testid="dp-toggle" click.delegate="alt = !alt">Toggle</button>
+  </demo-section>
+
+  <demo-section id="dp-calendar" title="Calendar layout" description="dayHeaderFormat, firstDayOfWeek, weekNumber, weekRule, showTodayButton, calendarMode.">
+    <ej2-date-picker data-testid="dp-calendar" e-value.bind="value" e-format="yyyy-MM-dd" e-calendar-mode="Gregorian"
+      e-day-header-format="Narrow" e-first-day-of-week.bind="1" e-week-number.bind="true" e-week-rule="FirstFullWeek"
+      e-show-today-button.bind="false"></ej2-date-picker>
+  </demo-section>
+
+  <demo-section id="dp-depth" title="Start and depth" description="Month picker: the popup opens on the year view and stops at months.">
+    <ej2-date-picker data-testid="dp-depth" e-value.bind="depthValue" e-format="MMM yyyy" e-start="Year" e-depth="Year"></ej2-date-picker>
+  </demo-section>
+
+  <demo-section id="dp-strict" title="strictMode and inputFormats" description="Out-of-range input is rejected in strict mode; inputFormats parse extra formats.">
+    <ej2-date-picker data-testid="dp-strict" e-value.bind="value" e-min.bind="min" e-max.bind="max" e-format="yyyy-MM-dd"
+      e-strict-mode.bind="true"></ej2-date-picker>
+    <ej2-date-picker data-testid="dp-loose" e-value.bind="value" e-min.bind="min" e-max.bind="max" e-format="yyyy-MM-dd"
+      e-strict-mode.bind="false"></ej2-date-picker>
+    <ej2-date-picker data-testid="dp-inputformats" e-format="yyyy-MM-dd" e-input-formats.bind="inputFormats"></ej2-date-picker>
+  </demo-section>
+
+  <demo-section id="dp-focus" title="openOnFocus, allowEdit and zIndex" description="Focus opens the popup; the input can be locked.">
+    <ej2-date-picker data-testid="dp-focus" e-open-on-focus.bind="true" e-z-index.bind="3500" e-allow-edit.bind="false"
+      e-width.bind="220" e-css-class="demo-dp-focus" e-html-attributes.bind="htmlAttrsA"></ej2-date-picker>
+  </demo-section>
+
+  <demo-section id="dp-multi" title="Multiple selection" description="values with isMultiSelection selects several dates.">
+    <ej2-date-picker data-testid="dp-multi" e-is-multi-selection.bind="true" e-values.bind="multiValues" e-format="yyyy-MM-dd"></ej2-date-picker>
+  </demo-section>
+
+  <demo-section id="dp-mask" title="Mask and key config" description="enableMask with maskPlaceholder, keyConfigs and an inert full-screen flag.">
+    <ej2-date-picker data-testid="dp-mask" e-enable-mask.bind="true" e-mask-placeholder.bind="maskPlaceholder"
+      e-format="dd/MM/yyyy" e-key-configs.bind="keyConfigs" e-full-screen-mode.bind="false"
+      e-server-timezone-offset.bind="0" e-locale="en-US" e-enable-rtl.bind="false"></ej2-date-picker>
+  </demo-section>
 </template>

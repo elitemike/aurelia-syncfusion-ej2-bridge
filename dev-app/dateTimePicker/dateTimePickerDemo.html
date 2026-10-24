@@ -14,7 +14,91 @@
   </demo-section>
 
   <demo-section id="dtp-options" title="Options" description="placeholder, floatLabelType and readonly.">
-    <ej2-date-time-picker data-testid="dtp-options" e-placeholder="Pick date and time" e-float-label-type="Auto"></ej2-date-time-picker>
+    <ej2-date-time-picker data-testid="dtp-options" e-placeholder="Pick date and time" e-float-label-type="Auto"
+      e-show-clear-button.bind="true"></ej2-date-time-picker>
     <ej2-date-time-picker data-testid="dtp-readonly" e-value.one-way="value" e-readonly.bind="true" e-format="yyyy-MM-dd HH:mm"></ej2-date-time-picker>
+  </demo-section>
+
+  <demo-section id="dtp-time" title="Time list" description="timeFormat, minTime and maxTime shape the time list.">
+    <ej2-date-time-picker data-testid="dtp-time" e-value.one-way="value" e-step.bind="60" e-format="yyyy-MM-dd HH:mm"
+      e-time-format="HH:mm" e-min-time.bind="minTime" e-max-time.bind="maxTime"></ej2-date-time-picker>
+  </demo-section>
+
+  <demo-section id="dtp-scroll" title="scrollTo" description="The time list opens scrolled to the given time.">
+    <ej2-date-time-picker data-testid="dtp-scroll" e-step.bind="30" e-time-format="HH:mm" e-scroll-to.bind="scrollTo"></ej2-date-time-picker>
+  </demo-section>
+
+  <demo-section id="dtp-events" title="Events" description="Every widget event is logged by name.">
+    <ej2-date-time-picker data-testid="dtp-events" e-value.bind="evValue" e-format="yyyy-MM-dd HH:mm" e-show-clear-button.bind="true"
+      e-on-created.delegate="log('created')" e-on-focus.delegate="log('focus')" e-on-blur.delegate="log('blur')"
+      e-on-open.delegate="log('open')" e-on-close.delegate="log('close')" e-on-change.delegate="log('change', $event)"
+      e-on-cleared.delegate="log('cleared')" e-on-navigated.delegate="log('navigated')"></ej2-date-time-picker>
+    <div class="demo-output">Log: <code data-testid="dtp-log">${events.join(',')}</code>
+      Last change: <code data-testid="dtp-last-change">${lastChange}</code></div>
+  </demo-section>
+
+  <demo-section id="dtp-render" title="renderDayCell" description="The handler marks the 15th of each month.">
+    <ej2-date-time-picker data-testid="dtp-render" e-value.bind="evValue" e-format="yyyy-MM-dd HH:mm"
+      e-on-render-day-cell.delegate="renderCell($event)"></ej2-date-time-picker>
+    <div class="demo-output">Cells rendered: <span data-testid="dtp-render-count">${renderCount}</span></div>
+  </demo-section>
+
+  <demo-section id="dtp-destroy" title="destroyed" description="Removing the picker from the DOM destroys the widget.">
+    <ej2-date-time-picker if.bind="showDestroyable" data-testid="dtp-destroy" e-on-destroyed.trigger="destroyedCount = destroyedCount + 1"></ej2-date-time-picker>
+    <button data-testid="dtp-destroy-btn" click.delegate="showDestroyable = false">Remove</button>
+    <div class="demo-output">Destroyed: <span data-testid="dtp-destroyed">${destroyedCount}</span></div>
+  </demo-section>
+
+  <demo-section id="dtp-dynamic" title="Model to widget" description="Toggling one flag changes every bound property.">
+    <ej2-date-time-picker data-testid="dtp-dynamic" e-value.one-way="value"
+      e-enabled.bind="!alt" e-strict-mode.bind="alt"
+      e-css-class.bind="alt ? 'cls-b' : 'cls-a'" e-placeholder.bind="alt ? 'Beta' : 'Alpha'"
+      e-float-label-type.bind="alt ? 'Always' : 'Never'" e-format.bind="alt ? 'dd/MM/yyyy HH:mm' : 'yyyy-MM-dd HH:mm'"
+      e-time-format.bind="alt ? 'HH:mm' : 'hh:mm a'" e-step.bind="alt ? 15 : 30"
+      e-width.bind="alt ? 320 : 280" e-z-index.bind="alt ? 2000 : 1500" e-open-on-focus.bind="alt"
+      e-show-clear-button.bind="alt" e-show-today-button.bind="!alt" e-week-number.bind="alt"
+      e-first-day-of-week.bind="alt ? 1 : 0" e-day-header-format.bind="alt ? 'Narrow' : 'Short'"
+      e-week-rule.bind="alt ? 'FirstFullWeek' : 'FirstDay'" e-depth.bind="alt ? 'Year' : 'Month'"
+      e-start.bind="alt ? 'Year' : 'Month'" e-scroll-to.bind="alt ? scrollTo : null"
+      e-min-time.bind="alt ? minTime : defaultMinTime" e-max-time.bind="alt ? maxTime : defaultMaxTime"
+      e-html-attributes.bind="alt ? htmlAttrsB : htmlAttrsA"
+      e-full-screen-mode.bind="alt" e-enable-mask.bind="alt"></ej2-date-time-picker>
+    <ej2-date-time-picker data-testid="dtp-dynamic-edit" e-value.one-way="value" e-format="yyyy-MM-dd HH:mm"
+      e-readonly.bind="alt" e-allow-edit.bind="!alt" e-server-timezone-offset.bind="alt ? 2 : 0"
+      e-min.bind="alt ? min : defaultMin" e-max.bind="alt ? max : defaultMax"></ej2-date-time-picker>
+    <button data-testid="dtp-toggle" click.delegate="alt = !alt">Toggle</button>
+  </demo-section>
+
+  <demo-section id="dtp-calendar" title="Calendar layout" description="dayHeaderFormat, firstDayOfWeek, weekNumber, weekRule, showTodayButton, calendarMode.">
+    <ej2-date-time-picker data-testid="dtp-calendar" e-value.one-way="value" e-format="yyyy-MM-dd HH:mm" e-calendar-mode="Gregorian"
+      e-day-header-format="Narrow" e-first-day-of-week.bind="1" e-week-number.bind="true" e-week-rule="FirstFullWeek"
+      e-show-today-button.bind="false"></ej2-date-time-picker>
+  </demo-section>
+
+  <demo-section id="dtp-depth" title="Start and depth" description="Month picker: the popup opens on the year view and stops at months.">
+    <ej2-date-time-picker data-testid="dtp-depth" e-value.bind="depthValue" e-format="MMM yyyy" e-start="Year" e-depth="Year"></ej2-date-time-picker>
+  </demo-section>
+
+  <demo-section id="dtp-strict" title="strictMode and inputFormats" description="Out-of-range input is rejected in strict mode; inputFormats parse extra formats.">
+    <ej2-date-time-picker data-testid="dtp-strict" e-value.one-way="value" e-min.bind="min" e-max.bind="max" e-format="yyyy-MM-dd HH:mm"
+      e-strict-mode.bind="true"></ej2-date-time-picker>
+    <ej2-date-time-picker data-testid="dtp-loose" e-value.one-way="value" e-min.bind="min" e-max.bind="max" e-format="yyyy-MM-dd HH:mm"
+      e-strict-mode.bind="false"></ej2-date-time-picker>
+    <ej2-date-time-picker data-testid="dtp-inputformats" e-format="yyyy-MM-dd HH:mm" e-input-formats.bind="inputFormats"></ej2-date-time-picker>
+  </demo-section>
+
+  <demo-section id="dtp-focus" title="openOnFocus, allowEdit and zIndex" description="Focus opens the popup; the input can be locked.">
+    <ej2-date-time-picker data-testid="dtp-focus" e-open-on-focus.bind="true" e-z-index.bind="3500" e-allow-edit.bind="false"
+      e-width.bind="260" e-css-class="demo-dtp-focus" e-html-attributes.bind="htmlAttrsA"></ej2-date-time-picker>
+  </demo-section>
+
+  <demo-section id="dtp-multi" title="Multiple selection" description="values with isMultiSelection are passed through to the widget.">
+    <ej2-date-time-picker data-testid="dtp-multi" e-is-multi-selection.bind="true" e-values.bind="multiValues" e-format="yyyy-MM-dd HH:mm"></ej2-date-time-picker>
+  </demo-section>
+
+  <demo-section id="dtp-mask" title="Mask and key config" description="enableMask with maskPlaceholder, keyConfigs and inert flags.">
+    <ej2-date-time-picker data-testid="dtp-mask" e-enable-mask.bind="true" e-mask-placeholder.bind="maskPlaceholder"
+      e-format="dd/MM/yyyy HH:mm" e-key-configs.bind="keyConfigs" e-full-screen-mode.bind="false"
+      e-server-timezone-offset.bind="0" e-locale="en-US" e-enable-rtl.bind="false"></ej2-date-time-picker>
   </demo-section>
 </template>

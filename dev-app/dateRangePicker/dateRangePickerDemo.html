@@ -10,6 +10,12 @@
     <button data-testid="drp-set" click.delegate="setRange()">Set May 1 - 3</button>
   </demo-section>
 
+  <demo-section id="drp-value" title="Two-way value" description="e-value.two-way binds the [start, end] pair.">
+    <ej2-date-range-picker data-testid="drp-value" e-value.two-way="rangeValue" e-format="yyyy-MM-dd"></ej2-date-range-picker>
+    <div class="demo-output">Value: <code data-testid="drp-value-out">${rangeText}</code></div>
+    <button data-testid="drp-value-set" click.delegate="setValue()">Set June 3 - 5</button>
+  </demo-section>
+
   <demo-section id="drp-presets" title="Presets" description="presets render shortcut buttons in the popup.">
     <ej2-date-range-picker data-testid="drp-presets" e-presets.bind="presets" e-format="yyyy-MM-dd"
       e-start-date.one-way="startDate" e-end-date.one-way="endDate"></ej2-date-range-picker>
@@ -22,6 +28,74 @@
 
   <demo-section id="drp-options" title="Options" description="placeholder, separator and showClearButton.">
     <ej2-date-range-picker data-testid="drp-options" e-placeholder="Select a range" e-separator="to"
-      e-show-clear-button.bind="true"></ej2-date-range-picker>
+      e-show-clear-button.bind="true" e-format="yyyy-MM-dd" e-start-date.one-way="startDate"
+      e-end-date.one-way="endDate"></ej2-date-range-picker>
+  </demo-section>
+
+  <demo-section id="drp-events" title="Events" description="Every widget event is logged by name.">
+    <ej2-date-range-picker data-testid="drp-events" e-start-date.bind="evStart" e-end-date.bind="evEnd" e-format="yyyy-MM-dd"
+      e-show-clear-button.bind="true"
+      e-on-created.delegate="log('created')" e-on-focus.delegate="log('focus')" e-on-blur.delegate="log('blur')"
+      e-on-open.delegate="log('open')" e-on-close.delegate="log('close')" e-on-change.delegate="log('change', $event)"
+      e-on-cleared.delegate="log('cleared')" e-on-navigated.delegate="log('navigated')"
+      e-on-select.delegate="log('select')"></ej2-date-range-picker>
+    <div class="demo-output">Log: <code data-testid="drp-log">${events.join(',')}</code>
+      Last change: <code data-testid="drp-last-change">${lastChange}</code></div>
+  </demo-section>
+
+  <demo-section id="drp-render" title="renderDayCell" description="The handler marks the 15th of each month.">
+    <ej2-date-range-picker data-testid="drp-render" e-start-date.one-way="startDate" e-end-date.one-way="endDate" e-format="yyyy-MM-dd"
+      e-on-render-day-cell.delegate="renderCell($event)"></ej2-date-range-picker>
+    <div class="demo-output">Cells rendered: <span data-testid="drp-render-count">${renderCount}</span></div>
+  </demo-section>
+
+  <demo-section id="drp-destroy" title="destroyed" description="Removing the picker from the DOM destroys the widget.">
+    <ej2-date-range-picker if.bind="showDestroyable" data-testid="drp-destroy" e-on-destroyed.trigger="destroyedCount = destroyedCount + 1"></ej2-date-range-picker>
+    <button data-testid="drp-destroy-btn" click.delegate="showDestroyable = false">Remove</button>
+    <div class="demo-output">Destroyed: <span data-testid="drp-destroyed">${destroyedCount}</span></div>
+  </demo-section>
+
+  <demo-section id="drp-dynamic" title="Model to widget" description="Toggling one flag changes every bound property.">
+    <ej2-date-range-picker data-testid="drp-dynamic" e-start-date.one-way="startDate" e-end-date.one-way="endDate"
+      e-enabled.bind="!alt" e-strict-mode.bind="alt"
+      e-css-class.bind="alt ? 'cls-b' : 'cls-a'" e-placeholder.bind="alt ? 'Beta' : 'Alpha'"
+      e-float-label-type.bind="alt ? 'Always' : 'Never'" e-format.bind="alt ? 'dd/MM/yyyy' : 'yyyy-MM-dd'"
+      e-separator.bind="alt ? '~' : '-'" e-width.bind="alt ? 360 : 300" e-z-index.bind="alt ? 2000 : 1500"
+      e-open-on-focus.bind="alt" e-show-clear-button.bind="alt" e-show-today-button.bind="!alt" e-week-number.bind="alt"
+      e-first-day-of-week.bind="alt ? 1 : 0" e-day-header-format.bind="alt ? 'Narrow' : 'Short'"
+      e-week-rule.bind="alt ? 'FirstFullWeek' : 'FirstDay'" e-depth.bind="alt ? 'Year' : 'Month'"
+      e-start.bind="alt ? 'Year' : 'Month'"
+      e-min-days.bind="alt ? 2 : 1" e-max-days.bind="alt ? 9 : 30"
+      e-html-attributes.bind="alt ? htmlAttrsB : htmlAttrsA" e-server-timezone-offset.bind="alt ? 2 : 0"
+      e-full-screen-mode.bind="alt"></ej2-date-range-picker>
+    <ej2-date-range-picker data-testid="drp-dynamic-edit" e-start-date.one-way="startDate" e-end-date.one-way="endDate"
+      e-readonly.bind="alt" e-allow-edit.bind="!alt" e-format="yyyy-MM-dd"
+      e-min.bind="alt ? min : defaultMin" e-max.bind="alt ? max : defaultMax"></ej2-date-range-picker>
+    <button data-testid="drp-toggle" click.delegate="alt = !alt">Toggle</button>
+  </demo-section>
+
+  <demo-section id="drp-calendar" title="Calendar layout" description="dayHeaderFormat, firstDayOfWeek, weekNumber, weekRule, showTodayButton, calendarMode.">
+    <ej2-date-range-picker data-testid="drp-calendar" e-start-date.one-way="startDate" e-end-date.one-way="endDate"
+      e-format="yyyy-MM-dd" e-calendar-mode="Gregorian" e-day-header-format="Narrow" e-first-day-of-week.bind="1"
+      e-week-number.bind="true" e-week-rule="FirstFullWeek" e-show-today-button.bind="false"></ej2-date-range-picker>
+  </demo-section>
+
+  <demo-section id="drp-depth" title="Start and depth" description="The popup opens on the year view and stops at months.">
+    <ej2-date-range-picker data-testid="drp-depth" e-format="MMM yyyy" e-start="Year" e-depth="Year"
+      e-start-date.one-way="startDate" e-end-date.one-way="endDate"></ej2-date-range-picker>
+  </demo-section>
+
+  <demo-section id="drp-strict" title="strictMode, min/max and inputFormats" description="Out-of-range input is rejected in strict mode.">
+    <ej2-date-range-picker data-testid="drp-strict" e-min.bind="min" e-max.bind="max" e-format="yyyy-MM-dd"
+      e-strict-mode.bind="true" e-start-date.one-way="startDate" e-end-date.one-way="endDate"></ej2-date-range-picker>
+    <ej2-date-range-picker data-testid="drp-loose" e-min.bind="min" e-max.bind="max" e-format="yyyy-MM-dd"
+      e-strict-mode.bind="false" e-start-date.one-way="startDate" e-end-date.one-way="endDate"></ej2-date-range-picker>
+    <ej2-date-range-picker data-testid="drp-inputformats" e-format="yyyy-MM-dd" e-input-formats.bind="inputFormats"></ej2-date-range-picker>
+  </demo-section>
+
+  <demo-section id="drp-focus" title="openOnFocus, allowEdit and zIndex" description="Focus opens the popup; the input can be locked.">
+    <ej2-date-range-picker data-testid="drp-focus" e-open-on-focus.bind="true" e-z-index.bind="3500" e-allow-edit.bind="false"
+      e-width.bind="320" e-css-class="demo-drp-focus" e-html-attributes.bind="htmlAttrsA" e-key-configs.bind="keyConfigs"
+      e-server-timezone-offset.bind="0" e-full-screen-mode.bind="false" e-locale="en-US" e-enable-rtl.bind="false"></ej2-date-range-picker>
   </demo-section>
 </template>

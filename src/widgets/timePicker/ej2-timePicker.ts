@@ -1,6 +1,6 @@
 import { constants } from './../../common/constants';
 import { SyncfusionWrapper } from "../../common/syncfusionWrapper";
-import { TimePicker, TimePickerModel } from "@syncfusion/ej2-calendars";
+import { TimePicker, TimePickerModel, MaskedDateTime } from "@syncfusion/ej2-calendars";
 import { generateBindables } from '../../utilities/decorator';
 import { inlineView, customElement } from 'aurelia-framework';
 
@@ -9,6 +9,10 @@ import { inlineView, customElement } from 'aurelia-framework';
 @customElement('ej2-time-picker')
 export class Ej2TimePicker extends SyncfusionWrapper<TimePicker, TimePickerModel> {
   protected syncfusionWidgetType = TimePicker;
+
+  protected onBeforeWidgetInstantiation() {
+    TimePicker.Inject(MaskedDateTime);
+  }
 
   protected onWrapperCreated() {
   }

@@ -4,12 +4,15 @@
   <demo-section id="dl-panels" title="Bound panels" description="e-panels, e-columns and e-show-grid-lines.">
     <ej2-dashboard-layout data-testid="dl-panels" e-panels.bind="panels" e-columns.bind="columns"
       e-cell-spacing.bind="[10, 10]" e-show-grid-lines.bind="showGridLines" e-allow-dragging.bind="allowDragging"
-      e-on-change.delegate="onChange()"></ej2-dashboard-layout>
+      e-on-change.delegate="onChange()"
+      e-on-drag-start.delegate="dragStarts = dragStarts + 1" e-on-drag.delegate="drags = drags + 1" e-on-drag-stop.delegate="dragStops = dragStops + 1"></ej2-dashboard-layout>
     <div class="demo-row">
       <label><input type="checkbox" data-testid="dl-grid" checked.bind="showGridLines" /> grid lines</label>
       <label><input type="checkbox" data-testid="dl-drag" checked.bind="allowDragging" /> allow dragging</label>
     </div>
-    <div class="demo-output">Changes: <span data-testid="dl-changes">${changes}</span></div>
+    <div class="demo-output">Changes: <span data-testid="dl-changes">${changes}</span>
+      Drag start: <span data-testid="dl-drag-start">${dragStarts}</span> Drag: <span data-testid="dl-drags">${drags}</span>
+      Drag stop: <span data-testid="dl-drag-stop">${dragStops}</span></div>
   </demo-section>
 
   <demo-section id="dl-markup" title="Panels from markup" description="Panel elements slotted into the layout are picked up.">
@@ -17,5 +20,33 @@
       <div class="e-panel" data-row="0" data-col="0" data-sizeX="1" data-sizeY="1"><div class="e-panel-container">A</div></div>
       <div class="e-panel" data-row="0" data-col="1" data-sizeX="2" data-sizeY="1"><div class="e-panel-container">B</div></div>
     </ej2-dashboard-layout>
+  </demo-section>
+
+  <demo-section id="dl-resize" title="Resizing" description="allowResizing with resizableHandles, resizeStart, resize and resizeStop events, allowPushing.">
+    <ej2-dashboard-layout data-testid="dl-resize" e-panels.bind="resizePanels" e-columns.bind="4" e-cell-spacing.bind="[10, 10]"
+      e-allow-resizing.bind="true" e-resizable-handles.bind="['e-south-east']" e-allow-pushing.bind="false"
+      e-on-resize-start.delegate="resizeStarts = resizeStarts + 1" e-on-resize.delegate="resizes = resizes + 1"
+      e-on-resize-stop.delegate="resizeStops = resizeStops + 1"></ej2-dashboard-layout>
+    <div class="demo-output">Resize start: <span data-testid="dl-resize-start">${resizeStarts}</span>
+      Resize: <span data-testid="dl-resizes">${resizes}</span> Resize stop: <span data-testid="dl-resize-stop">${resizeStops}</span></div>
+  </demo-section>
+
+  <demo-section id="dl-handle" title="Draggable handle" description="draggableHandle limits dragging to the handle element.">
+    <ej2-dashboard-layout data-testid="dl-handle" e-panels.bind="handlePanels" e-columns.bind="4" e-cell-spacing.bind="[10, 10]"
+      e-draggable-handle=".dh" e-allow-floating.bind="false"></ej2-dashboard-layout>
+  </demo-section>
+
+  <demo-section id="dl-options" title="Layout options" description="allowFloating, cellAspectRatio, mediaQuery and enableHtmlSanitizer.">
+    <ej2-dashboard-layout data-testid="dl-options" e-panels.bind="optionPanels" e-columns.bind="4" e-cell-spacing.bind="[0, 0]"
+      e-allow-floating.bind="false" e-cell-aspect-ratio.bind="2" e-media-query="max-width:600px"
+      e-enable-html-sanitizer.bind="true"></ej2-dashboard-layout>
+  </demo-section>
+
+  <demo-section id="dl-lifecycle" title="Lifecycle" description="created and destroyed events with if.bind.">
+    <ej2-dashboard-layout if.bind="showLifecycle" data-testid="dl-lifecycle" e-panels.bind="optionPanels" e-columns.bind="4"
+      e-on-created.delegate="created = created + 1" e-on-destroyed.trigger="destroyed = destroyed + 1"></ej2-dashboard-layout>
+    <button data-testid="dl-toggle" click.delegate="showLifecycle = !showLifecycle">Toggle</button>
+    <div class="demo-output">Created: <span data-testid="dl-created">${created}</span>
+      Destroyed: <span data-testid="dl-destroyed">${destroyed}</span></div>
   </demo-section>
 </template>

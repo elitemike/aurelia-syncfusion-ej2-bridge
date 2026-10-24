@@ -11,10 +11,18 @@
   </demo-section>
 
   <demo-section id="tl-css" title="Custom item css" description="dotCss and cssClass are applied to each item.">
-    <ej2-timeline data-testid="tl-css" e-items.bind="items"></ej2-timeline>
+    <ej2-timeline data-testid="tl-css" e-items.bind="items" e-css-class="my-timeline"></ej2-timeline>
   </demo-section>
 
   <demo-section id="tl-align" title="Alignment" description="align After places the content after the dot.">
     <ej2-timeline data-testid="tl-align" e-items.bind="items" e-align="After"></ej2-timeline>
+  </demo-section>
+
+  <demo-section id="tl-tpl" title="Template and events" description="template renders each item, created and beforeItemRender are reported.">
+    <ej2-timeline data-testid="tl-tpl" e-items.bind="simpleItems" e-template.bind="tpl" e-on-created.delegate="onCreated()"
+      e-on-before-item-render.delegate="onBeforeItemRender($event)"></ej2-timeline>
+    <div class="demo-output">Created: <span data-testid="tl-created">${createdCount}</span>
+      Rendered items: <span data-testid="tl-rendered">${renderedCount}</span>
+      Last: <code data-testid="tl-last">${lastItem}</code></div>
   </demo-section>
 </template>

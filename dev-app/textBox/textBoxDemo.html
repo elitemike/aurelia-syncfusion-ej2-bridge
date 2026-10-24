@@ -24,6 +24,23 @@
     <ej2-text-box data-testid="tb-multiline" e-multiline="true" e-placeholder="Multiline"></ej2-text-box>
   </demo-section>
 
+  <demo-section id="tb-more" title="Type, css class, html attributes and templates" description="type, autocomplete, cssClass, htmlAttributes, prependTemplate, appendTemplate, change.">
+    <ej2-text-box data-testid="tb-more" e-type="password" e-autocomplete="off" e-css-class.bind="cssClass"
+      e-html-attributes.bind="htmlAttrs" e-prepend-template.bind="prepend" e-append-template.bind="append"
+      e-value.two-way="moreValue" e-on-change.delegate="onChange($event)"></ej2-text-box>
+    <div class="demo-output">Changes: <span data-testid="tb-change-count">${changeCount}</span>
+      Last change value: <code data-testid="tb-change-value">${changeValue}</code></div>
+    <button data-testid="tb-css" click.delegate="cssClass = 'tb-custom-two'">Change cssClass</button>
+  </demo-section>
+
+  <demo-section id="tb-life" title="Lifecycle events" description="created is raised when the widget renders, destroyed when it is removed.">
+    <ej2-text-box if.bind="showBox" data-testid="tb-life" e-on-created.delegate="onCreated()"
+      e-on-destroyed.trigger="onDestroyed()"></ej2-text-box>
+    <div class="demo-output">Created: <span data-testid="tb-created">${createdCount}</span>
+      Destroyed: <span data-testid="tb-destroyed">${destroyedCount}</span></div>
+    <button data-testid="tb-toggle" click.delegate="showBox = !showBox">Toggle</button>
+  </demo-section>
+
   <demo-section id="tb-width" title="Width and max length" description="width and maxLength were added to the bindable set from the Syncfusion model.">
     <ej2-text-box data-testid="tb-width" e-width="180px" e-max-length.bind="5" e-value="abc"></ej2-text-box>
   </demo-section>

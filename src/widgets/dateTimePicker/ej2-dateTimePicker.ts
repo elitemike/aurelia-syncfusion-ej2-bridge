@@ -1,6 +1,6 @@
 import { constants } from './../../common/constants';
 import { SyncfusionWrapper } from "../../common/syncfusionWrapper";
-import { DateTimePicker, DateTimePickerModel } from "@syncfusion/ej2-calendars";
+import { DateTimePicker, DateTimePickerModel, MaskedDateTime } from "@syncfusion/ej2-calendars";
 import { generateBindables } from "../../utilities/decorator";
 import { inlineView, customElement } from "aurelia-framework";
 
@@ -9,6 +9,10 @@ import { inlineView, customElement } from "aurelia-framework";
 @customElement('ej2-date-time-picker')
 export class Ej2DateTimePicker extends SyncfusionWrapper<DateTimePicker, DateTimePickerModel> {
   protected syncfusionWidgetType = DateTimePicker;
+
+  protected onBeforeWidgetInstantiation() {
+    DateTimePicker.Inject(MaskedDateTime);
+  }
 
   protected onWrapperCreated() {
   }

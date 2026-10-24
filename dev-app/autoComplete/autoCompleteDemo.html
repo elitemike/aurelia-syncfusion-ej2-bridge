@@ -6,11 +6,14 @@
   </demo-section>
 
   <demo-section id="ac-value" title="Two-way value" description="e-value.two-way syncs the text in both directions.">
-    <ej2-auto-complete data-testid="ac-value" e-data-source.bind="sports" e-value.two-way="value"
+    <ej2-auto-complete data-testid="ac-value" e-data-source.bind="sports" e-value.two-way="value" e-enabled.bind="enabled"
       e-on-change.delegate="onChange()"></ej2-auto-complete>
     <div class="demo-output">Value: <code data-testid="ac-value-out">${value}</code>
       Changes: <span data-testid="ac-change-count">${changeCount}</span></div>
-    <button data-testid="ac-set" click.delegate="setValue()">Set Hockey</button>
+    <div class="demo-row">
+      <button data-testid="ac-set" click.delegate="setValue()">Set Hockey</button>
+      <label><input type="checkbox" data-testid="ac-enabled" checked.bind="enabled" /> enabled</label>
+    </div>
   </demo-section>
 
   <demo-section id="ac-fields" title="Object data source" description="fields maps the text and value properties.">
@@ -21,5 +24,105 @@
   <demo-section id="ac-options" title="Options" description="showClearButton and suggestionCount.">
     <ej2-auto-complete data-testid="ac-options" e-data-source.bind="sports" e-show-clear-button="true" e-suggestion-count="3"
       e-min-length="1"></ej2-auto-complete>
+  </demo-section>
+
+  <demo-section id="ac-ignore" title="ignoreCase / ignoreAccent / filterType" description="Filter matching options, changed from the view-model.">
+    <ej2-auto-complete data-testid="ac-ignore" e-data-source.bind="cafes" e-allow-filtering="true" e-ignore-accent.bind="ignoreAccent"
+      e-ignore-case.bind="ignoreCase" e-filter-type.bind="filterType" e-filter-bar-placeholder="Search cafes" e-min-length="1" e-debounce-delay="0"></ej2-auto-complete>
+    <div class="demo-row">
+      <button data-testid="ac-ignore-toggle" click.delegate="toggleIgnore()">Strict matching</button>
+    </div>
+  </demo-section>
+
+  <demo-section id="ac-dyn" title="Bound properties" description="Widget properties bound to the view-model; the button switches them to a second set.">
+    <ej2-auto-complete data-testid="ac-dyn" e-data-source.bind="sportItems" e-fields.bind="sportFields"
+      e-css-class.bind="dyn.cssClass" e-popup-height.bind="dyn.popupHeight" e-popup-width.bind="dyn.popupWidth"
+      e-width.bind="dyn.width" e-z-index.bind="dyn.zIndex" e-readonly.bind="dyn.readonly" e-placeholder.bind="dyn.placeholder"
+      e-float-label-type.bind="dyn.floatLabelType" e-sort-order.bind="dyn.sortOrder" e-allow-filtering.bind="dyn.allowFiltering"
+      e-html-attributes.bind="dyn.htmlAttributes" e-is-device-full-screen.bind="dyn.fullScreen" e-allow-resize.bind="dyn.allowResize"
+      e-debounce-delay.bind="dyn.debounceDelay" e-show-clear-button.bind="dyn.showClearButton"
+      e-show-popup-button.bind="dyn.showPopupButton" e-highlight.bind="dyn.highlight" e-allow-custom.bind="dyn.allowCustom"
+      e-min-length.bind="dyn.minLength" e-suggestion-count.bind="dyn.suggestionCount"></ej2-auto-complete>
+    <div class="demo-row">
+      <button data-testid="ac-dyn-toggle" click.delegate="toggleDyn()">Switch properties</button>
+    </div>
+  </demo-section>
+
+  <demo-section id="ac-templates" title="Templates" description="item, value, header, footer, group and no-records templates.">
+    <ej2-auto-complete data-testid="ac-templates" e-data-source.bind="grouped" e-fields.bind="groupFields"
+      e-allow-filtering="true" e-item-template.bind="itemTpl" e-value-template.bind="valueTpl" e-header-template.bind="headerTpl"
+      e-footer-template.bind="footerTpl" e-group-template.bind="groupTpl"
+      e-action-failure-template.bind="failTpl"></ej2-auto-complete>
+  </demo-section>
+
+  <demo-section id="ac-norecords" title="noRecordsTemplate" description="Shown when typing matches nothing.">
+    <ej2-auto-complete data-testid="ac-norecords" e-data-source.bind="sportItems" e-fields.bind="sportFields" e-allow-filtering="true" e-min-length="1"
+      e-no-records-template.bind="noRecordsTpl"></ej2-auto-complete>
+  </demo-section>
+
+  <demo-section id="ac-index" title="index" description="Initial selection by position.">
+    <ej2-auto-complete data-testid="ac-index" e-data-source.bind="sportItems" e-fields.bind="sportFields" e-index="2"></ej2-auto-complete>
+  </demo-section>
+
+  <demo-section id="ac-text" title="text" description="Initial selection by item text.">
+    <ej2-auto-complete data-testid="ac-text" e-data-source.bind="sportItems" e-fields.bind="sportFields" e-text="Cricket"></ej2-auto-complete>
+  </demo-section>
+
+  <demo-section id="ac-object" title="allowObjectBinding" description="The value is the whole data object.">
+    <ej2-auto-complete data-testid="ac-object" e-data-source.bind="sportItems" e-fields.bind="sportFields" e-allow-object-binding="true"
+      e-value.two-way="objectValue"></ej2-auto-complete>
+    <div class="demo-output">Selected: <code data-testid="ac-object-out">${objectValue.text}</code></div>
+  </demo-section>
+
+  <demo-section id="ac-query" title="query" description="A Query limits the items taken from the data source.">
+    <ej2-auto-complete data-testid="ac-query" e-data-source.bind="sportItems" e-fields.bind="sportFields" e-query.bind="query"></ej2-auto-complete>
+  </demo-section>
+
+  <demo-section id="ac-virtual" title="enableVirtualization" description="Only the visible items are rendered.">
+    <ej2-auto-complete data-testid="ac-virtual" e-data-source.bind="many" e-fields.bind="virtualFields" e-enable-virtualization="true"
+      e-popup-height="200px"></ej2-auto-complete>
+  </demo-section>
+
+  <demo-section id="ac-highlight" title="highlight" description="The matching part of every suggestion is highlighted.">
+    <ej2-auto-complete data-testid="ac-highlight" e-data-source.bind="sports" e-highlight="true"></ej2-auto-complete>
+  </demo-section>
+
+  <demo-section id="ac-autofill" title="autofill" description="Typed text is completed with the first match.">
+    <ej2-auto-complete data-testid="ac-autofill" e-data-source.bind="sportItems" e-fields.bind="sportFields"
+      e-autofill="true" e-min-length="1"></ej2-auto-complete>
+  </demo-section>
+
+  <demo-section id="ac-events" title="Events" description="Every widget event appends its name to a log.">
+    <ej2-auto-complete data-testid="ac-events" e-data-source.bind="sportItems" e-fields.bind="sportFields" e-allow-filtering="true"
+      e-allow-resize="true" e-popup-width="250px" e-allow-custom="true" e-min-length="1"
+      e-on-custom-value-specifier.delegate="log('customValueSpecifier')"
+      e-on-action-begin.delegate="log('actionBegin')"
+      e-on-action-complete.delegate="log('actionComplete')"
+      e-on-before-open.delegate="log('beforeOpen')"
+      e-on-blur.delegate="log('blur')"
+      e-on-change.delegate="log('change')"
+      e-on-close.delegate="log('close')"
+      e-on-data-bound.delegate="log('dataBound')"
+      e-on-filtering.delegate="log('filtering')"
+      e-on-focus.delegate="log('focus')"
+      e-on-open.delegate="log('open')"
+      e-on-select.delegate="log('select')"
+      e-on-resize-stop.delegate="log('resizeStop')"
+      e-on-resizing.delegate="log('resizing')"
+      e-on-resize-start.delegate="log('resizeStart')"></ej2-auto-complete>
+    <div class="demo-output">Events: <code data-testid="ac-events-out">${eventLog}</code></div>
+  </demo-section>
+
+  <demo-section id="ac-lifecycle" title="created / destroyed" description="Toggling the widget creates and destroys it.">
+    <ej2-auto-complete if.bind="showLifecycle" data-testid="ac-lifecycle" e-data-source.bind="sportItems" e-fields.bind="sportFields"
+      e-on-created.trigger="lifecycle('created')" e-on-destroyed.trigger="lifecycle('destroyed')"></ej2-auto-complete>
+    <div class="demo-output">Created: <span data-testid="ac-created">${created}</span> Destroyed: <span data-testid="ac-destroyed">${destroyed}</span></div>
+    <button data-testid="ac-lifecycle-toggle" click.delegate="showLifecycle = !showLifecycle">Toggle</button>
+  </demo-section>
+
+  <demo-section id="ac-fail" title="actionFailure" description="A remote data source that fails to load raises actionFailure.">
+    <ej2-auto-complete data-testid="ac-fail" e-data-source.bind="remote" e-fields.bind="sportFields"
+      e-on-action-failure.delegate="failures = failures + 1"></ej2-auto-complete>
+    <div class="demo-output">Failures: <span data-testid="ac-fail-count">${failures}</span></div>
   </demo-section>
 </template>

@@ -20,6 +20,37 @@
       e-tooltip.bind="{ isVisible: true, placement: 'Before', showOn: 'Focus' }"></ej2-slider>
   </demo-section>
 
+  <demo-section id="sl-events" title="Tick and tooltip events" description="renderingTicks, renderedTicks, tooltipChange, change and created.">
+    <ej2-slider data-testid="sl-events" e-value.one-way="30" e-min.bind="0" e-max.bind="100" e-step.bind="10"
+      e-ticks.bind="{ placement: 'After', largeStep: 50, smallStep: 10, showSmallTicks: false }"
+      e-tooltip.bind="{ isVisible: true, placement: 'Before', showOn: 'Focus' }"
+      e-on-created.delegate="createdCount = createdCount + 1"
+      e-on-rendering-ticks.delegate="renderingTicksCount = renderingTicksCount + 1"
+      e-on-rendered-ticks.delegate="renderedTicksCount = renderedTicksCount + 1"
+      e-on-tooltip-change.delegate="onTooltipChange($event)"
+      e-on-change.delegate="onChange($event)"></ej2-slider>
+    <div class="demo-output">Created: <span data-testid="sl-created">${createdCount}</span>
+      Rendering ticks: <span data-testid="sl-rendering-ticks">${renderingTicksCount}</span>
+      Rendered ticks: <span data-testid="sl-rendered-ticks">${renderedTicksCount}</span>
+      Tooltip: <code data-testid="sl-tooltip-text">${tooltipText}</code>
+      Change: <code data-testid="sl-change-value">${changeValue}</code>
+      Change count: <span data-testid="sl-change-count">${changeCount}</span></div>
+  </demo-section>
+
+  <demo-section id="sl-more" title="Buttons, limits, color ranges, css class, animation" description="showButtons, limits, colorRange, cssClass, enableAnimation, enableHtmlSanitizer, enabled.">
+    <ej2-slider data-testid="sl-more" e-value.two-way="moreValue" e-min.bind="0" e-max.bind="100" e-step.bind="10"
+      e-css-class="sl-custom" e-enable-animation.bind="false" e-enable-html-sanitizer.bind="false" e-enabled.bind="enabled"
+      e-show-buttons.bind="true" e-limits.bind="limits" e-color-range.bind="colorRange"></ej2-slider>
+    <div class="demo-output">Value: <code data-testid="sl-more-out">${moreValue}</code></div>
+    <label><input type="checkbox" data-testid="sl-enabled" checked.bind="enabled" /> enabled</label>
+  </demo-section>
+
+  <demo-section id="sl-custom" title="Custom values" description="customValues turns the slider into an index over a list of labels.">
+    <ej2-slider data-testid="sl-custom" e-custom-values.bind="sizes" e-value.two-way="sizeIndex"
+      e-tooltip.bind="{ isVisible: true, showOn: 'Focus' }"></ej2-slider>
+    <div class="demo-output">Index: <code data-testid="sl-custom-out">${sizeIndex}</code></div>
+  </demo-section>
+
   <demo-section id="sl-vertical" title="Orientation and readonly" description="orientation Vertical and readonly.">
     <ej2-slider data-testid="sl-vertical" e-value.one-way="50" e-orientation="Vertical" e-readonly.bind="true" e-width="120px"
       style="height: 150px; display: block"></ej2-slider>

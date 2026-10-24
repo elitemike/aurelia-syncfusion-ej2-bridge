@@ -20,7 +20,7 @@
 
   <demo-section id="ddl-filter" title="Filtering" description="allowFiltering shows a filter bar in the popup.">
     <ej2-drop-down-list data-testid="ddl-filter" e-data-source.bind="sports" e-fields.bind="fields" e-allow-filtering="true"
-      e-placeholder="Filter sports"></ej2-drop-down-list>
+      e-placeholder="Filter sports" e-filter-bar-placeholder="Search sports"></ej2-drop-down-list>
   </demo-section>
 
   <demo-section id="ddl-select" title="From &lt;select&gt;" description="Existing markup in the element body is used as the data source.">
@@ -31,5 +31,88 @@
         <option value="g3">Rugby</option>
       </select>
     </ej2-drop-down-list>
+  </demo-section>
+
+  <demo-section id="ddl-ignore" title="ignoreCase / ignoreAccent / filterType" description="Filter matching options, changed from the view-model.">
+    <ej2-drop-down-list data-testid="ddl-ignore" e-data-source.bind="cafes" e-allow-filtering="true" e-ignore-accent.bind="ignoreAccent"
+      e-ignore-case.bind="ignoreCase" e-filter-type.bind="filterType" e-filter-bar-placeholder="Search cafes" e-debounce-delay="0"></ej2-drop-down-list>
+    <div class="demo-row">
+      <button data-testid="ddl-ignore-toggle" click.delegate="toggleIgnore()">Strict matching</button>
+    </div>
+  </demo-section>
+
+  <demo-section id="ddl-dyn" title="Bound properties" description="Widget properties bound to the view-model; the button switches them to a second set.">
+    <ej2-drop-down-list data-testid="ddl-dyn" e-data-source.bind="sports" e-fields.bind="fields"
+      e-css-class.bind="dyn.cssClass" e-popup-height.bind="dyn.popupHeight" e-popup-width.bind="dyn.popupWidth"
+      e-width.bind="dyn.width" e-z-index.bind="dyn.zIndex" e-readonly.bind="dyn.readonly" e-placeholder.bind="dyn.placeholder"
+      e-float-label-type.bind="dyn.floatLabelType" e-sort-order.bind="dyn.sortOrder" e-allow-filtering.bind="dyn.allowFiltering"
+      e-html-attributes.bind="dyn.htmlAttributes" e-is-device-full-screen.bind="dyn.fullScreen" e-allow-resize.bind="dyn.allowResize"
+      e-debounce-delay.bind="dyn.debounceDelay" e-show-clear-button.bind="dyn.showClearButton"></ej2-drop-down-list>
+    <div class="demo-row">
+      <button data-testid="ddl-dyn-toggle" click.delegate="toggleDyn()">Switch properties</button>
+    </div>
+  </demo-section>
+
+  <demo-section id="ddl-templates" title="Templates" description="item, value, header, footer, group and no-records templates.">
+    <ej2-drop-down-list data-testid="ddl-templates" e-data-source.bind="grouped" e-fields.bind="groupFields" e-value="Cricket"
+      e-allow-filtering="true" e-item-template.bind="itemTpl" e-value-template.bind="valueTpl" e-header-template.bind="headerTpl"
+      e-footer-template.bind="footerTpl" e-group-template.bind="groupTpl" e-no-records-template.bind="noRecordsTpl"
+      e-action-failure-template.bind="failTpl"></ej2-drop-down-list>
+  </demo-section>
+
+  <demo-section id="ddl-index" title="index" description="Initial selection by position.">
+    <ej2-drop-down-list data-testid="ddl-index" e-data-source.bind="sports" e-fields.bind="fields" e-index="2"></ej2-drop-down-list>
+  </demo-section>
+
+  <demo-section id="ddl-text" title="text" description="Initial selection by item text.">
+    <ej2-drop-down-list data-testid="ddl-text" e-data-source.bind="sports" e-fields.bind="fields" e-text="Cricket"></ej2-drop-down-list>
+  </demo-section>
+
+  <demo-section id="ddl-object" title="allowObjectBinding" description="The value is the whole data object.">
+    <ej2-drop-down-list data-testid="ddl-object" e-data-source.bind="sports" e-fields.bind="fields" e-allow-object-binding="true"
+      e-value.two-way="objectValue"></ej2-drop-down-list>
+    <div class="demo-output">Selected: <code data-testid="ddl-object-out">${objectValue.text}</code></div>
+  </demo-section>
+
+  <demo-section id="ddl-query" title="query" description="A Query limits the items taken from the data source.">
+    <ej2-drop-down-list data-testid="ddl-query" e-data-source.bind="sports" e-fields.bind="fields" e-query.bind="query"></ej2-drop-down-list>
+  </demo-section>
+
+  <demo-section id="ddl-virtual" title="enableVirtualization" description="Only the visible items are rendered.">
+    <ej2-drop-down-list data-testid="ddl-virtual" e-data-source.bind="many" e-fields.bind="virtualFields" e-enable-virtualization="true"
+      e-popup-height="200px"></ej2-drop-down-list>
+  </demo-section>
+
+  <demo-section id="ddl-events" title="Events" description="Every widget event appends its name to a log.">
+    <ej2-drop-down-list data-testid="ddl-events" e-data-source.bind="sports" e-fields.bind="fields" e-allow-filtering="true"
+      e-allow-resize="true" e-popup-width="250px"
+      e-on-action-begin.delegate="log('actionBegin')"
+      e-on-action-complete.delegate="log('actionComplete')"
+      e-on-before-open.delegate="log('beforeOpen')"
+      e-on-blur.delegate="log('blur')"
+      e-on-change.delegate="log('change')"
+      e-on-close.delegate="log('close')"
+      e-on-data-bound.delegate="log('dataBound')"
+      e-on-filtering.delegate="log('filtering')"
+      e-on-focus.delegate="log('focus')"
+      e-on-open.delegate="log('open')"
+      e-on-select.delegate="log('select')"
+      e-on-resize-stop.delegate="log('resizeStop')"
+      e-on-resizing.delegate="log('resizing')"
+      e-on-resize-start.delegate="log('resizeStart')"></ej2-drop-down-list>
+    <div class="demo-output">Events: <code data-testid="ddl-events-out">${eventLog}</code></div>
+  </demo-section>
+
+  <demo-section id="ddl-lifecycle" title="created / destroyed" description="Toggling the widget creates and destroys it.">
+    <ej2-drop-down-list if.bind="showLifecycle" data-testid="ddl-lifecycle" e-data-source.bind="sports" e-fields.bind="fields"
+      e-on-created.trigger="lifecycle('created')" e-on-destroyed.trigger="lifecycle('destroyed')"></ej2-drop-down-list>
+    <div class="demo-output">Created: <span data-testid="ddl-created">${created}</span> Destroyed: <span data-testid="ddl-destroyed">${destroyed}</span></div>
+    <button data-testid="ddl-lifecycle-toggle" click.delegate="showLifecycle = !showLifecycle">Toggle</button>
+  </demo-section>
+
+  <demo-section id="ddl-fail" title="actionFailure" description="A remote data source that fails to load raises actionFailure.">
+    <ej2-drop-down-list data-testid="ddl-fail" e-data-source.bind="remote" e-fields.bind="fields"
+      e-on-action-failure.delegate="failures = failures + 1"></ej2-drop-down-list>
+    <div class="demo-output">Failures: <span data-testid="ddl-fail-count">${failures}</span></div>
   </demo-section>
 </template>

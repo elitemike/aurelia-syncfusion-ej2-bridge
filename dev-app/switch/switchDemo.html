@@ -16,6 +16,20 @@
     <ej2-switch data-testid="sw-labels" e-on-label="ON" e-off-label="OFF"></ej2-switch>
   </demo-section>
 
+  <demo-section id="sw-more" title="Name, value, css class, html attributes and beforeChange" description="name, value, cssClass, htmlAttributes, beforeChange (cancellable) and created.">
+    <ej2-switch data-testid="sw-more" e-name="wifi" e-value.bind="inputValue" e-css-class.bind="cssClass"
+      e-html-attributes.bind="htmlAttrs" e-checked.two-way="moreChecked"
+      e-on-before-change.delegate="onBeforeChange($event)" e-on-created.delegate="createdCount = createdCount + 1"></ej2-switch>
+    <div class="demo-output">Checked: <code data-testid="sw-more-out">${moreChecked}</code>
+      Before change: <span data-testid="sw-before-count">${beforeCount}</span>
+      Created: <span data-testid="sw-created">${createdCount}</span></div>
+    <div class="demo-row">
+      <label><input type="checkbox" data-testid="sw-block" checked.bind="blockChange" /> cancel changes</label>
+      <button data-testid="sw-value" click.delegate="inputValue = 'changed'">Change value</button>
+      <button data-testid="sw-css" click.delegate="cssClass = 'sw-custom-two'">Change cssClass</button>
+    </div>
+  </demo-section>
+
   <demo-section id="sw-label" title="Slotted label with id" description="An id on the host is moved to the input so a label for= works.">
     <ej2-switch if.bind="showSwitch" id="usb" data-testid="sw-label" e-checked="true">
       <label for="usb" data-testid="sw-usb-label" style="padding-right: 12px">USB Tethering</label>

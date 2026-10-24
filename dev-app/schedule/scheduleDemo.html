@@ -1,19 +1,167 @@
 <template>
   <h2>Schedule</h2>
 
-  <demo-section id="sch-week" title="Views and events" description="Bound selectedDate, currentView and eventSettings. Switch views from the header toolbar.">
+  <demo-section id="sch-week" title="Views and events" description="Bound selectedDate, currentView and eventSettings. Switch views from the header toolbar. Lifecycle, navigation and rendering events are counted.">
     <ej2-schedule data-testid="sch-week" e-height="480px" e-selected-date.bind="selectedDate" e-current-view.bind="currentView"
-      e-event-settings.bind="eventSettings" e-on-event-click.delegate="onEventClick($event)"></ej2-schedule>
+      e-event-settings.bind="eventSettings" e-on-event-click.delegate="onEventClick($event)"
+      e-on-created.delegate="track('created', $event)" e-on-data-binding.delegate="track('dataBinding', $event)"
+      e-on-data-bound.delegate="track('dataBound', $event)" e-on-navigating.delegate="track('navigating', $event)"
+      e-on-render-cell.delegate="track('renderCell', $event)" e-on-event-rendered.delegate="track('eventRendered', $event)"
+      e-on-action-begin.delegate="track('actionBegin', $event)" e-on-action-complete.delegate="track('actionComplete', $event)"></ej2-schedule>
     <div class="demo-output">Clicked: <code data-testid="sch-clicked">${lastEvent}</code>
       Count: <span data-testid="sch-click-count">${eventClicks}</span></div>
+    <div class="demo-output"><span repeat.for="n of ['created', 'dataBinding', 'dataBound', 'navigating', 'renderCell', 'eventRendered', 'actionBegin', 'actionComplete']">
+      ${n}: <b data-testid="ev-${n}">${counts[n]}</b> <i data-testid="ev-${n}-last">${details[n]}</i>
+    </span></div>
+    <button data-testid="sch-goto-june" click.delegate="goToJune()">Go to June</button>
+    <button data-testid="sch-day-view" click.delegate="setDayView()">Day view</button>
   </demo-section>
 
   <demo-section id="sch-model" title="Model configuration" description="The same widget configured through e-model, starting in Month view.">
     <ej2-schedule data-testid="sch-model" e-height="480px" e-model.bind="modelConfigured"></ej2-schedule>
   </demo-section>
 
-  <demo-section id="sch-lifecycle" title="Lifecycle" description="Widget is destroyed and recreated with if.bind.">
-    <ej2-schedule if.bind="showSchedule" data-testid="sch-lifecycle" e-height="320px" e-selected-date.bind="selectedDate"></ej2-schedule>
+  <demo-section id="sch-layout" title="Layout options" description="Size, hours, week and format options bound to the view-model. The flip button changes several of them.">
+    <ej2-schedule data-testid="sch-layout" e-selected-date.bind="selectedDate" e-width.bind="layout.width" e-height.bind="layout.height"
+      e-css-class.bind="layout.cssClass" e-start-hour.bind="layout.startHour" e-end-hour.bind="layout.endHour"
+      e-work-hours.bind="layout.workHours" e-work-days.bind="layout.workDays" e-first-day-of-week.bind="layout.firstDayOfWeek"
+      e-show-weekend.bind="layout.showWeekend" e-show-week-number.bind="layout.showWeekNumber" e-week-rule.bind="layout.weekRule"
+      e-time-scale.bind="layout.timeScale" e-time-format.bind="layout.timeFormat" e-date-format.bind="layout.dateFormat"
+      e-show-header-bar.bind="layout.showHeaderBar" e-show-time-indicator.bind="layout.showTimeIndicator"
+      e-current-time-indicator-settings.bind="layout.currentTimeIndicatorSettings" e-row-auto-height.bind="layout.rowAutoHeight"
+      e-enable-all-day-scroll.bind="layout.enableAllDayScroll" e-timezone.bind="layout.timezone"
+      e-timezone-data-source.bind="layout.timezoneDataSource" e-calendar-mode.bind="layout.calendarMode"
+      e-enable-html-sanitizer.bind="layout.enableHtmlSanitizer"></ej2-schedule>
+    <button data-testid="sch-flip-layout" click.delegate="flipLayout()">Flip layout</button>
+  </demo-section>
+
+  <demo-section id="sch-toolbar" title="Toolbar and templates" description="toolbarItems, views, dateRangeTemplate, dateHeaderTemplate and cellTemplate.">
+    <ej2-schedule data-testid="sch-toolbar" e-height="420px" e-selected-date.bind="selectedDate"
+      e-toolbar-items.bind="toolbarItems" e-views.bind="limitedViews" e-date-range-template.bind="tpl.dateRange"
+      e-date-header-template.bind="tpl.dateHeader" e-cell-template.bind="tpl.cell"></ej2-schedule>
+  </demo-section>
+
+  <demo-section id="sch-month" title="Month view" description="cellHeaderTemplate decorates day cells, moreEventsClick fires from the +more link.">
+    <ej2-schedule data-testid="sch-month" e-height="520px" e-current-view="Month" e-selected-date.bind="selectedDate"
+      e-event-settings.bind="crowdedEvents" e-cell-header-template.bind="tpl.cellHeader"
+      e-on-more-events-click.delegate="track('moreEventsClick', $event)"></ej2-schedule>
+    <div class="demo-output">moreEventsClick: <b data-testid="ev-moreEventsClick">${counts.moreEventsClick}</b>
+      <i data-testid="ev-moreEventsClick-last">${details.moreEventsClick}</i></div>
+  </demo-section>
+
+  <demo-section id="sch-agenda" title="Agenda view" description="agendaDaysCount, hideEmptyAgendaDays and monthsCount.">
+    <ej2-schedule data-testid="sch-agenda" e-height="420px" e-current-view="Agenda" e-views.bind="agendaViews"
+      e-selected-date.bind="agendaDate" e-event-settings.bind="eventSettings" e-agenda-days-count.bind="3"
+      e-hide-empty-agenda-days.bind="false" e-months-count.bind="6"></ej2-schedule>
+  </demo-section>
+
+  <demo-section id="sch-year" title="Timeline year" description="dayHeaderTemplate, monthHeaderTemplate, firstMonthOfYear and headerRows.">
+    <ej2-schedule data-testid="sch-year" e-height="420px" e-current-view="TimelineYear" e-views.bind="['TimelineYear']"
+      e-selected-date.bind="selectedDate" e-first-month-of-year.bind="3" e-header-rows.bind="yearHeaderRows"
+      e-day-header-template.bind="tpl.dayHeader" e-month-header-template.bind="tpl.monthHeader"></ej2-schedule>
+  </demo-section>
+
+  <demo-section id="sch-flags" title="Behaviour flags" description="Interaction and restriction flags bound to the view-model. The flip button inverts most of them.">
+    <ej2-schedule data-testid="sch-flags" e-height="420px" e-selected-date.bind="selectedDate" e-event-settings.bind="eventSettings"
+      e-readonly.bind="flags.readonly" e-allow-drag-and-drop.bind="flags.allowDragAndDrop" e-allow-resizing.bind="flags.allowResizing"
+      e-allow-multi-drag.bind="flags.allowMultiDrag" e-allow-keyboard-interaction.bind="flags.allowKeyboardInteraction"
+      e-allow-swiping.bind="flags.allowSwiping" e-allow-overlap.bind="flags.allowOverlap" e-allow-inline.bind="flags.allowInline"
+      e-allow-multi-cell-selection.bind="flags.allowMultiCellSelection" e-allow-multi-row-selection.bind="flags.allowMultiRowSelection"
+      e-quick-info-on-selection-end.bind="flags.quickInfoOnSelectionEnd" e-show-quick-info.bind="flags.showQuickInfo"
+      e-enable-recurrence-validation.bind="flags.enableRecurrenceValidation" e-prerender-dialogs.bind="flags.prerenderDialogs"
+      e-overscan-count.bind="flags.overscanCount" e-enable-adaptive-u-i.bind="flags.enableAdaptiveUI"
+      e-min-date.bind="flags.minDate" e-max-date.bind="flags.maxDate"></ej2-schedule>
+    <button data-testid="sch-flip-flags" click.delegate="flipFlags()">Flip flags</button>
+  </demo-section>
+
+  <demo-section id="sch-interact" title="Interaction events" description="Cell and event clicks, selection, popups, hover, tooltip and clipboard events.">
+    <ej2-schedule data-testid="sch-interact" e-height="480px" e-selected-date.bind="selectedDate" e-event-settings.bind="eventSettings"
+      e-allow-clipboard.bind="true"
+      e-on-cell-click.delegate="track('cellClick', $event)" e-on-cell-double-click.delegate="track('cellDoubleClick', $event)"
+      e-on-select.delegate="track('select', $event)" e-on-popup-open.delegate="track('popupOpen', $event)"
+      e-on-popup-close.delegate="track('popupClose', $event)" e-on-event-double-click.delegate="track('eventDoubleClick', $event)"
+      e-on-hover.delegate="track('hover', $event)" e-on-tooltip-open.delegate="track('tooltipOpen', $event)"
+      e-on-before-paste.delegate="track('beforePaste', $event)"></ej2-schedule>
+    <div class="demo-output"><span repeat.for="n of ['cellClick', 'cellDoubleClick', 'select', 'popupOpen', 'popupClose', 'eventDoubleClick', 'hover', 'tooltipOpen', 'beforePaste']">
+      ${n}: <b data-testid="ev-${n}">${counts[n]}</b> <i data-testid="ev-${n}-last">${details[n]}</i>
+    </span></div>
+  </demo-section>
+
+  <demo-section id="sch-drag" title="Drag and resize" description="allowDragAndDrop, allowResizing, allowMultiDrag and eventDragArea with their events.">
+    <div id="sch-drag-area">
+      <ej2-schedule data-testid="sch-drag" e-height="480px" e-selected-date.bind="selectedDate" e-event-settings.bind="eventSettings"
+        e-show-quick-info.bind="false" e-allow-drag-and-drop.bind="true" e-allow-resizing.bind="true" e-allow-multi-drag.bind="true"
+        e-event-drag-area="#sch-drag-area"
+        e-on-drag-start.delegate="track('dragStart', $event)" e-on-drag.delegate="track('drag', $event)"
+        e-on-drag-stop.delegate="track('dragStop', $event)" e-on-resize-start.delegate="track('resizeStart', $event)"
+        e-on-resizing.delegate="track('resizing', $event)" e-on-resize-stop.delegate="track('resizeStop', $event)"></ej2-schedule>
+    </div>
+    <div class="demo-output"><span repeat.for="n of ['dragStart', 'drag', 'dragStop', 'resizeStart', 'resizing', 'resizeStop']">
+      ${n}: <b data-testid="ev-${n}">${counts[n]}</b> <i data-testid="ev-${n}-last">${details[n]}</i>
+    </span></div>
+  </demo-section>
+
+  <demo-section id="sch-resources" title="Resources" description="resources, group, resourceHeaderTemplate and headerIndentTemplate.">
+    <ej2-schedule data-testid="sch-resources" e-height="420px" e-selected-date.bind="selectedDate" e-event-settings.bind="resourceEvents"
+      e-resources.bind="resources" e-group.bind="group" e-resource-header-template.bind="tpl.resourceHeader"
+      e-header-indent-template.bind="tpl.headerIndent"></ej2-schedule>
+  </demo-section>
+
+  <demo-section id="sch-adaptive" title="Adaptive resource" description="selectedResource is used with enableAdaptiveUI.">
+    <ej2-schedule data-testid="sch-adaptive" e-height="420px" e-selected-date.bind="selectedDate" e-event-settings.bind="resourceEvents"
+      e-resources.bind="resources" e-group.bind="group" e-enable-adaptive-u-i.bind="true" e-selected-resource.bind="selectedResource"></ej2-schedule>
+  </demo-section>
+
+  <demo-section id="sch-editor" title="Editor templates" description="editorHeaderTemplate, editorFooterTemplate, editorTemplate and quickInfoTemplates.">
+    <ej2-schedule data-testid="sch-editor" e-height="420px" e-selected-date.bind="selectedDate" e-event-settings.bind="eventSettings"
+      e-editor-header-template.bind="tpl.editorHeader" e-editor-footer-template.bind="tpl.editorFooter"
+      e-quick-info-templates.bind="quickInfoTemplates"></ej2-schedule>
+  </demo-section>
+
+  <demo-section id="sch-editor-body" title="Editor body template" description="editorTemplate replaces the editor fields. prerenderDialogs false creates the dialogs on demand, Syncfusion throws when the date changes then, so this widget has its own fixed date.">
+    <ej2-schedule data-testid="sch-editor-body" e-height="420px" e-selected-date.bind="fixedDate" e-event-settings.bind="eventSettings"
+      e-editor-template.bind="tpl.editor" e-prerender-dialogs.bind="false"></ej2-schedule>
+  </demo-section>
+
+  <demo-section id="sch-export" title="Print and export" description="beforePrint and excelExport are raised by the widget API and cancelled by the handler.">
+    <ej2-schedule view-model.ref="scheduleExport" data-testid="sch-export" e-height="320px" e-selected-date.bind="selectedDate"
+      e-event-settings.bind="eventSettings" e-on-before-print.delegate="track('beforePrint', $event)"
+      e-on-excel-export.delegate="track('excelExport', $event)"></ej2-schedule>
+    <div class="demo-output"><span repeat.for="n of ['beforePrint', 'excelExport']">
+      ${n}: <b data-testid="ev-${n}">${counts[n]}</b>
+    </span></div>
+    <button data-testid="sch-print" click.delegate="print()">Print</button>
+    <button data-testid="sch-export-excel" click.delegate="exportExcel()">Export</button>
+  </demo-section>
+
+  <demo-section id="sch-mcp" title="WebMCP" description="enableWebMcp registers tools with document.modelContext, beforeWebMcpToolExecute is raised when one runs.">
+    <ej2-schedule data-testid="sch-mcp" e-height="320px" e-selected-date.bind="selectedDate" e-event-settings.bind="eventSettings"
+      e-enable-web-mcp.bind="true" e-web-mcp-settings.bind="{ name: 'sched' }"
+      e-on-before-web-mcp-tool-execute.delegate="track('beforeWebMcpToolExecute', $event)"></ej2-schedule>
+    <div class="demo-output">beforeWebMcpToolExecute: <b data-testid="ev-beforeWebMcpToolExecute">${counts.beforeWebMcpToolExecute}</b>
+      <i data-testid="ev-beforeWebMcpToolExecute-last">${details.beforeWebMcpToolExecute}</i></div>
+  </demo-section>
+
+  <demo-section id="sch-virtual" title="Virtual scrolling" description="Many resources in a timeline raise the virtual scroll events.">
+    <ej2-schedule data-testid="sch-virtual" e-height="360px" e-current-view="TimelineDay" e-views.bind="virtualViews"
+      e-selected-date.bind="selectedDate" e-event-settings.bind="virtualEvents" e-resources.bind="virtualResources"
+      e-group.bind="virtualGroup" e-on-virtual-scroll-start.delegate="track('virtualScrollStart', $event)"
+      e-on-virtual-scroll-stop.delegate="track('virtualScrollStop', $event)"></ej2-schedule>
+    <div class="demo-output"><span repeat.for="n of ['virtualScrollStart', 'virtualScrollStop']">
+      ${n}: <b data-testid="ev-${n}">${counts[n]}</b>
+    </span></div>
+  </demo-section>
+
+  <demo-section id="sch-failure" title="Action failure" description="actionFailure is raised when the data request fails.">
+    <ej2-schedule data-testid="sch-failure" e-height="320px" e-selected-date.bind="selectedDate" e-event-settings.bind="failingEvents"
+      e-on-action-failure.delegate="track('actionFailure', $event)"></ej2-schedule>
+    <div class="demo-output">actionFailure: <b data-testid="ev-actionFailure">${counts.actionFailure}</b></div>
+  </demo-section>
+
+  <demo-section id="sch-lifecycle" title="Lifecycle" description="Widget is destroyed and recreated with if.bind, destroyed is reported.">
+    <ej2-schedule if.bind="showSchedule" data-testid="sch-lifecycle" e-height="320px" e-selected-date.bind="selectedDate"
+      e-on-destroyed.trigger="track('destroyed', $event)"></ej2-schedule>
     <button data-testid="sch-toggle" click.delegate="toggle()">Toggle</button>
+    <div class="demo-output">destroyed: <b data-testid="ev-destroyed">${counts.destroyed}</b></div>
   </demo-section>
 </template>

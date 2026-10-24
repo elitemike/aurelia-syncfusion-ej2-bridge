@@ -1,0 +1,39 @@
+<template>
+  <demo-section id="grid-export" title="Excel, PDF and print export" description="allowExcelExport, allowPdfExport, printMode and every export / print event.">
+    <ej2-grid data-testid="grid-export" e-columns.bind="columns" e-data-source.bind="rows" e-allow-excel-export="true"
+      e-allow-pdf-export="true" e-allow-grouping="true" e-group-settings.bind="groupSettings" e-aggregates.bind="aggregates"
+      e-print-mode="CurrentPage" e-toolbar.bind="toolbar" e-allow-paging.bind="true" e-page-settings.bind="pageSettings"
+      e-on-toolbar-click.delegate="onToolbarClick($event)"
+      e-on-before-excel-export.delegate="log('export.beforeExcelExport', $event)"
+      e-on-excel-query-cell-info.delegate="log('export.excelQueryCellInfo', $event)"
+      e-on-excel-header-query-cell-info.delegate="log('export.excelHeaderQueryCellInfo', $event)"
+      e-on-excel-aggregate-query-cell-info.delegate="log('export.excelAggregateQueryCellInfo', $event)"
+      e-on-export-group-caption.delegate="log('export.exportGroupCaption', $event)"
+      e-on-excel-export-complete.delegate="log('export.excelExportComplete', $event)"
+      e-on-before-pdf-export.delegate="log('export.beforePdfExport', $event)"
+      e-on-pdf-query-cell-info.delegate="log('export.pdfQueryCellInfo', $event)"
+      e-on-pdf-header-query-cell-info.delegate="log('export.pdfHeaderQueryCellInfo', $event)"
+      e-on-pdf-aggregate-query-cell-info.delegate="log('export.pdfAggregateQueryCellInfo', $event)"
+      e-on-pdf-export-complete.delegate="log('export.pdfExportComplete', $event)"
+      e-on-before-print.delegate="log('export.beforePrint', $event)"
+      e-on-print-complete.delegate="log('export.printComplete', $event)"></ej2-grid>
+  </demo-section>
+
+  <demo-section id="grid-hierarchy" title="Hierarchy grid" description="childGrid, queryString and hierarchyPrintMode with the detail row events and the PDF export of child grids.">
+    <ej2-grid data-testid="grid-hierarchy" e-columns.bind="parentColumns" e-data-source.bind="parents" e-child-grid.bind="childGrid"
+      e-allow-pdf-export="true" e-hierarchy-print-mode="All"
+      e-on-detail-data-bound.delegate="log('hier.detailDataBound', $event)"
+      e-on-detail-expand.delegate="log('hier.detailExpand', $event)"
+      e-on-detail-expanded.delegate="log('hier.detailExpanded', $event)"
+      e-on-detail-collapse.delegate="log('hier.detailCollapse', $event)"
+      e-on-detail-collapsed.delegate="log('hier.detailCollapsed', $event)"
+      e-on-export-detail-data-bound.delegate="log('hier.exportDetailDataBound', $event)"></ej2-grid>
+  </demo-section>
+
+  <demo-section id="grid-detail-template" title="Detail template" description="detailTemplate with beforeDetailTemplateDetach and exportDetailTemplate.">
+    <ej2-grid data-testid="grid-detail-template" e-columns.bind="parentColumns" e-data-source.bind="parents"
+      e-detail-template.bind="detailTemplate" e-allow-pdf-export="true" e-allow-excel-export="true"
+      e-on-before-detail-template-detach.delegate="log('detail.beforeDetailTemplateDetach', $event)"
+      e-on-export-detail-template.delegate="log('detail.exportDetailTemplate', $event)"></ej2-grid>
+  </demo-section>
+</template>

@@ -5,6 +5,20 @@ export class ButtonDemo {
   isToggle = false;
   clickCount = 0;
 
+  content = '<b class="btn-bold">Bold</b> content';
+  cssClass = 'btn-custom';
+  rtl = false;
+  createdCount = 0;
+  clickedCount = 0;
+  repeatCount = 0;
+
+  onClicked(event: CustomEvent) {
+    this.clickedCount++;
+    if (event.detail.isRepeat) {
+      this.repeatCount++;
+    }
+  }
+
   onClick() {
     this.clickCount++;
   }

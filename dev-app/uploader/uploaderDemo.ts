@@ -21,6 +21,23 @@ export class UploaderDemo {
   singleModel: UploaderModel = { asyncSettings: { saveUrl, removeUrl }, multiple: false };
   restrictedModel: UploaderModel = { asyncSettings: { saveUrl, removeUrl }, allowedExtensions: '.txt', maxFileSize: 1000 };
 
+  enabled = true;
+  showList = true;
+  maxSize = 1000;
+  htmlAttributes = { 'data-x': 'y' };
+  buttons = { browse: 'Pick', clear: 'Wipe', upload: 'Send' };
+  template = '<div class="tpl-file"><span class="tpl-name">${name}</span></div>';
+  asyncSettings = { saveUrl, removeUrl };
+  chunkSettings = { saveUrl: saveUrl + '/slow', removeUrl, chunkSize: 10 };
+  failSettings = { saveUrl: saveUrl + '/fail', removeUrl, chunkSize: 10, retryCount: 0 };
+  counts: { [name: string]: number } = {};
+  logText = '';
+
+  log(name: string) {
+    this.counts[name] = (this.counts[name] || 0) + 1;
+    this.logText = Object.keys(this.counts).map(k => `${k}:${this.counts[k]}`).join(' ');
+  }
+
   metadata = { name: 'Joe Smith' };
   uploadResultModel = { id: 'id', fileContextId: 'fileContextId', sha256: 'sha256' };
 

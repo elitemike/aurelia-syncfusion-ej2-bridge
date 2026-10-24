@@ -1,0 +1,39 @@
+<template>
+  <demo-section id="grid-look" title="Look and feel" description="cssClass, gridLines, enableAltRow, enableHover, rowHeight, headerRowHeight, width, height, enableStickyHeader.">
+    <ej2-grid data-testid="grid-look" e-columns.bind="columns" e-data-source.bind="rows" e-css-class.bind="cssClass"
+      e-grid-lines.bind="gridLines" e-enable-alt-row.bind="enableAltRow" e-enable-hover.bind="enableHover"
+      e-row-height.bind="rowHeight" e-header-row-height.bind="headerRowHeight" e-width.bind="width"
+      e-height.bind="height" e-enable-sticky-header.bind="true"></ej2-grid>
+  </demo-section>
+
+  <demo-section id="grid-wrap" title="Text wrap" description="allowTextWrap with textWrapSettings.">
+    <ej2-grid data-testid="grid-wrap" e-columns.bind="wrapColumns" e-data-source.bind="rows" e-allow-text-wrap.bind="allowTextWrap"
+      e-text-wrap-settings.bind="textWrapSettings"></ej2-grid>
+  </demo-section>
+
+  <demo-section id="grid-clip" title="Clip mode and rendering direction" description="clipMode, rowRenderingMode, loadingIndicator, autoFit.">
+    <ej2-grid data-testid="grid-clip" e-columns.bind="wrapColumns" e-data-source.bind="rows" e-clip-mode.bind="clipMode"
+      e-row-rendering-mode.bind="rowRenderingMode" e-loading-indicator.bind="loadingIndicator" e-auto-fit.bind="true"
+      e-width="500"></ej2-grid>
+  </demo-section>
+
+  <demo-section id="grid-query" title="Query, sort and search settings" description="query, sortSettings, searchSettings and enableImmutableMode.">
+    <ej2-grid data-testid="grid-query" e-columns.bind="columns" e-data-source.bind="rows" e-allow-sorting="true"
+      e-sort-settings.bind="sortSettings" e-search-settings.bind="searchSettings" e-enable-immutable-mode.bind="true"></ej2-grid>
+    <ej2-grid data-testid="grid-take" e-columns.bind="columns" e-data-source.bind="rows" e-query.bind="query"
+      e-column-query-mode="Schema"></ej2-grid>
+  </demo-section>
+
+  <demo-section id="grid-empty" title="Empty record" description="emptyRecordTemplate and emptyRecordMode for a grid without rows.">
+    <ej2-grid data-testid="grid-empty" e-columns.bind="columns" e-data-source.bind="none" e-empty-record-mode.bind="emptyRecordMode"
+      e-empty-record-template.bind="emptyTemplate"></ej2-grid>
+  </demo-section>
+
+  <demo-section id="grid-misc" title="Remaining flags" description="Options without a visual footprint, asserted on the widget.">
+    <ej2-grid data-testid="grid-misc" e-columns.bind="columns" e-data-source.bind="rows" e-enable-html-sanitizer.bind="true"
+      e-currency-code="EUR" e-ej2-state-persistence-version="v2" e-enable-adaptive-u-i.bind="true" e-adaptive-u-i-mode="Desktop"
+      e-current-action.bind="currentAction" e-parent-details.bind="parentDetails" e-query-string="CustomerID"
+      e-export-grids.bind="exportGrids" e-show-hider.bind="showHider" e-enable-virtual-mask-row.bind="true"
+      e-footer-row-height.bind="40"></ej2-grid>
+  </demo-section>
+</template>

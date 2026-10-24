@@ -1,0 +1,21 @@
+<template>
+  <demo-section id="grid-batch" title="Batch editing" description="Cell and batch events: cellEdit, cellSave, cellSaved, batchAdd, batchDelete, batchCancel and their before... events.">
+    <ej2-grid data-testid="grid-batch" e-columns.bind="columns" e-data-source.bind="rows" e-edit-settings.bind="editSettings"
+      e-toolbar.bind="toolbar" e-allow-selection.bind="true"
+      e-on-cell-edit.delegate="log('batch.cellEdit', $event)"
+      e-on-cell-save.delegate="log('batch.cellSave', $event)"
+      e-on-cell-saved.delegate="log('batch.cellSaved', $event)"
+      e-on-before-batch-add.delegate="log('batch.beforeBatchAdd', $event)"
+      e-on-batch-add.delegate="log('batch.batchAdd', $event)"
+      e-on-before-batch-delete.delegate="log('batch.beforeBatchDelete', $event)"
+      e-on-batch-delete.delegate="log('batch.batchDelete', $event)"
+      e-on-before-batch-save.delegate="log('batch.beforeBatchSave', $event)"
+      e-on-batch-cancel.delegate="log('batch.batchCancel', $event)"
+      e-on-action-failure.delegate="log('batch.actionFailure', $event)"></ej2-grid>
+  </demo-section>
+
+  <demo-section id="grid-command" title="Command column" description="A custom command button raises commandClick with the row data.">
+    <ej2-grid data-testid="grid-command" e-columns.bind="commandColumns" e-data-source.bind="rows"
+      e-on-command-click.delegate="log('command.commandClick', $event)"></ej2-grid>
+  </demo-section>
+</template>

@@ -3,7 +3,7 @@
 
   <demo-section id="rte-value" title="Two-way value" description="The model is updated when the editor loses focus.">
     <ej2-rich-text-editor data-testid="rte-value" view-model.ref="editor" e-value.two-way="value"
-      e-toolbar-settings.bind="toolbarSettings" e-on-change.delegate="onChange()"></ej2-rich-text-editor>
+      e-toolbar-settings.bind="toolbarSettings" e-enable-xhtml.bind="true" e-on-change.delegate="onChange()"></ej2-rich-text-editor>
     <div class="demo-output">Value: <code data-testid="rte-value-out">${value}</code>
       Changes: <span data-testid="rte-change-count">${changeCount}</span></div>
     <div class="demo-row">
@@ -14,10 +14,135 @@
   </demo-section>
 
   <demo-section id="rte-readonly" title="Readonly" description="readonly disables editing.">
-    <ej2-rich-text-editor data-testid="rte-readonly" e-value="<p>Cannot edit</p>" e-readonly="true"></ej2-rich-text-editor>
+    <ej2-rich-text-editor data-testid="rte-readonly" e-readonly="true" e-value.bind="readonlyValue"></ej2-rich-text-editor>
   </demo-section>
 
   <demo-section id="rte-count" title="Character count" description="showCharCount and maxLength.">
-    <ej2-rich-text-editor data-testid="rte-count" e-model.bind="limited"></ej2-rich-text-editor>
+    <ej2-rich-text-editor data-testid="rte-count" e-show-char-count.bind="true" e-max-length.bind="20" e-value="short"></ej2-rich-text-editor>
+  </demo-section>
+
+  <demo-section id="rte-look" title="Look and toolbar dropdowns" description="cssClass, size, placeholder, tooltips, resizing and the toolbar dropdown settings.">
+    <div class="demo-row">
+      <button data-testid="rte-toggle-enabled" click.delegate="enabled = !enabled">Toggle enabled</button>
+    </div>
+    <ej2-rich-text-editor data-testid="rte-look" e-css-class="my-rte" e-enabled.bind="enabled" e-height="320px" e-width="80%"
+      e-placeholder="Write something" e-html-attributes.bind="htmlAttributes" e-show-tooltip.bind="false"
+      e-floating-toolbar-offset.bind="10" e-enable-resize.bind="true" e-value.bind="lookValue"
+      e-toolbar-settings.bind="lookToolbar" e-font-family.bind="fontFamily" e-font-size.bind="fontSize"
+      e-font-color.bind="fontColor" e-background-color.bind="backgroundColor" e-format.bind="format"
+      e-number-format-list.bind="numberFormatList" e-bullet-format-list.bind="bulletFormatList"
+      e-line-height.bind="lineHeight" e-code-block-settings.bind="codeBlockSettings" e-table-settings.bind="tableSettings"
+      e-format-painter-settings.bind="formatPainterSettings" e-emoji-picker-settings.bind="emojiPickerSettings"
+      e-on-resize-start.delegate="log('look', 'resizeStart')" e-on-resizing.delegate="log('look', 'resizing')"
+      e-on-resize-stop.delegate="log('look', 'resizeStop')"></ej2-rich-text-editor>
+    <div class="demo-output">Log: <code data-testid="rte-look-log">${logs['look']}</code></div>
+  </demo-section>
+
+  <demo-section id="rte-behavior" title="Editing behaviour" description="enterKey, shiftEnterKey, enableTabKey, enableAutoUrl, undo/redo limits, auto save, key shortcuts and markdown shortcuts.">
+    <ej2-rich-text-editor data-testid="rte-behavior" e-value.two-way="behValue" e-enter-key="BR" e-shift-enter-key="P"
+      e-enable-tab-key.bind="true" e-enable-auto-url.bind="true" e-undo-redo-steps.bind="3" e-undo-redo-timer.bind="500"
+      e-auto-save-on-idle.bind="true" e-save-interval.bind="400" e-key-config.bind="behKeyConfig"
+      e-enable-clipboard-cleanup.bind="true" e-enable-markdown-auto-format.bind="true"
+      e-on-change.delegate="log('beh', 'change')"></ej2-rich-text-editor>
+    <div class="demo-output">Value: <code data-testid="rte-behavior-out">${behValue}</code>
+      Log: <code data-testid="rte-behavior-log">${logs['beh']}</code></div>
+  </demo-section>
+
+  <demo-section id="rte-encode" title="Encoding" description="enableHtmlEncode writes an encoded value to the model.">
+    <ej2-rich-text-editor data-testid="rte-encode" e-value.two-way="encValue" e-enable-html-encode.bind="true"></ej2-rich-text-editor>
+    <div class="demo-output">Value: <code data-testid="rte-encode-out">${encValue}</code></div>
+  </demo-section>
+
+  <demo-section id="rte-sanitize" title="Sanitizer" description="enableHtmlSanitizer strips scripts and event handlers, beforeSanitizeHtml is raised first.">
+    <ej2-rich-text-editor data-testid="rte-sanitize" e-value.bind="dirtyValue" e-enable-html-sanitizer.bind="true"
+      e-on-before-sanitize-html.delegate="log('san', 'beforeSanitizeHtml')"></ej2-rich-text-editor>
+    <div class="demo-output">Log: <code data-testid="rte-sanitize-log">${logs['san']}</code></div>
+  </demo-section>
+
+  <demo-section id="rte-markdown" title="Markdown mode" description="editorMode Markdown with a custom formatter.">
+    <ej2-rich-text-editor data-testid="rte-markdown" e-editor-mode="Markdown" e-formatter.bind="mdFormatter"
+      e-value.two-way="mdValue" e-toolbar-settings.bind="mdToolbar"></ej2-rich-text-editor>
+    <div class="demo-output">Value: <code data-testid="rte-markdown-out">${mdValue}</code>
+      Log: <code data-testid="rte-markdown-log">${logs['md']}</code></div>
+  </demo-section>
+
+  <demo-section id="rte-inline" title="Inline mode" description="inlineMode shows the toolbar when text is selected.">
+    <ej2-rich-text-editor data-testid="rte-inline" e-inline-mode.bind="inlineMode" e-value.bind="inlineValue"
+      e-toolbar-settings.bind="toolbarSettings"></ej2-rich-text-editor>
+  </demo-section>
+
+  <demo-section id="rte-iframe" title="Iframe and value template" description="iframeSettings renders the content in an iframe, valueTemplate provides the initial content.">
+    <ej2-rich-text-editor data-testid="rte-iframe" e-iframe-settings.bind="iframeSettings"
+      e-value-template.bind="valueTemplate"></ej2-rich-text-editor>
+  </demo-section>
+
+  <demo-section id="rte-ev" title="Events, popups and quick toolbar" description="Toolbar, dialog, popup, quick toolbar, slash menu, clipboard and selection events.">
+    <ej2-rich-text-editor data-testid="rte-ev" e-value.bind="evValue" e-toolbar-settings.bind="evToolbar"
+      e-quick-toolbar-settings.bind="quickToolbarSettings" e-slash-menu-settings.bind="slashMenuSettings" e-paste-cleanup-settings.bind="pasteCleanupSettings"
+      e-on-created.delegate="log('ev', 'created')" e-on-focus.delegate="log('ev', 'focus')"
+      e-on-blur.delegate="log('ev', 'blur')" e-on-change.delegate="log('ev', 'change')"
+      e-on-action-begin.delegate="log('ev', 'actionBegin')" e-on-action-complete.delegate="log('ev', 'actionComplete')"
+      e-on-toolbar-click.delegate="log('ev', 'toolbarClick')" e-on-selection-changed.delegate="log('ev', 'selectionChanged')"
+      e-on-updated-toolbar-status.delegate="log('ev', 'updatedToolbarStatus')"
+      e-on-toolbar-status-update.delegate="log('ev', 'toolbarStatusUpdate')"
+      e-on-before-clipboard-write.delegate="log('ev', 'beforeClipboardWrite')"
+      e-on-before-paste-cleanup.delegate="log('ev', 'beforePasteCleanup')"
+      e-on-after-paste-cleanup.delegate="log('ev', 'afterPasteCleanup')"
+      e-on-slash-menu-item-select.delegate="log('ev', 'slashMenuItemSelect')"
+      e-on-before-dialog-open.delegate="log('ev', 'beforeDialogOpen')" e-on-dialog-open.delegate="log('ev', 'dialogOpen')"
+      e-on-before-dialog-close.delegate="log('ev', 'beforeDialogClose')" e-on-dialog-close.delegate="log('ev', 'dialogClose')"
+      e-on-before-quick-toolbar-open.delegate="log('ev', 'beforeQuickToolbarOpen')"
+      e-on-quick-toolbar-open.delegate="log('ev', 'quickToolbarOpen')"
+      e-on-quick-toolbar-close.delegate="log('ev', 'quickToolbarClose')"></ej2-rich-text-editor>
+    <div class="demo-output">Log: <code data-testid="rte-ev-log">${logs['ev']}</code></div>
+  </demo-section>
+
+  <demo-section id="rte-media" title="Images, audio and video" description="insertImageSettings, insertAudioSettings, insertVideoSettings, fileManagerSettings and the upload, drop and delete events.">
+    <ej2-rich-text-editor data-testid="rte-media" e-value.bind="mediaValue" e-toolbar-settings.bind="mediaToolbar"
+      e-insert-image-settings.bind="insertImageSettings" e-insert-audio-settings.bind="insertAudioSettings"
+      e-insert-video-settings.bind="insertVideoSettings" e-file-manager-settings.bind="fileManagerSettings"
+      e-on-image-selected.delegate="log('media', 'imageSelected')" e-on-before-image-upload.delegate="log('media', 'beforeImageUpload')"
+      e-on-image-uploading.delegate="log('media', 'imageUploading')" e-on-image-upload-success.delegate="log('media', 'imageUploadSuccess')"
+      e-on-image-upload-failed.delegate="log('media', 'imageUploadFailed')" e-on-image-removing.delegate="log('media', 'imageRemoving')"
+      e-on-after-image-delete.delegate="log('media', 'afterImageDelete')" e-on-file-selected.delegate="log('media', 'fileSelected')"
+      e-on-before-file-upload.delegate="log('media', 'beforeFileUpload')" e-on-file-uploading.delegate="log('media', 'fileUploading')"
+      e-on-file-upload-success.delegate="log('media', 'fileUploadSuccess')" e-on-file-upload-failed.delegate="log('media', 'fileUploadFailed')"
+      e-on-file-removing.delegate="log('media', 'fileRemoving')" e-on-after-media-delete.delegate="log('media', 'afterMediaDelete')"
+      e-on-before-image-drop.delegate="log('media', 'beforeImageDrop')" e-on-before-media-drop.delegate="log('media', 'beforeMediaDrop')"
+      e-on-resize-start.delegate="log('media', 'resizeStart')" e-on-resizing.delegate="log('media', 'resizing')"
+      e-on-resize-stop.delegate="log('media', 'resizeStop')"></ej2-rich-text-editor>
+    <div class="demo-output">Log: <code data-testid="rte-media-log">${logs['media']}</code></div>
+  </demo-section>
+
+  <demo-section id="rte-io" title="Import and export" description="importWord, exportWord and exportPdf with their request events.">
+    <ej2-rich-text-editor data-testid="rte-io" e-toolbar-settings.bind="ioToolbar" e-import-word.bind="importWord"
+      e-export-word.bind="exportWord" e-export-pdf.bind="exportPdf" e-value.bind="exportValue"
+      e-on-word-importing.delegate="log('io', 'wordImporting')"
+      e-on-document-exporting.delegate="log('io', 'documentExporting')"></ej2-rich-text-editor>
+    <div class="demo-output">Log: <code data-testid="rte-io-log">${logs['io']}</code></div>
+  </demo-section>
+
+  <demo-section id="rte-ai" title="AI assistant" description="aiAssistantSettings and the assistant events.">
+    <ej2-rich-text-editor data-testid="rte-ai" e-toolbar-settings.bind="aiToolbar" e-ai-assistant-settings.bind="aiAssistantSettings"
+      e-on-before-popup-open.delegate="log('ai', 'beforePopupOpen')" e-on-before-popup-close.delegate="log('ai', 'beforePopupClose')"
+      e-on-ai-assistant-toolbar-click.delegate="log('ai', 'aiAssistantToolbarClick')"
+      e-on-ai-assistant-prompt-request.delegate="log('ai', 'aiAssistantPromptRequest')"
+      e-on-ai-assistant-stop-responding-click.delegate="log('ai', 'aiAssistantStopRespondingClick')"></ej2-rich-text-editor>
+    <div class="demo-output">Log: <code data-testid="rte-ai-log">${logs['ai']}</code></div>
+  </demo-section>
+
+  <demo-section id="rte-mcp" title="WebMCP" description="enableWebMcp registers the editor tools, beforeWebMcpToolExecute runs before a tool executes.">
+    <ej2-rich-text-editor data-testid="rte-mcp" e-enable-web-mcp.bind="true" e-web-mcp-settings.bind="webMcpSettings"
+      e-value.bind="mcpValue" e-on-before-web-mcp-tool-execute.delegate="log('mcp', 'beforeWebMcpToolExecute')"></ej2-rich-text-editor>
+    <div class="demo-output">Log: <code data-testid="rte-mcp-log">${logs['mcp']}</code></div>
+  </demo-section>
+
+  <demo-section id="rte-life" title="Lifecycle" description="destroyed is raised when the editor is removed from the page.">
+    <button data-testid="rte-remove" click.delegate="showTemp = false">Remove</button>
+    <template if.bind="showTemp">
+      <ej2-rich-text-editor data-testid="rte-life" e-value.bind="byeValue"
+        e-on-destroyed.trigger="log('life', 'destroyed')"></ej2-rich-text-editor>
+    </template>
+    <div class="demo-output">Log: <code data-testid="rte-life-log">${logs['life']}</code></div>
   </demo-section>
 </template>

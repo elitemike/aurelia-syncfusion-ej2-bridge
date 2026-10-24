@@ -4,7 +4,7 @@ test.beforeEach(async ({ app }) => app.open('slider'));
 
 test('initial value and keyboard change', async ({ app }) => {
   const section = app.section('sl-default');
-  const handle = section.locator('.e-handle');
+  const handle = section.locator('[role=slider]');
   await expect(handle).toHaveAttribute('aria-valuenow', '40');
   await handle.focus();
   await handle.press('ArrowRight');
@@ -37,6 +37,77 @@ test('range slider binds an array', async ({ app }) => {
 
 test('ticks are rendered', async ({ app }) => {
   await expect(app.section('sl-ticks').locator('.e-scale')).toBeVisible();
+});
+
+test('created, renderingTicks and renderedTicks events', async ({ app }) => {
+  const section = app.section('sl-events');
+  await expect(section.getByTestId('sl-created')).toHaveText('1');
+  await expect(section.getByTestId('sl-rendering-ticks')).not.toHaveText('0');
+  await expect(section.getByTestId('sl-rendered-ticks')).not.toHaveText('0');
+});
+
+test('change and tooltipChange events carry the new value', async ({ app }) => {
+  const section = app.section('sl-events');
+  const handle = section.locator('[role=slider]');
+  await handle.focus();
+  await handle.press('ArrowRight');
+  await expect(section.getByTestId('sl-change-value')).toHaveText('40');
+  await expect(section.getByTestId('sl-change-count')).not.toHaveText('0');
+  await expect(section.getByTestId('sl-tooltip-text')).toHaveText('40');
+});
+
+test('showButtons renders buttons that step the value', async ({ app }) => {
+  const section = app.section('sl-more');
+  await expect(section.locator('.e-slider-button')).toHaveCount(2);
+  await section.locator('.e-slider-button').first().click();
+  await expect(section.getByTestId('sl-more-out')).toHaveText('40');
+  await section.locator('.e-slider-button').last().click();
+  await section.locator('.e-slider-button').last().click();
+  await expect(section.getByTestId('sl-more-out')).toHaveText('60');
+});
+
+test('limits keep the handle inside the allowed range', async ({ app }) => {
+  const section = app.section('sl-more');
+  await expect(section.locator('.e-limits')).toHaveCount(1);
+  const handle = section.locator('[role=slider]');
+  await handle.focus();
+  await handle.press('Home');
+  await expect(section.getByTestId('sl-more-out')).toHaveText('20');
+  await handle.press('End');
+  await expect(section.getByTestId('sl-more-out')).toHaveText('80');
+});
+
+test('colorRange renders coloured track segments', async ({ app }) => {
+  const segments = app.section('sl-more').locator('.e-slider-track > div');
+  await expect(segments).toHaveCount(2);
+  await expect(segments.first()).toHaveCSS('background-color', 'rgb(255, 0, 0)');
+  await expect(segments.last()).toHaveCSS('background-color', 'rgb(0, 170, 0)');
+});
+
+test('cssClass, enableAnimation and enableHtmlSanitizer reach the widget', async ({ app, page }) => {
+  const section = app.section('sl-more');
+  await expect(section.locator('.sl-custom').first()).toBeAttached();
+  const widget = (prop: string) => page.evaluate(
+    (p) => (document.querySelector('[data-testid="sl-more"]') as any).au['ej2-slider'].viewModel.widget[p], prop);
+  expect(await widget('enableAnimation')).toBe(false);
+  expect(await widget('enableHtmlSanitizer')).toBe(false);
+});
+
+test('enabled follows the view-model', async ({ app }) => {
+  const section = app.section('sl-more');
+  await expect(section.locator('.e-slider-container')).not.toHaveClass(/e-disabled/);
+  await section.getByTestId('sl-enabled').uncheck();
+  await expect(section.locator('.e-slider-container')).toHaveClass(/e-disabled/);
+});
+
+test('customValues map the index to labels', async ({ app }) => {
+  const section = app.section('sl-custom');
+  const handle = section.locator('[role=slider]');
+  await expect(handle).toHaveAttribute('aria-valuetext', 'M');
+  await handle.focus();
+  await handle.press('ArrowRight');
+  await expect(handle).toHaveAttribute('aria-valuetext', 'L');
+  await expect(section.getByTestId('sl-custom-out')).toHaveText('3');
 });
 
 test('vertical orientation and readonly', async ({ app }) => {

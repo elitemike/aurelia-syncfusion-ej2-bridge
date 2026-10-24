@@ -1,19 +1,88 @@
 <template>
   <h2>File Manager</h2>
 
-  <demo-section id="fm-details" title="Details view" description="Configured through e-model, the e-view binding switches between Details and LargeIcons.">
+  <demo-section id="fm-details" title="Details view" description="Configured through e-model, the e-view binding switches between Details and LargeIcons. Service events are logged.">
     <div class="demo-row">
       <button data-testid="fm-details-btn" click.delegate="setView('Details')">Details</button>
       <button data-testid="fm-icons-btn" click.delegate="setView('LargeIcons')">Large icons</button>
+      <button data-testid="fm-set-path" click.delegate="path = '/Documents/'">Open Documents</button>
     </div>
-    <ej2-file-manager data-testid="fm-details" e-model.bind="model" e-view.bind="view"
-      e-on-file-open.delegate="onFileOpen($event)"></ej2-file-manager>
+    <ej2-file-manager data-testid="fm-details" e-model.bind="model" e-view.bind="view" e-path.bind="path"
+      e-on-file-open.delegate="onFileOpen($event)" e-on-before-send.delegate="log('beforeSend')"
+      e-on-success.delegate="log('success')" e-on-failure.delegate="log('failure')"
+      e-on-before-download.delegate="onBeforeDownload($event)"></ej2-file-manager>
     <div class="demo-output">Opened: <code data-testid="fm-opened">${lastOpened}</code>
       Events: <span data-testid="fm-open-count">${opened}</span></div>
+    <div class="demo-output">Service log: <code data-testid="fm-log">${logText}</code></div>
   </demo-section>
 
   <demo-section id="fm-minimal" title="Without navigation pane" description="navigationPaneSettings visible false and a restricted toolbar.">
-    <ej2-file-manager data-testid="fm-minimal" e-model.bind="model" e-navigation-pane-settings.bind="{ visible: false }"
+    <ej2-file-manager data-testid="fm-minimal" e-ajax-settings.bind="model.ajaxSettings" e-navigation-pane-settings.bind="{ visible: false }"
       e-toolbar-settings.bind="{ items: ['NewFolder', 'Refresh'] }"></ej2-file-manager>
+  </demo-section>
+
+  <demo-section id="fm-upload" title="Upload settings" description="uploadSettings and the upload dialog events (service is stubbed).">
+    <ej2-file-manager data-testid="fm-upload" e-model.bind="model" e-upload-settings.bind="uploadSettings"
+      e-on-upload-list-create.delegate="log('uploadListCreate')"></ej2-file-manager>
+  </demo-section>
+
+  <demo-section id="fm-local" title="Local data and operations" description="fileSystemData keeps everything in memory, drag and drop, selection and every operation event.">
+    <ej2-file-manager data-testid="fm-local" e-file-system-data.bind="localData" e-height="320px"
+      e-allow-drag-and-drop.bind="true" e-allow-multi-selection.bind="true" e-enable-range-selection.bind="true"
+      e-on-created.delegate="llog('created')" e-on-toolbar-create.delegate="llog('toolbarCreate')"
+      e-on-toolbar-click.delegate="llog('toolbarClick')" e-on-file-load.delegate="llog('fileLoad')"
+      e-on-file-open.delegate="llog('fileOpen')" e-on-file-select.delegate="llog('fileSelect')"
+      e-on-file-selection.delegate="llog('fileSelection')" e-on-menu-open.delegate="llog('menuOpen')"
+      e-on-menu-click.delegate="llog('menuClick')" e-on-menu-close.delegate="llog('menuClose')"
+      e-on-before-popup-open.delegate="llog('beforePopupOpen')" e-on-popup-open.delegate="llog('popupOpen')"
+      e-on-before-popup-close.delegate="llog('beforePopupClose')" e-on-popup-close.delegate="llog('popupClose')"
+      e-on-before-folder-create.delegate="llog('beforeFolderCreate')" e-on-folder-create.delegate="llog('folderCreate')"
+      e-on-before-delete.delegate="llog('beforeDelete')" e-on-delete.delegate="llog('delete')"
+      e-on-before-rename.delegate="llog('beforeRename')" e-on-rename.delegate="llog('rename')"
+      e-on-before-move.delegate="llog('beforeMove')" e-on-move.delegate="llog('move')"
+      e-on-search.delegate="llog('search')" e-on-file-drag-start.delegate="llog('fileDragStart')"
+      e-on-file-dragging.delegate="llog('fileDragging')" e-on-file-drag-stop.delegate="llog('fileDragStop')"
+      e-on-file-dropped.delegate="llog('fileDropped')" e-on-before-image-load.delegate="llog('beforeImageLoad')"></ej2-file-manager>
+    <div class="demo-output">Log: <code data-testid="fm-local-log">${localLogText}</code></div>
+  </demo-section>
+
+  <demo-section id="fm-props" title="Appearance and data" description="cssClass, size, rootAliasName, sorting, selection, templates and more in the details view.">
+    <div class="demo-row">
+      <button data-testid="fm-select" click.delegate="selected = ['4']">Select notes.md</button>
+      <button data-testid="fm-sort" click.delegate="sortOrder = 'Ascending'">Sort ascending</button>
+      <button data-testid="fm-hidden" click.delegate="showHidden = !showHidden">Toggle hidden</button>
+    </div>
+    <div id="fm-popup-target" data-testid="fm-popup-target" style="position: relative;">
+      <ej2-file-manager data-testid="fm-props" e-view="Details" e-file-system-data.bind="propsData" e-css-class="my-fm" e-height="300px"
+        e-width="90%" e-root-alias-name="Home" e-show-file-extension.bind="false" e-sort-by="size"
+        e-sort-order.bind="sortOrder" e-selected-items.bind="selected"
+        e-details-view-settings.bind="detailsViewSettings" e-show-item-check-boxes.bind="true"
+        e-enable-html-sanitizer.bind="true" e-enable-virtualization.bind="false" e-show-hidden-items.bind="showHidden"
+        e-popup-target.bind="popupTarget" e-navigation-pane-template.bind="navigationPaneTemplate"></ej2-file-manager>
+    </div>
+  </demo-section>
+
+  <demo-section id="fm-icons" title="Large icons" description="largeIconsTemplate, showThumbnail, sortComparer, contextMenuSettings, searchSettings and toolbarItems.">
+    <ej2-file-manager data-testid="fm-icons" e-file-system-data.bind="iconsData" e-view="LargeIcons" e-height="300px"
+      e-large-icons-template.bind="largeIconsTemplate" e-show-thumbnail.bind="false" e-sort-comparer.bind="sortComparer"
+      e-context-menu-settings.bind="contextMenuSettings" e-search-settings.bind="searchSettings"
+      e-toolbar-items.bind="toolbarItems" e-allow-multi-selection.bind="false"
+      e-on-toolbar-click.delegate="log('iconsToolbarClick')"></ej2-file-manager>
+  </demo-section>
+
+  <demo-section id="fm-mcp" title="WebMCP" description="enableWebMcp registers the file manager tools, beforeWebMcpToolExecute is raised before a tool runs.">
+    <ej2-file-manager data-testid="fm-mcp" e-file-system-data.bind="mcpData" e-height="250px"
+      e-enable-web-mcp.bind="true" e-web-mcp-settings.bind="webMcpSettings"
+      e-on-before-web-mcp-tool-execute.delegate="lifeLog('beforeWebMcpToolExecute')"></ej2-file-manager>
+    <div class="demo-output">Log: <code data-testid="fm-mcp-log">${lifeLogText}</code></div>
+  </demo-section>
+
+  <demo-section id="fm-life" title="Lifecycle" description="destroyed is raised when the control is removed from the page.">
+    <button data-testid="fm-remove" click.delegate="showTemp = false">Remove</button>
+    <template if.bind="showTemp">
+      <ej2-file-manager data-testid="fm-life" e-file-system-data.bind="lifeData" e-height="200px"
+        e-on-destroyed.trigger="lifeLog('destroyed')"></ej2-file-manager>
+    </template>
+    <div class="demo-output">Log: <code data-testid="fm-life-log">${lifeLogText}</code></div>
   </demo-section>
 </template>

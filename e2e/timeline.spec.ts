@@ -36,3 +36,20 @@ test('dotCss and cssClass are applied', async ({ app }) => {
 test('align option', async ({ app }) => {
   await expect(app.section('tl-align').locator('.e-timeline')).toHaveClass(/e-align-after/);
 });
+
+test('cssClass is added to the timeline', async ({ app }) => {
+  await expect(app.section('tl-css').locator('.e-timeline')).toHaveClass(/my-timeline/);
+});
+
+test('template renders each item', async ({ app }) => {
+  const section = app.section('tl-tpl');
+  await expect(section.locator('.tl-tpl')).toHaveCount(3);
+  await expect(section.locator('.tl-tpl').first()).toHaveText('Item: First');
+});
+
+test('created and beforeItemRender events fire', async ({ app }) => {
+  const section = app.section('tl-tpl');
+  await expect(section.getByTestId('tl-created')).toHaveText('1');
+  await expect(section.getByTestId('tl-rendered')).toHaveText('3');
+  await expect(section.getByTestId('tl-last')).toHaveText('2:Item: Third');
+});

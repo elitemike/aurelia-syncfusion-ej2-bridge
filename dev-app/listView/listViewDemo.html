@@ -3,9 +3,11 @@
 
   <demo-section id="lv-default" title="Default with header" description="showHeader with headerTitle, select event carries the item.">
     <ej2-list-view data-testid="lv-default" e-data-source.bind="items" e-fields.bind="fields" e-show-header.bind="true"
-      e-header-title="Folders" e-on-select.delegate="onSelect($event)"></ej2-list-view>
+      e-header-title="Folders" e-on-select.delegate="onSelect($event)"
+      e-on-action-begin.delegate="begin = begin + 1" e-on-action-complete.delegate="complete = complete + 1"></ej2-list-view>
     <div class="demo-output">Selected: <code data-testid="lv-selected">${selectedText}</code>
-      Events: <span data-testid="lv-select-count">${selectCount}</span></div>
+      Events: <span data-testid="lv-select-count">${selectCount}</span>
+      Action begin: <span data-testid="lv-begin">${begin}</span> Action complete: <span data-testid="lv-complete">${complete}</span></div>
   </demo-section>
 
   <demo-section id="lv-checkbox" title="Checkboxes" description="showCheckBox adds a check box to every item.">
@@ -19,5 +21,50 @@
 
   <demo-section id="lv-sorted" title="Sorting" description="sortOrder Descending.">
     <ej2-list-view data-testid="lv-sorted" e-data-source.bind="items" e-fields.bind="fields" e-sort-order="Descending"></ej2-list-view>
+  </demo-section>
+
+  <demo-section id="lv-remote" title="Remote data and query" description="A DataManager data source with e-query, actionBegin and actionComplete.">
+    <ej2-list-view data-testid="lv-remote" e-data-source.bind="remoteData" e-query.bind="remoteQuery" e-fields.bind="fields"
+      e-on-action-begin.delegate="remoteBegin = remoteBegin + 1" e-on-action-complete.delegate="remoteComplete = remoteComplete + 1"></ej2-list-view>
+    <div class="demo-output">Begin: <span data-testid="lv-remote-begin">${remoteBegin}</span> Complete: <span data-testid="lv-remote-complete">${remoteComplete}</span></div>
+  </demo-section>
+
+  <demo-section id="lv-fail" title="Failing data source" description="actionFailure is raised when the remote request fails.">
+    <ej2-list-view data-testid="lv-fail" e-data-source.bind="failData" e-fields.bind="fields"
+      e-on-action-failure.delegate="failures = failures + 1"></ej2-list-view>
+    <div class="demo-output">Failures: <span data-testid="lv-failures">${failures}</span></div>
+  </demo-section>
+
+  <demo-section id="lv-style" title="Appearance" description="cssClass, width, height, htmlAttributes, showIcon, checkBoxPosition and animation.">
+    <ej2-list-view data-testid="lv-style" e-data-source.bind="icons" e-fields.bind="iconFields" e-css-class="my-list" e-width="240px"
+      e-height="120px" e-html-attributes.bind="{ 'data-foo': 'bar' }" e-show-icon.bind="true" e-animation.bind="animation"></ej2-list-view>
+    <ej2-list-view data-testid="lv-checkpos" e-data-source.bind="items" e-fields.bind="fields" e-show-check-box.bind="true"
+      e-check-box-position="Right"></ej2-list-view>
+  </demo-section>
+
+  <demo-section id="lv-state" title="Enabled state" description="enabled and the deprecated enable disable the whole list.">
+    <ej2-list-view data-testid="lv-enabled" e-data-source.bind="items" e-fields.bind="fields" e-enabled.bind="isEnabled"></ej2-list-view>
+    <ej2-list-view data-testid="lv-enable" e-data-source.bind="items" e-fields.bind="fields" e-enable.bind="isEnable"></ej2-list-view>
+    <div class="demo-row">
+      <label><input type="checkbox" data-testid="lv-enabled-toggle" checked.bind="isEnabled" /> enabled</label>
+      <label><input type="checkbox" data-testid="lv-enable-toggle" checked.bind="isEnable" /> enable</label>
+    </div>
+  </demo-section>
+
+  <demo-section id="lv-scroll" title="Scrolling and virtualization" description="enableVirtualization renders only the visible rows, the scroll event is raised while scrolling.">
+    <ej2-list-view data-testid="lv-scroll" e-data-source.bind="many" e-fields.bind="manyFields" e-height="150px"
+      e-enable-virtualization.bind="true" e-on-scroll.delegate="onScroll($event)"></ej2-list-view>
+    <div class="demo-output">Scroll events: <span data-testid="lv-scrolls">${scrolls}</span> Direction: <span data-testid="lv-direction">${direction}</span></div>
+  </demo-section>
+
+  <demo-section id="lv-templates" title="Templates" description="template, groupTemplate and headerTemplate.">
+    <ej2-list-view data-testid="lv-template" e-data-source.bind="grouped" e-fields.bind="groupedFields" e-template.bind="itemTemplate"
+      e-group-template.bind="groupTemplate" e-header-template.bind="headerTemplate" e-show-header.bind="true"></ej2-list-view>
+  </demo-section>
+
+  <demo-section id="lv-html" title="HTML handling" description="enableHtmlSanitizer and disableHtmlEncode.">
+    <ej2-list-view data-testid="lv-sanitized" e-data-source.bind="htmlItems" e-fields.bind="fields" e-enable-html-sanitizer.bind="true" e-disable-html-encode.bind="false"></ej2-list-view>
+    <ej2-list-view data-testid="lv-unsanitized" e-data-source.bind="htmlItems" e-fields.bind="fields" e-enable-html-sanitizer.bind="false" e-disable-html-encode.bind="false"></ej2-list-view>
+    <ej2-list-view data-testid="lv-encoded" e-data-source.bind="htmlItems" e-fields.bind="fields" e-disable-html-encode.bind="true"></ej2-list-view>
   </demo-section>
 </template>

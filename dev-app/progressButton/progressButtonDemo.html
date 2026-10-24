@@ -13,6 +13,28 @@
     <button data-testid="pb-start" click.delegate="start()">Start via API</button>
   </demo-section>
 
+  <demo-section id="pb-props" title="Direct property and event bindings" description="content, cssClass, disabled, duration, enableHtmlSanitizer, enableProgress, iconCss, iconPosition, isPrimary, isToggle, animationSettings, spinSettings and the created, begin, progress, end and fail events.">
+    <ej2-progress-button data-testid="pb-props" e-content.bind="content" e-css-class.bind="cssClass" e-disabled.bind="disabled"
+      e-duration.bind="600" e-enable-html-sanitizer.bind="false" e-enable-progress.bind="true" e-icon-css="e-icons e-save"
+      e-icon-position="Right" e-is-primary.bind="true" e-is-toggle.bind="true"
+      e-animation-settings.bind="{ effect: 'SlideLeft', duration: 300, easing: 'ease' }"
+      e-spin-settings.bind="{ position: 'Right', width: 20 }"
+      e-on-created.delegate="events.created = events.created + 1" e-on-begin.delegate="events.begin = events.begin + 1"
+      e-on-progress.delegate="onProgress($event)" e-on-end.delegate="events.end = events.end + 1"
+      e-on-fail.delegate="events.fail = events.fail + 1"></ej2-progress-button>
+    <div class="demo-output">Created: <span data-testid="pb-props-created">${events.created}</span>
+      Begin: <span data-testid="pb-props-begin">${events.begin}</span>
+      Progress: <span data-testid="pb-props-progress">${events.progress}</span>
+      Last percent: <span data-testid="pb-props-percent">${lastPercent}</span>
+      End: <span data-testid="pb-props-end">${events.end}</span>
+      Fail: <span data-testid="pb-props-fail">${events.fail}</span></div>
+    <div class="demo-row">
+      <button data-testid="pb-props-content" click.delegate="content = 'Updated'">Change content</button>
+      <button data-testid="pb-props-css" click.delegate="cssClass = 'pb-custom-two'">Change cssClass</button>
+      <label><input type="checkbox" data-testid="pb-props-disable" checked.bind="disabled" /> disabled</label>
+    </div>
+  </demo-section>
+
   <demo-section id="pb-lifecycle" title="Lifecycle" description="Widget is destroyed and recreated with if.bind.">
     <ej2-progress-button if.bind="showButton" data-testid="pb-lifecycle">I come and go</ej2-progress-button>
     <button data-testid="pb-toggle" click.delegate="toggle()">Toggle</button>

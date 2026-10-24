@@ -4,13 +4,13 @@
   <demo-section id="sb-main" title="Open state" description="isOpen opens and closes the sidebar from the view-model, open and close events are raised.">
     <div id="sidebar-target" data-testid="sb-target" style="position: relative; height: 200px; overflow: hidden; border: 1px solid #ccc">
       <ej2-sidebar view-model.ref="sidebar" e-target="#sidebar-target" e-width="160px" e-type.bind="type"
-        e-is-open.two-way="isOpen" e-on-open.delegate="onOpen()" e-on-close.delegate="onClose()">
+        e-is-open.two-way="isOpen" e-on-open.delegate="onOpen()" e-on-close.delegate="onClose()" e-on-change.delegate="changed = changed + 1">
         <div style="padding: 10px" data-testid="sb-content">Sidebar content</div>
       </ej2-sidebar>
       <div style="padding: 10px">Main content</div>
     </div>
     <div class="demo-output">isOpen: <code data-testid="sb-open-out">${isOpen}</code>
-      Open events: <span data-testid="sb-opened">${opened}</span> Close events: <span data-testid="sb-closed">${closed}</span></div>
+      Open events: <span data-testid="sb-opened">${opened}</span> Close events: <span data-testid="sb-closed">${closed}</span> Change events: <span data-testid="sb-changed">${changed}</span></div>
     <div class="demo-row">
       <button data-testid="sb-open" click.delegate="isOpen = true">Open</button>
       <button data-testid="sb-close" click.delegate="isOpen = false">Close</button>
@@ -24,5 +24,43 @@
         <div style="padding: 10px">Docked</div>
       </ej2-sidebar>
     </div>
+  </demo-section>
+
+  <demo-section id="sb-options" title="Options" description="position, show-backdrop, close-on-document-click, z-index, height, animate and enable-gestures.">
+    <div id="opt-target" data-testid="sb-opt-target" style="position: relative; height: 200px; overflow: hidden; border: 1px solid #ccc">
+      <ej2-sidebar data-testid="sb-options" e-target="#opt-target" e-type="Over" e-width="120px" e-height="150px"
+        e-position.bind="position" e-show-backdrop.bind="true" e-close-on-document-click.bind="true" e-z-index.bind="2500"
+        e-animate.bind="false" e-enable-gestures.bind="false" e-is-open.two-way="optOpen">
+        <div style="padding: 10px">Options</div>
+      </ej2-sidebar>
+      <div style="padding: 10px" data-testid="sb-opt-main">Main</div>
+    </div>
+    <div class="demo-output">isOpen: <code data-testid="sb-opt-out">${optOpen}</code></div>
+    <div class="demo-row">
+      <button data-testid="sb-opt-open" click.delegate="optOpen = true">Open</button>
+      <button data-testid="sb-opt-left" click.delegate="position = 'Left'">Left</button>
+    </div>
+  </demo-section>
+
+  <demo-section id="sb-media" title="Media query" description="mediaQuery opens the sidebar while the viewport matches.">
+    <div id="media-target" style="position: relative; height: 150px; overflow: hidden; border: 1px solid #ccc">
+      <ej2-sidebar data-testid="sb-media" e-target="#media-target" e-type="Push" e-width="140px" e-media-query="(min-width: 600px)"
+        e-is-open.two-way="mediaOpen">
+        <div style="padding: 10px">Media</div>
+      </ej2-sidebar>
+    </div>
+    <div class="demo-output">isOpen: <code data-testid="sb-media-out">${mediaOpen}</code></div>
+  </demo-section>
+
+  <demo-section id="sb-lifecycle" title="Lifecycle" description="created and destroyed events with if.bind.">
+    <div id="life-target" style="position: relative; height: 80px; overflow: hidden; border: 1px solid #ccc">
+      <ej2-sidebar if.bind="showLifecycle" data-testid="sb-lifecycle" e-target="#life-target" e-width="100px"
+        e-on-created.delegate="created = created + 1" e-on-destroyed.trigger="destroyed = destroyed + 1">
+        <div>Life</div>
+      </ej2-sidebar>
+    </div>
+    <button data-testid="sb-life-toggle" click.delegate="showLifecycle = !showLifecycle">Toggle</button>
+    <div class="demo-output">Created: <span data-testid="sb-created">${created}</span>
+      Destroyed: <span data-testid="sb-destroyed">${destroyed}</span></div>
   </demo-section>
 </template>

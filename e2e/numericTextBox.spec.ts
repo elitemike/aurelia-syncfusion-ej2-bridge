@@ -58,6 +58,80 @@ test('strict mode clamps to max', async ({ app }) => {
   await expect(app.section('ntb-strict').locator('.e-spin-up')).toHaveCount(0);
 });
 
+test('currency and currencyCode pick the currency symbol', async ({ app }) => {
+  await expect(app.section('ntb-currency').getByTestId('ntb-currency').locator('input.e-numerictextbox')).toHaveValue(/€\s?12\.50/);
+  const byCode = app.section('ntb-currency').getByTestId('ntb-currency-code').locator('input.e-numerictextbox');
+  await expect(byCode).toHaveValue('$12.50');
+  // the widget applies currencyCode on property changes, not on creation
+  await app.section('ntb-currency').getByTestId('ntb-gbp').click();
+  await expect(byCode).toHaveValue(/£\s?12\.50/);
+});
+
+test('validateDecimalOnType blocks extra decimals', async ({ app }) => {
+  const input = app.section('ntb-decimals').locator('input.e-numerictextbox');
+  await input.click();
+  await input.pressSequentially('1.234');
+  await expect(input).toHaveValue('1.23');
+});
+
+test('allowMouseWheel changes the value on wheel only when enabled', async ({ app, page }) => {
+  const section = app.section('ntb-wheel');
+  const input = section.locator('input.e-numerictextbox');
+  await expect(input).toHaveValue(/^10/);
+  await input.focus();
+  await input.hover();
+  await page.mouse.wheel(0, -100);
+  await expect(input).toHaveValue(/^11/);
+  await section.getByTestId('ntb-allow-wheel').uncheck();
+  await input.hover();
+  await page.mouse.wheel(0, -100);
+  await page.mouse.wheel(0, -100);
+  await expect(input).toHaveValue(/^11/);
+});
+
+test('readonly and enabled follow the view-model', async ({ app }) => {
+  const section = app.section('ntb-wheel');
+  const input = section.locator('input.e-numerictextbox');
+  await expect(input).not.toHaveAttribute('readonly', '');
+  await section.getByTestId('ntb-readonly').check();
+  await expect(input).toHaveAttribute('readonly', '');
+  await expect(input).toBeEnabled();
+  await section.getByTestId('ntb-enabled').uncheck();
+  await expect(input).toBeDisabled();
+});
+
+test('focus and blur events', async ({ app }) => {
+  const section = app.section('ntb-wheel');
+  const input = section.locator('input.e-numerictextbox');
+  await input.focus();
+  await expect(section.getByTestId('ntb-focus')).toHaveText('1');
+  await input.blur();
+  await expect(section.getByTestId('ntb-blur')).toHaveText('1');
+});
+
+test('cssClass, htmlAttributes, width and templates', async ({ app }) => {
+  const section = app.section('ntb-more');
+  await expect(section.locator('.e-input-group')).toHaveClass(/ntb-custom/);
+  await expect(section.locator('input.e-numerictextbox')).toHaveAttribute('data-foo', 'bar');
+  await expect.poll(async () => (await section.locator('.e-input-group').boundingBox()).width).toBeCloseTo(220, 0);
+  await expect(section.locator('.ntb-prepend')).toHaveText('pre');
+  await expect(section.locator('.ntb-append')).toHaveText('app');
+  await section.getByTestId('ntb-css').click();
+  await expect(section.locator('.e-input-group')).toHaveClass(/ntb-custom-two/);
+});
+
+test('created and destroyed events', async ({ app }) => {
+  const section = app.section('ntb-life');
+  await expect(section.locator('input.e-numerictextbox')).toBeVisible();
+  await expect(section.getByTestId('ntb-created')).toHaveText('1');
+  await expect(section.getByTestId('ntb-destroyed')).toHaveText('0');
+  await section.getByTestId('ntb-toggle').click();
+  await expect(section.locator('input.e-numerictextbox')).toHaveCount(0);
+  await expect(section.getByTestId('ntb-destroyed')).toHaveText('1');
+  await section.getByTestId('ntb-toggle').click();
+  await expect(section.getByTestId('ntb-created')).toHaveText('2');
+});
+
 test('placeholder, floating label and clear button', async ({ app }) => {
   const section = app.section('ntb-options');
   await expect(section.locator('.e-float-text')).toHaveText('Amount');

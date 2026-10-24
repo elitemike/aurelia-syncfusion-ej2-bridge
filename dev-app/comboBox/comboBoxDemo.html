@@ -26,4 +26,98 @@
     <ej2-combo-box data-testid="cb-sorted" e-data-source.bind="games" e-fields.bind="fields" e-sort-order="Descending"
       e-show-clear-button="true"></ej2-combo-box>
   </demo-section>
+
+  <demo-section id="cb-ignore" title="ignoreCase / ignoreAccent / filterType" description="Filter matching options, changed from the view-model.">
+    <ej2-combo-box data-testid="cb-ignore" e-data-source.bind="cafes" e-allow-filtering="true" e-ignore-accent.bind="ignoreAccent"
+      e-ignore-case.bind="ignoreCase" e-filter-type.bind="filterType" e-filter-bar-placeholder="Search cafes" e-debounce-delay="0"></ej2-combo-box>
+    <div class="demo-row">
+      <button data-testid="cb-ignore-toggle" click.delegate="toggleIgnore()">Strict matching</button>
+    </div>
+  </demo-section>
+
+  <demo-section id="cb-dyn" title="Bound properties" description="Widget properties bound to the view-model; the button switches them to a second set.">
+    <ej2-combo-box data-testid="cb-dyn" e-data-source.bind="sports" e-fields.bind="sportFields"
+      e-css-class.bind="dyn.cssClass" e-popup-height.bind="dyn.popupHeight" e-popup-width.bind="dyn.popupWidth"
+      e-width.bind="dyn.width" e-z-index.bind="dyn.zIndex" e-readonly.bind="dyn.readonly" e-placeholder.bind="dyn.placeholder"
+      e-float-label-type.bind="dyn.floatLabelType" e-sort-order.bind="dyn.sortOrder" e-allow-filtering.bind="dyn.allowFiltering"
+      e-html-attributes.bind="dyn.htmlAttributes" e-is-device-full-screen.bind="dyn.fullScreen" e-allow-resize.bind="dyn.allowResize"
+      e-debounce-delay.bind="dyn.debounceDelay" e-show-clear-button.bind="dyn.showClearButton"></ej2-combo-box>
+    <div class="demo-row">
+      <button data-testid="cb-dyn-toggle" click.delegate="toggleDyn()">Switch properties</button>
+    </div>
+  </demo-section>
+
+  <demo-section id="cb-templates" title="Templates" description="item, value, header, footer, group and no-records templates.">
+    <ej2-combo-box data-testid="cb-templates" e-data-source.bind="grouped" e-fields.bind="groupFields" e-value="Cricket"
+      e-allow-filtering="true" e-item-template.bind="itemTpl" e-value-template.bind="valueTpl" e-header-template.bind="headerTpl"
+      e-footer-template.bind="footerTpl" e-group-template.bind="groupTpl"
+      e-action-failure-template.bind="failTpl"></ej2-combo-box>
+  </demo-section>
+
+  <demo-section id="cb-norecords" title="noRecordsTemplate" description="Shown when typing matches nothing.">
+    <ej2-combo-box data-testid="cb-norecords" e-data-source.bind="sports" e-fields.bind="sportFields" e-allow-filtering="true"
+      e-no-records-template.bind="noRecordsTpl"></ej2-combo-box>
+  </demo-section>
+
+  <demo-section id="cb-index" title="index" description="Initial selection by position.">
+    <ej2-combo-box data-testid="cb-index" e-data-source.bind="sports" e-fields.bind="sportFields" e-index="2"></ej2-combo-box>
+  </demo-section>
+
+  <demo-section id="cb-text" title="text" description="Initial selection by item text.">
+    <ej2-combo-box data-testid="cb-text" e-data-source.bind="sports" e-fields.bind="sportFields" e-text="Cricket"></ej2-combo-box>
+  </demo-section>
+
+  <demo-section id="cb-object" title="allowObjectBinding" description="The value is the whole data object.">
+    <ej2-combo-box data-testid="cb-object" e-data-source.bind="sports" e-fields.bind="sportFields" e-allow-object-binding="true"
+      e-value.two-way="objectValue"></ej2-combo-box>
+    <div class="demo-output">Selected: <code data-testid="cb-object-out">${objectValue.text}</code></div>
+  </demo-section>
+
+  <demo-section id="cb-query" title="query" description="A Query limits the items taken from the data source.">
+    <ej2-combo-box data-testid="cb-query" e-data-source.bind="sports" e-fields.bind="sportFields" e-query.bind="query"></ej2-combo-box>
+  </demo-section>
+
+  <demo-section id="cb-virtual" title="enableVirtualization" description="Only the visible items are rendered.">
+    <ej2-combo-box data-testid="cb-virtual" e-data-source.bind="many" e-fields.bind="virtualFields" e-enable-virtualization="true"
+      e-popup-height="200px"></ej2-combo-box>
+  </demo-section>
+
+  <demo-section id="cb-autofill" title="autofill" description="Typed text is completed with the first match.">
+    <ej2-combo-box data-testid="cb-autofill" e-data-source.bind="sports" e-fields.bind="sportFields" e-allow-filtering="true"
+      e-autofill="true"></ej2-combo-box>
+  </demo-section>
+
+  <demo-section id="cb-events" title="Events" description="Every widget event appends its name to a log.">
+    <ej2-combo-box data-testid="cb-events" e-data-source.bind="sports" e-fields.bind="sportFields" e-allow-filtering="true"
+      e-allow-resize="true" e-popup-width="250px" e-allow-custom="true"
+      e-on-custom-value-specifier.delegate="log('customValueSpecifier')"
+      e-on-action-begin.delegate="log('actionBegin')"
+      e-on-action-complete.delegate="log('actionComplete')"
+      e-on-before-open.delegate="log('beforeOpen')"
+      e-on-blur.delegate="log('blur')"
+      e-on-change.delegate="log('change')"
+      e-on-close.delegate="log('close')"
+      e-on-data-bound.delegate="log('dataBound')"
+      e-on-filtering.delegate="log('filtering')"
+      e-on-focus.delegate="log('focus')"
+      e-on-open.delegate="log('open')"
+      e-on-select.delegate="log('select')"
+      e-on-resize-stop.delegate="log('resizeStop')"
+      e-on-resizing.delegate="log('resizing')"
+      e-on-resize-start.delegate="log('resizeStart')"></ej2-combo-box>
+    <div class="demo-output">Events: <code data-testid="cb-events-out">${eventLog}</code></div>
+  </demo-section>
+
+  <demo-section id="cb-lifecycle" title="created / destroyed" description="Toggling the widget creates and destroys it.">
+    <ej2-combo-box if.bind="showLifecycle" data-testid="cb-lifecycle" e-data-source.bind="sports" e-fields.bind="sportFields"
+      e-on-created.trigger="lifecycle('created')" e-on-destroyed.trigger="lifecycle('destroyed')"></ej2-combo-box>
+    <div class="demo-output">Created: <span data-testid="cb-created">${created}</span> Destroyed: <span data-testid="cb-destroyed">${destroyed}</span></div>
+    <button data-testid="cb-lifecycle-toggle" click.delegate="showLifecycle = !showLifecycle">Toggle</button>
+  </demo-section>
+
+  <demo-section id="cb-fail" title="actionFailure" description="A remote data source that fails to load raises actionFailure.">
+    <ej2-combo-box data-testid="cb-fail" e-data-source.bind="remote" e-fields.bind="sportFields"
+      e-on-action-failure.delegate="failures = failures + 1"></ej2-combo-box>
+    <div class="demo-output">Failures: <span data-testid="cb-fail-count">${failures}</span></div>
+  </demo-section>
 </template>

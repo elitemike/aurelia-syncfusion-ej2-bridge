@@ -5,13 +5,34 @@
     <ej2-grid data-testid="grid-main" e-columns.bind="gridColumns" e-data-source.bind="gridDataSource"
       e-allow-paging="true" e-page-settings.bind="pageSettings" e-allow-sorting="true" e-allow-selection="true"
       e-selection-settings.bind="selectionSettings" e-on-created.delegate="onCreated()"
-      e-on-row-selected.delegate="onRowSelected($event)"></ej2-grid>
+      e-allow-multi-sorting="true" e-allow-keyboard="true" e-enable-header-focus="true"
+      e-current-view-data.from-view="viewData"
+      e-on-row-selected.delegate="onRowSelected($event)"
+      e-on-load.delegate="log('main.load', $event)"
+      e-on-before-data-bound.delegate="log('main.beforeDataBound', $event)"
+      e-on-data-bound.delegate="log('main.dataBound', $event)"
+      e-on-row-data-bound.delegate="log('main.rowDataBound', $event)"
+      e-on-query-cell-info.delegate="log('main.queryCellInfo', $event)"
+      e-on-header-cell-info.delegate="log('main.headerCellInfo', $event)"
+      e-on-action-begin.delegate="log('main.actionBegin', $event)"
+      e-on-action-complete.delegate="log('main.actionComplete', $event)"
+      e-on-row-selecting.delegate="log('main.rowSelecting', $event)"
+      e-on-row-deselecting.delegate="log('main.rowDeselecting', $event)"
+      e-on-row-deselected.delegate="log('main.rowDeselected', $event)"
+      e-on-record-click.delegate="log('main.recordClick', $event)"
+      e-on-record-double-click.delegate="log('main.recordDoubleClick', $event)"
+      e-on-cell-focus.delegate="log('main.cellFocus', $event)"
+      e-on-key-pressed.delegate="log('main.keyPressed', $event)"
+      e-on-destroyed.delegate="log('main.destroyed', $event)"></ej2-grid>
     <div class="demo-output">Selected order: <code data-testid="grid-selected">${selectedOrder}</code></div>
   </demo-section>
 
   <demo-section id="grid-chooser" title="Column chooser and reordering" description="showColumnChooser with a ColumnChooser toolbar item.">
     <ej2-grid data-testid="grid-chooser" e-height="250" e-columns.bind="gridColumns" e-data-source.bind="gridDataSource"
-      e-allow-reordering="true" e-show-column-chooser="true" e-toolbar.bind="['ColumnChooser']"></ej2-grid>
+      e-allow-reordering="true" e-show-column-chooser="true" e-toolbar.bind="['ColumnChooser']"
+      e-column-chooser-settings.bind="chooserSettings"
+      e-on-before-open-column-chooser.delegate="log('chooser.beforeOpenColumnChooser', $event)"
+      e-on-toolbar-click.delegate="log('chooser.toolbarClick', $event)"></ej2-grid>
   </demo-section>
 
   <demo-section id="grid-filter" title="Filtering" description="allowFiltering with the FilterBar row.">
@@ -28,6 +49,8 @@
   <demo-section id="grid-edit" title="Editing" description="Normal edit mode with toolbar, validation and actionComplete.">
     <ej2-grid data-testid="grid-edit" e-columns.bind="editColumns" e-data-source.bind="editData"
       e-edit-settings.bind="editSettings" e-toolbar.bind="editToolbar" e-allow-selection.bind="true"
+      e-on-begin-edit.delegate="log('edit.beginEdit', $event)"
+      e-on-action-begin.delegate="log('edit.actionBegin', $event)"
       e-on-action-complete.delegate="onActionComplete($event)"></ej2-grid>
     <div class="demo-output">Last action: <code data-testid="grid-last-action">${lastAction}</code></div>
   </demo-section>
@@ -48,4 +71,6 @@
     <div class="demo-output">Index: <code data-testid="grid-index-out">${selectedRowIndex}</code></div>
     <button data-testid="grid-index-4" click.delegate="selectedRowIndex = 4">Select row 4</button>
   </demo-section>
+
+  <compose repeat.for="part of parts" view-model.bind="part"></compose>
 </template>

@@ -1,6 +1,6 @@
 import { constants } from '../../common/constants';
 import { SyncfusionWrapper } from "../../common/syncfusionWrapper";
-import { MultiSelect, MultiSelectModel, CheckBoxSelection } from "@syncfusion/ej2-dropdowns";
+import { MultiSelect, MultiSelectModel, CheckBoxSelection, VirtualScroll } from "@syncfusion/ej2-dropdowns";
 import { generateBindables } from "../../utilities/decorator";
 import { enableRipple } from '@syncfusion/ej2-base';
 import { inlineView, customElement } from 'aurelia-framework';
@@ -13,8 +13,8 @@ export class Ej2MultiSelect extends SyncfusionWrapper<MultiSelect, MultiSelectMo
   protected syncfusionWidgetType = MultiSelect;
 
   onBeforeWidgetInstantiation() {
-    // mode="CheckBox" and showSelectAll need this module
-    MultiSelect.Inject(CheckBoxSelection);
+    // mode="CheckBox"/showSelectAll and enableVirtualization need these modules
+    MultiSelect.Inject(CheckBoxSelection, VirtualScroll);
   }
 
   protected onWrapperCreated() {

@@ -10,6 +10,22 @@ export class AccordionDemo {
   expanded = 0;
   lastHeader = '';
   showAccordion = true;
+  clicked = 0;
+  created = 0;
+  destroyed = 0;
+  sanitize = true;
+  records = [
+    { header: 'Alpha', content: 'alpha body' },
+    { header: 'Beta', content: 'beta body' }
+  ];
+  headerTemplate = '<div class="tpl-head">H: ${header}</div>';
+  itemTemplate = '<div class="tpl-body">B: ${content}</div>';
+  animation = { expand: { effect: 'None', duration: 0 }, collapse: { effect: 'None', duration: 0 } };
+
+  onClicked() {
+    this.clicked++;
+  }
+
 
   onExpanding() {
     this.expanding++;

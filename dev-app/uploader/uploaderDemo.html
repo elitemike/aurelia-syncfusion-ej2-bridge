@@ -4,7 +4,8 @@
   <demo-section id="up-multiple" title="Multiple files" description="Selected files upload immediately, e-files lists the uploaded results.">
     <ej2-uploader data-testid="up-multiple" e-files.bind="files" e-model.bind="multipleModel" metadata.bind="metadata"
       metadata-generator.bind="generateMetaData" upload-result-model.bind="uploadResultModel"
-      data-adapter.bind="dataAdapter" on-removing.delegate="onRemoving($event)"></ej2-uploader>
+      data-adapter.bind="dataAdapter" on-removing.delegate="onRemoving($event)"
+      e-on-progress.delegate="log('progress')"></ej2-uploader>
     <div class="demo-output">Files: <span data-testid="up-multiple-count">${files.length}</span>
       <ul data-testid="up-multiple-list"><li repeat.for="file of files">${file.name}</li></ul></div>
   </demo-section>
@@ -32,5 +33,43 @@
 
   <demo-section id="up-restricted" title="Validation" description="allowedExtensions and maxFileSize reject files.">
     <ej2-uploader data-testid="up-restricted" e-model.bind="restrictedModel"></ej2-uploader>
+  </demo-section>
+
+  <demo-section id="up-props" title="Properties" description="autoUpload, buttons, cssClass, enabled, htmlAttributes, showFileList, dropEffect, dropArea, file size and extension limits, template.">
+    <div class="demo-row">
+      <button data-testid="up-toggle-enabled" click.delegate="enabled = !enabled">Toggle enabled</button>
+      <button data-testid="up-toggle-list" click.delegate="showList = !showList">Toggle file list</button>
+      <button data-testid="up-set-max" click.delegate="maxSize = 5000">Set max size</button>
+    </div>
+    <div id="up-dropzone" data-testid="up-dropzone" class="demo-output">Drop zone</div>
+    <ej2-uploader data-testid="up-props" e-auto-upload="false" e-buttons.bind="buttons" e-css-class="custom-up"
+      e-enabled.bind="enabled" e-html-attributes.bind="htmlAttributes" e-show-file-list.bind="showList"
+      e-drop-effect="Copy" e-drop-area="#up-dropzone" e-min-file-size.bind="2" e-max-file-size.bind="maxSize"
+      e-allowed-extensions=".txt,.png" e-multiple.bind="true" e-sequential-upload.bind="true"
+      e-enable-html-sanitizer.bind="true" e-async-settings.bind="asyncSettings"></ej2-uploader>
+  </demo-section>
+
+  <demo-section id="up-dir" title="Directory upload and template" description="directoryUpload selects whole folders, template renders the file list items.">
+    <ej2-uploader data-testid="up-dir" e-directory-upload.bind="true" e-auto-upload.bind="false" e-template.bind="template"></ej2-uploader>
+  </demo-section>
+
+  <demo-section id="up-evlog" title="Event log" description="Every uploader event is counted, chunked uploads allow pausing, resuming and canceling.">
+    <ej2-uploader data-testid="up-evlog" e-auto-upload.bind="false" e-async-settings.bind="chunkSettings"
+      e-on-created.delegate="log('created')" e-on-action-complete.delegate="log('actionComplete')"
+      e-on-before-upload.delegate="log('beforeUpload')" e-on-selected.delegate="log('selected')"
+      e-on-rendering.delegate="log('rendering')" e-on-file-list-rendering.delegate="log('fileListRendering')"
+      e-on-uploading.delegate="log('uploading')" e-on-success.delegate="log('success')"
+      e-on-progress.delegate="log('progress')" e-on-change.delegate="log('change')"
+      e-on-chunk-success.delegate="log('chunkSuccess')" e-on-chunk-uploading.delegate="log('chunkUploading')"
+      e-on-removing.delegate="log('removing')" e-on-before-remove.delegate="log('beforeRemove')"
+      e-on-clearing.delegate="log('clearing')" e-on-canceling.delegate="log('canceling')"
+      e-on-pausing.delegate="log('pausing')" e-on-resuming.delegate="log('resuming')"></ej2-uploader>
+    <div class="demo-output">Log: <code data-testid="up-log">${logText}</code></div>
+  </demo-section>
+
+  <demo-section id="up-fail" title="Failing upload" description="failure and chunkFailure are raised when the server rejects an upload.">
+    <ej2-uploader data-testid="up-fail" e-async-settings.bind="failSettings"
+      e-on-failure.delegate="log('failure')" e-on-chunk-failure.delegate="log('chunkFailure')"></ej2-uploader>
+    <div class="demo-output">Failure log: <code data-testid="up-fail-log">${logText}</code></div>
   </demo-section>
 </template>

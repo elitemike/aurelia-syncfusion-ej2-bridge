@@ -3,7 +3,10 @@
 
   <demo-section id="sp-horizontal" title="Horizontal with collapsible panes" description="Resize by dragging the bar, collapse with the arrows.">
     <ej2-splitter data-testid="sp-horizontal" view-model.ref="splitter" e-model.bind="horizontalModel" e-on-collapsed.delegate="onCollapsed()"
-      e-on-expanded.delegate="onExpanded()" e-on-resize-stop.delegate="onResizeStop()">
+      e-on-expanded.delegate="onExpanded()" e-on-resize-stop.delegate="onResizeStop()"
+      e-on-resize-start.delegate="resizeStarts = resizeStarts + 1" e-on-resizing.delegate="resizings = resizings + 1"
+      e-on-before-collapse.delegate="beforeCollapse = beforeCollapse + 1" e-on-before-expand.delegate="beforeExpand = beforeExpand + 1"
+      e-on-created.delegate="created = created + 1">
       <div data-testid="sp-left" style="padding: 8px">Left pane</div>
       <div data-testid="sp-right" style="padding: 8px">Right pane</div>
     </ej2-splitter>
@@ -12,7 +15,21 @@
       <button data-testid="sp-expand" click.delegate="expandLeft()">Expand left</button>
     </div>
     <div class="demo-output">Collapsed: <span data-testid="sp-collapsed">${collapsed}</span>
-      Expanded: <span data-testid="sp-expanded">${expanded}</span> Resize stops: <span data-testid="sp-resized">${resizeStops}</span></div>
+      Expanded: <span data-testid="sp-expanded">${expanded}</span> Resize stops: <span data-testid="sp-resized">${resizeStops}</span>
+      Resize starts: <span data-testid="sp-resize-starts">${resizeStarts}</span> Resizing: <span data-testid="sp-resizings">${resizings}</span>
+      Before collapse: <span data-testid="sp-before-collapse">${beforeCollapse}</span> Before expand: <span data-testid="sp-before-expand">${beforeExpand}</span>
+      Created: <span data-testid="sp-created">${created}</span></div>
+  </demo-section>
+
+  <demo-section id="sp-props" title="Element properties" description="orientation, width, separatorSize, cssClass, enableReversePanes, enabled, enableHtmlSanitizer, paneSettings and beforeSanitizeHtml.">
+    <ej2-splitter data-testid="sp-props" e-orientation="Vertical" e-height="240px" e-width="300px" e-separator-size.bind="10"
+      e-css-class="my-splitter" e-enable-reverse-panes.bind="reverse" e-enabled.bind="enabled" e-enable-html-sanitizer.bind="true"
+      e-pane-settings.bind="propPanes" e-on-before-sanitize-html.delegate="sanitized = sanitized + 1"></ej2-splitter>
+    <div class="demo-row">
+      <label><input type="checkbox" data-testid="sp-reverse" checked.bind="reverse" /> reverse panes</label>
+      <label><input type="checkbox" data-testid="sp-enabled" checked.bind="enabled" /> enabled</label>
+    </div>
+    <div class="demo-output">beforeSanitizeHtml: <span data-testid="sp-sanitized">${sanitized}</span></div>
   </demo-section>
 
   <demo-section id="sp-nested" title="Nested vertical splitter" description="A vertical splitter inside a horizontal pane.">

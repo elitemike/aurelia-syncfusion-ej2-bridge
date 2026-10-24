@@ -2,7 +2,7 @@
 import { SyncfusionWrapper } from '../../common/syncfusionWrapper';
 import { generateBindables } from '../../utilities/decorator';
 import { inlineView, customElement } from "aurelia-framework"
-import { FileManager, FileManagerModel, Toolbar, NavigationPane, DetailsView, ContextMenu } from "@syncfusion/ej2-filemanager";
+import { FileManager, FileManagerModel, Toolbar, NavigationPane, DetailsView, ContextMenu, WebMcpFileManager } from "@syncfusion/ej2-filemanager";
 import { v4 as uuidv4 } from "uuid";
 
 @generateBindables("fileManager")
@@ -14,7 +14,7 @@ export class Ej2FileManager extends SyncfusionWrapper<FileManager, FileManagerMo
 
   onBeforeWidgetInstantiation() {
     // this.id = uuidv4();
-    FileManager.Inject(Toolbar, NavigationPane, DetailsView, ContextMenu);
+    FileManager.Inject(Toolbar, NavigationPane, DetailsView, ContextMenu, WebMcpFileManager);
   }
   protected onWidgetCreated() {
   }

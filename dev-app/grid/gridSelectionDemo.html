@@ -1,0 +1,34 @@
+<template>
+  <demo-section id="grid-sel" title="Row, cell, column and checkbox selection" description="Selection events with mode Both, column selection and a checkbox column.">
+    <ej2-grid data-testid="grid-sel" e-columns.bind="checkColumns" e-data-source.bind="rows" e-allow-selection.bind="true"
+      e-selection-settings.bind="selectionSettings"
+      e-on-row-selecting.delegate="log('sel.rowSelecting', $event)"
+      e-on-row-selected.delegate="log('sel.rowSelected', $event)"
+      e-on-row-deselecting.delegate="log('sel.rowDeselecting', $event)"
+      e-on-row-deselected.delegate="log('sel.rowDeselected', $event)"
+      e-on-cell-selecting.delegate="log('sel.cellSelecting', $event)"
+      e-on-cell-selected.delegate="log('sel.cellSelected', $event)"
+      e-on-cell-deselecting.delegate="log('sel.cellDeselecting', $event)"
+      e-on-cell-deselected.delegate="log('sel.cellDeselected', $event)"
+      e-on-column-selecting.delegate="log('sel.columnSelecting', $event)"
+      e-on-column-selected.delegate="log('sel.columnSelected', $event)"
+      e-on-column-deselecting.delegate="log('sel.columnDeselecting', $event)"
+      e-on-column-deselected.delegate="log('sel.columnDeselected', $event)"
+      e-on-check-box-change.delegate="log('sel.checkBoxChange', $event)"></ej2-grid>
+  </demo-section>
+
+  <demo-section id="grid-fill" title="Auto fill, copy and paste" description="enableAutoFill with Box cell selection; beforeAutoFill, beforeCopy and beforePaste.">
+    <ej2-grid data-testid="grid-fill" e-columns.bind="fillColumns" e-data-source.bind="fillRows" e-allow-selection.bind="true"
+      e-selection-settings.bind="fillSelection" e-edit-settings.bind="fillEdit" e-enable-auto-fill.bind="true"
+      e-on-before-auto-fill.delegate="log('fill.beforeAutoFill', $event)"
+      e-on-before-copy.delegate="log('fill.beforeCopy', $event)"
+      e-on-before-paste.delegate="log('fill.beforePaste', $event)"></ej2-grid>
+  </demo-section>
+
+  <demo-section id="grid-selectable" title="Selectable and pinned rows" description="isRowSelectable blocks one row, isRowPinned keeps a row at the top.">
+    <ej2-grid data-testid="grid-selectable" e-columns.bind="columns" e-data-source.bind="rows" e-allow-selection.bind="true"
+      e-is-row-selectable.bind="canSelect"></ej2-grid>
+    <ej2-grid data-testid="grid-pinned" e-columns.bind="columns" e-data-source.bind="rows" e-allow-paging.bind="true"
+      e-page-settings.bind="pageSettings" e-is-row-pinned.bind="isPinned"></ej2-grid>
+  </demo-section>
+</template>

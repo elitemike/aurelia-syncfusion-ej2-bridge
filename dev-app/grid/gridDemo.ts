@@ -1,4 +1,18 @@
+import { PLATFORM } from 'aurelia-pal';
+import { logEvent } from './gridLog';
+
 export class GridDemo {
+  log = logEvent;
+  parts = [
+    PLATFORM.moduleName('grid/gridLookDemo'),
+    PLATFORM.moduleName('grid/gridSelectionDemo'),
+    PLATFORM.moduleName('grid/gridEditDemo'),
+    PLATFORM.moduleName('grid/gridColumnsDemo'),
+    PLATFORM.moduleName('grid/gridExportDemo'),
+    PLATFORM.moduleName('grid/gridDataDemo')
+  ];
+  viewData: any[] = null;
+  chooserSettings = { enableSearching: true };
   gridDataSource = data;
   gridColumns = [
     { field: 'OrderID', headerText: 'Order ID', textAlign: 'Right', width: 120, type: 'number' },

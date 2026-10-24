@@ -1,0 +1,46 @@
+<template>
+  <demo-section id="grid-reorder" title="Reorder and resize columns" description="allowReordering and allowResizing with their drag and resize events.">
+    <ej2-grid data-testid="grid-reorder" e-columns.bind="columns" e-data-source.bind="rows" e-allow-reordering="true"
+      e-allow-resizing="true" e-resize-settings.bind="resizeSettings"
+      e-on-column-drag-start.delegate="log('reorder.columnDragStart', $event)"
+      e-on-column-drag.delegate="log('reorder.columnDrag', $event)"
+      e-on-column-drop.delegate="log('reorder.columnDrop', $event)"
+      e-on-resize-start.delegate="log('reorder.resizeStart', $event)"
+      e-on-resizing.delegate="log('reorder.resizing', $event)"
+      e-on-resize-stop.delegate="log('reorder.resizeStop', $event)"></ej2-grid>
+  </demo-section>
+
+  <demo-section id="grid-menus" title="Column menu and context menu" description="showColumnMenu with columnMenuItems and contextMenuItems, with all their events.">
+    <ej2-grid data-testid="grid-menus" e-columns.bind="columns" e-data-source.bind="rows" e-allow-sorting="true"
+      e-show-column-menu="true" e-column-menu-items.bind="columnMenuItems" e-context-menu-items.bind="contextMenuItems"
+      e-on-column-menu-open.delegate="log('menus.columnMenuOpen', $event)"
+      e-on-column-menu-click.delegate="log('menus.columnMenuClick', $event)"
+      e-on-column-menu-close.delegate="log('menus.columnMenuClose', $event)"
+      e-on-context-menu-open.delegate="log('menus.contextMenuOpen', $event)"
+      e-on-context-menu-click.delegate="log('menus.contextMenuClick', $event)"
+      e-on-context-menu-close.delegate="log('menus.contextMenuClose', $event)"></ej2-grid>
+  </demo-section>
+
+  <demo-section id="grid-toolbar" title="Toolbar" description="Custom toolbar item with toolbarClick, and a toolbarTemplate.">
+    <ej2-grid data-testid="grid-toolbar" e-columns.bind="columns" e-data-source.bind="rows" e-toolbar.bind="toolbar"
+      e-on-toolbar-click.delegate="log('toolbar.toolbarClick', $event)"></ej2-grid>
+    <div id="grid-toolbar-tpl"><span class="toolbar-tpl-text">Custom toolbar</span></div>
+    <ej2-grid data-testid="grid-toolbar-template" e-columns.bind="columns" e-data-source.bind="rows"
+      e-toolbar-template="#grid-toolbar-tpl"></ej2-grid>
+  </demo-section>
+
+  <demo-section id="grid-excel-filter" title="Excel filter with custom filter dialog" description="beforeCustomFilterOpen is raised when the custom filter dialog opens.">
+    <ej2-grid data-testid="grid-excel-filter" e-columns.bind="columns" e-data-source.bind="rows" e-allow-filtering="true"
+      e-filter-settings.bind="excelFilter"
+      e-on-before-custom-filter-open.delegate="log('excel.beforeCustomFilterOpen', $event)"></ej2-grid>
+  </demo-section>
+
+  <demo-section id="grid-advanced-filter" title="Advanced filter" description="allowAdvancedFiltering, advancedFilterSettings and the advanced filter dialog events.">
+    <ej2-grid data-testid="grid-advanced-filter" e-columns.bind="columns" e-data-source.bind="rows"
+      e-allow-advanced-filtering="true" e-advanced-filter-settings.bind="advancedFilterSettings" e-toolbar.bind="advancedToolbar"
+      e-on-advanced-filter-open.delegate="log('advanced.open', $event)"
+      e-on-advanced-filter-close.delegate="log('advanced.close', $event)"
+      e-on-advanced-filter-begin.delegate="log('advanced.begin', $event)"
+      e-on-advanced-filter-complete.delegate="log('advanced.complete', $event)"></ej2-grid>
+  </demo-section>
+</template>

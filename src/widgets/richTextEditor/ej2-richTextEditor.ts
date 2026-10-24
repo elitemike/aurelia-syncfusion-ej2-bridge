@@ -2,7 +2,7 @@ import { inlineView, customElement } from 'aurelia-framework';
 import { constants } from '../../common/constants';
 import { generateBindables } from '../../utilities/decorator';
 import { SyncfusionWrapper } from '../../common/syncfusionWrapper';
-import { RichTextEditor, RichTextEditorModel, Count, FileManager, EmojiPicker, FormatPainter, Toolbar, SlashMenu, ImportExport, Link, Image, HtmlEditor, QuickToolbar, Table, Video, Audio, PasteCleanup } from '@syncfusion/ej2-richtexteditor';
+import { RichTextEditor, RichTextEditorModel, Count, FileManager, EmojiPicker, FormatPainter, Toolbar, SlashMenu, ImportExport, Link, Image, HtmlEditor, QuickToolbar, Table, Video, Audio, PasteCleanup, CodeBlock, ClipBoardCleanup, AutoFormat, AIAssistant, Resize, MarkdownEditor, WebMcpRichTextEditor } from '@syncfusion/ej2-richtexteditor';
 
 
 
@@ -23,6 +23,7 @@ export class Ej2RichTextEditor extends SyncfusionWrapper<RichTextEditor, RichTex
 
     onBeforeWidgetInstantiation() {
         RichTextEditor.Inject(Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Table, FileManager,
-            EmojiPicker, Audio, Video, FormatPainter, PasteCleanup, SlashMenu, ImportExport);
+            EmojiPicker, Audio, Video, FormatPainter, PasteCleanup, SlashMenu, ImportExport, CodeBlock, ClipBoardCleanup,
+            AutoFormat, AIAssistant, Resize, MarkdownEditor, WebMcpRichTextEditor);
     }
 }

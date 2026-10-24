@@ -12,6 +12,21 @@
     </div>
   </demo-section>
 
+  <demo-section id="chk-more" title="Name, value, css class, indeterminate, label position, attributes" description="name, value, cssClass, htmlAttributes, indeterminate, labelPosition, enableHtmlSanitizer, change and created.">
+    <ej2-checkbox data-testid="chk-more" e-label.bind="moreLabel" e-name="opts" e-value="v1" e-css-class.bind="cssClass"
+      e-html-attributes.bind="htmlAttrs" e-label-position="Before" e-indeterminate.bind="indeterminate"
+      e-enable-html-sanitizer.bind="false" e-checked.two-way="moreChecked" e-on-change.delegate="onChange($event)"
+      e-on-created.delegate="createdCount = createdCount + 1"></ej2-checkbox>
+    <div class="demo-output">Checked: <code data-testid="chk-more-out">${moreChecked}</code>
+      Changes: <span data-testid="chk-change-count">${changeCount}</span>
+      Last change checked: <code data-testid="chk-change-checked">${changeChecked}</code>
+      Created: <span data-testid="chk-created">${createdCount}</span></div>
+    <div class="demo-row">
+      <button data-testid="chk-clear-indeterminate" click.delegate="indeterminate = false">Clear indeterminate</button>
+      <button data-testid="chk-css" click.delegate="cssClass = 'chk-custom-two'">Change cssClass</button>
+    </div>
+  </demo-section>
+
   <demo-section id="chk-lifecycle" title="Lifecycle" description="Widget is destroyed and recreated with if.bind.">
     <ej2-checkbox if.bind="showCheckbox" data-testid="chk-lifecycle" e-label="I come and go"></ej2-checkbox>
     <button data-testid="chk-toggle" click.delegate="toggle()">Toggle</button>

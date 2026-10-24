@@ -1,0 +1,83 @@
+<template>
+  <demo-section id="grid-virtual" title="Row virtualization" description="enableVirtualization over 500 rows.">
+    <ej2-grid data-testid="grid-virtual" e-columns.bind="narrowColumns" e-data-source.bind="bigData" e-height="300"
+      e-row-height.bind="36" e-enable-virtualization="true"></ej2-grid>
+  </demo-section>
+
+  <demo-section id="grid-column-virtual" title="Column virtualization" description="enableColumnVirtualization over 30 columns.">
+    <ej2-grid data-testid="grid-column-virtual" e-columns.bind="columnVirtualColumns" e-data-source.bind="smallWide" e-height="260" e-width="600"
+      e-enable-column-virtualization="true"></ej2-grid>
+  </demo-section>
+
+  <demo-section id="grid-infinite" title="Infinite scrolling" description="enableInfiniteScrolling with infiniteScrollSettings.">
+    <ej2-grid data-testid="grid-infinite" e-columns.bind="narrowColumns" e-data-source.bind="bigData" e-height="300"
+      e-enable-infinite-scrolling="true" e-infinite-scroll-settings.bind="infiniteSettings"
+      e-page-settings.bind="infinitePage"></ej2-grid>
+  </demo-section>
+
+  <demo-section id="grid-dom-virtual" title="DOM virtualization" description="enableDomVirtualization, domVirtualizationSettings, setRowHeight and detailTemplateHeight.">
+    <ej2-grid data-testid="grid-dom-virtual" e-columns.bind="narrowColumns" e-data-source.bind="bigData" e-height="300" e-row-height.bind="40"
+      e-enable-dom-virtualization="true" e-dom-virtualization-settings.bind="domSettings" e-set-row-height.bind="rowHeightFn"
+      e-detail-template.bind="detailTpl" e-detail-template-height.bind="60"></ej2-grid>
+  </demo-section>
+
+  <demo-section id="grid-frozen" title="Frozen rows and columns" description="frozenColumns and frozenRows keep their cells in view.">
+    <ej2-grid data-testid="grid-frozen" e-columns.bind="frozenGridColumns" e-data-source.bind="smallWide" e-height="260" e-width="500"
+      e-frozen-columns.bind="1" e-frozen-rows.bind="1"></ej2-grid>
+  </demo-section>
+
+  <demo-section id="grid-templates" title="Row and pager templates" description="rowTemplate and pagerTemplate.">
+    <ej2-grid data-testid="grid-templates" e-columns.bind="templateColumns" e-data-source.bind="smallRows" e-row-template.bind="rowTpl"
+      e-allow-paging="true" e-page-settings.bind="templatePage" e-pager-template.bind="pagerTpl"></ej2-grid>
+  </demo-section>
+
+  <demo-section id="grid-dnd" title="Row drag and drop" description="allowRowDragAndDrop and rowDropSettings move rows into a second grid.">
+    <ej2-grid data-testid="grid-dnd-source" e-columns.bind="narrowColumns" e-data-source.bind="dndRows" e-allow-row-drag-and-drop="true"
+      e-row-drop-settings.bind="dropSettings" e-allow-selection="true" e-selection-settings.bind="dndSelection"
+      e-on-row-drag-start-helper.delegate="log('dnd.rowDragStartHelper', $event)"
+      e-on-row-drag-start.delegate="log('dnd.rowDragStart', $event)"
+      e-on-row-drag.delegate="log('dnd.rowDrag', $event)"
+      e-on-row-drop.delegate="log('dnd.rowDrop', $event)"></ej2-grid>
+    <ej2-grid data-testid="grid-dnd-target" e-columns.bind="narrowColumns" e-data-source.bind="dropped" e-allow-row-drag-and-drop="true"
+      e-allow-selection="true"></ej2-grid>
+  </demo-section>
+
+  <demo-section id="grid-spans" title="Row and column spans" description="enableRowSpan and enableColumnSpan merge adjacent cells with the same value.">
+    <ej2-grid data-testid="grid-spans" e-columns.bind="spanColumns" e-data-source.bind="spanRows" e-enable-row-span="true"
+      e-enable-column-span="true"></ej2-grid>
+  </demo-section>
+
+  <demo-section id="grid-formula" title="Formulas" description="formulaSettings with allowFormula columns and a custom function.">
+    <ej2-grid data-testid="grid-formula" e-columns.bind="formulaColumns" e-data-source.bind="formulaRows"
+      e-formula-settings.bind="formulaSettings"></ej2-grid>
+  </demo-section>
+
+  <demo-section id="grid-webmcp" title="WebMCP" description="enableWebMcp registers the grid tools; beforeWebMcpToolExecute is raised before a tool runs.">
+    <ej2-grid data-testid="grid-webmcp" e-columns.bind="narrowColumns" e-data-source.bind="smallRows" e-allow-selection="true"
+      e-enable-web-mcp="true" e-web-mcp-settings.bind="webMcpSettings"
+      e-on-before-web-mcp-tool-execute.delegate="log('mcp.beforeWebMcpToolExecute', $event)"></ej2-grid>
+  </demo-section>
+
+  <demo-section id="grid-custom" title="Custom data binding" description="dataStateChange, columnDataStateChange and dataSourceChanged with a data source handled by the application.">
+    <ej2-grid data-testid="grid-custom" e-columns.bind="customColumns" e-data-source.bind="customData" e-allow-paging="true"
+      e-on-column-data-state-change.delegate="onColumnDataStateChange($event)"
+      e-page-settings.bind="customPage" e-allow-filtering="true" e-filter-settings.bind="customFilter"
+      e-edit-settings.bind="customEdit" e-toolbar.bind="customToolbar"
+      e-on-data-state-change.delegate="onDataStateChange($event)"
+      e-on-data-source-changed.delegate="onDataSourceChanged($event)"></ej2-grid>
+  </demo-section>
+
+  <demo-section id="grid-lazy" title="Lazy load grouping" description="lazyLoadGroupExpand and lazyLoadGroupCollapse for captions fetched on demand.">
+    <ej2-grid data-testid="grid-lazy" e-columns.bind="narrowColumns" e-data-source.bind="lazyRows" e-allow-grouping="true" e-height="300"
+      e-group-settings.bind="lazyGroup" e-allow-sorting="true"
+      e-on-lazy-load-group-expand.delegate="log('lazy.expand', $event)"
+      e-on-lazy-load-group-collapse.delegate="log('lazy.collapse', $event)"></ej2-grid>
+  </demo-section>
+
+  <demo-section id="grid-adaptive" title="Adaptive dialogs" description="enableAdaptiveUI with vertical rows opens adaptive filter and sort dialogs.">
+    <ej2-grid data-testid="grid-adaptive" e-columns.bind="narrowColumns" e-data-source.bind="smallRows" e-enable-adaptive-u-i="true"
+      e-row-rendering-mode="Vertical" e-adaptive-u-i-mode="Mobile" e-allow-filtering="true" e-allow-sorting="true"
+      e-toolbar.bind="adaptiveToolbar" e-allow-paging="true"
+      e-on-before-open-adaptive-dialog.delegate="log('adaptive.beforeOpenAdaptiveDialog', $event)"></ej2-grid>
+  </demo-section>
+</template>

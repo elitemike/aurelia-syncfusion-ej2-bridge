@@ -19,7 +19,9 @@ export class Ej2Switch extends SyncfusionWrapper<Switch, SwitchModel> {
       this.element.removeAttribute("id");
     }
 
-    this.widgetElement.setAttribute("id", this.id);
+    if (this.id) {
+      this.widgetElement.setAttribute("id", this.id);
+    }
   }
 
   protected onWidgetCreated() {
@@ -42,6 +44,7 @@ export class Ej2Switch extends SyncfusionWrapper<Switch, SwitchModel> {
   }
 
   public detached() {
-    this.widget.removeEventListener("change", this.onChange);    
+    this.widget.removeEventListener("change", this.onChange);
+    super.detached();
   }
 }

@@ -1,22 +1,41 @@
 <template>
   <h2>MultiSelect</h2>
 
-  <demo-section id="ms-value" title="Two-way value" description="value is an array bound in both directions.">
+  <demo-section id="ms-value" title="Two-way value" description="value is an array bound in both directions; selection events are raised.">
     <ej2-multi-select data-testid="ms-value" e-data-source.bind="sports" e-fields.bind="fields" e-value.two-way="values"
-      e-on-change.delegate="onChange()"></ej2-multi-select>
+      e-on-change.delegate="onChange()" e-on-select.delegate="rec('value', 'select', $event)"
+      e-on-removing.delegate="rec('value', 'removing')" e-on-removed.delegate="rec('value', 'removed')"
+      e-on-tagging.delegate="rec('value', 'tagging')" e-on-chip-selection.delegate="rec('value', 'chipSelection')"></ej2-multi-select>
     <div class="demo-output">Values: <code data-testid="ms-value-out">${values.join(',')}</code>
-      Changes: <span data-testid="ms-change-count">${changeCount}</span></div>
+      Changes: <span data-testid="ms-change-count">${changeCount}</span>
+      Selected: <span data-testid="ms-select-detail">${selectDetail}</span>
+      Events: <code data-testid="ms-value-ev">${ev.value}</code></div>
     <button data-testid="ms-set" click.delegate="setValues()">Set American Football</button>
   </demo-section>
 
-  <demo-section id="ms-checkbox" title="Checkbox mode" description="mode CheckBox with Select All.">
+  <demo-section id="ms-checkbox" title="Checkbox mode" description="mode CheckBox with Select All, custom labels and select-all events.">
     <ej2-multi-select data-testid="ms-checkbox" e-data-source.bind="sports" e-fields.bind="fields" e-mode="CheckBox"
-      e-show-select-all="true" e-placeholder="Pick games"></ej2-multi-select>
+      e-show-select-all="true" e-select-all-text.bind="selectAllText" e-un-select-all-text.bind="unSelectAllText"
+      e-placeholder="Pick games" e-on-before-select-all.delegate="rec('checkbox', 'beforeSelectAll')"
+      e-on-selected-all.delegate="rec('checkbox', 'selectedAll')"></ej2-multi-select>
+    <div class="demo-output">Events: <code data-testid="ms-checkbox-ev">${ev.checkbox}</code></div>
+  </demo-section>
+
+  <demo-section id="ms-group" title="Group check box" description="enableGroupCheckBox adds a checkbox to each group header, groupTemplate renders it.">
+    <ej2-multi-select data-testid="ms-group" e-data-source.bind="grouped" e-fields.bind="groupFields" e-mode="CheckBox"
+      e-enable-group-check-box="true" e-group-template.bind="groupTemplate"></ej2-multi-select>
+  </demo-section>
+
+  <demo-section id="ms-summary" title="Summary tag" description="summaryTagCount and summaryTagTemplate collapse a long selection into one summary.">
+    <ej2-multi-select data-testid="ms-summary" e-data-source.bind="sports" e-fields.bind="fields" e-mode="CheckBox"
+      e-summary-tag-count.bind="summaryTagCount" e-summary-tag-template.bind="summaryTagTemplate"
+      e-value.two-way="summaryValues"></ej2-multi-select>
+    <button data-testid="ms-summary-set" click.delegate="addToSummary()">Select three</button>
   </demo-section>
 
   <demo-section id="ms-limit" title="Selection limit" description="maximumSelectionLength caps the chips.">
     <ej2-multi-select data-testid="ms-limit" e-data-source.bind="sports" e-fields.bind="fields"
-      e-maximum-selection-length="2" e-placeholder="Max two"></ej2-multi-select>
+      e-maximum-selection-length.bind="2" e-close-popup-on-select.bind="false" e-placeholder="Max two"></ej2-multi-select>
   </demo-section>
 
   <demo-section id="ms-select" title="From &lt;select&gt;" description="Markup in the element body is the data source.">
@@ -27,5 +46,104 @@
         <option value="g3">Rugby</option>
       </select>
     </ej2-multi-select>
+  </demo-section>
+
+  <demo-section id="ms-custom" title="Custom values" description="allowCustomValue lets the user add text that is not in the list, customValueSelection is raised.">
+    <ej2-multi-select data-testid="ms-custom" e-data-source.bind="sports" e-fields.bind="fields" e-allow-custom-value="true"
+      e-placeholder="Type and press enter" e-on-custom-value-selection.delegate="rec('custom', 'customValueSelection')"></ej2-multi-select>
+    <div class="demo-output">Events: <code data-testid="ms-custom-ev">${ev.custom}</code></div>
+  </demo-section>
+
+  <demo-section id="ms-life" title="Lifecycle and popup events" description="created, dataBound, actionBegin, actionComplete, focus, blur, beforeOpen, open and close.">
+    <ej2-multi-select data-testid="ms-life" e-data-source.bind="sports" e-fields.bind="fields" e-placeholder="Lifecycle"
+      e-on-created.delegate="rec('life', 'created')" e-on-data-bound.delegate="rec('life', 'dataBound')"
+      e-on-action-begin.delegate="rec('life', 'actionBegin')" e-on-action-complete.delegate="rec('life', 'actionComplete')"
+      e-on-focus.delegate="rec('life', 'focus')" e-on-blur.delegate="rec('life', 'blur')"
+      e-on-before-open.delegate="rec('life', 'beforeOpen')" e-on-open.delegate="rec('life', 'open')"
+      e-on-close.delegate="rec('life', 'close')"></ej2-multi-select>
+    <div class="demo-output">Events: <code data-testid="ms-life-ev">${ev.life}</code></div>
+  </demo-section>
+
+  <demo-section id="ms-destroy" title="Destroyed event" description="destroyed is raised when the wrapper is removed from the page.">
+    <ej2-multi-select if.bind="showDestroy" data-testid="ms-destroy" e-data-source.bind="sports" e-fields.bind="fields"
+      e-on-destroyed.trigger="onDestroyed()"></ej2-multi-select>
+    <div class="demo-output">Destroyed: <span data-testid="ms-destroyed-count">${destroyedCount}</span></div>
+    <button data-testid="ms-destroy-btn" click.delegate="showDestroy = false">Remove</button>
+  </demo-section>
+
+  <demo-section id="ms-appearance" title="Appearance" description="cssClass, width, popup size, floatLabelType, clear and drop-down icons, htmlAttributes, locale and zIndex.">
+    <ej2-multi-select data-testid="ms-appearance" e-data-source.bind="sports" e-fields.bind="fields" e-value.two-way="appValues"
+      e-css-class.bind="cssClass" e-width.bind="width" e-popup-height.bind="popupHeight" e-popup-width.bind="popupWidth"
+      e-placeholder.bind="placeholder" e-float-label-type.bind="floatLabelType" e-show-clear-button.bind="showClearButton"
+      e-show-drop-down-icon.bind="showDropDownIcon" e-html-attributes.bind="htmlAttributes" e-locale.bind="locale"
+      e-z-index.bind="zIndex" e-enable-html-sanitizer.bind="enableHtmlSanitizer" e-open-on-click.bind="openOnClick"></ej2-multi-select>
+    <button data-testid="ms-restyle" click.delegate="restyle()">Restyle from view-model</button>
+  </demo-section>
+
+  <demo-section id="ms-behaviour" title="Selection behaviour" description="closePopupOnSelect, hideSelectedItem, enableSelectionOrder and sortOrder.">
+    <ej2-multi-select data-testid="ms-behaviour" e-data-source.bind="sports" e-fields.bind="fields"
+      e-close-popup-on-select.bind="closePopupOnSelect" e-hide-selected-item.bind="hideSelectedItem"
+      e-enable-selection-order.bind="enableSelectionOrder" e-sort-order.bind="sortOrder"
+      e-change-on-blur.bind="false" e-add-tag-on-blur.bind="false"></ej2-multi-select>
+  </demo-section>
+
+  <demo-section id="ms-delimiter" title="Delimiter mode" description="mode Delimiter joins the selection with delimiterChar.">
+    <ej2-multi-select data-testid="ms-delimiter" e-data-source.bind="sports" e-fields.bind="fields" e-mode="Delimiter"
+      e-delimiter-char.bind="delimiterChar" e-value.bind="delimValues" e-text.bind="delimText"></ej2-multi-select>
+    <button data-testid="ms-delim-btn" click.delegate="changeDelimiter()">Use pipe</button>
+  </demo-section>
+
+  <demo-section id="ms-state" title="Enabled and readonly" description="enabled and readonly are toggled from the view-model.">
+    <ej2-multi-select data-testid="ms-state" e-data-source.bind="sports" e-fields.bind="fields" e-value.bind="appValues"
+      e-enabled.bind="enabled" e-readonly.bind="readonly"></ej2-multi-select>
+    <button data-testid="ms-state-btn" click.delegate="toggleState()">Toggle state</button>
+  </demo-section>
+
+  <demo-section id="ms-filter" title="Filtering" description="allowFiltering with filterType, ignoreCase, ignoreAccent, debounceDelay and a filter placeholder.">
+    <ej2-multi-select data-testid="ms-filter" e-data-source.bind="accents" e-fields.bind="accentFields" e-mode="CheckBox"
+      e-allow-filtering="true" e-filter-type.bind="filterType" e-filter-bar-placeholder.bind="filterBarPlaceholder"
+      e-ignore-case.bind="ignoreCase" e-ignore-accent.bind="ignoreAccent" e-debounce-delay.bind="debounceDelay"
+      e-is-device-full-screen.bind="isDeviceFullScreen" e-on-filtering.delegate="rec('filter', 'filtering')"></ej2-multi-select>
+    <div class="demo-output">Events: <code data-testid="ms-filter-ev">${ev.filter}</code></div>
+  </demo-section>
+
+  <demo-section id="ms-query" title="Query" description="query limits the items that are taken from the data source.">
+    <ej2-multi-select data-testid="ms-query" e-data-source.bind="sports" e-fields.bind="fields" e-query.bind="query"></ej2-multi-select>
+  </demo-section>
+
+  <demo-section id="ms-object" title="Object binding" description="allowObjectBinding makes value hold the data objects.">
+    <ej2-multi-select data-testid="ms-object" e-data-source.bind="sports" e-fields.bind="fields"
+      e-allow-object-binding.bind="true" e-value.two-way="objValues"></ej2-multi-select>
+    <div class="demo-output">Objects: <code data-testid="ms-object-out">${objValues.length} / ${objValues[0].game}</code></div>
+  </demo-section>
+
+  <demo-section id="ms-templates" title="Templates" description="itemTemplate, valueTemplate, headerTemplate and footerTemplate.">
+    <ej2-multi-select data-testid="ms-templates" e-data-source.bind="sports" e-fields.bind="fields" e-mode="Box"
+      e-value.bind="tplValues" e-item-template.bind="itemTemplate" e-value-template.bind="valueTemplate"
+      e-header-template.bind="headerTemplate" e-footer-template.bind="footerTemplate"></ej2-multi-select>
+  </demo-section>
+
+  <demo-section id="ms-norecords" title="No records template" description="noRecordsTemplate is shown for an empty data source.">
+    <ej2-multi-select data-testid="ms-norecords" e-data-source.bind="noData" e-fields.bind="fields"
+      e-no-records-template.bind="noRecordsTemplate"></ej2-multi-select>
+  </demo-section>
+
+  <demo-section id="ms-remote" title="Remote failure" description="actionFailure and actionFailureTemplate when the data request fails.">
+    <ej2-multi-select data-testid="ms-remote" e-data-source.bind="remote" e-fields.bind="fields"
+      e-action-failure-template.bind="actionFailureTemplate"
+      e-on-action-failure.delegate="rec('remote', 'actionFailure')"></ej2-multi-select>
+    <div class="demo-output">Events: <code data-testid="ms-remote-ev">${ev.remote}</code></div>
+  </demo-section>
+
+  <demo-section id="ms-virtual" title="Virtualization" description="enableVirtualization renders only the visible part of a long list.">
+    <ej2-multi-select data-testid="ms-virtual" e-data-source.bind="bigData" e-fields.bind="bigFields"
+      e-enable-virtualization.bind="true" e-popup-height="200px"></ej2-multi-select>
+  </demo-section>
+
+  <demo-section id="ms-resize" title="Resizable popup" description="allowResize raises resizeStart, resizing and resizeStop.">
+    <ej2-multi-select data-testid="ms-resize" e-data-source.bind="sports" e-fields.bind="fields" e-allow-resize.bind="true"
+      e-on-resize-start.delegate="rec('resize', 'resizeStart')" e-on-resizing.delegate="rec('resize', 'resizing')"
+      e-on-resize-stop.delegate="rec('resize', 'resizeStop')"></ej2-multi-select>
+    <div class="demo-output">Events: <code data-testid="ms-resize-ev">${ev.resize}</code></div>
   </demo-section>
 </template>

@@ -10,11 +10,63 @@
   </demo-section>
 
   <demo-section id="tp-limits" title="Min and max" description="Only times inside the range are listed.">
-    <ej2-time-picker data-testid="tp-limits" e-min.bind="min" e-max.bind="max" e-format="HH:mm" e-step.bind="60"></ej2-time-picker>
+    <ej2-time-picker data-testid="tp-limits" e-min.two-way="min" e-max.two-way="max" e-format="HH:mm" e-step.bind="60"></ej2-time-picker>
+    <button data-testid="tp-limits-set" click.delegate="widenLimits()">Widen to 07:00 - 13:00</button>
   </demo-section>
 
   <demo-section id="tp-options" title="Options" description="placeholder, showClearButton and readonly.">
     <ej2-time-picker data-testid="tp-options" e-placeholder="Pick a time" e-show-clear-button.bind="true"></ej2-time-picker>
     <ej2-time-picker data-testid="tp-readonly" e-value.one-way="value" e-readonly.bind="true" e-format="HH:mm"></ej2-time-picker>
+  </demo-section>
+
+  <demo-section id="tp-events" title="Events" description="Every widget event is logged by name.">
+    <ej2-time-picker data-testid="tp-events" e-value.bind="evValue" e-format="HH:mm" e-step.bind="60" e-show-clear-button.bind="true"
+      e-on-created.delegate="log('created')" e-on-focus.delegate="log('focus')" e-on-blur.delegate="log('blur')"
+      e-on-open.delegate="log('open')" e-on-close.delegate="log('close')" e-on-change.delegate="log('change', $event)"
+      e-on-cleared.delegate="log('cleared')"></ej2-time-picker>
+    <div class="demo-output">Log: <code data-testid="tp-log">${events.join(',')}</code>
+      Last change: <code data-testid="tp-last-change">${lastChange}</code></div>
+  </demo-section>
+
+  <demo-section id="tp-render" title="itemRender" description="The handler marks the 10:00 entry.">
+    <ej2-time-picker data-testid="tp-render" e-format="HH:mm" e-step.bind="60" e-on-item-render.delegate="renderItem($event)"></ej2-time-picker>
+    <div class="demo-output">Items rendered: <span data-testid="tp-render-count">${renderCount}</span></div>
+  </demo-section>
+
+  <demo-section id="tp-destroy" title="destroyed" description="Removing the picker from the DOM destroys the widget.">
+    <ej2-time-picker if.bind="showDestroyable" data-testid="tp-destroy" e-on-destroyed.trigger="destroyedCount = destroyedCount + 1"></ej2-time-picker>
+    <button data-testid="tp-destroy-btn" click.delegate="showDestroyable = false">Remove</button>
+    <div class="demo-output">Destroyed: <span data-testid="tp-destroyed">${destroyedCount}</span></div>
+  </demo-section>
+
+  <demo-section id="tp-dynamic" title="Model to widget" description="Toggling one flag changes every bound property.">
+    <ej2-time-picker data-testid="tp-dynamic" e-value.one-way="value"
+      e-enabled.bind="!alt" e-strict-mode.bind="alt"
+      e-css-class.bind="alt ? 'cls-b' : 'cls-a'" e-placeholder.bind="alt ? 'Beta' : 'Alpha'"
+      e-float-label-type.bind="alt ? 'Always' : 'Never'" e-format.bind="alt ? 'HH:mm' : 'hh:mm a'"
+      e-step.bind="alt ? 15 : 30" e-width.bind="alt ? 240 : 200" e-z-index.bind="alt ? 2000 : 1500"
+      e-open-on-focus.bind="alt" e-show-clear-button.bind="alt" e-scroll-to.bind="alt ? scrollTo : null"
+      e-html-attributes.bind="alt ? htmlAttrsB : htmlAttrsA" e-full-screen-mode.bind="alt" e-enable-mask.bind="alt"></ej2-time-picker>
+    <ej2-time-picker data-testid="tp-dynamic-edit" e-value.one-way="value" e-format="HH:mm"
+      e-readonly.bind="alt" e-allow-edit.bind="!alt" e-server-timezone-offset.bind="alt ? 2 : 0"
+      e-min.bind="alt ? min : defaultMin" e-max.bind="alt ? max : defaultMax"></ej2-time-picker>
+    <button data-testid="tp-toggle" click.delegate="alt = !alt">Toggle</button>
+  </demo-section>
+
+  <demo-section id="tp-strict" title="strictMode" description="Out-of-range input is rejected in strict mode and flagged otherwise.">
+    <ej2-time-picker data-testid="tp-strict" e-min.bind="min" e-max.bind="max" e-format="HH:mm" e-strict-mode.bind="true"></ej2-time-picker>
+    <ej2-time-picker data-testid="tp-loose" e-min.bind="min" e-max.bind="max" e-format="HH:mm" e-strict-mode.bind="false"></ej2-time-picker>
+  </demo-section>
+
+  <demo-section id="tp-focus" title="openOnFocus, allowEdit, zIndex and scrollTo" description="Focus opens the popup at the scrollTo time; the input is locked.">
+    <ej2-time-picker data-testid="tp-focus" e-open-on-focus.bind="true" e-z-index.bind="3500" e-allow-edit.bind="false"
+      e-width.bind="220" e-css-class="demo-tp-focus" e-html-attributes.bind="htmlAttrsA" e-step.bind="30" e-format="HH:mm"
+      e-scroll-to.bind="scrollTo"></ej2-time-picker>
+  </demo-section>
+
+  <demo-section id="tp-mask" title="Mask and key config" description="enableMask with maskPlaceholder, keyConfigs and inert flags.">
+    <ej2-time-picker data-testid="tp-mask" e-enable-mask.bind="true" e-mask-placeholder.bind="maskPlaceholder"
+      e-format="HH:mm" e-key-configs.bind="keyConfigs" e-full-screen-mode.bind="false"
+      e-server-timezone-offset.bind="0" e-locale="en-US" e-enable-rtl.bind="false"></ej2-time-picker>
   </demo-section>
 </template>

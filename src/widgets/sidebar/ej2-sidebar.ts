@@ -15,9 +15,16 @@ export class Ej2Sidebar extends SyncfusionWrapper<Sidebar, SidebarModel> {
 
   protected onWidgetCreated() {
     // isOpen changes through user interaction and toggle(), the widget only reports them through events
+    // Without animation the events are raised before the widget updated isOpen, so read it once they are done.
     const sync = () => {
-      this[`${constants.bindablePrefix}isOpen`] = this.widget.isOpen;
+      setTimeout(() => {
+        if (this.widget) {
+          this[`${constants.bindablePrefix}isOpen`] = this.widget.isOpen;
+        }
+      });
     };
     ['open', 'close', 'change'].forEach((name) => this.widget.addEventListener(name, sync));
+    // a mediaQuery can open the sidebar while it is rendered
+    sync();
   }
 }

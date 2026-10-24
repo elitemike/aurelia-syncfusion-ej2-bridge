@@ -7,6 +7,13 @@ export class SidebarDemo {
   opened = 0;
   closed = 0;
   type = 'Over';
+  changed = 0;
+  position = 'Right';
+  optOpen = false;
+  mediaOpen = false;
+  showLifecycle = true;
+  created = 0;
+  destroyed = 0;
 
   onOpen() {
     this.opened++;
