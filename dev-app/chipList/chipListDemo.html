@@ -1,7 +1,53 @@
 <template>
   <h2>Chip List</h2>
 
-  <demo-section id="chipList-basic" title="Basic" description="Chip List rendered with its default options.">
-    <ej2-chip-list data-testid="chipList-basic"></ej2-chip-list>
+  <demo-section id="chip-basic" title="Chips" description="chips as strings with css class, enabled and the click, beforeClick and created events.">
+    <ej2-chip-list data-testid="chip-basic" e-chips.bind="chips" e-css-class="chip-basic-class" e-enabled.bind="enabled"
+      e-on-created.delegate="created = created + 1" e-on-before-click.delegate="onBeforeClick($event)" e-on-click.delegate="onClick($event)"></ej2-chip-list>
+    <div class="demo-output">created <span data-testid="chip-created">${created}</span> beforeClick <span data-testid="chip-before-click">${beforeClick}</span>
+      click <span data-testid="chip-click">${clicked}</span> last <code data-testid="chip-last">${lastClicked}</code></div>
+    <div class="demo-row">
+      <label><input type="checkbox" data-testid="chip-chk-enabled" checked.bind="enabled" /> enabled</label>
+      <label><input type="checkbox" data-testid="chip-chk-cancel" checked.bind="cancelClick" /> cancel clicks</label>
+      <button data-testid="chip-add" click.delegate="addChip()">Add chip</button>
+    </div>
+  </demo-section>
+
+  <demo-section id="chip-single" title="Single selection" description="selection Single with a two-way selectedChips index.">
+    <ej2-chip-list data-testid="chip-single" e-chips.bind="sizes" e-selection="Single" e-selected-chips.two-way="single"></ej2-chip-list>
+    <div class="demo-output">Selected: <code data-testid="chip-single-out">${single}</code></div>
+    <button data-testid="chip-single-set" click.delegate="single = 2">Select the third chip</button>
+  </demo-section>
+
+  <demo-section id="chip-multiple" title="Multiple selection" description="selection Multiple with a two-way selectedChips array.">
+    <ej2-chip-list data-testid="chip-multiple" e-chips.bind="sizes" e-selection="Multiple" e-selected-chips.two-way="multiple"></ej2-chip-list>
+    <div class="demo-output">Selected: <code data-testid="chip-multiple-out">${multipleText}</code></div>
+    <button data-testid="chip-multiple-set" click.delegate="setMultiple()">Select first and last</button>
+  </demo-section>
+
+  <demo-section id="chip-icons" title="Avatars and icons" description="text, avatarText, avatarIconCss, leadingIconCss, trailingIconCss, leadingIconUrl, trailingIconUrl and htmlAttributes on a single chip.">
+    <div class="demo-row">
+      <ej2-chip-list data-testid="chip-avatar-text" e-text="Anne" e-avatar-text="AN" e-html-attributes.bind="{ 'data-chip': 'anne' }"></ej2-chip-list>
+      <ej2-chip-list data-testid="chip-avatar-icon" e-text="Profile" e-avatar-icon-css="e-icons e-user"></ej2-chip-list>
+      <ej2-chip-list data-testid="chip-leading" e-text="Leading" e-leading-icon-css="e-icons e-star-filled"></ej2-chip-list>
+      <ej2-chip-list data-testid="chip-trailing" e-text="Trailing" e-trailing-icon-css="e-icons e-close"></ej2-chip-list>
+      <ej2-chip-list data-testid="chip-leading-url" e-text="Leading image" e-leading-icon-url="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></ej2-chip-list>
+      <ej2-chip-list data-testid="chip-trailing-url" e-text="Trailing image" e-trailing-icon-url="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></ej2-chip-list>
+    </div>
+  </demo-section>
+
+  <demo-section id="chip-delete" title="Deletable chips" description="enableDelete adds a delete icon, delete (cancelable) and deleted events.">
+    <ej2-chip-list data-testid="chip-delete" e-chips.bind="fruits" e-enable-delete.bind="true" e-css-class="chip-delete-class"
+      e-on-delete.delegate="onDelete($event)" e-on-deleted.delegate="deleted = deleted + 1"></ej2-chip-list>
+    <div class="demo-output">delete <span data-testid="chip-delete-count">${deleteRequests}</span> deleted <span data-testid="chip-deleted">${deleted}</span>
+      <label><input type="checkbox" data-testid="chip-chk-protect" checked.bind="protectFirst" /> protect Apple</label></div>
+  </demo-section>
+
+  <demo-section id="chip-drag" title="Drag and drop" description="allowDragAndDrop within dragArea with the dragStart, dragging and dragStop events.">
+    <div id="chip-drag-area" data-testid="chip-drag-area" style="height: 140px; border: 1px dashed #888; padding: 10px; position: relative;">
+      <ej2-chip-list data-testid="chip-drag" e-chips.bind="colors" e-allow-drag-and-drop.bind="true" e-drag-area="#chip-drag-area"
+        e-on-drag-start.delegate="dragStart = dragStart + 1" e-on-dragging.delegate="dragging = dragging + 1" e-on-drag-stop.delegate="dragStop = dragStop + 1"></ej2-chip-list>
+    </div>
+    <div class="demo-output">dragStart <span data-testid="chip-drag-start">${dragStart}</span> dragging <span data-testid="chip-dragging">${dragging}</span> dragStop <span data-testid="chip-drag-stop">${dragStop}</span></div>
   </demo-section>
 </template>
