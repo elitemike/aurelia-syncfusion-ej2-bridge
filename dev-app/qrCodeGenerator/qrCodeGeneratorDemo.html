@@ -1,7 +1,37 @@
 <template>
   <h2>QR Code Generator</h2>
 
-  <demo-section id="qrCodeGenerator-basic" title="Basic" description="QR Code Generator rendered with its default options.">
-    <ej2-qr-code-generator data-testid="qrCodeGenerator-basic"></ej2-qr-code-generator>
+  <demo-section id="qr-basic" title="Basic" description="QR code with an explicit width, height and value.">
+    <ej2-qr-code-generator data-testid="qr-basic" e-width="200" e-height="200" e-value="https://www.syncfusion.com"></ej2-qr-code-generator>
+  </demo-section>
+
+  <demo-section id="qr-levels" title="Error correction level and version" description="Higher error correction levels and versions add modules to the symbol.">
+    <ej2-qr-code-generator data-testid="qr-low" e-width="200" e-height="200" e-value="Syncfusion" e-error-correction-level.bind="7"></ej2-qr-code-generator>
+    <ej2-qr-code-generator data-testid="qr-high" e-width="200" e-height="200" e-value="Syncfusion" e-error-correction-level.bind="30"></ej2-qr-code-generator>
+    <ej2-qr-code-generator data-testid="qr-version" e-width="200" e-height="200" e-value="Syncfusion" e-version.bind="10"></ej2-qr-code-generator>
+  </demo-section>
+
+  <demo-section id="qr-appearance" title="Appearance" description="foreColor, backgroundColor, margin, displayText and xDimension.">
+    <ej2-qr-code-generator data-testid="qr-appearance" e-width="260" e-height="260" e-value="STYLED" e-fore-color="#0000ff" e-background-color="#ffffcc"
+      e-margin.bind="margin" e-display-text.bind="displayText" e-x-dimension.bind="2"></ej2-qr-code-generator>
+    <ej2-qr-code-generator data-testid="qr-canvas" e-width="200" e-height="200" e-value="CANVAS" e-mode="Canvas"></ej2-qr-code-generator>
+  </demo-section>
+
+  <demo-section id="qr-logo" title="Logo" description="A logo image is drawn over the center of the symbol.">
+    <ej2-qr-code-generator data-testid="qr-logo" e-width="200" e-height="200" e-value="With logo" e-error-correction-level.bind="30" e-logo.bind="logo"></ej2-qr-code-generator>
+  </demo-section>
+
+  <demo-section id="qr-dynamic" title="Dynamic properties" description="Every property follows the view-model.">
+    <ej2-qr-code-generator data-testid="qr-dynamic" e-width.bind="dynSize" e-height.bind="dynSize" e-value.bind="dynValue"
+      e-fore-color.bind="dynFore" e-background-color.bind="dynBack"></ej2-qr-code-generator>
+    <button data-testid="qr-dyn-change" click.delegate="change()">Change</button>
+  </demo-section>
+
+  <demo-section id="qr-invalid" title="Invalid input" description="The invalid event is raised when the value does not fit the chosen version.">
+    <ej2-qr-code-generator data-testid="qr-invalid" e-width="200" e-height="200" e-version.bind="1"
+      e-value.bind="invalidValue" e-on-invalid.delegate="onInvalid($event)"></ej2-qr-code-generator>
+    <div class="demo-output">Invalid events: <span data-testid="qr-invalid-count">${invalidCount}</span>
+      Message: <code data-testid="qr-invalid-message">${invalidMessage}</code></div>
+    <button data-testid="qr-fix" click.delegate="invalidValue = 'ok'">Fix value</button>
   </demo-section>
 </template>
