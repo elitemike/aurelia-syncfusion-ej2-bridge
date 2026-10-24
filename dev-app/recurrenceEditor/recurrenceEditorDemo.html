@@ -1,7 +1,39 @@
 <template>
   <h2>Recurrence Editor</h2>
 
-  <demo-section id="recurrenceEditor-basic" title="Basic" description="Recurrence Editor rendered with its default options.">
-    <ej2-recurrence-editor data-testid="recurrenceEditor-basic"></ej2-recurrence-editor>
+  <demo-section id="re-default" title="Default functionalities"
+    description="The value is the iCalendar recurrence rule. Editing the controls updates the view-model, and setting the rule on the view-model updates the controls.">
+    <ej2-recurrence-editor data-testid="re-default" e-value.two-way="rule" e-start-date.bind="startDate"
+      e-on-change.delegate="onChange($event)"></ej2-recurrence-editor>
+    <div class="demo-output">Rule: <code data-testid="re-rule">${rule}</code>
+      Changes: <span data-testid="re-change-count">${changeCount}</span>
+      Event value: <code data-testid="re-change-value">${changeValue}</code>
+</div>
+    <button data-testid="re-set-rule" click.delegate="setRule()">Set weekly rule from view-model</button>
+  </demo-section>
+
+  <demo-section id="re-options" title="Frequencies, end types and first day of week"
+    description="frequencies and endTypes restrict the choices, selectedType picks the repeat type, firstDayOfWeek orders the weekday buttons.">
+    <ej2-recurrence-editor data-testid="re-options" e-frequencies.bind="frequencies" e-end-types.bind="endTypes"
+      e-first-day-of-week.bind="firstDayOfWeek" e-selected-type.bind="selectedType" e-css-class="re-custom"
+      e-start-date.bind="startDate"></ej2-recurrence-editor>
+    <button data-testid="re-set-type" click.delegate="selectedType = 1">Select the second repeat type</button>
+  </demo-section>
+
+  <demo-section id="re-dates" title="Date format, range and calendar mode"
+    description="dateFormat, minDate, maxDate, startDate and calendarMode (Gregorian or Islamic).">
+    <ej2-recurrence-editor data-testid="re-dates" e-value.bind="untilRule" e-start-date.bind="startDate"
+      e-date-format="dd/MM/yyyy" e-min-date.bind="minDate" e-max-date.bind="maxDate"
+      e-calendar-mode.bind="calendarMode"></ej2-recurrence-editor>
+    <button data-testid="re-islamic" click.delegate="calendarMode = 'Islamic'">Islamic calendar</button>
+  </demo-section>
+
+  <demo-section id="re-life" title="Lifecycle events"
+    description="created is raised when the editor renders, destroyed when it is removed.">
+    <ej2-recurrence-editor if.bind="showEditor" data-testid="re-life" e-on-created.delegate="createdCount = createdCount + 1"
+      e-on-destroyed.trigger="destroyedCount = destroyedCount + 1"></ej2-recurrence-editor>
+    <div class="demo-output">Created: <span data-testid="re-created">${createdCount}</span>
+      Destroyed: <span data-testid="re-destroyed">${destroyedCount}</span></div>
+    <button data-testid="re-toggle" click.delegate="showEditor = !showEditor">Toggle</button>
   </demo-section>
 </template>

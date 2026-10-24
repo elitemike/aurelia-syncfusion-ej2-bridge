@@ -1443,8 +1443,9 @@ export const ControlBindings = {
   recurrenceEditor: {
     oneWay: [
       "frequencies", "endTypes", "firstDayOfWeek", "startDate", "dateFormat", "calendarMode", "cssClass",
-      "value", "minDate", "maxDate", "selectedType"
+      "minDate", "maxDate", "selectedType"
     ],
+    twoWay: ["value"],
     events: [
       "change", "created", "destroyed"
     ]
