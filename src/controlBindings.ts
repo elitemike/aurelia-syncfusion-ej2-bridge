@@ -583,9 +583,12 @@ export const ControlBindings = {
   },
   calendar: {
     oneWay: [
-      "value", "values", "isMultiSelection", "min", "enabled", "cssClass", "max", "firstDayOfWeek",
-      "calendarMode", "start", "depth", "weekNumber", "weekRule", "showTodayButton", "dayHeaderFormat",
-      "keyConfigs", "serverTimezoneOffset"
+      "isMultiSelection", "min", "enabled", "cssClass", "max", "firstDayOfWeek", "calendarMode", "start",
+      "depth", "weekNumber", "weekRule", "showTodayButton", "dayHeaderFormat", "keyConfigs",
+      "serverTimezoneOffset"
+    ],
+    twoWay: [
+      "value", "values"
     ],
     events: [
       "change", "created", "destroyed", "navigated", "renderDayCell"
