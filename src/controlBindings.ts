@@ -976,8 +976,11 @@ export const ControlBindings = {
   },
   colorPicker: {
     oneWay: [
-      "value", "cssClass", "disabled", "mode", "modeSwitcher", "presetColors", "showButtons", "columns",
-      "inline", "noColor", "enableOpacity", "createPopupOnClick", "showRecentColors"
+      "cssClass", "disabled", "mode", "modeSwitcher", "presetColors", "showButtons", "columns", "inline",
+      "noColor", "enableOpacity", "createPopupOnClick", "showRecentColors"
+    ],
+    twoWay: [
+      "value"
     ],
     events: [
       "select", "change", "beforeTileRender", "beforeOpen", "open", "beforeClose", "beforeModeSwitch",

@@ -77,7 +77,6 @@ test('type and textTransform', async ({ app }) => {
 
 test('stylingMode, placeholder and cssClass', async ({ app }) => {
   const section = app.section('otp-style');
-  const host = section.locator('.e-otp-input').first();
   await expect(section.locator('input.e-otp-input-field').first()).toHaveAttribute('placeholder', '*');
   await expect(section.locator('.otp-custom')).toHaveCount(1);
   expect(await widgetProp(section.getByTestId('otp-style'), 'stylingMode')).toBe('outlined');
@@ -85,7 +84,6 @@ test('stylingMode, placeholder and cssClass', async ({ app }) => {
   await expect(section.locator('input.e-otp-input-field').first()).toHaveAttribute('placeholder', '#');
   await expect(section.locator('.otp-custom-two')).toHaveCount(1);
   await expect(section.locator('.e-filled')).toHaveCount(1);
-  expect(host).toBeDefined();
 });
 
 test('disabled, htmlAttributes, ariaLabels, autoFocus and rtl', async ({ app }) => {

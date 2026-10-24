@@ -1,7 +1,50 @@
 <template>
   <h2>Color Picker</h2>
 
-  <demo-section id="colorPicker-basic" title="Basic" description="Color Picker rendered with its default options.">
-    <ej2-color-picker data-testid="colorPicker-basic"></ej2-color-picker>
+  <demo-section id="cp-basic" title="Default picker with two-way value" description="Split button that opens the picker popup. select is raised while browsing, change when the colour is applied, open/close hooks are cancellable.">
+    <ej2-color-picker data-testid="cp-basic" e-value.two-way="value" e-show-buttons.bind="showButtons"
+      e-on-select.delegate="onSelect($event)" e-on-change.delegate="onChange($event)"
+      e-on-before-open.delegate="beforeOpenCount = beforeOpenCount + 1" e-on-open.delegate="openCount = openCount + 1"
+      e-on-before-close.delegate="onBeforeClose($event)" e-on-created.delegate="createdCount = createdCount + 1"></ej2-color-picker>
+    <div class="demo-output">Value: <code data-testid="cp-value-out">${value}</code>
+      Selected: <span data-testid="cp-select-out">${selected}</span>
+      Select count: <span data-testid="cp-select-count">${selectCount}</span>
+      Changes: <span data-testid="cp-change-count">${changeCount}</span>
+      Change hex: <span data-testid="cp-change-hex">${changeHex}</span>
+      Previous hex: <span data-testid="cp-change-prev">${changePrev}</span>
+      Before open: <span data-testid="cp-before-open">${beforeOpenCount}</span>
+      Open: <span data-testid="cp-open">${openCount}</span>
+      Before close: <span data-testid="cp-before-close">${beforeCloseCount}</span>
+      Created: <span data-testid="cp-created">${createdCount}</span></div>
+    <label><input type="checkbox" data-testid="cp-block-close" checked.bind="blockClose" /> cancel close</label>
+    <button data-testid="cp-set" click.delegate="value = '#ff0000ff'">Set red from view-model</button>
+    <button data-testid="cp-buttons" click.delegate="showButtons = !showButtons">Toggle buttons</button>
+  </demo-section>
+
+  <demo-section id="cp-palette" title="Palette with preset colors" description="mode Palette, presetColors, columns, noColor, showRecentColors and beforeTileRender.">
+    <ej2-color-picker data-testid="cp-palette" e-mode="Palette" e-mode-switcher="false" e-inline="true" e-show-buttons="false"
+      e-preset-colors.bind="presets" e-columns.bind="columns" e-no-color.bind="noColor"
+      e-show-recent-colors="true" e-value.two-way="paletteValue"
+      e-on-before-tile-render.delegate="onTile($event)" e-on-change.delegate="paletteChanges = paletteChanges + 1"></ej2-color-picker>
+    <div class="demo-output">Value: <code data-testid="cp-palette-out">${paletteValue}</code>
+      Tiles rendered: <span data-testid="cp-tiles">${tileCount}</span>
+      Changes: <span data-testid="cp-palette-changes">${paletteChanges}</span></div>
+    <button data-testid="cp-palette-change" click.delegate="columns = 3">3 columns</button>
+  </demo-section>
+
+  <demo-section id="cp-switch" title="Mode switcher" description="modeSwitcher toggles between Picker and Palette; beforeModeSwitch and onModeSwitch report the new mode.">
+    <ej2-color-picker data-testid="cp-switch" e-mode-switcher="true" e-inline="true" e-enable-opacity.bind="opacity"
+      e-mode.bind="mode" e-on-before-mode-switch.delegate="onBeforeSwitch($event)"
+      e-on-on-mode-switch.delegate="onSwitch($event)"></ej2-color-picker>
+    <div class="demo-output">Before switch: <span data-testid="cp-before-switch">${beforeSwitch}</span>
+      On switch: <span data-testid="cp-on-switch">${onSwitchMode}</span></div>
+    <button data-testid="cp-opacity" click.delegate="opacity = !opacity">Toggle opacity</button>
+  </demo-section>
+
+  <demo-section id="cp-look" title="Disabled, css class and lazy popup" description="disabled, cssClass, createPopupOnClick, enablePersistence and enableRtl.">
+    <ej2-color-picker data-testid="cp-disabled" e-disabled.bind="disabled" e-css-class.bind="cssClass"
+      e-enable-persistence="false" e-enable-rtl="true"></ej2-color-picker>
+    <ej2-color-picker data-testid="cp-lazy" e-create-popup-on-click="true"></ej2-color-picker>
+    <button data-testid="cp-look-change" click.delegate="changeLook()">Change</button>
   </demo-section>
 </template>
