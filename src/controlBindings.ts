@@ -1025,7 +1025,10 @@ export const ControlBindings = {
     oneWay: [
       "allowReset", "cssClass", "disabled", "emptyTemplate", "enableAnimation", "enableSingleSelection",
       "fullTemplate", "itemsCount", "labelPosition", "labelTemplate", "min", "precision", "readOnly",
-      "showLabel", "showTooltip", "tooltipTemplate", "value", "visible"
+      "showLabel", "showTooltip", "tooltipTemplate", "visible"
+    ],
+    twoWay: [
+      "value"
     ],
     events: [
       "beforeItemRender", "created", "onItemHover", "valueChanged"
