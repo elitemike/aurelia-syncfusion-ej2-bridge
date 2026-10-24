@@ -1,7 +1,78 @@
 <template>
+  <require from="./menuDemo.css"></require>
   <h2>Menu</h2>
 
-  <demo-section id="menu-basic" title="Basic" description="Menu rendered with its default options.">
-    <ej2-menu data-testid="menu-basic"></ej2-menu>
+  <demo-section id="m-default" title="Default functionalities" description="A horizontal menu with submenus, an icon and a separator. Opening, closing and selecting items raise events.">
+    <ej2-menu if.bind="showMenu" data-testid="m-default" e-items.bind="items"
+      e-on-before-item-render.delegate="onBeforeItemRender()" e-on-before-open.delegate="onBeforeOpen($event)"
+      e-on-on-open.delegate="onOpen()" e-on-before-close.delegate="onBeforeClose()" e-on-on-close.delegate="onClose()"
+      e-on-select.delegate="onSelect($event)" e-on-created.delegate="onCreated()"></ej2-menu>
+    <div class="demo-output">BeforeItemRender: <span data-testid="m-bir">${beforeItemRenderCount}</span>
+      BeforeOpen: <span data-testid="m-before-open">${beforeOpenCount}</span>
+      Open: <span data-testid="m-open">${openCount}</span>
+      BeforeClose: <span data-testid="m-before-close">${beforeCloseCount}</span>
+      Close: <span data-testid="m-close">${closeCount}</span>
+      Created: <span data-testid="m-created">${createdCount}</span>
+      Selected: <code data-testid="m-selected">${selectedText}</code>
+      Select count: <span data-testid="m-select-count">${selectCount}</span></div>
+    <div class="demo-row">
+      <button data-testid="m-block" click.delegate="block()">Cancel Edit submenu</button>
+      <button data-testid="m-add" click.delegate="addItem()">Add item</button>
+      <button data-testid="m-toggle" click.delegate="toggle()">Toggle</button>
+    </div>
+  </demo-section>
+
+  <demo-section id="m-vertical" title="Vertical orientation" description="orientation Vertical stacks the top level items.">
+    <ej2-menu data-testid="m-vertical" e-items.bind="verticalItems" e-orientation="Vertical"></ej2-menu>
+  </demo-section>
+
+  <demo-section id="m-hamburger" title="Hamburger mode" description="hamburgerMode collapses the menu behind a title bar, title sets the caption.">
+    <button data-testid="m-retitle" click.delegate="retitle()">Rename title</button>
+    <ej2-menu data-testid="m-hamburger" e-items.bind="hamburgerItems" e-hamburger-mode="true" e-title.bind="hamburgerTitle"></ej2-menu>
+  </demo-section>
+
+  <demo-section id="m-target" title="Hamburger target" description="target is the element whose click opens and closes the hamburger menu.">
+    <button id="m-ham-button" class="e-btn" data-testid="m-ham-button">Toggle menu</button>
+    <ej2-menu data-testid="m-target" e-items.bind="targetItems" e-hamburger-mode="true" e-target="#m-ham-button"></ej2-menu>
+  </demo-section>
+
+  <demo-section id="m-sanitize" title="HTML sanitizer" description="enableHtmlSanitizer strips inline handlers from the hamburger title.">
+    <ej2-menu data-testid="m-sanitize" e-items.bind="sanitizeItems" e-hamburger-mode="true" e-title.bind="title"
+      e-enable-html-sanitizer.bind="sanitize"></ej2-menu>
+    <ej2-menu data-testid="m-unsafe" e-items.bind="unsafeItems" e-hamburger-mode="true" e-title.bind="title"
+      e-enable-html-sanitizer="false"></ej2-menu>
+    <button data-testid="m-unsanitize" click.delegate="unsanitize()">Disable sanitizer</button>
+  </demo-section>
+
+  <demo-section id="m-template" title="Item template" description="template renders custom markup for every item.">
+    <ej2-menu data-testid="m-template" e-items.bind="templateItems" e-template.bind="template"></ej2-menu>
+  </demo-section>
+
+  <demo-section id="m-submenu" title="Submenu behavior" description="showItemOnClick opens submenus on click, hoverDelay delays hover opening.">
+    <ej2-menu data-testid="m-click" e-items.bind="clickItems" e-show-item-on-click.bind="showItemOnClick"
+      e-hover-delay.bind="hoverDelay"></ej2-menu>
+    <div class="demo-row">
+      <button data-testid="m-hover-mode" click.delegate="hoverMode()">Open on hover</button>
+      <button data-testid="m-slow" click.delegate="slowHover()">Hover delay 300</button>
+    </div>
+  </demo-section>
+
+  <demo-section id="m-scroll" title="Scrolling" description="enableScrolling adds scroll buttons when the items do not fit the width.">
+    <div class="m-narrow">
+      <ej2-menu data-testid="m-scroll" e-items.bind="scrollItems" e-enable-scrolling="true"></ej2-menu>
+    </div>
+  </demo-section>
+
+  <demo-section id="m-data" title="Data binding" description="fields maps flat data with parent links onto the menu hierarchy.">
+    <ej2-menu data-testid="m-data" e-items.bind="flatItems" e-fields.bind="fields"></ej2-menu>
+  </demo-section>
+
+  <demo-section id="m-custom" title="Customization" description="cssClass, animationSettings and filter follow the view-model.">
+    <ej2-menu data-testid="m-custom" e-items.bind="customItems" e-css-class.bind="cssClass"
+      e-animation-settings.bind="animationSettings" e-filter.bind="filter"></ej2-menu>
+    <div class="demo-row">
+      <button data-testid="m-restyle" click.delegate="restyle()">Restyle</button>
+      <button data-testid="m-refade" click.delegate="refade()">Slide down</button>
+    </div>
   </demo-section>
 </template>
