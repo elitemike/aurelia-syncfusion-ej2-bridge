@@ -1,0 +1,42 @@
+<template>
+  <demo-section id="chart-basic" title="Basic" description="Chart-level data source shared by two series, with title, borders, palette, legend and tooltip.">
+    <ej2-chart data-testid="chart-basic" e-width="640px" e-height="340px" e-title.bind="title" e-sub-title="First half"
+      e-title-style.bind="titleStyle" e-sub-title-style.bind="subTitleStyle" e-margin.bind="margin" e-border.bind="border"
+      e-background="#fffbe6" e-chart-area.bind="chartArea" e-palettes.bind="palettes" e-theme="Material"
+      e-primary-x-axis.bind="xAxis" e-primary-y-axis.bind="yAxis" e-series.bind="series" e-data-source.bind="sales"
+      e-legend-settings.bind="legend" e-tooltip.bind="tooltip" e-enable-animation.bind="false"
+      e-description="Monthly sales chart" e-tab-index.bind="3"></ej2-chart>
+  </demo-section>
+
+  <demo-section id="chart-background" title="Background image, sanitizer and accessibility" description="backgroundImage, enableHtmlSanitizer, accessibility and the keyboard focus border.">
+    <ej2-chart data-testid="chart-background" e-width="420px" e-height="260px" e-title.bind="htmlTitle"
+      e-enable-html-sanitizer.bind="true" e-background-image.bind="pixel" e-data-source.bind="sales"
+      e-primary-x-axis.bind="xAxis" e-series.bind="series" e-enable-animation.bind="false"
+      e-accessibility.bind="{ accessibilityDescription: 'sales chart', accessibilityRole: 'region', focusable: true, tabIndex: 5 }"
+      e-focus-border-color="#ff0000" e-focus-border-width.bind="4" e-focus-border-margin.bind="2"></ej2-chart>
+  </demo-section>
+
+  <demo-section id="chart-currency" title="Currency and grouping separator" description="currencyCode drives the C labelFormat and useGroupingSeparator groups thousands.">
+    <ej2-chart data-testid="chart-currency" e-width="420px" e-height="260px" e-data-source.bind="currencyData"
+      e-primary-x-axis.bind="currencyX" e-primary-y-axis.bind="currencyY" e-series.bind="currencySeries"
+      e-currency-code.bind="currency" e-use-grouping-separator.bind="true" e-enable-animation.bind="false"></ej2-chart>
+  </demo-section>
+
+  <demo-section id="chart-nodata" title="No data template" description="noDataTemplate replaces the plot when the series has no points.">
+    <ej2-chart data-testid="chart-nodata" e-width="420px" e-height="220px" e-data-source.bind="empty"
+      e-series.bind="emptySeries" e-no-data-template.bind="noData" e-enable-animation.bind="false"></ej2-chart>
+  </demo-section>
+
+  <demo-section id="chart-canvas" title="Canvas rendering" description="enableCanvas renders to a canvas instead of SVG.">
+    <ej2-chart data-testid="chart-canvas" e-width="420px" e-height="240px" e-enable-canvas.bind="true"
+      e-data-source.bind="sales" e-primary-x-axis.bind="xAxis" e-series.bind="series" e-enable-animation.bind="false"></ej2-chart>
+  </demo-section>
+
+  <demo-section id="chart-live" title="Model to widget updates" description="Changing view-model values updates the rendered chart.">
+    <button data-testid="chart-live-change" click.delegate="changeLive()">Change</button>
+    <button data-testid="chart-live-series" click.delegate="changeSeries()">Replace series</button>
+    <ej2-chart data-testid="chart-live" e-width.bind="liveWidth" e-height.bind="liveHeight" e-title.bind="liveTitle"
+      e-data-source.bind="liveData" e-primary-x-axis.bind="currencyX" e-series.bind="liveSeries"
+      e-enable-animation.bind="false"></ej2-chart>
+  </demo-section>
+</template>

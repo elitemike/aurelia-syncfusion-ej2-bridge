@@ -1,0 +1,80 @@
+<template>
+  <h3>Events</h3>
+
+  <demo-section id="chart-events" title="Rendering, mouse, legend, axis and export events" description="Every handler records itself in window.__chartEvents.">
+    <ej2-chart data-testid="chart-events" e-width="100%" e-height="320px" e-data-source.bind="sales" e-series.bind="mainSeries"
+      e-primary-x-axis.bind="cat" e-primary-y-axis.bind="valueAxis" e-tooltip.bind="tooltip" e-crosshair.bind="crosshair"
+      e-annotations.bind="annotations" e-enable-animation.bind="true"
+      e-on-load.delegate="log('load', $event)"
+      e-on-loaded.delegate="log('loaded', $event)"
+      e-on-animation-complete.delegate="log('animationComplete', $event)"
+      e-on-legend-render.delegate="log('legendRender', $event)"
+      e-on-text-render.delegate="log('textRender', $event)"
+      e-on-point-render.delegate="log('pointRender', $event)"
+      e-on-series-render.delegate="log('seriesRender', $event)"
+      e-on-axis-label-render.delegate="log('axisLabelRender', $event)"
+      e-on-axis-label-click.delegate="log('axisLabelClick', $event)"
+      e-on-axis-range-calculated.delegate="log('axisRangeCalculated', $event)"
+      e-on-axis-multi-label-render.delegate="log('axisMultiLabelRender', $event)"
+      e-on-legend-click.delegate="log('legendClick', $event)"
+      e-on-multi-level-label-click.delegate="log('multiLevelLabelClick', $event)"
+      e-on-tooltip-render.delegate="log('tooltipRender', $event)"
+      e-on-crosshair-label-render.delegate="log('crosshairLabelRender', $event)"
+      e-on-chart-mouse-move.delegate="log('chartMouseMove', $event)"
+      e-on-chart-mouse-click.delegate="log('chartMouseClick', $event)"
+      e-on-chart-double-click.delegate="log('chartDoubleClick', $event)"
+      e-on-point-click.delegate="log('pointClick', $event)"
+      e-on-point-double-click.delegate="log('pointDoubleClick', $event)"
+      e-on-point-move.delegate="log('pointMove', $event)"
+      e-on-chart-mouse-leave.delegate="log('chartMouseLeave', $event)"
+      e-on-chart-mouse-down.delegate="log('chartMouseDown', $event)"
+      e-on-chart-mouse-up.delegate="log('chartMouseUp', $event)"
+      e-on-annotation-render.delegate="log('annotationRender', $event)"
+      e-on-before-resize.delegate="log('beforeResize', $event)"
+      e-on-resized.delegate="log('resized', $event)"
+      e-on-before-print.delegate="log('beforePrint', $event)"
+      e-on-before-export.delegate="log('beforeExport', $event)"
+      e-on-after-export.delegate="log('afterExport', $event)"></ej2-chart>
+  </demo-section>
+
+  <demo-section id="chart-events-shared" title="Shared tooltip event" description="sharedTooltipRender fires instead of tooltipRender for a shared tooltip.">
+    <ej2-chart data-testid="chart-events-shared" e-width="420px" e-height="260px" e-data-source.bind="sales" e-series.bind="plainSeries"
+      e-primary-x-axis.bind="catPlain" e-tooltip.bind="shared" e-enable-animation.bind="false"
+      e-on-shared-tooltip-render.delegate="log('sharedTooltipRender', $event)"></ej2-chart>
+  </demo-section>
+
+  <demo-section id="chart-events-zoom" title="Zoom events" description="Selection zooming raises onZooming and zoomComplete.">
+    <ej2-chart data-testid="chart-events-zoom" e-width="520px" e-height="300px" e-primary-x-axis.bind="zoomX" e-series.bind="zoomSeries"
+      e-zoom-settings.bind="zoom" e-enable-animation.bind="false"
+      e-on-on-zooming.delegate="log('onZooming', $event)"
+      e-on-zoom-complete.delegate="log('zoomComplete', $event)"></ej2-chart>
+  </demo-section>
+
+  <demo-section id="chart-events-select" title="Selection events" description="Clicking a point in Point selection mode raises selectionComplete.">
+    <ej2-chart data-testid="chart-events-select" e-width="520px" e-height="300px" e-data-source.bind="sales" e-series.bind="plainSeries"
+      e-primary-x-axis.bind="catPlain" e-selection-mode="Point" e-enable-animation.bind="false"
+      e-on-selection-complete.delegate="log('selectionComplete', $event)"></ej2-chart>
+  </demo-section>
+
+  <demo-section id="chart-events-dragselect" title="Drag selection events" description="DragXY selection mode raises dragComplete when the selection rectangle is released.">
+    <ej2-chart data-testid="chart-events-dragselect" e-width="520px" e-height="300px" e-data-source.bind="sales" e-series.bind="plainSeries"
+      e-primary-x-axis.bind="catPlain" e-selection-mode="DragXY" e-enable-animation.bind="false"
+      e-on-drag-complete.delegate="log('dragComplete', $event)"></ej2-chart>
+  </demo-section>
+
+  <demo-section id="chart-events-scroll" title="Scrollbar events" description="Dragging the axis scrollbar raises scrollStart, scrollChanged and scrollEnd.">
+    <ej2-chart data-testid="chart-events-scroll" e-width="520px" e-height="300px" e-data-source.bind="sales" e-series.bind="plainSeries"
+      e-primary-x-axis.bind="scrollX" e-enable-animation.bind="false"
+      e-on-scroll-start.delegate="log('scrollStart', $event)"
+      e-on-scroll-changed.delegate="log('scrollChanged', $event)"
+      e-on-scroll-end.delegate="log('scrollEnd', $event)"></ej2-chart>
+  </demo-section>
+
+  <demo-section id="chart-events-drag" title="Point drag events" description="Dragging a marker raises dragStart, drag and dragEnd.">
+    <ej2-chart data-testid="chart-events-drag" e-width="420px" e-height="300px" e-series.bind="dragSeries"
+      e-primary-x-axis.bind="catPlain" e-primary-y-axis.bind="dragY" e-enable-animation.bind="false"
+      e-on-drag-start.delegate="log('dragStart', $event)"
+      e-on-drag.delegate="log('drag', $event)"
+      e-on-drag-end.delegate="log('dragEnd', $event)"></ej2-chart>
+  </demo-section>
+</template>

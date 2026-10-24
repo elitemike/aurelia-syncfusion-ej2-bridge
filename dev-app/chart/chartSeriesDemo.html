@@ -1,0 +1,7 @@
+<template>
+  <h3>Series types</h3>
+  <demo-section repeat.for="g of gallery" id="chart-series-${g.id}" title="${g.id} series" description="Series type ${g.id}; the wrapper injects the matching module from the series options.">
+    <ej2-chart data-testid="chart-series-${g.id}" e-width="420px" e-height="240px" e-series.bind="g.series"
+      e-primary-x-axis.bind="g.x" e-enable-animation.bind="false"></ej2-chart>
+  </demo-section>
+</template>

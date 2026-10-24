@@ -1,0 +1,34 @@
+<template>
+  <h3>Interaction</h3>
+
+  <demo-section id="chart-tooltip" title="Tooltip and crosshair" description="Shared tooltip over two series with a crosshair and axis crosshair labels.">
+    <ej2-chart data-testid="chart-tooltip" e-width="520px" e-height="300px" e-data-source.bind="sales" e-series.bind="twoSeries"
+      e-primary-x-axis.bind="cat" e-primary-y-axis.bind="value" e-tooltip.bind="sharedTooltip" e-crosshair.bind="crosshair"
+      e-enable-animation.bind="false"></ej2-chart>
+  </demo-section>
+
+  <demo-section id="chart-selection" title="Selection and highlight" description="Point selection with multi select, selection pattern, highlight color and pattern.">
+    <button data-testid="chart-select-index" click.delegate="changeSelection()">Select point 3</button>
+    <button data-testid="chart-select-mode" click.delegate="changeMode()">Series mode</button>
+    <ej2-chart data-testid="chart-selection" e-width="520px" e-height="300px" e-data-source.bind="sales" e-series.bind="columns"
+      e-primary-x-axis.bind="cat" e-selection-mode.bind="selectionMode" e-selection-pattern.bind="selectionPattern"
+      e-highlight-mode.bind="highlightMode" e-highlight-pattern.bind="highlightPattern" e-highlight-color.bind="highlightColor"
+      e-is-multi-select.bind="multi" e-allow-multi-selection.bind="multi" e-selected-data-indexes.bind="selected"
+      e-enable-animation.bind="false"></ej2-chart>
+  </demo-section>
+
+  <demo-section id="chart-zoom" title="Zooming and panning" description="Selection zooming, mouse wheel zooming, panning and the zoom toolbar.">
+    <ej2-chart data-testid="chart-zoom" e-width="520px" e-height="300px" e-zoom-settings.bind="zoom"
+      e-primary-x-axis.bind="zoomX" e-series.bind="[{ dataSource: dates, xName: 'x', yName: 'y', type: 'Line', name: 'Zoomable' }]"
+      e-enable-animation.bind="false"></ej2-chart>
+  </demo-section>
+
+  <demo-section id="chart-legend" title="Legend" description="Legend position, title, shape size and toggling series visibility.">
+    <ej2-chart data-testid="chart-legend" e-width="520px" e-height="300px" e-data-source.bind="sales" e-series.bind="columns"
+      e-primary-x-axis.bind="cat" e-legend-settings.bind="legend" e-enable-animation.bind="false"></ej2-chart>
+    <ej2-chart data-testid="chart-legend-hidden" e-width="300px" e-height="200px" e-data-source.bind="sales" e-series.bind="columns"
+      e-primary-x-axis.bind="cat" e-legend-settings.bind="legendHidden" e-enable-animation.bind="false"></ej2-chart>
+    <ej2-chart data-testid="chart-legend-highlight" e-width="520px" e-height="300px" e-data-source.bind="sales" e-series.bind="columns"
+      e-primary-x-axis.bind="cat" e-legend-settings.bind="legendHighlight" e-enable-animation.bind="false"></ej2-chart>
+  </demo-section>
+</template>

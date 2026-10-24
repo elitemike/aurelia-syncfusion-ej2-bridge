@@ -1,0 +1,39 @@
+<template>
+  <h3>Features</h3>
+
+  <demo-section id="chart-datalabel" title="Data labels and error bars" description="marker.dataLabel and errorBar bring the DataLabel and ErrorBar modules.">
+    <ej2-chart data-testid="chart-datalabel" e-width="420px" e-height="260px" e-data-source.bind="sales" e-series.bind="columns"
+      e-primary-x-axis.bind="cat" e-enable-animation.bind="false"></ej2-chart>
+    <ej2-chart data-testid="chart-errorbar" e-width="420px" e-height="260px" e-series.bind="errorBars" e-primary-x-axis.bind="cat"
+      e-enable-animation.bind="false"></ej2-chart>
+  </demo-section>
+
+  <demo-section id="chart-annotations" title="Annotations" description="HTML annotations positioned in data coordinates.">
+    <ej2-chart data-testid="chart-annotations" e-width="420px" e-height="260px" e-data-source.bind="sales" e-series.bind="columns"
+      e-primary-x-axis.bind="cat" e-annotations.bind="annotations" e-enable-animation.bind="false"></ej2-chart>
+  </demo-section>
+
+  <demo-section id="chart-indicators" title="Technical indicators" description="SMA, EMA, TMA and Bollinger bands on a candle series, MACD in its own row.">
+    <ej2-chart data-testid="chart-indicators" e-width="640px" e-height="320px" e-series.bind="candle" e-indicators.bind="indicators"
+      e-primary-x-axis.bind="dateX" e-enable-animation.bind="false"></ej2-chart>
+    <ej2-chart data-testid="chart-macd" e-width="640px" e-height="360px" e-series.bind="candle" e-indicators.bind="macdIndicators"
+      e-axes.bind="macdAxes" e-rows.bind="macdRows" e-primary-x-axis.bind="dateX" e-enable-animation.bind="false"></ej2-chart>
+  </demo-section>
+
+  <demo-section id="chart-trendlines" title="Trendlines" description="Linear and polynomial trendlines over a scatter series.">
+    <ej2-chart data-testid="chart-trendlines" e-width="420px" e-height="260px" e-series.bind="trend" e-enable-animation.bind="false"></ej2-chart>
+  </demo-section>
+
+  <demo-section id="chart-export" title="Export" description="enableExport and allowExport load the Export module that prints and exports the chart.">
+    <ej2-chart data-testid="chart-export" e-width="420px" e-height="260px" e-data-source.bind="sales" e-series.bind="columns"
+      e-primary-x-axis.bind="cat" e-enable-export.bind="exportEnabled" e-allow-export.bind="exportAllowed"
+      e-enable-animation.bind="false"></ej2-chart>
+  </demo-section>
+
+  <demo-section id="chart-webmcp" title="WebMCP tools" description="enableWebMcp registers chart tools on document.modelContext, webMcpSettings names them.">
+    <ej2-chart data-testid="chart-webmcp" e-width="420px" e-height="260px" e-data-source.bind="sales" e-series.bind="columns"
+      e-primary-x-axis.bind="cat" e-enable-web-mcp.bind="true" e-web-mcp-settings.bind="mcpSettings"
+      e-on-before-web-mcp-tool-execute.delegate="log('beforeWebMcpToolExecute', $event)"
+      e-enable-animation.bind="false"></ej2-chart>
+  </demo-section>
+</template>

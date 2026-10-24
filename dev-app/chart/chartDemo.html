@@ -1,7 +1,5 @@
 <template>
   <h2>Chart</h2>
 
-  <demo-section id="chart-basic" title="Basic" description="Chart rendered with its default options.">
-    <ej2-chart data-testid="chart-basic"></ej2-chart>
-  </demo-section>
+  <compose repeat.for="part of parts" view-model.bind="part"></compose>
 </template>

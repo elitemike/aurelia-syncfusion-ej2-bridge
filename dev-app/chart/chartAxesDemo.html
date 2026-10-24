@@ -1,0 +1,43 @@
+<template>
+  <h3>Axes and layout</h3>
+
+  <demo-section id="chart-rows" title="Multiple rows and secondary axis" description="rows split the plot area, axes adds a named axis that a series binds to.">
+    <ej2-chart data-testid="chart-rows" e-width="520px" e-height="360px" e-data-source.bind="sales" e-series.bind="rowSeries"
+      e-primary-x-axis.bind="cat" e-rows.bind="rows" e-axes.bind="rowAxes" e-enable-animation.bind="false"></ej2-chart>
+  </demo-section>
+
+  <demo-section id="chart-columns" title="Multiple columns and secondary axis" description="columns split the plot area horizontally.">
+    <ej2-chart data-testid="chart-columns" e-width="620px" e-height="300px" e-data-source.bind="sales" e-series.bind="colSeries"
+      e-primary-x-axis.bind="cat" e-columns.bind="columns" e-axes.bind="colAxes" e-enable-animation.bind="false"></ej2-chart>
+  </demo-section>
+
+  <demo-section id="chart-transposed" title="Transposed axes" description="isTransposed swaps the axes of the chart.">
+    <ej2-chart data-testid="chart-transposed" e-width="420px" e-height="260px" e-data-source.bind="sales" e-series.bind="columnSeries"
+      e-primary-x-axis.bind="cat" e-is-transposed.bind="transposed" e-enable-animation.bind="false"></ej2-chart>
+  </demo-section>
+
+  <demo-section id="chart-placement" title="Side by side placement and auto interval" description="enableSideBySidePlacement false overlaps the columns, enableAutoIntervalOnBothAxis computes intervals on both axes.">
+    <ej2-chart data-testid="chart-placement" e-width="420px" e-height="260px" e-data-source.bind="sales" e-series.bind="columnSeries"
+      e-primary-x-axis.bind="cat" e-enable-side-by-side-placement.bind="sideBySide"
+      e-enable-auto-interval-on-both-axis.bind="autoInterval" e-enable-animation.bind="false"></ej2-chart>
+  </demo-section>
+
+  <demo-section id="chart-stacklabels" title="Stack labels" description="stackLabels shows the total above each stacked column.">
+    <ej2-chart data-testid="chart-stacklabels" e-width="420px" e-height="260px" e-data-source.bind="sales" e-series.bind="stackedSeries"
+      e-primary-x-axis.bind="cat" e-stack-labels.bind="stackLabels" e-enable-animation.bind="false"></ej2-chart>
+  </demo-section>
+
+  <demo-section id="chart-rangecolor" title="Range color mapping" description="rangeColorSettings colors points by value and replaces the legend with the ranges.">
+    <ej2-chart data-testid="chart-rangecolor" e-width="420px" e-height="260px" e-data-source.bind="sales" e-series.bind="rangeSeries"
+      e-primary-x-axis.bind="cat" e-range-color-settings.bind="rangeColors" e-legend-settings.bind="rangeLegend" e-enable-animation.bind="false"></ej2-chart>
+  </demo-section>
+
+  <demo-section id="chart-axis-types" title="Axis types" description="Logarithmic, date time, strip lines and multi level labels bring their own modules.">
+    <ej2-chart data-testid="chart-log" e-width="420px" e-height="240px" e-primary-y-axis.bind="logY"
+      e-series.bind="[{ dataSource: logData, xName: 'x', yName: 'y', type: 'Line', name: 'Log' }]" e-enable-animation.bind="false"></ej2-chart>
+    <ej2-chart data-testid="chart-date" e-width="420px" e-height="240px" e-primary-x-axis.bind="dateX" e-series.bind="dateSeries"
+      e-enable-animation.bind="false"></ej2-chart>
+    <ej2-chart data-testid="chart-strip" e-width="520px" e-height="280px" e-data-source.bind="sales" e-primary-x-axis.bind="stripX"
+      e-series.bind="stripSeries" e-enable-animation.bind="false"></ej2-chart>
+  </demo-section>
+</template>

@@ -1,7 +1,61 @@
 <template>
   <h2>Stock Chart</h2>
 
-  <demo-section id="stockChart-basic" title="Basic" description="Stock Chart rendered with its default options.">
-    <ej2-stock-chart data-testid="stockChart-basic"></ej2-stock-chart>
+  <demo-section id="stock-basic" title="Candle chart with period and range selector" description="Candle series, period selector with toolbar choices, range selector, tooltip, crosshair, legend and zoom.">
+    <button data-testid="stock-area-border" click.delegate="changeArea()">Change chart area</button>
+    <ej2-stock-chart data-testid="stock-basic" e-width="900px" e-height="460px" e-title.bind="title" e-title-style.bind="titleStyle"
+      e-margin.bind="margin" e-border.bind="border" e-background="#fffbe6" e-theme="Material" e-series.bind="candle"
+      e-primary-x-axis.bind="xAxis" e-primary-y-axis.bind="yAxis" e-chart-area.bind="chartArea" e-tooltip.bind="tooltip"
+      e-crosshair.bind="crosshair" e-legend-settings.bind="legend" e-zoom-settings.bind="zoom" e-periods.bind="periods"
+      e-enable-period-selector.bind="true" e-enable-selector.bind="true" e-enable-custom-range.bind="customRange" e-is-select.bind="isSelect"
+      e-series-type.bind="seriesType" e-indicator-type.bind="indicatorType" e-trendline-type.bind="trendlineType"
+      e-export-type.bind="exportType"
+      e-on-selector-render.delegate="log('stock.selectorRender', $event)"
+      e-on-stock-chart-mouse-move.delegate="log('stock.stockChartMouseMove', $event)"
+      e-on-stock-chart-mouse-leave.delegate="log('stock.stockChartMouseLeave', $event)"
+      e-on-stock-chart-mouse-down.delegate="log('stock.stockChartMouseDown', $event)"
+      e-on-stock-chart-mouse-up.delegate="log('stock.stockChartMouseUp', $event)"
+      e-on-stock-chart-mouse-click.delegate="log('stock.stockChartMouseClick', $event)"
+      e-on-point-click.delegate="log('stock.pointClick', $event)"
+      e-on-point-move.delegate="log('stock.pointMove', $event)"
+      e-on-on-zooming.delegate="log('stock.onZooming', $event)"
+      e-on-legend-render.delegate="log('stock.legendRender', $event)"
+      e-on-legend-click.delegate="log('stock.legendClick', $event)"
+      e-on-before-indicator-change.delegate="log('stock.beforeIndicatorChange', $event)"
+      e-on-indicator-changed.delegate="log('stock.indicatorChanged', $event)"
+      e-on-load.delegate="log('stock.load', $event)"
+      e-on-loaded.delegate="log('stock.loaded', $event)"
+      e-on-range-change.delegate="log('stock.rangeChange', $event)"
+      e-on-axis-label-render.delegate="log('stock.axisLabelRender', $event)"
+      e-on-before-export.delegate="log('stock.beforeExport', $event)"
+      e-on-tooltip-render.delegate="log('stock.tooltipRender', $event)"
+      e-on-crosshair-label-render.delegate="log('stock.crosshairLabelRender', $event)"
+      e-on-series-render.delegate="log('stock.seriesRender', $event)"></ej2-stock-chart>
+  </demo-section>
+
+  <demo-section id="stock-datasource" title="Chart level data source" description="The dataSource on the stock chart feeds series without their own data.">
+    <ej2-stock-chart data-testid="stock-datasource" e-width="700px" e-height="360px" e-data-source.bind="data" e-series.bind="sharedCandle"
+      e-enable-selector.bind="false" e-enable-period-selector.bind="false"></ej2-stock-chart>
+  </demo-section>
+
+  <demo-section id="stock-indicators" title="Indicators in a second row" description="SMA over the price and RSI in its own row through rows and axes.">
+    <ej2-stock-chart data-testid="stock-indicators" e-width="800px" e-height="460px" e-series.bind="candle" e-indicators.bind="indicators"
+      e-rows.bind="rows" e-axes.bind="axes" e-enable-selector.bind="false" e-enable-period-selector.bind="false"></ej2-stock-chart>
+  </demo-section>
+
+  <demo-section id="stock-events" title="Stock events" description="Flags and circles mark dates on the series, stockEventRender customises them.">
+    <ej2-stock-chart data-testid="stock-events" e-width="800px" e-height="360px" e-series.bind="candle" e-stock-events.bind="stockEvents"
+      e-enable-selector.bind="false" e-enable-period-selector.bind="false"
+      e-on-stock-event-render.delegate="log('stock.stockEventRender', $event)"></ej2-stock-chart>
+  </demo-section>
+
+  <demo-section id="stock-selection" title="Selection and annotations" description="Point selection with multi select, preselected indexes, transposed axes and an annotation.">
+    <ej2-stock-chart data-testid="stock-selection" e-width="700px" e-height="360px" e-series.bind="twoSeries" e-selection-mode.bind="selectionMode"
+      e-is-multi-select.bind="true" e-selected-data-indexes.bind="selected" e-annotations.bind="annotations"
+      e-enable-selector.bind="false" e-enable-period-selector.bind="false"></ej2-stock-chart>
+    <ej2-stock-chart data-testid="stock-transposed" e-width="500px" e-height="360px" e-series.bind="line" e-is-transposed.bind="true"
+      e-enable-selector.bind="false" e-enable-period-selector.bind="false"></ej2-stock-chart>
+    <ej2-stock-chart data-testid="stock-nodata" e-width="500px" e-height="200px" e-data-source.bind="empty" e-no-data-template.bind="noData"
+      e-series.bind="sharedCandle" e-enable-selector.bind="false" e-enable-period-selector.bind="false"></ej2-stock-chart>
   </demo-section>
 </template>

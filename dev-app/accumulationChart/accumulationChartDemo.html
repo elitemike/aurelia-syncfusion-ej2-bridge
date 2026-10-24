@@ -1,7 +1,76 @@
 <template>
   <h2>Accumulation Chart</h2>
 
-  <demo-section id="accumulationChart-basic" title="Basic" description="Accumulation Chart rendered with its default options.">
-    <ej2-accumulation-chart data-testid="accumulationChart-basic"></ej2-accumulation-chart>
+  <demo-section id="acc-basic" title="Pie with legend, tooltip and labels" description="Pie series with exploded point, outside data labels, legend, tooltip, margin, border and center.">
+    <ej2-accumulation-chart data-testid="acc-basic" e-width="640px" e-height="360px" e-title.bind="title" e-sub-title="Desktop 2024"
+      e-title-style.bind="titleStyle" e-sub-title-style.bind="subTitleStyle" e-margin.bind="margin" e-border.bind="border"
+      e-background="#fffbe6" e-center.bind="center" e-theme="Material" e-legend-settings.bind="legend" e-tooltip.bind="tooltip"
+      e-series.bind="pieSeries" e-enable-smart-labels.bind="true" e-enable-animation.bind="false"></ej2-accumulation-chart>
+  </demo-section>
+
+  <demo-section id="acc-doughnut" title="Semi doughnut with center label" description="innerRadius, startAngle and endAngle shape a semi doughnut, centerLabel writes inside it.">
+    <ej2-accumulation-chart data-testid="acc-doughnut" e-width="420px" e-height="300px" e-series.bind="doughnutSeries"
+      e-center-label.bind="centerLabel" e-enable-animation.bind="false"></ej2-accumulation-chart>
+  </demo-section>
+
+  <demo-section id="acc-funnel" title="Funnel and pyramid" description="Funnel and Pyramid series types bring their modules.">
+    <ej2-accumulation-chart data-testid="acc-funnel" e-width="360px" e-height="300px" e-series.bind="funnelSeries"
+      e-enable-animation.bind="false"></ej2-accumulation-chart>
+    <ej2-accumulation-chart data-testid="acc-pyramid" e-width="360px" e-height="300px" e-series.bind="pyramidSeries"
+      e-enable-animation.bind="false"></ej2-accumulation-chart>
+  </demo-section>
+
+  <demo-section id="acc-selection" title="Selection and highlight" description="Point selection with pattern, highlight color, pattern and preselected indexes.">
+    <ej2-accumulation-chart data-testid="acc-selection" e-width="420px" e-height="300px" e-series.bind="plainSeries"
+      e-selection-mode.bind="selectionMode" e-highlight-mode.bind="highlightMode" e-selection-pattern.bind="selectionPattern"
+      e-highlight-pattern.bind="highlightPattern" e-highlight-color.bind="highlightColor" e-is-multi-select.bind="multi"
+      e-selected-data-indexes.bind="selected" e-enable-border-on-mouse-move.bind="true"
+      e-enable-animation.bind="false"
+      e-on-selection-complete.delegate="log('acc.selectionComplete', $event)"></ej2-accumulation-chart>
+  </demo-section>
+
+  <demo-section id="acc-look" title="Look" description="Background image, sanitizer, accessibility, smart labels, annotation, currency formatting and no data template.">
+    <ej2-accumulation-chart data-testid="acc-background" e-width="420px" e-height="300px" e-title.bind="htmlTitle"
+      e-background-image.bind="pixel" e-enable-html-sanitizer.bind="true" e-series.bind="plainSeries"
+      e-accessibility.bind="{ accessibilityDescription: 'browser chart', accessibilityRole: 'region', focusable: true }"
+      e-focus-border-color="#ff0000" e-focus-border-width.bind="4" e-focus-border-margin.bind="2"
+      e-annotations.bind="annotations" e-enable-animation.bind="false"></ej2-accumulation-chart>
+    <ej2-accumulation-chart data-testid="acc-money" e-width="420px" e-height="300px" e-series.bind="moneySeries"
+      e-use-grouping-separator.bind="true" e-currency-code="EUR" e-enable-animation.bind="false"></ej2-accumulation-chart>
+    <ej2-accumulation-chart data-testid="acc-nodata" e-width="420px" e-height="200px" e-data-source.bind="empty"
+      e-series.bind="[{ xName: 'x', yName: 'y', type: 'Pie' }]" e-no-data-template.bind="noData"
+      e-enable-animation.bind="false"></ej2-accumulation-chart>
+    <ej2-accumulation-chart data-testid="acc-datasource" e-width="420px" e-height="300px" e-data-source.bind="pie"
+      e-series.bind="[{ xName: 'x', yName: 'y', type: 'Pie', name: 'Shared' }]" e-enable-animation.bind="false"></ej2-accumulation-chart>
+    <ej2-accumulation-chart data-testid="acc-export" e-width="420px" e-height="300px" e-series.bind="plainSeries"
+      e-enable-export.bind="exportEnabled" e-allow-export.bind="exportAllowed" e-enable-animation.bind="false"></ej2-accumulation-chart>
+  </demo-section>
+
+  <demo-section id="acc-events" title="Events" description="Every handler records itself in window.__chartEvents.">
+    <ej2-accumulation-chart data-testid="acc-events" e-width="100%" e-height="320px" e-series.bind="smartSeries"
+      e-legend-settings.bind="legend" e-tooltip.bind="tooltip" e-annotations.bind="annotations" e-enable-animation.bind="true"
+      e-on-load.delegate="log('acc.load', $event)"
+      e-on-loaded.delegate="log('acc.loaded', $event)"
+      e-on-legend-click.delegate="log('acc.legendClick', $event)"
+      e-on-series-render.delegate="log('acc.seriesRender', $event)"
+      e-on-legend-render.delegate="log('acc.legendRender', $event)"
+      e-on-text-render.delegate="log('acc.textRender', $event)"
+      e-on-tooltip-render.delegate="log('acc.tooltipRender', $event)"
+      e-on-point-render.delegate="log('acc.pointRender', $event)"
+      e-on-annotation-render.delegate="log('acc.annotationRender', $event)"
+      e-on-before-print.delegate="log('acc.beforePrint', $event)"
+      e-on-chart-mouse-move.delegate="log('acc.chartMouseMove', $event)"
+      e-on-chart-mouse-click.delegate="log('acc.chartMouseClick', $event)"
+      e-on-chart-double-click.delegate="log('acc.chartDoubleClick', $event)"
+      e-on-point-click.delegate="log('acc.pointClick', $event)"
+      e-on-point-move.delegate="log('acc.pointMove', $event)"
+      e-on-animation-complete.delegate="log('acc.animationComplete', $event)"
+      e-on-chart-mouse-down.delegate="log('acc.chartMouseDown', $event)"
+      e-on-chart-mouse-leave.delegate="log('acc.chartMouseLeave', $event)"
+      e-on-chart-mouse-up.delegate="log('acc.chartMouseUp', $event)"
+      e-on-before-resize.delegate="log('acc.beforeResize', $event)"
+      e-on-resized.delegate="log('acc.resized', $event)"
+      e-on-before-export.delegate="log('acc.beforeExport', $event)"
+      e-on-after-export.delegate="log('acc.afterExport', $event)"></ej2-accumulation-chart>
   </demo-section>
 </template>
