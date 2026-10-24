@@ -23,6 +23,7 @@
     "e2e:ui": "playwright test --ui",
     "e2e:report": "playwright show-report",
     "check:bindings": "node tools/check-bindings.js",
+    "check:coverage": "node tools/check-coverage.js",
     "sync:bindings": "node tools/check-bindings.js --write"
   },
   "devDependencies": {
