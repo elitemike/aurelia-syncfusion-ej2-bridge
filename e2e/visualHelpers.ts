@@ -31,6 +31,25 @@ export async function widgetCall<T = any>(control: Locator, fn: (widget: any, ar
   }, [fn.toString(), arg] as [string, any]);
 }
 
+/** Move the real mouse over an svg shape. Stroke-only paths have no visible area for locator.hover(), so use the box. */
+export async function moveOver(target: Locator, fx = 0.5, fy = 0.5) {
+  await target.evaluate((el: Element) => el.scrollIntoView({ block: 'center', inline: 'center' }));
+  const box = await target.boundingBox();
+  if (!box) { throw new Error('element has no bounding box'); }
+  const x = box.x + box.width * fx;
+  const y = box.y + box.height * fy;
+  await target.page().mouse.move(x, y);
+  return { x, y };
+}
+
+/** Click the middle of an svg shape with the real mouse. */
+export async function clickOver(target: Locator, fx = 0.5, fy = 0.5) {
+  const { x, y } = await moveOver(target, fx, fy);
+  await target.page().mouse.down();
+  await target.page().mouse.up();
+  return { x, y };
+}
+
 /** Current value of a demo output element as a number (counters). */
 export async function counter(page: Page | Locator, testId: string): Promise<number> {
   return Number(await page.getByTestId(testId).innerText());
