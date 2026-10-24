@@ -1,7 +1,87 @@
 <template>
   <h2>Linear Gauge</h2>
 
-  <demo-section id="linearGauge-basic" title="Basic" description="Linear Gauge rendered with its default options.">
-    <ej2-linear-gauge data-testid="linearGauge-basic"></ej2-linear-gauge>
+  <demo-section id="lg-basic" title="Default gauge" description="A vertical gauge with a bar pointer, ranges, title, border, background, margin and a container.">
+    <ej2-linear-gauge data-testid="lg-basic" e-width="200" e-height="420" e-title="Temperature" e-title-style.bind="titleStyle" e-border.bind="border"
+      e-background="#f5f5f5" e-margin.bind="margin" e-container.bind="container" e-axes.bind="basicAxes" e-animation-duration.bind="0"
+      e-orientation="Vertical" e-theme="Fabric" e-description="Temperature gauge" e-tab-index.bind="4" e-use-grouping-separator.bind="true"
+      e-format="n1" e-allow-margin.bind="true" e-edge-label-placement="Shift"></ej2-linear-gauge>
+  </demo-section>
+
+  <demo-section id="lg-horizontal" title="Horizontal thermometer" description="Orientation Horizontal with a thermometer container.">
+    <ej2-linear-gauge data-testid="lg-horizontal" e-width="460" e-height="160" e-orientation.bind="orientation" e-container.bind="thermometer"
+      e-axes.bind="horizontalAxes" e-animation-duration.bind="0"></ej2-linear-gauge>
+    <button data-testid="lg-flip" click.delegate="flip()">Flip orientation</button>
+  </demo-section>
+
+  <demo-section id="lg-pointers" title="Marker pointers" description="Triangle, diamond and circle markers on opposed axes, inversed scale.">
+    <ej2-linear-gauge data-testid="lg-pointers" e-width="460" e-height="200" e-orientation="Horizontal" e-axes.bind="markerAxes" e-animation-duration.bind="0"></ej2-linear-gauge>
+  </demo-section>
+
+  <demo-section id="lg-ranges" title="Ranges, gradient and range palettes" description="Ranges take their colour from rangePalettes or from a linear gradient.">
+    <ej2-linear-gauge data-testid="lg-ranges" e-width="460" e-height="160" e-orientation="Horizontal" e-axes.bind="rangeAxes" e-range-palettes.bind="palettes"
+      e-animation-duration.bind="0"></ej2-linear-gauge>
+  </demo-section>
+
+  <demo-section id="lg-annotations" title="Annotations" description="Gauge annotations place HTML relative to an axis value.">
+    <ej2-linear-gauge data-testid="lg-annotations" e-width="460" e-height="200" e-orientation="Horizontal" e-axes.bind="annotationAxes" e-annotations.bind="annotations"
+      e-animation-duration.bind="0" e-on-annotation-render.delegate="log('annotationRender', $event)"></ej2-linear-gauge>
+    <div class="demo-output">Annotation renders: <span data-testid="lg-annotation-count">${counts.annotationRender}</span></div>
+  </demo-section>
+
+  <demo-section id="lg-tooltip" title="Tooltip" description="Hovering the pointer shows a formatted tooltip.">
+    <ej2-linear-gauge data-testid="lg-tooltip" e-width="460" e-height="200" e-orientation="Horizontal" e-axes.bind="tooltipAxes" e-tooltip.bind="tooltip"
+      e-animation-duration.bind="0" e-on-tooltip-render.delegate="log('tooltipRender', $event)"></ej2-linear-gauge>
+    <div class="demo-output">Tooltip renders: <span data-testid="lg-tooltip-count">${counts.tooltipRender}</span>
+      Content: <code data-testid="lg-tooltip-content">${tooltipContent}</code></div>
+  </demo-section>
+
+  <demo-section id="lg-drag" title="Drag pointer" description="Marker pointer with enableDrag raises drag events and valueChange.">
+    <ej2-linear-gauge data-testid="lg-drag" e-width="460" e-height="160" e-orientation="Horizontal" e-axes.bind="dragAxes" e-animation-duration.bind="0"
+      e-on-drag-start.delegate="log('dragStart', $event)" e-on-drag-move.delegate="log('dragMove', $event)" e-on-drag-end.delegate="log('dragEnd', $event)"
+      e-on-value-change.delegate="log('valueChange', $event)"></ej2-linear-gauge>
+    <div class="demo-output">
+      dragStart <span data-testid="lg-ev-dragStart">${counts.dragStart}</span>
+      dragMove <span data-testid="lg-ev-dragMove">${counts.dragMove}</span>
+      dragEnd <span data-testid="lg-ev-dragEnd">${counts.dragEnd}</span>
+      valueChange <span data-testid="lg-ev-valueChange">${counts.valueChange}</span>
+      Value <span data-testid="lg-drag-value">${dragValue}</span>
+    </div>
+  </demo-section>
+
+  <demo-section id="lg-events" title="Events" description="Rendering, animation, mouse, resize and print events.">
+    <ej2-linear-gauge data-testid="lg-events" e-width="100%" e-height="160" e-orientation="Horizontal" e-axes.bind="eventAxes" e-animation-duration.bind="500" e-allow-print.bind="true"
+      e-on-load.delegate="log('load', $event)" e-on-loaded.delegate="log('loaded', $event)" e-on-animation-complete.delegate="log('animationComplete', $event)"
+      e-on-axis-label-render.delegate="onAxisLabelRender($event)"
+      e-on-gauge-mouse-move.delegate="log('gaugeMouseMove', $event)" e-on-gauge-mouse-leave.delegate="log('gaugeMouseLeave', $event)"
+      e-on-gauge-mouse-down.delegate="log('gaugeMouseDown', $event)" e-on-gauge-mouse-up.delegate="log('gaugeMouseUp', $event)"
+      e-on-resized.delegate="log('resized', $event)" e-on-before-print.delegate="onBeforePrint($event)"></ej2-linear-gauge>
+    <div class="demo-output">
+      <div>
+        load <span data-testid="lg-ev-load">${counts.load}</span>
+        loaded <span data-testid="lg-ev-loaded">${counts.loaded}</span>
+        animationComplete <span data-testid="lg-ev-animationComplete">${counts.animationComplete}</span>
+        axisLabelRender <span data-testid="lg-ev-axisLabelRender">${counts.axisLabelRender}</span>
+      </div>
+      <div>
+        gaugeMouseMove <span data-testid="lg-ev-gaugeMouseMove">${counts.gaugeMouseMove}</span>
+        gaugeMouseLeave <span data-testid="lg-ev-gaugeMouseLeave">${counts.gaugeMouseLeave}</span>
+        gaugeMouseDown <span data-testid="lg-ev-gaugeMouseDown">${counts.gaugeMouseDown}</span>
+        gaugeMouseUp <span data-testid="lg-ev-gaugeMouseUp">${counts.gaugeMouseUp}</span>
+        resized <span data-testid="lg-ev-resized">${counts.resized}</span>
+        beforePrint <span data-testid="lg-ev-beforePrint">${counts.beforePrint}</span>
+      </div>
+    </div>
+  </demo-section>
+
+  <demo-section id="lg-export" title="Export" description="allowImageExport and allowPdfExport enable exporting the gauge.">
+    <ej2-linear-gauge data-testid="lg-export" e-width="460" e-height="160" e-orientation="Horizontal" e-axes.bind="horizontalAxes" e-animation-duration.bind="0"
+      e-allow-image-export.bind="true" e-allow-pdf-export.bind="true"></ej2-linear-gauge>
+  </demo-section>
+
+  <demo-section id="lg-dynamic" title="Dynamic properties" description="Properties follow the view-model.">
+    <ej2-linear-gauge data-testid="lg-dynamic" e-width.bind="dynWidth" e-height="160" e-orientation="Horizontal" e-title.bind="dynTitle" e-background.bind="dynBackground"
+      e-axes.bind="dynAxes" e-animation-duration.bind="0" e-theme.bind="dynTheme" e-format.bind="dynFormat"></ej2-linear-gauge>
+    <button data-testid="lg-dyn-change" click.delegate="change()">Change</button>
   </demo-section>
 </template>
