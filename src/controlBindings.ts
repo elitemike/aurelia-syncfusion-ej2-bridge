@@ -1051,8 +1051,11 @@ export const ControlBindings = {
   },
   speechToText: {
     oneWay: [
-      "transcript", "lang", "allowInterimResults", "showTooltip", "listeningState", "buttonSettings",
-      "tooltipSettings", "disabled", "cssClass", "htmlAttributes"
+      "lang", "allowInterimResults", "showTooltip", "buttonSettings", "tooltipSettings", "disabled",
+      "cssClass", "htmlAttributes"
+    ],
+    twoWay: [
+      "transcript", "listeningState"
     ],
     events: [
       "created", "onStart", "onStop", "onError", "transcriptChanged"
