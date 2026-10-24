@@ -1,7 +1,52 @@
 <template>
-  <h2>Text Area</h2>
+  <h2>TextArea</h2>
 
-  <demo-section id="textArea-basic" title="Basic" description="Text Area rendered with its default options.">
-    <ej2-text-area data-testid="textArea-basic"></ej2-text-area>
+  <demo-section id="ta-value" title="Default with two-way value" description="Typing updates the view-model on every keystroke, and the view-model updates the textarea.">
+    <ej2-text-area data-testid="ta-value" e-value.two-way="value" e-placeholder="Enter your comments"
+      e-on-input.delegate="inputCount = inputCount + 1" e-on-focus.delegate="focused = true"
+      e-on-blur.delegate="focused = false" e-on-change.delegate="onChange($event)"></ej2-text-area>
+    <div class="demo-output">Value: <code data-testid="ta-value-out">${value}</code>
+      Input events: <span data-testid="ta-input-count">${inputCount}</span>
+      Focused: <span data-testid="ta-focused">${focused}</span>
+      Changes: <span data-testid="ta-change-count">${changeCount}</span>
+      Last change: <code data-testid="ta-change-value">${changeValue}</code></div>
+    <button data-testid="ta-set" click.delegate="value = 'from view-model'">Set from view-model</button>
+  </demo-section>
+
+  <demo-section id="ta-float" title="Floating label and clear button" description="floatLabelType and showClearButton.">
+    <ej2-text-area data-testid="ta-float" e-placeholder="Comments" e-float-label-type="Auto" e-show-clear-button="true"
+      e-value="clear me"></ej2-text-area>
+  </demo-section>
+
+  <demo-section id="ta-states" title="Readonly and disabled" description="readonly and enabled.">
+    <ej2-text-area data-testid="ta-readonly" e-value="readonly" e-readonly.bind="readonly"></ej2-text-area>
+    <ej2-text-area data-testid="ta-disabled" e-value="disabled" e-enabled.bind="enabled"></ej2-text-area>
+    <button data-testid="ta-states-toggle" click.delegate="toggleStates()">Toggle states</button>
+  </demo-section>
+
+  <demo-section id="ta-size" title="Size and resize" description="cols, rows, width, maxLength, resizeMode, cssClass and htmlAttributes.">
+    <ej2-text-area data-testid="ta-size" e-cols.bind="cols" e-rows.bind="rows" e-width.bind="width"
+      e-max-length.bind="maxLength" e-resize-mode.bind="resizeMode" e-css-class.bind="cssClass"
+      e-html-attributes.bind="htmlAttrs" e-value="hello"></ej2-text-area>
+    <button data-testid="ta-size-change" click.delegate="changeSize()">Change size</button>
+  </demo-section>
+
+  <demo-section id="ta-adornments" title="Adornments" description="prependTemplate and appendTemplate with adornmentFlow and adornmentOrientation.">
+    <ej2-text-area data-testid="ta-adornments" e-prepend-template.bind="prepend" e-append-template.bind="append"
+      e-adornment-flow.bind="flow" e-adornment-orientation.bind="orientation" e-value="adorned"></ej2-text-area>
+    <button data-testid="ta-adornments-change" click.delegate="vertical()">Vertical</button>
+  </demo-section>
+
+  <demo-section id="ta-rtl" title="RTL" description="enableRtl, enablePersistence and locale come from the common bindables.">
+    <ej2-text-area data-testid="ta-rtl" e-enable-rtl="true" e-enable-persistence="false" e-locale="en-US"
+      e-value="rtl"></ej2-text-area>
+  </demo-section>
+
+  <demo-section id="ta-life" title="Lifecycle events" description="created is raised when the widget renders, destroyed when it is removed.">
+    <ej2-text-area if.bind="showBox" data-testid="ta-life" e-on-created.delegate="createdCount = createdCount + 1"
+      e-on-destroyed.trigger="destroyedCount = destroyedCount + 1"></ej2-text-area>
+    <div class="demo-output">Created: <span data-testid="ta-created">${createdCount}</span>
+      Destroyed: <span data-testid="ta-destroyed">${destroyedCount}</span></div>
+    <button data-testid="ta-toggle" click.delegate="showBox = !showBox">Toggle</button>
   </demo-section>
 </template>

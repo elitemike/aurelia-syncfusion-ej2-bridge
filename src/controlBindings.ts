@@ -986,9 +986,12 @@ export const ControlBindings = {
   },
   textArea: {
     oneWay: [
-      "readonly", "value", "floatLabelType", "cssClass", "placeholder", "htmlAttributes", "enabled",
+      "readonly", "floatLabelType", "cssClass", "placeholder", "htmlAttributes", "enabled",
       "showClearButton", "width", "resizeMode", "maxLength", "cols", "rows", "prependTemplate",
       "appendTemplate", "adornmentFlow", "adornmentOrientation"
+    ],
+    twoWay: [
+      "value"
     ],
     events: [
       "created", "destroyed", "change", "blur", "focus", "input"
@@ -996,10 +999,13 @@ export const ControlBindings = {
   },
   smartTextArea: {
     oneWay: [
-      "userRole", "UserPhrases", "aiSuggestionHandler", "showSuggestionOnPopup", "readonly", "value",
+      "userRole", "UserPhrases", "aiSuggestionHandler", "showSuggestionOnPopup", "readonly",
       "floatLabelType", "cssClass", "placeholder", "htmlAttributes", "enabled", "showClearButton", "width",
       "resizeMode", "maxLength", "cols", "rows", "prependTemplate", "appendTemplate", "adornmentFlow",
       "adornmentOrientation"
+    ],
+    twoWay: [
+      "value"
     ],
     events: [
       "beforeSuggestionInsert", "afterSuggestionInsert", "created", "destroyed", "change", "blur", "focus",
