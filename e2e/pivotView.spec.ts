@@ -59,8 +59,6 @@ test('property bindings reach the widget', async ({ app, page }) => {
   await ew(page, 'pv-core', 'w.enableFieldSearching', true);
   await ew(page, 'pv-core', 'w.currencyCode', 'USD');
   await ew(page, 'pv-core', 'w.aggregateTypes', ['Sum', 'Count', 'Avg', 'Max']);
-  await ew(page, 'pv-core', 'w.maxNodeLimitInMemberEditor', 40);
-  await ew(page, 'pv-core', 'w.loadOnDemandInMemberEditor', true);
   await ew(page, 'pv-core', 'w.enableHtmlSanitizer', true);
   await ew(page, 'pv-core', 'w.allowDeferLayoutUpdate', false);
   await ew(page, 'pv-core', 'w.allowDataCompression', false);
@@ -575,6 +573,8 @@ test('cell, toolbar and tooltip templates render', async ({ app, page }) => {
 test('hyperlinks render and raise hyperlinkCellClick', async ({ app, page }) => {
   const pv = app.section('pvx-links');
   await pv.scrollIntoViewIfNeeded();
+  await ew(page, 'pvx-links', 'w.maxNodeLimitInMemberEditor', 40);
+  await ew(page, 'pvx-links', 'w.loadOnDemandInMemberEditor', true);
   await ew(page, 'pvx-links', 'w.hyperlinkSettings.showHyperlink', true);
   await ew(page, 'pvx-links', 'w.hyperlinkSettings.showValueCellHyperlink', true);
   const link = pv.locator('td.e-valuescontent a.e-hyperlinkcell').first();

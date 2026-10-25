@@ -24,7 +24,7 @@ countries.forEach((Country, ci) => {
 /** Fresh settings object per demo section, the widgets keep a reference to it. */
 export function createDataSourceSettings(extra: any = {}) {
   return {
-    dataSource: pivotData,
+    dataSource: pivotData.map((row) => ({ ...row })),
     expandAll: false,
     enableSorting: true,
     columns: [{ name: 'Year', caption: 'Production Year' }],

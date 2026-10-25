@@ -18,7 +18,7 @@ export class Ej2PivotView extends SyncfusionWrapper<PivotView, PivotViewModel> {
   protected onBeforeWidgetInstantiation() {
     // the pivot controls derive the ids of their inner elements from the host id, so every instance needs its own
     let id = this.element.getAttribute("id");
-    if (id) { this.element.removeAttribute("id"); } else { id = `pivotview_${nextId++}`; }
+    if (id) { this.element.removeAttribute("id"); } else { id = `pvw${nextId++}_bridge`; }
     this.widgetElement.setAttribute("id", id);
     const model: any = this._eModel;
     const toolbar: any[] = Array.isArray(model.toolbar) ? model.toolbar : [];

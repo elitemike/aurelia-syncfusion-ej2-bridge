@@ -10,6 +10,7 @@
   <demo-section id="pvx-links" title="Hyperlinks" description="hyperlinkSettings turns row headers and value cells into links, hyperlinkCellClick reports the click.">
     <ej2-pivot-view data-testid="pvx-links" e-data-source-settings.bind="linkDsr" e-height.bind="300" e-width.bind="900"
       e-hyperlink-settings.bind="hyperlinkSettings" e-grid-settings.bind="{ columnWidth: 120 }"
+      e-max-node-limit-in-member-editor.bind="40" e-load-on-demand-in-member-editor.bind="true"
       e-on-hyperlink-cell-click.delegate="onLinkClick($event)"></ej2-pivot-view>
     <div class="demo-output">Last link: <code data-testid="pvx-last-link">${lastLink}</code></div>
   </demo-section>
