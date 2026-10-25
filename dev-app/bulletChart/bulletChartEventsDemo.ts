@@ -11,7 +11,7 @@ export class BulletChartEventsDemo {
   onLegendRender(e: CustomEvent) {
     logEvent('legendRender', e);
     // rename the first legend entry through the event args
-    if (e.detail && e.detail.name === 'Low') { e.detail.text = 'Poor'; }
+    if (e.detail && e.detail.text === 'Low') { e.detail.text = 'Poor'; }
   }
 
   onBeforePrint(e: CustomEvent) {
