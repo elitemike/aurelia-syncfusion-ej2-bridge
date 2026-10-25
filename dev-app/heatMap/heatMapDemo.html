@@ -1,7 +1,91 @@
 <template>
   <h2>Heat Map</h2>
 
-  <demo-section id="heatMap-basic" title="Basic" description="Heat Map rendered with its default options.">
-    <ej2-heat-map data-testid="heatMap-basic"></ej2-heat-map>
+  <demo-section id="hm-basic" title="Default" description="A 2D array bound as dataSource with axis labels, title, cell labels, a gradient palette and a legend.">
+    <ej2-heat-map data-testid="hm-basic" e-width="100%" e-height="260px" e-data-source.bind="data" e-x-axis.bind="xAxis" e-y-axis.bind="yAxis"
+      e-title-settings.bind="titleSettings" e-cell-settings.bind="cellSettings" e-palette-settings.bind="gradientPalette"
+      e-legend-settings.bind="legendSettings" e-margin.bind="margin" e-theme="Material"
+      e-on-load.delegate="count('load', $event)"
+      e-on-loaded.delegate="count('loaded', $event)"
+      e-on-created.delegate="count('created', $event)"
+      e-on-cell-render.delegate="count('cellRender', $event)"
+      e-on-legend-render.delegate="count('legendRender', $event)"></ej2-heat-map>
+    <div class="demo-output">
+      Load: <span data-testid="hm-load">${counts.load}</span>
+      Loaded: <span data-testid="hm-loaded">${counts.loaded}</span>
+      Created: <span data-testid="hm-created">${counts.created}</span>
+      Cell render: <span data-testid="hm-cell-render">${counts.cellRender}</span>
+      Legend render: <span data-testid="hm-legend-render">${counts.legendRender}</span>
+    </div>
+  </demo-section>
+
+  <demo-section id="hm-palette" title="Palette" description="Gradient palettes (whole table and per row) and a Fixed palette with labelled ranges.">
+    <ej2-heat-map data-testid="hm-gradient-row" e-width="100%" e-height="200px" e-data-source.bind="data" e-x-axis.bind="{ labels: xLabels }" e-y-axis.bind="{ labels: yLabels }"
+      e-palette-settings.bind="rowGradient" e-cell-settings.bind="cellPlain" e-legend-settings.bind="legendHidden"></ej2-heat-map>
+    <ej2-heat-map data-testid="hm-fixed" e-width="100%" e-height="200px" e-data-source.bind="gappedData" e-x-axis.bind="{ labels: xLabels }" e-y-axis.bind="{ labels: yLabels }"
+      e-palette-settings.bind="fixedPalette" e-cell-settings.bind="cellSettings" e-legend-settings.bind="legendBottom"></ej2-heat-map>
+  </demo-section>
+
+  <demo-section id="hm-cells" title="Cell types" description="Rect cells with borders, highlighting, and Bubble cells sized and colored by the data.">
+    <ej2-heat-map data-testid="hm-bubble" e-width="100%" e-height="220px" e-data-source.bind="bubbleData" e-x-axis.bind="{ labels: bubbleX }" e-y-axis.bind="{ labels: bubbleY }"
+      e-cell-settings.bind="bubbleCells" e-palette-settings.bind="bubblePalette" e-legend-settings.bind="legendHidden"></ej2-heat-map>
+    <ej2-heat-map data-testid="hm-bubble-size" e-width="100%" e-height="220px" e-data-source.bind="bubbleData" e-x-axis.bind="{ labels: bubbleX }" e-y-axis.bind="{ labels: bubbleY }"
+      e-cell-settings.bind="bubbleSizeCells" e-legend-settings.bind="legendHidden"></ej2-heat-map>
+    <ej2-heat-map data-testid="hm-highlight" e-width="100%" e-height="200px" e-data-source.bind="data" e-x-axis.bind="{ labels: xLabels }" e-y-axis.bind="{ labels: yLabels }"
+      e-cell-settings.bind="highlightCells" e-legend-settings.bind="legendHidden"></ej2-heat-map>
+  </demo-section>
+
+  <demo-section id="hm-axes" title="Axes" description="Opposed position, label rotation, inversed axis, multi level labels, numeric axis and trimmed labels.">
+    <ej2-heat-map data-testid="hm-axis-look" e-width="100%" e-height="260px" e-data-source.bind="data" e-x-axis.bind="rangeAxisX" e-y-axis.bind="rangeAxisY"
+      e-legend-settings.bind="legendHidden"></ej2-heat-map>
+    <ej2-heat-map data-testid="hm-axis-multi" e-width="100%" e-height="240px" e-data-source.bind="data" e-x-axis.bind="multiX" e-y-axis.bind="{ labels: yLabels }"
+      e-legend-settings.bind="legendHidden"></ej2-heat-map>
+    <ej2-heat-map data-testid="hm-axis-trim" e-width="100%" e-height="220px" e-data-source.bind="data" e-x-axis.bind="trimX" e-y-axis.bind="{ labels: yLabels }"
+      e-legend-settings.bind="legendHidden"></ej2-heat-map>
+  </demo-section>
+
+  <demo-section id="hm-adaptor" title="Data adaptors" description="JSON data bound with the Table adaptor (one field per column) and the Cell adaptor (one record per cell).">
+    <ej2-heat-map data-testid="hm-table" e-width="100%" e-height="200px" e-data-source.bind="tableData" e-data-source-settings.bind="tableSettings"
+      e-x-axis.bind="tableX" e-y-axis.bind="tableY" e-legend-settings.bind="legendHidden"></ej2-heat-map>
+    <ej2-heat-map data-testid="hm-cell" e-width="100%" e-height="200px" e-data-source.bind="cellData" e-data-source-settings.bind="cellAdaptor"
+      e-x-axis.bind="cellX" e-y-axis.bind="cellY" e-legend-settings.bind="legendHidden"></ej2-heat-map>
+  </demo-section>
+
+  <demo-section id="hm-interaction" title="Tooltip, click and selection" description="showTooltip with tooltipSettings, tooltipRender, cellClick, cellDoubleClick, allowSelection with enableMultiSelect and cellSelected.">
+    <ej2-heat-map data-testid="hm-tooltip" e-width="100%" e-height="240px" e-data-source.bind="data" e-x-axis.bind="{ labels: xLabels }" e-y-axis.bind="{ labels: yLabels }"
+      e-show-tooltip.bind="true" e-tooltip-settings.bind="tooltipSettings" e-legend-settings.bind="legendHidden" e-cell-settings.bind="cellPlain"
+      e-on-tooltip-render.delegate="count('tooltipRender', $event)"
+      e-on-cell-click.delegate="count('cellClick', $event)"
+      e-on-cell-double-click.delegate="count('cellDoubleClick', $event)"></ej2-heat-map>
+    <div class="demo-output">
+      Tooltip: <code data-testid="hm-tooltip-text">${tooltipText}</code>
+      Clicked: <code data-testid="hm-clicked">${clicked}</code>
+      Double clicked: <code data-testid="hm-double-clicked">${doubleClicked}</code>
+    </div>
+    <ej2-heat-map data-testid="hm-select" e-width="100%" e-height="240px" e-data-source.bind="data" e-x-axis.bind="{ labels: xLabels }" e-y-axis.bind="{ labels: yLabels }"
+      e-allow-selection.bind="true" e-enable-multi-select.bind="false" e-legend-settings.bind="legendHidden" e-cell-settings.bind="cellPlain"
+      e-on-cell-selected.delegate="count('cellSelected', $event)"></ej2-heat-map>
+    <div class="demo-output">Selected cells: <span data-testid="hm-selected">${selected}</span> events: <span data-testid="hm-selected-count">${counts.cellSelected}</span></div>
+    <ej2-heat-map data-testid="hm-html" e-width="100%" e-height="200px" e-data-source.bind="data" e-x-axis.bind="{ labels: xLabels }" e-y-axis.bind="{ labels: yLabels }"
+      e-tooltip-settings.bind="htmlTooltip" e-enable-html-sanitizer.bind="false" e-legend-settings.bind="legendHidden"></ej2-heat-map>
+  </demo-section>
+
+  <demo-section id="hm-render" title="Rendering mode, background and size" description="Canvas rendering, backgroundColor, theme and resized.">
+    <ej2-heat-map data-testid="hm-canvas" e-width="80%" e-height="220px" e-rendering-mode="Canvas" e-background-color="#fffbe6" e-theme="Bootstrap5"
+      e-data-source.bind="data" e-x-axis.bind="{ labels: xLabels }" e-y-axis.bind="{ labels: yLabels }" e-legend-settings.bind="legendHidden"
+      e-on-resized.delegate="count('resized', $event)"></ej2-heat-map>
+    <div class="demo-output">Resized: <span data-testid="hm-resized">${counts.resized}</span> width: <span data-testid="hm-resized-width">${resized}</span></div>
+  </demo-section>
+
+  <demo-section id="hm-dynamic" title="Model to widget" description="Changing the bound data, background, tooltip flag, rendering mode, theme and height updates the heat map.">
+    <ej2-heat-map data-testid="hm-dynamic" e-width="100%" e-height.bind="dynHeight" e-data-source.bind="dynData" e-background-color.bind="dynBackground"
+      e-show-tooltip.bind="dynTooltip" e-rendering-mode.bind="dynMode" e-theme.bind="dynTheme"
+      e-x-axis.bind="{ labels: xLabels }" e-y-axis.bind="{ labels: yLabels }" e-legend-settings.bind="legendHidden"></ej2-heat-map>
+    <button data-testid="hm-swap" click.delegate="swap()">Swap data</button>
+    <button data-testid="hm-paint" click.delegate="paint()">Background</button>
+    <button data-testid="hm-no-tooltip" click.delegate="noTooltip()">No tooltip</button>
+    <button data-testid="hm-canvas-mode" click.delegate="canvas()">Canvas</button>
+    <button data-testid="hm-shrink" click.delegate="shrink()">Shrink</button>
+    <button data-testid="hm-dark" click.delegate="dark()">Dark</button>
   </demo-section>
 </template>
