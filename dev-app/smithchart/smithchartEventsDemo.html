@@ -1,0 +1,17 @@
+<template>
+  <demo-section id="smith-events" title="Events" description="Every handler records itself in window.__chartEvents.">
+    <ej2-smithchart data-testid="smith-events" e-width="480" e-height="380" e-series.bind="series" e-legend-settings.bind="legend" e-title.bind="title"
+      e-on-load.delegate="log('load', $event)"
+      e-on-loaded.delegate="log('loaded', $event)"
+      e-on-animation-complete.delegate="log('animationComplete', $event)"
+      e-on-legend-render.delegate="log('legendRender', $event)"
+      e-on-title-render.delegate="log('titleRender', $event)"
+      e-on-subtitle-render.delegate="log('subtitleRender', $event)"
+      e-on-text-render.delegate="log('textRender', $event)"
+      e-on-axis-label-render.delegate="log('axisLabelRender', $event)"
+      e-on-series-render.delegate="log('seriesRender', $event)"
+      e-on-tooltip-render.delegate="log('tooltipRender', $event)"
+      e-on-before-print.delegate="onBeforePrint($event)"></ej2-smithchart>
+    <div class="demo-output"><button data-testid="smith-print" click.delegate="print()">Print</button></div>
+  </demo-section>
+</template>

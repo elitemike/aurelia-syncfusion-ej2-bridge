@@ -1,0 +1,14 @@
+<template>
+  <demo-section id="bullet-events" title="Events" description="Every handler records itself in window.__chartEvents.">
+    <ej2-bullet-chart data-testid="bullet-events" e-width="90%" e-height="130" e-data-source.bind="data" e-value-field="value"
+      e-target-field="target" e-ranges.bind="ranges" e-minimum.bind="0" e-maximum.bind="300" e-interval.bind="50" e-tooltip.bind="tooltip"
+      e-legend-settings.bind="legend" e-animation.bind="animation"
+      e-on-load.delegate="log('load', $event)"
+      e-on-loaded.delegate="log('loaded', $event)"
+      e-on-tooltip-render.delegate="log('tooltipRender', $event)"
+      e-on-bullet-chart-mouse-click.delegate="log('bulletChartMouseClick', $event)"
+      e-on-legend-render.delegate="onLegendRender($event)"
+      e-on-before-print.delegate="onBeforePrint($event)"></ej2-bullet-chart>
+    <div class="demo-output"><button data-testid="bullet-print" click.delegate="print()">Print</button></div>
+  </demo-section>
+</template>

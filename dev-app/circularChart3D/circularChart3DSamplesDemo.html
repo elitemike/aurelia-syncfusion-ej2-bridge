@@ -1,0 +1,16 @@
+<template>
+  <demo-section id="cc3d-doughnut" title="3D Doughnut" description="innerRadius turns the pie into a doughnut.">
+    <ej2-circular-chart3d data-testid="cc3d-doughnut" e-width="420px" e-height="300px" e-series.bind="doughnut"
+      e-enable-animation="false"></ej2-circular-chart3d>
+  </demo-section>
+
+  <demo-section id="cc3d-explode" title="Exploding a point" description="explode with explodeIndex and explodeOffset.">
+    <ej2-circular-chart3d data-testid="cc3d-explode" e-width="420px" e-height="300px" e-series.bind="explode"
+      e-enable-animation="false"></ej2-circular-chart3d>
+  </demo-section>
+
+  <demo-section id="cc3d-explode-all" title="Exploding all points" description="explodeAll separates every slice.">
+    <ej2-circular-chart3d data-testid="cc3d-explode-all" e-width="420px" e-height="300px" e-series.bind="explodeAll"
+      e-enable-animation="false"></ej2-circular-chart3d>
+  </demo-section>
+</template>

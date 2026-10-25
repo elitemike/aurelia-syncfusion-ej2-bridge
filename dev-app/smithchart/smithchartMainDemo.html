@@ -1,0 +1,23 @@
+<template>
+  <demo-section id="smith-main" title="Default functionalities" description="Two transmission lines, every option bound to the view-model.">
+    <ej2-smithchart data-testid="smith-main" e-render-type.bind="renderType" e-width.bind="width" e-height.bind="height"
+      e-theme.bind="theme" e-margin.bind="margin" e-font.bind="font" e-border.bind="border" e-background.bind="background"
+      e-element-spacing.bind="elementSpacing" e-radius.bind="radius" e-title.bind="title" e-series.bind="series"
+      e-legend-settings.bind="legendSettings" e-horizontal-axis.bind="horizontalAxis" e-radial-axis.bind="radialAxis"></ej2-smithchart>
+    <div class="demo-output">
+      <button data-testid="smith-admittance" click.delegate="setAdmittance()">Admittance</button>
+      <button data-testid="smith-theme" click.delegate="setTheme()">Theme</button>
+      <button data-testid="smith-size" click.delegate="setSize()">Size</button>
+      <button data-testid="smith-background" click.delegate="setBackground()">Background</button>
+      <button data-testid="smith-radius" click.delegate="setRadius()">Radius</button>
+      <button data-testid="smith-spacing" click.delegate="setSpacing()">Spacing</button>
+      <button data-testid="smith-border" click.delegate="setBorder()">Border</button>
+      <button data-testid="smith-margin" click.delegate="setMargin()">Margin</button>
+      <button data-testid="smith-font" click.delegate="setFont()">Font</button>
+      <button data-testid="smith-title" click.delegate="setTitle()">Title</button>
+      <button data-testid="smith-series" click.delegate="setSeries()">Series</button>
+      <button data-testid="smith-legend" click.delegate="setLegend()">Legend</button>
+      <button data-testid="smith-axes" click.delegate="setAxes()">Axes</button>
+    </div>
+  </demo-section>
+</template>

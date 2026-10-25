@@ -1,0 +1,28 @@
+<template>
+  <demo-section id="bullet-main" title="Default functionalities" description="Ranges, value and target bars, axis, ticks and labels, every option bound to the view-model.">
+    <ej2-bullet-chart data-testid="bullet-main" e-width.bind="width" e-height.bind="height" e-title.bind="title"
+      e-subtitle.bind="subtitle" e-minimum.bind="minimum" e-maximum.bind="maximum" e-interval.bind="interval"
+      e-minor-ticks-per-interval.bind="minorTicksPerInterval" e-orientation.bind="orientation" e-type.bind="type"
+      e-label-format.bind="labelFormat" e-ranges.bind="ranges" e-data-source.bind="data" e-value-field="value"
+      e-target-field="target" e-category-field="category" e-value-fill.bind="valueFill" e-value-height.bind="valueHeight"
+      e-target-width.bind="targetWidth" e-target-color.bind="targetColor" e-target-types.bind="targetTypes"
+      e-label-position.bind="labelPosition" e-tick-position.bind="tickPosition" e-title-position.bind="titlePosition"
+      e-opposed-position.bind="opposedPosition" e-enable-group-separator.bind="enableGroupSeparator"
+      e-tab-index.bind="tabIndex" e-animation.bind="noAnimation" e-major-tick-lines.bind="majorTickLines" e-minor-tick-lines.bind="minorTickLines"
+      e-label-style.bind="labelStyle" e-title-style.bind="titleStyle" e-subtitle-style.bind="subtitleStyle"
+      e-tooltip.bind="tooltip" e-legend-settings.bind="legendSettings"></ej2-bullet-chart>
+    <div class="demo-output">
+      <button data-testid="bullet-title" click.delegate="setTitle()">Title</button>
+      <button data-testid="bullet-max" click.delegate="setMaximum()">Maximum</button>
+      <button data-testid="bullet-orientation" click.delegate="setOrientation()">Vertical</button>
+      <button data-testid="bullet-type" click.delegate="setType()">Dot</button>
+      <button data-testid="bullet-fill" click.delegate="setFill()">Fill</button>
+      <button data-testid="bullet-format" click.delegate="setFormat()">Format</button>
+      <button data-testid="bullet-opposed" click.delegate="setOpposed()">Opposed</button>
+      <button data-testid="bullet-positions" click.delegate="setPositions()">Positions</button>
+      <button data-testid="bullet-target" click.delegate="setTarget()">Target</button>
+      <button data-testid="bullet-data" click.delegate="setData()">Data</button>
+      <button data-testid="bullet-group" click.delegate="setGroup()">Group</button>
+    </div>
+  </demo-section>
+</template>

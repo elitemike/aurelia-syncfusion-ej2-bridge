@@ -1,0 +1,16 @@
+<template>
+  <demo-section id="c3d-selection" title="Selection and highlight" description="selectionMode, highlightMode, patterns, isMultiSelect and selectedDataIndexes.">
+    <ej2-chart3d data-testid="c3d-selection" e-width="520px" e-height="320px" e-series.bind="series" e-primary-x-axis.bind="cat"
+      e-selection-mode.bind="selectionMode" e-highlight-mode.bind="highlightMode" e-selection-pattern.bind="selectionPattern"
+      e-highlight-pattern.bind="highlightPattern" e-highlight-color.bind="highlightColor" e-is-multi-select.bind="isMultiSelect"
+      e-selected-data-indexes.bind="selectedDataIndexes"></ej2-chart3d>
+    <div class="demo-output">
+      <button data-testid="c3d-sel-series" click.delegate="setSeriesMode()">Series mode</button>
+      <button data-testid="c3d-sel-cluster" click.delegate="setClusterMode()">Cluster mode</button>
+      <button data-testid="c3d-sel-multi" click.delegate="setMulti()">Multi</button>
+      <button data-testid="c3d-sel-highlight" click.delegate="setHighlight()">Highlight</button>
+      <button data-testid="c3d-sel-patterns" click.delegate="setPatterns()">Patterns</button>
+      <button data-testid="c3d-sel-indexes" click.delegate="setIndexes()">Indexes</button>
+    </div>
+  </demo-section>
+</template>

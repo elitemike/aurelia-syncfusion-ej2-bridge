@@ -1,0 +1,26 @@
+<template>
+  <demo-section id="bullet-multiple" title="Data binding with categories" description="dataSource with categoryField; the query takes the first three rows.">
+    <ej2-bullet-chart data-testid="bullet-multiple" e-width="90%" e-height="260" e-data-source.bind="categories" e-query.bind="query"
+      e-category-field="category" e-value-field="value" e-target-field="target" e-ranges.bind="ranges" e-minimum.bind="0"
+      e-maximum.bind="300" e-interval.bind="50" e-category-label-style.bind="categoryLabelStyle"
+      e-title="Business metrics" e-title-position="Top"></ej2-bullet-chart>
+  </demo-section>
+
+  <demo-section id="bullet-vertical" title="Vertical orientation" description="orientation Vertical with opposed axis labels.">
+    <ej2-bullet-chart data-testid="bullet-vertical" e-width="180" e-height="320" e-orientation="Vertical" e-data-source.bind="verticalData"
+      e-value-field="value" e-target-field="target" e-ranges.bind="verticalRanges" e-minimum.bind="0" e-maximum.bind="100" e-interval.bind="20"
+      e-opposed-position.bind="true" e-animation.bind="noAnimation" e-title="Score" e-label-style.bind="labelStyle"></ej2-bullet-chart>
+  </demo-section>
+
+  <demo-section id="bullet-group" title="Group separator" description="enableGroupSeparator formats the axis labels with thousands separators.">
+    <ej2-bullet-chart data-testid="bullet-group" e-width="90%" e-height="110" e-data-source.bind="groupData" e-value-field="value"
+      e-target-field="target" e-ranges.bind="groupRanges" e-minimum.bind="0" e-maximum.bind="5000" e-interval.bind="1000"
+      e-enable-group-separator.bind="true" e-animation.bind="noAnimation"></ej2-bullet-chart>
+  </demo-section>
+
+  <demo-section id="bullet-targets" title="Target types" description="targetTypes Circle and Cross together, one marker per entry.">
+    <ej2-bullet-chart data-testid="bullet-targets" e-width="90%" e-height="200" e-data-source.bind="dotData" e-category-field="category"
+      e-value-field="value" e-target-field="target" e-ranges.bind="ranges" e-minimum.bind="0" e-maximum.bind="100" e-interval.bind="20"
+      e-target-types.bind="targetTypes" e-animation.bind="noAnimation" e-type="Dot"></ej2-bullet-chart>
+  </demo-section>
+</template>

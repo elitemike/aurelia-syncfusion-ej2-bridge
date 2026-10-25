@@ -1,0 +1,21 @@
+<template>
+  <demo-section id="c3d-bar" title="3D Bar" description="Bar series type.">
+    <ej2-chart3d data-testid="c3d-bar" e-width="480px" e-height="300px" e-series.bind="barSeries" e-primary-x-axis.bind="cat"></ej2-chart3d>
+  </demo-section>
+
+  <demo-section id="c3d-stack-column" title="3D Stacked column" description="StackingColumn series type.">
+    <ej2-chart3d data-testid="c3d-stack-column" e-width="480px" e-height="300px" e-series.bind="stackColumnSeries" e-primary-x-axis.bind="cat"></ej2-chart3d>
+  </demo-section>
+
+  <demo-section id="c3d-stack-bar" title="3D Stacked bar" description="StackingBar series type.">
+    <ej2-chart3d data-testid="c3d-stack-bar" e-width="480px" e-height="300px" e-series.bind="stackBarSeries" e-primary-x-axis.bind="cat"></ej2-chart3d>
+  </demo-section>
+
+  <demo-section id="c3d-full-stack" title="3D 100% stacked column" description="StackingColumn100 shares the module of StackingColumn.">
+    <ej2-chart3d data-testid="c3d-full-stack" e-width="480px" e-height="300px" e-series.bind="fullStackSeries" e-primary-x-axis.bind="cat"></ej2-chart3d>
+  </demo-section>
+
+  <demo-section id="c3d-labels" title="Data labels" description="dataLabel on the series renders text above each column.">
+    <ej2-chart3d data-testid="c3d-labels" e-width="480px" e-height="300px" e-series.bind="labelSeries" e-primary-x-axis.bind="cat"></ej2-chart3d>
+  </demo-section>
+</template>

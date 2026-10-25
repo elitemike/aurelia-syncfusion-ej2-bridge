@@ -1,7 +1,5 @@
 <template>
-  <h2>Circular Chart3 D</h2>
+  <h2>Circular Chart3D</h2>
 
-  <demo-section id="circularChart3D-basic" title="Basic" description="Circular Chart3 D rendered with its default options.">
-    <ej2-circular-chart3d data-testid="circularChart3D-basic"></ej2-circular-chart3d>
-  </demo-section>
+  <compose repeat.for="part of parts" view-model.bind="part"></compose>
 </template>

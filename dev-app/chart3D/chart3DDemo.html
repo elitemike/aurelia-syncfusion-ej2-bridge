@@ -1,7 +1,5 @@
 <template>
-  <h2>Chart3 D</h2>
+  <h2>Chart3D</h2>
 
-  <demo-section id="chart3D-basic" title="Basic" description="Chart3 D rendered with its default options.">
-    <ej2-chart3d data-testid="chart3D-basic"></ej2-chart3d>
-  </demo-section>
+  <compose repeat.for="part of parts" view-model.bind="part"></compose>
 </template>
