@@ -26,6 +26,27 @@ export class Ej2Diagram extends SyncfusionWrapper<Diagram, DiagramModel> {
       LineRouting, AvoidLineOverlapping, LineDistribution, LayoutAnimation, ErDiagrams, Ej1Serialization,
       DiagramCollaboration, ImportAndExportVisio
     );
+    this.moveSequenceModel();
+  }
+
+  /**
+   * The diagram has a `model` option (UML sequence diagram), its bridge attribute `e-model` collides with the bridge's
+   * own `eModel` bindable (the whole option object), so the value arrives as the option bag instead of as `model`.
+   * Hand it to the widget's `model` option.
+   */
+  private moveSequenceModel() {
+    const bag: any = this._eModel;
+    const keys = ['participants', 'messages', 'fragments', 'spaceBetweenParticipants'];
+    if (bag && keys.some((key) => bag[key] !== undefined)) {
+      const model: any = {};
+      keys.forEach((key) => {
+        if (bag[key] !== undefined) {
+          model[key] = bag[key];
+          delete bag[key];
+        }
+      });
+      bag.model = model;
+    }
   }
 
   protected appendWidget() {

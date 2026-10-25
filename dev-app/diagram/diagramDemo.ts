@@ -7,6 +7,7 @@ export class DiagramDemo {
     PLATFORM.moduleName('diagram/diagramFunctionsDemo'),
     PLATFORM.moduleName('diagram/diagramTemplatesDemo'),
     PLATFORM.moduleName('diagram/diagramEventsDemo'),
-    PLATFORM.moduleName('diagram/diagramLayoutDemo')
+    PLATFORM.moduleName('diagram/diagramLayoutDemo'),
+    PLATFORM.moduleName('diagram/diagramShapesDemo')
   ];
 }
