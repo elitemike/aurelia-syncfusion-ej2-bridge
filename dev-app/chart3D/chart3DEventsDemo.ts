@@ -1,0 +1,29 @@
+import { logEvent, salesData } from './chart3DLog';
+
+export class Chart3DEventsDemo {
+  log = logEvent;
+  cat = { valueType: 'Category' };
+  series: any[] = [
+    { dataSource: salesData, xName: 'month', yName: 'sales', type: 'Column', name: 'Sales', dataLabel: { visible: true } }
+  ];
+  tooltip = { enable: true };
+  legend = { visible: true };
+
+  onBeforePrint(e: CustomEvent) {
+    logEvent('beforePrint', e);
+    // do not open the browser print dialog
+    e.detail.cancel = true;
+  }
+
+  onBeforeExport(e: CustomEvent) {
+    logEvent('beforeExport', e);
+  }
+
+  host() {
+    return (document.querySelector('[data-testid="c3d-events"] .e-control') as any).ej2_instances[0];
+  }
+
+  print() { this.host().print(); }
+  exportPng() { this.host().export('PNG', 'chart3d-events'); }
+  resize() { this.host().width = '420px'; this.host().dataBind(); }
+}

@@ -1,0 +1,14 @@
+<template>
+  <demo-section id="cc3d-selection" title="Selection and highlight" description="selectionMode, highlightMode, patterns, isMultiSelect and selectedDataIndexes.">
+    <ej2-circular-chart3d data-testid="cc3d-selection" e-width="480px" e-height="320px" e-series.bind="series" e-enable-animation="false"
+      e-selection-mode.bind="selectionMode" e-highlight-mode.bind="highlightMode" e-selection-pattern.bind="selectionPattern"
+      e-highlight-pattern.bind="highlightPattern" e-highlight-color.bind="highlightColor" e-is-multi-select.bind="isMultiSelect"
+      e-selected-data-indexes.bind="selectedDataIndexes" e-legend-settings.bind="legend"></ej2-circular-chart3d>
+    <div class="demo-output">
+      <button data-testid="cc3d-sel-multi" click.delegate="setMulti()">Multi</button>
+      <button data-testid="cc3d-sel-highlight" click.delegate="setHighlight()">Highlight</button>
+      <button data-testid="cc3d-sel-patterns" click.delegate="setPatterns()">Patterns</button>
+      <button data-testid="cc3d-sel-indexes" click.delegate="setIndexes()">Indexes</button>
+    </div>
+  </demo-section>
+</template>

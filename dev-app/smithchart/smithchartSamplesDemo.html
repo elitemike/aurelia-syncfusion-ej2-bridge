@@ -1,0 +1,14 @@
+<template>
+  <demo-section id="smith-admittance" title="Admittance" description="renderType Admittance plots the same points on the admittance grid.">
+    <ej2-smithchart data-testid="smith-admittance" e-render-type="Admittance" e-width="420" e-height="360" e-series.bind="admittanceSeries"
+      e-title.bind="{ visible: true, text: 'Admittance chart' }"></ej2-smithchart>
+  </demo-section>
+
+  <demo-section id="smith-labels" title="Markers and data labels" description="marker shape Rectangle with data labels and tooltip.">
+    <ej2-smithchart data-testid="smith-labels" e-width="420" e-height="360" e-series.bind="labelSeries"></ej2-smithchart>
+  </demo-section>
+
+  <demo-section id="smith-legend" title="Legend" description="Legend on the right, clicking an entry toggles the series.">
+    <ej2-smithchart data-testid="smith-legend" e-width="520" e-height="360" e-series.bind="legendSeries" e-legend-settings.bind="legend"></ej2-smithchart>
+  </demo-section>
+</template>

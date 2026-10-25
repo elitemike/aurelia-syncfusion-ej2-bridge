@@ -1,0 +1,13 @@
+<template>
+  <demo-section id="bullet-look" title="Customization" description="theme, border, margin, animation, valueBorder and dataLabel.">
+    <ej2-bullet-chart data-testid="bullet-look" e-width="90%" e-height="130" e-data-source.bind="data" e-value-field="value"
+      e-target-field="target" e-ranges.bind="ranges" e-minimum.bind="0" e-maximum.bind="300" e-interval.bind="50" e-theme.bind="theme"
+      e-border.bind="border" e-margin.bind="margin" e-animation.bind="animation" e-value-border.bind="valueBorder"
+      e-data-label.bind="dataLabel" e-title="Look"></ej2-bullet-chart>
+    <div class="demo-output">
+      <button data-testid="bullet-theme" click.delegate="setTheme()">Theme</button>
+      <button data-testid="bullet-border" click.delegate="setBorder()">Border</button>
+      <button data-testid="bullet-margin" click.delegate="setMargin()">Margin</button>
+    </div>
+  </demo-section>
+</template>

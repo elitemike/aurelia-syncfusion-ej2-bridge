@@ -1,0 +1,24 @@
+<template>
+  <demo-section id="c3d-multi-axes" title="Multiple axes" description="rows, columns and axes place a second value axis in its own row.">
+    <ej2-chart3d data-testid="c3d-multi-axes" e-width="520px" e-height="360px" e-series.bind="multiSeries" e-primary-x-axis.bind="cat"
+      e-primary-y-axis.bind="y" e-rows.bind="rows" e-columns.bind="columns" e-axes.bind="axes"></ej2-chart3d>
+  </demo-section>
+
+  <demo-section id="c3d-datetime" title="DateTime axis" description="valueType DateTime loads the DateTime3D module.">
+    <ej2-chart3d data-testid="c3d-datetime" e-width="480px" e-height="300px" e-series.bind="dateSeries" e-primary-x-axis.bind="dateX"></ej2-chart3d>
+  </demo-section>
+
+  <demo-section id="c3d-log" title="Logarithmic axis" description="valueType Logarithmic loads the Logarithmic3D module.">
+    <ej2-chart3d data-testid="c3d-log" e-width="480px" e-height="300px" e-series.bind="logSeries" e-primary-x-axis.bind="cat"
+      e-primary-y-axis.bind="logY"></ej2-chart3d>
+  </demo-section>
+
+  <demo-section id="c3d-format" title="Currency labels" description="currencyCode and useGroupingSeparator format the C0 axis labels.">
+    <ej2-chart3d data-testid="c3d-format" e-width="480px" e-height="300px" e-series.bind="formatSeries" e-primary-x-axis.bind="cat"
+      e-primary-y-axis.bind="formatY" e-currency-code.bind="currencyCode" e-use-grouping-separator.bind="useGroupingSeparator"></ej2-chart3d>
+    <div class="demo-output">
+      <button data-testid="c3d-euro" click.delegate="setEuro()">Euro</button>
+      <button data-testid="c3d-nogroup" click.delegate="setNoGrouping()">No grouping</button>
+    </div>
+  </demo-section>
+</template>

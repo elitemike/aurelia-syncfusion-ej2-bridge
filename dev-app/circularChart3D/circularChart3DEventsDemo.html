@@ -1,0 +1,32 @@
+<template>
+  <demo-section id="cc3d-events" title="Events" description="Every handler records itself in window.__chartEvents.">
+    <ej2-circular-chart3d data-testid="cc3d-events" e-width="520px" e-height="340px" e-series.bind="series" e-tooltip.bind="tooltip"
+      e-legend-settings.bind="legend" e-selection-mode="Point" e-enable-export="true" e-enable-animation="false"
+      e-on-load.delegate="log('load', $event)"
+      e-on-loaded.delegate="log('loaded', $event)"
+      e-on-legend-render.delegate="log('legendRender', $event)"
+      e-on-legend-click.delegate="log('legendClick', $event)"
+      e-on-selection-complete.delegate="log('selectionComplete', $event)"
+      e-on-point-render.delegate="log('pointRender', $event)"
+      e-on-series-render.delegate="log('seriesRender', $event)"
+      e-on-text-render.delegate="log('textRender', $event)"
+      e-on-before-export.delegate="log('beforeExport', $event)"
+      e-on-after-export.delegate="log('afterExport', $event)"
+      e-on-before-print.delegate="onBeforePrint($event)"
+      e-on-before-resize.delegate="log('beforeResize', $event)"
+      e-on-resized.delegate="log('resized', $event)"
+      e-on-circularchart3dmousemove.delegate="log('circularChart3DMouseMove', $event)"
+      e-on-circularchart3dmouseclick.delegate="log('circularChart3DMouseClick', $event)"
+      e-on-circularchart3dmousedown.delegate="log('circularChart3DMouseDown', $event)"
+      e-on-circularchart3dmouseleave.delegate="log('circularChart3DMouseLeave', $event)"
+      e-on-circularchart3dmouseup.delegate="log('circularChart3DMouseUp', $event)"
+      e-on-point-click.delegate="log('pointClick', $event)"
+      e-on-point-move.delegate="log('pointMove', $event)"
+      e-on-tooltip-render.delegate="log('tooltipRender', $event)"></ej2-circular-chart3d>
+    <div class="demo-output">
+      <button data-testid="cc3d-print" click.delegate="print()">Print</button>
+      <button data-testid="cc3d-export" click.delegate="exportPng()">Export PNG</button>
+      <button data-testid="cc3d-resize" click.delegate="resize()">Resize</button>
+    </div>
+  </demo-section>
+</template>

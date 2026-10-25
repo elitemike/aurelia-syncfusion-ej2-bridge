@@ -1,0 +1,25 @@
+<template>
+  <demo-section id="cc3d-main" title="3D Pie (default functionalities)" description="Depth, tilt, rotation, labels, legend and tooltip, every option bound to the view-model.">
+    <ej2-circular-chart3d data-testid="cc3d-main" e-width.bind="width" e-height.bind="height" e-title.bind="title"
+      e-sub-title.bind="subTitle" e-background.bind="background" e-background-image.bind="backgroundImage"
+      e-data-source.bind="browsers" e-theme.bind="theme" e-enable-animation.bind="enableAnimation" e-depth.bind="depth"
+      e-tilt.bind="tilt" e-rotation.bind="rotation" e-enable-rotation.bind="enableRotation" e-enable-export.bind="enableExport"
+      e-use-grouping-separator.bind="useGroupingSeparator" e-margin.bind="margin" e-border.bind="border"
+      e-title-style.bind="titleStyle" e-sub-title-style.bind="subTitleStyle" e-legend-settings.bind="legendSettings"
+      e-tooltip.bind="tooltip" e-series.bind="series"></ej2-circular-chart3d>
+    <div class="demo-output">
+      <button data-testid="cc3d-title" click.delegate="setTitle()">Title</button>
+      <button data-testid="cc3d-size" click.delegate="setSize()">Size</button>
+      <button data-testid="cc3d-background" click.delegate="setBackground()">Background</button>
+      <button data-testid="cc3d-theme" click.delegate="setTheme()">Theme</button>
+      <button data-testid="cc3d-angles" click.delegate="setAngles()">Angles</button>
+      <button data-testid="cc3d-norotation" click.delegate="setNoRotation()">No rotation</button>
+      <button data-testid="cc3d-margin" click.delegate="setMargin()">Margin</button>
+      <button data-testid="cc3d-styles" click.delegate="setStyles()">Styles</button>
+      <button data-testid="cc3d-legend" click.delegate="setLegend()">Legend</button>
+      <button data-testid="cc3d-tooltip" click.delegate="setTooltip()">Tooltip</button>
+      <button data-testid="cc3d-series" click.delegate="setSeries()">Series</button>
+      <button data-testid="cc3d-grouping" click.delegate="setGrouping()">Grouping</button>
+    </div>
+  </demo-section>
+</template>

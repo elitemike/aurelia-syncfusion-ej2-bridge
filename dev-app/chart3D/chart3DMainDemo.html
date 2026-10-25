@@ -1,0 +1,34 @@
+<template>
+  <demo-section id="c3d-main" title="3D Column (default functionalities)" description="Wall, depth, tilt, rotation, axes, legend and tooltip, every option bound to the view-model.">
+    <ej2-chart3d data-testid="c3d-main" e-title.bind="title" e-sub-title.bind="subTitle" e-theme.bind="theme"
+      e-description.bind="description" e-width.bind="width" e-height.bind="height" e-background.bind="background"
+      e-background-image.bind="backgroundImage" e-data-source.bind="salesData" e-depth.bind="depth" e-wall-size.bind="wallSize"
+      e-tilt.bind="tilt" e-rotation.bind="rotation" e-enable-rotation.bind="enableRotation" e-perspective-angle.bind="perspectiveAngle"
+      e-wall-color.bind="wallColor" e-enable-side-by-side-placement.bind="enableSideBySidePlacement" e-is-transposed.bind="isTransposed"
+      e-currency-code.bind="currencyCode" e-use-grouping-separator.bind="useGroupingSeparator" e-enable-export.bind="enableExport"
+      e-margin.bind="margin" e-title-style.bind="titleStyle" e-sub-title-style.bind="subTitleStyle" e-border.bind="border"
+      e-palettes.bind="palettes" e-legend-settings.bind="legendSettings" e-tooltip.bind="tooltip"
+      e-primary-x-axis.bind="primaryXAxis" e-primary-y-axis.bind="primaryYAxis" e-series.bind="series"></ej2-chart3d>
+    <div class="demo-output">
+      <button data-testid="c3d-title" click.delegate="setTitle()">Title</button>
+      <button data-testid="c3d-theme" click.delegate="setTheme()">Theme</button>
+      <button data-testid="c3d-description" click.delegate="setDescription()">Description</button>
+      <button data-testid="c3d-size" click.delegate="setSize()">Size</button>
+      <button data-testid="c3d-background" click.delegate="setBackground()">Background</button>
+      <button data-testid="c3d-depth" click.delegate="setDepth()">Depth</button>
+      <button data-testid="c3d-angles" click.delegate="setAngles()">Angles</button>
+      <button data-testid="c3d-wall" click.delegate="setWall()">Wall</button>
+      <button data-testid="c3d-transposed" click.delegate="setTransposed()">Transposed</button>
+      <button data-testid="c3d-sidebyside" click.delegate="setSideBySide()">Side by side</button>
+      <button data-testid="c3d-norotation" click.delegate="setNoRotation()">No rotation</button>
+      <button data-testid="c3d-currency" click.delegate="setCurrency()">Currency</button>
+      <button data-testid="c3d-margin" click.delegate="setMargin()">Margin</button>
+      <button data-testid="c3d-styles" click.delegate="setStyles()">Styles</button>
+      <button data-testid="c3d-palettes" click.delegate="setPalettes()">Palettes</button>
+      <button data-testid="c3d-legend" click.delegate="setLegend()">Legend</button>
+      <button data-testid="c3d-tooltip" click.delegate="setTooltip()">Tooltip</button>
+      <button data-testid="c3d-axes" click.delegate="setAxes()">Axes</button>
+      <button data-testid="c3d-series" click.delegate="setSeries()">Series</button>
+    </div>
+  </demo-section>
+</template>
