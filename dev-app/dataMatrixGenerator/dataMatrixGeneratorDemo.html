@@ -1,7 +1,35 @@
 <template>
   <h2>Data Matrix Generator</h2>
 
-  <demo-section id="dataMatrixGenerator-basic" title="Basic" description="Data Matrix Generator rendered with its default options.">
-    <ej2-data-matrix-generator data-testid="dataMatrixGenerator-basic"></ej2-data-matrix-generator>
+  <demo-section id="dm-basic" title="Basic" description="Data Matrix with an explicit width, height and value.">
+    <ej2-data-matrix-generator data-testid="dm-basic" e-width="200" e-height="200" e-value="Syncfusion"></ej2-data-matrix-generator>
+  </demo-section>
+
+  <demo-section id="dm-encoding" title="Encoding and size" description="Encoding picks the data compaction, size fixes the symbol dimensions.">
+    <ej2-data-matrix-generator data-testid="dm-ascii" e-width="200" e-height="200" e-value="Syncfusion" e-encoding="ASCII"></ej2-data-matrix-generator>
+    <ej2-data-matrix-generator data-testid="dm-numeric" e-width="200" e-height="200" e-value="123456789012" e-encoding="ASCIINumeric"></ej2-data-matrix-generator>
+    <ej2-data-matrix-generator data-testid="dm-base256" e-width="200" e-height="200" e-value="Syncfusion" e-encoding="Base256"></ej2-data-matrix-generator>
+    <ej2-data-matrix-generator data-testid="dm-size-small" e-width="200" e-height="200" e-value="1234" e-size.bind="1"></ej2-data-matrix-generator>
+    <ej2-data-matrix-generator data-testid="dm-size-large" e-width="200" e-height="200" e-value="1234" e-size.bind="6"></ej2-data-matrix-generator>
+  </demo-section>
+
+  <demo-section id="dm-appearance" title="Appearance" description="foreColor, backgroundColor, margin, displayText, xDimension and the Canvas mode.">
+    <ej2-data-matrix-generator data-testid="dm-appearance" e-width="260" e-height="260" e-value="STYLED" e-fore-color="#0000ff" e-background-color="#ffffcc"
+      e-margin.bind="margin" e-display-text.bind="displayText" e-x-dimension.bind="2"></ej2-data-matrix-generator>
+    <ej2-data-matrix-generator data-testid="dm-canvas" e-width="200" e-height="200" e-value="CANVAS" e-mode="Canvas"></ej2-data-matrix-generator>
+  </demo-section>
+
+  <demo-section id="dm-dynamic" title="Dynamic properties" description="Every property follows the view-model.">
+    <ej2-data-matrix-generator data-testid="dm-dynamic" e-width.bind="dynSize" e-height.bind="dynSize" e-value.bind="dynValue"
+      e-fore-color.bind="dynFore" e-background-color.bind="dynBack"></ej2-data-matrix-generator>
+    <button data-testid="dm-dyn-change" click.delegate="change()">Change</button>
+  </demo-section>
+
+  <demo-section id="dm-invalid" title="Invalid input" description="The invalid event is raised when the value does not suit the encoding.">
+    <ej2-data-matrix-generator data-testid="dm-invalid" e-width="200" e-height="200" e-encoding="ASCIINumeric"
+      e-value.bind="invalidValue" e-on-invalid.delegate="onInvalid($event)"></ej2-data-matrix-generator>
+    <div class="demo-output">Invalid events: <span data-testid="dm-invalid-count">${invalidCount}</span>
+      Message: <code data-testid="dm-invalid-message">${invalidMessage}</code></div>
+    <button data-testid="dm-fix" click.delegate="invalidValue = '123456'">Fix value</button>
   </demo-section>
 </template>

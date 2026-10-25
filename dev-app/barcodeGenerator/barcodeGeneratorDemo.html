@@ -1,7 +1,39 @@
 <template>
   <h2>Barcode Generator</h2>
 
-  <demo-section id="barcodeGenerator-basic" title="Basic" description="Barcode Generator rendered with its default options.">
-    <ej2-barcode-generator data-testid="barcodeGenerator-basic"></ej2-barcode-generator>
+  <demo-section id="bc-basic" title="Basic" description="Default Code128 barcode with an explicit width, height and value.">
+    <ej2-barcode-generator data-testid="bc-basic" e-width="300" e-height="100" e-type="Code128" e-value="Syncfusion"></ej2-barcode-generator>
+  </demo-section>
+
+  <demo-section id="bc-types" title="Barcode types" description="Each one dimensional symbology renders from the same value format.">
+    <div repeat.for="sample of samples" class="bc-type-sample" data-testid="bc-type-${sample.type}">
+      <div>${sample.type}</div>
+      <ej2-barcode-generator e-width="260" e-height="80" e-type.bind="sample.type" e-value.bind="sample.value"></ej2-barcode-generator>
+    </div>
+  </demo-section>
+
+  <demo-section id="bc-appearance" title="Appearance" description="foreColor, backgroundColor, margin, displayText and the Canvas rendering mode.">
+    <ej2-barcode-generator data-testid="bc-appearance" e-width="320" e-height="120" e-type="Code39" e-value="STYLED"
+      e-fore-color="#ff0000" e-background-color="#ffffcc" e-margin.bind="margin" e-display-text.bind="displayText"></ej2-barcode-generator>
+    <ej2-barcode-generator data-testid="bc-canvas" e-width="320" e-height="100" e-type="Code128" e-value="CANVAS" e-mode="Canvas"></ej2-barcode-generator>
+  </demo-section>
+
+  <demo-section id="bc-checksum" title="Checksum" description="enableCheckSum appends a check character to Code39.">
+    <ej2-barcode-generator data-testid="bc-checksum-off" e-width="320" e-height="80" e-type="Code39" e-value="ABC123" e-enable-check-sum="false"></ej2-barcode-generator>
+    <ej2-barcode-generator data-testid="bc-checksum-on" e-width="320" e-height="80" e-type="Code39" e-value="ABC123" e-enable-check-sum="true"></ej2-barcode-generator>
+  </demo-section>
+
+  <demo-section id="bc-dynamic" title="Dynamic properties" description="Every property follows the view-model.">
+    <ej2-barcode-generator data-testid="bc-dynamic" e-width.bind="dynWidth" e-height.bind="dynHeight" e-type.bind="dynType"
+      e-value.bind="dynValue" e-fore-color.bind="dynFore" e-background-color.bind="dynBack"></ej2-barcode-generator>
+    <button data-testid="bc-dyn-change" click.delegate="change()">Change</button>
+  </demo-section>
+
+  <demo-section id="bc-invalid" title="Invalid input" description="The invalid event is raised when the value does not suit the type.">
+    <ej2-barcode-generator data-testid="bc-invalid" e-width="260" e-height="80" e-type="Ean8" e-value.bind="invalidValue"
+      e-on-invalid.delegate="onInvalid($event)"></ej2-barcode-generator>
+    <div class="demo-output">Invalid events: <span data-testid="bc-invalid-count">${invalidCount}</span>
+      Message: <code data-testid="bc-invalid-message">${invalidMessage}</code></div>
+    <button data-testid="bc-fix" click.delegate="invalidValue = '12345687'">Fix value</button>
   </demo-section>
 </template>

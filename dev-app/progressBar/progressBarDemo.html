@@ -1,7 +1,107 @@
 <template>
   <h2>Progress Bar</h2>
 
-  <demo-section id="progressBar-basic" title="Basic" description="Progress Bar rendered with its default options.">
-    <ej2-progress-bar data-testid="progressBar-basic"></ej2-progress-bar>
+  <demo-section id="pb-linear" title="Linear" description="Default linear progress bar with a value label.">
+    <ej2-progress-bar data-testid="pb-linear" e-type="Linear" e-value.bind="60" e-minimum.bind="0" e-maximum.bind="100" e-height="60" e-width="400"
+      e-track-thickness.bind="24" e-progress-thickness.bind="24" e-track-color="#e0e0e0" e-progress-color="#2e7d32"
+      e-show-progress-value.bind="true" e-label-on-track.bind="true" e-label-style.bind="labelStyle"
+      e-animation.bind="noAnimation"></ej2-progress-bar>
+  </demo-section>
+
+  <demo-section id="pb-styles" title="Striped, active, gradient and rounded" description="isStriped, isActive, isGradient and cornerRadius restyle the bar.">
+    <ej2-progress-bar data-testid="pb-striped" e-type="Linear" e-value.bind="50" e-height="40" e-width="400" e-is-striped.bind="true"
+      e-animation.bind="noAnimation"></ej2-progress-bar>
+    <ej2-progress-bar data-testid="pb-active" e-type="Linear" e-value.bind="50" e-height="40" e-width="400" e-is-active.bind="true"
+      e-animation.bind="noAnimation"></ej2-progress-bar>
+    <ej2-progress-bar data-testid="pb-gradient" e-type="Linear" e-value.bind="90" e-height="40" e-width="400" e-is-gradient.bind="true" e-range-colors.bind="rangeColors"
+      e-animation.bind="noAnimation"></ej2-progress-bar>
+    <ej2-progress-bar data-testid="pb-rounded" e-type="Linear" e-value.bind="50" e-height="40" e-width="400" e-corner-radius="Round"
+      e-animation.bind="noAnimation"></ej2-progress-bar>
+  </demo-section>
+
+  <demo-section id="pb-secondary" title="Buffer progress" description="secondaryProgress draws a second bar behind the primary one.">
+    <ej2-progress-bar data-testid="pb-secondary" e-type="Linear" e-value.bind="40" e-secondary-progress.bind="70" e-secondary-progress-color="#ffa000"
+      e-secondary-progress-thickness.bind="8" e-track-thickness.bind="12" e-progress-thickness.bind="12" e-height="40" e-width="400"
+      e-animation.bind="noAnimation"></ej2-progress-bar>
+  </demo-section>
+
+  <demo-section id="pb-segments" title="Segments" description="enableProgressSegments splits the bar into segmentCount parts separated by gapWidth.">
+    <ej2-progress-bar data-testid="pb-segments" e-type="Linear" e-value.bind="60" e-height="40" e-width="400" e-enable-progress-segments.bind="true"
+      e-segment-count.bind="5" e-gap-width.bind="6" e-segment-color.bind="segmentColors"
+      e-animation.bind="noAnimation"></ej2-progress-bar>
+  </demo-section>
+
+  <demo-section id="pb-indeterminate" title="Indeterminate" description="isIndeterminate animates the bar for unknown durations.">
+    <ej2-progress-bar data-testid="pb-indeterminate" e-type="Linear" e-value.bind="0" e-height="40" e-width="400" e-is-indeterminate.bind="true"></ej2-progress-bar>
+  </demo-section>
+
+  <demo-section id="pb-role" title="Role and theme" description="role picks a semantic color, theme a color scheme.">
+    <ej2-progress-bar data-testid="pb-role-success" e-type="Linear" e-value.bind="50" e-height="30" e-width="300" e-role="Success" e-theme="Material3"
+      e-animation.bind="noAnimation"></ej2-progress-bar>
+    <ej2-progress-bar data-testid="pb-role-danger" e-type="Linear" e-value.bind="50" e-height="30" e-width="300" e-role="Danger" e-theme="Tailwind"
+      e-animation.bind="noAnimation"></ej2-progress-bar>
+  </demo-section>
+
+  <demo-section id="pb-circular" title="Circular" description="Circular progress bar with start and end angles, radius and inner radius.">
+    <ej2-progress-bar data-testid="pb-circular" e-type="Circular" e-value.bind="70" e-height="200" e-width="200" e-start-angle.bind="0" e-end-angle.bind="360"
+      e-radius="90%" e-inner-radius="70%" e-track-thickness.bind="12" e-progress-thickness.bind="12" e-show-progress-value.bind="true"
+      e-margin.bind="margin" e-animation.bind="noAnimation"></ej2-progress-bar>
+    <ej2-progress-bar data-testid="pb-semi" e-type="Circular" e-value.bind="50" e-height="200" e-width="200" e-start-angle.bind="240" e-end-angle.bind="120"
+      e-radius="90%" e-inner-radius="70%" e-animation.bind="noAnimation"></ej2-progress-bar>
+    <ej2-progress-bar data-testid="pb-pie" e-type="Circular" e-value.bind="75" e-height="200" e-width="200" e-enable-pie-progress.bind="true"
+      e-animation.bind="noAnimation"></ej2-progress-bar>
+  </demo-section>
+
+  <demo-section id="pb-annotations" title="Annotations" description="An annotation places custom HTML in the middle of a circular bar.">
+    <ej2-progress-bar data-testid="pb-annotations" e-type="Circular" e-value.bind="65" e-height="200" e-width="200" e-annotations.bind="annotations"
+      e-animation.bind="noAnimation"></ej2-progress-bar>
+  </demo-section>
+
+  <demo-section id="pb-range" title="Range colors" description="rangeColors change the progress color as the value passes each range.">
+    <ej2-progress-bar data-testid="pb-range-low" e-type="Linear" e-value.bind="20" e-height="30" e-width="400" e-range-colors.bind="rangeColors"
+      e-animation.bind="noAnimation"></ej2-progress-bar>
+    <ej2-progress-bar data-testid="pb-range-high" e-type="Linear" e-value.bind="90" e-height="30" e-width="400" e-range-colors.bind="rangeColors"
+      e-animation.bind="noAnimation"></ej2-progress-bar>
+  </demo-section>
+
+  <demo-section id="pb-tooltip" title="Tooltip" description="The tooltip module shows the value on hover.">
+    <ej2-progress-bar data-testid="pb-tooltip" e-type="Linear" e-value.bind="45" e-height="40" e-width="400" e-tooltip.bind="tooltip"
+      e-animation.bind="noAnimation" e-on-tooltip-render.delegate="log('tooltipRender', $event)"></ej2-progress-bar>
+    <div class="demo-output">Tooltip renders: <span data-testid="pb-tooltip-count">${counts.tooltipRender}</span>
+      Tooltip text: <code data-testid="pb-tooltip-text">${tooltipText}</code></div>
+  </demo-section>
+
+  <demo-section id="pb-dynamic" title="Dynamic properties" description="Properties follow the view-model.">
+    <ej2-progress-bar data-testid="pb-dynamic" e-type.bind="dynType" e-value.bind="dynValue" e-height="120" e-width="300"
+      e-track-color.bind="dynTrack" e-progress-color.bind="dynProgress" e-animation.bind="noAnimation"></ej2-progress-bar>
+    <button data-testid="pb-dyn-change" click.delegate="change()">Change</button>
+  </demo-section>
+
+  <demo-section id="pb-events" title="Events" description="Every event of the progress bar is raised while the value animates to completion.">
+    <ej2-progress-bar data-testid="pb-events" e-type="Linear" e-value.bind="eventValue" e-height="60" e-width="400" e-show-progress-value.bind="true"
+      e-animation.bind="shortAnimation"
+      e-on-load.delegate="log('load', $event)" e-on-loaded.delegate="log('loaded', $event)"
+      e-on-text-render.delegate="onTextRender($event)" e-on-value-changed.delegate="log('valueChanged', $event)"
+      e-on-progress-completed.delegate="log('progressCompleted', $event)" e-on-animation-complete.delegate="log('animationComplete', $event)"
+      e-on-mouse-click.delegate="log('mouseClick', $event)" e-on-mouse-move.delegate="log('mouseMove', $event)"
+      e-on-mouse-up.delegate="log('mouseUp', $event)" e-on-mouse-down.delegate="log('mouseDown', $event)"
+      e-on-mouse-leave.delegate="log('mouseLeave', $event)"></ej2-progress-bar>
+    <button data-testid="pb-complete" click.delegate="eventValue = 100">Complete</button>
+    <button data-testid="pb-half" click.delegate="eventValue = 50">Half</button>
+    <div class="demo-output">
+      load <span data-testid="pb-ev-load">${counts.load}</span>
+      loaded <span data-testid="pb-ev-loaded">${counts.loaded}</span>
+      textRender <span data-testid="pb-ev-textRender">${counts.textRender}</span>
+      valueChanged <span data-testid="pb-ev-valueChanged">${counts.valueChanged}</span>
+      progressCompleted <span data-testid="pb-ev-progressCompleted">${counts.progressCompleted}</span>
+      animationComplete <span data-testid="pb-ev-animationComplete">${counts.animationComplete}</span>
+      mouseClick <span data-testid="pb-ev-mouseClick">${counts.mouseClick}</span>
+      mouseMove <span data-testid="pb-ev-mouseMove">${counts.mouseMove}</span>
+      mouseUp <span data-testid="pb-ev-mouseUp">${counts.mouseUp}</span>
+      mouseDown <span data-testid="pb-ev-mouseDown">${counts.mouseDown}</span>
+      mouseLeave <span data-testid="pb-ev-mouseLeave">${counts.mouseLeave}</span>
+      Last value <span data-testid="pb-ev-value">${lastValue}</span>
+      Mouse target <code data-testid="pb-ev-target">${lastTarget}</code>
+    </div>
   </demo-section>
 </template>

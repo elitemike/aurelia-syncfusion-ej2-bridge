@@ -1,7 +1,43 @@
 <template>
   <h2>PDF417 Generator</h2>
 
-  <demo-section id="pdf417Generator-basic" title="Basic" description="PDF417 Generator rendered with its default options.">
-    <ej2-pdf417-generator data-testid="pdf417Generator-basic"></ej2-pdf417-generator>
+  <demo-section id="pdf-basic" title="Basic" description="PDF417 with an explicit width, height and value.">
+    <ej2-pdf417-generator data-testid="pdf-basic" e-width="400" e-height="150" e-value="Syncfusion PDF417"></ej2-pdf417-generator>
+  </demo-section>
+
+  <demo-section id="pdf-compaction" title="Compaction mode" description="Text, Numeric and Byte compaction pack the same symbol differently.">
+    <ej2-pdf417-generator data-testid="pdf-text" e-width="400" e-height="150" e-value="12345678901234567890" e-compaction-mode="Text"></ej2-pdf417-generator>
+    <ej2-pdf417-generator data-testid="pdf-numeric" e-width="400" e-height="150" e-value="12345678901234567890" e-compaction-mode="Numeric"></ej2-pdf417-generator>
+    <ej2-pdf417-generator data-testid="pdf-byte" e-width="400" e-height="150" e-value="12345678901234567890" e-compaction-mode="Byte"></ej2-pdf417-generator>
+  </demo-section>
+
+  <demo-section id="pdf-layout" title="Error correction, columns, rows and compact form" description="errorCorrectionLevel, columns, rows, isCompact and rowHeightRatio shape the symbol.">
+    <ej2-pdf417-generator data-testid="pdf-ecc0" e-width="400" e-height="150" e-value="Error correction" e-error-correction-level.bind="0"></ej2-pdf417-generator>
+    <ej2-pdf417-generator data-testid="pdf-ecc5" e-width="400" e-height="150" e-value="Error correction" e-error-correction-level.bind="5"></ej2-pdf417-generator>
+    <ej2-pdf417-generator data-testid="pdf-columns" e-width="400" e-height="150" e-value="Columns and rows follow the view model" e-columns.bind="3" e-rows.bind="0"></ej2-pdf417-generator>
+    <ej2-pdf417-generator data-testid="pdf-rows" e-width="400" e-height="150" e-value="Columns and rows follow the view model" e-columns.bind="0" e-rows.bind="20"></ej2-pdf417-generator>
+    <ej2-pdf417-generator data-testid="pdf-full" e-width="400" e-height="150" e-value="Compact" e-is-compact.bind="false"></ej2-pdf417-generator>
+    <ej2-pdf417-generator data-testid="pdf-compact" e-width="400" e-height="150" e-value="Compact" e-is-compact.bind="true"></ej2-pdf417-generator>
+    <ej2-pdf417-generator data-testid="pdf-ratio" e-width="400" e-height="150" e-value="Row height ratio" e-row-height-ratio.bind="5"></ej2-pdf417-generator>
+  </demo-section>
+
+  <demo-section id="pdf-appearance" title="Appearance" description="foreColor, backgroundColor, margin, displayText and the Canvas mode.">
+    <ej2-pdf417-generator data-testid="pdf-appearance" e-width="400" e-height="180" e-value="STYLED" e-fore-color="#0000ff" e-background-color="#ffffcc"
+      e-margin.bind="margin" e-display-text.bind="displayText"></ej2-pdf417-generator>
+    <ej2-pdf417-generator data-testid="pdf-canvas" e-width="400" e-height="150" e-value="CANVAS" e-mode="Canvas"></ej2-pdf417-generator>
+  </demo-section>
+
+  <demo-section id="pdf-dynamic" title="Dynamic properties" description="Every property follows the view-model.">
+    <ej2-pdf417-generator data-testid="pdf-dynamic" e-width.bind="dynWidth" e-height.bind="dynHeight" e-value.bind="dynValue"
+      e-fore-color.bind="dynFore" e-background-color.bind="dynBack"></ej2-pdf417-generator>
+    <button data-testid="pdf-dyn-change" click.delegate="change()">Change</button>
+  </demo-section>
+
+  <demo-section id="pdf-invalid" title="Invalid input" description="The invalid event is raised when the value cannot use the compaction mode.">
+    <ej2-pdf417-generator data-testid="pdf-invalid" e-width="400" e-height="150" e-compaction-mode="Numeric"
+      e-value.bind="invalidValue" e-on-invalid.delegate="onInvalid($event)"></ej2-pdf417-generator>
+    <div class="demo-output">Invalid events: <span data-testid="pdf-invalid-count">${invalidCount}</span>
+      Message: <code data-testid="pdf-invalid-message">${invalidMessage}</code></div>
+    <button data-testid="pdf-fix" click.delegate="invalidValue = '123456'">Fix value</button>
   </demo-section>
 </template>

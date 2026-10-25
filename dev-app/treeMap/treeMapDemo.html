@@ -1,7 +1,121 @@
 <template>
   <h2>Tree Map</h2>
 
-  <demo-section id="treeMap-basic" title="Basic" description="Tree Map rendered with its default options.">
-    <ej2-tree-map data-testid="treeMap-basic"></ej2-tree-map>
+  <demo-section id="tm-basic" title="Default tree map" description="Flat data weighted by population, with title, border, margin, background, description and grouped number format.">
+    <ej2-tree-map data-testid="tm-basic" e-width="560" e-height="360" e-data-source.bind="countries" e-weight-value-path="Population"
+      e-color-value-path="Color" e-title-settings.bind="titleSettings" e-border.bind="border" e-margin.bind="margin" e-background="#f5f5f5"
+      e-theme="Material3" e-description="Population tree map" e-tab-index.bind="5" e-use-grouping-separator.bind="true" e-format="n0"
+      e-leaf-item-settings.bind="leaf"></ej2-tree-map>
+  </demo-section>
+
+  <demo-section id="tm-layouts" title="Layout types and render direction" description="Squarified, slice-and-dice layouts and the four render directions.">
+    <ej2-tree-map data-testid="tm-squarified" e-width="280" e-height="200" e-data-source.bind="countries" e-weight-value-path="Population" e-layout-type="Squarified"
+      e-leaf-item-settings.bind="leaf"></ej2-tree-map>
+    <ej2-tree-map data-testid="tm-horizontal" e-width="280" e-height="200" e-data-source.bind="countries" e-weight-value-path="Population" e-layout-type="SliceAndDiceHorizontal"
+      e-leaf-item-settings.bind="leaf"></ej2-tree-map>
+    <ej2-tree-map data-testid="tm-vertical" e-width="280" e-height="200" e-data-source.bind="countries" e-weight-value-path="Population" e-layout-type="SliceAndDiceVertical"
+      e-leaf-item-settings.bind="leaf"></ej2-tree-map>
+    <ej2-tree-map data-testid="tm-direction" e-width="280" e-height="200" e-data-source.bind="countries" e-weight-value-path="Population" e-render-direction="BottomRightTopLeft"
+      e-leaf-item-settings.bind="leaf"></ej2-tree-map>
+  </demo-section>
+
+  <demo-section id="tm-levels" title="Levels, palette and headers" description="Two grouping levels with headers, group padding and an explicit palette.">
+    <ej2-tree-map data-testid="tm-levels" e-width="560" e-height="360" e-data-source.bind="countries" e-weight-value-path="Population"
+      e-levels.bind="levels" e-palette.bind="palette" e-leaf-item-settings.bind="leaf"></ej2-tree-map>
+  </demo-section>
+
+  <demo-section id="tm-colors" title="Colour mapping" description="rangeColorValuePath and equalColorValuePath colour the leaves from mappings.">
+    <ej2-tree-map data-testid="tm-range" e-width="400" e-height="260" e-data-source.bind="countries" e-weight-value-path="Population"
+      e-range-color-value-path="Density" e-leaf-item-settings.bind="rangeLeaf"></ej2-tree-map>
+    <ej2-tree-map data-testid="tm-equal" e-width="400" e-height="260" e-data-source.bind="countries" e-weight-value-path="Population"
+      e-equal-color-value-path="Continent" e-leaf-item-settings.bind="equalLeaf"></ej2-tree-map>
+  </demo-section>
+
+  <demo-section id="tm-template" title="Label template" description="labelTemplate renders custom HTML inside each leaf.">
+    <ej2-tree-map data-testid="tm-template" e-width="560" e-height="300" e-data-source.bind="countries" e-weight-value-path="Population"
+      e-leaf-item-settings.bind="templateLeaf"></ej2-tree-map>
+  </demo-section>
+
+  <demo-section id="tm-drill" title="Drill down" description="Clicking a continent drills into its countries, with a breadcrumb to go back.">
+    <ej2-tree-map data-testid="tm-drill" e-width="560" e-height="360" e-data-source.bind="countries" e-weight-value-path="Population"
+      e-levels.bind="drillLevels" e-leaf-item-settings.bind="leaf" e-enable-drill-down.bind="true" e-drill-down-view.bind="true"
+      e-enable-breadcrumb.bind="true" e-breadcrumb-connector=" / "
+      e-on-drill-start.delegate="log('drillStart', $event)" e-on-drill-end.delegate="log('drillEnd', $event)"></ej2-tree-map>
+    <ej2-tree-map data-testid="tm-drill-initial" e-width="560" e-height="260" e-data-source.bind="countries" e-weight-value-path="Population"
+      e-levels.bind="drillLevels" e-leaf-item-settings.bind="leaf" e-enable-drill-down.bind="true" e-drill-down-view.bind="true"
+      e-initial-drill-down.bind="initialDrill"></ej2-tree-map>
+    <div class="demo-output">
+      drillStart <span data-testid="tm-ev-drillStart">${counts.drillStart}</span>
+      drillEnd <span data-testid="tm-ev-drillEnd">${counts.drillEnd}</span>
+    </div>
+  </demo-section>
+
+  <demo-section id="tm-legend" title="Legend" description="A legend built from the colour mapping, with legend render events.">
+    <ej2-tree-map data-testid="tm-legend" e-width="560" e-height="360" e-data-source.bind="countries" e-weight-value-path="Population"
+      e-range-color-value-path="Density" e-leaf-item-settings.bind="rangeLeaf" e-legend-settings.bind="legend"
+      e-on-legend-rendering.delegate="log('legendRendering', $event)" e-on-legend-item-rendering.delegate="log('legendItemRendering', $event)"></ej2-tree-map>
+    <div class="demo-output">
+      legendRendering <span data-testid="tm-ev-legendRendering">${counts.legendRendering}</span>
+      legendItemRendering <span data-testid="tm-ev-legendItemRendering">${counts.legendItemRendering}</span>
+    </div>
+  </demo-section>
+
+  <demo-section id="tm-interaction" title="Highlight, selection, tooltip and mouse events" description="Hovering highlights and shows a tooltip, clicking selects, every mouse event is counted.">
+    <ej2-tree-map data-testid="tm-interaction" e-width="560" e-height="360" e-data-source.bind="countries" e-weight-value-path="Population"
+      e-color-value-path="Color" e-leaf-item-settings.bind="leaf" e-highlight-settings.bind="highlight" e-selection-settings.bind="selection"
+      e-tooltip-settings.bind="tooltip"
+      e-on-item-rendering.delegate="log('itemRendering', $event)" e-on-item-selected.delegate="log('itemSelected', $event)"
+      e-on-item-highlight.delegate="log('itemHighlight', $event)" e-on-tooltip-rendering.delegate="onTooltipRendering($event)"
+      e-on-item-click.delegate="log('itemClick', $event)" e-on-item-move.delegate="log('itemMove', $event)"
+      e-on-click.delegate="log('click', $event)" e-on-double-click.delegate="log('doubleClick', $event)"
+      e-on-right-click.delegate="log('rightClick', $event)" e-on-mouse-move.delegate="log('mouseMove', $event)"></ej2-tree-map>
+    <div class="demo-output">
+      <div>
+        itemRendering <span data-testid="tm-ev-itemRendering">${counts.itemRendering}</span>
+        itemSelected <span data-testid="tm-ev-itemSelected">${counts.itemSelected}</span>
+        itemHighlight <span data-testid="tm-ev-itemHighlight">${counts.itemHighlight}</span>
+        tooltipRendering <span data-testid="tm-ev-tooltipRendering">${counts.tooltipRendering}</span>
+      </div>
+      <div>
+        itemClick <span data-testid="tm-ev-itemClick">${counts.itemClick}</span>
+        itemMove <span data-testid="tm-ev-itemMove">${counts.itemMove}</span>
+        click <span data-testid="tm-ev-click">${counts.click}</span>
+        doubleClick <span data-testid="tm-ev-doubleClick">${counts.doubleClick}</span>
+        rightClick <span data-testid="tm-ev-rightClick">${counts.rightClick}</span>
+        mouseMove <span data-testid="tm-ev-mouseMove">${counts.mouseMove}</span>
+      </div>
+      Selected text <code data-testid="tm-selected-text">${selectedText}</code>
+      Tooltip item <code data-testid="tm-tooltip-text">${tooltipText}</code>
+    </div>
+  </demo-section>
+
+  <demo-section id="tm-query" title="Data manager and query" description="dataSource as a DataManager filtered by a Query, with HTML sanitising enabled.">
+    <ej2-tree-map data-testid="tm-query" e-width="560" e-height="300" e-data-source.bind="dataManager" e-query.bind="query" e-weight-value-path="Population"
+      e-leaf-item-settings.bind="leaf" e-enable-html-sanitizer.bind="true"></ej2-tree-map>
+  </demo-section>
+
+  <demo-section id="tm-events" title="Lifecycle, resize and print" description="load, loaded, resize and beforePrint events.">
+    <ej2-tree-map data-testid="tm-events" e-width="100%" e-height="300" e-data-source.bind="countries" e-weight-value-path="Population"
+      e-leaf-item-settings.bind="leaf" e-allow-print.bind="true"
+      e-on-load.delegate="log('load', $event)" e-on-loaded.delegate="log('loaded', $event)" e-on-resize.delegate="log('resize', $event)"
+      e-on-before-print.delegate="onBeforePrint($event)"></ej2-tree-map>
+    <div class="demo-output">
+      load <span data-testid="tm-ev-load">${counts.load}</span>
+      loaded <span data-testid="tm-ev-loaded">${counts.loaded}</span>
+      resize <span data-testid="tm-ev-resize">${counts.resize}</span>
+      beforePrint <span data-testid="tm-ev-beforePrint">${counts.beforePrint}</span>
+    </div>
+  </demo-section>
+
+  <demo-section id="tm-export" title="Export" description="allowImageExport and allowPdfExport enable exporting the tree map.">
+    <ej2-tree-map data-testid="tm-export" e-width="560" e-height="300" e-data-source.bind="countries" e-weight-value-path="Population"
+      e-leaf-item-settings.bind="leaf" e-allow-image-export.bind="true" e-allow-pdf-export.bind="true"></ej2-tree-map>
+  </demo-section>
+
+  <demo-section id="tm-dynamic" title="Dynamic properties" description="Properties follow the view-model.">
+    <ej2-tree-map data-testid="tm-dynamic" e-width.bind="dynWidth" e-height="260" e-data-source.bind="dynData" e-weight-value-path="Population"
+      e-background.bind="dynBackground" e-theme.bind="dynTheme" e-layout-type.bind="dynLayout" e-title-settings.bind="dynTitle"
+      e-leaf-item-settings.bind="leaf"></ej2-tree-map>
+    <button data-testid="tm-dyn-change" click.delegate="change()">Change</button>
   </demo-section>
 </template>
