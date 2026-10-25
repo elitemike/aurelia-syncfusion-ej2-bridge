@@ -164,6 +164,21 @@ test('export, import, ER entity change', async ({ app, page }) => {
   await fired(page, 'erEntityChanged');
 });
 
+test('historyStateChange is raised when a custom history entry is undone and redone', async ({ app, page }) => {
+  const d = ev(app);
+  await ready(d);
+  await inst(d, w => {
+    w.historyManager.undo = () => undefined;
+    w.historyManager.redo = () => undefined;
+    w.addHistoryEntry({ type: 'Custom', category: 'Custom', undoObject: { note: 'before' }, redoObject: { note: 'after' } });
+    w.undo();
+  });
+  await fired(page, 'historyStateChange');
+  expect((await eventLast(page, 'ev:historyStateChange')).entryType).toBe('undo');
+  await inst(d, w => { w.redo(); });
+  await expect.poll(async () => (await eventLast(page, 'ev:historyStateChange')).entryType).toBe('redo');
+});
+
 test('commandExecute and beforeWebMcpToolExecute are delivered by the bridge', async ({ app, page }) => {
   // Diagram v35 declares these events but never raises them from its own code paths without WebMCP / the Blazor
   // wrapper, so raise them through the component's event system and assert the template handler receives the args.
