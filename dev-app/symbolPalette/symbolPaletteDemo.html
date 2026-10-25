@@ -1,7 +1,37 @@
 <template>
   <h2>Symbol Palette</h2>
 
-  <demo-section id="symbolPalette-basic" title="Basic" description="Symbol Palette rendered with its default options.">
-    <ej2-symbol-palette data-testid="symbolPalette-basic"></ej2-symbol-palette>
+  <demo-section id="palette-basic" title="Palettes and drag and drop" description="Three palettes; drag a symbol onto the diagram. The diagram logs dragEnter, dragOver, dragLeave and drop.">
+    <div style="display: flex; gap: 12px">
+      <ej2-symbol-palette id="pal-basic" data-testid="palette-basic" e-width="220px" e-height="380px" e-palettes.bind="palettes"
+        e-symbol-width.bind="70" e-symbol-height.bind="50" e-symbol-margin.bind="symbolMargin" e-allow-drag.bind="true"
+        e-symbol-preview.bind="symbolPreview" e-symbol-drag-size.bind="symbolDragSize" e-enable-search.bind="false"
+        e-enable-animation.bind="false" e-expand-mode="Single" e-access-key="p"
+        e-on-palette-selection-change.delegate="log('paletteSelectionChange', $event)"
+        e-on-palette-expanding.delegate="log('paletteExpanding', $event)"></ej2-symbol-palette>
+      <ej2-diagram id="pal-target" data-testid="palette-target" e-width="420px" e-height="380px" e-nodes.bind="dropNodes"
+        e-on-drag-enter.delegate="log('dragEnter', $event)" e-on-drag-over.delegate="log('dragOver', $event)"
+        e-on-drag-leave.delegate="log('dragLeave', $event)" e-on-drop.delegate="log('drop', $event)"></ej2-diagram>
+    </div>
+  </demo-section>
+
+  <demo-section id="palette-search" title="Search and filtering" description="enableSearch adds a search box; ignoreSymbolsOnSearch and filterSymbols control the result.">
+    <ej2-symbol-palette data-testid="palette-search" e-width="220px" e-height="340px" e-palettes.bind="searchPalettes"
+      e-enable-search.bind="true" e-ignore-symbols-on-search.bind="ignored" e-filter-symbols.bind="filterSymbols"
+      e-enable-animation.bind="false" e-expand-mode="Multiple"></ej2-symbol-palette>
+  </demo-section>
+
+  <demo-section id="palette-defaults" title="Symbol info and defaults" description="symbolInfo, getSymbolInfo, nodeDefaults, getNodeDefaults, connectorDefaults and getConnectorDefaults shape the symbols.">
+    <ej2-symbol-palette data-testid="palette-defaults" e-width="220px" e-height="340px" e-palettes.bind="defaultPalettes"
+      e-symbol-info.bind="symbolInfo" e-get-symbol-info.bind="getSymbolInfo" e-node-defaults.bind="nodeDefaults"
+      e-get-node-defaults.bind="getNodeDefaults" e-connector-defaults.bind="connectorDefaults"
+      e-get-connector-defaults.bind="getConnectorDefaults" e-enable-animation.bind="false" e-expand-mode="Multiple"></ej2-symbol-palette>
+  </demo-section>
+
+  <demo-section id="palette-templates" title="Symbol templates" description="getSymbolTemplate builds the symbol content in code, nodeTemplate renders HTML symbols.">
+    <ej2-symbol-palette data-testid="palette-template-fn" e-width="220px" e-height="200px" e-palettes.bind="templatePalettes"
+      e-get-symbol-template.bind="getSymbolTemplate" e-enable-animation.bind="false"></ej2-symbol-palette>
+    <ej2-symbol-palette data-testid="palette-template-html" e-width="220px" e-height="200px" e-palettes.bind="htmlPalettes"
+      e-node-template.bind="nodeTemplate" e-enable-animation.bind="false"></ej2-symbol-palette>
   </demo-section>
 </template>

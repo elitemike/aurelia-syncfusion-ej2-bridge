@@ -1,7 +1,18 @@
 <template>
   <h2>Overview</h2>
 
-  <demo-section id="overview-basic" title="Basic" description="Overview rendered with its default options.">
-    <ej2-overview data-testid="overview-basic"></ej2-overview>
+  <demo-section id="overview-basic" title="Overview of a diagram" description="The overview mirrors the diagram named by sourceID; its viewport rectangle follows pan and zoom.">
+    <div style="display: flex; gap: 12px">
+      <ej2-diagram id="ov-diagram" data-testid="overview-diagram" e-width="480px" e-height="300px" e-nodes.bind="nodes" e-scroll-settings.bind="scroll"></ej2-diagram>
+      <ej2-overview id="ov-view" data-testid="overview-view" e-width="240px" e-height="150px" e-source-i-d.bind="sourceId"
+        e-on-created.delegate="log('created', $event)"></ej2-overview>
+    </div>
+    <button data-testid="overview-switch" click.delegate="useOther()">Show the second diagram</button>
+    <ej2-diagram id="ov-diagram-2" data-testid="overview-diagram-2" e-width="480px" e-height="200px" e-nodes.bind="otherNodes" e-scroll-settings.bind="scroll"></ej2-diagram>
+  </demo-section>
+
+  <demo-section id="overview-before" title="Overview declared before its diagram" description="The overview waits until the diagram it mirrors is rendered.">
+    <ej2-overview data-testid="overview-early" e-width="240px" e-height="120px" e-source-i-d="ov-late"></ej2-overview>
+    <ej2-diagram id="ov-late" data-testid="overview-late" e-width="480px" e-height="200px" e-nodes.bind="lateNodes"></ej2-diagram>
   </demo-section>
 </template>
