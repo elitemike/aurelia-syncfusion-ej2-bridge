@@ -1,0 +1,20 @@
+<template>
+  <demo-section id="ss-bare" title="Without chrome" description="showRibbon, showFormulaBar and showSheetTabs switched off, editing disabled, no scrolling.">
+    <ej2-spreadsheet data-testid="ss-bare" e-sheets.bind="sheets" e-height.bind="200" e-show-ribbon.bind="false"
+      e-show-formula-bar.bind="false" e-show-sheet-tabs.bind="false" e-allow-editing.bind="false"
+      e-allow-scrolling.bind="false"></ej2-spreadsheet>
+  </demo-section>
+
+  <demo-section id="ss-ai" title="AI assist, collaboration and comments" description="enableAIAssist adds the assistant (requests go to aiAssistSettings.requestUrl), showCommentsPane opens the comments pane.">
+    <ej2-spreadsheet data-testid="ss-ai" e-sheets.bind="sheets" e-height.bind="320" e-enable-a-i-assist.bind="true"
+      e-ai-assist-settings.bind="aiAssistSettings" e-enable-collaborative-editing.bind="true" e-show-comments-pane.bind="true"
+      e-on-prompt-request.delegate="log('ssa.promptRequest', $event)"
+      e-on-prompt-response.delegate="log('ssa.promptResponse', $event)"></ej2-spreadsheet>
+  </demo-section>
+
+  <demo-section id="ss-mcp" title="WebMCP" description="enableWebMcp registers tools with document.modelContext.">
+    <ej2-spreadsheet data-testid="ss-mcp" e-sheets.bind="sheets" e-height.bind="220" e-enable-web-mcp.bind="true"
+      e-web-mcp-settings.bind="webMcpSettings"
+      e-on-before-web-mcp-tool-execute.delegate="log('ssm.beforeWebMcpToolExecute', $event)"></ej2-spreadsheet>
+  </demo-section>
+</template>

@@ -1506,12 +1506,13 @@ export const ControlBindings = {
     ]
   },
   spreadsheet: {
+    twoWay: ["activeSheetIndex"],
     oneWay: [
       "cssClass", "allowScrolling", "allowResizing", "showAggregate", "showCommentsPane", "enableAIAssist",
       "enableCollaborativeEditing", "enableClipboard", "enableContextMenu", "enableKeyboardNavigation",
       "enableKeyboardShortcut", "allowUndoRedo", "allowWrap", "selectionSettings", "scrollSettings",
-      "aiAssistSettings", "currencyCode", "sheets", "author", "activeSheetIndex", "height",
-      "allowFindAndReplace", "filterCollection", "sortCollection", "width", "showRibbon", "showFormulaBar",
+      "aiAssistSettings", "currencyCode", "sheets", "author", "height", "filterCollection", "sortCollection",
+      "allowFindAndReplace", "width", "showRibbon", "showFormulaBar",
       "showSheetTabs", "allowEditing", "allowOpen", "allowSave", "allowSorting", "allowFiltering",
       "allowNumberFormatting", "allowCellFormatting", "allowHyperlink", "enableNotes", "allowInsert",
       "allowDelete", "allowMerge", "allowDataValidation", "allowImage", "allowChart", "allowAutoFill",

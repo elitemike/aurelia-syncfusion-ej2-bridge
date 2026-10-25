@@ -15,7 +15,8 @@ export class PivotFieldListDemo {
   // actions (no deferred layout update)
   actionsDsr: any = createDataSourceSettings();
 
-  // server mode, the engine url is answered by a stub in the tests
+  // server mode, the engine url is answered by a stub in the tests, so the request only starts on demand
+  showServer = false;
   serverDsr: any = {
     mode: 'Server', url: '/stub/pivot-engine', rows: [{ name: 'Country' }], columns: [{ name: 'Year' }],
     values: [{ name: 'Sold' }]

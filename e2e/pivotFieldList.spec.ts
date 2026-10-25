@@ -182,6 +182,7 @@ test('actionFailure reaches the host element', async ({ page }) => {
 });
 
 test('server mode wraps the engine request in beforeServiceInvoke and afterServiceInvoke', async ({ page }) => {
+  await page.getByTestId('pfl-server-start').click();
   await expectEvent(page, 'pflS.beforeServiceInvoke');
   await expectEvent(page, 'pflS.afterServiceInvoke');
   expect(await evArg(page, 'pflS.beforeServiceInvoke', 'action')).toBe('onRefresh');

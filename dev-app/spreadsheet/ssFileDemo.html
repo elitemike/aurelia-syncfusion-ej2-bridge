@@ -1,0 +1,11 @@
+<template>
+  <demo-section id="ss-file" title="Open and save" description="allowOpen / allowSave with openUrl, saveUrl and openSettings (the service is stubbed in the tests).">
+    <ej2-spreadsheet data-testid="ss-file" e-sheets.bind="sheets" e-height.bind="300" e-allow-open.bind="true" e-allow-save.bind="true"
+      e-open-url.bind="openUrl" e-save-url.bind="saveUrl" e-open-settings.bind="openSettings"
+      e-on-before-open.delegate="log('ssf.beforeOpen', $event)"
+      e-on-open-complete.delegate="log('ssf.openComplete', $event)"
+      e-on-open-failure.delegate="log('ssf.openFailure', $event)"
+      e-on-before-save.delegate="log('ssf.beforeSave', $event)"
+      e-on-save-complete.delegate="log('ssf.saveComplete', $event)"></ej2-spreadsheet>
+  </demo-section>
+</template>

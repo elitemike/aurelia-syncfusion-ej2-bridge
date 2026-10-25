@@ -1,0 +1,7 @@
+<template>
+  <demo-section id="ss-protect" title="Protection" description="A protected sheet blocks editing; the workbook itself is protected with a password.">
+    <ej2-spreadsheet data-testid="ss-protect" e-sheets.bind="sheets" e-height.bind="260" e-is-protected.bind="true"
+      e-password="secret" e-hash-value="" e-salt-value="" e-spin-count.bind="100"
+      e-on-dialog-before-open.delegate="log('ssp.dialogBeforeOpen', $event)"></ej2-spreadsheet>
+  </demo-section>
+</template>

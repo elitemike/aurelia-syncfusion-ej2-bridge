@@ -42,7 +42,8 @@
   </demo-section>
 
   <demo-section id="pfl-server" title="Server mode" description="mode Server posts every request to the engine url (stubbed in the tests): beforeServiceInvoke and afterServiceInvoke wrap the request.">
-    <ej2-pivot-field-list data-testid="pfl-server" e-data-source-settings.bind="serverDsr" e-render-mode="Fixed"
+    <button data-testid="pfl-server-start" click.delegate="showServer = true" if.bind="!showServer">Connect to the engine service</button>
+    <ej2-pivot-field-list if.bind="showServer" data-testid="pfl-server" e-data-source-settings.bind="serverDsr" e-render-mode="Fixed"
       e-on-before-service-invoke.delegate="log('pflS.beforeServiceInvoke', $event)"
       e-on-after-service-invoke.delegate="log('pflS.afterServiceInvoke', $event)"
       e-on-action-failure.delegate="log('pflS.actionFailure', $event)"></ej2-pivot-field-list>
