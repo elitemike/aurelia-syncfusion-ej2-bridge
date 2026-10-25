@@ -1,7 +1,63 @@
 <template>
   <h2>Carousel</h2>
 
-  <demo-section id="carousel-basic" title="Basic" description="Carousel rendered with its default options.">
-    <ej2-carousel data-testid="carousel-basic"></ej2-carousel>
+  <demo-section id="c-default" title="Default functionalities" description="selectedIndex is two-way, slideChanging can cancel a slide, loop and animationEffect follow the view-model.">
+    <ej2-carousel data-testid="c-default" e-items.bind="items" e-selected-index.two-way="selectedIndex"
+      e-loop.bind="loop" e-animation-effect.bind="effect" e-width="420px" e-height="120px"
+      e-on-slide-changing.delegate="onSlideChanging($event)" e-on-slide-changed.delegate="onSlideChanged()"></ej2-carousel>
+    <div class="demo-output">Index: <span data-testid="c-index">${selectedIndex}</span>
+      Changing: <span data-testid="c-changing">${changingCount}</span>
+      Changed: <span data-testid="c-changed">${changedCount}</span>
+      Current: <span data-testid="c-current">${lastCurrent}</span>
+      Next: <span data-testid="c-next">${lastNext}</span></div>
+    <div class="demo-row">
+      <button data-testid="c-select-two" click.delegate="select(2)">Select third</button>
+      <button data-testid="c-block" click.delegate="block()">Block fourth</button>
+      <button data-testid="c-no-loop" click.delegate="noLoop()">Loop off</button>
+      <button data-testid="c-fade" click.delegate="fade()">Fade</button>
+    </div>
+  </demo-section>
+
+  <demo-section id="c-auto" title="Autoplay" description="autoPlay advances slides every interval, showPlayButton adds a play/pause button and pauseOnHover stops it while the pointer is over the carousel.">
+    <ej2-carousel data-testid="c-auto" e-items.bind="autoItems" e-auto-play.bind="autoPlay" e-interval.bind="interval"
+      e-pause-on-hover.bind="pauseOnHover" e-show-play-button.bind="showPlayButton" e-width="420px" e-height="120px"></ej2-carousel>
+    <div class="demo-row">
+      <button data-testid="c-play" click.delegate="play()">Auto play</button>
+      <button data-testid="c-no-pause" click.delegate="stopPause()">No pause on hover</button>
+    </div>
+  </demo-section>
+
+  <demo-section id="c-indicators" title="Indicators and buttons" description="indicatorsType Default, Dynamic, Fraction and Progress, showIndicators toggles them, buttonsVisibility controls the arrows.">
+    <ej2-carousel data-testid="c-dots" e-items.bind="dotItems" e-indicators-type="Default" e-show-indicators.bind="showIndicators"
+      e-buttons-visibility.bind="buttonsVisibility" e-width="420px" e-height="100px"></ej2-carousel>
+    <ej2-carousel data-testid="c-dynamic" e-items.bind="dynamicItems" e-indicators-type="Dynamic" e-width="420px" e-height="100px"></ej2-carousel>
+    <ej2-carousel data-testid="c-fraction" e-items.bind="fractionItems" e-indicators-type="Fraction" e-width="420px" e-height="100px"></ej2-carousel>
+    <ej2-carousel data-testid="c-progress" e-items.bind="progressItems" e-indicators-type="Progress" e-width="420px" e-height="100px"></ej2-carousel>
+    <div class="demo-row">
+      <button data-testid="c-hide-ind" click.delegate="hideIndicators()">Hide indicators</button>
+      <button data-testid="c-hover-btn" click.delegate="hover()">Buttons on hover</button>
+    </div>
+  </demo-section>
+
+  <demo-section id="c-templates" title="Templates and data source" description="Button, indicator and play button templates, and a data source rendered with itemTemplate.">
+    <ej2-carousel data-testid="c-templates" e-items.bind="templateItems" e-previous-button-template.bind="previousTemplate"
+      e-next-button-template.bind="nextTemplate" e-indicators-template.bind="indicatorsTemplate"
+      e-play-button-template.bind="playTemplate" e-show-play-button="true" e-width="420px" e-height="100px"></ej2-carousel>
+    <ej2-carousel data-testid="c-data" e-data-source.bind="records" e-item-template.bind="itemTemplate"
+      e-width="420px" e-height="100px"></ej2-carousel>
+  </demo-section>
+
+  <demo-section id="c-misc" title="Partial view, swipe, keyboard and attributes" description="partialVisible, swipeMode, enableTouchSwipe, allowKeyboardInteraction, cssClass, htmlAttributes, width and height.">
+    <ej2-carousel data-testid="c-misc" e-items.bind="miscItems" e-partial-visible.bind="partialVisible"
+      e-swipe-mode.bind="swipeMode" e-enable-touch-swipe.bind="touchSwipe" e-allow-keyboard-interaction.bind="keyboard"
+      e-css-class.bind="cssClass" e-html-attributes.bind="htmlAttributes" e-width.bind="width" e-height.bind="height"></ej2-carousel>
+    <div class="demo-row">
+      <button data-testid="c-full" click.delegate="full()">Full slides</button>
+      <button data-testid="c-mouse" click.delegate="mouseSwipe()">Mouse swipe</button>
+      <button data-testid="c-no-touch" click.delegate="noTouch()">Touch off</button>
+      <button data-testid="c-no-keys" click.delegate="noKeyboard()">Keyboard off</button>
+      <button data-testid="c-restyle" click.delegate="restyle()">Restyle</button>
+      <button data-testid="c-resize" click.delegate="resize()">Resize</button>
+    </div>
   </demo-section>
 </template>

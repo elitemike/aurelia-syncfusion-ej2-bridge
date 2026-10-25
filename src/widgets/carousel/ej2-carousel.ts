@@ -11,10 +11,11 @@ export class Ej2Carousel extends SyncfusionWrapper<Carousel, CarouselModel> {
   protected syncfusionWidgetType = Carousel;
   private onSlideChanged: (args: any) => void = null;
 
-  protected onWrapperCreated() {
+  protected onWidgetCreated() {
   }
 
-  protected onWidgetCreated() {
+  // Carousel has no created event, so onWidgetCreated is never called. Hook up in onWrapperCreated instead.
+  protected onWrapperCreated() {
     // slides change through the buttons, indicators, autoplay and swipes, write the index back to the binding
     this.onSlideChanged = (args) => {
       this[`${constants.bindablePrefix}selectedIndex`] = args.currentIndex;
