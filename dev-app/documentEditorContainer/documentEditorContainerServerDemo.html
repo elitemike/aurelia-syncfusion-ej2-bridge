@@ -1,0 +1,14 @@
+<template>
+  <demo-section id="dc-server" title="Web service settings" description="serviceUrl and related settings.">
+    <ej2-document-editor-container data-testid="dc-server" view-model.ref="dcserverEd"
+      e-service-url.bind="serviceUrl"
+      e-server-action-settings.bind="serverActionSettings"
+      e-headers.bind="headers"
+      e-enable-spell-check.bind="enableSpellCheck"
+      e-enable-lock-and-edit.bind="enableLockAndEdit"
+      e-enable-web-mcp.bind="enableWebMcp"
+      e-web-mcp-settings.bind="webMcpSettings"
+      e-height.bind="height"
+      e-width.bind="width"></ej2-document-editor-container>
+  </demo-section>
+</template>

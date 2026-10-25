@@ -1,0 +1,30 @@
+<template>
+  <demo-section id="pv-off" title="Features switched off" description="Every enable* feature flag set to false: the matching UI and modules are not created.">
+    <ej2-pdf-viewer data-testid="pv-off" view-model.ref="viewer"
+      e-document-path.bind="documentPath"
+      e-resource-url.bind="resourceUrl"
+      e-height="420px"
+      e-width="100%"
+      e-enable-toolbar.bind="enableToolbar"
+      e-enable-navigation-toolbar.bind="enableNavigationToolbar"
+      e-enable-thumbnail.bind="enableThumbnail"
+      e-enable-bookmark.bind="enableBookmark"
+      e-enable-hyperlink.bind="enableHyperlink"
+      e-enable-navigation.bind="enableNavigation"
+      e-enable-magnification.bind="enableMagnification"
+      e-enable-text-selection.bind="enableTextSelection"
+      e-enable-text-search.bind="enableTextSearch"
+      e-enable-download.bind="enableDownload"
+      e-enable-print.bind="enablePrint"
+      e-enable-annotation.bind="enableAnnotation"
+      e-enable-form-fields.bind="enableFormFields"
+      e-enable-form-designer.bind="enableFormDesigner"
+      e-enable-annotation-toolbar.bind="enableAnnotationToolbar"
+      e-enable-comment-panel.bind="enableCommentPanel"
+      e-enable-link-annotation.bind="enableLinkAnnotation"
+      e-enable-redaction-toolbar.bind="enableRedactionToolbar"
+      e-enable-form-designer-toolbar.bind="enableFormDesignerToolbar"
+      e-enable-page-organizer.bind="enablePageOrganizer"
+      e-enable-auto-complete.bind="enableAutoComplete"></ej2-pdf-viewer>
+  </demo-section>
+</template>

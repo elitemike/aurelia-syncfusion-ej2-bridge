@@ -821,9 +821,10 @@ export const ControlBindings = {
     ]
   },
   documentEditor: {
+    twoWay: ["zoomFactor", "documentName"],
     oneWay: [
       "enableCollaborativeEditing", "defaultPasteOption", "layoutType", "currentUser", "userColor",
-      "pageGap", "documentName", "width", "height", "serviceUrl", "zoomFactor", "zIndex", "isReadOnly",
+      "pageGap", "width", "height", "serviceUrl", "zIndex", "isReadOnly",
       "enablePrint", "enableSelection", "enableEditor", "enableEditorHistory", "enableSfdtExport",
       "enableWordExport", "enableAutoFocus", "enableTextExport", "enableOptionsPane", "enableContextMenu",
       "enableHyperlinkDialog", "enableBookmarkDialog", "enableTableOfContentsDialog", "enableSearch",
@@ -1286,9 +1287,10 @@ export const ControlBindings = {
     ]
   },
   pdfViewer: {
+    twoWay: ["currentPageNumber", "zoomValue"],
+    fromView: ["pageCount", "isDocumentEdited"],
     oneWay: [
-      "serviceUrl", "pageCount", "printScaleFactor", "isDocumentEdited", "currentPageNumber",
-      "documentPath", "exportAnnotationFileName", "downloadFileName", "height", "width", "enableToolbar",
+      "serviceUrl", "printScaleFactor", "documentPath", "exportAnnotationFileName", "downloadFileName", "height", "width", "enableToolbar",
       "retryCount", "retryStatusCodes", "retryTimeout", "initialRenderPages", "showNotificationDialog",
       "enableNavigationToolbar", "enableCommentPanel", "isCommandPanelOpen", "enableTextMarkupResizer",
       "enableMultiLineOverlap", "isValidFreeText", "isAnnotationToolbarOpen", "isAnnotationToolbarVisible",
@@ -1307,7 +1309,7 @@ export const ControlBindings = {
       "enableStampAnnotations", "enableStickyNotesAnnotation", "enableAnnotationToolbar",
       "enableFormDesignerToolbar", "enableRedactionToolbar", "isBookmarkPanelOpen",
       "enableCollaborativeEditing", "isInitialFieldToolbarSelection", "interactionMode", "zoomMode",
-      "signatureFitMode", "printMode", "zoomValue", "minZoom", "maxZoom", "enableZoomOptimization",
+      "signatureFitMode", "printMode", "minZoom", "maxZoom", "enableZoomOptimization",
       "isExtractText", "isMaintainSelection", "hideEmptyDigitalSignatureFields",
       "showDigitalSignatureAppearance", "enableAccessibilityTags", "enableHtmlSanitizer", "dateTimeFormat",
       "resourceUrl", "toolbarSettings", "cloudSettings", "ajaxRequestSettings", "customStamp",

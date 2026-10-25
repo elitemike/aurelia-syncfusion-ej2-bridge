@@ -1,0 +1,19 @@
+<template>
+  <demo-section id="de-server" title="Web service settings" description="serviceUrl and related settings, requests are stubbed by the tests.">
+    <ej2-document-editor data-testid="de-server" view-model.ref="deserverEd"
+      e-on-service-failure.delegate="log('serviceFailure', $event)"
+      e-on-before-xml-http-request-send.delegate="log('beforeXmlHttpRequestSend', $event)"
+      e-on-before-file-open.delegate="log('beforeFileOpen', $event)"
+      e-on-document-load-failed.delegate="log('documentLoadFailed', $event)"
+      e-service-url.bind="serviceUrl"
+      e-server-action-settings.bind="serverActionSettings"
+      e-headers.bind="headers"
+      e-enable-spell-check.bind="enableSpellCheck"
+      e-enable-collaborative-editing.bind="enableCollaborativeEditing"
+      e-enable-lock-and-edit.bind="enableLockAndEdit"
+      e-enable-web-mcp.bind="enableWebMcp"
+      e-web-mcp-settings.bind="webMcpSettings"
+      e-height.bind="height"
+      e-width.bind="width"></ej2-document-editor>
+  </demo-section>
+</template>

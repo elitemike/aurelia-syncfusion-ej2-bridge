@@ -1,7 +1,18 @@
 <template>
   <h2>Pdf Comparer</h2>
 
-  <demo-section id="pdfComparer-basic" title="Basic" description="Pdf Comparer rendered with its default options.">
-    <ej2-pdf-comparer data-testid="pdfComparer-basic"></ej2-pdf-comparer>
+  <demo-section id="pdfComparer-basic" title="Compare two documents"
+    description="Two local base64 documents are compared side by side. The second differs on page 2.">
+    <div class="demo-row">
+      <button data-testid="pc-toggle-panel" click.delegate="toggleDifferencePanel()">Toggle difference panel</button>
+      <button data-testid="pc-toggle-sync" click.delegate="toggleSyncScrolling()">Toggle sync scrolling</button>
+      <button data-testid="pc-narrow" click.delegate="narrow()">Resize</button>
+      <button data-testid="pc-recolor" click.delegate="recolor()">Change comparison options</button>
+    </div>
+    <ej2-pdf-comparer data-testid="pdfComparer-basic" view-model.ref="comparer"
+      e-original-document-path.bind="originalDocumentPath" e-modified-document-path.bind="modifiedDocumentPath"
+      e-resource-url.bind="resourceUrl" e-comparison-options.bind="comparisonOptions"
+      e-enable-difference-panel.bind="enableDifferencePanel" e-enable-sync-scrolling.bind="enableSyncScrolling"
+      e-height.bind="height" e-width.bind="width"></ej2-pdf-comparer>
   </demo-section>
 </template>
