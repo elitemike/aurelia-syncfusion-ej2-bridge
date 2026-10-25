@@ -44,6 +44,14 @@ export class Ej2Gantt extends SyncfusionWrapper<Gantt, GanttModel> {
   }
 
   protected onWrapperCreated() {
+    // The gantt only does the work for these events (and only raises them) when a handler is assigned as a
+    // property, addEventListener does not count. Assign a placeholder, but only when the page listens.
+    ["queryTaskbarInfo", "queryCellInfo", "onMouseMove", "onTaskbarClick", "pdfQueryCellInfo", "pdfQueryTaskbarInfo",
+      "pdfQueryTimelineCellInfo", "pdfColumnHeaderQueryCellInfo"].forEach((name) => {
+        if (this.isListening(name)) {
+          this.widget[name] = () => { };
+        }
+      });
   }
 
   protected onWidgetCreated() {
@@ -61,5 +69,11 @@ export class Ej2Gantt extends SyncfusionWrapper<Gantt, GanttModel> {
     } else {
       this.widget.selectRow(value);
     }
+  }
+  // Event handlers are bound with `e-on-<name>.delegate`, which never reaches a bindable: look for the attribute.
+  private isListening(name: string) {
+    const kebab = name.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase();
+    const prefixes = [`${constants.eventPrefix}${kebab}.`, `${constants.eventPrefix}${name.toLowerCase()}.`];
+    return Array.from(this.element.attributes).some((a) => prefixes.some((p) => a.name.toLowerCase().startsWith(p)));
   }
 }

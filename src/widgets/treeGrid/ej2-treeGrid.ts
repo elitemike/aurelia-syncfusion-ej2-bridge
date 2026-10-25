@@ -56,7 +56,7 @@ export class Ej2TreeGrid extends SyncfusionWrapper<TreeGrid, TreeGridModel> {
     // dataStateChange is only raised (and children only start collapsed) when a handler is assigned as a property,
     // addEventListener does not count. Assign a placeholder, but only when the page actually listens.
     ["dataStateChange", "dataSourceChanged"].forEach((name) => {
-      if (this[`${constants.eventPrefix}${name}`] !== undefined) {
+      if (this.isListening(name)) {
         this.widget[name] = () => { };
       }
     });
@@ -85,5 +85,11 @@ export class Ej2TreeGrid extends SyncfusionWrapper<TreeGrid, TreeGridModel> {
     new Set([event, event.toLowerCase(), kebab]).forEach((eventName) => {
       this.element.dispatchEvent(new CustomEvent(eventName, { bubbles: true, detail: args }));
     });
+  }
+  // Event handlers are bound with `e-on-<name>.delegate`, which never reaches a bindable: look for the attribute.
+  private isListening(name: string) {
+    const kebab = name.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase();
+    const prefixes = [`${constants.eventPrefix}${kebab}.`, `${constants.eventPrefix}${name.toLowerCase()}.`];
+    return Array.from(this.element.attributes).some((a) => prefixes.some((p) => a.name.toLowerCase().startsWith(p)));
   }
 }
