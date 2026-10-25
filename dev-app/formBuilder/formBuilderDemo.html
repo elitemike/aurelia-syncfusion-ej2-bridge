@@ -1,7 +1,32 @@
 <template>
   <h2>Form Builder</h2>
 
-  <demo-section id="formBuilder-basic" title="Basic" description="Form Builder rendered with its default options.">
-    <ej2-form-builder data-testid="formBuilder-basic"></ej2-form-builder>
+  <demo-section id="fb-default" title="Default functionalities"
+    description="Design a form by dragging fields from the toolbox, the field events are raised while designing.">
+    <ej2-form-builder data-testid="fb-default" e-schema.bind="schema" e-mode="Simple"
+      e-on-on-field-drag-started.delegate="onDragStarted($event)" e-on-on-field-drag-over.delegate="count('dragOver')"
+      e-on-on-field-dropped.delegate="onDropped($event)"
+      e-on-on-field-property-changed.delegate="onPropertyChanged($event)"></ej2-form-builder>
+    <div class="demo-output">
+      dragStarted <span data-testid="fb-ev-dragStarted">${counts.dragStarted}</span> (<code data-testid="fb-ev-dragStarted-type">${dragType}</code>)
+      dragOver <span data-testid="fb-ev-dragOver">${counts.dragOver}</span>
+      dropped <span data-testid="fb-ev-dropped">${counts.dropped}</span> (<code data-testid="fb-ev-dropped-type">${droppedType}</code>)
+      propertyChanged <span data-testid="fb-ev-propertyChanged">${counts.propertyChanged}</span> (<code data-testid="fb-ev-propertyChanged-name">${propertyName}</code>)</div>
+  </demo-section>
+
+  <demo-section id="fb-options" title="Mode, export and preview"
+    description="mode (Simple or Developer), allowExport, enablePreview and enableHtmlSanitizer.">
+    <div class="demo-row">
+      <button data-testid="fb-developer" click.delegate="mode = 'Developer'">Developer mode</button>
+      <button data-testid="fb-no-export" click.delegate="hideTools()">Hide export and preview</button>
+    </div>
+    <ej2-form-builder data-testid="fb-options" e-schema.bind="schema" e-mode.bind="mode" e-allow-export.bind="allowExport"
+      e-enable-preview.bind="enablePreview" e-enable-html-sanitizer="true"></ej2-form-builder>
+  </demo-section>
+
+  <demo-section id="fb-toolbox" title="Toolbox and templates"
+    description="toolboxCategories, toolboxItems and formTemplates customize what can be designed.">
+    <ej2-form-builder data-testid="fb-toolbox" e-toolbox-categories.bind="toolboxCategories"
+      e-toolbox-items.bind="toolboxItems" e-form-templates.bind="formTemplates"></ej2-form-builder>
   </demo-section>
 </template>
