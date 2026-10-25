@@ -11,7 +11,7 @@ function walk(d,o=[]){for(const e of fs.readdirSync(d,{withFileTypes:true})){con
 const html=walk('dev-app').filter(f=>f.endsWith('.html')).map(f=>fs.readFileSync(f,'utf8')).join('\n').toLowerCase();
 let tot=0,miss=0;const res={};
 for(const [name,b] of Object.entries(B)){ if(name==='common')continue;
- const tag=kebab(name);
+ const tag=kebab(name).replace(/(\d)-d$/,'$1d').replace(/(\d)-d-/,'$1d-');
  // collect element texts for tag
  const re=new RegExp('<ej2-'+tag+'[\\s>][\\s\\S]*?>','g');
  const els=(html.match(re)||[]).join(' ');
