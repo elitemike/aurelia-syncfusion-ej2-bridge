@@ -1198,8 +1198,11 @@ export const ControlBindings = {
     ]
   },
   tab: {
+    twoWay: [
+      "selectedItem"
+    ],
     oneWay: [
-      "items", "width", "swipeMode", "height", "cssClass", "selectedItem", "headerPlacement",
+      "items", "width", "swipeMode", "height", "cssClass", "headerPlacement",
       "heightAdjustMode", "overflowMode", "loadOn", "enableHtmlSanitizer", "showCloseButton",
       "reorderActiveTab", "scrollStep", "dragArea", "allowDragAndDrop", "clearTemplates", "animation"
     ],
@@ -1209,8 +1212,11 @@ export const ControlBindings = {
     ]
   },
   breadcrumb: {
+    twoWay: [
+      "activeItem"
+    ],
     oneWay: [
-      "url", "items", "activeItem", "maxItems", "overflowMode", "cssClass", "itemTemplate",
+      "url", "items", "maxItems", "overflowMode", "cssClass", "itemTemplate",
       "separatorTemplate", "enableNavigation", "enableActiveItemNavigation", "disabled"
     ],
     events: [
@@ -1218,9 +1224,12 @@ export const ControlBindings = {
     ]
   },
   carousel: {
+    twoWay: [
+      "selectedIndex"
+    ],
     oneWay: [
       "items", "animationEffect", "previousButtonTemplate", "nextButtonTemplate", "indicatorsTemplate",
-      "playButtonTemplate", "cssClass", "dataSource", "itemTemplate", "selectedIndex", "width", "height",
+      "playButtonTemplate", "cssClass", "dataSource", "itemTemplate", "width", "height",
       "interval", "autoPlay", "pauseOnHover", "loop", "showPlayButton", "enableTouchSwipe",
       "allowKeyboardInteraction", "showIndicators", "indicatorsType", "buttonsVisibility",
       "partialVisible", "swipeMode", "htmlAttributes"
@@ -1238,8 +1247,11 @@ export const ControlBindings = {
     ]
   },
   stepper: {
+    twoWay: [
+      "activeStep"
+    ],
     oneWay: [
-      "activeStep", "animation", "linear", "showTooltip", "template", "tooltipTemplate", "labelPosition",
+      "animation", "linear", "showTooltip", "template", "tooltipTemplate", "labelPosition",
       "stepType", "steps", "cssClass", "readOnly", "orientation"
     ],
     events: [
@@ -1448,9 +1460,12 @@ export const ControlBindings = {
     ]
   },
   ribbon: {
+    twoWay: [
+      "selectedTab", "isMinimized"
+    ],
     oneWay: [
       "activeLayout", "cssClass", "enableKeyTips", "layoutSwitcherKeyTip", "fileMenu", "backStageMenu",
-      "launcherIconCss", "isMinimized", "selectedTab", "tabAnimation", "tabs", "contextualTabs", "width",
+      "launcherIconCss", "tabAnimation", "tabs", "contextualTabs", "width",
       "helpPaneTemplate", "hideLayoutSwitcher"
     ],
     events: [

@@ -1,7 +1,57 @@
 <template>
   <h2>Stepper</h2>
 
-  <demo-section id="stepper-basic" title="Basic" description="Stepper rendered with its default options.">
-    <ej2-stepper data-testid="stepper-basic"></ej2-stepper>
+  <demo-section id="st-default" title="Default functionalities" description="activeStep is two-way, stepChanging can cancel, stepChanged and stepClick report navigation. nextStep, previousStep and reset are driven through the widget.">
+    <ej2-stepper view-model.ref="stepper" data-testid="st-default" e-steps.bind="steps" e-active-step.two-way="activeStep"
+      e-on-step-changing.delegate="onStepChanging($event)" e-on-step-changed.delegate="onStepChanged($event)"
+      e-on-step-click.delegate="onStepClick()" e-on-created.delegate="onCreated()"></ej2-stepper>
+    <div class="demo-output">Active: <span data-testid="st-active">${activeStep}</span>
+      Changing: <span data-testid="st-changing">${changingCount}</span>
+      Changed: <span data-testid="st-changed">${changedCount}</span>
+      Last changed: <span data-testid="st-last">${lastChanged}</span>
+      Previous: <span data-testid="st-previous">${lastPrevious}</span>
+      Clicks: <span data-testid="st-clicks">${clickCount}</span>
+      Created: <span data-testid="st-created">${createdCount}</span></div>
+    <div class="demo-row">
+      <button data-testid="st-next" click.delegate="next()">Next</button>
+      <button data-testid="st-prev" click.delegate="previous()">Previous</button>
+      <button data-testid="st-reset" click.delegate="reset()">Reset</button>
+      <button data-testid="st-go-two" click.delegate="goTo(2)">Go to third</button>
+      <button data-testid="st-block" click.delegate="block()">Block last step</button>
+    </div>
+  </demo-section>
+
+  <demo-section id="st-linear" title="Linear, optional and invalid steps" description="linear forces steps in order, steps can be optional or invalid.">
+    <ej2-stepper view-model.ref="linearStepper" data-testid="st-linear" e-steps.bind="linearSteps" e-linear.bind="linear"></ej2-stepper>
+    <div class="demo-row">
+      <button data-testid="st-linear-next" click.delegate="linearNext()">Next</button>
+      <button data-testid="st-free" click.delegate="freeLinear()">Linear off</button>
+    </div>
+  </demo-section>
+
+  <demo-section id="st-layout" title="Orientation, label position, type and css" description="orientation, labelPosition, stepType and cssClass follow the view-model.">
+    <ej2-stepper data-testid="st-layout" e-steps.bind="verticalSteps" e-orientation.bind="orientation"
+      e-label-position.bind="labelPosition" e-step-type.bind="stepType" e-css-class.bind="cssClass"></ej2-stepper>
+    <ej2-stepper data-testid="st-label" e-steps.bind="labelSteps" e-step-type="Label"></ej2-stepper>
+    <ej2-stepper data-testid="st-indicator" e-steps.bind="indicatorSteps" e-step-type="Indicator"></ej2-stepper>
+    <div class="demo-row">
+      <button data-testid="st-horizontal" click.delegate="horizontal()">Horizontal</button>
+      <button data-testid="st-top" click.delegate="top()">Label on top</button>
+      <button data-testid="st-label-only" click.delegate="labelOnly()">Label type</button>
+      <button data-testid="st-restyle" click.delegate="restyle()">Restyle</button>
+    </div>
+  </demo-section>
+
+  <demo-section id="st-template" title="Templates and tooltips" description="template renders each step, tooltipTemplate the hover tooltip, showTooltip toggles tooltips.">
+    <ej2-stepper data-testid="st-template" e-steps.bind="templateSteps" e-template.bind="template"
+      e-tooltip-template.bind="tooltipTemplate" e-show-tooltip.bind="showTooltip"></ej2-stepper>
+    <button data-testid="st-hide-tips" click.delegate="hideTips()">Hide tooltips</button>
+  </demo-section>
+
+  <demo-section id="st-misc" title="Read only, animation and beforeStepRender" description="readOnly blocks interaction, animation controls transitions, beforeStepRender runs for every step.">
+    <ej2-stepper data-testid="st-misc" e-steps.bind="miscSteps" e-read-only.bind="readOnly" e-animation.bind="animation"
+      e-on-before-step-render.delegate="onBeforeStepRender($event)"></ej2-stepper>
+    <div class="demo-output">BeforeStepRender: <span data-testid="st-render">${renderCount}</span></div>
+    <button data-testid="st-lock" click.delegate="lock()">Read only</button>
   </demo-section>
 </template>

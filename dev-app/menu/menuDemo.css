@@ -1,0 +1,10 @@
+.m-narrow {
+  width: 300px;
+}
+
+.m-target {
+  margin-top: 8px;
+  padding: 12px;
+  border: 1px dashed #888;
+  max-width: 420px;
+}

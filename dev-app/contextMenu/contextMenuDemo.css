@@ -1,0 +1,11 @@
+.cm-target {
+  padding: 16px;
+  margin-bottom: 8px;
+  border: 1px dashed #888;
+  max-width: 420px;
+}
+
+/* the scroller of a context menu is as tall as its wrapper */
+.e-contextmenu-wrapper.cm-scroll {
+  height: 250px;
+}

@@ -14,4 +14,16 @@ export class Ej2ContextMenu extends SyncfusionWrapper<ContextMenu, ContextMenuMo
 
   protected onWidgetCreated() {
   }
+
+  protected appendWidget() {
+    // ContextMenu.destroy replaces the original list with a rebuilt one. When the view is reused (if.bind) or the
+    // widget is recreated the element reference points to the detached original, so pick up the list in the host.
+    if (this.widgetElement && !this.widgetElement.isConnected) {
+      const list = this.element.querySelector('ul');
+      if (list) {
+        this.widgetElement = list as HTMLElement;
+      }
+    }
+    super.appendWidget();
+  }
 }

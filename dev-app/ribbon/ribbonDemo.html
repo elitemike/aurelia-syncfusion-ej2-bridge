@@ -1,7 +1,75 @@
 <template>
   <h2>Ribbon</h2>
 
-  <demo-section id="ribbon-basic" title="Basic" description="Ribbon rendered with its default options.">
-    <ej2-ribbon data-testid="ribbon-basic"></ej2-ribbon>
+  <demo-section id="rb-default" title="Default functionalities" description="Classic ribbon with buttons, a combo box, a check box, drop down, split button, color picker and group button. selectedTab and isMinimized are two-way, tab and expand/collapse events report back.">
+    <ej2-ribbon data-testid="rb-default" e-tabs.bind="tabs" e-selected-tab.two-way="selectedTab" e-is-minimized.two-way="minimized"
+      e-on-tab-selecting.delegate="onTabSelecting($event)" e-on-tab-selected.delegate="onTabSelected()"
+      e-on-ribbon-expanding.delegate="onExpanding()" e-on-ribbon-collapsing.delegate="onCollapsing()"
+      e-on-created.delegate="onCreated()"></ej2-ribbon>
+    <div class="demo-output">Selected tab: <span data-testid="rb-tab">${selectedTab}</span>
+      Selecting: <span data-testid="rb-selecting">${selectingCount}</span>
+      Last selecting: <span data-testid="rb-last-selecting">${lastSelecting}</span>
+      Selected: <span data-testid="rb-selected">${selectedCount}</span>
+      Minimized: <span data-testid="rb-minimized">${minimized}</span>
+      Expanding: <span data-testid="rb-expanding">${expandingCount}</span>
+      Collapsing: <span data-testid="rb-collapsing">${collapsingCount}</span>
+      Created: <span data-testid="rb-created">${createdCount}</span>
+      Paste clicks: <span data-testid="rb-paste">${pasteClicks}</span>
+      Bold: <span data-testid="rb-bold">${boldChecked}</span> (<span data-testid="rb-bold-count">${boldChanges}</span>)
+      Font size: <span data-testid="rb-size">${fontSize}</span></div>
+    <div class="demo-row">
+      <button data-testid="rb-go-view" click.delegate="goTo(2)">Select View tab</button>
+      <button data-testid="rb-minimize" click.delegate="minimize()">Minimize</button>
+    </div>
+  </demo-section>
+
+  <demo-section id="rb-simplified" title="Simplified layout" description="activeLayout Simplified shows one row and moves items that do not fit into an overflow popup. ribbonLayoutSwitched, overflowPopupOpen and overflowPopupClose report back, hideLayoutSwitcher removes the switcher.">
+    <ej2-ribbon data-testid="rb-simplified" e-tabs.bind="simplifiedTabs" e-active-layout.bind="layout" e-width.bind="simplifiedWidth"
+      e-hide-layout-switcher.bind="hideSwitcher"
+      e-on-ribbon-layout-switched.delegate="onLayoutSwitched($event)"
+      e-on-overflow-popup-open.delegate="onOverflowOpen()" e-on-overflow-popup-close.delegate="onOverflowClose()"></ej2-ribbon>
+    <div class="demo-output">Layout switched: <span data-testid="rb-switched">${layoutSwitchedCount}</span>
+      Layout: <span data-testid="rb-layout">${lastLayout}</span>
+      Overflow open: <span data-testid="rb-overflow-open">${overflowOpenCount}</span>
+      Overflow close: <span data-testid="rb-overflow-close">${overflowCloseCount}</span></div>
+    <div class="demo-row">
+      <button data-testid="rb-classic" click.delegate="classic()">Classic layout</button>
+      <button data-testid="rb-hide-switcher" click.delegate="hide()">Hide switcher</button>
+    </div>
+  </demo-section>
+
+  <demo-section id="rb-file" title="File menu" description="fileMenu adds a File drop down with menu items.">
+    <ej2-ribbon data-testid="rb-file" e-tabs.bind="fileTabs" e-file-menu.bind="fileMenu"></ej2-ribbon>
+    <div class="demo-output">Selected: <code data-testid="rb-file-selected">${fileSelected}</code></div>
+  </demo-section>
+
+  <demo-section id="rb-backstage" title="Backstage" description="backStageMenu opens a full backstage view with items and content.">
+    <ej2-ribbon data-testid="rb-backstage" e-tabs.bind="backstageTabs" e-back-stage-menu.bind="backStageMenu"></ej2-ribbon>
+  </demo-section>
+
+  <demo-section id="rb-contextual" title="Contextual tabs" description="contextualTabs adds tabs that are shown for a context, isSelected selects them.">
+    <ej2-ribbon data-testid="rb-contextual" e-tabs.bind="contextTabs" e-contextual-tabs.bind="contextualTabs"></ej2-ribbon>
+    <button data-testid="rb-show-context" click.delegate="showContextual()">Select contextual tab</button>
+  </demo-section>
+
+  <demo-section id="rb-keytips" title="Key tips" description="enableKeyTips shows key tips on Alt, layoutSwitcherKeyTip labels the layout switcher.">
+    <ej2-ribbon data-testid="rb-keytips" e-tabs.bind="keyTabs" e-enable-key-tips.bind="enableKeyTips"
+      e-layout-switcher-key-tip="LS"></ej2-ribbon>
+    <button data-testid="rb-no-keytips" click.delegate="noKeyTips()">Key tips off</button>
+  </demo-section>
+
+  <demo-section id="rb-launcher" title="Launcher icon" description="Groups with showLauncherIcon get a launcher icon (launcherIconCss), launcherIconClick reports clicks.">
+    <ej2-ribbon data-testid="rb-launcher" e-tabs.bind="launcherTabs" e-launcher-icon-css.bind="launcherIconCss"
+      e-on-launcher-icon-click.delegate="onLauncherClick()"></ej2-ribbon>
+    <div class="demo-output">Launcher clicks: <span data-testid="rb-launcher-count">${launcherCount}</span></div>
+  </demo-section>
+
+  <demo-section id="rb-misc" title="Help pane, css, animation and width" description="helpPaneTemplate, cssClass, tabAnimation and width.">
+    <ej2-ribbon data-testid="rb-misc" e-tabs.bind="miscTabs" e-help-pane-template.bind="helpPaneTemplate"
+      e-css-class.bind="cssClass" e-tab-animation.bind="tabAnimation" e-width.bind="width"></ej2-ribbon>
+    <div class="demo-row">
+      <button data-testid="rb-restyle" click.delegate="restyle()">Restyle</button>
+      <button data-testid="rb-resize" click.delegate="resize()">Resize</button>
+    </div>
   </demo-section>
 </template>
