@@ -14,7 +14,7 @@ export class TreeGridFeaturesDemo {
 
   // paging
   pageData = clone(selfReferenceData);
-  pageSettings = { pageSize: 4, pageSizes: false };
+  pageSettings = { pageSize: 2, pageSizes: false };
   pagerTemplate = '<div class="tg-pager-template">Custom pager</div>';
 
   // sorting

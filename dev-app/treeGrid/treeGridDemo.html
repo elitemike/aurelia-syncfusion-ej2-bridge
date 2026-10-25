@@ -3,7 +3,7 @@
 
   <demo-section id="tg-basic" title="Hierarchical data" description="childMapping, treeColumnIndex, selection, selectedRowIndex (two-way) and the lifecycle, expand/collapse, row and cell events.">
     <ej2-tree-grid data-testid="tg-basic" e-data-source.bind="data" e-child-mapping="subtasks" e-tree-column-index.bind="1"
-      e-columns.bind="columns" e-height.bind="300" e-allow-selection.bind="true" e-selection-settings.bind="selectionSettings"
+      e-columns.bind="columns" e-height.bind="300" e-allow-sorting.bind="true" e-allow-selection.bind="true" e-selection-settings.bind="selectionSettings"
       e-selected-row-index.two-way="selectedRowIndex" e-enable-collapse-all.bind="false"
       e-on-created.delegate="log('created', $event)"
       e-on-load.delegate="log('load', $event)"

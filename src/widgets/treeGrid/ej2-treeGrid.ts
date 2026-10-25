@@ -62,6 +62,16 @@ export class Ej2TreeGrid extends SyncfusionWrapper<TreeGrid, TreeGridModel> {
     this.widget.addEventListener("rowDeselected", report);
   }
 
+  // the tree grid only honours selectedRowIndex before the first selection exists: afterwards select explicitly
+  selectedRowIndexChanged(value: number) {
+    if (!this.widget || value === this.widget.selectedRowIndex) { return; }
+    if (value === null || value === undefined || value < 0) {
+      this.widget.clearSelection();
+    } else {
+      this.widget.selectRow(value);
+    }
+  }
+
   private forward(name: string, args: any) {
     const event = `${constants.eventPrefix}${name}`;
     const kebab = event.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase();

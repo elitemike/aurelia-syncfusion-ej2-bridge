@@ -21,7 +21,7 @@ export class TreeGridDemo {
   // basic hierarchical sample
   data = clone(hierarchicalData);
   selectedRowIndex = -1;
-  selectionSettings = { type: 'Single' };
+  selectionSettings = { type: 'Single', mode: 'Both' };
 
   // self referential sample
   selfData = clone(selfReferenceData).map((r: any) => ({ ...r, isExpanded: r.taskID !== 5 }));
