@@ -1,7 +1,44 @@
 <template>
   <h2>Form Renderer</h2>
 
-  <demo-section id="formRenderer-basic" title="Basic" description="Form Renderer rendered with its default options.">
-    <ej2-form-renderer data-testid="formRenderer-basic"></ej2-form-renderer>
+  <demo-section id="fr-default" title="Default functionalities"
+    description="The schema describes the fields and their layout, dataModel provides initial values. change, submit and buttonClick are raised while the form is used.">
+    <ej2-form-renderer data-testid="fr-default" e-schema.bind="schema" e-data-model.bind="dataModel"
+      e-layout="SingleColumn" e-class-name="fr-custom-class"
+      e-on-created.delegate="count('created')" e-on-change.delegate="onChange($event)"
+      e-on-submit.delegate="onSubmit($event)" e-on-button-click.delegate="onButtonClick($event)"></ej2-form-renderer>
+    <div class="demo-output">
+      created <span data-testid="fr-ev-created">${counts.created}</span>
+      change <span data-testid="fr-ev-change">${counts.change}</span> (<code data-testid="fr-ev-change-field">${changeField}</code>=<code data-testid="fr-ev-change-value">${changeValue}</code>)
+      submit <span data-testid="fr-ev-submit">${counts.submit}</span> (valid <code data-testid="fr-ev-submit-valid">${submitValid}</code>, <code data-testid="fr-ev-submit-data">${submitData}</code>)
+      buttonClick <span data-testid="fr-ev-buttonClick">${counts.buttonClick}</span> (<code data-testid="fr-ev-button-field">${buttonField}</code>)</div>
+    <button data-testid="fr-new-data" click.delegate="newData()">Replace dataModel</button>
+  </demo-section>
+
+  <demo-section id="fr-layout" title="Layouts"
+    description="layout switches between single and multi column rendering.">
+    <div class="demo-row">
+      <button data-testid="fr-two-column" click.delegate="layout = 'TwoColumn'">Two columns</button>
+      <button data-testid="fr-three-column" click.delegate="layout = 'ThreeColumn'">Three columns</button>
+    </div>
+    <ej2-form-renderer data-testid="fr-layout" e-schema.bind="schema" e-layout.bind="layout"></ej2-form-renderer>
+  </demo-section>
+
+  <demo-section id="fr-custom" title="Custom widgets"
+    description="customWidgetSettings render a template for a field instead of the built-in component.">
+    <ej2-form-renderer data-testid="fr-custom" e-schema.bind="customSchema"
+      e-custom-widget-settings.bind="customWidgetSettings"></ej2-form-renderer>
+  </demo-section>
+
+  <demo-section id="fr-sanitize" title="HTML sanitizer"
+    description="enableHtmlSanitizer strips scripts and event handlers from static html fields.">
+    <ej2-form-renderer data-testid="fr-sanitize" e-schema.bind="htmlSchema" e-enable-html-sanitizer="true"></ej2-form-renderer>
+  </demo-section>
+
+  <demo-section id="fr-failure" title="Failure"
+    description="failure is raised when the schema cannot be used.">
+    <ej2-form-renderer data-testid="fr-failure" e-schema="{ this is not json"
+      e-on-failure.delegate="onFailure($event)"></ej2-form-renderer>
+    <div class="demo-output">failure <span data-testid="fr-ev-failure">${counts.failure}</span></div>
   </demo-section>
 </template>

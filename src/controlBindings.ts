@@ -974,11 +974,12 @@ export const ControlBindings = {
   },
   inPlaceEditor: {
     oneWay: [
-      "name", "value", "template", "enableHtmlSanitizer", "enableHtmlParse", "cssClass", "primaryKey",
+      "name", "template", "enableHtmlSanitizer", "enableHtmlParse", "cssClass", "primaryKey",
       "emptyText", "url", "mode", "adaptor", "type", "editableOn", "textOption", "actionOnBlur",
       "disabled", "showButtons", "enableEditMode", "submitOnEnter", "popupSettings", "model", "saveButton",
       "cancelButton", "validationRules"
     ],
+    twoWay: ["value"],
     events: [
       "created", "beforeSanitizeHtml", "actionBegin", "actionSuccess", "actionFailure", "validating",
       "beginEdit", "endEdit", "change", "submitClick", "cancelClick", "destroyed"
@@ -1476,11 +1477,12 @@ export const ControlBindings = {
   richTextEditorUI: {
     oneWay: [
       "enable", "readonly", "width", "height", "placeholder", "htmlAttributes", "cssClass", "keyBindings",
-      "value", "valueFormat", "saveInterval", "undoRedoSteps", "undoRedoTimer", "toolbarSettings",
+      "valueFormat", "saveInterval", "undoRedoSteps", "undoRedoTimer", "toolbarSettings",
       "fontSize", "fontFamily", "quickToolbarSettings", "linkSettings", "tableSettings", "fontColor",
       "backgroundColor", "listSettings", "format", "slashCommandSettings", "interactionSettings",
       "imageSettings"
     ],
+    twoWay: ["value"],
     events: [
       "created", "destroyed", "focus", "blur", "actionBegin", "actionComplete", "change",
       "beforeDialogOpen", "beforeDialogClose", "beforeFileUpload", "fileUploading", "fileSelected",
@@ -1490,8 +1492,9 @@ export const ControlBindings = {
   recurrenceEditor: {
     oneWay: [
       "frequencies", "endTypes", "firstDayOfWeek", "startDate", "dateFormat", "calendarMode", "cssClass",
-      "value", "minDate", "maxDate", "selectedType"
+      "minDate", "maxDate", "selectedType"
     ],
+    twoWay: ["value"],
     events: [
       "change", "created", "destroyed"
     ]

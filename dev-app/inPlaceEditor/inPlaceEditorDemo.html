@@ -1,7 +1,141 @@
 <template>
-  <h2>In Place Editor</h2>
+  <h2>In-place Editor</h2>
 
-  <demo-section id="inPlaceEditor-basic" title="Basic" description="In Place Editor rendered with its default options.">
-    <ej2-in-place-editor data-testid="inPlaceEditor-basic"></ej2-in-place-editor>
+  <demo-section id="ipe-default" title="Default functionalities"
+    description="A text editor that switches between its value and an input. value is two-way: submitting updates the view-model and the view-model updates the displayed value.">
+    <ej2-in-place-editor e-mode="Inline" data-testid="ipe-default" e-name="employee" e-type="Text" e-value.two-way="name"
+      e-empty-text="Click to enter a name" e-model.bind="textModel"></ej2-in-place-editor>
+    <div class="demo-output">Value: <code data-testid="ipe-default-out">${name}</code></div>
+    <button data-testid="ipe-default-set" click.delegate="name = 'Set by view-model'">Set from view-model</button>
+    <button data-testid="ipe-default-clear" click.delegate="name = ''">Clear</button>
+  </demo-section>
+
+  <demo-section id="ipe-types" title="Editor types"
+    description="The type property renders the matching Syncfusion editor with its model options: Text, Numeric, Mask, Date, DateTime, DropDownList, AutoComplete, ComboBox, MultiSelect, Color, Slider, Time, DateRange and RTE.">
+    <div class="ipe-row"><span>Text</span>
+      <ej2-in-place-editor e-mode="Inline" data-testid="ipe-type-text" e-type="Text" e-value="Plain text" e-model.bind="textModel"></ej2-in-place-editor></div>
+    <div class="ipe-row"><span>Numeric</span>
+      <ej2-in-place-editor e-mode="Inline" data-testid="ipe-type-numeric" e-type="Numeric" e-value.two-way="numeric" e-model.bind="numericModel"></ej2-in-place-editor>
+      <code data-testid="ipe-type-numeric-out">${numeric}</code></div>
+    <div class="ipe-row"><span>Mask</span>
+      <ej2-in-place-editor e-mode="Inline" data-testid="ipe-type-mask" e-type="Mask" e-value="1234567890" e-model.bind="maskModel"></ej2-in-place-editor></div>
+    <div class="ipe-row"><span>Date</span>
+      <ej2-in-place-editor e-mode="Inline" data-testid="ipe-type-date" e-type="Date" e-value.bind="date" e-model.bind="dateModel"></ej2-in-place-editor></div>
+    <div class="ipe-row"><span>DateTime</span>
+      <ej2-in-place-editor e-mode="Inline" data-testid="ipe-type-datetime" e-type="DateTime" e-value.bind="date" e-model.bind="dateTimeModel"></ej2-in-place-editor></div>
+    <div class="ipe-row"><span>DropDownList</span>
+      <ej2-in-place-editor e-mode="Inline" data-testid="ipe-type-dropdown" e-type="DropDownList" e-value.two-way="sport" e-model.bind="dropDownModel"></ej2-in-place-editor>
+      <code data-testid="ipe-type-dropdown-out">${sport}</code></div>
+    <div class="ipe-row"><span>AutoComplete</span>
+      <ej2-in-place-editor e-mode="Inline" data-testid="ipe-type-autocomplete" e-type="AutoComplete" e-value="Badminton" e-model.bind="autoCompleteModel"></ej2-in-place-editor></div>
+    <div class="ipe-row"><span>ComboBox</span>
+      <ej2-in-place-editor e-mode="Inline" data-testid="ipe-type-combobox" e-type="ComboBox" e-value="Cricket" e-model.bind="comboModel"></ej2-in-place-editor></div>
+    <div class="ipe-row"><span>MultiSelect</span>
+      <ej2-in-place-editor e-mode="Inline" data-testid="ipe-type-multiselect" e-type="MultiSelect" e-value.bind="sports" e-model.bind="multiModel"></ej2-in-place-editor></div>
+    <div class="ipe-row"><span>Color</span>
+      <ej2-in-place-editor e-mode="Inline" data-testid="ipe-type-color" e-type="Color" e-value="#ff0000" e-model.bind="colorModel"></ej2-in-place-editor></div>
+    <div class="ipe-row"><span>Slider</span>
+      <ej2-in-place-editor e-mode="Inline" data-testid="ipe-type-slider" e-type="Slider" e-value.bind="30" e-model.bind="sliderModel"></ej2-in-place-editor></div>
+    <div class="ipe-row"><span>Time</span>
+      <ej2-in-place-editor e-mode="Inline" data-testid="ipe-type-time" e-type="Time" e-value.bind="time" e-model.bind="timeModel"></ej2-in-place-editor></div>
+    <div class="ipe-row"><span>DateRange</span>
+      <ej2-in-place-editor e-mode="Inline" data-testid="ipe-type-daterange" e-type="DateRange" e-value.bind="dateRange" e-model.bind="dateRangeModel"></ej2-in-place-editor></div>
+    <div class="ipe-row"><span>RTE</span>
+      <ej2-in-place-editor e-mode="Inline" data-testid="ipe-type-rte" e-type="RTE" e-value="&lt;p&gt;Rich &lt;b&gt;text&lt;/b&gt;&lt;/p&gt;" e-model.bind="rteModel"></ej2-in-place-editor></div>
+  </demo-section>
+
+  <demo-section id="ipe-modes" title="Render modes and edit triggers"
+    description="mode (Inline or Popup), popupSettings, editableOn (Click, DblClick, EditIconClick), cssClass, disabled and textOption.">
+    <div class="ipe-row"><span>Popup</span>
+      <ej2-in-place-editor data-testid="ipe-popup" e-mode="Popup" e-type="Text" e-value="Popup editor" e-css-class="ipe-custom"
+        e-popup-settings.bind="popupSettings" e-model.bind="textModel"></ej2-in-place-editor></div>
+    <div class="ipe-row"><span>DblClick</span>
+      <ej2-in-place-editor e-mode="Inline" data-testid="ipe-dblclick" e-editable-on="DblClick" e-type="Text" e-value="Double click me"></ej2-in-place-editor></div>
+    <div class="ipe-row"><span>EditIconClick</span>
+      <ej2-in-place-editor e-mode="Inline" data-testid="ipe-editicon" e-editable-on="EditIconClick" e-type="Text" e-value="Use the icon"></ej2-in-place-editor></div>
+    <div class="ipe-row"><span>Disabled</span>
+      <ej2-in-place-editor e-mode="Inline" data-testid="ipe-disabled" e-disabled="true" e-type="Text" e-value="Cannot edit"></ej2-in-place-editor></div>
+    <div class="ipe-row"><span>textOption Always</span>
+      <ej2-in-place-editor e-mode="Inline" data-testid="ipe-textoption" e-type="ComboBox" e-text-option="Always" e-value="Cricket" e-model.bind="comboModel"></ej2-in-place-editor></div>
+  </demo-section>
+
+  <demo-section id="ipe-buttons" title="Buttons, blur and keyboard"
+    description="showButtons, saveButton, cancelButton, actionOnBlur, submitOnEnter and enableEditMode.">
+    <div class="ipe-row"><span>Custom buttons</span>
+      <ej2-in-place-editor e-mode="Inline" data-testid="ipe-custom-buttons" e-type="Text" e-value="Custom buttons"
+        e-save-button.bind="saveButton" e-cancel-button.bind="cancelButton"></ej2-in-place-editor></div>
+    <div class="ipe-row"><span>No buttons, submit on blur</span>
+      <ej2-in-place-editor e-mode="Inline" data-testid="ipe-no-buttons" e-type="Text" e-value="Blur to submit" e-show-buttons="false"
+        e-action-on-blur="Submit" e-value.two-way="blurValue"></ej2-in-place-editor>
+      <code data-testid="ipe-no-buttons-out">${blurValue}</code></div>
+    <div class="ipe-row"><span>Cancel on blur</span>
+      <ej2-in-place-editor e-mode="Inline" data-testid="ipe-blur-cancel" e-type="Text" e-value="Blur to cancel" e-show-buttons="false"
+        e-action-on-blur="Cancel"></ej2-in-place-editor></div>
+    <div class="ipe-row"><span>Ignore on blur, Enter ignored</span>
+      <ej2-in-place-editor e-mode="Inline" data-testid="ipe-ignore" e-type="Text" e-value="Stay open" e-action-on-blur="Ignore"
+        e-submit-on-enter="false"></ej2-in-place-editor></div>
+    <div class="ipe-row"><span>enableEditMode</span>
+      <ej2-in-place-editor e-mode="Inline" data-testid="ipe-enable-edit" e-type="Text" e-value="Opened from code"
+        e-enable-edit-mode.bind="editMode"></ej2-in-place-editor>
+      <button data-testid="ipe-open-edit" click.delegate="editMode = true">Open editor</button></div>
+  </demo-section>
+
+  <demo-section id="ipe-validation" title="Validation"
+    description="validationRules are keyed by the editor name, the validating event is raised when a rule fails.">
+    <ej2-in-place-editor e-mode="Inline" data-testid="ipe-validation" e-name="Required" e-type="Text" e-value="Valid" e-model.bind="textModel"
+      e-validation-rules.bind="validationRules" e-on-validating.delegate="onValidating($event)"></ej2-in-place-editor>
+    <div class="demo-output">Validating: <span data-testid="ipe-validating-count">${validatingCount}</span>
+      Message: <code data-testid="ipe-validating-message">${validatingMessage}</code></div>
+  </demo-section>
+
+  <demo-section id="ipe-server" title="Server data and events"
+    description="url, adaptor and primaryKey submit the value to a server. Every in-place editor event is bound here.">
+    <ej2-in-place-editor e-mode="Inline" if.bind="showServer" data-testid="ipe-server" e-name="Server" e-type="Text" e-value="Saved remotely"
+      e-url="/api/inplace/save" e-adaptor="UrlAdaptor" e-primary-key.bind="1004" e-model.bind="textModel"
+      e-on-created.delegate="count('created')" e-on-destroyed.trigger="count('destroyed')"
+      e-on-begin-edit.delegate="count('beginEdit')" e-on-end-edit.delegate="onEndEdit($event)"
+      e-on-change.delegate="onChange($event)" e-on-submit-click.delegate="count('submitClick')"
+      e-on-cancel-click.delegate="count('cancelClick')" e-on-action-begin.delegate="onActionBegin($event)"
+      e-on-action-success.delegate="onActionSuccess($event)"
+      e-on-action-failure.delegate="count('actionFailure')"></ej2-in-place-editor>
+    <div class="demo-output">
+      created <span data-testid="ipe-ev-created">${counts.created}</span>
+      destroyed <span data-testid="ipe-ev-destroyed">${counts.destroyed}</span>
+      beginEdit <span data-testid="ipe-ev-beginEdit">${counts.beginEdit}</span>
+      endEdit <span data-testid="ipe-ev-endEdit">${counts.endEdit}</span> (<code data-testid="ipe-ev-endEdit-action">${endAction}</code>)
+      change <span data-testid="ipe-ev-change">${counts.change}</span> (<code data-testid="ipe-ev-change-value">${changeValue}</code> from
+      <code data-testid="ipe-ev-change-previous">${changePrevious}</code>)
+      submitClick <span data-testid="ipe-ev-submitClick">${counts.submitClick}</span>
+      cancelClick <span data-testid="ipe-ev-cancelClick">${counts.cancelClick}</span>
+      actionBegin <span data-testid="ipe-ev-actionBegin">${counts.actionBegin}</span> (<code data-testid="ipe-ev-actionBegin-key">${beginKey}</code>)
+      actionSuccess <span data-testid="ipe-ev-actionSuccess">${counts.actionSuccess}</span> (<code data-testid="ipe-ev-actionSuccess-value">${successValue}</code>)
+      actionFailure <span data-testid="ipe-ev-actionFailure">${counts.actionFailure}</span>
+    </div>
+    <button data-testid="ipe-server-toggle" click.delegate="showServer = !showServer">Toggle editor</button>
+  </demo-section>
+
+  <demo-section id="ipe-failure" title="Server failure"
+    description="actionFailure is raised when the server rejects the value.">
+    <ej2-in-place-editor e-mode="Inline" data-testid="ipe-failure" e-name="Failure" e-type="Text" e-value="Will fail" e-url="/api/inplace/fail"
+      e-adaptor="UrlAdaptor" e-primary-key="7" e-on-action-failure.delegate="count('actionFailure')"></ej2-in-place-editor>
+    <div class="demo-output">actionFailure <span data-testid="ipe-failure-count">${counts.actionFailure}</span></div>
+  </demo-section>
+
+  <demo-section id="ipe-sanitize" title="HTML sanitizer and parsing"
+    description="enableHtmlSanitizer cleans submitted markup (beforeSanitizeHtml is raised), enableHtmlParse shows markup as text when false.">
+    <div class="ipe-row"><span>Sanitize</span>
+      <ej2-in-place-editor e-mode="Inline" data-testid="ipe-sanitize" e-type="Text" e-value="Hello" e-enable-html-sanitizer="true"
+        e-on-before-sanitize-html.delegate="onBeforeSanitize($event)"></ej2-in-place-editor>
+      <span>beforeSanitizeHtml <span data-testid="ipe-sanitize-count">${sanitizeCount}</span></span></div>
+    <div class="ipe-row"><span>Parse</span>
+      <ej2-in-place-editor e-mode="Inline" data-testid="ipe-parse-on" e-type="Text" e-value="&lt;b&gt;bold&lt;/b&gt;" e-enable-html-sanitizer="false" e-enable-html-parse="true"></ej2-in-place-editor></div>
+    <div class="ipe-row"><span>No parse</span>
+      <ej2-in-place-editor e-mode="Inline" data-testid="ipe-parse-off" e-type="Text" e-value="&lt;b&gt;bold&lt;/b&gt;" e-enable-html-sanitizer="false" e-enable-html-parse="false"></ej2-in-place-editor></div>
+  </demo-section>
+
+  <demo-section id="ipe-template" title="Template"
+    description="template renders a custom editor, any element with the editor name is used as the value.">
+    <ej2-in-place-editor e-mode="Inline" data-testid="ipe-template" e-name="Template" e-type="Text" e-value="From template"
+      e-template.bind="template" e-on-action-begin.delegate="onTemplateBegin($event)" e-on-action-success.delegate="onTemplateSuccess($event)"></ej2-in-place-editor>
   </demo-section>
 </template>

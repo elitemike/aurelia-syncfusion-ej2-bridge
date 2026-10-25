@@ -1,7 +1,72 @@
 <template>
   <h2>Chat UI</h2>
 
-  <demo-section id="chatUI-basic" title="Basic" description="Chat UI rendered with its default options.">
-    <ej2-chat-ui data-testid="chatUI-basic"></ej2-chat-ui>
+  <demo-section id="chat-default" title="Default functionalities"
+    description="A two person conversation. Sending a message raises messageSend, typing raises userTyping.">
+    <ej2-chat-ui data-testid="chat-default" e-user.bind="currentUser" e-messages.bind="messages" e-height="420px"
+      e-header-text="Project chat" e-header-icon-css="e-icons e-user" e-placeholder="Type your message"
+      e-on-created.delegate="count('created')" e-on-message-send.delegate="onMessageSend($event)"
+      e-on-user-typing.delegate="onUserTyping($event)"></ej2-chat-ui>
+    <div class="demo-output">
+      created <span data-testid="chat-ev-created">${counts.created}</span>
+      messageSend <span data-testid="chat-ev-messageSend">${counts.messageSend}</span> (<code data-testid="chat-ev-messageSend-text">${sentText}</code>)
+      userTyping <span data-testid="chat-ev-userTyping">${counts.userTyping}</span> (<code data-testid="chat-ev-userTyping-text">${typingText}</code>)</div>
+  </demo-section>
+
+  <demo-section id="chat-appearance" title="Header, footer, time and layout"
+    description="width, height, cssClass, showHeader, showFooter, showTimeBreak, showTimeStamp, timeStampFormat, autoScrollToBottom, enableCompactMode, headerToolbar and messageToolbarSettings.">
+    <div class="demo-row">
+      <button data-testid="chat-toggle-header" click.delegate="showHeader = !showHeader">Toggle header</button>
+      <button data-testid="chat-toggle-footer" click.delegate="showFooter = !showFooter">Toggle footer</button>
+      <button data-testid="chat-toggle-compact" click.delegate="compact = !compact">Toggle compact</button>
+      <button data-testid="chat-toggle-time" click.delegate="showTimeStamp = !showTimeStamp">Toggle time stamp</button>
+    </div>
+    <ej2-chat-ui data-testid="chat-appearance" e-user.bind="currentUser" e-messages.bind="appearanceMessages" e-width="520px"
+      e-height="360px" e-css-class="chat-custom" e-header-text="Appearance" e-show-header.bind="showHeader"
+      e-show-footer.bind="showFooter" e-show-time-break.bind="true" e-show-time-stamp.bind="showTimeStamp"
+      e-time-stamp-format="hh:mm a" e-auto-scroll-to-bottom.bind="true" e-enable-compact-mode.bind="compact"
+      e-header-toolbar.bind="headerToolbar" e-message-toolbar-settings.bind="messageToolbarSettings"></ej2-chat-ui>
+    <div class="demo-output">headerToolbar click <span data-testid="chat-toolbar-clicks">${toolbarClicks}</span></div>
+  </demo-section>
+
+  <demo-section id="chat-suggestions" title="Suggestions and typing users"
+    description="suggestions offer quick replies, typingUsers shows who is typing, loadOnDemand is enabled.">
+    <ej2-chat-ui data-testid="chat-suggestions" e-user.bind="currentUser" e-messages.bind="shortMessages" e-height="320px"
+      e-suggestions.bind="suggestions" e-typing-users.bind="typingUsers" e-load-on-demand.bind="true"></ej2-chat-ui>
+  </demo-section>
+
+  <demo-section id="chat-mention" title="Mentions"
+    description="mentionUsers and mentionTriggerChar open a user list, mentionSelect is raised when a user is picked.">
+    <ej2-chat-ui data-testid="chat-mention" e-user.bind="currentUser" e-messages.bind="shortMessages" e-height="320px"
+      e-mention-users.bind="users" e-mention-trigger-char="@"
+      e-on-mention-select.delegate="onMentionSelect($event)"></ej2-chat-ui>
+    <div class="demo-output">mentionSelect <span data-testid="chat-ev-mentionSelect">${counts.mentionSelect}</span>
+      (<code data-testid="chat-ev-mentionSelect-user">${mentioned}</code>)</div>
+  </demo-section>
+
+  <demo-section id="chat-templates" title="Templates"
+    description="messageTemplate, suggestionTemplate, footerTemplate, emptyChatTemplate, timeBreakTemplate and typingUsersTemplate customize the rendering.">
+    <ej2-chat-ui data-testid="chat-templates" e-user.bind="currentUser" e-messages.bind="templateMessages" e-height="360px"
+      e-suggestions.bind="suggestions" e-typing-users.bind="typingUsers" e-show-time-break.bind="true"
+      e-message-template.bind="messageTemplate" e-suggestion-template.bind="suggestionTemplate"
+      e-footer-template.bind="footerTemplate" e-time-break-template.bind="timeBreakTemplate"
+      e-typing-users-template.bind="typingTemplate"></ej2-chat-ui>
+    <ej2-chat-ui data-testid="chat-empty" e-user.bind="currentUser" e-height="200px"
+      e-empty-chat-template.bind="emptyTemplate"></ej2-chat-ui>
+  </demo-section>
+
+  <demo-section id="chat-attachments" title="Attachments"
+    description="enableAttachments and attachmentSettings upload files, the attachment events are raised for the upload lifecycle.">
+    <ej2-chat-ui data-testid="chat-attachments" e-user.bind="currentUser" e-height="320px" e-enable-attachments.bind="true"
+      e-attachment-settings.bind="attachmentSettings"
+      e-on-before-attachment-upload.delegate="count('beforeAttachmentUpload')"
+      e-on-attachment-upload-success.delegate="count('attachmentUploadSuccess')"
+      e-on-attachment-upload-failure.delegate="count('attachmentUploadFailure')"
+      e-on-attachment-removed.delegate="count('attachmentRemoved')"></ej2-chat-ui>
+    <div class="demo-output">
+      beforeAttachmentUpload <span data-testid="chat-ev-beforeAttachmentUpload">${counts.beforeAttachmentUpload}</span>
+      attachmentUploadSuccess <span data-testid="chat-ev-attachmentUploadSuccess">${counts.attachmentUploadSuccess}</span>
+      attachmentUploadFailure <span data-testid="chat-ev-attachmentUploadFailure">${counts.attachmentUploadFailure}</span>
+      attachmentRemoved <span data-testid="chat-ev-attachmentRemoved">${counts.attachmentRemoved}</span></div>
   </demo-section>
 </template>

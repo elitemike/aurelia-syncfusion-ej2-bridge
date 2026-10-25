@@ -1,7 +1,93 @@
 <template>
-  <h2>AI Assist View</h2>
+  <h2>AI AssistView</h2>
 
-  <demo-section id="aiAssistView-basic" title="Basic" description="AI Assist View rendered with its default options.">
-    <ej2-ai-assist-view data-testid="aiAssistView-basic"></ej2-ai-assist-view>
+  <demo-section id="ai-default" title="Default functionalities"
+    description="Prompts are answered by a local stub, no service is called. promptRequest is raised when a prompt is sent, promptChanged while typing.">
+    <ej2-ai-assist-view data-testid="ai-default" view-model.ref="assist" e-height="460px"
+      e-prompts.bind="prompts" e-prompt-suggestions.bind="suggestions"
+      e-prompt-placeholder="Ask the assistant" e-prompt-suggestions-header="Try one of these"
+      e-on-created.delegate="count('created')" e-on-prompt-request.delegate="onPromptRequest($event)"
+      e-on-prompt-changed.delegate="onPromptChanged($event)"
+      e-on-stop-responding-click.delegate="count('stopRespondingClick')"></ej2-ai-assist-view>
+    <div class="demo-output">
+      created <span data-testid="ai-ev-created">${counts.created}</span>
+      promptRequest <span data-testid="ai-ev-promptRequest">${counts.promptRequest}</span> (<code data-testid="ai-ev-promptRequest-text">${requested}</code>)
+      promptChanged <span data-testid="ai-ev-promptChanged">${counts.promptChanged}</span> (<code data-testid="ai-ev-promptChanged-value">${changed}</code>)
+      stopRespondingClick <span data-testid="ai-ev-stopRespondingClick">${counts.stopRespondingClick}</span></div>
+    <button data-testid="ai-hold" click.delegate="holdResponse = !holdResponse">Hold responses: ${holdResponse}</button>
+  </demo-section>
+
+  <demo-section id="ai-look" title="Look, views and toolbars"
+    description="width, height, cssClass, showHeader, prompt, promptPlaceholder, promptIconCss, responseIconCss, showClearButton, enableScrollToBottom, activeView, views, toolbarSettings, promptToolbarSettings, responseToolbarSettings and footerToolbarSettings.">
+    <div class="demo-row">
+      <button data-testid="ai-toggle-header" click.delegate="showHeader = !showHeader">Toggle header</button>
+      <button data-testid="ai-second-view" click.delegate="activeView = 1">Custom view</button>
+      <button data-testid="ai-set-prompt" click.delegate="prompt = 'Prefilled prompt'">Set prompt</button>
+    </div>
+    <ej2-ai-assist-view data-testid="ai-look" e-width="560px" e-height="420px" e-css-class="ai-custom"
+      e-show-header.bind="showHeader" e-prompt.bind="prompt" e-prompt-placeholder="Look placeholder"
+      e-prompt-icon-css="e-icons e-user" e-response-icon-css="e-icons e-bookmark" e-show-clear-button.bind="true"
+      e-enable-scroll-to-bottom.bind="true" e-active-view.bind="activeView" e-views.bind="views"
+      e-toolbar-settings.bind="toolbarSettings" e-prompt-toolbar-settings.bind="promptToolbarSettings"
+      e-response-toolbar-settings.bind="responseToolbarSettings" e-footer-toolbar-settings.bind="footerToolbarSettings"
+      e-prompts.bind="lookPrompts"></ej2-ai-assist-view>
+    <div class="demo-output">toolbar clicks <span data-testid="ai-toolbar-clicks">${toolbarClicks}</span>
+      response toolbar clicks <span data-testid="ai-response-clicks">${responseClicks}</span></div>
+  </demo-section>
+
+  <demo-section id="ai-templates" title="Templates"
+    description="promptItemTemplate, responseItemTemplate, promptSuggestionItemTemplate, bannerTemplate, footerTemplate, responseAnimationTemplate, blockTemplate and itemTemplate customize the rendering.">
+    <ej2-ai-assist-view data-testid="ai-templates" view-model.ref="templatedAssist" e-height="460px" e-prompts.bind="templatePrompts"
+      e-prompt-suggestions.bind="suggestions" e-banner-template.bind="bannerTemplate"
+      e-footer-template.bind="footerTemplate" e-prompt-item-template.bind="promptItemTemplate"
+      e-response-item-template.bind="responseItemTemplate"
+      e-prompt-suggestion-item-template.bind="suggestionItemTemplate"
+      e-response-animation-template.bind="animationTemplate" e-block-template.bind="blockTemplate"
+      e-item-template.bind="itemTemplate"></ej2-ai-assist-view>
+    <ej2-ai-assist-view data-testid="ai-banner" e-height="300px" e-banner-template.bind="bannerTemplate"
+      e-prompt-suggestions.bind="suggestions"></ej2-ai-assist-view>
+  </demo-section>
+
+  <demo-section id="ai-streaming" title="Streaming responses"
+    description="enableStreaming renders a response in several chunks, the stop button raises stopRespondingClick.">
+    <ej2-ai-assist-view data-testid="ai-streaming" view-model.ref="streamAssist" e-height="360px" e-enable-streaming.bind="true"
+      e-on-prompt-request.delegate="onStreamRequest($event)"
+      e-on-stop-responding-click.delegate="count('streamStop')"></ej2-ai-assist-view>
+    <div class="demo-output">stop <span data-testid="ai-ev-streamStop">${counts.streamStop}</span></div>
+  </demo-section>
+
+  <demo-section id="ai-attach" title="Attachments"
+    description="enableAttachments and attachmentSettings upload files, the attachment events are raised for the upload lifecycle.">
+    <ej2-ai-assist-view data-testid="ai-attach" e-height="320px" e-enable-attachments.bind="true"
+      e-attachment-settings.bind="attachmentSettings"
+      e-on-before-attachment-upload.delegate="count('beforeAttachmentUpload')"
+      e-on-attachment-upload-success.delegate="count('attachmentUploadSuccess')"
+      e-on-attachment-upload-failure.delegate="count('attachmentUploadFailure')"
+      e-on-attachment-removing.delegate="count('attachmentRemoving')"
+      e-on-attachment-removed.delegate="count('attachmentRemoved')"></ej2-ai-assist-view>
+    <div class="demo-output">
+      beforeAttachmentUpload <span data-testid="ai-ev-beforeAttachmentUpload">${counts.beforeAttachmentUpload}</span>
+      attachmentUploadSuccess <span data-testid="ai-ev-attachmentUploadSuccess">${counts.attachmentUploadSuccess}</span>
+      attachmentUploadFailure <span data-testid="ai-ev-attachmentUploadFailure">${counts.attachmentUploadFailure}</span>
+      attachmentRemoving <span data-testid="ai-ev-attachmentRemoving">${counts.attachmentRemoving}</span>
+      attachmentRemoved <span data-testid="ai-ev-attachmentRemoved">${counts.attachmentRemoved}</span></div>
+  </demo-section>
+
+  <demo-section id="ai-mention" title="Mentions"
+    description="mentions configure a trigger character and data source, mentionSelect is raised when an item is picked.">
+    <ej2-ai-assist-view data-testid="ai-mention" e-height="320px" e-mentions.bind="mentions"
+      e-on-mention-select.delegate="onMentionSelect($event)"></ej2-ai-assist-view>
+    <div class="demo-output">mentionSelect <span data-testid="ai-ev-mentionSelect">${counts.mentionSelect}</span>
+      (<code data-testid="ai-ev-mentionSelect-item">${mentioned}</code>)</div>
+  </demo-section>
+
+  <demo-section id="ai-speech" title="Speech, telemetry and thinking"
+    description="speechToTextSettings, textToSpeechSettings and telemetrySettings configure the optional features, editableContextClicked is raised from a thinking block context item.">
+    <ej2-ai-assist-view data-testid="ai-speech" e-height="360px" e-prompts.bind="thinkingPrompts"
+      e-speech-to-text-settings.bind="speechToTextSettings" e-text-to-speech-settings.bind="textToSpeechSettings"
+      e-telemetry-settings.bind="telemetrySettings"
+      e-on-editable-context-clicked.delegate="onContextClicked($event)"></ej2-ai-assist-view>
+    <div class="demo-output">editableContextClicked <span data-testid="ai-ev-editableContextClicked">${counts.editableContextClicked}</span>
+      (<code data-testid="ai-ev-editableContextClicked-name">${contextName}</code>)</div>
   </demo-section>
 </template>

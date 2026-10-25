@@ -1,7 +1,59 @@
 <template>
   <h2>Inline AI Assist</h2>
 
-  <demo-section id="inlineAIAssist-basic" title="Basic" description="Inline AI Assist rendered with its default options.">
-    <ej2-inline-ai-assist data-testid="inlineAIAssist-basic"></ej2-inline-ai-assist>
+  <demo-section id="ia-default" title="Default functionalities"
+    description="The assist popup is shown next to a text target. Prompts are answered by a local stub, no service is called.">
+    <div id="ia-default-target" class="ia-target" data-testid="ia-default-target" contenteditable="true">Select this text and ask the assistant to change it.</div>
+    <ej2-inline-ai-assist data-testid="ia-default" view-model.ref="defaultAssist" e-target="#ia-default-target"
+      e-placeholder="Ask the assistant" e-popup-width="420px" e-popup-height="280px" e-z-index.bind="2500"
+      e-command-settings.bind="commandSettings" e-response-settings.bind="responseSettings"
+      e-inline-toolbar-settings.bind="inlineToolbarSettings" e-prompts.bind="prompts"
+      e-on-created.delegate="count('created')" e-on-open.delegate="count('open')" e-on-close.delegate="count('close')"
+      e-on-prompt-request.delegate="onPromptRequest($event)"></ej2-inline-ai-assist>
+    <div class="demo-row">
+      <button data-testid="ia-show" click.delegate="show(defaultAssist, 'ia-default-target')">Show popup</button>
+      <button data-testid="ia-hide" click.delegate="defaultAssist.widget.hidePopup()">Hide popup</button>
+      <button data-testid="ia-show-commands" click.delegate="defaultAssist.widget.showCommandPopup()">Show commands</button>
+    </div>
+    <div class="demo-output">
+      created <span data-testid="ia-ev-created">${counts.created}</span>
+      open <span data-testid="ia-ev-open">${counts.open}</span>
+      close <span data-testid="ia-ev-close">${counts.close}</span>
+      promptRequest <span data-testid="ia-ev-promptRequest">${counts.promptRequest}</span> (<code data-testid="ia-ev-promptRequest-text">${requested}</code>)
+      command <span data-testid="ia-ev-command">${commandCount}</span> response item <span data-testid="ia-ev-response">${responseCount}</span>
+      toolbar <span data-testid="ia-ev-toolbar">${toolbarCount}</span></div>
+  </demo-section>
+
+  <demo-section id="ia-popup" title="Popup response mode"
+    description="responseMode Popup shows the response in the popup, relateTo positions it against another element, cssClass styles it and prompt prefills the editor.">
+    <div id="ia-popup-target" class="ia-target" data-testid="ia-popup-target">Another target for the popup mode.</div>
+    <ej2-inline-ai-assist data-testid="ia-popup" view-model.ref="popupAssist" e-target="#ia-popup-target"
+      e-relate-to="#ia-popup-target" e-response-mode="Popup" e-css-class="ia-custom" e-prompt="Make it shorter"
+      e-on-prompt-request.delegate="onPopupRequest($event)"></ej2-inline-ai-assist>
+    <button data-testid="ia-popup-show" click.delegate="show(popupAssist, 'ia-popup-target')">Show popup</button>
+  </demo-section>
+
+  <demo-section id="ia-templates" title="Templates"
+    description="editorTemplate and responseTemplate replace the built-in editor and response rendering.">
+    <div id="ia-template-target" class="ia-target" data-testid="ia-template-target">Template target.</div>
+    <ej2-inline-ai-assist data-testid="ia-templates" view-model.ref="templateAssist" e-target="#ia-template-target"
+      e-prompts.bind="templatePrompts" e-response-template.bind="responseTemplate"
+      e-on-prompt-request.delegate="onTemplateRequest($event)"></ej2-inline-ai-assist>
+    <button data-testid="ia-template-show" click.delegate="show(templateAssist, 'ia-template-target')">Show popup</button>
+  </demo-section>
+
+  <demo-section id="ia-editor" title="Editor template"
+    description="editorTemplate replaces the prompt editor. 35.1.40 fails while showing the popup with a custom editor (the mention module it creates for the editor is missing), so this popup is configured but never opened.">
+    <div id="ia-editor-target" class="ia-target">Editor template target.</div>
+    <ej2-inline-ai-assist data-testid="ia-editor" e-target="#ia-editor-target"
+      e-editor-template.bind="editorTemplate"></ej2-inline-ai-assist>
+  </demo-section>
+
+  <demo-section id="ia-streaming" title="Streaming" description="enableStreaming accepts a response in several chunks.">
+    <div id="ia-stream-target" class="ia-target" data-testid="ia-stream-target">Streaming target.</div>
+    <ej2-inline-ai-assist data-testid="ia-streaming" view-model.ref="streamAssist" e-target="#ia-stream-target"
+      e-enable-streaming.bind="true" e-speech-to-text-settings.bind="speechToTextSettings"
+      e-on-prompt-request.delegate="onStreamRequest($event)"></ej2-inline-ai-assist>
+    <button data-testid="ia-stream-show" click.delegate="show(streamAssist, 'ia-stream-target')">Show popup</button>
   </demo-section>
 </template>

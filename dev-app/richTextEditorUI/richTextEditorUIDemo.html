@@ -1,7 +1,94 @@
 <template>
   <h2>Rich Text Editor UI</h2>
 
-  <demo-section id="richTextEditorUI-basic" title="Basic" description="Rich Text Editor UI rendered with its default options.">
-    <ej2-rich-text-editor-ui data-testid="richTextEditorUI-basic"></ej2-rich-text-editor-ui>
+  <demo-section id="rteui-default" title="Default functionalities"
+    description="The modern Rich Text Editor. value is two-way (html), change, focus, blur, actionBegin and actionComplete are raised while editing.">
+    <ej2-rich-text-editor-ui data-testid="rteui-default" e-value-format="html" e-value.two-way="value" e-placeholder="Write something"
+      e-height="260px" e-save-interval.bind="100"
+      e-on-change.delegate="onChange($event)" e-on-focus.delegate="count('focus')" e-on-blur.delegate="count('blur')"
+      e-on-action-begin.delegate="onActionBegin($event)" e-on-action-complete.delegate="onActionComplete($event)"></ej2-rich-text-editor-ui>
+    <div class="demo-output">Value: <code data-testid="rteui-value-out">${value}</code>
+      change <span data-testid="rteui-ev-change">${counts.change}</span>
+      focus <span data-testid="rteui-ev-focus">${counts.focus}</span>
+      blur <span data-testid="rteui-ev-blur">${counts.blur}</span>
+      actionBegin <span data-testid="rteui-ev-actionBegin">${counts.actionBegin}</span> (<code data-testid="rteui-ev-actionBegin-name">${beginName}</code>)
+      actionComplete <span data-testid="rteui-ev-actionComplete">${counts.actionComplete}</span></div>
+    <button data-testid="rteui-set" click.delegate="value = '&lt;p&gt;Set from the &lt;b&gt;view-model&lt;/b&gt;&lt;/p&gt;'">Set from view-model</button>
+    <button data-testid="rteui-focus-out" click.delegate="count('outside')">Outside</button>
+  </demo-section>
+
+  <demo-section id="rteui-toolbar" title="Toolbar and formatting"
+    description="toolbarSettings, fontSize, fontFamily, format, fontColor, backgroundColor and listSettings customize the toolbar dropdowns.">
+    <ej2-rich-text-editor-ui data-testid="rteui-toolbar" e-value-format="html" e-value="&lt;p&gt;Toolbar customization&lt;/p&gt;" e-height="220px"
+      e-toolbar-settings.bind="toolbarSettings" e-font-size.bind="fontSize" e-font-family.bind="fontFamily"
+      e-format.bind="format" e-font-color.bind="fontColor" e-background-color.bind="backgroundColor"
+      e-list-settings.bind="listSettings"></ej2-rich-text-editor-ui>
+    <button data-testid="rteui-apply-dropdowns" click.delegate="applyDropdowns()">Replace dropdown items</button>
+  </demo-section>
+
+  <demo-section id="rteui-quick" title="Quick toolbars, links, tables and keyboard"
+    description="quickToolbarSettings, linkSettings, tableSettings, keyBindings and interactionSettings.">
+    <ej2-rich-text-editor-ui data-testid="rteui-quick" e-value-format="html" e-height="220px"
+      e-value.bind="quickValue"
+      e-quick-toolbar-settings.bind="quickToolbarSettings" e-link-settings.bind="linkSettings"
+      e-table-settings.bind="tableSettings" e-key-bindings.bind="keyBindings"
+      e-interaction-settings.bind="interactionSettings"
+      e-on-before-dialog-open.delegate="count('beforeDialogOpen')"
+      e-on-before-dialog-close.delegate="count('beforeDialogClose')"></ej2-rich-text-editor-ui>
+    <div class="demo-output">beforeDialogOpen <span data-testid="rteui-ev-beforeDialogOpen">${counts.beforeDialogOpen}</span>
+      beforeDialogClose <span data-testid="rteui-ev-beforeDialogClose">${counts.beforeDialogClose}</span></div>
+  </demo-section>
+
+  <demo-section id="rteui-slash" title="Slash commands"
+    description="slashCommandSettings opens a command popup when typing a slash.">
+    <ej2-rich-text-editor-ui data-testid="rteui-slash" e-height="220px"
+      e-slash-command-settings.bind="slashCommandSettings"></ej2-rich-text-editor-ui>
+  </demo-section>
+
+  <demo-section id="rteui-json" title="JSON value format"
+    description="valueFormat json exchanges an editor document instead of an html string.">
+    <ej2-rich-text-editor-ui data-testid="rteui-json" e-value-format="json" e-value.two-way="docValue" e-height="200px" e-save-interval.bind="100"></ej2-rich-text-editor-ui>
+    <div class="demo-output">Document type: <code data-testid="rteui-json-type">${docType}</code>
+      Text: <code data-testid="rteui-json-text">${docText}</code></div>
+    <button data-testid="rteui-json-set" click.delegate="setDocument()">Set document from view-model</button>
+  </demo-section>
+
+  <demo-section id="rteui-state" title="State, size, history and attributes"
+    description="enable, readonly, width, height, cssClass, htmlAttributes, saveInterval, undoRedoSteps and undoRedoTimer.">
+    <div class="demo-row">
+      <button data-testid="rteui-toggle-enable" click.delegate="enable = !enable">Toggle enable</button>
+      <button data-testid="rteui-toggle-readonly" click.delegate="readonly = !readonly">Toggle readonly</button>
+      <button data-testid="rteui-resize" click.delegate="resize()">Resize</button>
+    </div>
+    <ej2-rich-text-editor-ui data-testid="rteui-state" e-value-format="html" e-value="&lt;p&gt;State&lt;/p&gt;" e-enable.bind="enable"
+      e-readonly.bind="readonly" e-width.bind="width" e-height.bind="height" e-css-class.bind="cssClass"
+      e-html-attributes.bind="htmlAttributes" e-save-interval.bind="150" e-undo-redo-steps.bind="5"
+      e-undo-redo-timer.bind="200"></ej2-rich-text-editor-ui>
+  </demo-section>
+
+  <demo-section id="rteui-upload" title="Image settings and file events"
+    description="imageSettings configure the image upload, the file events are raised while uploading.">
+    <ej2-rich-text-editor-ui data-testid="rteui-upload" e-value-format="html" e-height="220px" e-value="&lt;p&gt;Upload target&lt;/p&gt;"
+      e-image-settings.bind="imageSettings"
+      e-on-before-file-upload.delegate="count('beforeFileUpload')" e-on-file-uploading.delegate="count('fileUploading')"
+      e-on-file-selected.delegate="count('fileSelected')" e-on-file-upload-success.delegate="count('fileUploadSuccess')"
+      e-on-file-upload-failed.delegate="count('fileUploadFailed')" e-on-file-removing.delegate="count('fileRemoving')"
+      e-on-before-file-drop.delegate="count('beforeFileDrop')"></ej2-rich-text-editor-ui>
+    <div class="demo-output">
+      beforeFileUpload <span data-testid="rteui-ev-beforeFileUpload">${counts.beforeFileUpload}</span>
+      fileUploading <span data-testid="rteui-ev-fileUploading">${counts.fileUploading}</span>
+      fileSelected <span data-testid="rteui-ev-fileSelected">${counts.fileSelected}</span>
+      fileUploadSuccess <span data-testid="rteui-ev-fileUploadSuccess">${counts.fileUploadSuccess}</span>
+      fileUploadFailed <span data-testid="rteui-ev-fileUploadFailed">${counts.fileUploadFailed}</span>
+      fileRemoving <span data-testid="rteui-ev-fileRemoving">${counts.fileRemoving}</span>
+      beforeFileDrop <span data-testid="rteui-ev-beforeFileDrop">${counts.beforeFileDrop}</span></div>
+  </demo-section>
+
+  <demo-section id="rteui-life" title="Lifecycle events" description="created is raised when the editor renders, destroyed when it is removed.">
+    <ej2-rich-text-editor-ui if.bind="showEditor" data-testid="rteui-life" e-height="120px"
+      e-on-created.delegate="count('created')" e-on-destroyed.trigger="count('destroyed')"></ej2-rich-text-editor-ui>
+    <div class="demo-output">created <span data-testid="rteui-ev-created">${counts.created}</span>
+      destroyed <span data-testid="rteui-ev-destroyed">${counts.destroyed}</span></div>
+    <button data-testid="rteui-toggle" click.delegate="showEditor = !showEditor">Toggle editor</button>
   </demo-section>
 </template>
