@@ -1,7 +1,49 @@
 <template>
   <h2>App Bar</h2>
 
-  <demo-section id="appBar-basic" title="Basic" description="App Bar rendered with its default options.">
-    <ej2-app-bar data-testid="appBar-basic"></ej2-app-bar>
+  <demo-section id="ab-default" title="Default functionalities" description="The app bar hosts its child content (buttons, title, search). created and destroyed events report the lifecycle.">
+    <ej2-app-bar if.bind="showBar" data-testid="ab-default" e-on-created.delegate="onCreated()"
+      e-on-destroyed.trigger="onDestroyed()">
+      <button class="e-btn e-inherit ab-menu" data-testid="ab-menu" click.delegate="menuClick()">Menu</button>
+      <span class="ab-title">Application</span>
+      <div class="e-appbar-spacer"></div>
+      <button class="e-btn e-inherit ab-login">Login</button>
+    </ej2-app-bar>
+    <div class="demo-output">Menu clicks: <span data-testid="ab-clicks">${menuClicks}</span>
+      Created: <span data-testid="ab-created">${createdCount}</span>
+      Destroyed: <span data-testid="ab-destroyed">${destroyedCount}</span></div>
+    <button data-testid="ab-toggle" click.delegate="toggle()">Toggle</button>
+  </demo-section>
+
+  <demo-section id="ab-mode" title="Modes and colors" description="mode Regular, Prominent and Dense change the height, colorMode picks the palette.">
+    <ej2-app-bar data-testid="ab-mode" e-mode.bind="mode" e-color-mode.bind="colorMode">
+      <span class="ab-title">Mode and color</span>
+    </ej2-app-bar>
+    <div class="demo-row">
+      <button data-testid="ab-prominent" click.delegate="prominent()">Prominent</button>
+      <button data-testid="ab-dense" click.delegate="dense()">Dense</button>
+      <button data-testid="ab-dark" click.delegate="dark()">Dark</button>
+      <button data-testid="ab-primary" click.delegate="primary()">Primary</button>
+    </div>
+  </demo-section>
+
+  <demo-section id="ab-position" title="Position and sticky" description="position places the bar at the top or bottom, isSticky keeps it visible while scrolling.">
+    <ej2-app-bar data-testid="ab-position" e-position.bind="position" e-is-sticky.bind="sticky">
+      <span class="ab-title">Positioned</span>
+    </ej2-app-bar>
+    <div class="demo-row">
+      <button data-testid="ab-bottom" click.delegate="bottom()">Bottom</button>
+      <button data-testid="ab-stick" click.delegate="stick()">Sticky</button>
+    </div>
+  </demo-section>
+
+  <demo-section id="ab-custom" title="Customization" description="cssClass and htmlAttributes follow the view-model.">
+    <ej2-app-bar data-testid="ab-custom" e-css-class.bind="cssClass" e-html-attributes.bind="htmlAttributes">
+      <span class="ab-title">Custom</span>
+    </ej2-app-bar>
+    <div class="demo-row">
+      <button data-testid="ab-restyle" click.delegate="restyle()">Restyle</button>
+      <button data-testid="ab-attrs" click.delegate="attrs()">Change attributes</button>
+    </div>
   </demo-section>
 </template>
