@@ -53,6 +53,13 @@ export class Ej2TreeGrid extends SyncfusionWrapper<TreeGrid, TreeGridModel> {
     ["beforePrint", "printComplete"].forEach((name) => {
       this.widget[name] = (args) => this.forward(name, args);
     });
+    // dataStateChange is only raised (and children only start collapsed) when a handler is assigned as a property,
+    // addEventListener does not count. Assign a placeholder, but only when the page actually listens.
+    ["dataStateChange", "dataSourceChanged"].forEach((name) => {
+      if (this[`${constants.eventPrefix}${name}`] !== undefined) {
+        this.widget[name] = () => { };
+      }
+    });
   }
 
   protected onWidgetCreated() {

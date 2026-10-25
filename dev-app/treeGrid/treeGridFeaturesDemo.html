@@ -105,11 +105,19 @@
       e-query.bind="taskQuery"></ej2-tree-grid>
   </demo-section>
 
+  <demo-section id="tg-failure" title="Failing data request" description="actionFailure is raised when the data request cannot be read.">
+    <button data-testid="tg-failure-show" click.delegate="showFailing = true">Request data</button>
+    <ej2-tree-grid if.bind="showFailing" data-testid="tg-failure" e-data-source.bind="failingSource" e-id-mapping="taskID" e-parent-id-mapping="parentID"
+      e-columns.bind="columns" e-on-action-failure.delegate="log('actionFailure', $event)"></ej2-tree-grid>
+  </demo-section>
+
   <demo-section id="tg-state" title="Data state" description="dataStateChange: the app supplies { result, count } itself, dataSourceChanged for edits.">
-    <ej2-tree-grid data-testid="tg-state" e-data-source.bind="stateSource" e-id-mapping="taskID" e-parent-id-mapping="parentID"
+    <ej2-tree-grid data-testid="tg-state" e-data-source.bind="stateSource" e-id-mapping="taskID" e-parent-id-mapping="parentID" e-has-child-mapping="isParent" e-load-child-on-demand.bind="true"
       e-columns.bind="columns" e-allow-sorting.bind="true"
       e-on-data-state-change.delegate="onDataStateChange($event)"
-      e-on-data-source-changed.delegate="log('dataSourceChanged', $event)"></ej2-tree-grid>
-    <div class="demo-output">Last request: <code data-testid="tg-state-last">${stateLast}</code></div>
+      e-edit-settings.bind="stateEdit"
+      e-on-data-source-changed.delegate="onDataSourceChanged($event)"></ej2-tree-grid>
+    <div class="demo-output">Last request: <code data-testid="tg-state-last">${stateLast}</code>,
+      saved: <code data-testid="tg-state-saved">${stateSaved}</code></div>
   </demo-section>
 </template>

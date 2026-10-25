@@ -1,4 +1,4 @@
-import { DataManager, Query } from '@syncfusion/ej2-data';
+import { DataManager, Query, UrlAdaptor } from '@syncfusion/ej2-data';
 import { hierarchicalData, selfReferenceData, clone } from './treeGridData';
 import { logEvent } from './treeGridLog';
 
@@ -31,7 +31,7 @@ export class TreeGridFeaturesDemo {
   // menus
   menuData = clone(hierarchicalData);
   columnMenuItems = ['SortAscending', 'SortDescending', 'ColumnChooser', 'Filter'];
-  contextMenuItems = ['AutoFit', 'AutoFitAll', 'SortAscending', 'SortDescending', 'Edit', 'Delete', 'Save', 'Cancel', 'FirstPage', 'PrevPage', 'LastPage', 'NextPage'];
+  contextMenuItems = ['AutoFit', 'AutoFitAll', 'SortAscending', 'SortDescending'];
 
   // column chooser
   chooserData = clone(hierarchicalData);
@@ -77,21 +77,24 @@ export class TreeGridFeaturesDemo {
   // detail and toolbar template
   detailData = clone(hierarchicalData);
   detailTemplate = '<div class="tg-detail-template">Detail of ${taskName}</div>';
-  toolbarTemplate = '#tg-toolbar-tpl';
-  constructor() {
-    if (!document.getElementById('tg-toolbar-tpl')) {
-      const tpl = document.createElement('script');
-      tpl.id = 'tg-toolbar-tpl';
-      tpl.type = 'text/x-template';
-      tpl.innerHTML = '<div class="tg-toolbar-template">Custom toolbar</div>';
-      document.body.appendChild(tpl);
-    }
-  }
+  toolbarTemplate = () => {
+    const div = document.createElement('div');
+    div.className = 'tg-toolbar-template';
+    div.textContent = 'Custom toolbar';
+    return [div];
+  };
 
-  // data state
-  stateRows = clone(selfReferenceData);
-  stateSource: any = { result: this.stateRows, count: this.stateRows.length };
+  // data state: the app owns the data, root rows are supplied up front and children on expand
+  stateAll = clone(selfReferenceData);
+  stateRoots = this.stateAll.filter((r: any) => !r.parentID);
+  stateSource: any = { result: this.stateRoots, count: this.stateRoots.length };
   stateLast = '';
+  stateSaved = '';
+  stateEdit = { allowEditing: true, mode: 'Normal' };
+
+  // a remote source whose answer is not valid JSON, the request fails and actionFailure is raised
+  showFailing = false;
+  failingSource = new DataManager({ url: '/tg-missing', adaptor: new UrlAdaptor() });
 
   // query
   queryData = new DataManager(clone(hierarchicalData) as any);
@@ -99,7 +102,31 @@ export class TreeGridFeaturesDemo {
 
   onDataStateChange(event: CustomEvent) {
     logEvent('dataStateChange', event);
-    this.stateLast = event.detail.action ? event.detail.action.requestType : 'init';
-    this.stateSource = { result: this.stateRows, count: this.stateRows.length };
+    const state: any = event.detail;
+    if (state.requestType === 'expand') {
+      this.stateLast = 'expand';
+      state.childData = this.stateAll.filter((r: any) => r.parentID === state.data.taskID);
+      state.childDataBind();
+      return;
+    }
+    const action = state.action || {};
+    this.stateLast = action.requestType || 'init';
+    let roots = this.stateRoots.slice();
+    if (action.requestType === 'sorting') {
+      const sign = action.direction === 'Descending' ? -1 : 1;
+      roots = roots.sort((a: any, b: any) => (a[action.columnName] > b[action.columnName] ? sign : -sign));
+    }
+    this.stateSource = { result: roots, count: roots.length };
+  }
+
+  onDataSourceChanged(event: CustomEvent) {
+    logEvent('dataSourceChanged', event);
+    const state: any = event.detail;
+    if (state.action === 'edit' || state.requestType === 'save') {
+      const row = this.stateAll.find((r: any) => r.taskID === state.data.taskID);
+      if (row) { Object.assign(row, state.data); }
+      this.stateSaved = state.data.taskName;
+    }
+    state.endEdit();
   }
 }
