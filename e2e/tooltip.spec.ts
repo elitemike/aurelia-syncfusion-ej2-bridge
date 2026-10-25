@@ -147,6 +147,7 @@ test('animation is passed to the tooltip', async ({ app, page }) => {
 test('beforeCollision is raised when the tooltip does not fit into the window', async ({ app, page }) => {
   const section = app.section('tooltip-collision');
   await expect(section.getByTestId('tt-collisions')).toHaveText('0');
+  await section.getByTestId('tt-collision-target').scrollIntoViewIfNeeded();
   await section.getByTestId('tt-collision-target').hover();
   await expect(tip(page, 'tt-collision-class')).toBeVisible();
   await expect.poll(async () => Number(await section.getByTestId('tt-collisions').textContent())).toBeGreaterThan(0);
