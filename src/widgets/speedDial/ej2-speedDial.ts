@@ -14,4 +14,17 @@ export class Ej2SpeedDial extends SyncfusionWrapper<SpeedDial, SpeedDialModel> {
 
   protected onWidgetCreated() {
   }
+
+  public detached() {
+    // The speed dial moves its button and its popup into the `target` (or body). Aurelia only removes the wrapper
+    // element, so clean up what the widget left outside of it.
+    const button = this.widgetElement;
+    const popupId = button && button.id ? `${button.id}_popup` : null;
+    super.detached();
+    [button, popupId ? document.getElementById(popupId) : null].forEach(node => {
+      if (node && node.parentNode && !this.element.contains(node)) {
+        node.parentNode.removeChild(node);
+      }
+    });
+  }
 }

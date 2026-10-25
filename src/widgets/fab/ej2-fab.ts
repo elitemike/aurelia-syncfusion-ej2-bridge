@@ -14,4 +14,14 @@ export class Ej2Fab extends SyncfusionWrapper<Fab, FabModel> {
 
   protected onWidgetCreated() {
   }
+
+  public detached() {
+    // With a `target` the Fab moves its button into that element, Aurelia only removes the wrapper element, so take
+    // the button out of the target ourselves or it would stay behind after the view is gone.
+    const button = this.widgetElement;
+    super.detached();
+    if (button && button.parentNode && !this.element.contains(button)) {
+      button.parentNode.removeChild(button);
+    }
+  }
 }
