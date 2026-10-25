@@ -1,0 +1,16 @@
+<template>
+  <demo-section id="pv-server" title="Server mode and web service settings" description="serviceUrl and request settings. No document is loaded, call load() to send the Load request to the (stubbed) service.">
+    <ej2-pdf-viewer data-testid="pv-server" view-model.ref="viewer"
+      e-resource-url.bind="resourceUrl"
+      e-height="320px"
+      e-width="100%"
+      e-service-url.bind="serviceUrl"
+      e-server-action-settings.bind="serverActionSettings"
+      e-ajax-request-settings.bind="ajaxRequestSettings"
+      e-retry-count.bind="retryCount"
+      e-retry-status-codes.bind="retryStatusCodes"
+      e-retry-timeout.bind="retryTimeout"
+      e-enable-web-mcp.bind="enableWebMcp"
+      e-web-mcp-settings.bind="webMcpSettings"></ej2-pdf-viewer>
+  </demo-section>
+</template>
