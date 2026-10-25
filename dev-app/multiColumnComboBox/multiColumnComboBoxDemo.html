@@ -1,7 +1,66 @@
 <template>
-  <h2>Multi Column Combo Box</h2>
+  <h2>MultiColumn ComboBox</h2>
 
-  <demo-section id="multiColumnComboBox-basic" title="Basic" description="Multi Column Combo Box rendered with its default options.">
-    <ej2-multi-column-combo-box data-testid="multiColumnComboBox-basic"></ej2-multi-column-combo-box>
+  <demo-section id="mc-basic" title="Default with two-way value, text and index" description="Rows of the grid popup are the choices. value, text and index are two-way; open, close, select, change, created, actionBegin and actionComplete are raised.">
+    <ej2-multi-column-combo-box data-testid="mc-basic" e-data-source.bind="employees" e-fields.bind="fields" e-columns.bind="columns"
+      e-value.two-way="value" e-text.two-way="text" e-index.two-way="index" e-placeholder="Select an employee" e-popup-height="220px"
+      e-on-created.delegate="count('created')" e-on-open.delegate="count('open')" e-on-close.delegate="count('close')"
+      e-on-select.delegate="onSelect($event)" e-on-change.delegate="onChange($event)"
+      e-on-action-begin.delegate="count('actionBegin')" e-on-action-complete.delegate="count('actionComplete')"></ej2-multi-column-combo-box>
+    <div class="demo-output">Value: <code data-testid="mc-value-out">${value}</code>
+      Text: <code data-testid="mc-text-out">${text}</code>
+      Index: <code data-testid="mc-index-out">${index}</code>
+      Created: <span data-testid="mc-created">${counts.created}</span>
+      Open: <span data-testid="mc-open">${counts.open}</span>
+      Close: <span data-testid="mc-close">${counts.close}</span>
+      Action begin: <span data-testid="mc-action-begin">${counts.actionBegin}</span>
+      Action complete: <span data-testid="mc-action-complete">${counts.actionComplete}</span>
+      Selected: <span data-testid="mc-selected">${selected}</span>
+      Changes: <span data-testid="mc-change-count">${counts.change}</span>
+      Change interacted: <span data-testid="mc-interacted">${interacted}</span></div>
+    <label><input type="checkbox" data-testid="mc-cancel-select" checked.bind="cancelSelect" /> cancel select</label>
+    <button data-testid="mc-set-value" click.delegate="value = 3">value = 3</button>
+    <button data-testid="mc-set-index" click.delegate="index = 0">index = 0</button>
+    <button data-testid="mc-set-text" click.delegate="text = 'Tom Hardy'">text = Tom Hardy</button>
+  </demo-section>
+
+  <demo-section id="mc-filter" title="Filtering, sorting and look" description="allowFiltering, filterType, filtering event, allowSorting, sortOrder, sortType, showClearButton, floatLabelType, cssClass, width, popupWidth and popupHeight.">
+    <ej2-multi-column-combo-box data-testid="mc-filter" e-data-source.bind="employees" e-fields.bind="fields" e-columns.bind="columns"
+      e-allow-filtering="true" e-filter-type.bind="o.filterType" e-allow-sorting.bind="o.allowSorting" e-sort-order.bind="o.sortOrder"
+      e-sort-type.bind="o.sortType" e-show-clear-button.bind="o.showClear" e-float-label-type.bind="o.floatLabelType"
+      e-placeholder="Employee" e-css-class.bind="o.cssClass" e-width.bind="o.width" e-popup-width.bind="o.popupWidth"
+      e-popup-height.bind="o.popupHeight" e-value="2" e-on-filtering.delegate="count('filtering')"></ej2-multi-column-combo-box>
+    <div class="demo-output">Filtering events: <span data-testid="mc-filtering">${counts.filtering}</span></div>
+    <button data-testid="mc-filter-change" click.delegate="changeOptions()">Change options</button>
+  </demo-section>
+
+  <demo-section id="mc-grid" title="Grid settings and virtualization" description="gridSettings (alt rows, row height, grid lines, text wrap, resizing) and enableVirtualization for 500 rows.">
+    <ej2-multi-column-combo-box data-testid="mc-grid" e-data-source.bind="employees" e-fields.bind="fields" e-columns.bind="columns"
+      e-grid-settings.bind="gridSettings" e-placeholder="Grid settings"></ej2-multi-column-combo-box>
+    <ej2-multi-column-combo-box data-testid="mc-virtual" e-data-source.bind="many" e-fields.bind="fields" e-columns.bind="columns"
+      e-enable-virtualization="true" e-popup-height="200px" e-placeholder="Virtual"></ej2-multi-column-combo-box>
+    <button data-testid="mc-grid-change" click.delegate="changeGrid()">Change grid settings</button>
+  </demo-section>
+
+  <demo-section id="mc-templates" title="Templates and groups" description="itemTemplate, footerTemplate, groupTemplate (fields.groupBy), noRecordsTemplate and actionFailureTemplate.">
+    <ej2-multi-column-combo-box data-testid="mc-templates" e-data-source.bind="employees" e-fields.bind="groupFields" e-columns.bind="columns"
+      e-allow-filtering="true" e-footer-template.bind="footerTpl" e-group-template.bind="groupTpl"
+      e-no-records-template.bind="noRecordsTpl" e-action-failure-template.bind="failTpl" e-placeholder="Templates"></ej2-multi-column-combo-box>
+    <ej2-multi-column-combo-box data-testid="mc-row-template" e-data-source.bind="employees" e-fields.bind="fields" e-columns.bind="columns"
+      e-item-template.bind="itemTpl" e-placeholder="Row template"></ej2-multi-column-combo-box>
+  </demo-section>
+
+  <demo-section id="mc-state" title="Disabled, read only, html attributes and query" description="disabled, readonly, htmlAttributes, query (first three rows), enablePersistence, enableRtl and locale.">
+    <ej2-multi-column-combo-box data-testid="mc-state" e-data-source.bind="employees" e-fields.bind="fields" e-columns.bind="columns"
+      e-disabled.bind="disabled" e-readonly.bind="readonly" e-html-attributes.bind="htmlAttrs" e-query.bind="query"
+      e-enable-persistence="false" e-enable-rtl="true" e-locale="en-US" e-placeholder="State"></ej2-multi-column-combo-box>
+    <button data-testid="mc-state-change" click.delegate="enable()">Enable</button>
+  </demo-section>
+
+  <demo-section id="mc-fail" title="Failing source" description="A source that starts local and is switched to a failing request raises actionFailure.">
+    <ej2-multi-column-combo-box data-testid="mc-fail" e-data-source.bind="failSource" e-fields.bind="fields" e-columns.bind="columns"
+      e-action-failure-template.bind="failTpl" e-on-action-failure.delegate="failures = failures + 1" e-placeholder="Failing"></ej2-multi-column-combo-box>
+    <div class="demo-output">Failures: <span data-testid="mc-failures">${failures}</span></div>
+    <button data-testid="mc-fail-load" click.delegate="failSource = remote">Load failing source</button>
   </demo-section>
 </template>

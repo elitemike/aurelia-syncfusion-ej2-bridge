@@ -1152,11 +1152,13 @@ export const ControlBindings = {
   },
   multiColumnComboBox: {
     oneWay: [
-      "dataSource", "text", "value", "index", "width", "popupHeight", "popupWidth", "placeholder",
-      "allowFiltering", "allowSorting", "showClearButton", "cssClass", "fields", "columns", "gridSettings",
-      "filterType", "floatLabelType", "sortOrder", "sortType", "enableVirtualization", "disabled",
-      "readonly", "query", "itemTemplate", "footerTemplate", "groupTemplate", "actionFailureTemplate",
-      "noRecordsTemplate", "htmlAttributes"
+      "dataSource", "width", "popupHeight", "popupWidth", "placeholder", "allowFiltering", "allowSorting",
+      "showClearButton", "cssClass", "fields", "columns", "gridSettings", "filterType", "floatLabelType",
+      "sortOrder", "sortType", "enableVirtualization", "disabled", "readonly", "query", "itemTemplate",
+      "footerTemplate", "groupTemplate", "actionFailureTemplate", "noRecordsTemplate", "htmlAttributes"
+    ],
+    twoWay: [
+      "value", "text", "index"
     ],
     events: [
       "created", "open", "close", "actionFailure", "actionBegin", "actionComplete", "filtering", "select",
