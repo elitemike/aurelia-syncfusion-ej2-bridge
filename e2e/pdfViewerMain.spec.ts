@@ -161,6 +161,90 @@ test.describe('main viewer', () => {
     await evt(page, 'formFieldPropertiesChange');
   });
 
+  test('annotation mouse events: mouseover, leave, select, move, resize, unselect', async ({ app, page }) => {
+    await documentLoaded(page, MAIN);
+    const box = await app.section(MAIN).locator('.e-pv-page-div').first().boundingBox();
+    const px = (x: number, y: number): [number, number] => [box.x + x, box.y + y];
+    await viewerValue(page, MAIN, "w.annotation.addAnnotation('Rectangle', { offset: { x: 100, y: 300 }, pageNumber: 1, width: 150, height: 80, fillColor: '#ff8888' })");
+    await page.mouse.move(...px(90, 290));
+    await page.mouse.move(...px(175, 340), { steps: 4 });
+    await evt(page, 'annotationMouseover');
+    await page.mouse.move(...px(500, 600), { steps: 4 });
+    await evt(page, 'annotationMouseLeave');
+    await page.mouse.click(...px(175, 340));
+    await evt(page, 'annotationSelect');
+    await page.mouse.move(...px(175, 340));
+    await page.mouse.down();
+    await page.mouse.move(...px(235, 380), { steps: 6 });
+    await page.mouse.up();
+    await evt(page, 'annotationMoving');
+    await evt(page, 'annotationMove');
+    const southEast = page.locator('rect[id$="resizeSouthEast"]').first();
+    if (!(await southEast.isVisible().catch(() => false))) { await page.mouse.click(...px(235, 380)); }
+    const handle = await page.locator('rect[id$="resizeSouthEast"]').first().boundingBox();
+    await page.mouse.move(handle.x + handle.width / 2, handle.y + handle.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(handle.x + 40, handle.y + 40, { steps: 5 });
+    await page.mouse.up();
+    await evt(page, 'annotationResize');
+    await page.mouse.click(...px(600, 400));
+    await evt(page, 'annotationUnSelect');
+  });
+
+  test('keyboardCustomCommands is raised for the commandManager gesture', async ({ app, page }) => {
+    await documentLoaded(page, MAIN);
+    const at = await pagePoint(app);
+    await page.mouse.click(...at(300, 650));
+    await page.keyboard.press('Shift+G');
+    await evt(page, 'keyboardCustomCommands');
+  });
+
+  test('custom context menu: beforeOpen and select', async ({ app, page }) => {
+    await documentLoaded(page, MAIN);
+    const at = await pagePoint(app);
+    await expect.poll(() => viewerValue(page, MAIN, 'w.customContextMenuItems.length')).toBe(1);
+    await textLayerReady(page, MAIN);
+    await page.mouse.click(...at(100, 705), { button: 'right' });
+    await evt(page, 'customContextMenuBeforeOpen');
+    await page.locator('li#demo_action').first().dispatchEvent('click');
+    await evt(page, 'customContextMenuSelect');
+  });
+
+  test('thumbnail and bookmark panes raise thumbnailClick and bookmarkClick', async ({ app, page }) => {
+    const section = app.section(MAIN);
+    await documentLoaded(page, MAIN);
+    await section.locator('.e-pv-thumbnail-view-button').first().click();
+    await section.locator('.e-pv-thumbnail-image').nth(1).click();
+    await evt(page, 'thumbnailClick');
+    expect(await evArg(page, 'main.thumbnailClick', 'detail.pageNumber')).toBe(2);
+    await section.locator('.e-pv-bookmark-button').first().click();
+    await section.locator('.e-pv-bookmark-title').first().click();
+    await evt(page, 'bookmarkClick');
+  });
+
+  test('download and print raise their start and end events', async ({ page }) => {
+    await documentLoaded(page, MAIN);
+    const download = page.waitForEvent('download');
+    await viewerValue(page, MAIN, 'w.download()');
+    expect((await download).suggestedFilename()).toBe('demo.pdf');
+    await evt(page, 'downloadStart');
+    await evt(page, 'downloadEnd');
+    await viewerValue(page, MAIN, 'w.print.print()');
+    await evt(page, 'printStart');
+    await evt(page, 'printEnd');
+  });
+
+  test('annotation export and import raise their events', async ({ page }) => {
+    await documentLoaded(page, MAIN);
+    await viewerValue(page, MAIN, "w.annotation.addAnnotation('Rectangle', { offset: { x: 100, y: 100 }, pageNumber: 1, width: 100, height: 50 })");
+    await viewerValue(page, MAIN, 'w.exportAnnotationsAsObject()');
+    await evt(page, 'exportStart');
+    await evt(page, 'exportSuccess');
+    await viewerValue(page, MAIN, 'w.importAnnotation({ pdfAnnotation: {} })');
+    await evt(page, 'importStart');
+    await evt(page, 'importSuccess');
+  });
+
   test('unload and load raise documentUnload and documentLoad', async ({ page }) => {
     await documentLoaded(page, MAIN);
     const before = await evCount(page, 'main.documentLoad');

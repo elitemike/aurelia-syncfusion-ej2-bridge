@@ -1,7 +1,9 @@
 import { samplePdf } from './samplePdf';
+import { logEvent } from './pvLog';
 
 export class PdfViewerUiDemo {
   viewer: any;
+  log = (name: string, args?: any) => logEvent(`pv-ui.${name}`, args);
   documentPath = samplePdf;
   // the pdfium worker and WASM are copied next to the bundle by tools/copy-pdfium.js
   resourceUrl = `${location.origin}/scripts/ej2-pdfviewer-lib`;

@@ -19,6 +19,9 @@ export class PdfViewerDemo {
   zoom = 100;
   pageCount = 0;
   edited = false;
+  // Shift+G raises keyboardCustomCommands
+  commandManager = { keyboardCommand: [{ name: 'demoCommand', gesture: { pdfKeys: 71, modifierKeys: 4 } }] };
+  customMenu = [{ text: 'Demo action', id: 'demo_action' }];
   toolbarSettings = {
     showTooltip: true,
     toolbarItems: [
