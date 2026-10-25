@@ -4,7 +4,7 @@ import { generateBindables } from '../../utilities/decorator';
 import { SyncfusionWrapper } from '../../common/syncfusionWrapper';
 
 @generateBindables("appBar")
-@inlineView('<template><div element.ref="widgetElement"></div></template>')
+@inlineView('<template><header element.ref="widgetElement"><slot></slot></header></template>')
 @customElement('ej2-app-bar')
 export class Ej2AppBar extends SyncfusionWrapper<AppBar, AppBarModel> {
   protected syncfusionWidgetType = AppBar;

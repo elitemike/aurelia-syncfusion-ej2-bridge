@@ -1,7 +1,45 @@
 <template>
   <h2>Breadcrumb</h2>
 
-  <demo-section id="breadcrumb-basic" title="Basic" description="Breadcrumb rendered with its default options.">
-    <ej2-breadcrumb data-testid="breadcrumb-basic"></ej2-breadcrumb>
+  <demo-section id="bc-default" title="Default functionalities" description="Items with an icon and urls, the active item is marked and clicks raise itemClick and make the clicked item active (default navigation is prevented here).">
+    <ej2-breadcrumb data-testid="bc-default" e-items.bind="items" e-active-item.two-way="activeItem"
+      e-enable-active-item-navigation.bind="activeNavigation"
+      e-on-item-click.delegate="onItemClick($event)" e-on-before-item-render.delegate="onBeforeItemRender()"
+      e-on-created.delegate="onCreated()"></ej2-breadcrumb>
+    <div class="demo-output">Clicked: <code data-testid="bc-clicked">${clickedText}</code>
+      Click count: <span data-testid="bc-click-count">${clickCount}</span>
+      BeforeItemRender: <span data-testid="bc-render">${renderCount}</span>
+      Active: <code data-testid="bc-active">${activeItem}</code>
+      Created: <span data-testid="bc-created">${createdCount}</span></div>
+    <div class="demo-row">
+      <button data-testid="bc-activate" click.delegate="activateNav()">Activate Navigation</button>
+      <button data-testid="bc-allow-active" click.delegate="allowActive()">Active item navigable</button>
+    </div>
+  </demo-section>
+
+  <demo-section id="bc-overflow" title="Overflow" description="maxItems with overflowMode Collapsed keeps the first and last item and folds the rest behind an icon.">
+    <ej2-breadcrumb data-testid="bc-overflow" e-items.bind="overflowItems" e-max-items.bind="maxItems"
+      e-overflow-mode.bind="overflowMode"></ej2-breadcrumb>
+    <button data-testid="bc-collapse" click.delegate="collapse()">Default mode, max 4</button>
+  </demo-section>
+
+  <demo-section id="bc-template" title="Templates" description="itemTemplate and separatorTemplate customize the markup.">
+    <ej2-breadcrumb data-testid="bc-template" e-items.bind="templateItems" e-item-template.bind="itemTemplate"
+      e-separator-template.bind="separatorTemplate"></ej2-breadcrumb>
+  </demo-section>
+
+  <demo-section id="bc-url" title="Items from url" description="url generates the items from a path.">
+    <ej2-breadcrumb data-testid="bc-url" e-url.bind="url"></ej2-breadcrumb>
+    <button data-testid="bc-change-url" click.delegate="changeUrl()">Change url</button>
+  </demo-section>
+
+  <demo-section id="bc-nav" title="Navigation, disabled and css" description="enableNavigation lets items follow their url, disabled blocks the breadcrumb, cssClass adds classes.">
+    <ej2-breadcrumb data-testid="bc-nav" e-items.bind="navItems" e-enable-navigation.bind="enableNavigation"
+      e-disabled.bind="disabled" e-css-class.bind="cssClass" e-active-item="http://bc.example.test/active"></ej2-breadcrumb>
+    <div class="demo-row">
+      <button data-testid="bc-navigate" click.delegate="navigate()">Enable navigation</button>
+      <button data-testid="bc-disable" click.delegate="disable()">Disable</button>
+      <button data-testid="bc-restyle" click.delegate="restyle()">Restyle</button>
+    </div>
   </demo-section>
 </template>

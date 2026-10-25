@@ -1182,8 +1182,11 @@ export const ControlBindings = {
     ]
   },
   breadcrumb: {
+    twoWay: [
+      "activeItem"
+    ],
     oneWay: [
-      "url", "items", "activeItem", "maxItems", "overflowMode", "cssClass", "itemTemplate",
+      "url", "items", "maxItems", "overflowMode", "cssClass", "itemTemplate",
       "separatorTemplate", "enableNavigation", "enableActiveItemNavigation", "disabled"
     ],
     events: [
