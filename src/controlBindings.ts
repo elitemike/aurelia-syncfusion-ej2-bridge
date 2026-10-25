@@ -584,9 +584,12 @@ export const ControlBindings = {
   },
   calendar: {
     oneWay: [
-      "value", "values", "isMultiSelection", "min", "enabled", "cssClass", "max", "firstDayOfWeek",
-      "calendarMode", "start", "depth", "weekNumber", "weekRule", "showTodayButton", "dayHeaderFormat",
-      "keyConfigs", "serverTimezoneOffset"
+      "isMultiSelection", "min", "enabled", "cssClass", "max", "firstDayOfWeek", "calendarMode", "start",
+      "depth", "weekNumber", "weekRule", "showTodayButton", "dayHeaderFormat", "keyConfigs",
+      "serverTimezoneOffset"
+    ],
+    twoWay: [
+      "value", "values"
     ],
     events: [
       "change", "created", "destroyed", "navigated", "renderDayCell"
@@ -861,10 +864,13 @@ export const ControlBindings = {
   },
   listBox: {
     oneWay: [
-      "cssClass", "value", "height", "enabled", "allowDragAndDrop", "maximumSelectionLength",
-      "allowFiltering", "scope", "ignoreCase", "filterBarPlaceholder", "sortOrder", "groupTemplate",
-      "actionFailureTemplate", "zIndex", "ignoreAccent", "toolbarSettings", "selectionSettings", "fields",
-      "itemTemplate", "noRecordsTemplate", "dataSource", "query", "filterType"
+      "cssClass", "height", "enabled", "allowDragAndDrop", "maximumSelectionLength", "allowFiltering",
+      "scope", "ignoreCase", "filterBarPlaceholder", "sortOrder", "groupTemplate", "actionFailureTemplate",
+      "zIndex", "ignoreAccent", "toolbarSettings", "selectionSettings", "fields", "itemTemplate",
+      "noRecordsTemplate", "dataSource", "query", "filterType"
+    ],
+    twoWay: [
+      "value"
     ],
     events: [
       "beforeItemRender", "filtering", "select", "change", "beforeDrop", "dragStart", "drag", "drop",
@@ -980,8 +986,11 @@ export const ControlBindings = {
   },
   colorPicker: {
     oneWay: [
-      "value", "cssClass", "disabled", "mode", "modeSwitcher", "presetColors", "showButtons", "columns",
-      "inline", "noColor", "enableOpacity", "createPopupOnClick", "showRecentColors"
+      "cssClass", "disabled", "mode", "modeSwitcher", "presetColors", "showButtons", "columns", "inline",
+      "noColor", "enableOpacity", "createPopupOnClick", "showRecentColors"
+    ],
+    twoWay: [
+      "value"
     ],
     events: [
       "select", "change", "beforeTileRender", "beforeOpen", "open", "beforeClose", "beforeModeSwitch",
@@ -990,9 +999,12 @@ export const ControlBindings = {
   },
   textArea: {
     oneWay: [
-      "readonly", "value", "floatLabelType", "cssClass", "placeholder", "htmlAttributes", "enabled",
+      "readonly", "floatLabelType", "cssClass", "placeholder", "htmlAttributes", "enabled",
       "showClearButton", "width", "resizeMode", "maxLength", "cols", "rows", "prependTemplate",
       "appendTemplate", "adornmentFlow", "adornmentOrientation"
+    ],
+    twoWay: [
+      "value"
     ],
     events: [
       "created", "destroyed", "change", "blur", "focus", "input"
@@ -1000,10 +1012,13 @@ export const ControlBindings = {
   },
   smartTextArea: {
     oneWay: [
-      "userRole", "UserPhrases", "aiSuggestionHandler", "showSuggestionOnPopup", "readonly", "value",
+      "userRole", "UserPhrases", "aiSuggestionHandler", "showSuggestionOnPopup", "readonly",
       "floatLabelType", "cssClass", "placeholder", "htmlAttributes", "enabled", "showClearButton", "width",
       "resizeMode", "maxLength", "cols", "rows", "prependTemplate", "appendTemplate", "adornmentFlow",
       "adornmentOrientation"
+    ],
+    twoWay: [
+      "value"
     ],
     events: [
       "beforeSuggestionInsert", "afterSuggestionInsert", "created", "destroyed", "change", "blur", "focus",
@@ -1023,7 +1038,10 @@ export const ControlBindings = {
     oneWay: [
       "allowReset", "cssClass", "disabled", "emptyTemplate", "enableAnimation", "enableSingleSelection",
       "fullTemplate", "itemsCount", "labelPosition", "labelTemplate", "min", "precision", "readOnly",
-      "showLabel", "showTooltip", "tooltipTemplate", "value", "visible"
+      "showLabel", "showTooltip", "tooltipTemplate", "visible"
+    ],
+    twoWay: [
+      "value"
     ],
     events: [
       "beforeItemRender", "created", "onItemHover", "valueChanged"
@@ -1031,8 +1049,11 @@ export const ControlBindings = {
   },
   otpInput: {
     oneWay: [
-      "length", "value", "type", "separator", "placeholder", "stylingMode", "disabled", "cssClass",
-      "autoFocus", "textTransform", "htmlAttributes", "ariaLabels"
+      "length", "type", "separator", "placeholder", "stylingMode", "disabled", "cssClass", "autoFocus",
+      "textTransform", "htmlAttributes", "ariaLabels"
+    ],
+    twoWay: [
+      "value"
     ],
     events: [
       "created", "valueChanged", "focus", "blur", "input"
@@ -1040,8 +1061,11 @@ export const ControlBindings = {
   },
   speechToText: {
     oneWay: [
-      "transcript", "lang", "allowInterimResults", "showTooltip", "listeningState", "buttonSettings",
-      "tooltipSettings", "disabled", "cssClass", "htmlAttributes"
+      "lang", "allowInterimResults", "showTooltip", "buttonSettings", "tooltipSettings", "disabled",
+      "cssClass", "htmlAttributes"
+    ],
+    twoWay: [
+      "transcript", "listeningState"
     ],
     events: [
       "created", "onStart", "onStop", "onError", "transcriptChanged"
@@ -1132,11 +1156,13 @@ export const ControlBindings = {
   },
   multiColumnComboBox: {
     oneWay: [
-      "dataSource", "text", "value", "index", "width", "popupHeight", "popupWidth", "placeholder",
-      "allowFiltering", "allowSorting", "showClearButton", "cssClass", "fields", "columns", "gridSettings",
-      "filterType", "floatLabelType", "sortOrder", "sortType", "enableVirtualization", "disabled",
-      "readonly", "query", "itemTemplate", "footerTemplate", "groupTemplate", "actionFailureTemplate",
-      "noRecordsTemplate", "htmlAttributes"
+      "dataSource", "width", "popupHeight", "popupWidth", "placeholder", "allowFiltering", "allowSorting",
+      "showClearButton", "cssClass", "fields", "columns", "gridSettings", "filterType", "floatLabelType",
+      "sortOrder", "sortType", "enableVirtualization", "disabled", "readonly", "query", "itemTemplate",
+      "footerTemplate", "groupTemplate", "actionFailureTemplate", "noRecordsTemplate", "htmlAttributes"
+    ],
+    twoWay: [
+      "value", "text", "index"
     ],
     events: [
       "created", "open", "close", "actionFailure", "actionBegin", "actionComplete", "filtering", "select",

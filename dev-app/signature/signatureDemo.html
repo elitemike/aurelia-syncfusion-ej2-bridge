@@ -1,7 +1,48 @@
 <template>
   <h2>Signature</h2>
 
-  <demo-section id="signature-basic" title="Basic" description="Signature rendered with its default options.">
-    <ej2-signature data-testid="signature-basic"></ej2-signature>
+  <demo-section id="sg-basic" title="Default" description="Draw with the mouse. change is raised after every stroke, undo, redo and clear.">
+    <ej2-signature data-testid="sg-basic" view-model.ref="basic" style="width: 400px; height: 160px; border: 1px solid #999"
+      e-on-change.delegate="onChange($event)" e-on-created.delegate="createdCount = createdCount + 1"></ej2-signature>
+    <div class="demo-output">Changes: <span data-testid="sg-change-count">${changeCount}</span>
+      Last action: <span data-testid="sg-action">${action}</span>
+      Created: <span data-testid="sg-created">${createdCount}</span></div>
+    <div class="demo-row">
+      <button data-testid="sg-undo" click.delegate="basic.widget.undo()">Undo</button>
+      <button data-testid="sg-redo" click.delegate="basic.widget.redo()">Redo</button>
+      <button data-testid="sg-clear" click.delegate="basic.widget.clear()">Clear</button>
+    </div>
+  </demo-section>
+
+  <demo-section id="sg-look" title="Stroke and background" description="strokeColor, minStrokeWidth, maxStrokeWidth, velocity and backgroundColor.">
+    <ej2-signature data-testid="sg-look" style="width: 400px; height: 160px; border: 1px solid #999"
+      e-stroke-color.bind="strokeColor" e-min-stroke-width.bind="minWidth" e-max-stroke-width.bind="maxWidth"
+      e-velocity.bind="velocity" e-background-color.bind="backgroundColor"></ej2-signature>
+    <button data-testid="sg-look-change" click.delegate="changeLook()">Change look</button>
+  </demo-section>
+
+  <demo-section id="sg-image" title="Background image" description="backgroundImage (an inline data URI) is drawn behind the strokes.">
+    <ej2-signature data-testid="sg-image" style="width: 400px; height: 160px; border: 1px solid #999"
+      e-background-image.bind="backgroundImage" e-save-with-background.bind="saveWithBackground"></ej2-signature>
+    <ej2-signature data-testid="sg-image-plain" style="width: 400px; height: 160px; border: 1px solid #999"
+      e-background-image.bind="backgroundImage" e-save-with-background="false"></ej2-signature>
+    <button data-testid="sg-image-no-bg" click.delegate="saveWithBackground = false">Do not save background</button>
+  </demo-section>
+
+  <demo-section id="sg-state" title="Disabled and read only" description="disabled and isReadOnly stop the user from drawing.">
+    <ej2-signature data-testid="sg-disabled" style="width: 300px; height: 100px; border: 1px solid #999"
+      e-disabled.bind="disabled" e-on-change.delegate="disabledChanges = disabledChanges + 1"></ej2-signature>
+    <ej2-signature data-testid="sg-readonly" style="width: 300px; height: 100px; border: 1px solid #999"
+      e-is-read-only.bind="readOnly" e-on-change.delegate="readOnlyChanges = readOnlyChanges + 1"></ej2-signature>
+    <div class="demo-output">Disabled changes: <span data-testid="sg-disabled-changes">${disabledChanges}</span>
+      Read only changes: <span data-testid="sg-readonly-changes">${readOnlyChanges}</span></div>
+    <button data-testid="sg-state-toggle" click.delegate="toggleState()">Enable drawing</button>
+  </demo-section>
+
+  <demo-section id="sg-save" title="Save" description="Press Ctrl+S while the canvas has focus: beforeSave is raised before the signature is downloaded and can cancel it.">
+    <ej2-signature data-testid="sg-save" view-model.ref="saver" style="width: 400px; height: 120px; border: 1px solid #999"
+      e-on-before-save.delegate="onBeforeSave($event)"></ej2-signature>
+    <div class="demo-output">Before save: <span data-testid="sg-before-save">${beforeSave}</span></div>
+    <label><input type="checkbox" data-testid="sg-cancel-save" checked.bind="cancelSave" /> cancel save</label>
   </demo-section>
 </template>

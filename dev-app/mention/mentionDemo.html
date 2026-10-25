@@ -1,7 +1,55 @@
 <template>
   <h2>Mention</h2>
 
-  <demo-section id="mention-basic" title="Basic" description="Mention rendered with its default options.">
-    <ej2-mention data-testid="mention-basic"></ej2-mention>
+  <demo-section id="mn-basic" title="Default" description="Type @ in the editor to get suggestions. All the lifecycle events are raised: created, actionBegin, actionComplete, filtering, beforeOpen, opened, select, change and closed.">
+    <ej2-mention data-testid="mn-basic" class="mn-editor" style="display:block;min-height:36px;border:1px solid #999;padding:4px;margin-bottom:6px" e-data-source.bind="people" e-fields.bind="fields"
+      e-on-created.delegate="count('created')" e-on-action-begin.delegate="count('actionBegin')"
+      e-on-action-complete.delegate="count('actionComplete')" e-on-filtering.delegate="count('filtering')"
+      e-on-before-open.delegate="count('beforeOpen')" e-on-opened.delegate="count('opened')"
+      e-on-select.delegate="onSelect($event)" e-on-change.delegate="onChange($event)"
+      e-on-closed.delegate="count('closed')"></ej2-mention>
+    <div class="demo-output">
+      Created: <span data-testid="mn-created">${counts.created}</span>
+      Action begin: <span data-testid="mn-action-begin">${counts.actionBegin}</span>
+      Action complete: <span data-testid="mn-action-complete">${counts.actionComplete}</span>
+      Filtering: <span data-testid="mn-filtering">${counts.filtering}</span>
+      Before open: <span data-testid="mn-before-open">${counts.beforeOpen}</span>
+      Opened: <span data-testid="mn-opened">${counts.opened}</span>
+      Closed: <span data-testid="mn-closed">${counts.closed}</span>
+      Selected: <span data-testid="mn-selected">${selected}</span>
+      Changed: <span data-testid="mn-changed">${changed}</span></div>
+    <label><input type="checkbox" data-testid="mn-cancel-select" checked.bind="cancelSelect" /> cancel select</label>
+  </demo-section>
+
+  <demo-section id="mn-options" title="Options" description="mentionChar, showMentionChar, suffixText, suggestionCount, minLength, allowSpaces, requireLeadingSpace, ignoreCase, highlight, sortOrder, filterType, popupWidth, popupHeight, debounceDelay and cssClass.">
+    <ej2-mention data-testid="mn-options" class="mn-editor" style="display:block;min-height:36px;border:1px solid #999;padding:4px;margin-bottom:6px" e-data-source.bind="people" e-fields.bind="fields"
+      e-mention-char.bind="o.mentionChar" e-show-mention-char.bind="o.showMentionChar" e-suffix-text.bind="o.suffixText"
+      e-suggestion-count.bind="o.suggestionCount" e-min-length.bind="o.minLength" e-allow-spaces.bind="o.allowSpaces"
+      e-require-leading-space.bind="o.requireLeadingSpace" e-ignore-case.bind="o.ignoreCase" e-highlight.bind="o.highlight"
+      e-sort-order.bind="o.sortOrder" e-filter-type.bind="o.filterType" e-popup-width.bind="o.popupWidth"
+      e-popup-height.bind="o.popupHeight" e-debounce-delay.bind="o.debounceDelay" e-css-class.bind="o.cssClass"></ej2-mention>
+    <button data-testid="mn-options-change" click.delegate="changeOptions()">Change options</button>
+  </demo-section>
+
+  <demo-section id="mn-templates" title="Templates" description="itemTemplate, displayTemplate, noRecordsTemplate and spinnerTemplate (shown while a slow remote source loads).">
+    <ej2-mention data-testid="mn-templates" class="mn-editor" style="display:block;min-height:36px;border:1px solid #999;padding:4px;margin-bottom:6px" e-data-source.bind="people" e-fields.bind="fields"
+      e-item-template.bind="itemTpl" e-display-template.bind="displayTpl" e-no-records-template.bind="noRecordsTpl"
+      e-spinner-template.bind="spinnerTpl"></ej2-mention>
+    <ej2-mention data-testid="mn-slow" class="mn-editor" style="display:block;min-height:36px;border:1px solid #999;padding:4px;margin-bottom:6px" e-data-source.bind="slow" e-fields.bind="fields"
+      e-spinner-template.bind="spinnerTpl"></ej2-mention>
+  </demo-section>
+
+  <demo-section id="mn-target" title="External target and query" description="target points at another editable element; query limits the suggestions to the first two.">
+    <div id="mn-target-editor" data-testid="mn-target-editor" class="mn-editor" style="display:block;min-height:36px;border:1px solid #999;padding:4px;margin-bottom:6px" contenteditable="true"></div>
+    <ej2-mention data-testid="mn-target" e-target="#mn-target-editor" e-data-source.bind="manager" e-query.bind="query"
+      e-fields.bind="fields"></ej2-mention>
+  </demo-section>
+
+  <demo-section id="mn-fail" title="Failing source and destroyed" description="actionFailure for a request that fails; destroyed when the mention is removed.">
+    <ej2-mention if.bind="showFail" data-testid="mn-fail" class="mn-editor" style="display:block;min-height:36px;border:1px solid #999;padding:4px;margin-bottom:6px" e-data-source.bind="failing" e-fields.bind="fields"
+      e-on-action-failure.delegate="failures = failures + 1" e-on-destroyed.trigger="destroyed = destroyed + 1"></ej2-mention>
+    <div class="demo-output">Failures: <span data-testid="mn-failures">${failures}</span>
+      Destroyed: <span data-testid="mn-destroyed">${destroyed}</span></div>
+    <button data-testid="mn-fail-toggle" click.delegate="showFail = !showFail">Toggle</button>
   </demo-section>
 </template>

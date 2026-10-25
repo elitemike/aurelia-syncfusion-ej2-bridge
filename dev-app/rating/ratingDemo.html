@@ -1,7 +1,49 @@
 <template>
   <h2>Rating</h2>
 
-  <demo-section id="rating-basic" title="Basic" description="Rating rendered with its default options.">
-    <ej2-rating data-testid="rating-basic"></ej2-rating>
+  <demo-section id="rt-basic" title="Default with two-way value" description="Clicking an item updates the view-model, the view-model updates the rating. valueChanged, onItemHover, beforeItemRender and created are raised.">
+    <ej2-rating data-testid="rt-basic" e-value.two-way="value" e-on-value-changed.delegate="onValueChanged($event)"
+      e-on-on-item-hover.delegate="onHover($event)" e-on-before-item-render.delegate="beforeCount = beforeCount + 1"
+      e-on-created.delegate="createdCount = createdCount + 1"></ej2-rating>
+    <div class="demo-output">Value: <code data-testid="rt-value-out">${value}</code>
+      Changes: <span data-testid="rt-change-count">${changeCount}</span>
+      Previous: <span data-testid="rt-previous">${previous}</span>
+      Interacted: <span data-testid="rt-interacted">${interacted}</span>
+      Hover: <span data-testid="rt-hover">${hover}</span>
+      Items rendered: <span data-testid="rt-before">${beforeCount}</span>
+      Created: <span data-testid="rt-created">${createdCount}</span></div>
+    <button data-testid="rt-set" click.delegate="value = 5">Set 5 from view-model</button>
+  </demo-section>
+
+  <demo-section id="rt-precision" title="Precision" description="precision Full, Half, Quarter and Exact.">
+    <ej2-rating data-testid="rt-precision" e-precision.bind="precision" e-value.bind="halfValue"></ej2-rating>
+    <button data-testid="rt-precision-exact" click.delegate="precision = 'Exact'">Exact</button>
+  </demo-section>
+
+  <demo-section id="rt-items" title="Items count, minimum and reset" description="itemsCount, min, allowReset and enableSingleSelection.">
+    <ej2-rating data-testid="rt-items" e-items-count.bind="itemsCount" e-min.bind="min" e-allow-reset="true"
+      e-enable-single-selection.bind="single" e-value.bind="itemsValue"></ej2-rating>
+    <button data-testid="rt-items-change" click.delegate="changeItems()">Change items</button>
+  </demo-section>
+
+  <demo-section id="rt-label" title="Labels and tooltip" description="showLabel, labelPosition, labelTemplate, showTooltip and tooltipTemplate.">
+    <ej2-rating data-testid="rt-label" e-show-label="true" e-label-position.bind="labelPosition"
+      e-label-template.bind="labelTpl" e-show-tooltip="true" e-tooltip-template.bind="tooltipTpl"
+      e-value.bind="labelValue"></ej2-rating>
+    <button data-testid="rt-label-move" click.delegate="labelPosition = 'Bottom'">Label bottom</button>
+  </demo-section>
+
+  <demo-section id="rt-templates" title="Custom templates" description="emptyTemplate and fullTemplate replace the star icons.">
+    <ej2-rating data-testid="rt-templates" e-empty-template.bind="emptyTpl" e-full-template.bind="fullTpl"
+      e-value.bind="tplValue"></ej2-rating>
+  </demo-section>
+
+  <demo-section id="rt-state" title="Readonly, disabled, visible and look" description="readOnly, disabled, visible, enableAnimation, cssClass and enableRtl.">
+    <ej2-rating data-testid="rt-readonly" e-read-only.bind="readOnly" e-value.bind="roValue" e-css-class.bind="cssClass"
+      e-enable-animation="false"></ej2-rating>
+    <ej2-rating data-testid="rt-disabled" e-disabled.bind="disabled" e-value.bind="disValue" e-enable-animation="true"
+      e-enable-rtl="true"></ej2-rating>
+    <ej2-rating data-testid="rt-visible" e-visible.bind="visible" e-value.bind="visValue"></ej2-rating>
+    <button data-testid="rt-state-toggle" click.delegate="toggleState()">Toggle state</button>
   </demo-section>
 </template>

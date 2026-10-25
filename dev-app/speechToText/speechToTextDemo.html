@@ -1,7 +1,45 @@
 <template>
   <h2>Speech To Text</h2>
 
-  <demo-section id="speechToText-basic" title="Basic" description="Speech To Text rendered with its default options.">
-    <ej2-speech-to-text data-testid="speechToText-basic"></ej2-speech-to-text>
+  <demo-section id="stt-basic" title="Default with two-way transcript and state" description="Click the microphone button to start listening. transcript and listeningState are two-way; onStart, onStop, transcriptChanged, onError and created are raised.">
+    <ej2-speech-to-text data-testid="stt-basic" view-model.ref="basic" e-transcript.two-way="transcript"
+      e-listening-state.two-way="state" e-on-created.delegate="createdCount = createdCount + 1"
+      e-on-on-start.delegate="onStart($event)" e-on-on-stop.delegate="onStop($event)"
+      e-on-on-error.delegate="onError($event)" e-on-transcript-changed.delegate="onTranscript($event)"></ej2-speech-to-text>
+    <textarea data-testid="stt-text" rows="3" cols="50" value.bind="transcript" readonly></textarea>
+    <div class="demo-output">Transcript: <code data-testid="stt-transcript-out">${transcript}</code>
+      State: <span data-testid="stt-state-out">${state}</span>
+      Starts: <span data-testid="stt-starts">${startCount}</span>
+      Stops: <span data-testid="stt-stops">${stopCount}</span>
+      Start interacted: <span data-testid="stt-start-interacted">${startInteracted}</span>
+      Transcript events: <span data-testid="stt-transcript-events">${transcriptEvents}</span>
+      Interim: <span data-testid="stt-interim">${interim}</span>
+      Error: <span data-testid="stt-error">${error}</span>
+      Created: <span data-testid="stt-created">${createdCount}</span></div>
+    <div class="demo-row">
+      <label><input type="checkbox" data-testid="stt-cancel" checked.bind="cancelStart" /> cancel start</label>
+      <button data-testid="stt-api-start" click.delegate="basic.widget.startListening()">startListening()</button>
+      <button data-testid="stt-api-stop" click.delegate="basic.widget.stopListening()">stopListening()</button>
+      <button data-testid="stt-state-start" click.delegate="state = 'Listening'">state = Listening</button>
+      <button data-testid="stt-state-stop" click.delegate="state = 'Stopped'">state = Stopped</button>
+      <button data-testid="stt-transcript-set" click.delegate="transcript = 'typed text'">Set transcript</button>
+    </div>
+  </demo-section>
+
+  <demo-section id="stt-lang" title="Language and interim results" description="lang and allowInterimResults are passed to the recognition engine.">
+    <ej2-speech-to-text data-testid="stt-lang" e-lang.bind="lang" e-allow-interim-results.bind="interim2"></ej2-speech-to-text>
+    <button data-testid="stt-lang-change" click.delegate="changeLang()">German, final results only</button>
+  </demo-section>
+
+  <demo-section id="stt-button" title="Button and tooltip settings" description="buttonSettings (content, stopContent, icons, iconPosition, isPrimary) and tooltipSettings (content, stopContent, position), showTooltip.">
+    <ej2-speech-to-text data-testid="stt-button" e-button-settings.bind="buttonSettings" e-tooltip-settings.bind="tooltipSettings"
+      e-show-tooltip.bind="showTooltip"></ej2-speech-to-text>
+    <button data-testid="stt-button-change" click.delegate="changeButton()">Change settings</button>
+  </demo-section>
+
+  <demo-section id="stt-state" title="Disabled, css class and html attributes" description="disabled, cssClass, htmlAttributes, enableRtl and locale.">
+    <ej2-speech-to-text data-testid="stt-state" e-disabled.bind="disabled" e-css-class.bind="cssClass"
+      e-html-attributes.bind="htmlAttrs" e-enable-rtl="true" e-locale="en-US"></ej2-speech-to-text>
+    <button data-testid="stt-state-change" click.delegate="changeState()">Change</button>
   </demo-section>
 </template>

@@ -1,7 +1,62 @@
 <template>
   <h2>Calendar</h2>
 
-  <demo-section id="calendar-basic" title="Basic" description="Calendar rendered with its default options.">
-    <ej2-calendar data-testid="calendar-basic"></ej2-calendar>
+  <demo-section id="cal-value" title="Default with two-way value" description="Selecting a day updates the view-model, the view-model moves the selection. change, navigated and created are raised.">
+    <ej2-calendar data-testid="cal-value" e-value.two-way="value" e-on-change.delegate="onChange($event)"
+      e-on-navigated.delegate="onNavigated($event)" e-on-created.delegate="createdCount = createdCount + 1"></ej2-calendar>
+    <div class="demo-output">Value: <code data-testid="cal-value-out">${valueText}</code>
+      Changes: <span data-testid="cal-change-count">${changeCount}</span>
+      Interacted: <span data-testid="cal-interacted">${interacted}</span>
+      Navigated: <span data-testid="cal-navigated">${navigatedView}</span>
+      Navigations: <span data-testid="cal-navigations">${navigations}</span>
+      Created: <span data-testid="cal-created">${createdCount}</span></div>
+    <button data-testid="cal-set" click.delegate="value = newValue">Set 2024-06-20 from view-model</button>
+  </demo-section>
+
+  <demo-section id="cal-multi" title="Multiple selection" description="isMultiSelection with the values array two-way.">
+    <ej2-calendar data-testid="cal-multi" e-is-multi-selection="true" e-values.two-way="values" e-value.bind="multiValue"></ej2-calendar>
+    <div class="demo-output">Selected: <code data-testid="cal-multi-out">${valuesText}</code></div>
+    <button data-testid="cal-multi-set" click.delegate="values = presetValues">Preset three days</button>
+  </demo-section>
+
+  <demo-section id="cal-range" title="Min and max and enabled" description="min and max disable the days outside the range, enabled turns the whole calendar off.">
+    <ej2-calendar data-testid="cal-range" e-min.bind="min" e-max.bind="max" e-value.bind="rangeValue" e-enabled.bind="enabled"
+      e-css-class.bind="cssClass"></ej2-calendar>
+    <div class="demo-row">
+      <button data-testid="cal-range-change" click.delegate="changeRange()">Narrow the range</button>
+      <button data-testid="cal-disable" click.delegate="enabled = false">Disable</button>
+    </div>
+  </demo-section>
+
+  <demo-section id="cal-views" title="Start and depth" description="start and depth select the view the calendar opens in and the deepest view; Islamic calendarMode.">
+    <ej2-calendar data-testid="cal-views" e-start.bind="start" e-depth.bind="depth" e-value.one-way="viewValue"></ej2-calendar>
+    <ej2-calendar data-testid="cal-islamic" e-calendar-mode.bind="calendarMode" e-value.one-way="viewValue"></ej2-calendar>
+    <div class="demo-row">
+      <button data-testid="cal-views-change" click.delegate="decadeView()">Decade view</button>
+      <button data-testid="cal-islamic-switch" click.delegate="calendarMode = 'Islamic'">Islamic</button>
+    </div>
+  </demo-section>
+
+  <demo-section id="cal-week" title="Week numbers, first day and header format" description="weekNumber, weekRule, firstDayOfWeek, dayHeaderFormat and showTodayButton.">
+    <ej2-calendar data-testid="cal-week" e-value.bind="weekValue" e-week-number="true" e-week-rule.bind="weekRule"
+      e-first-day-of-week.bind="firstDay" e-day-header-format.bind="headerFormat" e-show-today-button.bind="showToday"></ej2-calendar>
+    <button data-testid="cal-week-change" click.delegate="changeWeek()">Change week settings</button>
+  </demo-section>
+
+  <demo-section id="cal-cells" title="Custom day cells" description="renderDayCell disables weekends and marks special days.">
+    <ej2-calendar data-testid="cal-cells" e-value.bind="cellValue" e-on-render-day-cell.delegate="onRenderDay($event)"></ej2-calendar>
+    <div class="demo-output">Cells rendered: <span data-testid="cal-cells-count">${cellCount}</span></div>
+  </demo-section>
+
+  <demo-section id="cal-keys" title="Key configuration and server time zone" description="keyConfigs rebinds navigation keys (Alt+L moves to the next day); serverTimezoneOffset shifts what today is.">
+    <ej2-calendar data-testid="cal-keys" e-value.bind="keyValue" e-key-configs.bind="keyConfigs"></ej2-calendar>
+    <ej2-calendar data-testid="cal-tz" e-value.bind="tzValue" e-server-timezone-offset.bind="timezoneOffset"></ej2-calendar>
+  </demo-section>
+
+  <demo-section id="cal-life" title="Lifecycle, RTL and persistence" description="destroyed is raised when the calendar is removed; enableRtl, enablePersistence and locale come from the common bindables.">
+    <ej2-calendar if.bind="showCalendar" data-testid="cal-life" e-enable-rtl="true" e-enable-persistence="false" e-locale="en-US"
+      e-on-destroyed.trigger="destroyedCount = destroyedCount + 1"></ej2-calendar>
+    <div class="demo-output">Destroyed: <span data-testid="cal-destroyed">${destroyedCount}</span></div>
+    <button data-testid="cal-toggle" click.delegate="showCalendar = !showCalendar">Toggle</button>
   </demo-section>
 </template>

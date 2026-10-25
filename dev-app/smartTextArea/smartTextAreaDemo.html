@@ -1,7 +1,46 @@
 <template>
-  <h2>Smart Text Area</h2>
+  <h2>Smart TextArea</h2>
 
-  <demo-section id="smartTextArea-basic" title="Basic" description="Smart Text Area rendered with its default options.">
-    <ej2-smart-text-area data-testid="smartTextArea-basic"></ej2-smart-text-area>
+  <demo-section id="sta-inline" title="Inline AI suggestions" description="aiSuggestionHandler returns a local prediction; Tab accepts the inline suggestion. userRole and UserPhrases feed the prompt.">
+    <ej2-smart-text-area data-testid="sta-inline" e-value.two-way="value" e-user-role="Customer support agent"
+      e--user-phrases.bind="phrases" e-ai-suggestion-handler.bind="handler" e-show-suggestion-on-popup="Disable"
+      e-placeholder="Reply to the customer" e-rows.bind="3"
+      e-on-before-suggestion-insert.delegate="onBefore($event)"
+      e-on-after-suggestion-insert.delegate="onAfter($event)"
+      e-on-input.delegate="inputCount = inputCount + 1" e-on-focus.delegate="focused = true"
+      e-on-blur.delegate="focused = false" e-on-change.delegate="changeCount = changeCount + 1"></ej2-smart-text-area>
+    <div class="demo-output">Value: <code data-testid="sta-value-out">${value}</code>
+      Before: <span data-testid="sta-before">${beforeText}</span>
+      After: <span data-testid="sta-after">${afterText}</span>
+      Handler calls: <span data-testid="sta-calls">${calls}</span>
+      Input events: <span data-testid="sta-input-count">${inputCount}</span>
+      Focused: <span data-testid="sta-focused">${focused}</span>
+      Changes: <span data-testid="sta-change-count">${changeCount}</span></div>
+    <label><input type="checkbox" data-testid="sta-cancel" checked.bind="cancel" /> cancel suggestions</label>
+    <button data-testid="sta-set" click.delegate="value = 'from view-model'">Set from view-model</button>
+  </demo-section>
+
+  <demo-section id="sta-popup" title="Popup suggestions" description="showSuggestionOnPopup Enable shows the suggestion as a floating overlay that is clicked to accept.">
+    <ej2-smart-text-area data-testid="sta-popup" e-value.two-way="popupValue" e-ai-suggestion-handler.bind="handler"
+      e-show-suggestion-on-popup.bind="popupMode" e-user-role="Writer"></ej2-smart-text-area>
+    <div class="demo-output">Value: <code data-testid="sta-popup-out">${popupValue}</code></div>
+    <button data-testid="sta-mode" click.delegate="popupMode = 'None'">Set mode None</button>
+  </demo-section>
+
+  <demo-section id="sta-props" title="TextArea options" description="The inherited TextArea properties.">
+    <ej2-smart-text-area data-testid="sta-props" e-readonly.bind="readonly" e-float-label-type="Auto"
+      e-css-class.bind="cssClass" e-placeholder="Notes" e-html-attributes.bind="htmlAttrs" e-enabled.bind="enabled"
+      e-show-clear-button="true" e-width.bind="width" e-resize-mode.bind="resizeMode" e-max-length.bind="maxLength"
+      e-cols.bind="cols" e-rows.bind="rows" e-prepend-template.bind="prepend" e-append-template.bind="append"
+      e-adornment-flow.bind="flow" e-adornment-orientation.bind="orientation" e-value="hello"></ej2-smart-text-area>
+    <button data-testid="sta-props-change" click.delegate="change()">Change</button>
+  </demo-section>
+
+  <demo-section id="sta-life" title="Lifecycle events" description="created and destroyed.">
+    <ej2-smart-text-area if.bind="showBox" data-testid="sta-life" e-on-created.delegate="createdCount = createdCount + 1"
+      e-on-destroyed.trigger="destroyedCount = destroyedCount + 1"></ej2-smart-text-area>
+    <div class="demo-output">Created: <span data-testid="sta-created">${createdCount}</span>
+      Destroyed: <span data-testid="sta-destroyed">${destroyedCount}</span></div>
+    <button data-testid="sta-toggle" click.delegate="showBox = !showBox">Toggle</button>
   </demo-section>
 </template>
