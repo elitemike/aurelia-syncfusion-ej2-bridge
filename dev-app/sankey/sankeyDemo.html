@@ -1,7 +1,92 @@
 <template>
   <h2>Sankey</h2>
 
-  <demo-section id="sankey-basic" title="Basic" description="Sankey rendered with its default options.">
-    <ej2-sankey data-testid="sankey-basic"></ej2-sankey>
+  <demo-section id="sk-basic" title="Default" description="Nodes and links with a title, subtitle, tooltip and legend; the render events report the load cycle.">
+    <ej2-sankey data-testid="sk-basic" e-width="100%" e-height="320px" e-title="Energy flow" e-sub-title="Terawatt hours"
+      e-title-style.bind="titleStyle" e-sub-title-style.bind="subTitleStyle" e-nodes.bind="nodes" e-links.bind="links"
+      e-tooltip.bind="tooltip" e-legend-settings.bind="legend" e-animation.bind="animation" e-margin.bind="margin"
+      e-on-load.delegate="count('load', $event)"
+      e-on-loaded.delegate="count('loaded', $event)"
+      e-on-node-rendering.delegate="onNodeRendering($event)"
+      e-on-link-rendering.delegate="onLinkRendering($event)"
+      e-on-label-rendering.delegate="onLabelRendering($event)"
+      e-on-legend-item-rendering.delegate="onLegendRendering($event)"></ej2-sankey>
+    <div class="demo-output">
+      Load: <span data-testid="sk-load">${counts.load}</span>
+      Loaded: <span data-testid="sk-loaded">${counts.loaded}</span>
+      Node rendering: <span data-testid="sk-node-rendering">${counts.nodeRendering}</span>
+      Link rendering: <span data-testid="sk-link-rendering">${counts.linkRendering}</span>
+      Label rendering: <span data-testid="sk-label-rendering">${counts.labelRendering}</span>
+      Legend item rendering: <span data-testid="sk-legend-rendering">${counts.legendItemRendering}</span>
+    </div>
+  </demo-section>
+
+  <demo-section id="sk-style" title="Customization" description="nodeStyle, linkStyle, labelSettings, border, background, backgroundImage, orientation and theme.">
+    <ej2-sankey data-testid="sk-style" e-width="100%" e-height="300px" e-nodes.bind="nodes" e-links.bind="links"
+      e-node-style.bind="nodeStyle" e-link-style.bind="linkStyle" e-label-settings.bind="labelSettings" e-border.bind="border"
+      e-background="#fffde7" e-theme="Bootstrap5" e-legend-settings.bind="legendHidden" e-tooltip.bind="noTooltip" e-animation.bind="animation"></ej2-sankey>
+    <ej2-sankey data-testid="sk-vertical" e-width="100%" e-height="360px" e-nodes.bind="nodes" e-links.bind="links" e-orientation="Vertical"
+      e-link-style.bind="linkFixed" e-background-image.bind="bgImage" e-legend-settings.bind="legendHidden" e-tooltip.bind="noTooltip" e-animation.bind="animation"></ej2-sankey>
+  </demo-section>
+
+  <demo-section id="sk-legend" title="Legend" description="legendSettings: position, reverse and highlight, legendItemHover.">
+    <ej2-sankey data-testid="sk-legend" e-width="100%" e-height="300px" e-nodes.bind="nodes" e-links.bind="links"
+      e-legend-settings.bind="legendRight" e-tooltip.bind="noTooltip" e-animation.bind="animation"
+      e-on-legend-item-hover.delegate="count('legendItemHover', $event)"></ej2-sankey>
+    <div class="demo-output">Legend hover: <span data-testid="sk-legend-hover">${counts.legendItemHover}</span> <code data-testid="sk-legend-hover-id">${info.legendItemHover}</code></div>
+  </demo-section>
+
+  <demo-section id="sk-interaction" title="Tooltip, hover and click" description="tooltipRendering, nodeEnter, nodeLeave, nodeClick, linkEnter, linkLeave and linkClick.">
+    <ej2-sankey data-testid="sk-interaction" e-width="100%" e-height="320px" e-nodes.bind="nodes" e-links.bind="links"
+      e-tooltip.bind="tooltip" e-legend-settings.bind="legendHidden" e-animation.bind="animation"
+      e-on-tooltip-rendering.delegate="count('tooltipRendering', $event)"
+      e-on-node-enter.delegate="count('nodeEnter', $event)"
+      e-on-node-leave.delegate="count('nodeLeave', $event)"
+      e-on-node-click.delegate="count('nodeClick', $event)"
+      e-on-link-enter.delegate="count('linkEnter', $event)"
+      e-on-link-leave.delegate="count('linkLeave', $event)"
+      e-on-link-click.delegate="count('linkClick', $event)"></ej2-sankey>
+    <div class="demo-output">
+      Node enter: <span data-testid="sk-node-enter">${counts.nodeEnter}</span> <code data-testid="sk-node-enter-id">${info.nodeEnter}</code>
+      Node leave: <span data-testid="sk-node-leave">${counts.nodeLeave}</span>
+      Node click: <span data-testid="sk-node-click">${counts.nodeClick}</span> <code data-testid="sk-node-click-id">${info.nodeClick}</code>
+      Link enter: <span data-testid="sk-link-enter">${counts.linkEnter}</span> <code data-testid="sk-link-enter-id">${info.linkEnter}</code>
+      Link leave: <span data-testid="sk-link-leave">${counts.linkLeave}</span>
+      Link click: <span data-testid="sk-link-click">${counts.linkClick}</span> <code data-testid="sk-link-click-id">${info.linkClick}</code>
+      Tooltip rendering: <span data-testid="sk-tooltip-rendering">${counts.tooltipRendering}</span>
+    </div>
+  </demo-section>
+
+  <demo-section id="sk-export" title="Export, print and accessibility" description="enableExport, allowExport, beforeExport, afterExport, exportCompleted, beforePrint, sizeChanged, accessibility and focus border settings.">
+    <ej2-sankey data-testid="sk-export" view-model.ref="exportVm" e-width="100%" e-height="280px" e-nodes.bind="nodes" e-links.bind="links"
+      e-enable-export.bind="true" e-allow-export.bind="true" e-accessibility.bind="accessibility"
+      e-focus-border-color="#ff6600" e-focus-border-width.bind="3" e-focus-border-margin.bind="4"
+      e-legend-settings.bind="legendHidden" e-tooltip.bind="noTooltip" e-animation.bind="animation"
+      e-on-before-export.delegate="onBeforeExport($event)"
+      e-on-after-export.delegate="count('afterExport', $event)"
+      e-on-export-completed.delegate="count('exportCompleted', $event)"
+      e-on-before-print.delegate="onBeforePrint($event)"
+      e-on-size-changed.delegate="count('sizeChanged', $event)"></ej2-sankey>
+    <div class="demo-output">
+      Before export: <span data-testid="sk-before-export">${counts.beforeExport}</span>
+      After export: <span data-testid="sk-after-export">${counts.afterExport}</span>
+      Export completed: <span data-testid="sk-export-completed">${counts.exportCompleted}</span>
+      Before print: <span data-testid="sk-before-print">${counts.beforePrint}</span>
+      Size changed: <span data-testid="sk-size-changed">${counts.sizeChanged}</span> <code data-testid="sk-size-width">${info.sizeChanged}</code>
+    </div>
+    <button data-testid="sk-export-png" click.delegate="exportPng()">Export PNG</button>
+    <button data-testid="sk-export-svg" click.delegate="exportSvg()">Export SVG</button>
+    <button data-testid="sk-export-cancel" click.delegate="cancelAndExport()">Export and cancel</button>
+    <button data-testid="sk-print" click.delegate="print()">Print</button>
+  </demo-section>
+
+  <demo-section id="sk-dynamic" title="Model to widget" description="Changing the bound links, orientation, theme, title and width updates the sankey.">
+    <ej2-sankey data-testid="sk-dynamic" e-width.bind="dynWidth" e-height="300px" e-nodes.bind="nodes" e-links.bind="dynLinks" e-orientation.bind="dynOrientation"
+      e-theme.bind="dynTheme" e-title.bind="dynTitle" e-legend-settings.bind="legendHidden" e-tooltip.bind="noTooltip" e-animation.bind="animation"></ej2-sankey>
+    <button data-testid="sk-swap" click.delegate="swap()">Swap links</button>
+    <button data-testid="sk-vertical" click.delegate="vertical()">Vertical</button>
+    <button data-testid="sk-dark" click.delegate="dark()">Dark</button>
+    <button data-testid="sk-rename" click.delegate="rename()">Rename</button>
+    <button data-testid="sk-narrow" click.delegate="narrow()">Narrow</button>
   </demo-section>
 </template>
