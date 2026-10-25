@@ -1,7 +1,52 @@
 <template>
   <h2>Document Editor Container</h2>
 
-  <demo-section id="documentEditorContainer-basic" title="Basic" description="Document Editor Container rendered with its default options.">
-    <ej2-document-editor-container data-testid="documentEditorContainer-basic"></ej2-document-editor-container>
+  <demo-section id="dc-main" title="Container with toolbar and properties pane"
+    description="The editor inside the container is loaded with open() from a local SFDT string. Every container event is logged.">
+    <div class="demo-row">
+      <button data-testid="dc-load" click.delegate="load()">open() sample</button>
+      <button data-testid="dc-toggle-toolbar" click.delegate="showToolbar = !showToolbar">Toggle enableToolbar</button>
+      <button data-testid="dc-toggle-pane" click.delegate="showPane = !showPane">Toggle properties pane</button>
+      <button data-testid="dc-toggle-restrict" click.delegate="restricted = !restricted">Toggle restrictEditing</button>
+      <button data-testid="dc-toggle-track" click.delegate="tracking = !tracking">Toggle track changes</button>
+    </div>
+    <ej2-document-editor-container data-testid="dc-main" view-model.ref="mainContainer"
+      e-enable-toolbar.bind="showToolbar" e-show-properties-pane.bind="showPane" e-restrict-editing.bind="restricted"
+      e-enable-track-changes.bind="tracking"
+      e-toolbar-items.bind="toolbarItems"
+      e-layout-type.bind="layoutType"
+      e-current-user.bind="currentUser"
+      e-user-color.bind="userColor"
+      e-enable-local-paste.bind="enableLocalPaste"
+      e-z-index.bind="zIndex"
+      e-enable-comment.bind="enableComment"
+      e-enable-auto-focus.bind="enableAutoFocus"
+      e-auto-resize-on-visibility-change.bind="autoResizeOnVisibilityChange"
+      e-enable-csp.bind="enableCsp"
+      e-document-editor-settings.bind="documentEditorSettings"
+      e-document-settings.bind="documentSettings"
+      e-height.bind="height"
+      e-width.bind="width"
+      e-on-created.delegate="log('created', $event)"
+      e-on-destroyed.trigger="log('destroyed', $event)"
+      e-on-before-paste.delegate="log('beforePaste', $event)"
+      e-on-content-change.delegate="log('contentChange', $event)"
+      e-on-before-web-mcp-tool-execute.delegate="log('beforeWebMcpToolExecute', $event)"
+      e-on-selection-change.delegate="log('selectionChange', $event)"
+      e-on-document-change.delegate="log('documentChange', $event)"
+      e-on-toolbar-click.delegate="log('toolbarClick', $event)"
+      e-on-file-menu-item-click.delegate="log('fileMenuItemClick', $event)"
+      e-on-custom-context-menu-select.delegate="log('customContextMenuSelect', $event)"
+      e-on-custom-context-menu-before-open.delegate="log('customContextMenuBeforeOpen', $event)"
+      e-on-before-pane-switch.delegate="log('beforePaneSwitch', $event)"
+      e-on-comment-delete.delegate="log('commentDelete', $event)"
+      e-on-before-accept-reject-changes.delegate="log('beforeAcceptRejectChanges', $event)"
+      e-on-before-comment-action.delegate="log('beforeCommentAction', $event)"
+      e-on-service-failure.delegate="log('serviceFailure', $event)"
+      e-on-track-change.delegate="log('trackChange', $event)"
+      e-on-content-control.delegate="log('contentControl', $event)"
+      e-on-before-xml-http-request-send.delegate="log('beforeXmlHttpRequestSend', $event)"></ej2-document-editor-container>
   </demo-section>
+
+  <compose repeat.for="part of parts" view-model.bind="part"></compose>
 </template>
