@@ -1,7 +1,78 @@
 <template>
   <h2>Block Editor</h2>
 
-  <demo-section id="blockEditor-basic" title="Basic" description="Block Editor rendered with its default options.">
-    <ej2-block-editor data-testid="blockEditor-basic"></ej2-block-editor>
+  <demo-section id="be-default" title="Default functionalities"
+    description="Blocks are bound from the view-model, blockChanged, selectionChanged, focus and blur are raised while editing.">
+    <ej2-block-editor data-testid="be-default" e-blocks.bind="blocks" e-height="320px"
+      e-on-created.delegate="count('created')" e-on-block-changed.delegate="onBlockChanged($event)"
+      e-on-selection-changed.delegate="count('selectionChanged')" e-on-focus.delegate="count('focus')"
+      e-on-blur.delegate="count('blur')"></ej2-block-editor>
+    <div class="demo-output">
+      created <span data-testid="be-ev-created">${counts.created}</span>
+      blockChanged <span data-testid="be-ev-blockChanged">${counts.blockChanged}</span> (<code data-testid="be-ev-blockChanged-action">${lastAction}</code>)
+      selectionChanged <span data-testid="be-ev-selectionChanged">${counts.selectionChanged}</span>
+      focus <span data-testid="be-ev-focus">${counts.focus}</span>
+      blur <span data-testid="be-ev-blur">${counts.blur}</span></div>
+    <button data-testid="be-replace" click.delegate="replaceBlocks()">Replace blocks from view-model</button>
+    <button data-testid="be-outside" click.delegate="count('outside')">Outside</button>
+  </demo-section>
+
+  <demo-section id="be-state" title="Size, state and editing options"
+    description="height, width, cssClass, readOnly, undoRedoStack, keyConfig, enableHtmlEncode, enableHtmlSanitizer and enableDragAndDrop.">
+    <div class="demo-row">
+      <button data-testid="be-toggle-readonly" click.delegate="readOnly = !readOnly">Toggle readOnly</button>
+      <button data-testid="be-resize" click.delegate="resize()">Resize</button>
+    </div>
+    <ej2-block-editor data-testid="be-state" e-blocks.bind="stateBlocks" e-height.bind="height" e-width.bind="width"
+      e-css-class.bind="cssClass" e-read-only.bind="readOnly" e-undo-redo-stack.bind="25"
+      e-key-config.bind="keyConfig" e-enable-html-encode.bind="true" e-enable-html-sanitizer.bind="true"
+      e-enable-drag-and-drop.bind="dragAndDrop"
+      e-on-block-drag-start.delegate="count('blockDragStart')" e-on-block-dragging.delegate="count('blockDragging')"
+      e-on-block-dropped.delegate="count('blockDropped')"></ej2-block-editor>
+    <div class="demo-output">
+      blockDragStart <span data-testid="be-ev-blockDragStart">${counts.blockDragStart}</span>
+      blockDragging <span data-testid="be-ev-blockDragging">${counts.blockDragging}</span>
+      blockDropped <span data-testid="be-ev-blockDropped">${counts.blockDropped}</span></div>
+  </demo-section>
+
+  <demo-section id="be-menus" title="Menus, labels and colors"
+    description="commandMenuSettings, inlineToolbarSettings, transformSettings, blockActionMenuSettings, contextMenuSettings, labelSettings, fontColorSettings, backgroundColorSettings and codeBlockSettings.">
+    <ej2-block-editor data-testid="be-menus" e-blocks.bind="menuBlocks" e-height="380px"
+      e-command-menu-settings.bind="commandMenuSettings" e-inline-toolbar-settings.bind="inlineToolbarSettings"
+      e-transform-settings.bind="transformSettings" e-block-action-menu-settings.bind="blockActionMenuSettings"
+      e-context-menu-settings.bind="contextMenuSettings" e-label-settings.bind="labelSettings"
+      e-font-color-settings.bind="fontColorSettings" e-background-color-settings.bind="backgroundColorSettings"
+      e-code-block-settings.bind="codeBlockSettings"></ej2-block-editor>
+  </demo-section>
+
+  <demo-section id="be-users" title="Users and collaboration settings"
+    description="users, currentUserId and collaborationSettings (awareness only, there is no collaboration provider).">
+    <ej2-block-editor data-testid="be-users" e-blocks.bind="stateBlocks" e-height="160px" e-users.bind="users"
+      e-current-user-id="u2" e-collaboration-settings.bind="collaborationSettings"></ej2-block-editor>
+  </demo-section>
+
+  <demo-section id="be-paste" title="Paste cleanup"
+    description="pasteCleanupSettings and the beforePasteCleanup / afterPasteCleanup events.">
+    <ej2-block-editor data-testid="be-paste" e-blocks.bind="pasteBlocks" e-height="160px"
+      e-paste-cleanup-settings.bind="pasteCleanupSettings"
+      e-on-before-paste-cleanup.delegate="count('beforePasteCleanup')"
+      e-on-after-paste-cleanup.delegate="count('afterPasteCleanup')"></ej2-block-editor>
+    <div class="demo-output">
+      beforePasteCleanup <span data-testid="be-ev-beforePasteCleanup">${counts.beforePasteCleanup}</span>
+      afterPasteCleanup <span data-testid="be-ev-afterPasteCleanup">${counts.afterPasteCleanup}</span></div>
+  </demo-section>
+
+  <demo-section id="be-image" title="Image block and file upload"
+    description="imageBlockSettings and the file upload events.">
+    <ej2-block-editor data-testid="be-image" e-blocks.bind="imageBlocks" e-height="260px"
+      e-image-block-settings.bind="imageBlockSettings"
+      e-on-before-file-upload.delegate="count('beforeFileUpload')" e-on-file-uploading.delegate="count('fileUploading')"
+      e-on-file-upload-success.delegate="count('fileUploadSuccess')"
+      e-on-file-upload-failed.delegate="count('fileUploadFailed')"></ej2-block-editor>
+    <div class="demo-output">
+      beforeFileUpload <span data-testid="be-ev-beforeFileUpload">${counts.beforeFileUpload}</span>
+      fileUploading <span data-testid="be-ev-fileUploading">${counts.fileUploading}</span>
+      fileUploadSuccess <span data-testid="be-ev-fileUploadSuccess">${counts.fileUploadSuccess}</span>
+      fileUploadFailed <span data-testid="be-ev-fileUploadFailed">${counts.fileUploadFailed}</span></div>
   </demo-section>
 </template>
