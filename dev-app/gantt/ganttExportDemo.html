@@ -1,0 +1,18 @@
+<template>
+  <demo-section id="gantt-export" title="Export" description="allowExcelExport and allowPdfExport with the export toolbar items and every export event.">
+    <ej2-gantt view-model.ref="exportGantt" data-testid="gantt-export" e-data-source.bind="data" e-task-fields.bind="taskFields"
+      e-columns.bind="columns" e-height.bind="260" e-allow-excel-export.bind="true" e-allow-pdf-export.bind="true" e-toolbar.bind="toolbar"
+      e-project-start-date="2025-04-01" e-project-end-date="2025-05-10"
+      e-on-toolbar-click.delegate="onToolbarClick($event)"
+      e-on-before-excel-export.delegate="log('beforeExcelExport', $event)"
+      e-on-excel-export-complete.delegate="log('excelExportComplete', $event)"
+      e-on-excel-query-cell-info.delegate="log('excelQueryCellInfo', $event)"
+      e-on-excel-header-query-cell-info.delegate="log('excelHeaderQueryCellInfo', $event)"
+      e-on-before-pdf-export.delegate="log('beforePdfExport', $event)"
+      e-on-pdf-export-complete.delegate="log('pdfExportComplete', $event)"
+      e-on-pdf-query-cell-info.delegate="log('pdfQueryCellInfo', $event)"
+      e-on-pdf-query-taskbar-info.delegate="log('pdfQueryTaskbarInfo', $event)"
+      e-on-pdf-query-timeline-cell-info.delegate="log('pdfQueryTimelineCellInfo', $event)"
+      e-on-pdf-column-header-query-cell-info.delegate="log('pdfColumnHeaderQueryCellInfo', $event)"></ej2-gantt>
+  </demo-section>
+</template>

@@ -1,0 +1,28 @@
+<template>
+  <demo-section id="gantt-resources" title="Resources" description="resources, resourceFields, taskType, workUnit, showOverAllocation and allowTaskbarOverlap in the project view.">
+    <ej2-gantt data-testid="gantt-resources" e-data-source.bind="projectView" e-task-fields.bind="taskFields" e-columns.bind="columns"
+      e-height.bind="260" e-resources.bind="resources" e-resource-fields.bind="resourceFields" e-edit-settings.bind="editSettings"
+      e-toolbar.bind="toolbar" e-work-unit.bind="workUnit" e-task-type.bind="taskType" e-show-over-allocation.bind="true"
+      e-allow-taskbar-overlap.bind="true" e-view-type="ProjectView" e-project-start-date="2025-03-31" e-project-end-date="2025-05-05"></ej2-gantt>
+  </demo-section>
+
+  <demo-section id="gantt-resource-view" title="Resource view" description="viewType ResourceView with enableMultiTaskbar and resourceIDMapping / resourceNameMapping.">
+    <ej2-gantt data-testid="gantt-resource-view" e-data-source.bind="resourceView" e-task-fields.bind="taskFields" e-columns.bind="columns"
+      e-height.bind="260" e-resources.bind="resources" e-resource-fields.bind="resourceFields" e-view-type="ResourceView"
+      e-enable-multi-taskbar.bind="true" e-resource-i-d-mapping.bind="resourceIDMapping" e-resource-name-mapping.bind="resourceNameMapping"
+      e-project-start-date="2025-03-31" e-project-end-date="2025-05-05"></ej2-gantt>
+  </demo-section>
+
+  <demo-section id="gantt-segments" title="Task segments" description="taskFields.segments and segmentData split a task into pieces.">
+    <ej2-gantt data-testid="gantt-segments" e-data-source.bind="segmentRows" e-task-fields.bind="segmentFields"
+      e-columns.bind="columns" e-height.bind="220" e-segment-data.bind="segmentData" e-edit-settings.bind="editSettings"
+      e-project-start-date="2025-03-31" e-project-end-date="2025-04-30"></ej2-gantt>
+  </demo-section>
+
+  <demo-section id="gantt-destroy" title="Destroy" description="The destroyed event is raised when the gantt is removed from the page.">
+    <button data-testid="gantt-destroy-hide" click.delegate="showDestroy = false">Remove gantt</button>
+    <ej2-gantt if.bind="showDestroy" data-testid="gantt-destroy" e-data-source.bind="destroyData" e-task-fields.bind="destroyFields"
+      e-height.bind="200" e-project-start-date="2025-03-31" e-project-end-date="2025-04-30"
+      e-on-destroyed.trigger="log('destroyed', $event)"></ej2-gantt>
+  </demo-section>
+</template>

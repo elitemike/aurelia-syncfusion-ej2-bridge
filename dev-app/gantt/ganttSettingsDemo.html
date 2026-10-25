@@ -1,0 +1,40 @@
+<template>
+  <demo-section id="gantt-units" title="Work time units" description="durationUnit, hoursPerDay, daysPerWeek, daysPerMonth, workWeek, includeWeekend, dateFormat and timezone.">
+    <ej2-gantt data-testid="gantt-units" e-data-source.bind="unitData" e-task-fields.bind="taskFields" e-columns.bind="columns"
+      e-height.bind="260" e-duration-unit="Hour" e-hours-per-day.bind="6" e-days-per-week.bind="4" e-days-per-month.bind="20"
+      e-work-week.bind="workWeek" e-include-weekend.bind="true" e-date-format.bind="dateFormat" e-timezone.bind="timezone"
+      e-project-start-date="2025-03-31" e-project-end-date="2025-05-05"></ej2-gantt>
+  </demo-section>
+
+  <demo-section id="gantt-look" title="Look and feel" description="Height, row and taskbar height, grid lines, labels, connector lines, tooltip, splitter and loading indicator.">
+    <ej2-gantt data-testid="gantt-look" e-data-source.bind="lookData" e-task-fields.bind="taskFields" e-columns.bind="columns"
+      e-width="100%" e-height.bind="lookState.height" e-row-height.bind="lookState.rowHeight" e-taskbar-height.bind="lookState.taskbarHeight"
+      e-grid-lines.bind="lookState.lines" e-enable-hover.bind="lookState.hover" e-label-settings.bind="labelSettings"
+      e-connector-line-background="#ff0000" e-connector-line-width.bind="3" e-baseline-color="#00aa00"
+      e-loading-indicator.bind="loadingIndicator" e-tooltip-settings.bind="tooltipSettings" e-splitter-settings.bind="splitterSettings"
+      e-enable-adaptive-u-i.bind="false" e-enable-immutable-mode.bind="false" e-enable-html-sanitizer.bind="true"
+      e-disable-html-encode.bind="true" e-allow-keyboard.bind="true" e-enable-virtual-mask-row.bind="true"
+      e-tree-column-index.bind="1" e-collapse-all-parent-tasks.bind="lookState.collapsed"
+      e-allowed-dependency-types.bind="allowedDependencyTypes"
+      e-project-start-date="2025-03-31" e-project-end-date="2025-05-05"></ej2-gantt>
+    <button data-testid="gantt-look-change" click.delegate="changeLook()">Change look</button>
+  </demo-section>
+
+  <demo-section id="gantt-wbs" title="WBS, serial numbers and query" description="enableWBS, enableAutoWbsUpdate, enableSerialNumber, autoFocusTasks, query and the WebMCP options.">
+    <ej2-gantt data-testid="gantt-wbs" e-data-source.bind="wbsData" e-task-fields.bind="taskFields" e-columns.bind="wbsColumns"
+      e-height.bind="260" e-enable-w-b-s.bind="true" e-enable-auto-wbs-update.bind="true" e-enable-serial-number.bind="true"
+      e-auto-focus-tasks.bind="true" e-query.bind="query" e-enable-web-mcp.bind="false" e-web-mcp-settings.bind="webMcpSettings"
+      e-on-before-web-mcp-tool-execute.delegate="log('beforeWebMcpToolExecute', $event)"
+      e-project-start-date="2025-03-31" e-project-end-date="2025-05-05"></ej2-gantt>
+  </demo-section>
+
+  <demo-section id="gantt-empty" title="Empty records" description="emptyRecordTemplate is shown when there are no tasks.">
+    <ej2-gantt data-testid="gantt-empty" e-data-source.bind="emptyData" e-task-fields.bind="taskFields" e-columns.bind="columns"
+      e-height.bind="200" e-empty-record-template.bind="emptyTemplate"></ej2-gantt>
+  </demo-section>
+
+  <demo-section id="gantt-demand" title="Load children on demand" description="loadChildOnDemand with hasChildMapping, children are created when a parent is expanded.">
+    <ej2-gantt data-testid="gantt-demand" e-data-source.bind="demandData" e-task-fields.bind="demandFields" e-columns.bind="columns"
+      e-height.bind="220" e-load-child-on-demand.bind="true" e-project-start-date="2025-03-31" e-project-end-date="2025-04-30"></ej2-gantt>
+  </demo-section>
+</template>

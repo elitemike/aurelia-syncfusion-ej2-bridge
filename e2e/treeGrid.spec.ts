@@ -16,6 +16,9 @@ test.describe('Tree Grid basics', () => {
     await expectWidget(app.page, 'tg-basic', 'w.columns.length', 5);
     await expectWidget(app.page, 'tg-basic', 'w.height', 300);
     await expectWidget(app.page, 'tg-basic', 'w.enableCollapseAll', false);
+    await expectWidget(app.page, 'tg-basic', 'w.dataSource.length', 3);
+    await expectWidget(app.page, 'tg-basic', 'w.allowSelection', true);
+    await expectWidget(app.page, 'tg-basic', 'w.selectionSettings.mode', 'Both');
   });
 
   test('lifecycle events: created, load, beforeDataBound, dataBound, row and cell render events', async ({ app }) => {

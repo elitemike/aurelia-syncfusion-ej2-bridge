@@ -1,0 +1,54 @@
+<template>
+  <demo-section id="gantt-sort" title="Sorting" description="allowSorting with sortSettings.">
+    <ej2-gantt data-testid="gantt-sort" e-data-source.bind="sortData" e-task-fields.bind="taskFields" e-columns.bind="columns"
+      e-height.bind="260" e-allow-sorting.bind="true" e-sort-settings.bind="sortSettings"
+      e-project-start-date="2025-03-31" e-project-end-date="2025-05-05"></ej2-gantt>
+  </demo-section>
+
+  <demo-section id="gantt-filter" title="Filtering and searching" description="allowFiltering with filterSettings and a Search toolbar item with searchSettings.">
+    <ej2-gantt data-testid="gantt-filter" e-data-source.bind="filterData" e-task-fields.bind="taskFields" e-columns.bind="columns"
+      e-height.bind="260" e-allow-filtering.bind="true" e-filter-settings.bind="filterSettings" e-search-settings.bind="searchSettings"
+      e-toolbar.bind="searchToolbar" e-project-start-date="2025-03-31" e-project-end-date="2025-05-05"></ej2-gantt>
+  </demo-section>
+
+  <demo-section id="gantt-menus" title="Column menu and context menu" description="showColumnMenu, columnMenuItems, enableContextMenu and contextMenuItems.">
+    <ej2-gantt data-testid="gantt-menus" e-data-source.bind="menuData" e-task-fields.bind="taskFields" e-columns.bind="columns"
+      e-height.bind="260" e-allow-sorting.bind="true" e-show-column-menu.bind="true" e-column-menu-items.bind="columnMenuItems"
+      e-enable-context-menu.bind="true" e-context-menu-items.bind="contextMenuItems" e-edit-settings.bind="menuEdit"
+      e-project-start-date="2025-03-31" e-project-end-date="2025-05-05"
+      e-on-column-menu-open.delegate="log('columnMenuOpen', $event)"
+      e-on-column-menu-click.delegate="log('columnMenuClick', $event)"
+      e-on-context-menu-open.delegate="log('contextMenuOpen', $event)"
+      e-on-context-menu-click.delegate="log('contextMenuClick', $event)"></ej2-gantt>
+  </demo-section>
+
+  <demo-section id="gantt-columns" title="Reordering, resizing, freezing and the splitter" description="allowReordering, allowResizing, frozenColumns, splitterSettings and their events.">
+    <ej2-gantt data-testid="gantt-columns" e-data-source.bind="columnData" e-task-fields.bind="taskFields" e-columns.bind="columns"
+      e-height.bind="260" e-allow-reordering.bind="true" e-allow-resizing.bind="true" e-frozen-columns.bind="1"
+      e-splitter-settings.bind="splitterSettings" e-project-start-date="2025-03-31" e-project-end-date="2025-05-05"
+      e-on-resize-start.delegate="log('resizeStart', $event)"
+      e-on-resizing.delegate="log('resizing', $event)"
+      e-on-resize-stop.delegate="log('resizeStop', $event)"
+      e-on-splitter-resize-start.delegate="log('splitterResizeStart', $event)"
+      e-on-splitter-resizing.delegate="log('splitterResizing', $event)"
+      e-on-splitter-resized.delegate="log('splitterResized', $event)"
+      e-on-column-drag-start.delegate="log('columnDragStart', $event)"
+      e-on-column-drag.delegate="log('columnDrag', $event)"
+      e-on-column-drop.delegate="log('columnDrop', $event)"></ej2-gantt>
+  </demo-section>
+
+  <demo-section id="gantt-checkbox" title="Hierarchy checkboxes" description="hierarchyCheckboxMode with a checkbox column.">
+    <ej2-gantt data-testid="gantt-checkbox" e-data-source.bind="checkData" e-task-fields.bind="taskFields" e-columns.bind="checkColumns"
+      e-height.bind="260" e-hierarchy-checkbox-mode="hierarchy" e-project-start-date="2025-03-31" e-project-end-date="2025-05-05"></ej2-gantt>
+  </demo-section>
+
+  <demo-section id="gantt-rowdd" title="Row and taskbar drag and drop" description="allowRowDragAndDrop and allowTaskbarDragAndDrop.">
+    <ej2-gantt data-testid="gantt-rowdd" e-data-source.bind="ddData" e-task-fields.bind="taskFields" e-columns.bind="columns"
+      e-height.bind="300" e-allow-row-drag-and-drop.bind="true" e-allow-taskbar-drag-and-drop.bind="true" e-edit-settings.bind="ddEdit"
+      e-project-start-date="2025-03-31" e-project-end-date="2025-05-05"
+      e-on-row-drag-start-helper.delegate="log('rowDragStartHelper', $event)"
+      e-on-row-drag-start.delegate="log('rowDragStart', $event)"
+      e-on-row-drag.delegate="log('rowDrag', $event)"
+      e-on-row-drop.delegate="log('rowDrop', $event)"></ej2-gantt>
+  </demo-section>
+</template>
