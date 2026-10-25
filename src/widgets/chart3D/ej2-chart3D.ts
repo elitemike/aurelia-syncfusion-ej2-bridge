@@ -8,6 +8,8 @@ import { SyncfusionWrapper } from '../../common/syncfusionWrapper';
 
 let chart3DIds = 0;
 
+const unhandledProperties = ['theme', 'palettes', 'margin', 'backgroundImage', 'wallColor', 'isTransposed', 'rows', 'columns', 'useGroupingSeparator'];
+
 @generateBindables("chart3D")
 @inlineView('<template><div element.ref="widgetElement"></div></template>')
 @customElement('ej2-chart3d')
@@ -30,6 +32,14 @@ export class Ej2Chart3D extends SyncfusionWrapper<Chart3D, Chart3DModel> {
   }
 
   protected onWrapperCreated() {
+    // Chart3D. onPropertyChanged ignores these after the first render: update the property silently and refresh.
+    unhandledProperties.forEach((name) => {
+      this[`${name}Changed`] = (value: any) => {
+        if (!this.widget) { return; }
+        (<any>this.widget).setProperties({ [name]: value }, true);
+        this.widget.refresh();
+      };
+    });
     // The chart only raises these when a handler is assigned as a property (`if (this.pointClick)`), the bridge
     // listens with addEventListener, so assign no-op placeholders; the forwarding listener then dispatches the event.
     ['pointClick', 'pointMove', 'afterExport'].forEach((name) => {

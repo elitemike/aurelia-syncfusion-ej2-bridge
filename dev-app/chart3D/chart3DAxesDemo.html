@@ -12,4 +12,13 @@
     <ej2-chart3d data-testid="c3d-log" e-width="480px" e-height="300px" e-series.bind="logSeries" e-primary-x-axis.bind="cat"
       e-primary-y-axis.bind="logY"></ej2-chart3d>
   </demo-section>
+
+  <demo-section id="c3d-format" title="Currency labels" description="currencyCode and useGroupingSeparator format the C0 axis labels.">
+    <ej2-chart3d data-testid="c3d-format" e-width="480px" e-height="300px" e-series.bind="formatSeries" e-primary-x-axis.bind="cat"
+      e-primary-y-axis.bind="formatY" e-currency-code.bind="currencyCode" e-use-grouping-separator.bind="useGroupingSeparator"></ej2-chart3d>
+    <div class="demo-output">
+      <button data-testid="c3d-euro" click.delegate="setEuro()">Euro</button>
+      <button data-testid="c3d-nogroup" click.delegate="setNoGrouping()">No grouping</button>
+    </div>
+  </demo-section>
 </template>

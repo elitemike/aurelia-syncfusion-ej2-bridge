@@ -23,4 +23,14 @@ export class Chart3DAxesDemo {
     dataSource: [{ x: 'A', y: 10 }, { x: 'B', y: 100 }, { x: 'C', y: 1000 }], xName: 'x', yName: 'y', type: 'Column', name: 'Log'
   }];
   logY = { valueType: 'Logarithmic', minimum: 1, maximum: 10000 };
+
+  // Syncfusion "Axis labels with currency" style sample: currencyCode and useGroupingSeparator format the C0 labels
+  formatSeries: any[] = [{
+    dataSource: [{ x: 'A', y: 1500 }, { x: 'B', y: 4200 }], xName: 'x', yName: 'y', type: 'Column', name: 'Revenue'
+  }];
+  formatY = { labelFormat: 'C0', minimum: 0, maximum: 5000, interval: 1000 };
+  currencyCode = 'USD';
+  useGroupingSeparator = true;
+  setEuro() { this.currencyCode = 'EUR'; }
+  setNoGrouping() { this.useGroupingSeparator = false; }
 }

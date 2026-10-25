@@ -8,6 +8,8 @@ import { SyncfusionWrapper } from '../../common/syncfusionWrapper';
 
 let circularChart3DIds = 0;
 
+const unhandledProperties = ['theme', 'backgroundImage', 'useGroupingSeparator'];
+
 @generateBindables("circularChart3D")
 @inlineView('<template><div element.ref="widgetElement"></div></template>')
 @customElement('ej2-circular-chart3d')
@@ -28,6 +30,14 @@ export class Ej2CircularChart3D extends SyncfusionWrapper<CircularChart3D, Circu
   }
 
   protected onWrapperCreated() {
+    // CircularChart3D. onPropertyChanged ignores these after the first render: update the property silently and refresh.
+    unhandledProperties.forEach((name) => {
+      this[`${name}Changed`] = (value: any) => {
+        if (!this.widget) { return; }
+        (<any>this.widget).setProperties({ [name]: value }, true);
+        this.widget.refresh();
+      };
+    });
     // pointClick / pointMove / afterExport are only raised when a handler is assigned as a property
     ['pointClick', 'pointMove', 'afterExport'].forEach((name) => {
       this.widget[name] = () => undefined;

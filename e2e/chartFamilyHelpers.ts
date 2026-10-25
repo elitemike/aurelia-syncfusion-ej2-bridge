@@ -1,4 +1,4 @@
-import { Locator, Page } from '@playwright/test';
+import { Locator, Page, expect } from '@playwright/test';
 
 /** The Syncfusion widget host element inside a demo chart located by test id. */
 export function chartHost(scope: Locator, testId: string) {
@@ -41,6 +41,33 @@ export async function eventLast(page: Page, name: string): Promise<any> {
 export async function visibleBox(locator: Locator) {
   await locator.scrollIntoViewIfNeeded();
   return locator.boundingBox();
+}
+
+/**
+ * Viewport point that (once the animation settled) really hits one of the faces of a 3D point. The faces overlap, so the center of a face's
+ * bounding box often belongs to a neighbour: probe a grid and keep a spot whose topmost element is a wanted face.
+ */
+export async function hitPoint(host: Locator, selector: string): Promise<{ x: number; y: number }> {
+  await host.locator(selector).first().scrollIntoViewIfNeeded();
+  const probe = () => host.evaluate((el: any, sel: string) => {
+    el.scrollIntoView({ block: 'center' });
+    const faces = Array.from(el.querySelectorAll(sel)) as Element[];
+    for (const face of faces) {
+      const r = face.getBoundingClientRect();
+      for (let i = 1; i < 8; i++) {
+        for (let j = 1; j < 8; j++) {
+          const x = r.left + (r.width * i) / 8;
+          const y = r.top + (r.height * j) / 8;
+          const hit = document.elementFromPoint(x, y);
+          if (hit && faces.indexOf(hit) !== -1) { return { x, y }; }
+        }
+      }
+    }
+    return null;
+  }, selector);
+  // the 3D series animate in, the faces only settle once the animation is over
+  await expect.poll(async () => (await probe()) !== null, { message: `a visible spot for ${selector}` }).toBe(true);
+  return probe();
 }
 
 /** Center of an element in viewport coordinates. */
