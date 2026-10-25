@@ -1,0 +1,15 @@
+<template>
+  <h3>HTML templates</h3>
+
+  <demo-section id="diagram-templates" title="Node, annotation, user handle and fixed user handle templates" description="HTML shapes and handles rendered from ES template strings.">
+    <ej2-diagram data-testid="diagram-templates" e-width="520px" e-height="300px" e-nodes.bind="nodes"
+      e-node-template.bind="nodeTemplate" e-annotation-template.bind="annotationTemplate"
+      e-user-handle-template.bind="userHandleTemplate" e-fixed-user-handle-template.bind="fixedUserHandleTemplate"
+      e-selected-items.bind="selected"
+      e-on-fixed-user-handle-click.delegate="log('fixedUserHandleClick', $event)"
+      e-on-on-fixed-user-handle-mouse-down.delegate="log('onFixedUserHandleMouseDown', $event)"
+      e-on-on-fixed-user-handle-mouse-up.delegate="log('onFixedUserHandleMouseUp', $event)"
+      e-on-on-fixed-user-handle-mouse-enter.delegate="log('onFixedUserHandleMouseEnter', $event)"
+      e-on-on-fixed-user-handle-mouse-leave.delegate="log('onFixedUserHandleMouseLeave', $event)"></ej2-diagram>
+  </demo-section>
+</template>

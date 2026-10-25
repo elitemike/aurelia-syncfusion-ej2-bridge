@@ -4,6 +4,7 @@ export class DiagramDemo {
   parts = [
     PLATFORM.moduleName('diagram/diagramBasicDemo'),
     PLATFORM.moduleName('diagram/diagramDynamicDemo'),
-    PLATFORM.moduleName('diagram/diagramFunctionsDemo')
+    PLATFORM.moduleName('diagram/diagramFunctionsDemo'),
+    PLATFORM.moduleName('diagram/diagramTemplatesDemo')
   ];
 }
