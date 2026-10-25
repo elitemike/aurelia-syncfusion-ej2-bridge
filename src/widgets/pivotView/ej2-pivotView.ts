@@ -1,6 +1,6 @@
 import {
   PivotView, PivotViewModel, GroupingBar, FieldList, CalculatedField, Toolbar, PDFExport, ExcelExport,
-  ConditionalFormatting, NumberFormatting, VirtualScroll, DrillThrough, Pager, Grouping
+  ConditionalFormatting, NumberFormatting, VirtualScroll, DrillThrough, Pager, Grouping, WebMcpPivotView
 } from '@syncfusion/ej2-pivotview';
 import { inlineView, customElement } from 'aurelia-framework';
 import { generateBindables } from '../../utilities/decorator';
@@ -38,6 +38,7 @@ export class Ej2PivotView extends SyncfusionWrapper<PivotView, PivotViewModel> {
     use(model.allowGrouping, Grouping);
     use(model.allowDrillThrough || (model.editSettings && model.editSettings.allowEditing), DrillThrough);
     use(model.enablePaging, Pager);
+    use(model.enableWebMcp, WebMcpPivotView);
 
     PivotView.Inject(...modules);
 

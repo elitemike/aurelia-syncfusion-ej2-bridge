@@ -444,3 +444,111 @@ test('dragComplete reaches the host element and the selection mode is applied', 
   });
   await expectEvent(page, 'pvd.dragComplete');
 });
+
+// ---------------------------------------------------------------------------------------------------------------
+// Virtual scrolling and paging
+
+test('virtual scrolling renders only the rows in view and loads more while scrolling', async ({ app, page }) => {
+  const pv = app.section('pvl-virtual');
+  await pv.scrollIntoViewIfNeeded();
+  await ew(page, 'pvl-virtual', 'w.enableVirtualization', true);
+  await ew(page, 'pvl-virtual', 'w.virtualScrollSettings.allowSinglePage', false);
+  await ew(page, 'pvl-virtual', 'w.engineModule.rowCount > 700', true);
+  const rows = pv.locator('.e-content tr.e-row');
+  await expect.poll(() => rows.count()).toBeLessThan(80);
+  const first = async () => (await rows.first().locator('td').first().textContent()) ?? '';
+  const before = await first();
+  expect(before).toContain('Region 01');
+  await pv.locator('.e-content').first().evaluate((el) => { el.scrollTop = 12000; });
+  await expect.poll(first).not.toBe(before);
+  expect(await first()).not.toContain('Region 01');
+});
+
+test('paging shows one page of rows and columns and the pager navigates', async ({ app, page }) => {
+  const pv = app.section('pvl-paging');
+  await pv.scrollIntoViewIfNeeded();
+  await ew(page, 'pvl-paging', 'w.enablePaging', true);
+  await ew(page, 'pvl-paging', 'w.pageSettings.rowPageSize', 20);
+  await ew(page, 'pvl-paging', 'w.pageSettings.columnPageSize', 4);
+  await ew(page, 'pvl-paging', 'w.pagerSettings.position', 'Bottom');
+  await expect(pv.locator('.e-pivot-pager')).toBeVisible();
+  await expect(pv.locator('.e-pivot-pager-bottom')).toBeVisible();
+  await expect(pv.locator('.e-pivot-pager-row-maindiv')).toContainText('of 37');
+  await expect(pv.locator('.e-pivot-pager-column-maindiv')).toContainText('of 4');
+  const firstCell = pv.locator('.e-content tr.e-row').first().locator('td').first();
+  await expect(firstCell).toContainText('Region 01');
+  const firstRow = pv.locator('.e-content tr.e-row').first();
+  const before = await firstRow.textContent();
+  await pv.locator('.e-pivot-pager-column-maindiv .e-nextpage').click();
+  await ew(page, 'pvl-paging', 'w.pageSettings.currentColumnPage', 2);
+  await pv.locator('.e-pivot-pager-row-maindiv .e-nextpage').click();
+  await ew(page, 'pvl-paging', 'w.pageSettings.currentRowPage', 2);
+  await expect.poll(() => firstRow.textContent()).not.toBe(before);
+});
+
+// ---------------------------------------------------------------------------------------------------------------
+// Drill through and editing
+
+test('drill through lists the records behind a value cell', async ({ app, page }) => {
+  const pv = app.section('pve-drill');
+  await pv.scrollIntoViewIfNeeded();
+  await ew(page, 'pve-drill', 'w.allowDrillThrough', true);
+  await ew(page, 'pve-drill', 'w.maxRowsInDrillThrough', 5);
+  await reset(page);
+  await pv.locator('td.e-valuescontent').first().dblclick();
+  const dlg = page.locator('.e-drillthrough-dialog.e-popup-open');
+  await expect(dlg).toBeVisible();
+  await expect(dlg.locator('.e-drillthrough-body-header-value').first()).toHaveText('Canada');
+  await expect(dlg.locator('.e-content tr.e-row')).toHaveCount(6);
+  await expectEvent(page, 'pve.drillThrough');
+  await expectEvent(page, 'pve.beginDrillThrough');
+});
+
+test('editing a record in the drill through dialog raises editCompleted and updates the table', async ({ app, page }) => {
+  const pv = app.section('pve-edit');
+  await pv.scrollIntoViewIfNeeded();
+  await ew(page, 'pve-edit', 'w.editSettings.allowEditing', true);
+  await ew(page, 'pve-edit', 'w.editSettings.allowAdding', true);
+  await ew(page, 'pve-edit', 'w.editSettings.allowDeleting', true);
+  await ew(page, 'pve-edit', 'w.editSettings.allowCommandColumns', true);
+  const cell = pv.locator('td.e-valuescontent').first();
+  const before = Number(await cell.textContent());
+  await cell.dblclick();
+  const dlg = page.locator('.e-drillthrough-dialog.e-popup-open');
+  await expect(dlg.locator('.e-toolbar-item[title="Add"]')).toBeVisible();
+  const row = dlg.locator('.e-content tr.e-row').first();
+  await row.locator('.e-editbutton').click();
+  const sold = dlg.locator('.e-editedrow .e-numerictextbox').first();
+  await sold.fill('77');
+  await sold.press('Tab');
+  await reset(page);
+  await row.locator('.e-savebutton').click();
+  await expect(row).toContainText('77');
+  await dlg.locator('.e-dlg-closeicon-btn').first().click();
+  await expectEvent(page, 'pve.editCompleted');
+  await expect(dlg).toHaveCount(0);
+  await expect.poll(async () => Number(await cell.textContent())).not.toBe(before);
+});
+
+test('deleting a record in the drill through dialog removes it from the table', async ({ app, page }) => {
+  const pv = app.section('pve-edit');
+  await pv.scrollIntoViewIfNeeded();
+  const cell = pv.locator('td.e-valuescontent').first();
+  const before = Number(await cell.textContent());
+  await cell.dblclick();
+  const dlg = page.locator('.e-drillthrough-dialog.e-popup-open');
+  await reset(page);
+  await dlg.locator('.e-content tr.e-row').first().locator('.e-deletebutton').click();
+  await dlg.locator('.e-dlg-closeicon-btn').first().click();
+  await expectEvent(page, 'pve.editCompleted');
+  await expect.poll(async () => Number(await cell.textContent())).toBeLessThan(before);
+});
+
+test('inline editing raises editCompleted', async ({ app, page }) => {
+  const pv = app.section('pve-inline');
+  await pv.scrollIntoViewIfNeeded();
+  await ew(page, 'pve-inline', 'w.editSettings.allowInlineEditing', true);
+  await reset(page);
+  await pv.locator('td.e-valuescontent').filter({ hasText: /^[0-9]+$/ }).first().dblclick();
+  await expectEvent(page, 'pve.inline.editCompleted');
+});
