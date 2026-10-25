@@ -1430,11 +1430,12 @@ export const ControlBindings = {
   richTextEditorUI: {
     oneWay: [
       "enable", "readonly", "width", "height", "placeholder", "htmlAttributes", "cssClass", "keyBindings",
-      "value", "valueFormat", "saveInterval", "undoRedoSteps", "undoRedoTimer", "toolbarSettings",
+      "valueFormat", "saveInterval", "undoRedoSteps", "undoRedoTimer", "toolbarSettings",
       "fontSize", "fontFamily", "quickToolbarSettings", "linkSettings", "tableSettings", "fontColor",
       "backgroundColor", "listSettings", "format", "slashCommandSettings", "interactionSettings",
       "imageSettings"
     ],
+    twoWay: ["value"],
     events: [
       "created", "destroyed", "focus", "blur", "actionBegin", "actionComplete", "change",
       "beforeDialogOpen", "beforeDialogClose", "beforeFileUpload", "fileUploading", "fileSelected",
