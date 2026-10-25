@@ -4,7 +4,7 @@ import {
   TableOfContentsDialog, PageSetupDialog, ParagraphDialog, ListDialog, StyleDialog, StylesDialog, FontDialog,
   TablePropertiesDialog, BordersAndShadingDialog, TableOptionsDialog, CellOptionsDialog, BulletsAndNumberingDialog,
   CheckBoxFormFieldDialog, DropDownFormFieldDialog, TextFormFieldDialog, ColumnsDialog, TabDialog, SpellChecker,
-  SpellCheckDialog, ContentControlPropertiesDialog, PicContentControlDialog, DatePickerDialog, NotesDialog,
+  SpellCheckDialog, NotesDialog,
   XmlPane, CollaborativeEditing, CollaborativeEditingHandler, WebMcpDocumentEditor
 } from '@syncfusion/ej2-documenteditor';
 import { inlineView, customElement } from 'aurelia-framework';
@@ -26,7 +26,7 @@ export class Ej2DocumentEditor extends SyncfusionWrapper<DocumentEditor, Documen
       PageSetupDialog, ParagraphDialog, ListDialog, StyleDialog, StylesDialog, FontDialog, TablePropertiesDialog,
       BordersAndShadingDialog, TableOptionsDialog, CellOptionsDialog, BulletsAndNumberingDialog,
       CheckBoxFormFieldDialog, DropDownFormFieldDialog, TextFormFieldDialog, ColumnsDialog, TabDialog, SpellChecker,
-      SpellCheckDialog, ContentControlPropertiesDialog, PicContentControlDialog, DatePickerDialog, NotesDialog,
+      SpellCheckDialog, NotesDialog,
       XmlPane, CollaborativeEditing, CollaborativeEditingHandler, WebMcpDocumentEditor);
   }
 
