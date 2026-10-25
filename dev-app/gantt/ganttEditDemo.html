@@ -19,7 +19,8 @@
     <ej2-gantt data-testid="gantt-cell-edit" e-data-source.bind="cellData" e-task-fields.bind="taskFields" e-columns.bind="columns"
       e-height.bind="260" e-edit-settings.bind="cellSettings" e-project-start-date="2025-03-31" e-project-end-date="2025-05-05"
       e-on-cell-edit.delegate="log('cellEdit', $event)"
-      e-on-cell-save.delegate="log('cellSave', $event)"></ej2-gantt>
+      e-on-cell-save.delegate="log('cellSave', $event)"
+      e-on-end-edit.delegate="log('endEdit', $event)"></ej2-gantt>
   </demo-section>
 
   <demo-section id="gantt-deps" title="Dependencies" description="Predecessor validation, offset updates and parent dependencies.">

@@ -38,6 +38,7 @@ export class GanttTimelineDemo {
 
   // baseline and critical path
   baselineData = clone(dependencyData);
+  criticalToolbar = ['CriticalPath'];
   baselineTemplate = '<div class="gantt-baseline-template">baseline</div>';
 
   // templates

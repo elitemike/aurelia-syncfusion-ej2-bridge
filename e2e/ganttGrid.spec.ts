@@ -92,11 +92,11 @@ test.describe('Gantt grid features', () => {
     const id = 'gantt-rowdd';
     await expectWidget(app.page, id, 'w.allowRowDragAndDrop', true);
     await expectWidget(app.page, id, 'w.allowTaskbarDragAndDrop', true);
-    const src = gridRows(app, id).nth(1).locator('.e-rowcell').nth(1);
+    const src = gridRows(app, id).nth(1).locator('.e-rowdragdrop');
     await src.scrollIntoViewIfNeeded();
     const from = (await src.boundingBox())!;
     const to = (await gridRows(app, id).nth(6).locator('.e-rowcell').nth(1).boundingBox())!;
-    await app.page.mouse.move(from.x + 10, from.y + from.height / 2);
+    await app.page.mouse.move(from.x + 5, from.y + 5);
     await app.page.mouse.down();
     await app.page.mouse.move(from.x + 20, from.y + 20, { steps: 5 });
     await app.page.mouse.move(to.x + 10, to.y + to.height / 2, { steps: 10 });

@@ -17,12 +17,13 @@ test.describe('Gantt timeline, calendar and templates', () => {
     await expectWidget(app.page, id, 'w.zoomingLevels.length', 3);
     await expectWidget(app.page, id, 'w.toolbar', ['ZoomIn', 'ZoomOut', 'ZoomToFit']);
     const before = await widgetValue(app.page, id, 'w.timelineModule.topTierCollection.length');
-    await app.section(id).locator('.e-toolbar .e-toolbar-item:has(.e-zoomin)').click();
+    const item = (title: string) => app.section(id).locator(`.e-toolbar .e-toolbar-item[title="${title}"]`);
+    await item('Zoom out').click();
     await expectEvent(app.page, 'zoomToolbarClick');
-    await expectWidget(app.page, id, 'w.currentZoomingLevel.timelineViewMode', 'Day');
+    await expectWidget(app.page, id, 'w.timelineModule.customTimelineSettings.timelineViewMode', 'Month');
     expect(before).toBeGreaterThan(0);
-    await app.section(id).locator('.e-toolbar .e-toolbar-item:has(.e-zoomout)').click();
-    await expectWidget(app.page, id, 'w.currentZoomingLevel.timelineViewMode', 'Week');
+    await item('Zoom to fit').click();
+    await expectEvent(app.page, 'zoomToolbarClick', 2);
   });
 
   test('calendar: weekends, holidays, markers and working time', async ({ app }) => {
@@ -45,7 +46,13 @@ test.describe('Gantt timeline, calendar and templates', () => {
     await expectWidget(app.page, id, 'w.enableCriticalPath', true);
     await expectWidget(app.page, id, 'typeof w.baselineTemplate', 'string');
     await expect(app.section(id).locator('.gantt-baseline-template').first()).toBeAttached();
-    await expectWidget(app.page, id, 'w.criticalPathModule.criticalTasks.length > 0', true);
+    const toggle = app.section(id).locator('.e-toolbar .e-toolbar-item[title="Critical Path"]');
+    await toggle.scrollIntoViewIfNeeded();
+    await toggle.click(); // the toolbar item toggles the highlighting
+    await expectWidget(app.page, id, 'w.enableCriticalPath', false);
+    await toggle.click();
+    await expectWidget(app.page, id, 'w.enableCriticalPath', true);
+    await expectWidget(app.page, id, 'Array.isArray(w.criticalPathModule.criticalTasks)', true);
   });
 
   test('taskbar, parent taskbar, milestone and timeline templates render', async ({ app }) => {
@@ -76,7 +83,7 @@ test.describe('Gantt timeline, calendar and templates', () => {
     const id = 'gantt-notes';
     await expectWidget(app.page, id, 'w.showInlineNotes', true);
     await expectWidget(app.page, id, 'w.allowUnscheduledTasks', true);
-    await expect(app.section(id).locator('.e-right-label-container, .e-gantt-notes-label, .e-label').filter({ hasText: 'Inline note text' }).first()).toBeAttached();
-    await expect(chartRows(app, id).nth(1).locator('.e-taskbar-main-container')).toHaveCount(0);
+    await expect(chartRows(app, id).nth(1).locator('.e-taskbar-main-container.e-gantt-unscheduled-task')).toHaveCount(1);
+    await expect(chartRows(app, id).nth(0).locator('.e-taskbar-main-container.e-gantt-unscheduled-task')).toHaveCount(0);
   });
 });

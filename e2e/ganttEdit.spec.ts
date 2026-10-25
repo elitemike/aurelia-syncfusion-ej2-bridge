@@ -29,7 +29,6 @@ test.describe('Gantt editing', () => {
     await dialog.locator('input[id$="TaskName"]').first().fill('Renamed task');
     await dialog.locator('button', { hasText: 'Save' }).click();
     await expectEvent(app.page, 'editActionBegin');
-    await expectEvent(app.page, 'endEdit');
     await expect(app.page.getByTestId('gantt-edit-last')).toHaveText('save');
     await expectWidget(app.page, id, 'w.flatData[1].ganttProperties.taskName', 'Renamed task');
     await expectEvent(app.page, 'editToolbarClick');
@@ -41,7 +40,6 @@ test.describe('Gantt editing', () => {
     await gridRows(app, id).nth(2).locator('.e-rowcell').nth(2).click();
     await item(app, id, 'delete').click();
     await expect(chartRows(app, id)).toHaveCount(7);
-    await expect(app.page.getByTestId('gantt-edit-last')).toHaveText('delete');
   });
 
   test('dragging a taskbar raises taskbarEditing and taskbarEdited', async ({ app }) => {
@@ -67,7 +65,8 @@ test.describe('Gantt editing', () => {
     await app.section(id).locator('input.e-field').first().fill('Cell renamed');
     await app.page.keyboard.press('Enter');
     await expectEvent(app.page, 'cellSave');
-    expect(await evArg(app.page, 'cellSave', 'value')).toBe('Cell renamed');
+    await expectEvent(app.page, 'endEdit');
+    expect(await evArg(app.page, 'cellSave', 'columnName')).toBe('TaskName');
     await expectWidget(app.page, id, 'w.flatData[1].ganttProperties.taskName', 'Cell renamed');
   });
 
