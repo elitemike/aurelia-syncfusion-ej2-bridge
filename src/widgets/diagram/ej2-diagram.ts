@@ -39,4 +39,18 @@ export class Ej2Diagram extends SyncfusionWrapper<Diagram, DiagramModel> {
 
   protected onWidgetCreated() {
   }
+
+  /**
+   * The diagram applies scrollSettings offsets after render but ignores a changed `currentZoom`, the documented way
+   * to zoom at run time is zoom()/zoomTo(). Honour the bound zoom value.
+   */
+  protected scrollSettingsChanged(newValue: any) {
+    const widget: any = this.widget;
+    const value = this[`${constants.bindablePrefix}scrollSettings`] || newValue;
+    widget.scrollSettings = value;
+    if (value && typeof value.currentZoom === 'number' && widget.scroller && widget.scroller.currentZoom &&
+      Math.abs(widget.scroller.currentZoom - value.currentZoom) > 1e-6) {
+      widget.zoom(value.currentZoom / widget.scroller.currentZoom);
+    }
+  }
 }
