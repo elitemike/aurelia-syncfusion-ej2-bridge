@@ -11,7 +11,7 @@ function walk(d,o=[]){for(const e of fs.readdirSync(d,{withFileTypes:true})){con
 const html=walk('dev-app').filter(f=>f.endsWith('.html')).map(f=>fs.readFileSync(f,'utf8')).join('\n').toLowerCase();
 let tot=0,miss=0;const res={};
 for(const [name,b] of Object.entries(B)){ if(name==='common')continue;
- const tag=name.replace(/([a-z])([A-Z])/g,'$1-$2').replace(/([A-Z]+)([A-Z][a-z])/g,'$1-$2').toLowerCase(); // same rule as tools/scaffold-wrappers.js
+ const tag=name.replace(/([a-z])([A-Z])/g,'$1-$2').replace(/([A-Z]+)([A-Z][a-z])/g,'$1-$2').replace(/(\d)([A-Z][a-z])/g,'$1-$2').toLowerCase(); // same rule as tools/scaffold-wrappers.js
  // collect element texts for tag
  const re=new RegExp('<ej2-'+tag+'[\\s>][\\s\\S]*?>','g');
  const els=(html.match(re)||[]).join(' ');
