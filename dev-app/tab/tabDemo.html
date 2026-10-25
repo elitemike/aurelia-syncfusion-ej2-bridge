@@ -1,7 +1,96 @@
 <template>
+  <require from="./tabDemo.css"></require>
   <h2>Tab</h2>
 
-  <demo-section id="tab-basic" title="Basic" description="Tab rendered with its default options.">
-    <ej2-tab data-testid="tab-basic"></ej2-tab>
+  <demo-section id="tab-default" title="Default functionalities" description="selectedItem is two-way, selecting and selected events report tab changes, a cancelled selecting keeps the current tab.">
+    <ej2-tab if.bind="showTab" data-testid="tab-default" e-items.bind="items" e-selected-item.two-way="selectedIndex"
+      e-on-selecting.delegate="onSelecting($event)" e-on-selected.delegate="onSelected()"
+      e-on-created.delegate="onCreated()" e-on-destroyed.trigger="onDestroyed()"></ej2-tab>
+    <div class="demo-output">Selected index: <span data-testid="tab-index">${selectedIndex}</span>
+      Selecting: <span data-testid="tab-selecting">${selectingCount}</span>
+      Last selecting: <span data-testid="tab-last-selecting">${lastSelecting}</span>
+      Selected: <span data-testid="tab-selected">${selectedCount}</span>
+      Created: <span data-testid="tab-created">${createdCount}</span>
+      Destroyed: <span data-testid="tab-destroyed">${destroyedCount}</span></div>
+    <div class="demo-row">
+      <button data-testid="tab-select-two" click.delegate="select(2)">Select third</button>
+      <button data-testid="tab-block" click.delegate="block()">Block fourth tab</button>
+      <button data-testid="tab-toggle" click.delegate="toggle()">Toggle</button>
+    </div>
+  </demo-section>
+
+  <demo-section id="tab-layout" title="Header placement and sizing" description="headerPlacement, heightAdjustMode, cssClass, width and height follow the view-model.">
+    <div class="tab-box">
+      <ej2-tab data-testid="tab-layout" e-items.bind="placementItems" e-header-placement.bind="placement"
+        e-height-adjust-mode.bind="heightMode" e-css-class.bind="cssClass" e-width.bind="width" e-height.bind="height"></ej2-tab>
+    </div>
+    <div class="demo-row">
+      <button data-testid="tab-bottom" click.delegate="bottom()">Header at bottom</button>
+      <button data-testid="tab-fill" click.delegate="fill()">Fill the box</button>
+      <button data-testid="tab-restyle" click.delegate="restyle()">Restyle</button>
+      <button data-testid="tab-resize" click.delegate="resize()">Resize</button>
+    </div>
+  </demo-section>
+
+  <demo-section id="tab-overflow" title="Header overflow" description="overflowMode Scrollable, Popup, MultiRow and Extended handle headers that do not fit, scrollStep sets the scroll distance.">
+    <ej2-tab data-testid="tab-scrollable" e-items.bind="overflowItems" e-overflow-mode="Scrollable" e-width="320px"
+      e-scroll-step.bind="scrollStep"></ej2-tab>
+    <ej2-tab data-testid="tab-popup" e-items.bind="popupItems" e-overflow-mode="Popup" e-width="320px"></ej2-tab>
+    <ej2-tab data-testid="tab-multirow" e-items.bind="multiRowItems" e-overflow-mode="MultiRow" e-width="320px"></ej2-tab>
+    <ej2-tab data-testid="tab-extended" e-items.bind="extendedItems" e-overflow-mode="Extended" e-width="320px"></ej2-tab>
+    <button data-testid="tab-step" click.delegate="step()">Step 100</button>
+  </demo-section>
+
+  <demo-section id="tab-closable" title="Closable tabs, add and remove" description="showCloseButton adds close icons, adding/added and removing/removed events fire for add and remove.">
+    <ej2-tab view-model.ref="closableTab" data-testid="tab-closable" e-items.bind="closableItems" e-show-close-button="true"
+      e-on-adding.delegate="onAdding()" e-on-added.delegate="onAdded()"
+      e-on-removing.delegate="onRemoving($event)" e-on-removed.delegate="onRemoved($event)"></ej2-tab>
+    <div class="demo-output">Adding: <span data-testid="tab-adding">${addingCount}</span>
+      Added: <span data-testid="tab-added">${addedCount}</span>
+      Removing: <span data-testid="tab-removing">${removingCount}</span>
+      Removed: <span data-testid="tab-removed">${removedCount}</span>
+      Removed header: <code data-testid="tab-removed-header">${removedHeader}</code></div>
+    <div class="demo-row">
+      <button data-testid="tab-add" click.delegate="addTab()">Add tab</button>
+      <button data-testid="tab-remove" click.delegate="removeTab()">Remove first</button>
+      <button data-testid="tab-block-remove" click.delegate="blockRemoval()">Block removal</button>
+    </div>
+  </demo-section>
+
+  <demo-section id="tab-reorder" title="Reorder active tab" description="With Popup overflow, reorderActiveTab moves a tab picked from the popup into the visible headers.">
+    <ej2-tab data-testid="tab-reorder" e-items.bind="reorderItems" e-overflow-mode="Popup" e-width="320px"
+      e-reorder-active-tab.bind="reorderActive"></ej2-tab>
+    <button data-testid="tab-reorder-on" click.delegate="reorder()">Reorder active</button>
+  </demo-section>
+
+  <demo-section id="tab-load" title="Load on demand" description="loadOn Demand renders a tab body only when it is selected, clearTemplates controls cleanup of the previous body.">
+    <ej2-tab data-testid="tab-demand" e-items.bind="demandItems" e-load-on.bind="loadOn"
+      e-clear-templates.bind="clearTemplates"></ej2-tab>
+    <ej2-tab data-testid="tab-init" e-items.bind="initItems" e-load-on="Init"></ej2-tab>
+    <div class="demo-row">
+      <button data-testid="tab-keep" click.delegate="keepTemplates()">Keep templates</button>
+      <button data-testid="tab-init-mode" click.delegate="demandMode()">loadOn Init</button>
+    </div>
+  </demo-section>
+
+  <demo-section id="tab-drag" title="Drag and drop" description="allowDragAndDrop reorders headers by dragging, dragArea limits where headers can be dragged. onDragStart, dragging and dragged events report the drag.">
+    <div id="tab-drag-area" class="tab-area e-tab-area">
+      <ej2-tab data-testid="tab-drag" e-items.bind="dragItems" e-allow-drag-and-drop="true" e-drag-area.bind="dragArea"
+        e-on-on-drag-start.delegate="onDragStart()" e-on-dragging.delegate="onDragging()"
+        e-on-dragged.delegate="onDragged()"></ej2-tab>
+    </div>
+    <div class="demo-output">DragStart: <span data-testid="tab-drag-start">${dragStartCount}</span>
+      Dragging: <span data-testid="tab-dragging">${draggingCount}</span>
+      Dragged: <span data-testid="tab-dragged">${draggedCount}</span></div>
+  </demo-section>
+
+  <demo-section id="tab-misc" title="Sanitizer, animation and swipe" description="enableHtmlSanitizer removes inline handlers from content, animation and swipeMode are passed to the widget.">
+    <ej2-tab data-testid="tab-safe" e-items.bind="safeItems" e-enable-html-sanitizer.bind="sanitize"
+      e-animation.bind="animation" e-swipe-mode.bind="swipeMode"></ej2-tab>
+    <ej2-tab data-testid="tab-unsafe" e-items.bind="unsafeItems" e-enable-html-sanitizer="false"></ej2-tab>
+    <div class="demo-row">
+      <button data-testid="tab-unsanitize" click.delegate="unsanitize()">Disable sanitizer</button>
+      <button data-testid="tab-swipe" click.delegate="swipe()">Swipe with mouse</button>
+    </div>
   </demo-section>
 </template>
