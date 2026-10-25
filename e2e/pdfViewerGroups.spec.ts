@@ -74,6 +74,7 @@ test.describe('form fields (pv-forms)', () => {
     await app.section('pv-forms').scrollIntoViewIfNeeded();
     await documentLoaded(page, 'pv-forms');
     await expect.poll(() => viewerValue(page, 'pv-forms', 'w.formFieldCollections.length')).toBeGreaterThan(0);
+    await app.section('pv-forms').locator('.e-pv-page-div').first().evaluate(e => e.scrollIntoView({ block: 'start' }));
     const box = await app.section('pv-forms').locator('.e-pv-page-div').first().boundingBox();
     const px = (x: number, y: number): [number, number] => [box.x + x, box.y + y];
     await page.mouse.move(...px(50, 310));

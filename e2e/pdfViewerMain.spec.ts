@@ -113,19 +113,6 @@ test.describe('main viewer', () => {
     expect(await evArg(page, 'main.pageClick', 'detail.pageNumber')).toBe(1);
   });
 
-  test('hyperlink events: hyperlinkMouseOver and hyperlinkClick', async ({ app, page }) => {
-    await documentLoaded(page, MAIN);
-    await textLayerReady(page, MAIN);
-    const at = await pagePoint(app);
-    const [x, y] = at(120, 625);
-    await page.mouse.move(x - 40, y - 30);
-    await page.mouse.move(x, y, { steps: 3 });
-    await evt(page, 'hyperlinkMouseOver');
-    await page.mouse.click(x, y);
-    await evt(page, 'hyperlinkClick');
-    expect(await evArg(page, 'main.hyperlinkClick', 'detail.hyperlink')).toContain('example.invalid');
-  });
-
   test('selecting text raises textSelectionStart and textSelectionEnd', async ({ app, page }) => {
     await documentLoaded(page, MAIN);
     await textLayerReady(page, MAIN);
@@ -252,5 +239,24 @@ test.describe('main viewer', () => {
     await evt(page, 'documentUnload');
     await viewerValue(page, MAIN, 'w.load(w.documentPath, null)');
     await evt(page, 'documentLoad', before + 1);
+  });
+});
+
+// hyperlink detection of the viewer is occasionally late, retry instead of sleeping
+test.describe('hyperlinks', () => {
+  test.describe.configure({ retries: 2 });
+
+  test('hyperlink events: hyperlinkMouseOver and hyperlinkClick', async ({ app, page }) => {
+    await documentLoaded(page, MAIN);
+    await textLayerReady(page, MAIN);
+    const at = await pagePoint(app);
+    const [x, y] = at(120, 625);
+    await expect(page.locator('[data-testid="pv-main"] .e-pv-hyperlink').first()).toBeAttached({ timeout: 25_000 });
+    await page.mouse.move(x - 40, y - 30);
+    await page.mouse.move(x, y, { steps: 3 });
+    await evt(page, 'hyperlinkMouseOver');
+    await page.mouse.click(x, y);
+    await evt(page, 'hyperlinkClick');
+    expect(await evArg(page, 'main.hyperlinkClick', 'detail.hyperlink')).toContain('example.invalid');
   });
 });

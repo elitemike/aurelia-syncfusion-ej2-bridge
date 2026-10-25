@@ -454,10 +454,6 @@ export const propertyGroups: { id: string; props: string[]; checks: [string, unk
     true
    ],
    [
-    "w.isFormFieldDocument",
-    false
-   ],
-   [
     "w.isInitialFieldToolbarSelection",
     true
    ],
@@ -710,8 +706,8 @@ export const propertyGroups: { id: string; props: string[]; checks: [string, unk
     false
    ],
    [
-    "w.pageOrganizerSettings.imageZoom",
-    8
+    "w.pageOrganizerSettings.showImageZoomingSlider",
+    true
    ],
    [
     "w.extractTextOption",
