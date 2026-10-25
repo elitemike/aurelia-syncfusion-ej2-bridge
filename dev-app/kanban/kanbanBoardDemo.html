@@ -1,0 +1,46 @@
+<template>
+  <demo-section id="kanban-drag" title="Drag and drop" description="allowDragAndDrop, constraintType and the card drag events.">
+    <ej2-kanban data-testid="kanban-drag" e-data-source.bind="dragData" e-key-field="Status" e-columns.bind="columns"
+      e-card-settings.bind="cardSettings" e-height="380px" e-allow-drag-and-drop.bind="true" e-constraint-type.bind="constraintType"
+      e-on-drag-start.delegate="log('dragStart', $event)"
+      e-on-drag.delegate="log('drag', $event)"
+      e-on-drag-stop.delegate="log('dragStop', $event)"></ej2-kanban>
+  </demo-section>
+
+  <demo-section id="kanban-swimlane" title="Swimlanes, stacked headers and column drag" description="swimlaneSettings, stackedHeaders, showEmptyColumn, allowColumnDragAndDrop and the column drag events.">
+    <ej2-kanban data-testid="kanban-swimlane" e-data-source.bind="swimData" e-key-field="Status" e-columns.bind="swimColumns"
+      e-card-settings.bind="cardSettings" e-height="420px" e-swimlane-settings.bind="swimlaneSettings" e-stacked-headers.bind="stackedHeaders"
+      e-show-empty-column.bind="true" e-allow-column-drag-and-drop.bind="true"
+      e-on-column-drag-start.delegate="log('columnDragStart', $event)"
+      e-on-column-drag.delegate="log('columnDrag', $event)"
+      e-on-column-drop.delegate="log('columnDrop', $event)"></ej2-kanban>
+  </demo-section>
+
+  <demo-section id="kanban-dialog" title="Edit dialog" description="dialogSettings with custom fields, dialogOpen and dialogClose.">
+    <ej2-kanban data-testid="kanban-dialog" e-data-source.bind="dialogData" e-key-field="Status" e-columns.bind="columns"
+      e-card-settings.bind="cardSettings" e-height="380px" e-dialog-settings.bind="dialogSettings"
+      e-on-dialog-open.delegate="log('dialogOpen', $event)"
+      e-on-dialog-close.delegate="log('dialogClose', $event)"></ej2-kanban>
+  </demo-section>
+
+  <demo-section id="kanban-tooltip" title="Tooltip" description="enableTooltip with a tooltipTemplate.">
+    <ej2-kanban data-testid="kanban-tooltip" e-data-source.bind="tipData" e-key-field="Status" e-columns.bind="columns"
+      e-card-settings.bind="cardSettings" e-height="380px" e-enable-tooltip.bind="true" e-tooltip-template.bind="tooltipTemplate"></ej2-kanban>
+  </demo-section>
+
+  <demo-section id="kanban-template" title="Card template" description="cardSettings.template replaces the card content.">
+    <ej2-kanban data-testid="kanban-template" e-data-source.bind="tipData" e-key-field="Status" e-columns.bind="columns"
+      e-card-settings.bind="templateCard" e-height="380px"></ej2-kanban>
+  </demo-section>
+
+  <demo-section id="kanban-virtual" title="Virtualization" description="enableVirtualization with 300 cards.">
+    <ej2-kanban data-testid="kanban-virtual" e-data-source.bind="bigData" e-key-field="Status" e-columns.bind="columns"
+      e-card-settings.bind="cardSettings" e-height="380px" e-card-height="90px" e-enable-virtualization.bind="true"></ej2-kanban>
+  </demo-section>
+
+  <demo-section id="kanban-external" title="External drop" description="externalDropId names the element cards can be dropped on.">
+    <ej2-kanban data-testid="kanban-external" e-data-source.bind="externalData" e-key-field="Status" e-columns.bind="columns"
+      e-card-settings.bind="cardSettings" e-height="380px" e-external-drop-id="#kb-external-target"></ej2-kanban>
+    <div id="kb-external-target" class="kb-external" style="margin-top:8px;padding:12px;border:1px dashed #888">Drop target</div>
+  </demo-section>
+</template>

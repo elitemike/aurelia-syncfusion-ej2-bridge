@@ -25,4 +25,10 @@
       e-height.bind="200" e-project-start-date="2025-03-31" e-project-end-date="2025-04-30"
       e-on-destroyed.trigger="log('destroyed', $event)"></ej2-gantt>
   </demo-section>
+
+  <demo-section id="gantt-failure" title="Failing data request" description="actionFailure is raised when the data request fails.">
+    <button data-testid="gantt-failure-show" click.delegate="showFailing = true">Request data</button>
+    <ej2-gantt if.bind="showFailing" data-testid="gantt-failure" e-data-source.bind="failingSource" e-task-fields.bind="destroyFields"
+      e-height.bind="200" e-on-action-failure.delegate="log('actionFailure', $event)"></ej2-gantt>
+  </demo-section>
 </template>

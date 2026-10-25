@@ -67,4 +67,13 @@ test.describe('Gantt resources, segments, destroy and export', () => {
     await expectWidget(app.page, 'gantt-wbs', 'w.enableWebMcp', false);
     expect(await evCount(app.page, 'beforeWebMcpToolExecute')).toBe(0);
   });
+
+  test('actionFailure is raised when the data request fails', async ({ app }) => {
+    await app.page.route('**/gantt-missing*', route => route.fulfill({ status: 500, contentType: 'text/plain', body: 'boom' }));
+    await app.page.getByTestId('gantt-failure-show').click();
+    await expectEvent(app.page, 'actionFailure');
+    // the failed request is logged by the browser, that is the point of this test
+    expect(app.errors.length).toBeGreaterThan(0);
+    app.errors.splice(0);
+  });
 });

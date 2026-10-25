@@ -61,6 +61,7 @@ test.describe('Gantt timeline, calendar and templates', () => {
     await expect(app.section(id).locator('.gantt-milestone-template').first()).toBeAttached();
     await expect(app.section(id).locator('.gantt-timeline-template').first()).toBeAttached();
     await expectWidget(app.page, id, 'typeof w.parentTaskbarTemplate', 'string');
+    await expectWidget(app.page, id, 'typeof w.taskbarTemplate + typeof w.milestoneTemplate + typeof w.timelineTemplate', 'stringstringstring');
   });
 
   test('virtualization renders only a window of rows and timeline', async ({ app }) => {

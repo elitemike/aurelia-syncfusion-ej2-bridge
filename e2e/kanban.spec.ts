@@ -33,7 +33,7 @@ test.describe('Kanban', () => {
     await app.page.getByTestId('kanban-change-look').click();
     await expectWidget(app.page, id, 'w.height', '360px');
     await expectWidget(app.page, id, 'w.cardHeight', '130px');
-    await expectWidget(app.page, id, 'w.cssClass', 'kb-custom kb-changed');
+    await expectWidget(app.page, id, 'w.cssClass', 'kb-changed');
     await expect(app.section(id).locator('.e-kanban')).toHaveClass(/kb-changed/);
   });
 
@@ -49,10 +49,12 @@ test.describe('Kanban', () => {
     await cards(app, id).first().click();
     await expectEvent(app.page, 'cardClick');
     expect(await evArg(app.page, 'cardClick', 'data.Id')).toBe('Task 1');
-    await expectEvent(app.page, 'actionComplete');
-    await cards(app, id).first().dblclick();
-    await expectEvent(app.page, 'cardDoubleClick');
+    await app.section(id).locator('.e-header-cells .e-column-expand').first().click();
     await expectEvent(app.page, 'actionBegin');
+    await expectEvent(app.page, 'actionComplete');
+    expect(await evArg(app.page, 'actionComplete', 'requestType')).toBe('columnExpandCollapse');
+    await cards(app, id).last().dblclick();
+    await expectEvent(app.page, 'cardDoubleClick');
   });
 
   test('drag and drop moves a card and raises the drag events', async ({ app }) => {
@@ -81,10 +83,10 @@ test.describe('Kanban', () => {
     await expect(app.section(id).locator('.e-swimlane-row')).toHaveCount(3);
     await expect(app.section(id).locator('.e-stacked-header-cell').first()).toContainText('Planning');
     await expect(app.section(id).locator('.e-header-cells', { hasText: 'Archived' })).toBeVisible();
-    const headers = app.section(id).locator('.e-header-cells');
+    const headers = app.section(id).locator('.e-header-cells:not(.e-stacked-header-cell)');
     await headers.first().scrollIntoViewIfNeeded();
     const from = (await headers.nth(0).boundingBox())!;
-    const to = (await headers.nth(2).boundingBox())!;
+    const to = (await headers.nth(1).boundingBox())!;
     await app.page.mouse.move(from.x + 20, from.y + from.height / 2);
     await app.page.mouse.down();
     for (let i = 1; i <= 20; i++) { await app.page.mouse.move(from.x + 20 + ((to.x + 30 - from.x - 20) * i) / 20, from.y + from.height / 2 + (i % 2)); }
@@ -97,7 +99,7 @@ test.describe('Kanban', () => {
     await expectWidget(app.page, id, 'w.dialogSettings.fields.length', 4);
     await cards(app, id).first().scrollIntoViewIfNeeded();
     await cards(app, id).first().dblclick();
-    const dialog = app.page.locator('.e-kanban-dialog:visible');
+    const dialog = app.page.locator('.e-kanban-dialog.e-popup-open');
     await expect(dialog).toBeVisible();
     await expectEvent(app.page, 'dialogOpen');
     await dialog.locator('button', { hasText: 'Cancel' }).click();
@@ -141,7 +143,7 @@ test.describe('Kanban', () => {
     await expect(cards(app, id)).toHaveCount(8);
     await cards(app, id).first().scrollIntoViewIfNeeded();
     await cards(app, id).first().dblclick();
-    const dialog = app.page.locator('.e-kanban-dialog:visible');
+    const dialog = app.page.locator('.e-kanban-dialog.e-popup-open');
     await expect(dialog).toBeVisible();
     await dialog.locator('textarea').first().fill('Edited summary');
     await dialog.locator('button', { hasText: 'Save' }).click();

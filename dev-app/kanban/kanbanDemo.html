@@ -1,7 +1,22 @@
 <template>
   <h2>Kanban</h2>
 
-  <demo-section id="kanban-basic" title="Basic" description="Kanban rendered with its default options.">
-    <ej2-kanban data-testid="kanban-basic"></ej2-kanban>
+  <demo-section id="kanban-basic" title="Default functionalities" description="dataSource, keyField, columns, cardSettings, size, css class, keyboard and the render, click and data events.">
+    <ej2-kanban data-testid="kanban-basic" e-data-source.bind="data" e-key-field="Status" e-columns.bind="columns"
+      e-card-settings.bind="cardSettings" e-sort-settings.bind="sortSettings"
+      e-height.bind="state.height" e-width.bind="state.width" e-card-height.bind="state.cardHeight" e-css-class.bind="state.cssClass"
+      e-allow-keyboard.bind="state.keyboard" e-enable-html-sanitizer.bind="true"
+      e-on-created.delegate="log('created', $event)"
+      e-on-data-binding.delegate="log('dataBinding', $event)"
+      e-on-data-bound.delegate="log('dataBound', $event)"
+      e-on-query-cell-info.delegate="log('queryCellInfo', $event)"
+      e-on-card-rendered.delegate="log('cardRendered', $event)"
+      e-on-card-click.delegate="log('cardClick', $event)"
+      e-on-card-double-click.delegate="log('cardDoubleClick', $event)"
+      e-on-action-begin.delegate="log('actionBegin', $event)"
+      e-on-action-complete.delegate="log('actionComplete', $event)"></ej2-kanban>
+    <button data-testid="kanban-change-look" click.delegate="changeLook()">Change look</button>
   </demo-section>
+
+  <compose repeat.for="part of parts" view-model.bind="part"></compose>
 </template>

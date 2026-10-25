@@ -1,3 +1,4 @@
+import { DataManager, UrlAdaptor } from '@syncfusion/ej2-data';
 import { resourceTaskData, resourceCollection, clone } from './ganttData';
 import { logEvent } from './ganttLog';
 
@@ -44,4 +45,8 @@ export class GanttResourceDemo {
   showDestroy = true;
   destroyData = clone(resourceTaskData);
   destroyFields = { id: 'TaskID', name: 'TaskName', startDate: 'StartDate', duration: 'Duration', parentID: 'ParentID' };
+
+  // a remote source that answers with an error, the request fails and actionFailure is raised
+  showFailing = false;
+  failingSource = new DataManager({ url: '/gantt-missing', adaptor: new UrlAdaptor() });
 }
