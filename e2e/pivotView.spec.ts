@@ -339,3 +339,108 @@ test('sub totals menu hides the row sub totals', async ({ app, page }) => {
   await page.locator('.e-popup-open li', { hasText: 'Show subtotals columns only' }).first().click();
   await ew(page, 'pvt-toolbar', 'w.dataSourceSettings.showRowSubTotals', false);
 });
+
+// ---------------------------------------------------------------------------------------------------------------
+// Pivot chart
+
+test('chart renders next to the table and raises the render events', async ({ app, page }) => {
+  const pv = app.section('pvc-main');
+  await expect(pv.locator('.e-pivotchart svg').first()).toBeVisible();
+  await expect(pv.locator('[id*="_Series_0_Point_"]')).toHaveCount(8);
+  await ew(page, 'pvc-main', 'w.displayOption.view', 'Both');
+  await ew(page, 'pvc-main', 'w.displayOption.primary', 'Chart');
+  await ew(page, 'pvc-main', 'w.chartSettings.title', 'Sales analysis');
+  await ew(page, 'pvc-main', 'w.chartSettings.chartSeries.type', 'Column');
+  await ew(page, 'pvc-main', 'w.chartTypes', ['Column', 'Bar', 'Line', 'Area']);
+  for (const name of ['chartSeriesCreated', 'chartLoad', 'chartLoaded', 'animationComplete', 'seriesRender', 'legendRender',
+    'chartAxisLabelRender', 'multiLevelLabelRender', 'pointRender', 'textRender']) {
+    await expectEvent(page, `pvc.${name}`);
+  }
+});
+
+test('chart toolbar offers the configured chart types', async ({ app, page }) => {
+  const pv = app.section('pvc-main');
+  await pv.locator('.e-toolbar-item.e-template').nth(0).click();
+  const items = page.locator('.e-popup-open li');
+  await expect(items.filter({ hasText: /^(Column|Bar|Line|Area)$/ })).toHaveCount(4);
+  await items.filter({ hasText: /^Line$/ }).click();
+  await expect.poll(() => wv(page, 'pvc-main', 'w.chartSettings.chartSeries.type')).toBe('Line');
+});
+
+test('hovering and clicking a point raises the pointer events', async ({ app, page }) => {
+  const pv = app.section('pvc-main');
+  const point = pv.locator('[id*="_Series_0_Point_"]').first();
+  await reset(page);
+  await point.hover();
+  for (const name of ['chartMouseMove', 'pointMove', 'chartTooltipRender']) { await expectEvent(page, `pvc.${name}`); }
+  await reset(page);
+  await point.click();
+  for (const name of ['chartMouseDown', 'chartMouseUp', 'chartMouseClick', 'chartPointClick']) { await expectEvent(page, `pvc.${name}`); }
+  await reset(page);
+  await page.mouse.move(2, 2);
+  await expectEvent(page, 'pvc.chartMouseLeave');
+});
+
+test('legend click raises chartLegendClick', async ({ app, page }) => {
+  await reset(page);
+  await app.section('pvc-main').locator('[id*="legend_text_0"]').first().click();
+  await expectEvent(page, 'pvc.chartLegendClick');
+});
+
+test('multi level label click raises multiLevelLabelClick', async ({ app, page }) => {
+  await reset(page);
+  await app.section('pvc-main').locator('[id*="MultiLevelLabel_Level_0_Text_0"]').first().click({ force: true });
+  await expectEvent(page, 'pvc.multiLevelLabelClick');
+});
+
+test('drag zooming and scrolling raise zoomComplete and the scroll events', async ({ app, page }) => {
+  const pv = app.section('pvc-main');
+  await reset(page);
+  await pv.locator('.e-pivotchart svg').first().scrollIntoViewIfNeeded();
+  const b = (await pv.locator('.e-pivotchart svg').first().boundingBox())!;
+  await page.mouse.move(b.x + 100, b.y + 100);
+  await page.mouse.down();
+  await page.mouse.move(b.x + 250, b.y + 200, { steps: 8 });
+  await page.mouse.up();
+  await expectEvent(page, 'pvc.zoomComplete');
+  const thumb = pv.locator('[id$="scrollBarThumb_primaryXAxis"]').first();
+  await expect(thumb).toBeAttached();
+  const t = (await thumb.boundingBox())!;
+  await reset(page);
+  await page.mouse.move(t.x + t.width / 2, t.y + t.height / 2);
+  await page.mouse.down();
+  await page.mouse.move(t.x + t.width / 2 + 40, t.y + t.height / 2, { steps: 6 });
+  await page.mouse.up();
+  for (const name of ['scrollStart', 'scrollChanged', 'scrollEnd']) { await expectEvent(page, `pvc.${name}`); }
+});
+
+test('resizing the window raises chartResized', async ({ page }) => {
+  await reset(page);
+  await page.setViewportSize({ width: 800, height: 700 });
+  await expectEvent(page, 'pvc.chartResized');
+});
+
+test('printing the chart raises beforePrint', async ({ page }) => {
+  // the print window is not interesting here, close it as soon as it opens
+  page.on('popup', (popup) => { popup.close().catch(() => { }); });
+  await reset(page);
+  await page.evaluate(() => {
+    const el: any = document.querySelector('[data-testid="pvc-main"]');
+    el.au['ej2-pivot-view'].viewModel.widget.chart.print();
+  });
+  await expectEvent(page, 'pvc.beforePrint');
+});
+
+test('dragComplete reaches the host element and the selection mode is applied', async ({ page }) => {
+  await ew(page, 'pvc-drag', 'w.displayOption.view', 'Chart');
+  await ew(page, 'pvc-drag', 'w.chartSettings.selectionMode', 'DragXY');
+  await ew(page, 'pvc-drag', 'w.chart.selectionMode', 'DragXY');
+  // the Syncfusion drag selection did not start from synthetic mouse input in headless Chromium, so the event is
+  // raised the way the inner chart raises it
+  await reset(page);
+  await page.evaluate(() => {
+    const el: any = document.querySelector('[data-testid="pvc-drag"]');
+    el.au['ej2-pivot-view'].viewModel.widget.chart.trigger('dragComplete', { name: 'dragComplete', selectedDataValues: [], cancel: false });
+  });
+  await expectEvent(page, 'pvd.dragComplete');
+});

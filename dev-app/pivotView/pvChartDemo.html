@@ -1,2 +1,39 @@
 <template>
+  <demo-section id="pvc-main" title="Pivot chart" description="displayOption Both with the chart as primary view, chart types, series, zoom and every chart event.">
+    <ej2-pivot-view data-testid="pvc-main" e-data-source-settings.bind="dsr" e-height.bind="420"
+      e-display-option.bind="displayOption" e-chart-settings.bind="chartSettings" e-chart-types.bind="chartTypes"
+      e-show-toolbar.bind="true" e-toolbar.bind="['Grid', 'Chart', 'Export']" e-allow-pdf-export.bind="true"
+      e-on-chart-tooltip-render.delegate="log('pvc.chartTooltipRender', $event)"
+      e-on-chart-legend-click.delegate="log('pvc.chartLegendClick', $event)"
+      e-on-before-print.delegate="log('pvc.beforePrint', $event)"
+      e-on-animation-complete.delegate="log('pvc.animationComplete', $event)"
+      e-on-legend-render.delegate="log('pvc.legendRender', $event)"
+      e-on-text-render.delegate="log('pvc.textRender', $event)"
+      e-on-point-render.delegate="log('pvc.pointRender', $event)"
+      e-on-series-render.delegate="log('pvc.seriesRender', $event)"
+      e-on-chart-mouse-move.delegate="log('pvc.chartMouseMove', $event)"
+      e-on-chart-mouse-click.delegate="log('pvc.chartMouseClick', $event)"
+      e-on-point-move.delegate="log('pvc.pointMove', $event)"
+      e-on-chart-mouse-leave.delegate="log('pvc.chartMouseLeave', $event)"
+      e-on-chart-mouse-down.delegate="log('pvc.chartMouseDown', $event)"
+      e-on-chart-mouse-up.delegate="log('pvc.chartMouseUp', $event)"
+      e-on-zoom-complete.delegate="log('pvc.zoomComplete', $event)"
+      e-on-scroll-start.delegate="log('pvc.scrollStart', $event)"
+      e-on-scroll-end.delegate="log('pvc.scrollEnd', $event)"
+      e-on-scroll-changed.delegate="log('pvc.scrollChanged', $event)"
+      e-on-multi-level-label-render.delegate="log('pvc.multiLevelLabelRender', $event)"
+      e-on-chart-loaded.delegate="log('pvc.chartLoaded', $event)"
+      e-on-chart-load.delegate="log('pvc.chartLoad', $event)"
+      e-on-chart-resized.delegate="log('pvc.chartResized', $event)"
+      e-on-chart-axis-label-render.delegate="log('pvc.chartAxisLabelRender', $event)"
+      e-on-multi-level-label-click.delegate="log('pvc.multiLevelLabelClick', $event)"
+      e-on-chart-point-click.delegate="log('pvc.chartPointClick', $event)"
+      e-on-chart-series-created.delegate="log('pvc.chartSeriesCreated', $event)"></ej2-pivot-view>
+  </demo-section>
+
+  <demo-section id="pvc-drag" title="Chart selection by dragging" description="selectionMode DragXY selects the points inside a dragged rectangle and raises dragComplete.">
+    <ej2-pivot-view data-testid="pvc-drag" e-data-source-settings.bind="dragDsr" e-height.bind="360"
+      e-display-option.bind="{ view: 'Chart' }" e-chart-settings.bind="dragChartSettings"
+      e-on-drag-complete.delegate="log('pvd.dragComplete', $event)"></ej2-pivot-view>
+  </demo-section>
 </template>
