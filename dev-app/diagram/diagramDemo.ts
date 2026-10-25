@@ -6,6 +6,7 @@ export class DiagramDemo {
     PLATFORM.moduleName('diagram/diagramDynamicDemo'),
     PLATFORM.moduleName('diagram/diagramFunctionsDemo'),
     PLATFORM.moduleName('diagram/diagramTemplatesDemo'),
-    PLATFORM.moduleName('diagram/diagramEventsDemo')
+    PLATFORM.moduleName('diagram/diagramEventsDemo'),
+    PLATFORM.moduleName('diagram/diagramLayoutDemo')
   ];
 }

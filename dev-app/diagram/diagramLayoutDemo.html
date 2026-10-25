@@ -1,0 +1,40 @@
+<template>
+  <h3>Layouts and data binding</h3>
+
+  <demo-section id="diagram-org" title="Organizational chart from a data source" description="dataSourceSettings creates the nodes, the HierarchicalTree layout arranges them; expand icons collapse a branch.">
+    <button data-testid="org-sideways" click.delegate="changeLayout()">Left to right</button>
+    <ej2-diagram data-testid="diagram-org" e-width="620px" e-height="300px" e-data-source-settings.bind="orgSource"
+      e-layout.bind="orgLayout" e-get-node-defaults.bind="orgNodeDefaults" e-connector-defaults.bind="orgConnectorDefaults"
+      e-on-data-loaded.delegate="log('dataLoaded', $event)"
+      e-on-layout-updated.delegate="log('layoutUpdated', $event)"
+      e-on-expand-state-change.delegate="log('expandStateChange', $event)"
+      e-on-animation-complete.delegate="log('animationComplete', $event)"></ej2-diagram>
+  </demo-section>
+
+  <demo-section id="diagram-mindmap" title="Mind map" description="MindMap layout with a left and a right branch decided by getBranch.">
+    <ej2-diagram data-testid="diagram-mindmap" e-width="620px" e-height="300px" e-nodes.bind="mindNodes"
+      e-connectors.bind="mindConnectors" e-layout.bind="mindLayout" e-node-defaults.bind="common"
+      e-connector-defaults.bind="plainConnectors"></ej2-diagram>
+  </demo-section>
+
+  <demo-section id="diagram-radial" title="Radial tree" description="Nodes are placed on rings around the root.">
+    <ej2-diagram data-testid="diagram-radial" e-width="620px" e-height="320px" e-nodes.bind="radialNodes"
+      e-connectors.bind="radialConnectors" e-layout.bind="radialLayout" e-node-defaults.bind="common"
+      e-connector-defaults.bind="plainConnectors"></ej2-diagram>
+  </demo-section>
+
+  <demo-section id="diagram-symmetric" title="Symmetrical layout" description="Force directed placement.">
+    <ej2-diagram data-testid="diagram-symmetric" e-width="620px" e-height="320px" e-nodes.bind="symNodes"
+      e-connectors.bind="symConnectors" e-layout.bind="symLayout" e-node-defaults.bind="common"
+      e-connector-defaults.bind="plainConnectors"></ej2-diagram>
+  </demo-section>
+
+  <demo-section id="diagram-complex" title="Complex hierarchical tree and flowchart layout" description="Layouts for graphs where a node has several parents.">
+    <ej2-diagram data-testid="diagram-complex" e-width="620px" e-height="360px" e-nodes.bind="complexNodes"
+      e-connectors.bind="complexConnectors" e-layout.bind="complexLayout" e-node-defaults.bind="common"
+      e-connector-defaults.bind="plainConnectors"></ej2-diagram>
+    <ej2-diagram data-testid="diagram-flowlayout" e-width="620px" e-height="360px" e-nodes.bind="flowNodes"
+      e-connectors.bind="flowConnectors" e-layout.bind="flowLayout" e-node-defaults.bind="common"
+      e-connector-defaults.bind="plainConnectors"></ej2-diagram>
+  </demo-section>
+</template>
