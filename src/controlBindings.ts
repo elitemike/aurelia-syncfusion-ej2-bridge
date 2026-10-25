@@ -1357,10 +1357,12 @@ export const ControlBindings = {
     ]
   },
   pivotView: {
+    twoWay: ["dataSourceSettings"],
+    fromView: ["pivotValues"],
     oneWay: [
       "currencyCode", "showFieldList", "gridSettings", "chartSettings", "groupingBarSettings",
-      "hyperlinkSettings", "pageSettings", "pagerSettings", "dataSourceSettings", "editSettings",
-      "displayOption", "virtualScrollSettings", "pivotValues", "showGroupingBar", "showTooltip",
+      "hyperlinkSettings", "pageSettings", "pagerSettings", "editSettings",
+      "displayOption", "virtualScrollSettings", "showGroupingBar", "showTooltip",
       "showToolbar", "toolbar", "showValuesButton", "allowCalculatedField", "enableFieldSearching",
       "enableValueSorting", "allowConditionalFormatting", "allowNumberFormatting", "height", "width",
       "allowExcelExport", "enableVirtualization", "enablePaging", "allowDrillThrough", "allowPdfExport",
@@ -1391,8 +1393,9 @@ export const ControlBindings = {
     ]
   },
   pivotFieldList: {
+    twoWay: ["dataSourceSettings"],
     oneWay: [
-      "dataSourceSettings", "renderMode", "target", "cssClass", "enableHtmlSanitizer",
+      "renderMode", "target", "cssClass", "enableHtmlSanitizer",
       "allowCalculatedField", "enableFieldSearching", "showValuesButton", "allowDeferLayoutUpdate",
       "maxNodeLimitInMemberEditor", "loadOnDemandInMemberEditor", "spinnerTemplate", "aggregateTypes",
       "currencyCode"
@@ -1452,12 +1455,13 @@ export const ControlBindings = {
     ]
   },
   queryBuilder: {
+    twoWay: ["rule"],
     oneWay: [
       "showButtons", "summaryView", "allowValidation", "fieldMode", "columns", "fieldModel",
       "operatorModel", "valueModel", "headerTemplate", "cssClass", "dataSource", "displayMode",
       "sortDirection", "maxGroupCount", "height", "width", "matchCase", "immediateModeDelay",
       "enableNotCondition", "readonly", "addRuleToNewGroups", "autoSelectField", "autoSelectOperator",
-      "separator", "enableSeparateConnector", "rule", "allowDragAndDrop"
+      "separator", "enableSeparateConnector", "allowDragAndDrop"
     ],
     events: [
       "created", "destroyed", "actionBegin", "beforeChange", "change", "dataBound", "ruleChange",
@@ -1524,12 +1528,13 @@ export const ControlBindings = {
     ]
   },
   spreadsheet: {
+    twoWay: ["activeSheetIndex"],
     oneWay: [
       "cssClass", "allowScrolling", "allowResizing", "showAggregate", "showCommentsPane", "enableAIAssist",
       "enableCollaborativeEditing", "enableClipboard", "enableContextMenu", "enableKeyboardNavigation",
       "enableKeyboardShortcut", "allowUndoRedo", "allowWrap", "selectionSettings", "scrollSettings",
-      "aiAssistSettings", "currencyCode", "sheets", "author", "activeSheetIndex", "height",
-      "allowFindAndReplace", "filterCollection", "sortCollection", "width", "showRibbon", "showFormulaBar",
+      "aiAssistSettings", "currencyCode", "sheets", "author", "height", "filterCollection", "sortCollection",
+      "allowFindAndReplace", "width", "showRibbon", "showFormulaBar",
       "showSheetTabs", "allowEditing", "allowOpen", "allowSave", "allowSorting", "allowFiltering",
       "allowNumberFormatting", "allowCellFormatting", "allowHyperlink", "enableNotes", "allowInsert",
       "allowDelete", "allowMerge", "allowDataValidation", "allowImage", "allowChart", "allowAutoFill",

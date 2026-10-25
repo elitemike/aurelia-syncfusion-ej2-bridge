@@ -1,7 +1,57 @@
 <template>
   <h2>Pivot View</h2>
 
-  <demo-section id="pivotView-basic" title="Basic" description="Pivot View rendered with its default options.">
-    <ej2-pivot-view data-testid="pivotView-basic"></ej2-pivot-view>
+  <demo-section id="pv-core" title="Default functionalities" description="Local data with grouping bar, field list, selection, resizing, reordering, drilling, filtering and sorting; every grid, engine and field related event.">
+    <ej2-pivot-view if.bind="showMain" data-testid="pv-core" e-data-source-settings.two-way="dsr"
+      e-pivot-values.from-view="pivotValues" e-height.bind="420" e-width="100%" e-css-class="pv-class"
+      e-show-grouping-bar.bind="true" e-show-field-list.bind="true" e-grid-settings.bind="gridSettings"
+      e-grouping-bar-settings.bind="groupingBarSettings" e-show-tooltip.bind="true" e-show-values-button.bind="true"
+      e-enable-value-sorting.bind="true" e-allow-calculated-field.bind="true" e-enable-field-searching.bind="true"
+      e-currency-code="USD" e-aggregate-types.bind="aggregateTypes" e-enable-html-sanitizer.bind="true"
+      e-allow-defer-layout-update.bind="false" e-allow-data-compression.bind="false"
+      e-on-load.delegate="log('pv.load', $event)"
+      e-on-engine-populating.delegate="log('pv.enginePopulating', $event)"
+      e-on-engine-populated.delegate="log('pv.enginePopulated', $event)"
+      e-on-data-bound.delegate="log('pv.dataBound', $event)"
+      e-on-created.delegate="log('pv.created', $event)"
+      e-on-destroyed.trigger="onDestroyed()"
+      e-on-query-cell-info.delegate="log('pv.queryCellInfo', $event)"
+      e-on-header-cell-info.delegate="log('pv.headerCellInfo', $event)"
+      e-on-resizing.delegate="log('pv.resizing', $event)"
+      e-on-resize-stop.delegate="log('pv.resizeStop', $event)"
+      e-on-column-drag-start.delegate="log('pv.columnDragStart', $event)"
+      e-on-column-drag.delegate="log('pv.columnDrag', $event)"
+      e-on-column-drop.delegate="log('pv.columnDrop', $event)"
+      e-on-before-columns-render.delegate="log('pv.beforeColumnsRender', $event)"
+      e-on-selected.delegate="log('pv.selected', $event)"
+      e-on-selecting.delegate="log('pv.selecting', $event)"
+      e-on-cell-deselected.delegate="log('pv.cellDeselected', $event)"
+      e-on-row-selected.delegate="log('pv.rowSelected', $event)"
+      e-on-row-deselected.delegate="log('pv.rowDeselected', $event)"
+      e-on-cell-selecting.delegate="log('pv.cellSelecting', $event)"
+      e-on-cell-selected.delegate="log('pv.cellSelected', $event)"
+      e-on-cell-click.delegate="log('pv.cellClick', $event)"
+      e-on-drill.delegate="log('pv.drill', $event)"
+      e-on-member-filtering.delegate="log('pv.memberFiltering', $event)"
+      e-on-member-editor-open.delegate="log('pv.memberEditorOpen', $event)"
+      e-on-on-field-dropped.delegate="log('pv.onFieldDropped', $event)"
+      e-on-field-drop.delegate="log('pv.fieldDrop', $event)"
+      e-on-field-drag-start.delegate="log('pv.fieldDragStart', $event)"
+      e-on-field-remove.delegate="log('pv.fieldRemove', $event)"
+      e-on-field-list-refreshed.delegate="log('pv.fieldListRefreshed', $event)"
+      e-on-aggregate-menu-open.delegate="log('pv.aggregateMenuOpen', $event)"
+      e-on-aggregate-cell-info.delegate="log('pv.aggregateCellInfo', $event)"
+      e-on-on-headers-sort.delegate="log('pv.onHeadersSort', $event)"
+      e-on-calculated-field-create.delegate="log('pv.calculatedFieldCreate', $event)"
+      e-on-action-begin.delegate="log('pv.actionBegin', $event)"
+      e-on-action-complete.delegate="log('pv.actionComplete', $event)"
+      e-on-action-failure.delegate="log('pv.actionFailure', $event)"
+      e-on-before-service-invoke.delegate="log('pv.beforeServiceInvoke', $event)"
+      e-on-after-service-invoke.delegate="log('pv.afterServiceInvoke', $event)"></ej2-pivot-view>
+    <div class="demo-output">Destroyed: <span data-testid="pv-destroyed">${destroyedCount}</span></div>
+    <button data-testid="pv-replace" click.delegate="replaceDsr()">Replace dataSourceSettings</button>
+    <button data-testid="pv-toggle" click.delegate="showMain = !showMain">Toggle</button>
   </demo-section>
+
+  <compose repeat.for="part of parts" view-model.bind="part"></compose>
 </template>

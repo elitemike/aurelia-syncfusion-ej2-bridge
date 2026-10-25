@@ -1,0 +1,21 @@
+<template>
+  <demo-section id="pve-drill" title="Drill through" description="Double-clicking a value cell lists the records behind it (at most maxRowsInDrillThrough).">
+    <ej2-pivot-view data-testid="pve-drill" e-data-source-settings.bind="drillDsr" e-height.bind="300" e-width.bind="900"
+      e-allow-drill-through.bind="true" e-max-rows-in-drill-through.bind="5" e-grid-settings.bind="{ columnWidth: 120 }"
+      e-on-drill-through.delegate="log('pve.drillThrough', $event)"
+      e-on-begin-drill-through.delegate="log('pve.beginDrillThrough', $event)"></ej2-pivot-view>
+  </demo-section>
+
+  <demo-section id="pve-edit" title="Editing" description="editSettings makes the drill through grid editable: records can be changed, added and deleted.">
+    <ej2-pivot-view data-testid="pve-edit" e-data-source-settings.bind="editDsr" e-height.bind="300" e-width.bind="900"
+      e-allow-drill-through.bind="true" e-edit-settings.bind="editSettings" e-grid-settings.bind="{ columnWidth: 120 }"
+      e-on-edit-completed.delegate="log('pve.editCompleted', $event)"
+      e-on-drill-through.delegate="log('pve.edit.drillThrough', $event)"></ej2-pivot-view>
+  </demo-section>
+
+  <demo-section id="pve-inline" title="Inline editing" description="allowInlineEditing edits a value cell in place, editCompleted is raised when the editor loses focus.">
+    <ej2-pivot-view data-testid="pve-inline" e-data-source-settings.bind="inlineDsr" e-height.bind="300" e-width.bind="900"
+      e-allow-drill-through.bind="true" e-edit-settings.bind="inlineSettings" e-grid-settings.bind="{ columnWidth: 120 }"
+      e-on-edit-completed.delegate="log('pve.inline.editCompleted', $event)"></ej2-pivot-view>
+  </demo-section>
+</template>

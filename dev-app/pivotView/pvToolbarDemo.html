@@ -1,0 +1,29 @@
+<template>
+  <demo-section id="pvt-toolbar" title="Toolbar, reports, export and formatting" description="Toolbar with report management (in-memory), Excel / PDF export, conditional and number formatting.">
+    <ej2-pivot-view data-testid="pvt-toolbar" e-data-source-settings.bind="dsr" e-height.bind="380"
+      e-show-toolbar.bind="true" e-toolbar.bind="toolbar" e-show-field-list.bind="true"
+      e-allow-excel-export.bind="true" e-allow-pdf-export.bind="true" e-export-all-pages.bind="true"
+      e-allow-conditional-formatting.bind="true" e-allow-number-formatting.bind="true"
+      e-allow-calculated-field.bind="true" e-grid-settings.bind="{ columnWidth: 120 }"
+      e-on-toolbar-render.delegate="log('pvt.toolbarRender', $event)"
+      e-on-toolbar-click.delegate="log('pvt.toolbarClick', $event)"
+      e-on-new-report.delegate="log('pvt.newReport', $event)"
+      e-on-save-report.delegate="saveReport($event)"
+      e-on-fetch-report.delegate="fetchReport($event)"
+      e-on-load-report.delegate="loadReport($event)"
+      e-on-rename-report.delegate="renameReport($event)"
+      e-on-remove-report.delegate="removeReport($event)"
+      e-on-conditional-formatting.delegate="log('pvt.conditionalFormatting', $event)"
+      e-on-number-formatting.delegate="log('pvt.numberFormatting', $event)"
+      e-on-before-excel-export.delegate="log('pvt.beforeExcelExport', $event)"
+      e-on-excel-query-cell-info.delegate="log('pvt.excelQueryCellInfo', $event)"
+      e-on-excel-header-query-cell-info.delegate="log('pvt.excelHeaderQueryCellInfo', $event)"
+      e-on-pdf-header-query-cell-info.delegate="log('pvt.pdfHeaderQueryCellInfo', $event)"
+      e-on-pdf-query-cell-info.delegate="log('pvt.pdfQueryCellInfo', $event)"
+      e-on-before-pdf-export.delegate="log('pvt.beforePdfExport', $event)"
+      e-on-on-pdf-cell-render.delegate="log('pvt.onPdfCellRender', $event)"
+      e-on-before-export.delegate="log('pvt.beforeExport', $event)"
+      e-on-export-complete.delegate="log('pvt.exportComplete', $event)"></ej2-pivot-view>
+    <div class="demo-output">Stored reports: <code data-testid="pvt-reports">${reports.length}</code></div>
+  </demo-section>
+</template>

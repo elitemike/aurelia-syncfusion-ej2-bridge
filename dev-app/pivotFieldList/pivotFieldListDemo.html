@@ -1,7 +1,57 @@
 <template>
   <h2>Pivot Field List</h2>
 
-  <demo-section id="pivotFieldList-basic" title="Basic" description="Pivot Field List rendered with its default options.">
-    <ej2-pivot-field-list data-testid="pivotFieldList-basic"></ej2-pivot-field-list>
+  <demo-section id="pfl-fixed" title="Fixed mode (default functionalities)" description="Field list rendered in place with calculated fields, field search, value buttons and every event of the control.">
+    <ej2-pivot-field-list if.bind="showMain" data-testid="pfl-fixed" e-data-source-settings.two-way="dsr"
+      e-render-mode="Fixed" e-css-class="pfl-class" e-enable-html-sanitizer.bind="true"
+      e-allow-calculated-field.bind="true" e-enable-field-searching.bind="true" e-show-values-button.bind="true"
+      e-allow-defer-layout-update.bind="true" e-max-node-limit-in-member-editor.bind="50"
+      e-load-on-demand-in-member-editor.bind="true" e-spinner-template.bind="spinnerTemplate"
+      e-aggregate-types.bind="aggregateTypes" e-currency-code="USD"
+      e-on-load.delegate="log('pfl.load', $event)"
+      e-on-engine-populating.delegate="log('pfl.enginePopulating', $event)"
+      e-on-member-filtering.delegate="log('pfl.memberFiltering', $event)"
+      e-on-engine-populated.delegate="log('pfl.enginePopulated', $event)"
+      e-on-on-field-dropped.delegate="log('pfl.onFieldDropped', $event)"
+      e-on-field-drop.delegate="log('pfl.fieldDrop', $event)"
+      e-on-field-drag-start.delegate="log('pfl.fieldDragStart', $event)"
+      e-on-aggregate-cell-info.delegate="log('pfl.aggregateCellInfo', $event)"
+      e-on-member-editor-open.delegate="log('pfl.memberEditorOpen', $event)"
+      e-on-calculated-field-create.delegate="log('pfl.calculatedFieldCreate', $event)"
+      e-on-aggregate-menu-open.delegate="log('pfl.aggregateMenuOpen', $event)"
+      e-on-field-remove.delegate="log('pfl.fieldRemove', $event)"
+      e-on-data-bound.delegate="log('pfl.dataBound', $event)"
+      e-on-created.delegate="log('pfl.created', $event)"
+      e-on-destroyed.trigger="onDestroyed()"
+      e-on-before-service-invoke.delegate="log('pfl.beforeServiceInvoke', $event)"
+      e-on-after-service-invoke.delegate="log('pfl.afterServiceInvoke', $event)"
+      e-on-action-begin.delegate="log('pfl.actionBegin', $event)"
+      e-on-action-complete.delegate="log('pfl.actionComplete', $event)"
+      e-on-action-failure.delegate="log('pfl.actionFailure', $event)"
+      e-on-on-headers-sort.delegate="log('pfl.onHeadersSort', $event)"></ej2-pivot-field-list>
+    <div class="demo-output">Destroyed: <span data-testid="pfl-destroyed">${destroyedCount}</span></div>
+    <button data-testid="pfl-replace" click.delegate="replaceDsr()">Replace dataSourceSettings</button>
+    <button data-testid="pfl-toggle" click.delegate="showMain = !showMain">Toggle</button>
+  </demo-section>
+
+  <demo-section id="pfl-actions" title="Actions" description="Without deferred layout updates every user action completes immediately and raises actionBegin / actionComplete.">
+    <ej2-pivot-field-list data-testid="pfl-actions" e-data-source-settings.bind="actionsDsr" e-render-mode="Fixed"
+      e-on-action-begin.delegate="log('pflA.actionBegin', $event)"
+      e-on-action-complete.delegate="log('pflA.actionComplete', $event)"
+      e-on-action-failure.delegate="log('pflA.actionFailure', $event)"></ej2-pivot-field-list>
+  </demo-section>
+
+  <demo-section id="pfl-server" title="Server mode" description="mode Server posts every request to the engine url (stubbed in the tests): beforeServiceInvoke and afterServiceInvoke wrap the request.">
+    <button data-testid="pfl-server-start" click.delegate="showServer = true" if.bind="!showServer">Connect to the engine service</button>
+    <ej2-pivot-field-list if.bind="showServer" data-testid="pfl-server" e-data-source-settings.bind="serverDsr" e-render-mode="Fixed"
+      e-on-before-service-invoke.delegate="log('pflS.beforeServiceInvoke', $event)"
+      e-on-after-service-invoke.delegate="log('pflS.afterServiceInvoke', $event)"
+      e-on-action-failure.delegate="log('pflS.actionFailure', $event)"></ej2-pivot-field-list>
+  </demo-section>
+
+  <demo-section id="pfl-popup" title="Popup mode" description="renderMode Popup shows a toggle button that opens the field list inside the target element.">
+    <div id="pfl-popup-target" data-testid="pfl-popup-target" style="min-height: 320px; position: relative;"></div>
+    <ej2-pivot-field-list data-testid="pfl-popup" e-data-source-settings.bind="popupDsr" e-render-mode="Popup"
+      e-target="#pfl-popup-target"></ej2-pivot-field-list>
   </demo-section>
 </template>

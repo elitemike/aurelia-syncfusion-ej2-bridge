@@ -1,7 +1,61 @@
 <template>
   <h2>Spreadsheet</h2>
 
-  <demo-section id="spreadsheet-basic" title="Basic" description="Spreadsheet rendered with its default options.">
-    <ej2-spreadsheet data-testid="spreadsheet-basic"></ej2-spreadsheet>
+  <demo-section id="ss-main" title="Default functionalities" description="Data bound sheets with ribbon, formula bar, sheet tabs, editing, formatting, sorting, filtering and every action event.">
+    <ej2-spreadsheet if.bind="showMain" data-testid="ss-main" e-sheets.bind="sheets" e-active-sheet-index.two-way="activeSheetIndex"
+      e-filter-collection.bind="filterCollection" e-sort-collection.bind="sortCollection"
+      e-height.bind="420" e-width="100%" e-css-class="ss-class" e-author="Test Author" e-currency-code="USD"
+      e-show-ribbon.bind="true" e-show-formula-bar.bind="true" e-show-sheet-tabs.bind="true" e-show-aggregate.bind="true"
+      e-allow-scrolling.bind="true" e-allow-resizing.bind="true" e-allow-editing.bind="true" e-allow-undo-redo.bind="true"
+      e-allow-wrap.bind="true" e-allow-find-and-replace.bind="true" e-allow-sorting.bind="true" e-allow-filtering.bind="true"
+      e-allow-number-formatting.bind="true" e-allow-cell-formatting.bind="true" e-allow-hyperlink.bind="true"
+      e-allow-insert.bind="true" e-allow-delete.bind="true" e-allow-merge.bind="true" e-allow-data-validation.bind="true"
+      e-allow-image.bind="true" e-allow-chart.bind="true" e-allow-auto-fill.bind="true" e-allow-conditional-format.bind="true"
+      e-allow-freeze-pane.bind="true" e-allow-print.bind="true" e-enable-notes.bind="true" e-allow-open.bind="false" e-allow-save.bind="false"
+      e-enable-clipboard.bind="true" e-enable-context-menu.bind="true" e-enable-keyboard-navigation.bind="true"
+      e-enable-keyboard-shortcut.bind="true" e-selection-settings.bind="selectionSettings"
+      e-scroll-settings.bind="scrollSettings" e-auto-fill-settings.bind="autoFillSettings" e-cell-style.bind="cellStyle"
+      e-defined-names.bind="definedNames" e-calculation-mode="Automatic" e-list-separator=","
+      e-on-created.delegate="log('ss.created', $event)"
+      e-on-destroyed.trigger="onDestroyed()"
+      e-on-prompt-request.delegate="log('ss.promptRequest', $event)"
+      e-on-prompt-response.delegate="log('ss.promptResponse', $event)"
+      e-on-before-cell-render.delegate="log('ss.beforeCellRender', $event)"
+      e-on-before-select.delegate="log('ss.beforeSelect', $event)"
+      e-on-select.delegate="log('ss.select', $event)"
+      e-on-context-menu-before-open.delegate="log('ss.contextMenuBeforeOpen', $event)"
+      e-on-file-menu-before-open.delegate="log('ss.fileMenuBeforeOpen', $event)"
+      e-on-context-menu-before-close.delegate="log('ss.contextMenuBeforeClose', $event)"
+      e-on-dialog-before-open.delegate="log('ss.dialogBeforeOpen', $event)"
+      e-on-file-menu-before-close.delegate="log('ss.fileMenuBeforeClose', $event)"
+      e-on-context-menu-item-select.delegate="log('ss.contextMenuItemSelect', $event)"
+      e-on-file-menu-item-select.delegate="log('ss.fileMenuItemSelect', $event)"
+      e-on-before-data-bound.delegate="log('ss.beforeDataBound', $event)"
+      e-on-data-bound.delegate="log('ss.dataBound', $event)"
+      e-on-data-source-changed.delegate="log('ss.dataSourceChanged', $event)"
+      e-on-cell-edit.delegate="log('ss.cellEdit', $event)"
+      e-on-cell-editing.delegate="log('ss.cellEditing', $event)"
+      e-on-cell-edited.delegate="log('ss.cellEdited', $event)"
+      e-on-cell-save.delegate="log('ss.cellSave', $event)"
+      e-on-before-cell-save.delegate="log('ss.beforeCellSave', $event)"
+      e-on-before-sort.delegate="log('ss.beforeSort', $event)"
+      e-on-before-hyperlink-create.delegate="log('ss.beforeHyperlinkCreate', $event)"
+      e-on-after-hyperlink-create.delegate="log('ss.afterHyperlinkCreate', $event)"
+      e-on-before-hyperlink-click.delegate="log('ss.beforeHyperlinkClick', $event)"
+      e-on-after-hyperlink-click.delegate="log('ss.afterHyperlinkClick', $event)"
+      e-on-before-conditional-format.delegate="log('ss.beforeConditionalFormat', $event)"
+      e-on-action-begin.delegate="log('ss.actionBegin', $event)"
+      e-on-action-complete.delegate="log('ss.actionComplete', $event)"
+      e-on-sort-complete.delegate="log('ss.sortComplete', $event)"
+      e-on-before-cell-format.delegate="log('ss.beforeCellFormat', $event)"
+      e-on-query-cell-info.delegate="log('ss.queryCellInfo', $event)"
+      e-on-before-cell-update.delegate="log('ss.beforeCellUpdate', $event)"></ej2-spreadsheet>
+    <div class="demo-output">Active sheet: <code data-testid="ss-active">${activeSheetIndex}</code>
+      Destroyed: <span data-testid="ss-destroyed">${destroyedCount}</span></div>
+    <button data-testid="ss-sheet-1" click.delegate="setSheet(1)">Go to sheet 2</button>
+    <button data-testid="ss-sheet-0" click.delegate="setSheet(0)">Go to sheet 1</button>
+    <button data-testid="ss-toggle" click.delegate="showMain = !showMain">Toggle</button>
   </demo-section>
+
+  <compose repeat.for="part of parts" view-model.bind="part"></compose>
 </template>

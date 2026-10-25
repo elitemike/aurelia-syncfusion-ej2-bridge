@@ -1,7 +1,53 @@
 <template>
   <h2>Query Builder</h2>
 
-  <demo-section id="queryBuilder-basic" title="Basic" description="Query Builder rendered with its default options.">
-    <ej2-query-builder data-testid="queryBuilder-basic"></ej2-query-builder>
+  <demo-section id="qb-main" title="Default functionalities" description="Columns, a two-way rule, drag and drop of rules, NOT conditions and every event of the control.">
+    <ej2-query-builder if.bind="showMain" data-testid="qb-main" e-columns.bind="columns" e-rule.two-way="mainRule"
+      e-allow-drag-and-drop.bind="true" e-enable-not-condition.bind="true" e-match-case.bind="true"
+      e-max-group-count.bind="5" e-css-class="qb-main-class" e-width="100%" e-height="auto"
+      e-immediate-mode-delay.bind="0" e-show-buttons.bind="mainButtons" e-allow-validation.bind="false"
+      e-on-created.delegate="log('created', $event)"
+      e-on-destroyed.trigger="onDestroyed()"
+      e-on-before-change.delegate="log('beforeChange', $event)"
+      e-on-change.delegate="log('change', $event)"
+      e-on-data-bound.delegate="log('dataBound', $event)"
+      e-on-rule-change.delegate="log('ruleChange', $event)"
+      e-on-drag-start.delegate="log('dragStart', $event)"
+      e-on-drag.delegate="log('drag', $event)"
+      e-on-drop.delegate="log('drop', $event)"></ej2-query-builder>
+    <div class="demo-output">Rules: <code data-testid="qb-main-count">${mainRule.rules.length}</code>
+      Condition: <code data-testid="qb-main-condition">${mainRule.condition}</code>
+      Destroyed: <span data-testid="qb-destroyed">${destroyedCount}</span></div>
+    <button data-testid="qb-apply-rule" click.delegate="applyNewRule()">Apply rule from view-model</button>
+    <button data-testid="qb-toggle" click.delegate="showMain = !showMain">Toggle</button>
+  </demo-section>
+
+  <demo-section id="qb-data" title="Data source" description="Columns derived from a local data source, sorted descending with a custom separator and separate connectors.">
+    <ej2-query-builder data-testid="qb-data" e-data-source.bind="employees" e-sort-direction="Descending"
+      e-separator="|" e-enable-separate-connector.bind="true"
+      ></ej2-query-builder>
+  </demo-section>
+
+  <demo-section id="qb-validation" title="Validation" description="allowValidation highlights empty values.">
+    <ej2-query-builder data-testid="qb-validation" e-columns.bind="validationColumns" e-rule.bind="validationRule"
+      e-allow-validation.bind="true" e-auto-select-field.bind="true" e-auto-select-operator.bind="true" e-add-rule-to-new-groups.bind="true"></ej2-query-builder>
+  </demo-section>
+
+  <demo-section id="qb-look" title="Vertical mode, models and readonly" description="Vertical layout, field/operator/value models, readonly and show buttons.">
+    <ej2-query-builder data-testid="qb-look" e-columns.bind="columns" e-rule.bind="lookRule"
+      e-display-mode="Vertical" e-field-model.bind="fieldModel" e-operator-model.bind="operatorModel"
+      e-value-model.bind="valueModel" e-readonly.bind="readonly" e-field-mode="Default"
+      e-show-buttons.bind="lookButtons"></ej2-query-builder>
+    <button data-testid="qb-readonly" click.delegate="readonly = !readonly">Toggle readonly</button>
+  </demo-section>
+
+  <demo-section id="qb-summary" title="Summary view" description="summaryView renders the rule as read-only text with an edit button.">
+    <ej2-query-builder data-testid="qb-summary" e-columns.bind="columns" e-rule.bind="lookRule"
+      e-summary-view.bind="true"></ej2-query-builder>
+  </demo-section>
+
+  <demo-section id="qb-header" title="Header template" description="headerTemplate replaces the AND/OR header, actionBegin reports the template requests.">
+    <ej2-query-builder data-testid="qb-header" e-columns.bind="columns" e-rule.bind="lookRule"
+      e-header-template.bind="headerTemplate" e-on-action-begin.delegate="log('headerActionBegin', $event)"></ej2-query-builder>
   </demo-section>
 </template>

@@ -1,0 +1,29 @@
+<template>
+  <demo-section id="pvx-templates" title="Templates" description="cellTemplate, tooltipTemplate, spinnerTemplate and toolbarTemplate (a toolbar element selected by id).">
+    <div id="pv-toolbar-template" data-testid="pv-toolbar-template"></div>
+    <ej2-pivot-view data-testid="pvx-templates" e-data-source-settings.bind="templateDsr" e-height.bind="300" e-width.bind="900"
+      e-cell-template.bind="cellTemplate" e-tooltip-template.bind="tooltipTemplate" e-show-tooltip.bind="true"
+      e-spinner-template.bind="spinnerTemplate" e-show-toolbar.bind="true" e-toolbar-template.bind="toolbarTemplate"
+      e-grid-settings.bind="{ columnWidth: 120 }"></ej2-pivot-view>
+  </demo-section>
+
+  <demo-section id="pvx-links" title="Hyperlinks" description="hyperlinkSettings turns row headers and value cells into links, hyperlinkCellClick reports the click.">
+    <ej2-pivot-view data-testid="pvx-links" e-data-source-settings.bind="linkDsr" e-height.bind="300" e-width.bind="900"
+      e-hyperlink-settings.bind="hyperlinkSettings" e-grid-settings.bind="{ columnWidth: 120 }"
+      e-max-node-limit-in-member-editor.bind="40" e-load-on-demand-in-member-editor.bind="true"
+      e-on-hyperlink-cell-click.delegate="onLinkClick($event)"></ej2-pivot-view>
+    <div class="demo-output">Last link: <code data-testid="pvx-last-link">${lastLink}</code></div>
+  </demo-section>
+
+  <demo-section id="pvx-menu" title="Context menu" description="gridSettings.contextMenuItems adds a context menu to the cells, contextMenuOpen and contextMenuClick report its use.">
+    <ej2-pivot-view data-testid="pvx-menu" e-data-source-settings.bind="menuDsr" e-height.bind="300" e-width.bind="900"
+      e-grid-settings.bind="menuGridSettings" e-allow-drill-through.bind="true"
+      e-on-context-menu-open.delegate="log('pvx.contextMenuOpen', $event)"
+      e-on-context-menu-click.delegate="log('pvx.contextMenuClick', $event)"></ej2-pivot-view>
+  </demo-section>
+
+  <demo-section id="pvx-group" title="Number grouping" description="allowGrouping with a number group setting buckets Units Sold into ranges.">
+    <ej2-pivot-view data-testid="pvx-group" e-data-source-settings.bind="groupDsr" e-height.bind="300" e-width.bind="900"
+      e-allow-grouping.bind="true" e-show-grouping-bar.bind="true" e-grid-settings.bind="{ columnWidth: 120 }"></ej2-pivot-view>
+  </demo-section>
+</template>

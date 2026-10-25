@@ -1,0 +1,13 @@
+<template>
+  <demo-section id="pvl-virtual" title="Virtual scrolling" description="enableVirtualization renders only the rows and columns in view (4320 records, 720 rows).">
+    <ej2-pivot-view data-testid="pvl-virtual" e-data-source-settings.bind="virtualDsr" e-height.bind="320" e-width.bind="900"
+      e-enable-virtualization.bind="true" e-virtual-scroll-settings.bind="virtualScrollSettings"
+      e-grid-settings.bind="gridSettings"></ej2-pivot-view>
+  </demo-section>
+
+  <demo-section id="pvl-paging" title="Paging" description="enablePaging splits the report into row and column pages with a pager.">
+    <ej2-pivot-view data-testid="pvl-paging" e-data-source-settings.bind="pagingDsr" e-height.bind="420" e-width.bind="900"
+      e-enable-paging.bind="true" e-page-settings.bind="pageSettings" e-pager-settings.bind="pagerSettings"
+      e-grid-settings.bind="gridSettings"></ej2-pivot-view>
+  </demo-section>
+</template>
