@@ -1435,12 +1435,13 @@ export const ControlBindings = {
     ]
   },
   queryBuilder: {
+    twoWay: ["rule"],
     oneWay: [
       "showButtons", "summaryView", "allowValidation", "fieldMode", "columns", "fieldModel",
       "operatorModel", "valueModel", "headerTemplate", "cssClass", "dataSource", "displayMode",
       "sortDirection", "maxGroupCount", "height", "width", "matchCase", "immediateModeDelay",
       "enableNotCondition", "readonly", "addRuleToNewGroups", "autoSelectField", "autoSelectOperator",
-      "separator", "enableSeparateConnector", "rule", "allowDragAndDrop"
+      "separator", "enableSeparateConnector", "allowDragAndDrop"
     ],
     events: [
       "created", "destroyed", "actionBegin", "beforeChange", "change", "dataBound", "ruleChange",
