@@ -8,7 +8,7 @@
         e-on-created.delegate="log('created', $event)"></ej2-overview>
     </div>
     <button data-testid="overview-switch" click.delegate="useOther()">Show the second diagram</button>
-    <ej2-diagram id="ov-diagram-2" data-testid="overview-diagram-2" e-width="480px" e-height="200px" e-nodes.bind="otherNodes" e-scroll-settings.bind="scroll"></ej2-diagram>
+    <ej2-diagram id="ov-diagram-2" data-testid="overview-diagram-2" e-width="320px" e-height="200px" e-nodes.bind="otherNodes" e-scroll-settings.bind="scroll"></ej2-diagram>
   </demo-section>
 
   <demo-section id="overview-before" title="Overview declared before its diagram" description="The overview waits until the diagram it mirrors is rendered.">
