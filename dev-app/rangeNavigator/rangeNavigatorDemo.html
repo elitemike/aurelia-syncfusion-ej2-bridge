@@ -1,7 +1,93 @@
 <template>
   <h2>Range Navigator</h2>
 
-  <demo-section id="rangeNavigator-basic" title="Basic" description="Range Navigator rendered with its default options.">
-    <ej2-range-navigator data-testid="rangeNavigator-basic"></ej2-range-navigator>
+  <demo-section id="rn-basic" title="Default" description="A DateTime range navigator with an area series, an always visible tooltip and a two-way bound selection.">
+    <ej2-range-navigator data-testid="rn-basic" view-model.ref="rangeVm" e-width="100%" e-height="120px" e-value-type="DateTime"
+      e-data-source.bind="daily" e-x-name.bind="xName" e-y-name.bind="yName" e-series.bind="areaSeries"
+      e-tooltip.bind="tooltip" e-value.two-way="value"
+      e-on-load.delegate="count('load', $event)"
+      e-on-loaded.delegate="count('loaded', $event)"
+      e-on-changed.delegate="count('changed', $event)"
+      e-on-label-render.delegate="onLabelRender($event)"
+      e-on-tooltip-render.delegate="count('tooltipRender', $event)"
+      e-on-selector-render.delegate="count('selectorRender', $event)"></ej2-range-navigator>
+    <div class="demo-output">
+      Value: <code data-testid="rn-value-out">${valueText}</code>
+      Changed: <span data-testid="rn-changed-count">${counts.changed}</span> <code data-testid="rn-changed-out">${changed}</code>
+      Load: <span data-testid="rn-load">${counts.load}</span>
+      Loaded: <span data-testid="rn-loaded">${counts.loaded}</span>
+      Label render: <span data-testid="rn-label-render">${counts.labelRender}</span>
+      Tooltip render: <span data-testid="rn-tooltip-render">${counts.tooltipRender}</span> <code data-testid="rn-tooltip-text">${tooltipText}</code>
+      Selector render: <span data-testid="rn-selector-render">${counts.selectorRender}</span>
+    </div>
+    <button data-testid="rn-set-value" click.delegate="setValue()">Set Jan 5 - Jan 25</button>
+  </demo-section>
+
+  <demo-section id="rn-types" title="Series types and axis" description="Column, StepLine, Spline and SplineArea series, a numeric axis with minimum, maximum and interval, and a logarithmic axis.">
+    <ej2-range-navigator data-testid="rn-column" e-width="100%" e-height="110px" e-value-type="Double" e-data-source.bind="numeric" e-x-name="x" e-y-name="y"
+      e-series.bind="columnSeries" e-minimum.bind="0" e-maximum.bind="49" e-interval.bind="7" e-value.two-way="numericValue"
+      e-on-changed.delegate="count('changed', $event)"></ej2-range-navigator>
+    <div class="demo-output">Numeric range: <code data-testid="rn-numeric-out">${numericValue.join('..')}</code></div>
+    <ej2-range-navigator data-testid="rn-step" e-width="100%" e-height="110px" e-value-type="Double" e-data-source.bind="numeric" e-x-name="x" e-y-name="y" e-series.bind="stepSeries"></ej2-range-navigator>
+    <ej2-range-navigator data-testid="rn-spline" e-width="100%" e-height="110px" e-value-type="Double" e-data-source.bind="numeric" e-x-name="x" e-y-name="y" e-series.bind="splineSeries"></ej2-range-navigator>
+    <ej2-range-navigator data-testid="rn-spline-area" e-width="100%" e-height="110px" e-value-type="Double" e-data-source.bind="numeric" e-x-name="x" e-y-name="y" e-series.bind="splineAreaSeries"></ej2-range-navigator>
+    <ej2-range-navigator data-testid="rn-own-data" e-width="100%" e-height="110px" e-value-type="DateTime" e-series.bind="seriesWithOwnData"></ej2-range-navigator>
+    <ej2-range-navigator data-testid="rn-log" e-width="100%" e-height="110px" e-value-type="Logarithmic" e-log-base.bind="10" e-data-source.bind="logs" e-x-name="x" e-y-name="y" e-series.bind="logSeries"></ej2-range-navigator>
+  </demo-section>
+
+  <demo-section id="rn-data" title="Data manager query" description="dataSource is a DataManager and query limits the rows that are bound.">
+    <ej2-range-navigator data-testid="rn-query" e-width="100%" e-height="110px" e-value-type="DateTime" e-data-source.bind="manager" e-query.bind="query"
+      e-x-name="x" e-y-name="y" e-series.bind="areaSeries"></ej2-range-navigator>
+  </demo-section>
+
+  <demo-section id="rn-period" title="Period selector" description="periodSelectorSettings add buttons that select a time span, selectedPeriod is reported by changed.">
+    <ej2-range-navigator data-testid="rn-period" e-width="100%" e-height="150px" e-value-type="DateTime" e-data-source.bind="daily" e-x-name="x" e-y-name="y"
+      e-series.bind="areaSeries" e-period-selector-settings.bind="periodSelector"
+      e-on-changed.delegate="count('changed', $event)"></ej2-range-navigator>
+    <div class="demo-output">Period: <code data-testid="rn-period-out">${period}</code></div>
+  </demo-section>
+
+  <demo-section id="rn-lightweight" title="Lightweight and disabled" description="Without a series the navigator is a lightweight slider, disableRangeSelector blocks the interaction.">
+    <ej2-range-navigator data-testid="rn-light" e-width="100%" e-height="80px" e-value-type="Double" e-minimum.bind="0" e-maximum.bind="100" e-interval.bind="10"
+      e-tooltip.bind="{ enable: true }"></ej2-range-navigator>
+    <ej2-range-navigator data-testid="rn-disabled" e-width="100%" e-height="110px" e-value-type="Double" e-data-source.bind="numeric" e-x-name="x" e-y-name="y"
+      e-series.bind="columnSeries" e-disable-range-selector.bind="true" e-value.one-way="disabledValue"></ej2-range-navigator>
+  </demo-section>
+
+  <demo-section id="rn-look" title="Customization" description="Thumb and region styles, labels, grid and tick lines, border, background, margin, theme, snapping, deferred update and grouping.">
+    <ej2-range-navigator data-testid="rn-look" e-width="100%" e-height="150px" e-value-type="DateTime" e-data-source.bind="daily" e-x-name="x" e-y-name="y"
+      e-series.bind="lookSeries" e-navigator-style-settings.bind="styleSettings" e-label-style.bind="labelStyle" e-major-grid-lines.bind="gridLines"
+      e-major-tick-lines.bind="tickLines" e-navigator-border.bind="navigatorBorder" e-background="#f1f8e9" e-margin.bind="margin" e-theme="Bootstrap5"
+      e-animation-duration.bind="0" e-allow-snapping.bind="true" e-enable-deferred-update.bind="true" e-allow-interval-data.bind="false"
+      e-on-changed.delegate="count('changed', $event)"></ej2-range-navigator>
+    <ej2-range-navigator data-testid="rn-labels" e-width="100%" e-height="150px" e-value-type="DateTime" e-data-source.bind="daily" e-x-name="x" e-y-name="y"
+      e-series.bind="lookSeries" e-interval.bind="15" e-interval-type="Days" e-label-format="MMM dd" e-label-position="Inside" e-label-placement="OnTicks"
+      e-tick-position="Inside" e-label-intersect-action="Rotate45" e-skeleton="yMMM" e-skeleton-type="Date" e-secondary-label-alignment="Near"
+      e-enable-grouping.bind="true" e-group-by="Months" e-use-grouping-separator.bind="true"
+      e-minimum.bind="daily[0].x" e-maximum.bind="daily[119].x"></ej2-range-navigator>
+  </demo-section>
+
+  <demo-section id="rn-resize" title="Resize and print" description="resized and beforeResize follow the window width, print raises beforePrint.">
+    <ej2-range-navigator data-testid="rn-resize" view-model.ref="printVm" e-width="80%" e-height="110px" e-value-type="DateTime" e-data-source.bind="daily" e-x-name="x" e-y-name="y"
+      e-series.bind="areaSeries"
+      e-on-before-resize.delegate="count('beforeResize', $event)"
+      e-on-resized.delegate="count('resized', $event)"
+      e-on-before-print.delegate="onBeforePrint($event)"></ej2-range-navigator>
+    <div class="demo-output">
+      Before resize: <span data-testid="rn-before-resize">${counts.beforeResize}</span>
+      Resized: <span data-testid="rn-resized">${counts.resized}</span> <code data-testid="rn-resized-width">${resizedWidth}</code>
+      Before print: <span data-testid="rn-before-print">${counts.beforePrint}</span>
+    </div>
+    <button data-testid="rn-print" click.delegate="print()">Print</button>
+  </demo-section>
+
+  <demo-section id="rn-dynamic" title="Model to widget" description="Changing the bound data, theme, background, width and disableRangeSelector updates the navigator.">
+    <ej2-range-navigator data-testid="rn-dynamic" e-width.bind="dynWidth" e-height="110px" e-value-type="DateTime" e-data-source.bind="dynData" e-x-name="x" e-y-name="y"
+      e-series.bind="areaSeries" e-theme.bind="dynTheme" e-background.bind="dynBackground" e-disable-range-selector.bind="dynDisabled"></ej2-range-navigator>
+    <button data-testid="rn-swap" click.delegate="swap()">Swap data</button>
+    <button data-testid="rn-dark" click.delegate="dark()">Dark</button>
+    <button data-testid="rn-paint" click.delegate="paint()">Background</button>
+    <button data-testid="rn-narrow" click.delegate="narrow()">Narrow</button>
+    <button data-testid="rn-disable" click.delegate="disable()">Disable</button>
   </demo-section>
 </template>

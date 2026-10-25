@@ -657,8 +657,11 @@ export const ControlBindings = {
       "labelPosition", "labelPlacement", "animationDuration", "enableGrouping", "enableDeferredUpdate",
       "disableRangeSelector", "allowSnapping", "allowIntervalData", "useGroupingSeparator", "groupBy",
       "tickPosition", "labelStyle", "majorGridLines", "majorTickLines", "navigatorStyleSettings",
-      "periodSelectorSettings", "navigatorBorder", "theme", "value", "background", "labelFormat",
+      "periodSelectorSettings", "navigatorBorder", "theme", "background", "labelFormat",
       "skeleton", "skeletonType", "secondaryLabelAlignment", "margin"
+    ],
+    twoWay: [
+      "value"
     ],
     events: [
       "load", "loaded", "resized", "beforeResize", "labelRender", "changed", "tooltipRender",
