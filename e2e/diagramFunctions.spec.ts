@@ -18,7 +18,7 @@ test('getNodeDefaults and getConnectorDefaults style every object', async ({ app
 
 test('setNodeTemplate supplies the content of one node', async ({ app, page }) => {
   const d = fns(app);
-  await expect(d.locator('#custom_text_text')).toHaveText('From setNodeTemplate');
+  await expect(d.locator('#custom_text_text')).toHaveAttribute('aria-label', 'From setNodeTemplate');
   expect(await fn(page, 'setNodeTemplate')).toBeGreaterThan(0);
   await expect(d.locator('#plain_content')).toBeAttached();
 });
