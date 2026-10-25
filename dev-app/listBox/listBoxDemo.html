@@ -1,7 +1,70 @@
 <template>
-  <h2>List Box</h2>
+  <h2>ListBox</h2>
 
-  <demo-section id="listBox-basic" title="Basic" description="List Box rendered with its default options.">
-    <ej2-list-box data-testid="listBox-basic"></ej2-list-box>
+  <demo-section id="lb-basic" title="Default with two-way value" description="Multiple selection, the selected values are two-way. change, select, created, dataBound, beforeItemRender, actionBegin and actionComplete are raised.">
+    <ej2-list-box data-testid="lb-basic" e-data-source.bind="sports" e-value.two-way="value" e-height="200px"
+      e-on-change.delegate="onChange($event)" e-on-select.delegate="selectCount = selectCount + 1"
+      e-on-created.delegate="createdCount = createdCount + 1" e-on-data-bound.delegate="dataBoundCount = dataBoundCount + 1"
+      e-on-before-item-render.delegate="itemRenderCount = itemRenderCount + 1"
+      e-on-action-begin.delegate="actionBegin = actionBegin + 1" e-on-action-complete.delegate="actionComplete = actionComplete + 1"></ej2-list-box>
+    <div class="demo-output">Value: <code data-testid="lb-value-out">${value.join(',')}</code>
+      Changes: <span data-testid="lb-change-count">${changeCount}</span>
+      Select events: <span data-testid="lb-select-count">${selectCount}</span>
+      Created: <span data-testid="lb-created">${createdCount}</span>
+      Data bound: <span data-testid="lb-data-bound">${dataBoundCount}</span>
+      Items rendered: <span data-testid="lb-item-render">${itemRenderCount}</span>
+      Action begin: <span data-testid="lb-action-begin">${actionBegin}</span>
+      Action complete: <span data-testid="lb-action-complete">${actionComplete}</span></div>
+    <button data-testid="lb-set" click.delegate="value = ['Tennis', 'Cricket']">Set Tennis and Cricket from view-model</button>
+  </demo-section>
+
+  <demo-section id="lb-checkbox" title="Check box selection" description="selectionSettings with check boxes and select all, maximumSelectionLength, cssClass, enabled and zIndex.">
+    <ej2-list-box data-testid="lb-checkbox" e-data-source.bind="sports" e-selection-settings.bind="checkSettings"
+      e-maximum-selection-length.bind="maxSelection" e-css-class.bind="cssClass" e-enabled.bind="enabled" e-z-index.bind="9000"></ej2-list-box>
+    <div class="demo-row">
+      <button data-testid="lb-checkbox-change" click.delegate="changeCheck()">Single mode, right check boxes</button>
+      <button data-testid="lb-checkbox-disable" click.delegate="enabled = false">Disable</button>
+    </div>
+  </demo-section>
+
+  <demo-section id="lb-filter" title="Filtering and sorting" description="allowFiltering, filterBarPlaceholder, filterType, ignoreCase, ignoreAccent, sortOrder and the filtering event.">
+    <ej2-list-box data-testid="lb-filter" e-data-source.bind="cafes" e-allow-filtering="true" e-filter-bar-placeholder="Search drinks"
+      e-filter-type.bind="filterType" e-ignore-case.bind="ignoreCase" e-ignore-accent.bind="ignoreAccent"
+      e-sort-order.bind="sortOrder" e-on-filtering.delegate="filterCount = filterCount + 1"></ej2-list-box>
+    <div class="demo-output">Filtering events: <span data-testid="lb-filter-count">${filterCount}</span></div>
+    <button data-testid="lb-filter-change" click.delegate="changeFilter()">Contains, case and accent sensitive, descending</button>
+  </demo-section>
+
+  <demo-section id="lb-dnd" title="Drag and drop and toolbar" description="Two list boxes sharing the same scope (the id of the target list box); allowDragAndDrop and toolbarSettings move items between them. dragStart, drag, beforeDrop and drop are raised.">
+    <div class="demo-row">
+      <ej2-list-box id="lb-left" data-testid="lb-left" e-data-source.bind="left" e-fields.bind="fields" e-scope="#lb-right" e-allow-drag-and-drop="true"
+        e-toolbar-settings.bind="toolbar" e-height="220px"
+        e-on-drag-start.delegate="dragStart = dragStart + 1" e-on-drag.delegate="drags = drags + 1"
+        e-on-before-drop.delegate="onBeforeDrop($event)" e-on-drop.delegate="drops = drops + 1"></ej2-list-box>
+      <ej2-list-box id="lb-right" data-testid="lb-right" e-data-source.bind="right" e-fields.bind="fields" e-scope="#lb-right" e-allow-drag-and-drop="true"
+        e-height="220px"></ej2-list-box>
+    </div>
+    <div class="demo-output">Drag start: <span data-testid="lb-drag-start">${dragStart}</span>
+      Drag: <span data-testid="lb-drag">${drags}</span>
+      Before drop: <span data-testid="lb-before-drop">${beforeDrops}</span>
+      Drop: <span data-testid="lb-drop">${drops}</span></div>
+    <label><input type="checkbox" data-testid="lb-cancel-drop" checked.bind="cancelDrop" /> cancel drops</label>
+  </demo-section>
+
+  <demo-section id="lb-templates" title="Templates and groups" description="itemTemplate, groupTemplate (fields.groupBy), noRecordsTemplate and actionFailureTemplate.">
+    <ej2-list-box data-testid="lb-templates" e-data-source.bind="grouped" e-fields.bind="groupFields"
+      e-item-template.bind="itemTpl" e-group-template.bind="groupTpl"></ej2-list-box>
+    <ej2-list-box data-testid="lb-empty" e-data-source.bind="empty" e-no-records-template.bind="noRecordsTpl"></ej2-list-box>
+  </demo-section>
+
+  <demo-section id="lb-remote" title="Data manager and query" description="A DataManager with a query that takes the first three, and a list whose data source starts local and is then switched to a request that fails (actionFailure and actionFailureTemplate).">
+    <ej2-list-box data-testid="lb-query" e-data-source.bind="manager" e-query.bind="query" e-fields.bind="fields"></ej2-list-box>
+    <ej2-list-box data-testid="lb-fail" e-data-source.bind="failSource" e-fields.bind="fields" e-action-failure-template.bind="failTpl"
+      e-on-action-failure.delegate="failures = failures + 1" e-on-destroyed.trigger="destroyedCount = destroyedCount + 1"
+      if.bind="showFail"></ej2-list-box>
+    <div class="demo-output">Failures: <span data-testid="lb-fail-count">${failures}</span>
+      Destroyed: <span data-testid="lb-destroyed">${destroyedCount}</span></div>
+    <button data-testid="lb-fail-load" click.delegate="failSource = remote">Load failing source</button>
+    <button data-testid="lb-fail-toggle" click.delegate="showFail = !showFail">Toggle list</button>
   </demo-section>
 </template>

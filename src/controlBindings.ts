@@ -860,10 +860,13 @@ export const ControlBindings = {
   },
   listBox: {
     oneWay: [
-      "cssClass", "value", "height", "enabled", "allowDragAndDrop", "maximumSelectionLength",
-      "allowFiltering", "scope", "ignoreCase", "filterBarPlaceholder", "sortOrder", "groupTemplate",
-      "actionFailureTemplate", "zIndex", "ignoreAccent", "toolbarSettings", "selectionSettings", "fields",
-      "itemTemplate", "noRecordsTemplate", "dataSource", "query", "filterType"
+      "cssClass", "height", "enabled", "allowDragAndDrop", "maximumSelectionLength", "allowFiltering",
+      "scope", "ignoreCase", "filterBarPlaceholder", "sortOrder", "groupTemplate", "actionFailureTemplate",
+      "zIndex", "ignoreAccent", "toolbarSettings", "selectionSettings", "fields", "itemTemplate",
+      "noRecordsTemplate", "dataSource", "query", "filterType"
+    ],
+    twoWay: [
+      "value"
     ],
     events: [
       "beforeItemRender", "filtering", "select", "change", "beforeDrop", "dragStart", "drag", "drop",
