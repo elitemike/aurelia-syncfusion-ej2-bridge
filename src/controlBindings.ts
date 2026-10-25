@@ -1341,10 +1341,11 @@ export const ControlBindings = {
   },
   pivotView: {
     twoWay: ["dataSourceSettings"],
+    fromView: ["pivotValues"],
     oneWay: [
       "currencyCode", "showFieldList", "gridSettings", "chartSettings", "groupingBarSettings",
       "hyperlinkSettings", "pageSettings", "pagerSettings", "editSettings",
-      "displayOption", "virtualScrollSettings", "pivotValues", "showGroupingBar", "showTooltip",
+      "displayOption", "virtualScrollSettings", "showGroupingBar", "showTooltip",
       "showToolbar", "toolbar", "showValuesButton", "allowCalculatedField", "enableFieldSearching",
       "enableValueSorting", "allowConditionalFormatting", "allowNumberFormatting", "height", "width",
       "allowExcelExport", "enableVirtualization", "enablePaging", "allowDrillThrough", "allowPdfExport",

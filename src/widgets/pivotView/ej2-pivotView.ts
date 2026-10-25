@@ -40,17 +40,43 @@ export class Ej2PivotView extends SyncfusionWrapper<PivotView, PivotViewModel> {
     use(model.enablePaging, Pager);
 
     PivotView.Inject(...modules);
+
+    // the pivot grid only hands these events to its inner grid when a handler is configured in gridSettings, and
+    // never raises them on the PivotView itself, so configure forwarding handlers that raise the PivotView events
+    const gridSettings: any = Object.assign({}, model.gridSettings);
+    ["columnDragStart", "columnDrag", "columnDrop"].forEach((name) => {
+      const own = gridSettings[name];
+      let raising = false;
+      gridSettings[name] = (args) => {
+        // trigger calls the handler configured on the widget, which is this one: guard against recursion
+        if (!raising && this.widget) {
+          raising = true;
+          try { (<any>this.widget).trigger(name, args); } finally { raising = false; }
+        }
+        if (typeof own === 'function') { own.call(this.widget, args); }
+      };
+    });
+    model.gridSettings = gridSettings;
   }
 
   protected onWrapperCreated() {
-    // the engine only computes the per-cell, per-header and OLAP service information behind aggregateCellInfo, onHeadersSort,
+    // the engine only computes the per-cell, per-header and OLAP service information behind aggregateCellInfo, onHeadersSort, cellClick,
     // beforeServiceInvoke and afterServiceInvoke
     // when a handler is assigned as a property, the bridge listens with addEventListener, so assign no-ops
-    ["aggregateCellInfo", "onHeadersSort", "beforeServiceInvoke", "afterServiceInvoke"].forEach((name) => {
+    ["aggregateCellInfo", "onHeadersSort", "beforeServiceInvoke", "afterServiceInvoke", "cellClick"].forEach((name) => {
       if (!this.widget[name]) {
         this.widget[name] = () => { };
       }
     });
+  }
+
+  protected dataSourceSettingsChanged(value: any) {
+    const widget: any = this.widget;
+    if (!widget || !value || value === widget.dataSourceSettings) { return; }
+    // the widget only repopulates its engine when the data source itself changes, so hand it a copy of an array source
+    const next = Object.assign({}, value);
+    if (Array.isArray(next.dataSource)) { next.dataSource = next.dataSource.slice(); }
+    widget.dataSourceSettings = next;
   }
 
   protected onWidgetCreated() {
@@ -62,7 +88,11 @@ export class Ej2PivotView extends SyncfusionWrapper<PivotView, PivotViewModel> {
         this[key] = settings;
       }
     };
-    this.widget.addEventListener("dataBound", report);
+    // pivotValues is a from-view binding: report the engine output after every data bind
+    const reportValues = () => { this[`${constants.bindablePrefix}pivotValues`] = (<any>this.widget).pivotValues; };
+    reportValues();
+    this.widget.addEventListener("dataBound", () => { report(); reportValues(); });
+    this.widget.addEventListener("enginePopulated", report);
     this.widget.addEventListener("actionComplete", report);
   }
 }
