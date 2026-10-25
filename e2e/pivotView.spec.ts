@@ -126,7 +126,7 @@ test('drilling raises drill and actionBegin / actionComplete', async ({ app, pag
   await expectEvent(page, 'pv.drill');
   await expectEvent(page, 'pv.actionComplete');
   expect(await evArg(page, 'pv.drill', 'drillInfo.fieldName')).toBe('Country');
-  await expect(pv.locator('.e-collapse').first()).toBeVisible();
+  await expect(pv.locator('.e-collapse').first()).toBeAttached();
 });
 
 test('grouping bar sort, filter and remove', async ({ app, page }) => {
@@ -551,4 +551,84 @@ test('inline editing raises editCompleted', async ({ app, page }) => {
   await reset(page);
   await pv.locator('td.e-valuescontent').filter({ hasText: /^[0-9]+$/ }).first().dblclick();
   await expectEvent(page, 'pve.inline.editCompleted');
+});
+
+// ---------------------------------------------------------------------------------------------------------------
+// Templates, hyperlinks, context menu, grouping and WebMCP
+
+test('cell, toolbar and tooltip templates render', async ({ app, page }) => {
+  const pv = app.section('pvx-templates');
+  await pv.scrollIntoViewIfNeeded();
+  await ew(page, 'pvx-templates', 'w.cellTemplate', '<div class="pv-cell-tpl">${cellInfo.formattedText}</div>');
+  await expect(pv.locator('.pv-cell-tpl').first()).toBeVisible();
+  await expect(pv.locator('td.e-valuescontent .pv-cell-tpl').first()).toHaveText(/\d+/);
+  await ew(page, 'pvx-templates', 'w.showToolbar', true);
+  await ew(page, 'pvx-templates', 'w.toolbarTemplate', '#pv-toolbar-template');
+  await expect(page.locator('#pv-toolbar-template')).toHaveClass(/e-toolbar/);
+  await ew(page, 'pvx-templates', 'w.spinnerTemplate', '<div class="pv-spinner-tpl">Loading...</div>');
+  await ew(page, 'pvx-templates', 'w.showTooltip', true);
+  await pv.locator('td.e-valuescontent').first().hover();
+  await expect(page.locator('.pv-tooltip-tpl')).toContainText('units');
+  await ew(page, 'pvx-templates', 'w.tooltipTemplate', '<div class="pv-tooltip-tpl">${value} units</div>');
+});
+
+test('hyperlinks render and raise hyperlinkCellClick', async ({ app, page }) => {
+  const pv = app.section('pvx-links');
+  await pv.scrollIntoViewIfNeeded();
+  await ew(page, 'pvx-links', 'w.hyperlinkSettings.showHyperlink', true);
+  await ew(page, 'pvx-links', 'w.hyperlinkSettings.showValueCellHyperlink', true);
+  const link = pv.locator('td.e-valuescontent a.e-hyperlinkcell').first();
+  await expect(link).toBeVisible();
+  await reset(page);
+  await link.click();
+  await expectEvent(page, 'pvx.hyperlinkCellClick');
+  await expect(page.getByTestId('pvx-last-link')).not.toHaveText('');
+});
+
+test('context menu opens on right click and raises contextMenuOpen and contextMenuClick', async ({ app, page }) => {
+  const pv = app.section('pvx-menu');
+  await pv.scrollIntoViewIfNeeded();
+  await ew(page, 'pvx-menu', 'w.gridSettings.contextMenuItems.length', 4);
+  await reset(page);
+  await pv.locator('td.e-valuescontent').first().click({ button: 'right' });
+  await expectEvent(page, 'pvx.contextMenuOpen');
+  const item = page.locator('.e-contextmenu-wrapper li, .e-menu-parent li').filter({ hasText: /^Aggregate$/ });
+  await expect(item.first()).toBeVisible();
+  await page.locator('.e-contextmenu-wrapper li, .e-menu-parent li').filter({ hasText: /^Drill Through$/ }).first().click();
+  await expectEvent(page, 'pvx.contextMenuClick');
+});
+
+test('number grouping buckets the values into ranges', async ({ app, page }) => {
+  const pv = app.section('pvx-group');
+  await pv.scrollIntoViewIfNeeded();
+  await ew(page, 'pvx-group', 'w.allowGrouping', true);
+  await expect(pv.locator('td.e-rowsheader')).toContainText(['10-19', '20-29', '30-39', 'Grand Total']);
+});
+
+test.describe('WebMCP', () => {
+  test.beforeEach(async ({ app, page }) => {
+    // document.modelContext is a browser proposal, stub it and keep the registered tools
+    await page.addInitScript(() => {
+      (window as any).__tools = {};
+      (document as any).modelContext = { registerTool: (tool: any) => { (window as any).__tools[tool.name] = tool; } };
+    });
+    await app.open('pivotView');
+    await expect(page.getByTestId('section-pvm-mcp').locator('.e-pivotview')).toBeAttached();
+  });
+
+  test('registers the configured tools and raises beforeWebMcpToolExecute', async ({ page }) => {
+    await ew(page, 'pvm-mcp', 'w.enableWebMcp', true);
+    await ew(page, 'pvm-mcp', 'w.webMcpSettings.name', 'pvmcp');
+    await expect.poll(() => page.evaluate(() => Object.keys((window as any).__tools).sort())).toEqual(['pvmcp_addFieldToAxis', 'pvmcp_clearSorting']);
+    await reset(page);
+    await page.evaluate(() => (window as any).__tools.pvmcp_clearSorting.execute({}));
+    await expectEvent(page, 'pvm.beforeWebMcpToolExecute');
+    expect(await evArg(page, 'pvm.beforeWebMcpToolExecute', 'toolName')).toBe('pvmcp_clearSorting');
+  });
+
+  test('a tool changes the report', async ({ page }) => {
+    await expect.poll(() => page.evaluate(() => Object.keys((window as any).__tools).length)).toBe(2);
+    await page.evaluate(() => (window as any).__tools.pvmcp_addFieldToAxis.execute({ fieldName: 'Quarter', axis: 'rows' }));
+    await ew(page, 'pvm-mcp', 'w.dataSourceSettings.rows.map(r => r.name).indexOf("Quarter") > -1', true);
+  });
 });

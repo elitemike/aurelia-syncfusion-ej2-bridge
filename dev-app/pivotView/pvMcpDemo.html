@@ -1,2 +1,7 @@
 <template>
+  <demo-section id="pvm-mcp" title="WebMCP" description="enableWebMcp registers the configured tools with document.modelContext, beforeWebMcpToolExecute is raised when one runs.">
+    <ej2-pivot-view data-testid="pvm-mcp" e-data-source-settings.bind="dsr" e-height.bind="260" e-width.bind="900"
+      e-enable-web-mcp.bind="true" e-web-mcp-settings.bind="webMcpSettings" e-grid-settings.bind="{ columnWidth: 120 }"
+      e-on-before-web-mcp-tool-execute.delegate="log('pvm.beforeWebMcpToolExecute', $event)"></ej2-pivot-view>
+  </demo-section>
 </template>
