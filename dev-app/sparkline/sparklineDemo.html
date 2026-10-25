@@ -1,7 +1,78 @@
 <template>
   <h2>Sparkline</h2>
 
-  <demo-section id="sparkline-basic" title="Basic" description="Sparkline rendered with its default options.">
-    <ej2-sparkline data-testid="sparkline-basic"></ej2-sparkline>
+  <demo-section id="sp-types" title="Types" description="Line, Column, Area, Pie and WinLoss sparklines bound to a plain number array.">
+    <ej2-sparkline data-testid="sp-line" e-width="150px" e-height="60px" e-type="Line" e-data-source.bind="numbers"></ej2-sparkline>
+    <ej2-sparkline data-testid="sp-column" e-width="150px" e-height="60px" e-type="Column" e-data-source.bind="numbers"></ej2-sparkline>
+    <ej2-sparkline data-testid="sp-area" e-width="150px" e-height="60px" e-type="Area" e-data-source.bind="numbers"></ej2-sparkline>
+    <ej2-sparkline data-testid="sp-pie" e-width="80px" e-height="60px" e-type="Pie" e-data-source.bind="numbers" e-palette.bind="palette"></ej2-sparkline>
+    <ej2-sparkline data-testid="sp-winloss" e-width="150px" e-height="60px" e-type="WinLoss" e-data-source.bind="winLoss"></ej2-sparkline>
+  </demo-section>
+
+  <demo-section id="sp-data" title="Object data" description="xName and yName map object fields, valueType Category uses a text field for the x value, query limits the data.">
+    <ej2-sparkline data-testid="sp-category" e-width="200px" e-height="60px" e-type="Column" e-value-type="Category"
+      e-data-source.bind="objects" e-x-name="xval" e-y-name="yval" e-use-grouping-separator.bind="true" e-format="n"></ej2-sparkline>
+    <ej2-sparkline data-testid="sp-numeric" e-width="200px" e-height="60px" e-type="Line" e-value-type="Numeric"
+      e-data-source.bind="objects" e-x-name="x" e-y-name="yval"></ej2-sparkline>
+    <ej2-sparkline data-testid="sp-datetime" e-width="200px" e-height="60px" e-type="Line" e-value-type="DateTime"
+      e-data-source.bind="dates" e-x-name="x" e-y-name="y"></ej2-sparkline>
+    <ej2-sparkline data-testid="sp-query" e-width="200px" e-height="60px" e-type="Column" e-data-source.bind="manager"
+      e-query.bind="query" e-x-name="x" e-y-name="yval"></ej2-sparkline>
+  </demo-section>
+
+  <demo-section id="sp-look" title="Customization" description="fill, lineWidth, opacity, border, padding, rangePadding, theme and the point colors.">
+    <ej2-sparkline data-testid="sp-fill" e-width="200px" e-height="60px" e-type="Line" e-data-source.bind="numbers"
+      e-fill="#cc3300" e-line-width.bind="3" e-opacity.bind="0.5" e-padding.bind="pad"
+      e-range-padding="Additional" e-theme="Bootstrap5"></ej2-sparkline>
+    <ej2-sparkline data-testid="sp-colors" e-width="200px" e-height="60px" e-type="Column" e-data-source.bind="negatives"
+      e-border.bind="border" e-x-name="x" e-y-name="y" e-high-point-color="#00aa00" e-low-point-color="#aa0000" e-start-point-color="#0000ff"
+      e-end-point-color="#ffaa00" e-negative-point-color="#880088" e-tie-point-color="#222222"></ej2-sparkline>
+  </demo-section>
+
+  <demo-section id="sp-features" title="Marker, data label, axis, range band and container area" description="markerSettings, dataLabelSettings, axisSettings, rangeBandSettings and containerArea.">
+    <ej2-sparkline data-testid="sp-marker" e-width="200px" e-height="70px" e-type="Line" e-data-source.bind="numbers"
+      e-marker-settings.bind="marker" e-data-label-settings.bind="dataLabel"
+      e-on-marker-rendering.delegate="log('markerRendering', $event)"
+      e-on-data-label-rendering.delegate="log('dataLabelRendering', $event)"></ej2-sparkline>
+    <ej2-sparkline data-testid="sp-axis" e-width="200px" e-height="70px" e-type="Line" e-data-source.bind="numbers"
+      e-axis-settings.bind="axis" e-range-band-settings.bind="[rangeBand]" e-container-area.bind="container"
+      e-on-axis-rendering.delegate="log('axisRendering', $event)"></ej2-sparkline>
+  </demo-section>
+
+  <demo-section id="sp-tooltip" title="Tooltip and tracker line" description="tooltipSettings with a track line, tooltipInitialize raised when the tooltip is built.">
+    <ej2-sparkline data-testid="sp-tooltip" e-width="250px" e-height="70px" e-type="Line" e-data-source.bind="objects"
+      e-x-name="x" e-y-name="yval" e-tooltip-settings.bind="tooltip"
+      e-on-tooltip-initialize.delegate="log('tooltipInitialize', $event)"></ej2-sparkline>
+  </demo-section>
+
+  <demo-section id="sp-events" title="Events" description="load, loaded, seriesRendering, pointRendering, mouse and click events, resize.">
+    <ej2-sparkline data-testid="sp-events" e-width="300px" e-height="80px" e-type="Column" e-data-source.bind="numbers"
+      e-marker-settings.bind="marker"
+      e-on-load.delegate="count('load', $event)"
+      e-on-loaded.delegate="count('loaded', $event)"
+      e-on-series-rendering.delegate="log('seriesRendering', $event)"
+      e-on-point-rendering.delegate="log('pointRendering', $event)"
+      e-on-point-region-mouse-move.delegate="onPointMove($event)"
+      e-on-point-region-mouse-click.delegate="onPointClick($event)"
+      e-on-sparkline-mouse-move.delegate="count('sparklineMouseMove', $event)"
+      e-on-sparkline-mouse-click.delegate="count('sparklineMouseClick', $event)"
+      e-on-resize.delegate="count('resize', $event)"></ej2-sparkline>
+    <div class="demo-output">
+      Load: <span data-testid="sp-load-count">${loadCount}</span>
+      Loaded: <span data-testid="sp-loaded-count">${loaded}</span>
+      Moves: <span data-testid="sp-moves">${moves}</span>
+      Clicks: <span data-testid="sp-clicks">${clicks}</span>
+      Point clicks: <span data-testid="sp-point-clicks">${pointClicks}</span>
+      Point moves: <span data-testid="sp-point-moves">${pointMoves}</span>
+      Point: <code data-testid="sp-point-info">${pointInfo}</code>
+    </div>
+  </demo-section>
+
+  <demo-section id="sp-dynamic" title="Model to widget" description="Changing bound type, fill and width updates the rendered sparkline.">
+    <ej2-sparkline data-testid="sp-dynamic" e-width.bind="dynWidth" e-height="60px" e-type.bind="dynamicType"
+      e-fill.bind="dynFill" e-data-source.bind="numbers"></ej2-sparkline>
+    <button data-testid="sp-switch" click.delegate="switchType()">Switch type</button>
+    <button data-testid="sp-set-fill" click.delegate="setFill()">Red</button>
+    <button data-testid="sp-set-width" click.delegate="setWidth()">Narrow</button>
   </demo-section>
 </template>
