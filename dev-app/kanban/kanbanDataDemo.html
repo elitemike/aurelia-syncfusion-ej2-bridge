@@ -1,0 +1,21 @@
+<template>
+  <demo-section id="kanban-query" title="Query" description="A DataManager with a query that keeps only the critical cards.">
+    <ej2-kanban data-testid="kanban-query" e-data-source.bind="queryData" e-key-field="Status" e-columns.bind="columns"
+      e-card-settings.bind="cardSettings" e-height="300px" e-query.bind="query"></ej2-kanban>
+  </demo-section>
+
+  <demo-section id="kanban-state" title="Custom data binding" description="A { result, count } source: the app owns the data, dataStateChange and dataSourceChanged are raised on edits.">
+    <ej2-kanban data-testid="kanban-state" e-data-source.bind="stateSource" e-key-field="Status" e-columns.bind="columns"
+      e-card-settings.bind="cardSettings" e-height="380px"
+      e-on-data-state-change.delegate="onDataStateChange($event)"
+      e-on-data-source-changed.delegate="onDataSourceChanged($event)"></ej2-kanban>
+    <div class="demo-output">Last request: <code data-testid="kanban-state-last">${stateLast}</code>,
+      changed: <code data-testid="kanban-state-changed">${stateChanged}</code></div>
+  </demo-section>
+
+  <demo-section id="kanban-failure" title="Failing data request" description="actionFailure is raised when the data request cannot be read.">
+    <button data-testid="kanban-failure-show" click.delegate="showFailing = true">Request data</button>
+    <ej2-kanban if.bind="showFailing" data-testid="kanban-failure" e-data-source.bind="failingSource" e-key-field="Status" e-columns.bind="columns"
+      e-card-settings.bind="cardSettings" e-height="200px" e-on-action-failure.delegate="log('actionFailure', $event)"></ej2-kanban>
+  </demo-section>
+</template>

@@ -1,0 +1,62 @@
+<template>
+  <demo-section id="gantt-edit" title="Editing with dialogs and toolbar" description="editSettings, toolbar, addDialogFields and editDialogFields with taskbar editing events.">
+    <ej2-gantt data-testid="gantt-edit" e-data-source.bind="editData" e-task-fields.bind="taskFields" e-columns.bind="columns"
+      e-height.bind="320" e-edit-settings.bind="editSettings" e-toolbar.bind="editToolbar"
+      e-add-dialog-fields.bind="addDialogFields" e-edit-dialog-fields.bind="editDialogFields"
+      e-project-start-date="2025-03-31" e-project-end-date="2025-05-05"
+      e-on-toolbar-click.delegate="log('editToolbarClick', $event)"
+      e-on-taskbar-editing.delegate="log('taskbarEditing', $event)"
+      e-on-taskbar-edited.delegate="onTaskbarEdited($event)"
+      e-on-end-edit.delegate="log('endEdit', $event)"
+      e-on-action-begin.delegate="log('editActionBegin', $event)"
+      e-on-action-complete.delegate="onActionComplete($event)"
+      e-on-action-failure.delegate="log('actionFailure', $event)"></ej2-gantt>
+    <div class="demo-output">Last action: <code data-testid="gantt-edit-last">${lastAction}</code>,
+      taskbar: <code data-testid="gantt-taskbar-last">${lastTaskbarAction}</code></div>
+  </demo-section>
+
+  <demo-section id="gantt-cell-edit" title="Cell editing" description="Double clicking a cell raises cellEdit and cellSave.">
+    <ej2-gantt data-testid="gantt-cell-edit" e-data-source.bind="cellData" e-task-fields.bind="taskFields" e-columns.bind="columns"
+      e-height.bind="260" e-edit-settings.bind="cellSettings" e-project-start-date="2025-03-31" e-project-end-date="2025-05-05"
+      e-on-cell-edit.delegate="log('cellEdit', $event)"
+      e-on-cell-save.delegate="log('cellSave', $event)"
+      e-on-end-edit.delegate="log('endEdit', $event)"></ej2-gantt>
+  </demo-section>
+
+  <demo-section id="gantt-deps" title="Dependencies" description="Predecessor validation, offset updates and parent dependencies.">
+    <ej2-gantt data-testid="gantt-deps" e-data-source.bind="depData" e-task-fields.bind="taskFields" e-columns.bind="columns"
+      e-height.bind="260" e-edit-settings.bind="depSettings" e-enable-predecessor-validation.bind="depState.validation"
+      e-auto-update-predecessor-offset.bind="true" e-allow-parent-dependency.bind="true" e-update-offset-on-taskbar-edit.bind="true"
+      e-auto-calculate-date-scheduling.bind="true" e-validate-manual-tasks-on-linking.bind="true"
+      e-project-start-date="2025-04-01" e-project-end-date="2025-05-10"></ej2-gantt>
+    <button data-testid="gantt-deps-toggle" click.delegate="depState.validation = !depState.validation">Toggle validation</button>
+  </demo-section>
+
+  <demo-section id="gantt-undo" title="Undo and redo" description="enableUndoRedo, undoRedoStepsCount and undoRedoActions with the Undo and Redo toolbar items.">
+    <ej2-gantt data-testid="gantt-undo" e-data-source.bind="undoData" e-task-fields.bind="taskFields" e-columns.bind="columns"
+      e-height.bind="260" e-edit-settings.bind="undoSettings" e-toolbar.bind="undoToolbar" e-enable-undo-redo.bind="true"
+      e-undo-redo-steps-count.bind="5" e-undo-redo-actions.bind="undoActions"
+      e-project-start-date="2025-04-01" e-project-end-date="2025-05-10"></ej2-gantt>
+  </demo-section>
+
+  <demo-section id="gantt-readonly" title="Read only" description="readOnly disables every editing interaction.">
+    <ej2-gantt data-testid="gantt-readonly" e-data-source.bind="readOnlyData" e-task-fields.bind="taskFields" e-columns.bind="columns"
+      e-height.bind="220" e-read-only.bind="true" e-edit-settings.bind="depSettings"
+      e-project-start-date="2025-04-01" e-project-end-date="2025-05-10"></ej2-gantt>
+  </demo-section>
+
+  <demo-section id="gantt-manual" title="Manual scheduling" description="taskMode Custom with a manual field.">
+    <ej2-gantt data-testid="gantt-manual" e-data-source.bind="manualData" e-task-fields.bind="manualFields" e-columns.bind="columns"
+      e-height.bind="200" e-task-mode="Custom" e-project-start-date="2025-04-01" e-project-end-date="2025-04-20"></ej2-gantt>
+  </demo-section>
+
+  <demo-section id="gantt-state" title="Custom data binding" description="A { result, count } source: the app owns the data, dataStateChange and dataSourceChanged are raised.">
+    <ej2-gantt data-testid="gantt-state" e-data-source.bind="stateSource" e-task-fields.bind="taskFields" e-columns.bind="columns"
+      e-height.bind="260" e-allow-sorting.bind="true" e-edit-settings.bind="depSettings"
+      e-project-start-date="2025-03-31" e-project-end-date="2025-05-05"
+      e-on-data-state-change.delegate="onDataStateChange($event)"
+      e-on-data-source-changed.delegate="onDataSourceChanged($event)"></ej2-gantt>
+    <div class="demo-output">Last request: <code data-testid="gantt-state-last">${stateLast}</code>,
+      changed: <code data-testid="gantt-state-changed">${stateChanged}</code></div>
+  </demo-section>
+</template>

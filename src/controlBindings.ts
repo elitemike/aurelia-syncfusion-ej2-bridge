@@ -922,8 +922,7 @@ export const ControlBindings = {
       "enableTimelineVirtualization", "toolbar", "workWeek", "includeWeekend", "allowUnscheduledTasks",
       "showInlineNotes", "rowHeight", "taskbarHeight", "projectStartDate", "projectEndDate",
       "resourceIDMapping", "resourceNameMapping", "resources", "segmentData", "connectorLineBackground",
-      "connectorLineWidth", "columns", "addDialogFields", "editDialogFields", "selectedRowIndex",
-      "workUnit", "taskType", "viewType", "dayWorkingTime", "weekWorkingTime", "holidays", "eventMarkers",
+      "connectorLineWidth", "columns", "addDialogFields", "editDialogFields", "workUnit", "taskType", "viewType", "dayWorkingTime", "weekWorkingTime", "holidays", "eventMarkers",
       "taskFields", "resourceFields", "timelineSettings", "zoomingLevels", "sortSettings", "editSettings",
       "tooltipSettings", "selectionSettings", "allowFiltering", "allowExcelExport", "allowRowDragAndDrop",
       "allowReordering", "readOnly", "allowResizing", "enableContextMenu", "enableCriticalPath",
@@ -931,6 +930,9 @@ export const ControlBindings = {
       "validateManualTasksOnLinking", "enableMultiTaskbar", "showOverAllocation", "taskMode",
       "frozenColumns", "emptyRecordTemplate", "filterSettings", "searchSettings", "splitterSettings",
       "allowedDependencyTypes", "hierarchyCheckboxMode"
+    ],
+    twoWay: [
+      "selectedRowIndex"
     ],
     events: [
       "queryTaskbarInfo", "beforeExcelExport", "excelExportComplete", "excelQueryCellInfo",
@@ -1560,8 +1562,11 @@ export const ControlBindings = {
       "loadingIndicator", "enableVirtualMaskRow", "enableVirtualization", "enableColumnVirtualization",
       "enableHtmlSanitizer", "enableInfiniteScrolling", "infiniteScrollSettings",
       "enableDomVirtualization", "domVirtualizationSettings", "columnQueryMode", "allowSelection",
-      "selectedRowIndex", "isRowSelectable", "selectionSettings", "allowExcelExport", "allowPdfExport",
+      "isRowSelectable", "selectionSettings", "allowExcelExport", "allowPdfExport",
       "enableColumnSpan", "enableRowSpan"
+    ],
+    twoWay: [
+      "selectedRowIndex"
     ],
     events: [
       "created", "load", "expanding", "expanded", "collapsing", "collapsed", "cellSave", "cellSaved",

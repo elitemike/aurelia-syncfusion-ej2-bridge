@@ -1,7 +1,40 @@
 <template>
   <h2>Gantt</h2>
 
-  <demo-section id="gantt-basic" title="Basic" description="Gantt rendered with its default options.">
-    <ej2-gantt data-testid="gantt-basic"></ej2-gantt>
+  <demo-section id="gantt-basic" title="Default functionalities" description="taskFields, columns, selection, selectedRowIndex (two-way) and the lifecycle, expand/collapse, row, cell and taskbar events.">
+    <ej2-gantt data-testid="gantt-basic" e-data-source.bind="data" e-task-fields.bind="taskFields" e-columns.bind="columns"
+      e-height.bind="320" e-tree-column-index.bind="1" e-allow-sorting.bind="true" e-allow-selection.bind="true" e-selection-settings.bind="selectionSettings"
+      e-selected-row-index.two-way="selectedRowIndex" e-project-start-date="2025-03-31" e-project-end-date="2025-05-05"
+      e-on-created.delegate="log('created', $event)"
+      e-on-load.delegate="log('load', $event)"
+      e-on-before-data-bound.delegate="log('beforeDataBound', $event)"
+      e-on-data-bound.delegate="log('dataBound', $event)"
+      e-on-row-data-bound.delegate="log('rowDataBound', $event)"
+      e-on-query-cell-info.delegate="log('queryCellInfo', $event)"
+      e-on-header-cell-info.delegate="log('headerCellInfo', $event)"
+      e-on-query-taskbar-info.delegate="log('queryTaskbarInfo', $event)"
+      e-on-collapsing.delegate="log('collapsing', $event)"
+      e-on-collapsed.delegate="log('collapsed', $event)"
+      e-on-expanding.delegate="log('expanding', $event)"
+      e-on-expanded.delegate="log('expanded', $event)"
+      e-on-row-selecting.delegate="log('rowSelecting', $event)"
+      e-on-row-selected.delegate="onRowSelected($event)"
+      e-on-row-deselecting.delegate="log('rowDeselecting', $event)"
+      e-on-row-deselected.delegate="log('rowDeselected', $event)"
+      e-on-cell-selecting.delegate="log('cellSelecting', $event)"
+      e-on-cell-selected.delegate="log('cellSelected', $event)"
+      e-on-cell-deselecting.delegate="log('cellDeselecting', $event)"
+      e-on-cell-deselected.delegate="log('cellDeselected', $event)"
+      e-on-on-taskbar-click.delegate="log('onTaskbarClick', $event)"
+      e-on-record-double-click.delegate="log('recordDoubleClick', $event)"
+      e-on-on-mouse-move.delegate="log('onMouseMove', $event)"
+      e-on-before-tooltip-render.delegate="log('beforeTooltipRender', $event)"
+      e-on-action-begin.delegate="log('actionBegin', $event)"
+      e-on-action-complete.delegate="log('actionComplete', $event)"></ej2-gantt>
+    <div class="demo-output">Selected index: <code data-testid="gantt-selected-index">${selectedRowIndex}</code>,
+      selected task: <code data-testid="gantt-selected-name">${selectedFromEvent}</code></div>
+    <button data-testid="gantt-select-3" click.delegate="selectedRowIndex = 3">Select row 3</button>
   </demo-section>
+
+  <compose repeat.for="part of parts" view-model.bind="part"></compose>
 </template>

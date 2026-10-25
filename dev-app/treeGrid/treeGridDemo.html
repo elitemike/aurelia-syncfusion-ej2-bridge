@@ -1,7 +1,73 @@
 <template>
   <h2>Tree Grid</h2>
 
-  <demo-section id="treeGrid-basic" title="Basic" description="Tree Grid rendered with its default options.">
-    <ej2-tree-grid data-testid="treeGrid-basic"></ej2-tree-grid>
+  <demo-section id="tg-basic" title="Hierarchical data" description="childMapping, treeColumnIndex, selection, selectedRowIndex (two-way) and the lifecycle, expand/collapse, row and cell events.">
+    <ej2-tree-grid data-testid="tg-basic" e-data-source.bind="data" e-child-mapping="subtasks" e-tree-column-index.bind="1"
+      e-columns.bind="columns" e-height.bind="300" e-allow-sorting.bind="true" e-allow-selection.bind="true" e-selection-settings.bind="selectionSettings"
+      e-selected-row-index.two-way="selectedRowIndex" e-enable-collapse-all.bind="false"
+      e-on-created.delegate="log('created', $event)"
+      e-on-load.delegate="log('load', $event)"
+      e-on-before-data-bound.delegate="log('beforeDataBound', $event)"
+      e-on-data-bound.delegate="log('dataBound', $event)"
+      e-on-expanding.delegate="log('expanding', $event)"
+      e-on-expanded.delegate="log('expanded', $event)"
+      e-on-collapsing.delegate="log('collapsing', $event)"
+      e-on-collapsed.delegate="log('collapsed', $event)"
+      e-on-row-data-bound.delegate="log('rowDataBound', $event)"
+      e-on-query-cell-info.delegate="log('queryCellInfo', $event)"
+      e-on-header-cell-info.delegate="log('headerCellInfo', $event)"
+      e-on-row-selecting.delegate="log('rowSelecting', $event)"
+      e-on-row-selected.delegate="onRowSelected($event)"
+      e-on-row-deselecting.delegate="log('rowDeselecting', $event)"
+      e-on-row-deselected.delegate="log('rowDeselected', $event)"
+      e-on-cell-selecting.delegate="log('cellSelecting', $event)"
+      e-on-cell-selected.delegate="log('cellSelected', $event)"
+      e-on-cell-deselecting.delegate="log('cellDeselecting', $event)"
+      e-on-cell-deselected.delegate="log('cellDeselected', $event)"
+      e-on-record-double-click.delegate="log('recordDoubleClick', $event)"
+      e-on-action-begin.delegate="log('actionBegin', $event)"
+      e-on-action-complete.delegate="log('actionComplete', $event)"></ej2-tree-grid>
+    <div class="demo-output">Selected index: <code data-testid="tg-selected-index">${selectedRowIndex}</code>,
+      selected task: <code data-testid="tg-selected-name">${selectedFromEvent}</code></div>
+    <button data-testid="tg-select-3" click.delegate="selectedRowIndex = 3">Select row 3</button>
   </demo-section>
+
+  <demo-section id="tg-self" title="Self referential data" description="idMapping and parentIdMapping, hasChildMapping, expandStateMapping and loadChildOnDemand.">
+    <ej2-tree-grid data-testid="tg-self" e-data-source.bind="selfData" e-id-mapping="taskID" e-parent-id-mapping="parentID"
+      e-has-child-mapping="isParent" e-load-child-on-demand.bind="false" e-expand-state-mapping="isExpanded"
+      e-tree-column-index.bind="0" e-columns.bind="columns" e-height.bind="260"></ej2-tree-grid>
+  </demo-section>
+
+  <demo-section id="tg-look" title="Look and feel" description="Row height, grid lines, hover, alternate rows, text wrap, clip mode, currency, loading indicator and more.">
+    <ej2-tree-grid data-testid="tg-look" e-data-source.bind="lookData" e-child-mapping="subtasks" e-columns.bind="columns"
+      e-width.bind="lookWidth" e-height.bind="lookHeight" e-row-height.bind="rowHeight" e-grid-lines.bind="gridLines"
+      e-enable-hover.bind="lookState.hover" e-enable-alt-row.bind="lookState.altRow" e-allow-text-wrap.bind="lookState.wrap"
+      e-text-wrap-settings.bind="textWrapSettings" e-clip-mode.bind="clipMode" e-currency-code.bind="currencyCode"
+      e-allow-keyboard.bind="lookState.keyboard" e-loading-indicator.bind="loadingIndicator"
+      e-enable-adaptive-u-i.bind="false" e-enable-immutable-mode.bind="false" e-enable-sticky-header.bind="false"
+      e-enable-html-sanitizer.bind="true" e-enable-auto-fill.bind="false" e-enable-virtual-mask-row.bind="true"
+      e-copy-hierarchy-mode.bind="copyHierarchyMode"></ej2-tree-grid>
+    <div class="demo-output">
+      <button data-testid="tg-look-toggle" click.delegate="toggleLook()">Toggle look</button>
+      <button data-testid="tg-look-lines" click.delegate="changeLines()">Change lines and height</button>
+    </div>
+  </demo-section>
+
+  <demo-section id="tg-empty" title="Empty records" description="emptyRecordTemplate is shown when there is no data.">
+    <ej2-tree-grid data-testid="tg-empty" e-data-source.bind="emptyData" e-child-mapping="subtasks" e-tree-column-index.bind="0"
+      e-columns.bind="columns" e-empty-record-template.bind="emptyTemplate"></ej2-tree-grid>
+  </demo-section>
+
+  <demo-section id="tg-rowtemplate" title="Row template" description="rowTemplate replaces the default rows.">
+    <ej2-tree-grid data-testid="tg-rowtemplate" e-data-source.bind="lookData" e-child-mapping="subtasks" e-columns.bind="columns"
+      e-row-template.bind="rowTemplate"></ej2-tree-grid>
+  </demo-section>
+
+  <demo-section id="tg-selectable" title="Selectable rows" description="isRowSelectable (Task 3 cannot be selected) and spanning.">
+    <ej2-tree-grid data-testid="tg-selectable" e-data-source.bind="lookData" e-child-mapping="subtasks" e-columns.bind="columns"
+      e-is-row-selectable.bind="selectable" e-enable-column-span.bind="true" e-enable-row-span.bind="true"
+      e-allow-selection.bind="true"></ej2-tree-grid>
+  </demo-section>
+
+  <compose repeat.for="part of parts" view-model.bind="part"></compose>
 </template>

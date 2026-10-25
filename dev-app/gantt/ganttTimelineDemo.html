@@ -1,0 +1,46 @@
+<template>
+  <demo-section id="gantt-timeline" title="Timeline and zooming" description="timelineSettings, zoomingLevels and the zoom toolbar items.">
+    <ej2-gantt data-testid="gantt-timeline" e-data-source.bind="timelineData" e-task-fields.bind="taskFields" e-columns.bind="columns"
+      e-height.bind="260" e-timeline-settings.bind="timelineSettings" e-zooming-levels.bind="zoomingLevels" e-toolbar.bind="zoomToolbar"
+      e-project-start-date="2025-04-01" e-project-end-date="2025-05-10"
+      e-on-toolbar-click.delegate="log('zoomToolbarClick', $event)"></ej2-gantt>
+  </demo-section>
+
+  <demo-section id="gantt-calendar" title="Calendar, holidays and event markers" description="highlightWeekends, holidays, eventMarkers, dayWorkingTime, weekWorkingTime and calendarSettings.">
+    <ej2-gantt data-testid="gantt-calendar" e-data-source.bind="calendarData" e-task-fields.bind="taskFields" e-columns.bind="columns"
+      e-height.bind="260" e-highlight-weekends.bind="true" e-holidays.bind="holidays" e-event-markers.bind="eventMarkers"
+      e-day-working-time.bind="dayWorkingTime" e-week-working-time.bind="weekWorkingTime" e-calendar-settings.bind="calendarSettings"
+      e-timeline-settings.bind="hourTimeline" e-project-start-date="2025-04-07" e-project-end-date="2025-04-18"></ej2-gantt>
+  </demo-section>
+
+  <demo-section id="gantt-baseline" title="Baseline and critical path" description="renderBaseline, baselineTemplate and enableCriticalPath.">
+    <ej2-gantt data-testid="gantt-baseline" e-data-source.bind="baselineData" e-task-fields.bind="taskFields" e-columns.bind="columns"
+      e-height.bind="260" e-toolbar.bind="criticalToolbar" e-render-baseline.bind="true" e-baseline-template.bind="baselineTemplate" e-enable-critical-path.bind="true"
+      e-project-start-date="2025-04-01" e-project-end-date="2025-05-10"></ej2-gantt>
+  </demo-section>
+
+  <demo-section id="gantt-templates" title="Taskbar, milestone and timeline templates" description="taskbarTemplate, parentTaskbarTemplate, milestoneTemplate and timelineTemplate.">
+    <ej2-gantt data-testid="gantt-templates" e-data-source.bind="templateData" e-task-fields.bind="taskFields" e-columns.bind="columns"
+      e-height.bind="260" e-taskbar-template.bind="taskbarTemplate" e-parent-taskbar-template.bind="parentTaskbarTemplate"
+      e-milestone-template.bind="milestoneTemplate" e-timeline-template.bind="timelineTemplate"
+      e-project-start-date="2025-04-01" e-project-end-date="2025-05-10"></ej2-gantt>
+  </demo-section>
+
+  <demo-section id="gantt-virtual" title="Virtualization" description="enableVirtualization and enableTimelineVirtualization with 200 tasks.">
+    <ej2-gantt data-testid="gantt-virtual" e-data-source.bind="bigData" e-task-fields.bind="bigFields" e-columns.bind="columns"
+      e-height.bind="260" e-enable-virtualization.bind="true" e-enable-timeline-virtualization.bind="true"
+      e-project-start-date="2025-04-01" e-project-end-date="2025-05-30"></ej2-gantt>
+  </demo-section>
+
+  <demo-section id="gantt-infinite" title="Infinite timeline scrolling" description="enableInfiniteTimelineScroll extends the timeline when scrolled.">
+    <ej2-gantt data-testid="gantt-infinite" e-data-source.bind="timelineData" e-task-fields.bind="taskFields" e-columns.bind="columns"
+      e-height.bind="260" e-enable-infinite-timeline-scroll.bind="true" e-timeline-settings.bind="infiniteTimeline"
+      e-project-start-date="2025-04-01" e-project-end-date="2025-05-10"></ej2-gantt>
+  </demo-section>
+
+  <demo-section id="gantt-notes" title="Inline notes and unscheduled tasks" description="showInlineNotes and allowUnscheduledTasks.">
+    <ej2-gantt data-testid="gantt-notes" e-data-source.bind="noteData" e-task-fields.bind="noteFields" e-columns.bind="columns"
+      e-height.bind="220" e-show-inline-notes.bind="true" e-allow-unscheduled-tasks.bind="true"
+      e-project-start-date="2025-04-01" e-project-end-date="2025-04-20"></ej2-gantt>
+  </demo-section>
+</template>
