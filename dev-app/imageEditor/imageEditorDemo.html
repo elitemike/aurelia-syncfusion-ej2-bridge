@@ -1,7 +1,75 @@
 <template>
   <h2>Image Editor</h2>
 
-  <demo-section id="imageEditor-basic" title="Basic" description="Image Editor rendered with its default options.">
-    <ej2-image-editor data-testid="imageEditor-basic"></ej2-image-editor>
+  <demo-section id="ie-main" title="Image editing" description="Open a local image, edit it from the toolbar or the API. Every property and event of the control is bound here.">
+    <div class="demo-row">
+      <button data-testid="ie-open" click.delegate="openImage()">open()</button>
+      <button data-testid="ie-open2" click.delegate="openSecond()">open() second</button>
+      <button data-testid="ie-zoom" click.delegate="zoom()">zoom()</button>
+      <button data-testid="ie-pan" click.delegate="pan()">pan()</button>
+      <button data-testid="ie-rotate" click.delegate="rotate()">rotate()</button>
+      <button data-testid="ie-flip" click.delegate="flip()">flip()</button>
+      <button data-testid="ie-select" click.delegate="select()">select()</button>
+      <button data-testid="ie-crop" click.delegate="cropApply()">crop()</button>
+      <button data-testid="ie-rect" click.delegate="drawRectangle()">drawRectangle()</button>
+      <button data-testid="ie-update-shape" click.delegate="updateShape()">updateShape()</button>
+      <button data-testid="ie-text" click.delegate="drawText()">drawText()</button>
+      <button data-testid="ie-filter" click.delegate="filter()">applyImageFilter()</button>
+      <button data-testid="ie-finetune" click.delegate="finetune()">finetuneImage()</button>
+      <button data-testid="ie-frame" click.delegate="frame()">drawFrame()</button>
+      <button data-testid="ie-resize" click.delegate="resize()">resize()</button>
+      <button data-testid="ie-undo" click.delegate="undo()">undo()</button>
+      <button data-testid="ie-save" click.delegate="save()">export()</button>
+    </div>
+    <div class="demo-row">
+      <button data-testid="ie-toggle-disabled" click.delegate="disabled = !disabled">Toggle disabled</button>
+      <button data-testid="ie-toggle-readonly" click.delegate="isReadOnly = !isReadOnly">Toggle isReadOnly</button>
+      <button data-testid="ie-toggle-undo" click.delegate="allowUndoRedo = !allowUndoRedo">Toggle allowUndoRedo</button>
+      <button data-testid="ie-toggle-qat" click.delegate="showQuickAccessToolbar = !showQuickAccessToolbar">Toggle quick toolbar</button>
+      <button data-testid="ie-toggle-smooth" click.delegate="imageSmoothingEnabled = !imageSmoothingEnabled">Toggle smoothing</button>
+      <button data-testid="ie-set-size" click.delegate="setSize()">Resize widget</button>
+      <button data-testid="ie-set-theme" click.delegate="theme = 'Fluent2'">Fluent2 theme</button>
+      <button data-testid="ie-set-css" click.delegate="cssClass = 'other-class'">Change cssClass</button>
+    </div>
+    <ej2-image-editor data-testid="ie-main" view-model.ref="editor"
+      e-width.bind="width" e-height.bind="height" e-theme.bind="theme" e-css-class.bind="cssClass"
+      e-disabled.bind="disabled" e-is-read-only.bind="isReadOnly" e-allow-undo-redo.bind="allowUndoRedo"
+      e-show-quick-access-toolbar.bind="showQuickAccessToolbar" e-image-smoothing-enabled.bind="imageSmoothingEnabled"
+      e-font-family.bind="fontFamily" e-finetune-settings.bind="finetuneSettings" e-zoom-settings.bind="zoomSettings"
+      e-selection-settings.bind="selectionSettings" e-upload-settings.bind="uploadSettings" e-toolbar.bind="toolbar"
+      e-on-created.delegate="log('created')" e-on-before-save.delegate="log('beforeSave', $event)"
+      e-on-destroyed.trigger="log('destroyed')" e-on-zooming.delegate="log('zooming', $event)"
+      e-on-panning.delegate="log('panning', $event)" e-on-cropping.delegate="log('cropping', $event)"
+      e-on-rotating.delegate="log('rotating', $event)" e-on-flipping.delegate="log('flipping', $event)"
+      e-on-shape-changing.delegate="log('shapeChanging', $event)" e-on-selection-changing.delegate="log('selectionChanging', $event)"
+      e-on-file-opened.delegate="log('fileOpened', $event)" e-on-saved.delegate="log('saved', $event)"
+      e-on-toolbar-created.delegate="log('toolbarCreated', $event)" e-on-toolbar-updating.delegate="log('toolbarUpdating', $event)"
+      e-on-toolbar-item-clicked.delegate="log('toolbarItemClicked', $event)" e-on-image-filtering.delegate="log('imageFiltering', $event)"
+      e-on-finetune-value-changing.delegate="log('finetuneValueChanging', $event)" e-on-click.delegate="log('click', $event)"
+      e-on-shape-change.delegate="log('shapeChange', $event)" e-on-quick-access-toolbar-open.delegate="log('quickAccessToolbarOpen', $event)"
+      e-on-resizing.delegate="log('resizing', $event)" e-on-quick-access-toolbar-item-click.delegate="log('quickAccessToolbarItemClick', $event)"
+      e-on-frame-change.delegate="log('frameChange', $event)" e-on-edit-complete.delegate="log('editComplete', $event)"></ej2-image-editor>
+    <div class="demo-output">Events: <code data-testid="ie-counts">${countsText}</code></div>
+  </demo-section>
+
+  <demo-section id="ie-templates" title="Toolbar templates" description="toolbarTemplate and quickAccessToolbarTemplate replace the built-in toolbars.">
+    <ej2-image-editor data-testid="ie-templates" view-model.ref="templateEditor" e-width="480px" e-height="320px"
+      e-toolbar-template="#ie-toolbar-template" e-quick-access-toolbar-template="#ie-qat-template"></ej2-image-editor>
+    <div id="ie-toolbar-template" style="display:none"><button class="ie-tpl-button" type="button">Template button</button></div>
+    <div id="ie-qat-template" style="display:none"><button class="ie-qat-button" type="button">Quick action</button></div>
+  </demo-section>
+
+  <demo-section id="ie-custom-toolbar" title="Custom toolbar" description="toolbar accepts custom items next to the built-in commands.">
+    <button data-testid="ie-custom-open" click.delegate="openCustom()">open()</button>
+    <ej2-image-editor data-testid="ie-custom" view-model.ref="customEditor" e-width="480px" e-height="300px" e-toolbar.bind="customToolbar"
+      e-on-toolbar-item-clicked.delegate="log('customClicked', $event)"></ej2-image-editor>
+    <div class="demo-output">Custom clicks: <code data-testid="ie-custom-count">${counts.customClicked || 0}</code></div>
+  </demo-section>
+
+  <demo-section id="ie-destroy" title="Destroyed" description="destroyed is raised when the element is removed, listened to with .trigger.">
+    <button data-testid="ie-destroy-toggle" click.delegate="showDestroy = !showDestroy">Toggle</button>
+    <ej2-image-editor if.bind="showDestroy" data-testid="ie-destroy" e-width="300px" e-height="200px"
+      e-on-destroyed.trigger="log('destroyedByToggle')"></ej2-image-editor>
+    <div class="demo-output">Destroyed: <code data-testid="ie-destroy-count">${counts.destroyedByToggle || 0}</code></div>
   </demo-section>
 </template>
