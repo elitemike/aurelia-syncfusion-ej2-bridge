@@ -1,7 +1,96 @@
 <template>
   <h2>Document Editor</h2>
 
-  <demo-section id="documentEditor-basic" title="Basic" description="Document Editor rendered with its default options.">
-    <ej2-document-editor data-testid="documentEditor-basic"></ej2-document-editor>
+  <demo-section id="de-main" title="Editing a local SFDT document"
+    description="The document is loaded with open() from a local SFDT string. zoomFactor and documentName are two-way, every event is logged.">
+    <div class="demo-row">
+      <button data-testid="de-load" click.delegate="load()">open() sample</button>
+      <button data-testid="de-zoom150" click.delegate="zoom = 1.5">zoomFactor = 1.5</button>
+      <button data-testid="de-toggle-readonly" click.delegate="readOnly = !readOnly">Toggle isReadOnly</button>
+      <button data-testid="de-toggle-track" click.delegate="trackChanges = !trackChanges">Toggle track changes</button>
+      <span>Zoom <code data-testid="de-zoom-out">${zoom}</code> Name <code data-testid="de-name-out">${name}</code></span>
+    </div>
+    <ej2-document-editor data-testid="de-main" view-model.ref="mainEditor"
+      e-zoom-factor.two-way="zoom" e-document-name.two-way="name" e-is-read-only.bind="readOnly"
+      e-enable-track-changes.bind="trackChanges"
+      e-layout-type.bind="layoutType"
+      e-current-user.bind="currentUser"
+      e-user-color.bind="userColor"
+      e-page-gap.bind="pageGap"
+      e-enable-print.bind="enablePrint"
+      e-enable-selection.bind="enableSelection"
+      e-enable-editor.bind="enableEditor"
+      e-enable-editor-history.bind="enableEditorHistory"
+      e-enable-sfdt-export.bind="enableSfdtExport"
+      e-enable-word-export.bind="enableWordExport"
+      e-enable-text-export.bind="enableTextExport"
+      e-enable-options-pane.bind="enableOptionsPane"
+      e-enable-context-menu.bind="enableContextMenu"
+      e-enable-hyperlink-dialog.bind="enableHyperlinkDialog"
+      e-enable-bookmark-dialog.bind="enableBookmarkDialog"
+      e-enable-table-of-contents-dialog.bind="enableTableOfContentsDialog"
+      e-enable-search.bind="enableSearch"
+      e-enable-paragraph-dialog.bind="enableParagraphDialog"
+      e-enable-list-dialog.bind="enableListDialog"
+      e-enable-table-properties-dialog.bind="enableTablePropertiesDialog"
+      e-enable-borders-and-shading-dialog.bind="enableBordersAndShadingDialog"
+      e-enable-footnote-and-endnote-dialog.bind="enableFootnoteAndEndnoteDialog"
+      e-enable-columns-dialog.bind="enableColumnsDialog"
+      e-enable-page-setup-dialog.bind="enablePageSetupDialog"
+      e-enable-style-dialog.bind="enableStyleDialog"
+      e-enable-font-dialog.bind="enableFontDialog"
+      e-enable-table-options-dialog.bind="enableTableOptionsDialog"
+      e-enable-table-dialog.bind="enableTableDialog"
+      e-enable-image-resizer.bind="enableImageResizer"
+      e-enable-comment.bind="enableComment"
+      e-enable-form-field.bind="enableFormField"
+      e-accept-tab.bind="acceptTab"
+      e-use-ctrl-click-to-follow-hyperlink.bind="useCtrlClickToFollowHyperlink"
+      e-page-outline.bind="pageOutline"
+      e-enable-cursor-on-read-only.bind="enableCursorOnReadOnly"
+      e-enable-local-paste.bind="enableLocalPaste"
+      e-enable-layout.bind="enableLayout"
+      e-z-index.bind="zIndex"
+      e-auto-resize-on-visibility-change.bind="autoResizeOnVisibilityChange"
+      e-show-comments.bind="showComments"
+      e-show-revisions.bind="showRevisions"
+      e-enable-auto-focus.bind="enableAutoFocus"
+      e-default-paste-option.bind="defaultPasteOption"
+      e-document-editor-settings.bind="documentEditorSettings"
+      e-document-settings.bind="documentSettings"
+      e-height.bind="height"
+      e-width.bind="width"
+      e-on-document-change.delegate="log('documentChange', $event)"
+      e-on-view-change.delegate="log('viewChange', $event)"
+      e-on-zoom-factor-change.delegate="log('zoomFactorChange', $event)"
+      e-on-selection-change.delegate="log('selectionChange', $event)"
+      e-on-request-navigate.delegate="log('requestNavigate', $event)"
+      e-on-content-change.delegate="log('contentChange', $event)"
+      e-on-key-down.delegate="log('keyDown', $event)"
+      e-on-search-results-change.delegate="log('searchResultsChange', $event)"
+      e-on-created.delegate="log('created', $event)"
+      e-on-destroyed.trigger="log('destroyed', $event)"
+      e-on-custom-context-menu-select.delegate="log('customContextMenuSelect', $event)"
+      e-on-custom-context-menu-before-open.delegate="log('customContextMenuBeforeOpen', $event)"
+      e-on-before-pane-switch.delegate="log('beforePaneSwitch', $event)"
+      e-on-comment-begin.delegate="log('commentBegin', $event)"
+      e-on-comment-end.delegate="log('commentEnd', $event)"
+      e-on-before-file-open.delegate="log('beforeFileOpen', $event)"
+      e-on-comment-delete.delegate="log('commentDelete', $event)"
+      e-on-before-accept-reject-changes.delegate="log('beforeAcceptRejectChanges', $event)"
+      e-on-before-comment-action.delegate="log('beforeCommentAction', $event)"
+      e-on-track-change.delegate="log('trackChange', $event)"
+      e-on-before-form-field-fill.delegate="log('beforeFormFieldFill', $event)"
+      e-on-before-paste.delegate="log('beforePaste', $event)"
+      e-on-unsupported-border-style-click.delegate="log('unsupportedBorderStyleClick', $event)"
+      e-on-service-failure.delegate="log('serviceFailure', $event)"
+      e-on-after-form-field-fill.delegate="log('afterFormFieldFill', $event)"
+      e-on-action-complete.delegate="log('actionComplete', $event)"
+      e-on-content-control.delegate="log('contentControl', $event)"
+      e-on-before-xml-http-request-send.delegate="log('beforeXmlHttpRequestSend', $event)"
+      e-on-document-load-failed.delegate="log('documentLoadFailed', $event)"
+      e-on-before-web-mcp-tool-execute.delegate="log('beforeWebMcpToolExecute', $event)"></ej2-document-editor>
   </demo-section>
+
+  <compose repeat.for="part of parts" view-model.bind="part"></compose>
 </template>

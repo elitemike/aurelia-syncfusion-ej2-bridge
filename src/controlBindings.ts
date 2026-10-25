@@ -821,9 +821,10 @@ export const ControlBindings = {
     ]
   },
   documentEditor: {
+    twoWay: ["zoomFactor", "documentName"],
     oneWay: [
       "enableCollaborativeEditing", "defaultPasteOption", "layoutType", "currentUser", "userColor",
-      "pageGap", "documentName", "width", "height", "serviceUrl", "zoomFactor", "zIndex", "isReadOnly",
+      "pageGap", "width", "height", "serviceUrl", "zIndex", "isReadOnly",
       "enablePrint", "enableSelection", "enableEditor", "enableEditorHistory", "enableSfdtExport",
       "enableWordExport", "enableAutoFocus", "enableTextExport", "enableOptionsPane", "enableContextMenu",
       "enableHyperlinkDialog", "enableBookmarkDialog", "enableTableOfContentsDialog", "enableSearch",
