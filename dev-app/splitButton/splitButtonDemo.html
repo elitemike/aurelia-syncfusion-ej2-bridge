@@ -1,7 +1,40 @@
 <template>
   <h2>Split Button</h2>
 
-  <demo-section id="splitButton-basic" title="Basic" description="Split Button rendered with its default options.">
-    <ej2-split-button data-testid="splitButton-basic"></ej2-split-button>
+  <demo-section id="sdb-basic" title="Default" description="items, content, icon, css class, disabled, popup width and all events.">
+    <ej2-split-button data-testid="sdb-basic" e-items.bind="items" e-content.bind="content" e-icon-css="e-icons e-user" e-icon-position.bind="iconPosition"
+      e-css-class="sdb-basic-class" e-disabled.bind="disabled" e-popup-width="220px" e-enable-html-sanitizer.bind="true"
+      e-on-created.delegate="created = created + 1" e-on-click.delegate="primaryClicks = primaryClicks + 1" e-on-before-item-render.delegate="itemRenders = itemRenders + 1"
+      e-on-before-open.delegate="beforeOpen = beforeOpen + 1" e-on-open.delegate="opened = opened + 1"
+      e-on-before-close.delegate="beforeClose = beforeClose + 1" e-on-close.delegate="closed = closed + 1"
+      e-on-select.delegate="selected = $event.detail.item.text"></ej2-split-button>
+    <div class="demo-row">
+      <button data-testid="sdb-content" click.delegate="content = 'Account'">Change content</button>
+      <label>Icon position
+        <select data-testid="sdb-icon-position" value.bind="iconPosition"><option value="Left">Left</option><option value="Right">Right</option><option value="Top">Top</option></select>
+      </label>
+      <label><input type="checkbox" data-testid="sdb-chk-disabled" checked.bind="disabled" /> disabled</label>
+    </div>
+    <div class="demo-output">created <span data-testid="sdb-created">${created}</span> beforeItemRender <span data-testid="sdb-item-renders">${itemRenders}</span>
+      beforeOpen <span data-testid="sdb-before-open">${beforeOpen}</span> open <span data-testid="sdb-opened">${opened}</span>
+      beforeClose <span data-testid="sdb-before-close">${beforeClose}</span> close <span data-testid="sdb-closed">${closed}</span>
+      primary click <span data-testid="sdb-primary">${primaryClicks}</span> select <code data-testid="sdb-selected">${selected}</code></div>
+  </demo-section>
+
+  <demo-section id="sdb-default-slot" title="Content from the element body" description="Without content the text of the element is the button text.">
+    <ej2-split-button data-testid="sdb-slot" e-items.bind="items" e-css-class="sdb-slot-class">Slot text</ej2-split-button>
+  </demo-section>
+
+  <demo-section id="sdb-target" title="Custom popup content" description="target uses an element as the popup, createPopupOnClick delays rendering, closeActionEvents controls what closes it.">
+    <ej2-split-button data-testid="sdb-target" e-target="#sdb-target-content" e-create-popup-on-click.bind="true" e-close-action-events="click" e-css-class="sdb-target-class">Show panel</ej2-split-button>
+    <div id="sdb-target-content" data-testid="sdb-target-content" style="display: none; padding: 10px;"><span class="sdb-panel">Custom panel content</span></div>
+  </demo-section>
+
+  <demo-section id="sdb-template" title="Item template and animation" description="itemTemplate renders every item, animationSettings configures the popup animation.">
+    <ej2-split-button data-testid="sdb-template" e-items.bind="items" e-item-template.bind="itemTemplate" e-animation-settings.bind="animation" e-css-class="sdb-template-class">Templated</ej2-split-button>
+  </demo-section>
+
+  <demo-section id="sdb-html" title="Html content" description="enableHtmlSanitizer sanitizes the content.">
+    <ej2-split-button data-testid="sdb-html" e-items.bind="items" e-content.bind="htmlContent" e-enable-html-sanitizer.bind="true" e-css-class="sdb-html-class"></ej2-split-button>
   </demo-section>
 </template>

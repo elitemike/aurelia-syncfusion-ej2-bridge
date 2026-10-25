@@ -1,7 +1,51 @@
 <template>
   <h2>Fab</h2>
 
-  <demo-section id="fab-basic" title="Basic" description="Fab rendered with its default options.">
-    <ej2-fab data-testid="fab-basic"></ej2-fab>
+  <demo-section id="fab-basic" title="Floating action button" description="A FAB positioned inside a target container. position, iconCss, iconPosition, isPrimary, visible, disabled, css class, content from the element body and the clicked and created events.">
+    <div id="fab-box" data-testid="fab-box" style="position: relative; height: 240px; border: 1px solid #aaa; overflow: hidden;">
+      <ej2-fab data-testid="fab-basic" e-target="#fab-box" e-position.bind="position" e-icon-css="e-icons e-plus" e-icon-position.bind="iconPosition"
+        e-is-primary.bind="isPrimary" e-visible.bind="visible" e-disabled.bind="disabled" e-css-class="fab-basic-class"
+        e-on-created.delegate="created = created + 1" e-on-clicked.delegate="clicked = clicked + 1">Add</ej2-fab>
+    </div>
+    <div class="demo-row">
+      <label>Position
+        <select data-testid="fab-position" value.bind="position">
+          <option repeat.for="p of positions" value.bind="p">${p}</option>
+        </select>
+      </label>
+      <label>Icon position
+        <select data-testid="fab-icon-position" value.bind="iconPosition">
+          <option value="Left">Left</option>
+          <option value="Right">Right</option>
+          <option value="Top">Top</option>
+          <option value="Bottom">Bottom</option>
+        </select>
+      </label>
+      <label><input type="checkbox" data-testid="fab-chk-primary" checked.bind="isPrimary" /> primary</label>
+      <label><input type="checkbox" data-testid="fab-chk-visible" checked.bind="visible" /> visible</label>
+      <label><input type="checkbox" data-testid="fab-chk-disabled" checked.bind="disabled" /> disabled</label>
+    </div>
+    <div class="demo-output">created <span data-testid="fab-created">${created}</span> clicked <span data-testid="fab-clicked">${clicked}</span></div>
+  </demo-section>
+
+  <demo-section id="fab-content" title="Content" description="content and enableHtmlSanitizer, without an icon.">
+    <div id="fab-content-box" data-testid="fab-content-box" style="position: relative; height: 100px; border: 1px solid #aaa; overflow: hidden;">
+      <ej2-fab data-testid="fab-content" e-target="#fab-content-box" e-position="BottomLeft" e-content.bind="content" e-enable-html-sanitizer.bind="true"></ej2-fab>
+    </div>
+    <button data-testid="fab-content-change" click.delegate="content = 'Create <b>new</b><img src=x onerror=&quot;window.__fabXss=true&quot;>'">Change content</button>
+  </demo-section>
+
+  <demo-section id="fab-toggle" title="Toggle" description="isToggle switches between the content and the toggled state on click.">
+    <div id="fab-toggle-box" data-testid="fab-toggle-box" style="position: relative; height: 100px; border: 1px solid #aaa; overflow: hidden;">
+      <ej2-fab data-testid="fab-toggle" e-target="#fab-toggle-box" e-position="BottomRight" e-is-toggle.bind="true" e-icon-css="e-icons e-play-icon" e-content="Play"></ej2-fab>
+    </div>
+  </demo-section>
+
+  <demo-section id="fab-repeat" title="Press and hold" description="enableRepeat, repeatDelay and repeatInterval raise clicked repeatedly while the FAB is held.">
+    <div id="fab-repeat-box" data-testid="fab-repeat-box" style="position: relative; height: 100px; border: 1px solid #aaa; overflow: hidden;">
+      <ej2-fab data-testid="fab-repeat" e-target="#fab-repeat-box" e-position="BottomRight" e-content="Hold" e-enable-repeat.bind="true" e-repeat-delay.bind="100" e-repeat-interval.bind="50"
+        e-on-clicked.delegate="repeatCount = repeatCount + 1"></ej2-fab>
+    </div>
+    <div class="demo-output">Repeat clicks: <span data-testid="fab-repeat-count">${repeatCount}</span></div>
   </demo-section>
 </template>

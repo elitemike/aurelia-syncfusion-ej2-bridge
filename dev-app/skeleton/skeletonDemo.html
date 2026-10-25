@@ -1,7 +1,49 @@
 <template>
   <h2>Skeleton</h2>
 
-  <demo-section id="skeleton-basic" title="Basic" description="Skeleton rendered with its default options.">
-    <ej2-skeleton data-testid="skeleton-basic"></ej2-skeleton>
+  <demo-section id="skeleton-default" title="Default" description="A text skeleton with the default wave shimmer, label and css class.">
+    <ej2-skeleton data-testid="sk-default" e-label="Loading content" e-css-class="sk-default-class"></ej2-skeleton>
+  </demo-section>
+
+  <demo-section id="skeleton-shapes" title="Shapes" description="Circle, Square, Rectangle and Text shapes with width and height.">
+    <div class="demo-row">
+      <ej2-skeleton data-testid="sk-circle" e-shape="Circle" e-width="50px"></ej2-skeleton>
+      <ej2-skeleton data-testid="sk-square" e-shape="Square" e-width="50px"></ej2-skeleton>
+      <ej2-skeleton data-testid="sk-rectangle" e-shape="Rectangle" e-width="120px" e-height="40px"></ej2-skeleton>
+      <ej2-skeleton data-testid="sk-text" e-shape="Text" e-width="200px" e-height="16px"></ej2-skeleton>
+    </div>
+  </demo-section>
+
+  <demo-section id="skeleton-effects" title="Shimmer effects" description="Wave, Pulse, Fade and None.">
+    <div class="demo-row">
+      <ej2-skeleton data-testid="sk-wave" e-shape="Rectangle" e-width="100px" e-height="30px" e-shimmer-effect="Wave"></ej2-skeleton>
+      <ej2-skeleton data-testid="sk-pulse" e-shape="Rectangle" e-width="100px" e-height="30px" e-shimmer-effect="Pulse"></ej2-skeleton>
+      <ej2-skeleton data-testid="sk-fade" e-shape="Rectangle" e-width="100px" e-height="30px" e-shimmer-effect="Fade"></ej2-skeleton>
+      <ej2-skeleton data-testid="sk-none" e-shape="Rectangle" e-width="100px" e-height="30px" e-shimmer-effect="None"></ej2-skeleton>
+    </div>
+  </demo-section>
+
+  <demo-section id="skeleton-bound" title="Bound properties" description="width, height, shape, shimmerEffect, visible, label and cssClass follow the view-model.">
+    <ej2-skeleton data-testid="sk-bound" e-width.bind="width" e-height.bind="height" e-shape.bind="shape" e-shimmer-effect.bind="effect"
+      e-visible.bind="visible" e-label.bind="label" e-css-class.bind="cssClass"></ej2-skeleton>
+    <div class="demo-row">
+      <button data-testid="sk-size" click.delegate="resize()">Resize</button>
+      <button data-testid="sk-shape" click.delegate="shape = 'Rectangle'">Rectangle</button>
+      <button data-testid="sk-effect" click.delegate="effect = 'Pulse'">Pulse</button>
+      <button data-testid="sk-label" click.delegate="label = 'Still loading'">Label</button>
+      <button data-testid="sk-css" click.delegate="cssClass = 'sk-two'">Css class</button>
+      <label><input type="checkbox" data-testid="sk-chk-visible" checked.bind="visible" /> visible</label>
+    </div>
+  </demo-section>
+
+  <demo-section id="skeleton-card" title="Card layout" description="A card built from a circle avatar and several text lines, like the Syncfusion sample.">
+    <div class="sk-card" data-testid="sk-card" style="display: flex; gap: 12px; width: 320px;">
+      <ej2-skeleton e-shape="Circle" e-width="48px" e-css-class="sk-card-avatar"></ej2-skeleton>
+      <div style="flex: 1;">
+        <ej2-skeleton e-shape="Text" e-width="60%" e-css-class="sk-card-line"></ej2-skeleton>
+        <ej2-skeleton e-shape="Text" e-width="90%" e-css-class="sk-card-line"></ej2-skeleton>
+        <ej2-skeleton e-shape="Text" e-width="75%" e-css-class="sk-card-line"></ej2-skeleton>
+      </div>
+    </div>
   </demo-section>
 </template>

@@ -1,7 +1,38 @@
 <template>
   <h2>Smart Paste Button</h2>
 
-  <demo-section id="smartPasteButton-basic" title="Basic" description="Smart Paste Button rendered with its default options.">
-    <ej2-smart-paste-button data-testid="smartPasteButton-basic"></ej2-smart-paste-button>
+  <demo-section id="sp-form" title="Smart paste into a form" description="The button reads the clipboard (here the custom-clipboard textarea), calls aiAssistHandler with the prompt and fills the fields of its form from the response.">
+    <textarea id="custom-clipboard" data-testid="sp-clipboard" rows="2" style="width: 100%;">Jane Doe, jane@example.com, from Canada, wants the newsletter</textarea>
+    <form data-testid="sp-form" style="display: grid; gap: 8px; max-width: 360px; margin-top: 8px;" submit.delegate="$event.preventDefault()">
+      <label for="sp-name">Full name</label>
+      <input id="sp-name" name="fullName" data-testid="sp-name" type="text" />
+      <label for="sp-email">Email</label>
+      <input id="sp-email" name="email" data-testid="sp-email" type="text" />
+      <label for="sp-country">Country</label>
+      <select id="sp-country" name="country" data-testid="sp-country">
+        <option value="">Select</option>
+        <option value="us">United States</option>
+        <option value="ca">Canada</option>
+      </select>
+      <label><input id="sp-subscribe" name="subscribe" data-testid="sp-subscribe" type="checkbox" /> Subscribe</label>
+      <ej2-smart-paste-button data-testid="sp-button" e-ai-assist-handler.bind="handler" e-content="Smart paste" e-icon-css="e-icons e-paste" e-icon-position.bind="iconPosition"
+        e-is-primary.bind="isPrimary" e-disabled.bind="disabled" e-css-class="sp-class" e-enable-html-sanitizer.bind="true"
+        e-on-created.delegate="created = created + 1"></ej2-smart-paste-button>
+    </form>
+    <div class="demo-row">
+      <label>Icon position
+        <select data-testid="sp-icon-position" value.bind="iconPosition"><option value="Left">Left</option><option value="Right">Right</option></select>
+      </label>
+      <label><input type="checkbox" data-testid="sp-chk-primary" checked.bind="isPrimary" /> primary</label>
+      <label><input type="checkbox" data-testid="sp-chk-disabled" checked.bind="disabled" /> disabled</label>
+    </div>
+    <div class="demo-output">created <span data-testid="sp-created">${created}</span> handler calls <span data-testid="sp-calls">${calls}</span>
+      prompt <code data-testid="sp-prompt">${prompt}</code></div>
+  </demo-section>
+
+  <demo-section id="sp-repeat" title="Toggle and repeat" description="isToggle, enableRepeat, repeatDelay, repeatInterval and the clicked event; a button outside a form does not call the handler.">
+    <ej2-smart-paste-button data-testid="sp-repeat" e-content="Hold me" e-is-toggle.bind="true" e-enable-repeat.bind="true" e-repeat-delay.bind="100" e-repeat-interval.bind="50"
+      e-css-class="sp-repeat-class" e-on-clicked.delegate="repeatClicks = repeatClicks + 1"></ej2-smart-paste-button>
+    <div class="demo-output">clicked <span data-testid="sp-repeat-count">${repeatClicks}</span></div>
   </demo-section>
 </template>

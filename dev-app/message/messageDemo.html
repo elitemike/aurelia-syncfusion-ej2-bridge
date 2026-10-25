@@ -1,7 +1,51 @@
 <template>
   <h2>Message</h2>
 
-  <demo-section id="message-basic" title="Basic" description="Message rendered with its default options.">
-    <ej2-message data-testid="message-basic"></ej2-message>
+  <demo-section id="message-basic" title="Default message" description="content, severity, variant, icon, close icon and css class follow the view-model.">
+    <ej2-message data-testid="msg-basic" e-content.bind="content" e-severity.bind="severity" e-variant.bind="variant" e-show-icon.bind="showIcon"
+      e-show-close-icon.bind="showClose" e-css-class="msg-basic-class" e-on-created.delegate="created = created + 1"></ej2-message>
+    <div class="demo-row">
+      <label>Severity
+        <select data-testid="msg-severity" value.bind="severity">
+          <option repeat.for="s of severities" value.bind="s">${s}</option>
+        </select>
+      </label>
+      <label>Variant
+        <select data-testid="msg-variant" value.bind="variant">
+          <option repeat.for="v of variants" value.bind="v">${v}</option>
+        </select>
+      </label>
+      <label><input type="checkbox" data-testid="msg-chk-icon" checked.bind="showIcon" /> icon</label>
+      <label><input type="checkbox" data-testid="msg-chk-close" checked.bind="showClose" /> close icon</label>
+      <button data-testid="msg-content-change" click.delegate="content = 'Updated message'">Change content</button>
+    </div>
+    <div class="demo-output">created <span data-testid="msg-created">${created}</span></div>
+  </demo-section>
+
+  <demo-section id="message-visible" title="Closing" description="visible is two-way: the close icon sets it to false and the view-model can show the message again, closed is raised.">
+    <ej2-message data-testid="msg-visible" e-visible.two-way="visible" e-show-close-icon.bind="true" e-severity="Warning" e-css-class="msg-visible-class"
+      e-on-closed.delegate="onClosed($event)">Closable message</ej2-message>
+    <div class="demo-row">
+      <button data-testid="msg-show" class="e-btn" click.delegate="visible = true">Show</button>
+      <button data-testid="msg-hide" class="e-btn" click.delegate="visible = false">Hide</button>
+    </div>
+    <div class="demo-output">visible <code data-testid="msg-visible-out">${visible}</code> closed <span data-testid="msg-closed">${closedCount}</span>
+      interacted <span data-testid="msg-interacted">${interacted}</span></div>
+  </demo-section>
+
+  <demo-section id="message-severities" title="Severities and variants" description="Every severity in every variant.">
+    <div repeat.for="s of severities">
+      <ej2-message e-severity.bind="s" e-variant="Filled" e-css-class="msg-sev-${s}" data-testid="msg-sev-${s}">${s} message</ej2-message>
+    </div>
+  </demo-section>
+
+  <demo-section id="message-slot" title="Content from the element body" description="Without the content property the message uses its element body.">
+    <ej2-message data-testid="msg-slot" e-css-class="msg-slot-class"><b>Rich</b> body content</ej2-message>
+  </demo-section>
+
+  <demo-section id="message-destroy" title="Destroyed" description="destroyed is raised when the message is removed.">
+    <label><input type="checkbox" data-testid="msg-chk-exists" checked.bind="exists" /> message exists</label>
+    <ej2-message if.bind="exists" e-content="Short lived" e-on-destroyed.trigger="destroyed = destroyed + 1"></ej2-message>
+    <div class="demo-output">Destroyed: <span data-testid="msg-destroyed">${destroyed}</span></div>
   </demo-section>
 </template>

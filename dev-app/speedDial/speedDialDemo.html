@@ -1,7 +1,70 @@
 <template>
   <h2>Speed Dial</h2>
 
-  <demo-section id="speedDial-basic" title="Basic" description="Speed Dial rendered with its default options.">
-    <ej2-speed-dial data-testid="speedDial-basic"></ej2-speed-dial>
+  <demo-section id="sd-linear" title="Linear speed dial" description="items open in a linear direction. content, icons, direction, position, isPrimary, disabled, visible, css class and all lifecycle events.">
+    <div id="sd-box" data-testid="sd-box" style="position: relative; height: 320px; border: 1px solid #aaa; overflow: hidden;">
+      <ej2-speed-dial data-testid="sd-linear" e-target="#sd-box" e-items.bind="items" e-content="Open" e-open-icon-css="e-icons e-plus" e-close-icon-css="e-icons e-close"
+        e-direction.bind="direction" e-mode="Linear" e-position="BottomRight" e-is-primary.bind="isPrimary" e-disabled.bind="disabled" e-visible.bind="visible"
+        e-icon-position.bind="iconPosition" e-css-class="sd-linear-class"
+        e-on-created.delegate="created = created + 1" e-on-before-open.delegate="beforeOpen = beforeOpen + 1" e-on-on-open.delegate="opened = opened + 1"
+        e-on-before-close.delegate="beforeClose = beforeClose + 1" e-on-on-close.delegate="closed = closed + 1"
+        e-on-before-item-render.delegate="itemRenders = itemRenders + 1" e-on-clicked.delegate="onClicked($event)"></ej2-speed-dial>
+    </div>
+    <div class="demo-row">
+      <label>Direction
+        <select data-testid="sd-direction" value.bind="direction">
+          <option value="Up">Up</option>
+          <option value="Down">Down</option>
+          <option value="Left">Left</option>
+          <option value="Right">Right</option>
+          <option value="Auto">Auto</option>
+        </select>
+      </label>
+      <label>Icon position
+        <select data-testid="sd-icon-position" value.bind="iconPosition">
+          <option value="Left">Left</option>
+          <option value="Right">Right</option>
+        </select>
+      </label>
+      <label><input type="checkbox" data-testid="sd-chk-primary" checked.bind="isPrimary" /> primary</label>
+      <label><input type="checkbox" data-testid="sd-chk-disabled" checked.bind="disabled" /> disabled</label>
+      <label><input type="checkbox" data-testid="sd-chk-visible" checked.bind="visible" /> visible</label>
+    </div>
+    <div class="demo-output">created <span data-testid="sd-created">${created}</span> beforeOpen <span data-testid="sd-before-open">${beforeOpen}</span>
+      onOpen <span data-testid="sd-opened">${opened}</span> beforeClose <span data-testid="sd-before-close">${beforeClose}</span>
+      onClose <span data-testid="sd-closed">${closed}</span> beforeItemRender <span data-testid="sd-item-renders">${itemRenders}</span>
+      clicked <code data-testid="sd-clicked">${clickedItem}</code></div>
+  </demo-section>
+
+  <demo-section id="sd-radial" title="Radial speed dial" description="mode Radial with radialSettings arranges the items on an arc.">
+    <div id="sd-radial-box" data-testid="sd-radial-box" style="position: relative; height: 320px; border: 1px solid #aaa; overflow: hidden;">
+      <ej2-speed-dial data-testid="sd-radial" e-target="#sd-radial-box" e-items.bind="items" e-mode="Radial" e-position="BottomRight"
+        e-radial-settings.bind="radial" e-open-icon-css="e-icons e-plus" e-css-class="sd-radial-class"></ej2-speed-dial>
+    </div>
+  </demo-section>
+
+  <demo-section id="sd-hover" title="Open on hover" description="opensOnHover opens the speed dial when the pointer is over it.">
+    <div id="sd-hover-box" data-testid="sd-hover-box" style="position: relative; height: 260px; border: 1px solid #aaa; overflow: hidden;">
+      <ej2-speed-dial data-testid="sd-hover" e-target="#sd-hover-box" e-items.bind="items" e-opens-on-hover.bind="true" e-position="BottomLeft"
+        e-open-icon-css="e-icons e-plus" e-css-class="sd-hover-class"></ej2-speed-dial>
+    </div>
+  </demo-section>
+
+  <demo-section id="sd-modal" title="Modal overlay" description="modal shows an overlay behind the opened speed dial.">
+    <div id="sd-modal-box" data-testid="sd-modal-box" style="position: relative; height: 260px; border: 1px solid #aaa; overflow: hidden;">
+      <ej2-speed-dial data-testid="sd-modal" e-target="#sd-modal-box" e-items.bind="items" e-modal.bind="true" e-position="BottomRight"
+        e-open-icon-css="e-icons e-plus" e-css-class="sd-modal-class" e-animation.bind="animation"></ej2-speed-dial>
+    </div>
+  </demo-section>
+
+  <demo-section id="sd-template" title="Templates" description="itemTemplate renders each item, popupTemplate replaces the whole popup.">
+    <div id="sd-item-template-box" data-testid="sd-item-template-box" style="position: relative; height: 260px; border: 1px solid #aaa; overflow: hidden; display: inline-block; width: 45%;">
+      <ej2-speed-dial data-testid="sd-item-template" e-target="#sd-item-template-box" e-items.bind="items" e-item-template.bind="itemTemplate" e-position="BottomRight"
+        e-open-icon-css="e-icons e-plus" e-css-class="sd-item-template-class"></ej2-speed-dial>
+    </div>
+    <div id="sd-popup-template-box" data-testid="sd-popup-template-box" style="position: relative; height: 260px; border: 1px solid #aaa; overflow: hidden; display: inline-block; width: 45%;">
+      <ej2-speed-dial data-testid="sd-popup-template" e-target="#sd-popup-template-box" e-popup-template.bind="popupTemplate" e-position="BottomRight"
+        e-open-icon-css="e-icons e-plus" e-css-class="sd-popup-template-class"></ej2-speed-dial>
+    </div>
   </demo-section>
 </template>
