@@ -1,7 +1,9 @@
 <template>
   <h2>Pivot View</h2>
 
-  <demo-section id="pivotView-basic" title="Basic" description="Pivot View rendered with its default options.">
-    <ej2-pivot-view data-testid="pivotView-basic"></ej2-pivot-view>
+  <demo-section id="pv-core" title="Default functionalities" description="Local data, grouping bar, field list and grid settings.">
+    <ej2-pivot-view data-testid="pv-core" e-data-source-settings.two-way="dsr" e-height="350" e-width="100%"
+      e-show-grouping-bar.bind="true" e-show-field-list.bind="true" e-grid-settings.bind="gridSettings"
+      e-on-created.delegate="log('pv.created', $event)" e-on-data-bound.delegate="log('pv.dataBound', $event)"></ej2-pivot-view>
   </demo-section>
 </template>

@@ -1340,9 +1340,10 @@ export const ControlBindings = {
     ]
   },
   pivotView: {
+    twoWay: ["dataSourceSettings"],
     oneWay: [
       "currencyCode", "showFieldList", "gridSettings", "chartSettings", "groupingBarSettings",
-      "hyperlinkSettings", "pageSettings", "pagerSettings", "dataSourceSettings", "editSettings",
+      "hyperlinkSettings", "pageSettings", "pagerSettings", "editSettings",
       "displayOption", "virtualScrollSettings", "pivotValues", "showGroupingBar", "showTooltip",
       "showToolbar", "toolbar", "showValuesButton", "allowCalculatedField", "enableFieldSearching",
       "enableValueSorting", "allowConditionalFormatting", "allowNumberFormatting", "height", "width",
@@ -1374,8 +1375,9 @@ export const ControlBindings = {
     ]
   },
   pivotFieldList: {
+    twoWay: ["dataSourceSettings"],
     oneWay: [
-      "dataSourceSettings", "renderMode", "target", "cssClass", "enableHtmlSanitizer",
+      "renderMode", "target", "cssClass", "enableHtmlSanitizer",
       "allowCalculatedField", "enableFieldSearching", "showValuesButton", "allowDeferLayoutUpdate",
       "maxNodeLimitInMemberEditor", "loadOnDemandInMemberEditor", "spinnerTemplate", "aggregateTypes",
       "currencyCode"
