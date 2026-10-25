@@ -212,3 +212,130 @@ test('destroyed is raised when the control is removed', async ({ page }) => {
   await page.getByTestId('pv-toggle').click();
   await expect(page.getByTestId('pv-destroyed')).toHaveText('1');
 });
+
+// ---------------------------------------------------------------------------------------------------------------
+// Toolbar, reports, export and formatting
+
+const toolbarItem = (app, title: string) => app.section('pvt-toolbar').locator(`.e-toolbar-item[title="${title}"]`);
+const templateItem = (app, index: number) => app.section('pvt-toolbar').locator('.e-toolbar-item.e-template').nth(index);
+
+async function reportDialog(page, app, title: string, name: string) {
+  await toolbarItem(app, title).click();
+  const dlg = page.locator('.e-pivotview-report-dialog.e-popup-open');
+  await expect(dlg).toBeVisible();
+  await dlg.locator('input').fill(name);
+  await dlg.locator('.e-footer-content .e-primary').click();
+  await expect(dlg).toHaveCount(0);
+}
+
+test('toolbar renders the configured items and raises toolbarRender', async ({ app, page }) => {
+  const tb = app.section('pvt-toolbar').locator('.e-toolbar');
+  await expect(tb).toBeVisible();
+  await expect(tb.locator('.e-toolbar-item')).toHaveCount(14);
+  await expectEvent(page, 'pvt.toolbarRender');
+  await ew(page, 'pvt-toolbar', 'w.showToolbar', true);
+  await ew(page, 'pvt-toolbar', 'w.toolbar.length', 14);
+  await ew(page, 'pvt-toolbar', 'w.showFieldList', true);
+  await ew(page, 'pvt-toolbar', 'w.allowExcelExport', true);
+  await ew(page, 'pvt-toolbar', 'w.allowPdfExport', true);
+  await ew(page, 'pvt-toolbar', 'w.exportAllPages', true);
+  await ew(page, 'pvt-toolbar', 'w.allowConditionalFormatting', true);
+  await ew(page, 'pvt-toolbar', 'w.allowNumberFormatting', true);
+  await ew(page, 'pvt-toolbar', 'w.allowCalculatedField', true);
+});
+
+test('toolbar clicks raise toolbarClick', async ({ app, page }) => {
+  await reset(page);
+  await toolbarItem(app, 'Rename a current report').click();
+  await expectEvent(page, 'pvt.toolbarClick');
+  expect(await evArg(page, 'pvt.toolbarClick', 'item.id')).toContain('rename');
+});
+
+test('report management: new, save as, save, rename, load and remove', async ({ app, page }) => {
+  await reset(page);
+  await reportDialog(page, app, 'Create a new report', 'Report A');
+  await expectEvent(page, 'pvt.fetchReport');
+  await expectEvent(page, 'pvt.newReport');
+  await expectEvent(page, 'pvt.saveReport');
+  expect(await evArg(page, 'pvt.saveReport', 'reportName')).toBe('Report A');
+  await expect(page.getByTestId('pvt-reports')).toHaveText('2');
+
+  await reset(page);
+  await reportDialog(page, app, 'Save as current report', 'Report B');
+  await expectEvent(page, 'pvt.saveReport');
+  expect(await evArg(page, 'pvt.saveReport', 'reportName')).toBe('Report B');
+  expect(await evArg(page, 'pvt.saveReport', 'report')).toContain('dataSourceSettings');
+  await expect(page.getByTestId('pvt-reports')).toHaveText('3');
+
+  await reset(page);
+  await toolbarItem(app, 'Save a report').click();
+  await expectEvent(page, 'pvt.saveReport');
+
+  await reset(page);
+  await reportDialog(page, app, 'Rename a current report', 'Report C');
+  await expectEvent(page, 'pvt.renameReport');
+  expect(await evArg(page, 'pvt.renameReport', 'reportName')).toBe('Report B');
+  expect(await evArg(page, 'pvt.renameReport', 'rename')).toBe('Report C');
+
+  await reset(page);
+  await templateItem(app, 0).click();
+  await page.locator('.e-popup-open li', { hasText: 'Report A' }).first().click();
+  await expectEvent(page, 'pvt.loadReport');
+  expect(await evArg(page, 'pvt.loadReport', 'reportName')).toBe('Report A');
+
+  await reset(page);
+  await toolbarItem(app, 'Delete a current report').click();
+  await page.locator('.e-pivot-error-dialog.e-popup-open .e-ok-btn').click();
+  await expectEvent(page, 'pvt.removeReport');
+  await expect(page.getByTestId('pvt-reports')).toHaveText('2');
+});
+
+test('exports to Excel, CSV and PDF raise the export events', async ({ app, page }) => {
+  await reset(page);
+  for (const [label, file] of [['Excel', /\.xlsx$/], ['CSV', /\.csv$/], ['PDF', /\.pdf$/]] as const) {
+    await templateItem(app, 2).click();
+    const download = page.waitForEvent('download');
+    await page.locator('.e-popup-open li', { hasText: label }).first().click();
+    expect((await download).suggestedFilename()).toMatch(file);
+  }
+  for (const name of ['beforeExport', 'beforeExcelExport', 'excelQueryCellInfo', 'excelHeaderQueryCellInfo', 'pdfHeaderQueryCellInfo',
+    'pdfQueryCellInfo', 'onPdfCellRender', 'exportComplete']) {
+    await expectEvent(page, `pvt.${name}`);
+  }
+});
+
+test('beforePdfExport reaches the host element', async ({ page }) => {
+  // the pivot table has its own PDF writer, the inner grid event is never raised by a user gesture
+  await reset(page);
+  await page.evaluate(() => {
+    const el: any = document.querySelector('[data-testid="pvt-toolbar"]');
+    el.au['ej2-pivot-view'].viewModel.widget.trigger('beforePdfExport', { cancel: false });
+  });
+  await expectEvent(page, 'pvt.beforePdfExport');
+});
+
+test('conditional formatting dialog applies a format and raises conditionalFormatting', async ({ app, page }) => {
+  await reset(page);
+  await toolbarItem(app, 'Conditional formatting').click();
+  const dlg = page.locator('.e-pivot-formatting-dialog.e-popup-open');
+  await dlg.locator('.e-format-condition-button').click();
+  await expect(dlg.locator('.e-format-outer-div')).toBeVisible();
+  await dlg.locator('.e-format-apply-button').click();
+  await expectEvent(page, 'pvt.conditionalFormatting');
+  await ew(page, 'pvt-toolbar', 'w.dataSourceSettings.conditionalFormatSettings.length', 1);
+});
+
+test('number formatting dialog applies a format and raises numberFormatting', async ({ app, page }) => {
+  await reset(page);
+  await toolbarItem(app, 'Number Formatting').click();
+  const dlg = page.locator('.e-dialog.e-popup-open', { hasText: 'Number Formatting' });
+  await expect(dlg).toBeVisible();
+  await dlg.locator('.e-footer-content .e-primary').click();
+  await expectEvent(page, 'pvt.numberFormatting');
+});
+
+test('sub totals menu hides the row sub totals', async ({ app, page }) => {
+  await templateItem(app, 3).click();
+  await page.locator('.e-popup-open li', { hasText: 'Show subtotals columns only' }).first().click();
+  await ew(page, 'pvt-toolbar', 'w.dataSourceSettings.showRowSubTotals', false);
+});

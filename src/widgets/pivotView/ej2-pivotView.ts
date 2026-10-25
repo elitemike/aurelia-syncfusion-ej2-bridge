@@ -44,7 +44,7 @@ export class Ej2PivotView extends SyncfusionWrapper<PivotView, PivotViewModel> {
     // the pivot grid only hands these events to its inner grid when a handler is configured in gridSettings, and
     // never raises them on the PivotView itself, so configure forwarding handlers that raise the PivotView events
     const gridSettings: any = Object.assign({}, model.gridSettings);
-    ["columnDragStart", "columnDrag", "columnDrop"].forEach((name) => {
+    ["columnDragStart", "columnDrag", "columnDrop", "beforePdfExport"].forEach((name) => {
       const own = gridSettings[name];
       let raising = false;
       gridSettings[name] = (args) => {
