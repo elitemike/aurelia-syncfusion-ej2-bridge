@@ -9,6 +9,13 @@ function menus(page: Page, cssClass: string) {
   return page.locator(`.e-contextmenu-wrapper.${cssClass} ul`);
 }
 
+/** Move the mouse over an item without letting Playwright scroll it into view: a scroll closes an open context menu. */
+async function hoverItem(page: Page, item: Locator) {
+  const box = await item.boundingBox();
+  if (!box) { throw new Error('menu item is not rendered'); }
+  await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2, { steps: 3 });
+}
+
 /** Right-click a target and return the opened menu, identified by the cssClass the demo gave it. */
 async function openMenu(page: Page, target: Locator, cssClass: string) {
   await target.click({ button: 'right' });
@@ -48,9 +55,11 @@ test('select, beforeClose and onClose events', async ({ app, page }) => {
 test('submenu items are selectable', async ({ app, page }) => {
   const section = app.section('cm-default');
   const menu = await openMenu(page, section.getByTestId('cm-target'), 'cm-default');
-  await menu.locator('> li', { hasText: 'Find' }).hover();
   const sub = menus(page, 'cm-default').nth(1);
-  await expect(sub.locator('li', { hasText: 'Find next' })).toBeVisible();
+  await expect(async () => {
+    await hoverItem(page, menu.locator('> li', { hasText: 'Find' }));
+    await expect(sub.locator('li', { hasText: 'Find next' })).toBeVisible({ timeout: 1500 });
+  }).toPass();
   await sub.locator('li', { hasText: 'Find next' }).click();
   await expect(section.getByTestId('cm-selected')).toHaveText('Find next');
 });
@@ -118,8 +127,10 @@ test('showItemOnClick can be switched to hover from the view-model', async ({ ap
   await section.getByTestId('cm-hover-mode').click();
   await expect.poll(() => wrapperProp(section.getByTestId('cm-click'), 'showItemOnClick')).toBe(false);
   const menu = await openMenu(page, section.getByTestId('cm-click-target'), 'cm-click');
-  await menu.locator('> li', { hasText: 'Find' }).hover();
-  await expect(menus(page, 'cm-click').nth(1).locator('li', { hasText: 'Find next' })).toBeVisible();
+  await expect(async () => {
+    await hoverItem(page, menu.locator('> li', { hasText: 'Find' }));
+    await expect(menus(page, 'cm-click').nth(1).locator('li', { hasText: 'Find next' })).toBeVisible({ timeout: 1500 });
+  }).toPass();
 });
 
 test('enableScrolling adds a vertical scroller to tall menus', async ({ app, page }) => {

@@ -106,9 +106,14 @@ test('scrolling: actionOnScroll hides the popup and targetExitViewport is raised
   expect(await widgetProp(popup, 'actionOnScroll')).toBe('hide');
   // clicking a button would scroll the page, which itself hides a popup with actionOnScroll hide
   await section.getByTestId('popup-scroll-box').scrollIntoViewIfNeeded();
-  await widgetCall(popup, 'show');
-  await expect(popup).toHaveClass(/e-popup-open/);
-  await section.getByTestId('popup-scroll-box').evaluate(el => { el.scrollTop = 300; el.dispatchEvent(new Event('scroll')); });
-  await expect(section.getByTestId('popup-exited')).not.toHaveText('0');
+  // the page scroll above can still be settling and would hide the popup again: retry the whole show-then-scroll step
+  const exited = section.getByTestId('popup-exited');
+  const before = Number(await exited.textContent());
+  await expect(async () => {
+    await widgetCall(popup, 'show');
+    await expect(popup).toHaveClass(/e-popup-open/, { timeout: 1500 });
+    await section.getByTestId('popup-scroll-box').evaluate(el => { el.scrollTop += 300; el.dispatchEvent(new Event('scroll')); });
+    await expect.poll(async () => Number(await exited.textContent()), { timeout: 1500 }).toBeGreaterThan(before);
+  }).toPass();
   await expect(popup).toHaveClass(/e-popup-close/);
 });

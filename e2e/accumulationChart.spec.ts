@@ -47,9 +47,13 @@ test('legend, tooltip, data labels, explode and smart labels', async ({ app, pag
   await expect(host.locator('text[id*="_datalabel_Series_0_text_"]').first()).toHaveText('61.3%');
   expect(await inst(host, (c) => [c.visibleSeries[0].points[0].isExplode, c.enableSmartLabels])).toEqual([true, true]);
   const slice = host.locator('[id$="_Series_0_Point_1"]').first();
-  const c = await center(slice);
-  await page.mouse.move(c.x, c.y);
-  await expect(page.locator(`#${id}_tooltip`)).toContainText(/Safari.*24\.2%/);
+  // other charts are still rendering and shifting the page, so aim again on every attempt
+  await expect(async () => {
+    const c = await center(slice);
+    await page.mouse.move(c.x - 15, c.y - 15);
+    await page.mouse.move(c.x, c.y, { steps: 5 });
+    await expect(page.locator(`#${id}_tooltip`)).toContainText(/Safari.*24\.2%/, { timeout: 1500 });
+  }).toPass();
   // legend click hides a point
   await host.locator('text[id$="_chart_legend_text_0_2"]').click();
   await expect.poll(() => inst(host, (ch) => ch.visibleSeries[0].points[2].visible)).toBe(false);
