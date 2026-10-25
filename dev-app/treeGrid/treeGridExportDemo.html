@@ -1,0 +1,20 @@
+<template>
+  <demo-section id="tg-export" title="Export and print" description="allowExcelExport, allowPdfExport and printMode with the export and print toolbar items.">
+    <ej2-tree-grid view-model.ref="exportGrid" data-testid="tg-export" e-data-source.bind="data" e-child-mapping="subtasks" e-columns.bind="columns"
+      e-allow-excel-export.bind="true" e-allow-pdf-export.bind="true" e-print-mode.bind="printMode"
+      e-toolbar.bind="toolbar" e-aggregates.bind="aggregates"
+      e-on-toolbar-click.delegate="onToolbarClick($event)"
+      e-on-before-excel-export.delegate="log('beforeExcelExport', $event)"
+      e-on-excel-export-complete.delegate="log('excelExportComplete', $event)"
+      e-on-excel-query-cell-info.delegate="log('excelQueryCellInfo', $event)"
+      e-on-excel-header-query-cell-info.delegate="log('excelHeaderQueryCellInfo', $event)"
+      e-on-excel-aggregate-query-cell-info.delegate="log('excelAggregateQueryCellInfo', $event)"
+      e-on-before-pdf-export.delegate="log('beforePdfExport', $event)"
+      e-on-pdf-export-complete.delegate="log('pdfExportComplete', $event)"
+      e-on-pdf-query-cell-info.delegate="log('pdfQueryCellInfo', $event)"
+      e-on-pdf-header-query-cell-info.delegate="log('pdfHeaderQueryCellInfo', $event)"
+      e-on-pdf-aggregate-query-cell-info.delegate="log('pdfAggregateQueryCellInfo', $event)"
+      e-on-before-print.delegate="log('beforePrint', $event)"
+      e-on-print-complete.delegate="log('printComplete', $event)"></ej2-tree-grid>
+  </demo-section>
+</template>

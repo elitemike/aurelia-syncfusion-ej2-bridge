@@ -1,0 +1,38 @@
+<template>
+  <demo-section id="tg-edit-normal" title="Editing (normal mode)" description="editSettings with the Add, Edit, Delete, Update, Cancel toolbar and Indent / Outdent.">
+    <ej2-tree-grid data-testid="tg-edit-normal" e-data-source.bind="normalData" e-child-mapping="subtasks" e-columns.bind="columns"
+      e-edit-settings.bind="normalSettings" e-toolbar.bind="toolbar" e-allow-row-drag-and-drop.bind="true"
+      e-on-toolbar-click.delegate="log('editToolbarClick', $event)"
+      e-on-begin-edit.delegate="log('beginEdit', $event)"
+      e-on-cell-save.delegate="log('cellSave', $event)"
+      e-on-cell-saved.delegate="log('cellSaved', $event)"
+      e-on-action-begin.delegate="log('editActionBegin', $event)"
+      e-on-action-complete.delegate="onActionComplete($event)"
+      e-on-action-failure.delegate="log('actionFailure', $event)"></ej2-tree-grid>
+    <div class="demo-output">Last action: <code data-testid="tg-edit-last">${lastAction}</code></div>
+  </demo-section>
+
+  <demo-section id="tg-edit-cell" title="Cell editing" description="Cell edit mode raises cellEdit.">
+    <ej2-tree-grid data-testid="tg-edit-cell" e-data-source.bind="cellData" e-child-mapping="subtasks" e-columns.bind="columns"
+      e-edit-settings.bind="cellSettings" e-on-cell-edit.delegate="log('cellEdit', $event)"></ej2-tree-grid>
+  </demo-section>
+
+  <demo-section id="tg-edit-batch" title="Batch editing" description="Batch mode with the batch add, delete, cancel and save events.">
+    <ej2-tree-grid data-testid="tg-edit-batch" e-data-source.bind="batchData" e-child-mapping="subtasks" e-columns.bind="columns"
+      e-edit-settings.bind="batchSettings" e-toolbar.bind="toolbar"
+      e-on-before-batch-add.delegate="log('beforeBatchAdd', $event)"
+      e-on-batch-add.delegate="log('batchAdd', $event)"
+      e-on-before-batch-delete.delegate="log('beforeBatchDelete', $event)"
+      e-on-batch-delete.delegate="log('batchDelete', $event)"
+      e-on-batch-cancel.delegate="log('batchCancel', $event)"
+      e-on-before-batch-save.delegate="log('beforeBatchSave', $event)"
+      e-on-before-copy.delegate="log('beforeCopy', $event)"
+      e-on-before-paste.delegate="log('beforePaste', $event)"></ej2-tree-grid>
+  </demo-section>
+
+  <demo-section id="tg-checkbox" title="Checkbox selection" description="autoCheckHierarchy and hierarchyCheckboxMode with a checkbox column.">
+    <ej2-tree-grid data-testid="tg-checkbox" e-data-source.bind="checkData" e-child-mapping="subtasks" e-columns.bind="checkColumns"
+      e-auto-check-hierarchy.bind="true" e-hierarchy-checkbox-mode="Default"
+      e-on-checkbox-change.delegate="log('checkboxChange', $event)"></ej2-tree-grid>
+  </demo-section>
+</template>

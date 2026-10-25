@@ -1,0 +1,115 @@
+<template>
+  <demo-section id="tg-paging" title="Paging" description="allowPaging, pageSettings and a custom pagerTemplate.">
+    <ej2-tree-grid data-testid="tg-paging" e-data-source.bind="pageData" e-id-mapping="taskID" e-parent-id-mapping="parentID"
+      e-columns.bind="columns" e-allow-paging.bind="true" e-page-settings.bind="pageSettings"></ej2-tree-grid>
+  </demo-section>
+
+  <demo-section id="tg-pager-template" title="Pager template" description="pagerTemplate replaces the pager content.">
+    <ej2-tree-grid data-testid="tg-pager-template" e-data-source.bind="pageData" e-id-mapping="taskID" e-parent-id-mapping="parentID"
+      e-columns.bind="columns" e-allow-paging.bind="true" e-page-settings.bind="pageSettings"
+      e-pager-template.bind="pagerTemplate"></ej2-tree-grid>
+  </demo-section>
+
+  <demo-section id="tg-sorting" title="Sorting" description="allowSorting, allowMultiSorting and sortSettings.">
+    <ej2-tree-grid data-testid="tg-sorting" e-data-source.bind="sortData" e-child-mapping="subtasks" e-columns.bind="columns"
+      e-allow-sorting.bind="true" e-allow-multi-sorting.bind="true" e-sort-settings.bind="sortSettings"
+      e-on-action-complete.delegate="log('sortActionComplete', $event)"></ej2-tree-grid>
+  </demo-section>
+
+  <demo-section id="tg-filtering" title="Filtering" description="allowFiltering with a filter bar and filterSettings.">
+    <ej2-tree-grid data-testid="tg-filtering" e-data-source.bind="filterData" e-child-mapping="subtasks" e-columns.bind="columns"
+      e-allow-filtering.bind="true" e-filter-settings.bind="filterSettings"></ej2-tree-grid>
+  </demo-section>
+
+  <demo-section id="tg-search" title="Searching" description="A Search toolbar item with searchSettings.">
+    <ej2-tree-grid data-testid="tg-search" e-data-source.bind="searchData" e-child-mapping="subtasks" e-columns.bind="columns"
+      e-toolbar.bind="searchToolbar" e-search-settings.bind="searchSettings"
+      e-on-toolbar-click.delegate="log('toolbarClick', $event)"></ej2-tree-grid>
+  </demo-section>
+
+  <demo-section id="tg-menus" title="Column menu and context menu" description="showColumnMenu with columnMenuItems and contextMenuItems.">
+    <ej2-tree-grid data-testid="tg-menus" e-data-source.bind="menuData" e-child-mapping="subtasks" e-columns.bind="columns"
+      e-allow-sorting.bind="true" e-allow-filtering.bind="true" e-show-column-menu.bind="true" e-column-menu-items.bind="columnMenuItems"
+      e-context-menu-items.bind="contextMenuItems"
+      e-on-column-menu-open.delegate="log('columnMenuOpen', $event)"
+      e-on-column-menu-click.delegate="log('columnMenuClick', $event)"
+      e-on-context-menu-open.delegate="log('contextMenuOpen', $event)"
+      e-on-context-menu-click.delegate="log('contextMenuClick', $event)"></ej2-tree-grid>
+  </demo-section>
+
+  <demo-section id="tg-chooser" title="Column chooser" description="showColumnChooser, columnChooserSettings and a ColumnChooser toolbar item.">
+    <ej2-tree-grid data-testid="tg-chooser" e-data-source.bind="chooserData" e-child-mapping="subtasks" e-columns.bind="columns"
+      e-show-column-chooser.bind="true" e-column-chooser-settings.bind="chooserSettings" e-toolbar.bind="chooserToolbar"></ej2-tree-grid>
+  </demo-section>
+
+  <demo-section id="tg-aggregates" title="Aggregates" description="aggregates with a Sum footer.">
+    <ej2-tree-grid data-testid="tg-aggregates" e-data-source.bind="aggData" e-child-mapping="subtasks" e-columns.bind="columns"
+      e-aggregates.bind="aggregates"></ej2-tree-grid>
+  </demo-section>
+
+  <demo-section id="tg-frozen" title="Frozen rows and columns" description="frozenColumns and frozenRows.">
+    <ej2-tree-grid data-testid="tg-frozen" e-data-source.bind="frozenData" e-child-mapping="subtasks" e-columns.bind="wideColumns"
+      e-frozen-columns.bind="2" e-frozen-rows.bind="1" e-width.bind="500" e-height.bind="260"></ej2-tree-grid>
+  </demo-section>
+
+  <demo-section id="tg-reorder-resize" title="Reordering and resizing" description="allowReordering and allowResizing with their events.">
+    <ej2-tree-grid data-testid="tg-reorder-resize" e-data-source.bind="rrData" e-child-mapping="subtasks" e-columns.bind="columns"
+      e-allow-reordering.bind="true" e-allow-resizing.bind="true"
+      e-on-resize-start.delegate="log('resizeStart', $event)"
+      e-on-resizing.delegate="log('resizing', $event)"
+      e-on-resize-stop.delegate="log('resizeStop', $event)"
+      e-on-column-drag-start.delegate="log('columnDragStart', $event)"
+      e-on-column-drag.delegate="log('columnDrag', $event)"
+      e-on-column-drop.delegate="log('columnDrop', $event)"></ej2-tree-grid>
+  </demo-section>
+
+  <demo-section id="tg-rowdd" title="Row drag and drop" description="allowRowDragAndDrop with rowDropSettings.">
+    <ej2-tree-grid data-testid="tg-rowdd" e-data-source.bind="ddData" e-child-mapping="subtasks" e-columns.bind="columns"
+      e-allow-row-drag-and-drop.bind="true" e-row-drop-settings.bind="rowDropSettings"
+      e-on-row-drag-start-helper.delegate="log('rowDragStartHelper', $event)"
+      e-on-row-drag-start.delegate="log('rowDragStart', $event)"
+      e-on-row-drag.delegate="log('rowDrag', $event)"
+      e-on-row-drop.delegate="log('rowDrop', $event)"></ej2-tree-grid>
+  </demo-section>
+
+  <demo-section id="tg-virtual" title="Virtualization" description="enableVirtualization, enableColumnVirtualization, columnQueryMode, query and cloneQuery.">
+    <ej2-tree-grid data-testid="tg-virtual" e-data-source.bind="bigData" e-id-mapping="taskID" e-parent-id-mapping="parentID"
+      e-columns.bind="columns" e-height.bind="260" e-enable-virtualization.bind="true" e-enable-column-virtualization.bind="true"
+      e-column-query-mode.bind="columnQueryMode" e-query.bind="virtualQuery" e-clone-query.bind="virtualCloneQuery"></ej2-tree-grid>
+  </demo-section>
+
+  <demo-section id="tg-dom-virtual" title="DOM virtualization" description="enableDomVirtualization and domVirtualizationSettings.">
+    <ej2-tree-grid data-testid="tg-dom-virtual" e-data-source.bind="bigData" e-id-mapping="taskID" e-parent-id-mapping="parentID"
+      e-columns.bind="columns" e-height.bind="260" e-enable-virtualization.bind="true" e-enable-dom-virtualization.bind="true"
+      e-dom-virtualization-settings.bind="domVirtualization"></ej2-tree-grid>
+  </demo-section>
+
+  <demo-section id="tg-infinite" title="Infinite scrolling" description="enableInfiniteScrolling and infiniteScrollSettings.">
+    <ej2-tree-grid data-testid="tg-infinite" e-data-source.bind="bigData" e-id-mapping="taskID" e-parent-id-mapping="parentID"
+      e-columns.bind="columns" e-height.bind="260" e-enable-infinite-scrolling.bind="true"
+      e-infinite-scroll-settings.bind="infiniteSettings"></ej2-tree-grid>
+  </demo-section>
+
+  <demo-section id="tg-detail" title="Detail template" description="detailTemplate and detailDataBound.">
+    <ej2-tree-grid data-testid="tg-detail" e-data-source.bind="detailData" e-child-mapping="subtasks" e-columns.bind="columns"
+      e-detail-template.bind="detailTemplate" e-on-detail-data-bound.delegate="log('detailDataBound', $event)"></ej2-tree-grid>
+  </demo-section>
+
+  <demo-section id="tg-toolbar-template" title="Toolbar template" description="toolbarTemplate renders custom toolbar content.">
+    <ej2-tree-grid data-testid="tg-toolbar-template" e-data-source.bind="detailData" e-child-mapping="subtasks" e-columns.bind="columns"
+      e-toolbar-template.bind="toolbarTemplate"></ej2-tree-grid>
+  </demo-section>
+
+  <demo-section id="tg-query" title="Query" description="A DataManager with a query that keeps only tasks longer than 4 days.">
+    <ej2-tree-grid data-testid="tg-query" e-data-source.bind="queryData" e-child-mapping="subtasks" e-columns.bind="columns"
+      e-query.bind="taskQuery"></ej2-tree-grid>
+  </demo-section>
+
+  <demo-section id="tg-state" title="Data state" description="dataStateChange: the app supplies { result, count } itself, dataSourceChanged for edits.">
+    <ej2-tree-grid data-testid="tg-state" e-data-source.bind="stateSource" e-id-mapping="taskID" e-parent-id-mapping="parentID"
+      e-columns.bind="columns" e-allow-sorting.bind="true"
+      e-on-data-state-change.delegate="onDataStateChange($event)"
+      e-on-data-source-changed.delegate="log('dataSourceChanged', $event)"></ej2-tree-grid>
+    <div class="demo-output">Last request: <code data-testid="tg-state-last">${stateLast}</code></div>
+  </demo-section>
+</template>
