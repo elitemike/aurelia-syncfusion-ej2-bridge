@@ -1,7 +1,91 @@
 <template>
   <h2>Maps</h2>
 
-  <demo-section id="maps-basic" title="Basic" description="Maps rendered with its default options.">
-    <ej2-maps data-testid="maps-basic"></ej2-maps>
+  <demo-section id="mp-basic" title="Default map" description="Six local shapes with title, maps area, border, margin, projection, centre, description and a formatted tooltip.">
+    <ej2-maps data-testid="mp-basic" e-width="560" e-height="380" e-layers.bind="basicLayers" e-title-settings.bind="titleSettings" e-maps-area.bind="mapsArea"
+      e-border.bind="border" e-margin.bind="margin" e-background="#f5f5f5" e-theme="Material3" e-projection-type="Mercator" e-base-layer-index.bind="0"
+      e-center-position.bind="centerPosition" e-description="Tiny world map" e-tab-index.bind="6" e-use-grouping-separator.bind="true" e-format="n0"
+      e-tooltip-display-mode="MouseMove"></ej2-maps>
+  </demo-section>
+
+  <demo-section id="mp-legend" title="Colour mapping and legend" description="colorMapping colours the shapes by category and the legend can toggle them.">
+    <ej2-maps data-testid="mp-legend" e-width="560" e-height="380" e-layers.bind="legendLayers" e-legend-settings.bind="legend"
+      e-on-legend-rendering.delegate="log('legendRendering', $event)"></ej2-maps>
+    <div class="demo-output">legendRendering <span data-testid="mp-ev-legendRendering">${counts.legendRendering}</span> last <code data-testid="mp-last-legend">${last.legendRendering}</code></div>
+  </demo-section>
+
+  <demo-section id="mp-bubbles" title="Data labels and bubbles" description="Labels from a data path and bubbles sized by population.">
+    <ej2-maps data-testid="mp-bubbles" e-width="560" e-height="380" e-layers.bind="bubbleLayers" e-zoom-settings.bind="bubbleZoom"
+      e-on-data-label-rendering.delegate="log('dataLabelRendering', $event)" e-on-bubble-rendering.delegate="log('bubbleRendering', $event)" e-on-bubble-click.delegate="log('bubbleClick', $event)" e-on-bubble-mouse-move.delegate="log('bubbleMouseMove', $event)" e-on-animation-complete.delegate="log('animationComplete', $event)"></ej2-maps>
+    <div class="demo-output">
+      dataLabelRendering <span data-testid="mp-ev-dataLabelRendering">${counts.dataLabelRendering}</span> bubbleRendering <span data-testid="mp-ev-bubbleRendering">${counts.bubbleRendering}</span> bubbleClick <span data-testid="mp-ev-bubbleClick">${counts.bubbleClick}</span> bubbleMouseMove <span data-testid="mp-ev-bubbleMouseMove">${counts.bubbleMouseMove}</span> animationComplete <span data-testid="mp-ev-animationComplete">${counts.animationComplete}</span> last click <code data-testid="mp-last-bubble">${last.bubbleClick}</code>
+    </div>
+  </demo-section>
+
+  <demo-section id="mp-markers" title="Markers" description="Draggable markers with tooltips, plus template markers.">
+    <ej2-maps data-testid="mp-markers" e-width="560" e-height="380" e-layers.bind="markerLayers"
+      e-on-marker-rendering.delegate="log('markerRendering', $event)" e-on-marker-click.delegate="log('markerClick', $event)" e-on-marker-mouse-move.delegate="log('markerMouseMove', $event)" e-on-marker-drag-start.delegate="log('markerDragStart', $event)" e-on-marker-drag-end.delegate="log('markerDragEnd', $event)"></ej2-maps>
+    <div class="demo-output">
+      markerRendering <span data-testid="mp-ev-markerRendering">${counts.markerRendering}</span> markerClick <span data-testid="mp-ev-markerClick">${counts.markerClick}</span> markerMouseMove <span data-testid="mp-ev-markerMouseMove">${counts.markerMouseMove}</span> markerDragStart <span data-testid="mp-ev-markerDragStart">${counts.markerDragStart}</span> markerDragEnd <span data-testid="mp-ev-markerDragEnd">${counts.markerDragEnd}</span> last click <code data-testid="mp-last-marker">${last.markerClick}</code> drag end <code data-testid="mp-last-drag">${last.markerDragEnd}</code>
+    </div>
+    <ej2-maps data-testid="mp-template" e-width="560" e-height="380" e-layers.bind="templateLayers"></ej2-maps>
+  </demo-section>
+
+  <demo-section id="mp-cluster" title="Marker clusters" description="Markers that are close together are merged into a cluster.">
+    <ej2-maps data-testid="mp-cluster" e-width="560" e-height="380" e-layers.bind="clusterLayers"
+      e-on-marker-cluster-rendering.delegate="log('markerClusterRendering', $event)" e-on-marker-cluster-click.delegate="log('markerClusterClick', $event)" e-on-marker-cluster-mouse-move.delegate="log('markerClusterMouseMove', $event)"></ej2-maps>
+    <div class="demo-output">
+      markerClusterRendering <span data-testid="mp-ev-markerClusterRendering">${counts.markerClusterRendering}</span> markerClusterClick <span data-testid="mp-ev-markerClusterClick">${counts.markerClusterClick}</span> markerClusterMouseMove <span data-testid="mp-ev-markerClusterMouseMove">${counts.markerClusterMouseMove}</span>
+    </div>
+  </demo-section>
+
+  <demo-section id="mp-zoom" title="Zoom and pan" description="Zoom toolbar, mouse wheel zoom and panning.">
+    <ej2-maps data-testid="mp-zoom" e-width="560" e-height="380" e-layers.bind="zoomLayers" e-zoom-settings.bind="zoomSettings"
+      e-on-zoom.delegate="log('zoom', $event)" e-on-zoom-complete.delegate="log('zoomComplete', $event)" e-on-pan.delegate="log('pan', $event)" e-on-pan-complete.delegate="log('panComplete', $event)"></ej2-maps>
+    <div class="demo-output">
+      zoom <span data-testid="mp-ev-zoom">${counts.zoom}</span> zoomComplete <span data-testid="mp-ev-zoomComplete">${counts.zoomComplete}</span> pan <span data-testid="mp-ev-pan">${counts.pan}</span> panComplete <span data-testid="mp-ev-panComplete">${counts.panComplete}</span>
+    </div>
+  </demo-section>
+
+  <demo-section id="mp-interaction" title="Selection, highlight, tooltip and mouse events" description="Hover highlights and shows a tooltip, click selects, every mouse event is counted.">
+    <ej2-maps data-testid="mp-interaction" e-width="560" e-height="380" e-layers.bind="interactionLayers" e-tooltip-display-mode="MouseMove"
+      e-on-layer-rendering.delegate="log('layerRendering', $event)" e-on-shape-rendering.delegate="log('shapeRendering', $event)" e-on-click.delegate="log('click', $event)" e-on-onclick.delegate="log('onclick', $event)" e-on-double-click.delegate="log('doubleClick', $event)" e-on-right-click.delegate="log('rightClick', $event)" e-on-mouse-move.delegate="log('mouseMove', $event)" e-on-shape-selected.delegate="log('shapeSelected', $event)" e-on-item-selection.delegate="log('itemSelection', $event)" e-on-item-highlight.delegate="log('itemHighlight', $event)" e-on-shape-highlight.delegate="log('shapeHighlight', $event)" e-on-tooltip-render.delegate="log('tooltipRender', $event)" e-on-tooltip-render-complete.delegate="log('tooltipRenderComplete', $event)"></ej2-maps>
+    <div class="demo-output">
+      layerRendering <span data-testid="mp-ev-layerRendering">${counts.layerRendering}</span> shapeRendering <span data-testid="mp-ev-shapeRendering">${counts.shapeRendering}</span> click <span data-testid="mp-ev-click">${counts.click}</span> onclick <span data-testid="mp-ev-onclick">${counts.onclick}</span> doubleClick <span data-testid="mp-ev-doubleClick">${counts.doubleClick}</span> rightClick <span data-testid="mp-ev-rightClick">${counts.rightClick}</span> mouseMove <span data-testid="mp-ev-mouseMove">${counts.mouseMove}</span> shapeSelected <span data-testid="mp-ev-shapeSelected">${counts.shapeSelected}</span> itemSelection <span data-testid="mp-ev-itemSelection">${counts.itemSelection}</span> itemHighlight <span data-testid="mp-ev-itemHighlight">${counts.itemHighlight}</span> shapeHighlight <span data-testid="mp-ev-shapeHighlight">${counts.shapeHighlight}</span> tooltipRender <span data-testid="mp-ev-tooltipRender">${counts.tooltipRender}</span> tooltipRenderComplete <span data-testid="mp-ev-tooltipRenderComplete">${counts.tooltipRenderComplete}</span> selected <code data-testid="mp-last-selected">${last.shapeSelected}</code> tooltip <code data-testid="mp-last-tooltip">${last.tooltipRender}</code>
+    </div>
+  </demo-section>
+
+  <demo-section id="mp-annotations" title="Annotations" description="Custom HTML placed on the map.">
+    <ej2-maps data-testid="mp-annotations" e-width="560" e-height="380" e-layers.bind="annotationLayers" e-annotations.bind="annotations"
+      e-on-annotation-rendering.delegate="log('annotationRendering', $event)"></ej2-maps>
+    <div class="demo-output">
+      annotationRendering <span data-testid="mp-ev-annotationRendering">${counts.annotationRendering}</span>
+    </div>
+  </demo-section>
+
+  <demo-section id="mp-lines" title="Navigation lines and polygons" description="A navigation line with an arrow and a polygon overlay.">
+    <ej2-maps data-testid="mp-lines" e-width="560" e-height="380" e-layers.bind="lineLayers"></ej2-maps>
+  </demo-section>
+
+  <demo-section id="mp-lifecycle" title="Lifecycle, resize and print" description="load, loaded, resize and beforePrint events.">
+    <ej2-maps data-testid="mp-lifecycle" e-width="100%" e-height="300" e-layers.bind="lifecycleLayers" e-allow-print.bind="true"
+      e-on-load.delegate="log('load', $event)" e-on-loaded.delegate="log('loaded', $event)" e-on-resize.delegate="log('resize', $event)"
+      e-on-before-print.delegate="onBeforePrint($event)"></ej2-maps>
+    <div class="demo-output">
+      load <span data-testid="mp-ev-load">${counts.load}</span>
+      loaded <span data-testid="mp-ev-loaded">${counts.loaded}</span>
+      resize <span data-testid="mp-ev-resize">${counts.resize}</span>
+      beforePrint <span data-testid="mp-ev-beforePrint">${counts.beforePrint}</span>
+    </div>
+  </demo-section>
+
+  <demo-section id="mp-export" title="Export" description="allowImageExport and allowPdfExport enable exporting the map.">
+    <ej2-maps data-testid="mp-export" e-width="560" e-height="300" e-layers.bind="lifecycleLayers" e-allow-image-export.bind="true" e-allow-pdf-export.bind="true"></ej2-maps>
+  </demo-section>
+
+  <demo-section id="mp-dynamic" title="Dynamic properties" description="Properties follow the view-model.">
+    <ej2-maps data-testid="mp-dynamic" e-width.bind="dynWidth" e-height="300" e-layers.bind="dynLayers" e-title-settings.bind="dynTitle"
+      e-background.bind="dynBackground" e-theme.bind="dynTheme" e-projection-type.bind="dynProjection"></ej2-maps>
+    <button data-testid="mp-dyn-change" click.delegate="change()">Change</button>
   </demo-section>
 </template>

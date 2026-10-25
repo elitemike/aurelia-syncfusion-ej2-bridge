@@ -117,7 +117,7 @@ test('drill down: clicking a group drills in, the breadcrumb leads back', async 
   expect(await widgetProp(tm, 'enableDrillDown')).toBe(true);
   expect(await widgetProp(tm, 'drillDownView')).toBe(true);
   expect(await widgetProp(tm, 'enableBreadcrumb')).toBe(true);
-  expect(await widgetProp(tm, 'breadcrumbConnector')).toBe(' > ');
+  expect(await widgetProp(tm, 'breadcrumbConnector')).toBe(' / ');
   await expect(item(tm, 'Europe')).toBeAttached();
   await item(tm, 'Europe').click();
   await expect(section.getByTestId('tm-ev-drillStart')).not.toHaveText('0');

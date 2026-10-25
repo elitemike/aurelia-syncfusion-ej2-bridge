@@ -39,7 +39,7 @@
   <demo-section id="tm-drill" title="Drill down" description="Clicking a continent drills into its countries, with a breadcrumb to go back.">
     <ej2-tree-map data-testid="tm-drill" e-width="560" e-height="360" e-data-source.bind="countries" e-weight-value-path="Population"
       e-levels.bind="drillLevels" e-leaf-item-settings.bind="leaf" e-enable-drill-down.bind="true" e-drill-down-view.bind="true"
-      e-enable-breadcrumb.bind="true" e-breadcrumb-connector=" > "
+      e-enable-breadcrumb.bind="true" e-breadcrumb-connector=" / "
       e-on-drill-start.delegate="log('drillStart', $event)" e-on-drill-end.delegate="log('drillEnd', $event)"></ej2-tree-map>
     <ej2-tree-map data-testid="tm-drill-initial" e-width="560" e-height="260" e-data-source.bind="countries" e-weight-value-path="Population"
       e-levels.bind="drillLevels" e-leaf-item-settings.bind="leaf" e-enable-drill-down.bind="true" e-drill-down-view.bind="true"
