@@ -1,0 +1,19 @@
+<template>
+  <h3>Diagram types</h3>
+
+  <demo-section id="diagram-sequence" title="UML sequence diagram" description="The model option describes participants and messages.">
+    <ej2-diagram data-testid="diagram-sequence" e-width="620px" e-height="320px" e-model.bind="sequence"></ej2-diagram>
+  </demo-section>
+
+  <demo-section id="diagram-bpmn" title="BPMN" description="Events, an activity and a gateway joined by sequence flows (BpmnDiagrams module).">
+    <ej2-diagram data-testid="diagram-bpmn" e-width="620px" e-height="240px" e-nodes.bind="bpmnNodes" e-connectors.bind="bpmnConnectors"></ej2-diagram>
+  </demo-section>
+
+  <demo-section id="diagram-swimlane" title="Swimlane" description="A horizontal swimlane with two lanes.">
+    <ej2-diagram data-testid="diagram-swimlane" e-width="620px" e-height="300px" e-nodes.bind="swimNodes"></ej2-diagram>
+  </demo-section>
+
+  <demo-section id="diagram-uml" title="UML class diagram" description="A UmlClassifier shape.">
+    <ej2-diagram data-testid="diagram-uml" e-width="420px" e-height="260px" e-nodes.bind="umlNodes"></ej2-diagram>
+  </demo-section>
+</template>

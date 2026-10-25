@@ -1,0 +1,16 @@
+<template>
+  <h3>Callbacks</h3>
+
+  <demo-section id="diagram-functions" title="Defaults, templates and custom tools as functions" description="getNodeDefaults, getConnectorDefaults, setNodeTemplate, getDescription, getCustomProperty, getCustomTool, getCustomCursor, customCursor, updateSelection and a user handle.">
+    <ej2-diagram id="diagram-functions-host" data-testid="diagram-functions" e-width="520px" e-height="320px" e-nodes.bind="nodes"
+      e-connectors.bind="connectors" e-constraints.bind="constraints" e-selected-items.bind="selected"
+      e-get-node-defaults.bind="getNodeDefaults" e-get-connector-defaults.bind="getConnectorDefaults"
+      e-set-node-template.bind="setNodeTemplate" e-get-description.bind="getDescription"
+      e-get-custom-property.bind="getCustomProperty" e-get-custom-tool.bind="getCustomTool"
+      e-get-custom-cursor.bind="getCustomCursor" e-custom-cursor.bind="customCursor" e-update-selection.bind="updateSelection"
+      e-on-on-user-handle-mouse-down.delegate="log('onUserHandleMouseDown', $event)"
+      e-on-on-user-handle-mouse-up.delegate="log('onUserHandleMouseUp', $event)"
+      e-on-on-user-handle-mouse-enter.delegate="log('onUserHandleMouseEnter', $event)"
+      e-on-on-user-handle-mouse-leave.delegate="log('onUserHandleMouseLeave', $event)"></ej2-diagram>
+  </demo-section>
+</template>

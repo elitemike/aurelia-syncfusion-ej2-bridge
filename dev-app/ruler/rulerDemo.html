@@ -1,7 +1,29 @@
 <template>
   <h2>Ruler</h2>
 
-  <demo-section id="ruler-basic" title="Basic" description="Ruler rendered with its default options.">
-    <ej2-ruler data-testid="ruler-basic"></ej2-ruler>
+  <demo-section id="ruler-horizontal" title="Horizontal ruler" description="The default ruler: a 400px long horizontal scale with 5 ticks per 100px segment.">
+    <ej2-ruler data-testid="ruler-horizontal" e-orientation="Horizontal" e-length.bind="400" e-interval.bind="5"
+      e-segment-width.bind="100" e-thickness.bind="25" e-tick-alignment="RightOrBottom" e-marker-color="red"></ej2-ruler>
+  </demo-section>
+
+  <demo-section id="ruler-vertical" title="Vertical ruler" description="Vertical orientation with the ticks drawn on the left.">
+    <div style="height: 260px">
+      <ej2-ruler data-testid="ruler-vertical" e-orientation="Vertical" e-length.bind="200" e-interval.bind="4"
+        e-segment-width.bind="50" e-thickness.bind="30" e-tick-alignment="LeftOrTop"></ej2-ruler>
+    </div>
+  </demo-section>
+
+  <demo-section id="ruler-bound" title="Bound properties" description="Every property is bound to the view model; the buttons change them.">
+    <button data-testid="ruler-more-ticks" click.delegate="interval = 10">interval 10</button>
+    <button data-testid="ruler-narrow" click.delegate="segmentWidth = 50">segment 50</button>
+    <button data-testid="ruler-thick" click.delegate="thickness = 40">thickness 40</button>
+    <button data-testid="ruler-long" click.delegate="length = 800">length 800</button>
+    <button data-testid="ruler-flip" click.delegate="tickAlignment = 'LeftOrTop'">flip ticks</button>
+    <button data-testid="ruler-marker" click.delegate="markerColor = 'blue'">blue marker</button>
+    <button data-testid="ruler-vertical-btn" click.delegate="orientation = 'Vertical'">vertical</button>
+    <span data-testid="ruler-arrange-count">${arrangeCount}</span>
+    <ej2-ruler data-testid="ruler-bound" e-orientation.bind="orientation" e-length.bind="length" e-interval.bind="interval"
+      e-segment-width.bind="segmentWidth" e-thickness.bind="thickness" e-tick-alignment.bind="tickAlignment"
+      e-marker-color.bind="markerColor" e-arrange-tick.bind="arrange"></ej2-ruler>
   </demo-section>
 </template>

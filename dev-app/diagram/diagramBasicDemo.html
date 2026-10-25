@@ -1,0 +1,24 @@
+<template>
+  <h3>Basics</h3>
+
+  <demo-section id="diagram-basic" title="Flowchart with defaults" description="Nodes and connectors; node and connector defaults style every object.">
+    <ej2-diagram data-testid="diagram-basic" e-width="500px" e-height="360px" e-nodes.bind="nodes" e-connectors.bind="connectors"
+      e-node-defaults.bind="nodeDefaults" e-connector-defaults.bind="connectorDefaults"
+      e-background-color="#f6f8fa" e-mode="SVG" e-add-info.bind="addInfo"></ej2-diagram>
+  </demo-section>
+
+  <demo-section id="diagram-props" title="Diagram options" description="Layout, rulers, grid, page, tooltip, context menu, history and the remaining diagram level options.">
+    <button data-testid="props-draw" click.delegate="tool = drawOnce">Draw a rectangle</button>
+    <ej2-diagram data-testid="diagram-props" e-width="640px" e-height="360px" e-nodes.bind="nodes" e-connectors.bind="connectors"
+      e-node-defaults.bind="nodeDefaults" e-connector-defaults.bind="connectorDefaults"
+      e-enable-connector-split.bind="true" e-enable-collaborative-editing.bind="false" e-enable-web-mcp.bind="false"
+      e-web-mcp-settings.bind="webMcp" e-mode="SVG" e-segment-thumb-shape="Square" e-segment-thumb-size.bind="12"
+      e-context-menu-settings.bind="contextMenu" e-constraints.bind="constraints" e-tool.bind="tool"
+      e-bridge-direction="Left" e-background-color="#eef4ff" e-snap-settings.bind="snap" e-ruler-settings.bind="rulers"
+      e-page-settings.bind="page" e-serialization-settings.bind="serialization" e-drawing-object.bind="drawingObject"
+      e-basic-elements.bind="basicElements" e-tooltip.bind="tooltip" e-add-info.bind="addInfo"
+      e-history-manager.bind="history" e-diagram-settings.bind="diagramSettings" e-scroll-settings.bind="scroll"
+      e-selected-items.bind="selected" e-layers.bind="layers" e-command-manager.bind="commands"
+      e-on-element-draw.delegate="log('elementDraw', $event)" e-on-created.delegate="log('created', $event)"></ej2-diagram>
+  </demo-section>
+</template>

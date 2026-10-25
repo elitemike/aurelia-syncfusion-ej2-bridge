@@ -1,0 +1,29 @@
+<template>
+  <h3>Changing options at run time</h3>
+
+  <demo-section id="diagram-dynamic" title="View model to diagram" description="Every button changes a bound option, the diagram applies it without being re-created.">
+    <div>
+      <button data-testid="dyn-size" click.delegate="resize()">Resize</button>
+      <button data-testid="dyn-bg" click.delegate="bg = '#ffe9e9'">Background</button>
+      <button data-testid="dyn-constraints" click.delegate="constraints = noUserInteraction">No interaction</button>
+      <button data-testid="dyn-tool" click.delegate="tool = zoomPan">ZoomPan tool</button>
+      <button data-testid="dyn-snap" click.delegate="snap = snapOn">Show grid</button>
+      <button data-testid="dyn-ruler" click.delegate="rulers = rulersOn">Show rulers</button>
+      <button data-testid="dyn-page" click.delegate="page = pageBig">Big page</button>
+      <button data-testid="dyn-scroll" click.delegate="scroll = zoomed">Zoom out</button>
+      <button data-testid="dyn-bridge" click.delegate="bridge = 'Right'">Bridge right</button>
+      <button data-testid="dyn-thumb" click.delegate="roundThumbs()">Round thumbs</button>
+      <button data-testid="dyn-tooltip" click.delegate="tooltip = tipChanged">Tooltip text</button>
+      <button data-testid="dyn-menu" click.delegate="menu = menuOff">Menu off</button>
+      <button data-testid="dyn-nodes" click.delegate="nodes = movedNodes">Move nodes</button>
+      <button data-testid="dyn-info" click.delegate="addInfo = { owner: 'changed' }">addInfo</button>
+      <button data-testid="dyn-rtl" click.delegate="rtl = true">RTL</button>
+    </div>
+    <ej2-diagram data-testid="diagram-dynamic" e-width.bind="width" e-height.bind="height" e-background-color.bind="bg"
+      e-constraints.bind="constraints" e-tool.bind="tool" e-snap-settings.bind="snap" e-ruler-settings.bind="rulers"
+      e-page-settings.bind="page" e-scroll-settings.bind="scroll" e-bridge-direction.bind="bridge"
+      e-segment-thumb-shape.bind="thumbShape" e-segment-thumb-size.bind="thumbSize" e-tooltip.bind="tooltip"
+      e-context-menu-settings.bind="menu" e-nodes.bind="nodes" e-connectors.bind="connectors" e-add-info.bind="addInfo"
+      e-enable-rtl.bind="rtl" e-node-defaults.bind="nodeDefaults" e-connector-defaults.bind="connectorDefaults"></ej2-diagram>
+  </demo-section>
+</template>
