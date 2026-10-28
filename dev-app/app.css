@@ -17,3 +17,11 @@ body { margin: 0; font-family: "Segoe UI", Roboto, sans-serif; color: #1c1b1f; }
 .demo-output { margin-top: 10px; font-size: 13px; color: #444; }
 .demo-output code { background: #f3f3f3; padding: 1px 5px; border-radius: 3px; }
 .demo-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+.theme-picker { display: block; font-size: 12px; color: #777; margin-bottom: 8px; }
+.theme-picker select { width: 100%; padding: 5px 6px; margin-top: 2px; }
+body.theme-dark { background: #1e1e1e; color: #e6e6e6; --border: #444; }
+body.theme-dark .shell__nav { background: #252526; }
+body.theme-dark .shell__nav input, body.theme-dark .theme-picker select { background: #333; color: inherit; }
+body.theme-dark .nav-category a:hover { background: #333; }
+body.theme-dark .demo-section__desc, body.theme-dark .demo-output { color: #bbb; }
+body.theme-dark .demo-output code { background: #333; }
