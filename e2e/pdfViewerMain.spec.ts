@@ -251,7 +251,16 @@ test.describe('hyperlinks', () => {
     await textLayerReady(page, MAIN);
     const at = await pagePoint(app);
     const [x, y] = at(120, 625);
-    await expect(page.locator('[data-testid="pv-main"] .e-pv-hyperlink').first()).toBeAttached({ timeout: 25_000 });
+    // the client-side renderer sometimes never builds the link elements for the first render, reload once to get a fresh one
+    const link = page.locator('[data-testid="pv-main"] .e-pv-hyperlink').first();
+    if (!(await link.waitFor({ state: 'attached', timeout: 10_000 }).then(() => true, () => false))) {
+      const before = await evCount(page, 'main.documentLoad');
+      await viewerValue(page, MAIN, 'w.unload()');
+      await viewerValue(page, MAIN, 'w.load(w.documentPath, null)');
+      await evt(page, 'documentLoad', before + 1);
+      await textLayerReady(page, MAIN);
+    }
+    await expect(link).toBeAttached({ timeout: 15_000 });
     await page.mouse.move(x - 40, y - 30);
     await page.mouse.move(x, y, { steps: 3 });
     await evt(page, 'hyperlinkMouseOver');

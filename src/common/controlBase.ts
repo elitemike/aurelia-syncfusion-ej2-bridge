@@ -197,7 +197,9 @@ export class ControlBase<T, U> {
   detached() {
     this.subscriptions.forEach((subscription) => { if (subscription) { subscription.dispose(); } });
     if ((<any>this.widget).destroy) {
-      (<any>this.widget).destroy();
+      // the element is already out of the DOM here; Grid's Scroll.destroy walks parents up to null and throws,
+      // which would abort the router's detach and leave the next page blank
+      try { (<any>this.widget).destroy(); } catch (e) { console.warn('widget destroy failed', e); }
     }
     this.widget = null;
     this._eModel = null;

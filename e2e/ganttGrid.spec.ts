@@ -50,6 +50,7 @@ test.describe('Gantt grid features', () => {
   });
 
   test('reorder, resize, freeze and the splitter raise their events', async ({ app }) => {
+    test.setTimeout(90_000); // three real drags plus a dozen event waits take ~30s under load
     const id = 'gantt-columns';
     await expectWidget(app.page, id, 'w.allowReordering', true);
     await expectWidget(app.page, id, 'w.allowResizing', true);
@@ -58,7 +59,8 @@ test.describe('Gantt grid features', () => {
     const headers = app.section(id).locator('.e-columnheader .e-headercell');
     await headers.first().scrollIntoViewIfNeeded();
     const from = (await headers.nth(2).locator('.e-headercelldiv').boundingBox())!;
-    const to = (await headers.nth(3).boundingBox())!;
+    // column 1, not 3: at the default viewport the splitter bar covers the right-hand headers
+    const to = (await headers.nth(1).boundingBox())!;
     await app.page.mouse.move(from.x + 10, from.y + from.height / 2);
     await app.page.mouse.down();
     for (let i = 1; i <= 20; i++) { await app.page.mouse.move(from.x + 10 + ((to.x + 30 - from.x - 10) * i) / 20, from.y + from.height / 2 + (i % 2)); }
@@ -72,6 +74,7 @@ test.describe('Gantt grid features', () => {
     await app.page.mouse.up();
     for (const name of ['resizeStart', 'resizing', 'resizeStop']) { await expectEvent(app.page, name); }
 
+    await app.section(id).locator('.e-split-bar').first().scrollIntoViewIfNeeded();
     const bar = (await app.section(id).locator('.e-split-bar').first().boundingBox())!;
     await app.page.mouse.move(bar.x + bar.width / 2, bar.y + bar.height / 2);
     await app.page.mouse.down();

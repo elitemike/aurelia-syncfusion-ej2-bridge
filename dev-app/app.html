@@ -17,16 +17,16 @@
     <main class="shell__content">
       <router-view></router-view>
     </main>
+    <aside class="event-log ${logOpen ? 'event-log--open' : ''}" data-testid="event-log">
+      <header>
+        <button type="button" data-testid="log-toggle" click.delegate="toggleLog()">Event log (${log.entries.length})</button>
+        <button type="button" data-testid="log-clear" if.bind="logOpen" click.delegate="log.clear()">Clear</button>
+      </header>
+      <ol if.bind="logOpen" data-testid="log-entries">
+        <li repeat.for="e of log.entries" class="event-log__${e.kind}">
+          <time>${e.time}</time> <b>${e.control}</b> ${e.kind === 'event' ? 'on' : 'set'}<i>${e.name}</i> <code>${e.data}</code>
+        </li>
+      </ol>
+    </aside>
   </div>
-  <aside class="event-log ${logOpen ? 'event-log--open' : ''}" data-testid="event-log">
-    <header>
-      <button type="button" data-testid="log-toggle" click.delegate="toggleLog()">Event log (${log.entries.length})</button>
-      <button type="button" data-testid="log-clear" if.bind="logOpen" click.delegate="log.clear()">Clear</button>
-    </header>
-    <ol if.bind="logOpen" data-testid="log-entries">
-      <li repeat.for="e of log.entries" class="event-log__${e.kind}">
-        <time>${e.time}</time> <b>${e.control}</b> ${e.kind === 'event' ? 'on' : 'set'}<i>${e.name}</i> <code>${e.data}</code>
-      </li>
-    </ol>
-  </aside>
 </template>

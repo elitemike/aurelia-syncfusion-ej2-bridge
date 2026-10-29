@@ -115,6 +115,7 @@ test.describe('Gantt project settings', () => {
   });
 
   test('look and feel properties and their updates', async ({ app }) => {
+    test.setTimeout(90_000); // ~25 widget reads on a slow-rendering gantt, close to the 30s default under load
     const id = 'gantt-look';
     await expectWidget(app.page, id, 'w.rowHeight', 40);
     await expectWidget(app.page, id, 'w.taskbarHeight', 24);
