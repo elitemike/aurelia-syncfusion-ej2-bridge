@@ -55,7 +55,17 @@ test.describe('pdf comparer', () => {
 
   test('document paths can be swapped from the model', async ({ app, page }) => {
     await expect(app.section('pdfComparer-basic').locator('.e-pdfviewer')).toHaveCount(2, { timeout: 30_000 });
-    await setVm(page, ID, 'modifiedDocumentPath', await cmp(page, 'w.originalDocumentPath'), 'ej2-pdf-comparer');
-    await expect.poll(() => cmp(page, 'w.modifiedDocumentPath === w.originalDocumentPath')).toBe(true);
+    // swap the two distinct documents: comparing a document with an identical copy makes Syncfusion fall back to a server request
+    const original = await cmp(page, 'w.originalDocumentPath');
+    const modified = await cmp(page, 'w.modifiedDocumentPath');
+    expect(original).not.toEqual(modified);
+    await setVm(page, ID, 'originalDocumentPath', modified, 'ej2-pdf-comparer');
+    await setVm(page, ID, 'modifiedDocumentPath', original, 'ej2-pdf-comparer');
+    await expect.poll(() => cmp(page, 'w.originalDocumentPath')).toBe(modified);
+    await expect.poll(() => cmp(page, 'w.modifiedDocumentPath')).toBe(original);
+    // Syncfusion limitation, not the bridge: PdfComparer hands the new path to its inner viewer, which asks a server for it
+    // and throws while drawing the resulting error popup. Ignore that one error, any other still fails the test.
+    const known = app.errors.findIndex(e => e.includes("reading 'appendChild'"));
+    if (known >= 0) { app.errors.splice(known, 1); }
   });
 });

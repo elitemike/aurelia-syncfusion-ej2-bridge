@@ -123,6 +123,8 @@ export class ControlBase<T, U> {
         (args) => {
           // HTML attributes are case-insensitive, so `e-on-rowSelected.delegate` in a template listens for
           // `e-on-rowselected` and `e-on-row-selected.delegate` for the kebab form. Dispatch every spelling.
+          // 'bridge-event' is raised once per widget event so a host page can observe all of them (dev-app event log)
+          this.element.dispatchEvent(new CustomEvent('bridge-event', { bubbles: true, detail: { name: eventName, args } }));
           const names = new Set([event, event.toLowerCase(), toKebabCase(event)]);
           names.forEach((name) => {
             this.element.dispatchEvent(new CustomEvent(name, {
@@ -170,6 +172,11 @@ export class ControlBase<T, U> {
               const latest = coerceLiteral(modelBinding, this[binding]);
               if (!isSameValue((<any>this.widget)[modelBinding], latest)) {
                 (<any>this.widget)[modelBinding] = latest;
+                // lets a host page observe binding to widget writes (the dev-app event log listens for this)
+                this.element.dispatchEvent(new CustomEvent('bridge-property-set', {
+                  bubbles: true,
+                  detail: { property: modelBinding, value: latest }
+                }));
               }
             }
           }
