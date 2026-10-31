@@ -1,7 +1,22 @@
 <template>
   <section class="demo-section" data-testid="section-${id}">
-    <h3 class="demo-section__title">${title}</h3>
+    <header class="demo-section__head">
+      <h3 class="demo-section__title">${title}</h3>
+      <div class="demo-section__tabs" role="tablist" aria-label="${title} views">
+        <button type="button" role="tab" repeat.for="t of tabs" class="${tab === t.key ? 'active' : ''}" aria-selected="${tab === t.key}"
+          data-testid="section-${id}-tab-${t.key}" click.delegate="select(t.key)">${t.label}</button>
+      </div>
+    </header>
     <p class="demo-section__desc" if.bind="description">${description}</p>
-    <div class="demo-section__body"><slot></slot></div>
+    <div class="demo-section__body" show.bind="tab === 'preview'"><slot></slot></div>
+    <div class="demo-section__code" if.bind="tab !== 'preview'">
+      <div class="demo-section__code-bar">
+        <select data-testid="section-${id}-view" aria-label="Source shown" change.delegate="viewChanged($event.target.value)">
+          <option repeat.for="o of options" value.bind="o.value" selected.bind="o.value === view">${o.label}</option>
+        </select>
+        <button type="button" data-testid="section-${id}-copy" click.delegate="copy()">Copy</button>
+      </div>
+      <pre data-testid="section-${id}-code"><code innerhtml.bind="codeHtml"></code></pre>
+    </div>
   </section>
 </template>

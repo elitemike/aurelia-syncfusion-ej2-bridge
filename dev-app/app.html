@@ -2,16 +2,18 @@
   <require from="./app.css"></require>
   <div class="shell">
     <nav class="shell__nav" data-testid="nav" aria-label="Controls">
-      <h1><a route-href="route: home">Aurelia · Syncfusion EJ2 Bridge</a></h1>
-      <label class="theme-picker">Theme
-        <select value.bind="theme" data-testid="theme-select">
-          <option repeat.for="t of themes" value.bind="t">${t}</option>
-        </select>
-      </label>
-      <input type="search" placeholder="Search controls" value.bind="filter & debounce:150" data-testid="nav-search" />
+      <div class="shell__nav-head">
+        <h1><a route-href="route: home">Aurelia · Syncfusion EJ2 Bridge</a></h1>
+        <label class="theme-picker">Theme
+          <select value.bind="theme" data-testid="theme-select">
+            <option repeat.for="t of themes" value.bind="t">${t}</option>
+          </select>
+        </label>
+        <input type="search" placeholder="Search controls" value.bind="filter & debounce:150" data-testid="nav-search" />
+      </div>
       <div class="nav-category" repeat.for="category of visibleCategories">
         <h2>${category.name}</h2>
-        <a repeat.for="r of category.routes" route-href="route.bind: r.route" data-testid="nav-${r.route}">${r.title}</a>
+        <a repeat.for="r of category.routes" route-href="route.bind: r.route" class="${r.route === activeRoute ? 'active' : ''}" aria-current="${r.route === activeRoute ? 'page' : ''}" data-testid="nav-${r.route}">${r.title}</a>
       </div>
     </nav>
     <main class="shell__content">

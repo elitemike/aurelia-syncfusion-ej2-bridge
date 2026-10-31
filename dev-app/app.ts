@@ -1,4 +1,4 @@
-import { observable } from 'aurelia-framework';
+import { observable, computedFrom } from 'aurelia-framework';
 import { RouterConfiguration, Router } from 'aurelia-router';
 import { PLATFORM } from 'aurelia-pal';
 import { demoRoutes, DemoRoute } from './nav';
@@ -11,6 +11,7 @@ export class App {
   // no initializer: the change callback would fire for it and overwrite the stored choice before it is read
   @observable theme: string;
   // keep in sync with scripts/themes (tools/copy-themes.js); e2e/themes.spec.ts checks it
+  router: Router;
   log = new EventLog();
   logOpen = false;
   themes: string[] = [
@@ -30,6 +31,12 @@ export class App {
     this.filterChanged();
     this.log.attach();
     try { this.logOpen = localStorage.getItem('logOpen') === '1'; } catch (e) { /* storage unavailable */ }
+  }
+
+  @computedFrom('router.currentInstruction')
+  get activeRoute(): string {
+    const instruction = this.router && this.router.currentInstruction;
+    return instruction ? instruction.config.route as string : '';
   }
 
   toggleLog() {
@@ -53,6 +60,7 @@ export class App {
   }
 
   configureRouter(config: RouterConfiguration, router: Router) {
+    this.router = router;
     config.options.root = '/';
     config.options.pushState = true;
     config.map([

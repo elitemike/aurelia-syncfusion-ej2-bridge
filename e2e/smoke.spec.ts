@@ -43,3 +43,18 @@ test('every nav link loads its page in sequence', async ({ app, page }) => {
     expect(app.errors, `errors after ${title}`).toEqual([]);
   }
 });
+
+test('nav highlights the current control and follows navigation', async ({ app, page }) => {
+  await app.open('slider');
+  await expect(page.getByTestId('nav-slider')).toHaveClass(/active/);
+  await expect(page.getByTestId('nav-slider')).toHaveAttribute('aria-current', 'page');
+  await page.getByTestId('nav-button').click();
+  await expect(page.getByTestId('nav-button')).toHaveClass(/active/);
+  await expect(page.getByTestId('nav-slider')).not.toHaveClass(/active/);
+  // the highlight survives filtering and browser history
+  await page.getByTestId('nav-search').fill('butt');
+  await expect(page.getByTestId('nav-button')).toHaveClass(/active/);
+  await page.getByTestId('nav-search').fill('');
+  await page.goBack();
+  await expect(page.getByTestId('nav-slider')).toHaveClass(/active/);
+});
