@@ -68,6 +68,11 @@ export class DemoSection {
     this.render();
   }
 
+  tabKey(event: KeyboardEvent, key: 'preview' | 'markup' | 'ts') {
+    if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); return this.select(key); }
+    return true;
+  }
+
   viewChanged(view: string) {
     if (this.tab === 'markup') { this.markupView = view; } else { this.tsView = view; }
     this.render();

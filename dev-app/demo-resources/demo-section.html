@@ -2,9 +2,10 @@
   <section class="demo-section" data-testid="section-${id}">
     <header class="demo-section__head">
       <h3 class="demo-section__title">${title}</h3>
-      <div class="demo-section__tabs" role="tablist" aria-label="${title} views">
-        <button type="button" role="tab" repeat.for="t of tabs" class="${tab === t.key ? 'active' : ''}" aria-selected="${tab === t.key}"
-          data-testid="section-${id}-tab-${t.key}" click.delegate="select(t.key)">${t.label}</button>
+      <!-- plain elements, not <button>/role=tab: widget specs and users select the sample's own buttons and tabs inside the section -->
+      <div class="demo-section__tabs" aria-label="${title} views">
+        <span repeat.for="t of tabs" class="demo-section__tab ${tab === t.key ? 'active' : ''}" tabindex="0" aria-pressed="${tab === t.key}"
+          data-testid="section-${id}-tab-${t.key}" click.delegate="select(t.key)" keydown.delegate="tabKey($event, t.key)">${t.label}</span>
       </div>
     </header>
     <p class="demo-section__desc" if.bind="description">${description}</p>

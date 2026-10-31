@@ -6,7 +6,7 @@ test('each example is a Preview / Markup / TypeScript tab view', async ({ app, p
   await app.open('slider');
   const section = app.section('sl-default');
   const preview = section.locator('.demo-section__body');
-  await expect(section.getByTestId('section-sl-default-tab-preview')).toHaveAttribute('aria-selected', 'true');
+  await expect(section.getByTestId('section-sl-default-tab-preview')).toHaveAttribute('aria-pressed', 'true');
   await expect(preview).toBeVisible();
 
   await section.getByTestId('section-sl-default-tab-markup').click();
@@ -27,7 +27,7 @@ test('each example is a Preview / Markup / TypeScript tab view', async ({ app, p
   await expect(section.locator('.e-slider-container').first()).toBeVisible();
 
   // other examples on the page keep their own tab state
-  await expect(app.section('sl-range').getByTestId('section-sl-range-tab-preview')).toHaveAttribute('aria-selected', 'true');
+  await expect(app.section('sl-range').getByTestId('section-sl-range-tab-preview')).toHaveAttribute('aria-pressed', 'true');
 });
 
 test('examples that need no view-model code say so', async ({ app }) => {
