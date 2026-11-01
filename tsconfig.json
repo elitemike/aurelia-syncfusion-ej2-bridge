@@ -27,7 +27,6 @@
   "include": [
     "./src/**/*.ts",
     "./dev-app/**/*.ts",
-    "./test/**/*.ts",
     "./types/**/*.d.ts"
   ],
   "atom": {

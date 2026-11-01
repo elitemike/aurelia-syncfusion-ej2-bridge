@@ -5,7 +5,7 @@ import { SyncfusionWrapper } from "../../common/syncfusionWrapper";
 import { generateBindables } from "../../utilities/decorator";
 import { bindable } from 'aurelia-framework';
 import { RemoveEventArgs } from '@syncfusion/ej2-navigations';
-import { v4 as uuid } from "uuid";
+import { uuid } from "../../utilities/uuid";
 import { inlineView, customElement } from 'aurelia-framework';
 
 @generateBindables("uploader")

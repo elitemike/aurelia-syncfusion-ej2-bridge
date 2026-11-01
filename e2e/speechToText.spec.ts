@@ -50,7 +50,7 @@ test('clicking the button starts and stops listening', async ({ app }) => {
 test('transcriptChanged reports interim and final results and the transcript is two-way: view to model', async ({ app, page }) => {
   await app.open('speechToText');
   const section = app.section('stt-basic');
-  await section.locator('button').first().click();
+  await section.locator('button.e-speech-to-text, button.e-btn').first().click();
   await expect(section.getByTestId('stt-state-out')).toHaveText('Listening');
   await emit(page, 0, 'hello', false);
   await expect(section.getByTestId('stt-transcript-out')).toHaveText('hello');
@@ -68,7 +68,7 @@ test('transcript is two-way: model to view', async ({ app, page }) => {
   await section.getByTestId('stt-transcript-set').click();
   await expect.poll(() => widgetProp(section.getByTestId('stt-basic'), 'transcript')).toBe('typed text');
   // new dictation continues from the transcript set by the model
-  await section.locator('button').first().click();
+  await section.locator('button.e-speech-to-text, button.e-btn').first().click();
   await expect(section.getByTestId('stt-state-out')).toHaveText('Listening');
   await expect(section.getByTestId('stt-transcript-out')).toHaveText('');
 });
@@ -79,7 +79,7 @@ test('listeningState is two-way: model to view starts and stops the engine', asy
   await section.getByTestId('stt-state-start').click();
   await expect(section.getByTestId('stt-starts')).toHaveText('1');
   await expect(section.getByTestId('stt-start-interacted')).not.toHaveText('true');
-  await expect(section.locator('button').first()).toHaveClass(/e-listening-state/);
+  await expect(section.locator('button.e-speech-to-text, button.e-btn').first()).toHaveClass(/e-listening-state/);
   await expect.poll(() => widgetProp(section.getByTestId('stt-basic'), 'listeningState')).toBe('Listening');
   await section.getByTestId('stt-state-stop').click();
   await expect(section.getByTestId('stt-stops')).toHaveText('1');
@@ -100,10 +100,10 @@ test('onStart can cancel listening and the state binding follows', async ({ app 
   await app.open('speechToText');
   const section = app.section('stt-basic');
   await section.getByTestId('stt-cancel').check();
-  await section.locator('button').first().click();
+  await section.locator('button.e-speech-to-text, button.e-btn').first().click();
   await expect(section.getByTestId('stt-starts')).toHaveText('1');
   await expect(section.getByTestId('stt-state-out')).toHaveText('Inactive');
-  await expect(section.locator('button').first()).not.toHaveClass(/e-listening-state/);
+  await expect(section.locator('button.e-speech-to-text, button.e-btn').first()).not.toHaveClass(/e-listening-state/);
   expect(await widgetProp(section.getByTestId('stt-basic'), 'listeningState')).toBe('Inactive');
 });
 
@@ -140,7 +140,7 @@ test('buttonSettings, tooltipSettings and showTooltip', async ({ app, page }) =>
   await app.open('speechToText');
   const section = app.section('stt-button');
   const host = section.getByTestId('stt-button');
-  const button = section.locator('button').first();
+  const button = section.locator('button.e-speech-to-text, button.e-btn').first();
   await expect(button).toContainText('Speak');
   await expect(button).toHaveClass(/e-primary/);
   await expect(button.locator('.e-icon-left, .e-btn-icon').first()).toHaveClass(/e-icon-left/);
@@ -164,7 +164,7 @@ test('disabled, cssClass, htmlAttributes, enableRtl and locale', async ({ app })
   await app.open('speechToText');
   const section = app.section('stt-state');
   const host = section.getByTestId('stt-state');
-  const button = section.locator('button').first();
+  const button = section.locator('button.e-speech-to-text, button.e-btn').first();
   await expect(button).toBeDisabled();
   await expect(button).toHaveClass(/stt-custom/);
   await expect(button).toHaveAttribute('data-foo', 'bar');

@@ -2,7 +2,7 @@ import { UploaderModel, RemovingEventArgs } from '@syncfusion/ej2-inputs';
 import { Ej2UploaderDataAdapter } from 'widgets/uploader/ej2-uploader';
 import { HttpClient, json } from 'aurelia-fetch-client';
 import { autoinject } from 'aurelia-framework';
-import { v4 as uuid } from 'uuid';
+import { uuid } from 'utilities/uuid';
 
 // These endpoints need a backend, the e2e tests stub them with page.route.
 const saveUrl = '/api/file/upload/test';

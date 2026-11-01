@@ -122,6 +122,7 @@ test('item, footer, group, no records and action failure templates', async ({ ap
   await expect(popup(page).locator('.mc-footer-tpl')).toHaveText('Total rows');
   await expect(popup(page).locator('.mc-group-tpl')).toHaveCount(2);
   await host.locator('input').press('Escape');
+  await expect(page.locator('.e-multicolumn-list.e-popup.e-popup-open')).toHaveCount(0); // typing while it closes leaves the popup shut or unfiltered
   await host.locator('input').fill('');
   await host.locator('input').pressSequentially('zzz');
   await expect(popup(page).locator('.mc-none-tpl')).toHaveText('No employees');

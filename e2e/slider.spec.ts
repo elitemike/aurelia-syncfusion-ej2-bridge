@@ -31,6 +31,7 @@ test('range slider binds an array', async ({ app }) => {
   await expect(section.locator('.e-handle')).toHaveCount(2);
   const second = section.locator('.e-handle-second');
   await second.click(); // makes it the active handle for the keyboard
+  await expect(second).toBeFocused(); // keys go to the active handle, do not send one before the click has registered
   await second.press('ArrowLeft');
   await expect(section.getByTestId('sl-range-out')).toHaveText('30-69');
 });
@@ -49,7 +50,9 @@ test('created, renderingTicks and renderedTicks events', async ({ app }) => {
 test('change and tooltipChange events carry the new value', async ({ app }) => {
   const section = app.section('sl-events');
   const handle = section.locator('[role=slider]');
+  await expect(section.getByTestId('sl-created')).toHaveText('1');
   await handle.focus();
+  await expect(handle).toBeFocused(); // keys are lost if sent before the widget has taken focus
   await handle.press('ArrowRight');
   await expect(section.getByTestId('sl-change-value')).toHaveText('40');
   await expect(section.getByTestId('sl-change-count')).not.toHaveText('0');

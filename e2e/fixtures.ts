@@ -11,7 +11,8 @@ export class DemoApp {
   /** Navigate through the router and wait for the demo content to be composed. */
   async open(route: string) {
     await this.page.goto(`/${route}`);
-    await expect(this.page.getByTestId('nav')).toBeVisible();
+    // cold start parses the whole vendor bundle, which is slow when several browsers run at once
+    await expect(this.page.getByTestId('nav')).toBeVisible({ timeout: 20_000 });
     await expect(this.page.locator('main router-view > *').first()).toBeAttached();
   }
 

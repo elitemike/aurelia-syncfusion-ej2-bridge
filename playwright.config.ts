@@ -1,10 +1,11 @@
 import { defineConfig, devices } from '@playwright/test';
 
-const port = 8090;
+const port = Number(process.env.E2E_PORT ?? 8090);
 
 export default defineConfig({
   testDir: './e2e',
-  timeout: 30_000,
+  // a cold start parses the ~78 MB vendor bundle (10-20s for the gantt demo on an idle machine)
+  timeout: 60_000,
   expect: { timeout: 7_000 },
   fullyParallel: true,
   forbidOnly: !!process.env.CI,

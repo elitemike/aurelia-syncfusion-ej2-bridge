@@ -1,0 +1,48 @@
+name: publish
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        description: Pack only, do not publish
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+  id-token: write # npm provenance
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: yarn
+          registry-url: https://registry.npmjs.org
+          scope: "@refactored-ts"
+      - run: yarn install --frozen-lockfile
+      - run: yarn check:bindings
+
+      - name: Tag matches package version
+        if: github.event_name == 'release'
+        run: |
+          v="$(node -p "require('./package.json').version")"
+          [ "${GITHUB_REF_NAME#v}" = "$v" ] || { echo "tag $GITHUB_REF_NAME != package.json $v"; exit 1; }
+
+      - run: yarn build
+      - run: npm pack --dry-run
+
+      - name: Publish
+        if: github.event_name == 'release' || inputs.dry-run == false
+        run: |
+          tag=latest
+          case "$(node -p "require('./package.json').version")" in *-*) tag=next;; esac
+          npm publish --access public --provenance --tag "$tag"
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

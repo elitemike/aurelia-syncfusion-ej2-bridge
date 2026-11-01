@@ -3,7 +3,7 @@ import { SyncfusionWrapper } from '../../common/syncfusionWrapper';
 import { generateBindables } from '../../utilities/decorator';
 import { inlineView, customElement } from "aurelia-framework"
 import { FileManager, FileManagerModel, Toolbar, NavigationPane, DetailsView, ContextMenu, WebMcpFileManager } from "@syncfusion/ej2-filemanager";
-import { v4 as uuidv4 } from "uuid";
+import { uuid as uuidv4 } from "../../utilities/uuid";
 
 @generateBindables("fileManager")
 @inlineView(`<template><div id.bind="id" element.ref="widgetElement"></div></template>`)

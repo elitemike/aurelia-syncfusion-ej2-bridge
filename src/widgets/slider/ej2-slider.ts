@@ -18,10 +18,21 @@ export class Ej2Slider extends SyncfusionWrapper<Slider, SliderModel> {
 
   protected syncfusionWidgetType = Slider;
 
+  private lastSize: string = null;
+
   protected onWrapperCreated() {
     this.containerResizeObserver = new ResizeObserver((entries) => {
-      this.resize();
-
+      // the observer always reports once on observe(); refresh() rebuilds the DOM and drops focus, so only act on a real change
+      const { width, height } = entries[entries.length - 1].contentRect;
+      const size = `${width}x${height}`;
+      if (size === this.lastSize) {
+        return;
+      }
+      const initial = this.lastSize === null;
+      this.lastSize = size;
+      if (!initial) {
+        this.resize();
+      }
     });
 
     this.containerResizeObserver.observe(this.widgetElement);
