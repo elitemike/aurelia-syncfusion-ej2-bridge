@@ -1,7 +1,7 @@
 {
   "name": "@refactored-ts/aurelia-syncfusion-ej2-bridge",
   "description": "An Aurelia plugin wrapper for syncfusion EJ2 controls",
-  "version": "1.0.4",
+  "version": "2.0.0",
   "keywords": [
     "aurelia",
     "syncfusion"
@@ -40,6 +40,7 @@
     "e2e:report": "playwright show-report",
     "check:bindings": "node tools/check-bindings.js",
     "check:coverage": "node tools/check-coverage.js",
+    "check:package": "node tools/check-package.js",
     "sync:bindings": "node tools/check-bindings.js --write",
     "prepublishOnly": "yarn build"
   },

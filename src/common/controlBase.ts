@@ -38,6 +38,11 @@ export class ControlBase<T, U> {
 
   }
 
+  /** Release anything a wrapper added around the widget (observers, timers, listeners); runs on detach and before a recreate. */
+  protected onTeardown() {
+
+  }
+
   onCreateControl() {
     throw "onCreateControl is not implemented";
   }
@@ -195,6 +200,7 @@ export class ControlBase<T, U> {
   }
 
   detached() {
+    this.onTeardown();
     this.subscriptions.forEach((subscription) => { if (subscription) { subscription.dispose(); } });
     if ((<any>this.widget).destroy) {
       // the element is already out of the DOM here; Grid's Scroll.destroy walks parents up to null and throws,

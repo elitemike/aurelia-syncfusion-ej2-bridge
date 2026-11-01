@@ -36,6 +36,7 @@ jobs:
           [ "${GITHUB_REF_NAME#v}" = "$v" ] || { echo "tag $GITHUB_REF_NAME != package.json $v"; exit 1; }
 
       - run: yarn build
+      - run: yarn check:package
       - run: npm pack --dry-run
 
       - name: Publish
