@@ -34,7 +34,7 @@
     "aurelia-templating": "^1.11.1"
   },
   "scripts": {
-    "start": "node tools/downlevel-vendor.js && node tools/copy-pdfium.js && node tools/copy-themes.js && node tools/gen-demo-sections.js && au run",
+    "start": "node tools/downlevel-vendor.js && node tools/copy-pdfium.js && node tools/copy-themes.js && node tools/gen-demo-sections.js && node tools/gen-bundles.js && au run",
     "build": "au build-plugin",
     "e2e": "playwright test",
     "e2e:ui": "playwright test --ui",

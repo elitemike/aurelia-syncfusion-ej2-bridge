@@ -44,6 +44,9 @@ test.describe('pdf comparer', () => {
   test('width, height and comparisonOptions update from the model', async ({ app, page }) => {
     const section = app.section('pdfComparer-basic');
     await expect(section.locator('.e-pdfcomparer')).toBeVisible();
+    // resizing before both viewers exist makes the comparer's zoom sync read a viewer that is not there yet
+    await expect(section.locator('.e-pdfviewer')).toHaveCount(2, { timeout: 30_000 });
+    await expect(section.locator('.e-pv-difference-card').first()).toBeVisible({ timeout: 30_000 });
     await section.getByTestId('pc-narrow').click();
     await expect.poll(() => cmp(page, 'w.width')).toBe('700px');
     expect(await cmp(page, 'w.height')).toBe('400px');
@@ -54,6 +57,9 @@ test.describe('pdf comparer', () => {
   });
 
   test('document paths can be swapped from the model', async ({ app, page }) => {
+    // Syncfusion limitation, not the bridge: PdfComparer hands the new path to its inner viewer, which asks a server for it
+    // and throws while drawing the resulting error popup, at some point after the swap. Any other error still fails the test.
+    app.ignoreErrors(/reading 'appendChild'/);
     await expect(app.section('pdfComparer-basic').locator('.e-pdfviewer')).toHaveCount(2, { timeout: 30_000 });
     // swap the two distinct documents: comparing a document with an identical copy makes Syncfusion fall back to a server request
     const original = await cmp(page, 'w.originalDocumentPath');
@@ -63,9 +69,5 @@ test.describe('pdf comparer', () => {
     await setVm(page, ID, 'modifiedDocumentPath', original, 'ej2-pdf-comparer');
     await expect.poll(() => cmp(page, 'w.originalDocumentPath')).toBe(modified);
     await expect.poll(() => cmp(page, 'w.modifiedDocumentPath')).toBe(original);
-    // Syncfusion limitation, not the bridge: PdfComparer hands the new path to its inner viewer, which asks a server for it
-    // and throws while drawing the resulting error popup. Ignore that one error, any other still fails the test.
-    const known = app.errors.findIndex(e => e.includes("reading 'appendChild'"));
-    if (known >= 0) { app.errors.splice(known, 1); }
   });
 });

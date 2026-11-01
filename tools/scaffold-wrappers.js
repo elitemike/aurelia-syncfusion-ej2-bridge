@@ -74,7 +74,11 @@ const demoHtml = c => `<template>
   </demo-section>
 </template>
 `;
-const demoTs = c => `export class ${c.name}Demo {
+const demoTs = c => `import { ${c.cls} } from 'widgets/${c.key}/ej2-${c.key}';
+import { viewResources } from 'aurelia-framework';
+
+@viewResources(${c.cls})
+export class ${c.name}Demo {
 }
 `;
 
@@ -98,9 +102,8 @@ fs.writeFileSync(bPath, b);
 // ConfigBuilder
 const cPath = path.join(root, 'src/configBuider.ts');
 let cfg = fs.readFileSync(cPath, 'utf8');
-cfg = cfg.replace(/^/, controls.map(c => `import { ${c.cls} } from './widgets/${c.key}/ej2-${c.key}';`).join('\n') + '\n');
 cfg = cfg.replace(/(\.ej2Uploader\(\))\n(\s*)return this;/, `$1\n      ${controls.map(c => `.ej2${c.name}()`).join('\n      ')};\n$2return this;`);
-cfg = cfg.replace(/\n\}\n$/, '\n' + controls.map(c => `\n  ej2${c.name}(): ConfigBuilder {\n    this.resources.push(${c.cls});\n    return this;\n  }`).join('\n') + '\n}\n');
+cfg = cfg.replace(/\n\}\n$/, '\n' + controls.map(c => `\n  ej2${c.name}(): ConfigBuilder {\n    this.resources.push(PLATFORM.moduleName('./widgets/${c.key}/ej2-${c.key}'));\n    return this;\n  }`).join('\n') + '\n}\n');
 fs.writeFileSync(cPath, cfg);
 
 // nav

@@ -2,17 +2,35 @@ import { test as base, expect, Page } from '@playwright/test';
 
 export class DemoApp {
   readonly errors: string[] = [];
+  private ignored: RegExp[] = [];
+  private failedRequests: string[] = [];
 
   constructor(readonly page: Page) {
-    page.on('pageerror', e => this.errors.push(`pageerror: ${e.message}`));
+    page.on('pageerror', e => this.errors.push(`pageerror: ${e.message}\n${(e.stack || '').split('\n').slice(1, 6).join('\n')}`));
     page.on('console', m => { if (m.type() === 'error') { this.errors.push(`console: ${m.text()}`); } });
+    page.on('requestfailed', r => this.failedRequests.push(`${r.failure()?.errorText} ${r.url()}`));
+  }
+
+  /** Declare a known third-party error that may arrive at any time during the test, any other browser error still fails it. */
+  ignoreErrors(...patterns: RegExp[]) {
+    this.ignored.push(...patterns);
+  }
+
+  /** The errors that were not declared as known. */
+  get unexpectedErrors() {
+    return this.errors.filter(e => !this.ignored.some(p => p.test(e)));
   }
 
   /** Navigate through the router and wait for the demo content to be composed. */
   async open(route: string) {
     await this.page.goto(`/${route}`);
-    // cold start parses the whole vendor bundle, which is slow when several browsers run at once
-    await expect(this.page.getByTestId('nav')).toBeVisible({ timeout: 20_000 });
+    try {
+      // booting evaluates the route's unminified bundles on the main thread: gantt alone needs 9-17s, and several browsers at once more
+      await expect(this.page.getByTestId('nav')).toBeVisible({ timeout: 45_000 });
+    } catch (e) {
+      // say why the app did not start instead of only that the nav is missing
+      throw new Error(`app did not start at /${route}\nbrowser errors: ${JSON.stringify(this.errors)}\nfailed requests: ${JSON.stringify(this.failedRequests)}`);
+    }
     await expect(this.page.locator('main router-view > *').first()).toBeAttached();
   }
 
@@ -27,7 +45,7 @@ export const test = base.extend<{ app: DemoApp }>({
     await mockFileManagerService(page);
     await mockUploadService(page);
     await use(app);
-    expect(app.errors, 'unexpected browser errors').toEqual([]);
+    expect(app.unexpectedErrors, 'unexpected browser errors').toEqual([]);
   }
 });
 

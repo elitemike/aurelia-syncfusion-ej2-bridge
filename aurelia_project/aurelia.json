@@ -72,6 +72,1086 @@
     },
     "bundles": [
       {
+        "name": "accordion-bundle.js",
+        "source": [
+          "**/dev-app/accordion/**/*.{js,json,css,html}",
+          "**/src/widgets/accordion/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "accumulationChart-bundle.js",
+        "source": [
+          "**/dev-app/accumulationChart/**/*.{js,json,css,html}",
+          "**/src/widgets/accumulationChart/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "aiAssistView-bundle.js",
+        "source": [
+          "**/dev-app/aiAssistView/**/*.{js,json,css,html}",
+          "**/src/widgets/aiAssistView/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "appBar-bundle.js",
+        "source": [
+          "**/dev-app/appBar/**/*.{js,json,css,html}",
+          "**/src/widgets/appBar/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "autoComplete-bundle.js",
+        "source": [
+          "**/dev-app/autoComplete/**/*.{js,json,css,html}",
+          "**/src/widgets/autoComplete/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "barcodeGenerator-bundle.js",
+        "source": [
+          "**/dev-app/barcodeGenerator/**/*.{js,json,css,html}",
+          "**/src/widgets/barcodeGenerator/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "blockEditor-bundle.js",
+        "source": [
+          "**/dev-app/blockEditor/**/*.{js,json,css,html}",
+          "**/src/widgets/blockEditor/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "breadcrumb-bundle.js",
+        "source": [
+          "**/dev-app/breadcrumb/**/*.{js,json,css,html}",
+          "**/src/widgets/breadcrumb/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "bulletChart-bundle.js",
+        "source": [
+          "**/dev-app/bulletChart/**/*.{js,json,css,html}",
+          "**/src/widgets/bulletChart/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "button-bundle.js",
+        "source": [
+          "**/dev-app/button/**/*.{js,json,css,html}",
+          "**/src/widgets/button/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "calendar-bundle.js",
+        "source": [
+          "**/dev-app/calendar/**/*.{js,json,css,html}",
+          "**/src/widgets/calendar/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "carousel-bundle.js",
+        "source": [
+          "**/dev-app/carousel/**/*.{js,json,css,html}",
+          "**/src/widgets/carousel/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "chart-bundle.js",
+        "source": [
+          "**/dev-app/chart/**/*.{js,json,css,html}",
+          "**/src/widgets/chart/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "chart3D-bundle.js",
+        "source": [
+          "**/dev-app/chart3D/**/*.{js,json,css,html}",
+          "**/src/widgets/chart3D/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "chatUI-bundle.js",
+        "source": [
+          "**/dev-app/chatUI/**/*.{js,json,css,html}",
+          "**/src/widgets/chatUI/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "checkbox-bundle.js",
+        "source": [
+          "**/dev-app/checkbox/**/*.{js,json,css,html}",
+          "**/src/widgets/checkbox/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "chipList-bundle.js",
+        "source": [
+          "**/dev-app/chipList/**/*.{js,json,css,html}",
+          "**/src/widgets/chipList/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "circularChart3D-bundle.js",
+        "source": [
+          "**/dev-app/circularChart3D/**/*.{js,json,css,html}",
+          "**/src/widgets/circularChart3D/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "circularGauge-bundle.js",
+        "source": [
+          "**/dev-app/circularGauge/**/*.{js,json,css,html}",
+          "**/src/widgets/circularGauge/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "colorPicker-bundle.js",
+        "source": [
+          "**/dev-app/colorPicker/**/*.{js,json,css,html}",
+          "**/src/widgets/colorPicker/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "comboBox-bundle.js",
+        "source": [
+          "**/dev-app/comboBox/**/*.{js,json,css,html}",
+          "**/src/widgets/comboBox/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "contextMenu-bundle.js",
+        "source": [
+          "**/dev-app/contextMenu/**/*.{js,json,css,html}",
+          "**/src/widgets/contextMenu/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "dashboardLayout-bundle.js",
+        "source": [
+          "**/dev-app/dashboardLayout/**/*.{js,json,css,html}",
+          "**/src/widgets/dashboardLayout/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "dataMatrixGenerator-bundle.js",
+        "source": [
+          "**/dev-app/dataMatrixGenerator/**/*.{js,json,css,html}",
+          "**/src/widgets/dataMatrixGenerator/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "datePicker-bundle.js",
+        "source": [
+          "**/dev-app/datePicker/**/*.{js,json,css,html}",
+          "**/src/widgets/datePicker/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "dateRangePicker-bundle.js",
+        "source": [
+          "**/dev-app/dateRangePicker/**/*.{js,json,css,html}",
+          "**/src/widgets/dateRangePicker/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "dateTimePicker-bundle.js",
+        "source": [
+          "**/dev-app/dateTimePicker/**/*.{js,json,css,html}",
+          "**/src/widgets/dateTimePicker/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "diagram-bundle.js",
+        "source": [
+          "**/dev-app/diagram/**/*.{js,json,css,html}",
+          "**/src/widgets/diagram/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "dialog-bundle.js",
+        "source": [
+          "**/dev-app/dialog/**/*.{js,json,css,html}",
+          "**/src/widgets/dialog/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "documentEditor-bundle.js",
+        "source": [
+          "**/dev-app/documentEditor/**/*.{js,json,css,html}",
+          "**/src/widgets/documentEditor/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "documentEditorContainer-bundle.js",
+        "source": [
+          "**/dev-app/documentEditorContainer/**/*.{js,json,css,html}",
+          "**/src/widgets/documentEditorContainer/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "dropDownButton-bundle.js",
+        "source": [
+          "**/dev-app/dropDownButton/**/*.{js,json,css,html}",
+          "**/src/widgets/dropDownButton/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "dropDownList-bundle.js",
+        "source": [
+          "**/dev-app/dropDownList/**/*.{js,json,css,html}",
+          "**/src/widgets/dropDownList/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "dropDownTree-bundle.js",
+        "source": [
+          "**/dev-app/dropDownTree/**/*.{js,json,css,html}",
+          "**/src/widgets/dropDownTree/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "fab-bundle.js",
+        "source": [
+          "**/dev-app/fab/**/*.{js,json,css,html}",
+          "**/src/widgets/fab/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "fileManager-bundle.js",
+        "source": [
+          "**/dev-app/fileManager/**/*.{js,json,css,html}",
+          "**/src/widgets/fileManager/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "formBuilder-bundle.js",
+        "source": [
+          "**/dev-app/formBuilder/**/*.{js,json,css,html}",
+          "**/src/widgets/formBuilder/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "formRenderer-bundle.js",
+        "source": [
+          "**/dev-app/formRenderer/**/*.{js,json,css,html}",
+          "**/src/widgets/formRenderer/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "gantt-bundle.js",
+        "source": [
+          "**/dev-app/gantt/**/*.{js,json,css,html}",
+          "**/src/widgets/gantt/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "grid-bundle.js",
+        "source": [
+          "**/dev-app/grid/**/*.{js,json,css,html}",
+          "**/src/widgets/grid/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "heatMap-bundle.js",
+        "source": [
+          "**/dev-app/heatMap/**/*.{js,json,css,html}",
+          "**/src/widgets/heatMap/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "imageEditor-bundle.js",
+        "source": [
+          "**/dev-app/imageEditor/**/*.{js,json,css,html}",
+          "**/src/widgets/imageEditor/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "inPlaceEditor-bundle.js",
+        "source": [
+          "**/dev-app/inPlaceEditor/**/*.{js,json,css,html}",
+          "**/src/widgets/inPlaceEditor/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "inlineAIAssist-bundle.js",
+        "source": [
+          "**/dev-app/inlineAIAssist/**/*.{js,json,css,html}",
+          "**/src/widgets/inlineAIAssist/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "kanban-bundle.js",
+        "source": [
+          "**/dev-app/kanban/**/*.{js,json,css,html}",
+          "**/src/widgets/kanban/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "linearGauge-bundle.js",
+        "source": [
+          "**/dev-app/linearGauge/**/*.{js,json,css,html}",
+          "**/src/widgets/linearGauge/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "listBox-bundle.js",
+        "source": [
+          "**/dev-app/listBox/**/*.{js,json,css,html}",
+          "**/src/widgets/listBox/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "listView-bundle.js",
+        "source": [
+          "**/dev-app/listView/**/*.{js,json,css,html}",
+          "**/src/widgets/listView/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "maps-bundle.js",
+        "source": [
+          "**/dev-app/maps/**/*.{js,json,css,html}",
+          "**/src/widgets/maps/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "maskedTextBox-bundle.js",
+        "source": [
+          "**/dev-app/maskedTextBox/**/*.{js,json,css,html}",
+          "**/src/widgets/maskedTextBox/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "mention-bundle.js",
+        "source": [
+          "**/dev-app/mention/**/*.{js,json,css,html}",
+          "**/src/widgets/mention/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "menu-bundle.js",
+        "source": [
+          "**/dev-app/menu/**/*.{js,json,css,html}",
+          "**/src/widgets/menu/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "message-bundle.js",
+        "source": [
+          "**/dev-app/message/**/*.{js,json,css,html}",
+          "**/src/widgets/message/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "multiColumnComboBox-bundle.js",
+        "source": [
+          "**/dev-app/multiColumnComboBox/**/*.{js,json,css,html}",
+          "**/src/widgets/multiColumnComboBox/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "multiSelect-bundle.js",
+        "source": [
+          "**/dev-app/multiSelect/**/*.{js,json,css,html}",
+          "**/src/widgets/multiSelect/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "numericTextBox-bundle.js",
+        "source": [
+          "**/dev-app/numericTextBox/**/*.{js,json,css,html}",
+          "**/src/widgets/numericTextBox/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "otpInput-bundle.js",
+        "source": [
+          "**/dev-app/otpInput/**/*.{js,json,css,html}",
+          "**/src/widgets/otpInput/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "overview-bundle.js",
+        "source": [
+          "**/dev-app/overview/**/*.{js,json,css,html}",
+          "**/src/widgets/overview/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "pager-bundle.js",
+        "source": [
+          "**/dev-app/pager/**/*.{js,json,css,html}",
+          "**/src/widgets/pager/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "pdf417Generator-bundle.js",
+        "source": [
+          "**/dev-app/pdf417Generator/**/*.{js,json,css,html}",
+          "**/src/widgets/pdf417Generator/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "pdfComparer-bundle.js",
+        "source": [
+          "**/dev-app/pdfComparer/**/*.{js,json,css,html}",
+          "**/src/widgets/pdfComparer/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "pdfViewer-bundle.js",
+        "source": [
+          "**/dev-app/pdfViewer/**/*.{js,json,css,html}",
+          "**/src/widgets/pdfViewer/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "pivotFieldList-bundle.js",
+        "source": [
+          "**/dev-app/pivotFieldList/**/*.{js,json,css,html}",
+          "**/src/widgets/pivotFieldList/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "pivotView-bundle.js",
+        "source": [
+          "**/dev-app/pivotView/**/*.{js,json,css,html}",
+          "**/src/widgets/pivotView/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "popup-bundle.js",
+        "source": [
+          "**/dev-app/popup/**/*.{js,json,css,html}",
+          "**/src/widgets/popup/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "progressBar-bundle.js",
+        "source": [
+          "**/dev-app/progressBar/**/*.{js,json,css,html}",
+          "**/src/widgets/progressBar/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "progressButton-bundle.js",
+        "source": [
+          "**/dev-app/progressButton/**/*.{js,json,css,html}",
+          "**/src/widgets/progressButton/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "qrCodeGenerator-bundle.js",
+        "source": [
+          "**/dev-app/qrCodeGenerator/**/*.{js,json,css,html}",
+          "**/src/widgets/qrCodeGenerator/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "queryBuilder-bundle.js",
+        "source": [
+          "**/dev-app/queryBuilder/**/*.{js,json,css,html}",
+          "**/src/widgets/queryBuilder/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "radio-bundle.js",
+        "source": [
+          "**/dev-app/radio/**/*.{js,json,css,html}",
+          "**/src/widgets/radio/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "rangeNavigator-bundle.js",
+        "source": [
+          "**/dev-app/rangeNavigator/**/*.{js,json,css,html}",
+          "**/src/widgets/rangeNavigator/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "rating-bundle.js",
+        "source": [
+          "**/dev-app/rating/**/*.{js,json,css,html}",
+          "**/src/widgets/rating/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "recurrenceEditor-bundle.js",
+        "source": [
+          "**/dev-app/recurrenceEditor/**/*.{js,json,css,html}",
+          "**/src/widgets/recurrenceEditor/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "ribbon-bundle.js",
+        "source": [
+          "**/dev-app/ribbon/**/*.{js,json,css,html}",
+          "**/src/widgets/ribbon/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "richTextEditor-bundle.js",
+        "source": [
+          "**/dev-app/richTextEditor/**/*.{js,json,css,html}",
+          "**/src/widgets/richTextEditor/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "richTextEditorUI-bundle.js",
+        "source": [
+          "**/dev-app/richTextEditorUI/**/*.{js,json,css,html}",
+          "**/src/widgets/richTextEditorUI/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "ruler-bundle.js",
+        "source": [
+          "**/dev-app/ruler/**/*.{js,json,css,html}",
+          "**/src/widgets/ruler/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "sankey-bundle.js",
+        "source": [
+          "**/dev-app/sankey/**/*.{js,json,css,html}",
+          "**/src/widgets/sankey/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "schedule-bundle.js",
+        "source": [
+          "**/dev-app/schedule/**/*.{js,json,css,html}",
+          "**/src/widgets/schedule/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "sidebar-bundle.js",
+        "source": [
+          "**/dev-app/sidebar/**/*.{js,json,css,html}",
+          "**/src/widgets/sidebar/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "signature-bundle.js",
+        "source": [
+          "**/dev-app/signature/**/*.{js,json,css,html}",
+          "**/src/widgets/signature/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "skeleton-bundle.js",
+        "source": [
+          "**/dev-app/skeleton/**/*.{js,json,css,html}",
+          "**/src/widgets/skeleton/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "slider-bundle.js",
+        "source": [
+          "**/dev-app/slider/**/*.{js,json,css,html}",
+          "**/src/widgets/slider/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "smartPasteButton-bundle.js",
+        "source": [
+          "**/dev-app/smartPasteButton/**/*.{js,json,css,html}",
+          "**/src/widgets/smartPasteButton/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "smartTextArea-bundle.js",
+        "source": [
+          "**/dev-app/smartTextArea/**/*.{js,json,css,html}",
+          "**/src/widgets/smartTextArea/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "smithchart-bundle.js",
+        "source": [
+          "**/dev-app/smithchart/**/*.{js,json,css,html}",
+          "**/src/widgets/smithchart/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "sparkline-bundle.js",
+        "source": [
+          "**/dev-app/sparkline/**/*.{js,json,css,html}",
+          "**/src/widgets/sparkline/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "speechToText-bundle.js",
+        "source": [
+          "**/dev-app/speechToText/**/*.{js,json,css,html}",
+          "**/src/widgets/speechToText/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "speedDial-bundle.js",
+        "source": [
+          "**/dev-app/speedDial/**/*.{js,json,css,html}",
+          "**/src/widgets/speedDial/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "splitButton-bundle.js",
+        "source": [
+          "**/dev-app/splitButton/**/*.{js,json,css,html}",
+          "**/src/widgets/splitButton/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "splitter-bundle.js",
+        "source": [
+          "**/dev-app/splitter/**/*.{js,json,css,html}",
+          "**/src/widgets/splitter/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "spreadsheet-bundle.js",
+        "source": [
+          "**/dev-app/spreadsheet/**/*.{js,json,css,html}",
+          "**/src/widgets/spreadsheet/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "stepper-bundle.js",
+        "source": [
+          "**/dev-app/stepper/**/*.{js,json,css,html}",
+          "**/src/widgets/stepper/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "stockChart-bundle.js",
+        "source": [
+          "**/dev-app/stockChart/**/*.{js,json,css,html}",
+          "**/src/widgets/stockChart/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "switch-bundle.js",
+        "source": [
+          "**/dev-app/switch/**/*.{js,json,css,html}",
+          "**/src/widgets/switch/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "symbolPalette-bundle.js",
+        "source": [
+          "**/dev-app/symbolPalette/**/*.{js,json,css,html}",
+          "**/src/widgets/symbolPalette/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "tab-bundle.js",
+        "source": [
+          "**/dev-app/tab/**/*.{js,json,css,html}",
+          "**/src/widgets/tab/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "textArea-bundle.js",
+        "source": [
+          "**/dev-app/textArea/**/*.{js,json,css,html}",
+          "**/src/widgets/textArea/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "textBox-bundle.js",
+        "source": [
+          "**/dev-app/textBox/**/*.{js,json,css,html}",
+          "**/src/widgets/textBox/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "timePicker-bundle.js",
+        "source": [
+          "**/dev-app/timePicker/**/*.{js,json,css,html}",
+          "**/src/widgets/timePicker/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "timeline-bundle.js",
+        "source": [
+          "**/dev-app/timeline/**/*.{js,json,css,html}",
+          "**/src/widgets/timeline/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "toast-bundle.js",
+        "source": [
+          "**/dev-app/toast/**/*.{js,json,css,html}",
+          "**/src/widgets/toast/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "toolbar-bundle.js",
+        "source": [
+          "**/dev-app/toolbar/**/*.{js,json,css,html}",
+          "**/src/widgets/toolbar/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "tooltip-bundle.js",
+        "source": [
+          "**/dev-app/tooltip/**/*.{js,json,css,html}",
+          "**/src/widgets/tooltip/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "treeGrid-bundle.js",
+        "source": [
+          "**/dev-app/treeGrid/**/*.{js,json,css,html}",
+          "**/src/widgets/treeGrid/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "treeMap-bundle.js",
+        "source": [
+          "**/dev-app/treeMap/**/*.{js,json,css,html}",
+          "**/src/widgets/treeMap/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "treeView-bundle.js",
+        "source": [
+          "**/dev-app/treeView/**/*.{js,json,css,html}",
+          "**/src/widgets/treeView/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "uploader-bundle.js",
+        "source": [
+          "**/dev-app/uploader/**/*.{js,json,css,html}",
+          "**/src/widgets/uploader/**/*.{js,json,css,html}"
+        ]
+      },
+      {
+        "name": "ej2-barcode-generator-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-barcode-generator"
+        ]
+      },
+      {
+        "name": "ej2-base-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-base"
+        ]
+      },
+      {
+        "name": "ej2-blockeditor-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-blockeditor"
+        ]
+      },
+      {
+        "name": "ej2-buttons-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-buttons"
+        ]
+      },
+      {
+        "name": "ej2-calculate-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-calculate"
+        ]
+      },
+      {
+        "name": "ej2-calendars-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-calendars"
+        ]
+      },
+      {
+        "name": "ej2-charts-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-charts"
+        ]
+      },
+      {
+        "name": "ej2-circulargauge-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-circulargauge"
+        ]
+      },
+      {
+        "name": "ej2-compression-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-compression"
+        ]
+      },
+      {
+        "name": "ej2-data-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-data"
+        ]
+      },
+      {
+        "name": "ej2-diagrams-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-diagrams"
+        ]
+      },
+      {
+        "name": "ej2-documenteditor-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-documenteditor"
+        ]
+      },
+      {
+        "name": "ej2-dropdowns-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-dropdowns"
+        ]
+      },
+      {
+        "name": "ej2-excel-export-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-excel-export"
+        ]
+      },
+      {
+        "name": "ej2-file-utils-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-file-utils"
+        ]
+      },
+      {
+        "name": "ej2-filemanager-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-filemanager"
+        ]
+      },
+      {
+        "name": "ej2-form-builder-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-form-builder"
+        ]
+      },
+      {
+        "name": "ej2-form-renderer-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-form-renderer"
+        ]
+      },
+      {
+        "name": "ej2-gantt-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-gantt"
+        ]
+      },
+      {
+        "name": "ej2-grids-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-grids"
+        ]
+      },
+      {
+        "name": "ej2-headless-editor-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-headless-editor"
+        ]
+      },
+      {
+        "name": "ej2-heatmap-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-heatmap"
+        ]
+      },
+      {
+        "name": "ej2-image-editor-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-image-editor"
+        ]
+      },
+      {
+        "name": "ej2-inplace-editor-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-inplace-editor"
+        ]
+      },
+      {
+        "name": "ej2-inputs-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-inputs"
+        ]
+      },
+      {
+        "name": "ej2-interactive-chat-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-interactive-chat"
+        ]
+      },
+      {
+        "name": "ej2-kanban-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-kanban"
+        ]
+      },
+      {
+        "name": "ej2-layouts-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-layouts"
+        ]
+      },
+      {
+        "name": "ej2-lineargauge-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-lineargauge"
+        ]
+      },
+      {
+        "name": "ej2-lists-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-lists"
+        ]
+      },
+      {
+        "name": "ej2-maps-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-maps"
+        ]
+      },
+      {
+        "name": "ej2-markdown-converter-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-markdown-converter"
+        ]
+      },
+      {
+        "name": "ej2-multicolumn-combobox-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-multicolumn-combobox"
+        ]
+      },
+      {
+        "name": "ej2-navigations-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-navigations"
+        ]
+      },
+      {
+        "name": "ej2-notifications-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-notifications"
+        ]
+      },
+      {
+        "name": "ej2-office-chart-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-office-chart"
+        ]
+      },
+      {
+        "name": "ej2-pdf-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-pdf"
+        ]
+      },
+      {
+        "name": "ej2-pdf-data-extract-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-pdf-data-extract"
+        ]
+      },
+      {
+        "name": "ej2-pdf-export-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-pdf-export"
+        ]
+      },
+      {
+        "name": "ej2-pdfviewer-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-pdfviewer"
+        ]
+      },
+      {
+        "name": "ej2-pivotview-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-pivotview"
+        ]
+      },
+      {
+        "name": "ej2-popups-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-popups"
+        ]
+      },
+      {
+        "name": "ej2-progressbar-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-progressbar"
+        ]
+      },
+      {
+        "name": "ej2-querybuilder-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-querybuilder"
+        ]
+      },
+      {
+        "name": "ej2-ribbon-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-ribbon"
+        ]
+      },
+      {
+        "name": "ej2-richtexteditor-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-richtexteditor"
+        ]
+      },
+      {
+        "name": "ej2-richtexteditor-ui-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-richtexteditor-ui"
+        ]
+      },
+      {
+        "name": "ej2-schedule-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-schedule"
+        ]
+      },
+      {
+        "name": "ej2-splitbuttons-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-splitbuttons"
+        ]
+      },
+      {
+        "name": "ej2-spreadsheet-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-spreadsheet"
+        ]
+      },
+      {
+        "name": "ej2-svg-base-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-svg-base"
+        ]
+      },
+      {
+        "name": "ej2-treegrid-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-treegrid"
+        ]
+      },
+      {
+        "name": "ej2-treemap-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-treemap"
+        ]
+      },
+      {
+        "name": "ej2-xlsx-bundle.js",
+        "dependencies": [
+          "@syncfusion/ej2-xlsx"
+        ]
+      },
+      {
         "name": "app-bundle.js",
         "source": [
           "**/*.{js,json,css,html}"

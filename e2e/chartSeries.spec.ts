@@ -1,6 +1,6 @@
 import { test, expect } from './fixtures';
 import { chartHost, inst } from './chartHelpers';
-import { gallery } from '../dev-app/chart/chartSeriesDemo';
+import { gallery } from '../dev-app/chart/chartSeriesData';
 
 test.beforeEach(async ({ app }) => app.open('chart'));
 

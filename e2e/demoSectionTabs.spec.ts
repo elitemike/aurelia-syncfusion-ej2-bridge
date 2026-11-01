@@ -89,15 +89,18 @@ test('every rendered example on every page has its source', async ({ app, page, 
     await expect(page).toHaveURL(new RegExp(`/${route}$`));
     await expect(page.locator('main section.demo-section').first(), `${route} has examples`).toBeAttached();
     const { sections } = await (await request.get(`/scripts/demo-src/${route}.json`)).json();
-    // composed parts attach one after another, wait until every example has its tab bar
+    // the URL changes when navigation starts, the view is swapped once the route's bundles are loaded, and composed parts attach one
+    // after another: wait for the previous page's examples to be gone and every example to have its tab bar
     const read = () => page.locator('main section.demo-section').evaluateAll(els => ({
       ids: els.map(e => (e.getAttribute('data-testid') || '').replace(/^section-/, '')),
       tabbed: els.filter(e => e.querySelector(':scope > .demo-section__head > .demo-section__tabs')).length
     }));
-    await expect.poll(async () => { const r = await read(); return r.tabbed === r.ids.length; }, { message: `${route}: every example has tabs` }).toBe(true);
-    const { ids } = await read();
     const known = (id: string) => sections[id] || Object.keys(sections).some(k => k.includes('${') &&
       new RegExp('^' + k.split(/\$\{[^}]*\}/).map(p => p.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('.+') + '$').test(id));
-    for (const id of ids) { expect(known(id), `${route}: source for ${id}`).toBeTruthy(); }
+    // empty once every example has its tab bar and generated source, otherwise what is still missing
+    await expect.poll(async () => {
+      const r = await read();
+      return [...(r.tabbed === r.ids.length ? [] : ['tab bars']), ...r.ids.filter(id => !known(id)).map(id => `source for ${id}`)];
+    }, { message: `${route}: every example has tabs and generated source`, timeout: 30_000 }).toEqual([]); // the schedule page alone takes 6-8s to swap in
   }
 });
