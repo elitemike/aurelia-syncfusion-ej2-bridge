@@ -1,3 +1,6 @@
+import { Ej2Timeline } from 'widgets/timeline/ej2-timeline';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2Timeline)
 export class TimelineDemo {
   items = [
     { content: 'Ordered\n9:15 AM, January 1, 2024', dotCss: 'state-success', cssClass: 'completed' },

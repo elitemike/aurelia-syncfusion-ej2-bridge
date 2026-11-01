@@ -1,5 +1,8 @@
 import { DataManager, Query } from '@syncfusion/ej2-data';
+import { Ej2ComboBox } from 'widgets/comboBox/ej2-comboBox';
+import { viewResources } from 'aurelia-framework';
 
+@viewResources(Ej2ComboBox)
 export class ComboBoxDemo {
   games = [
     { id: 'Game1', game: 'American Football' }, { id: 'Game2', game: 'Badminton' },

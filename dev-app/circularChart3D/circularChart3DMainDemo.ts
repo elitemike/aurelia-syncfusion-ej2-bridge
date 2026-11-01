@@ -1,7 +1,10 @@
 import { browsers } from './circularChart3DLog';
+import { Ej2CircularChart3D } from 'widgets/circularChart3D/ej2-circularChart3D';
+import { viewResources } from 'aurelia-framework';
 
 const pixel = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==';
 
+@viewResources(Ej2CircularChart3D)
 export class CircularChart3DMainDemo {
   // Syncfusion "3D Pie" sample: browser market share with data labels, legend and tooltip
   browsers = browsers;

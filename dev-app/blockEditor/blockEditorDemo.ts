@@ -1,5 +1,8 @@
+import { Ej2BlockEditor } from 'widgets/blockEditor/ej2-blockEditor';
+import { viewResources } from 'aurelia-framework';
 const text = (content: string) => [{ contentType: 'Text', content }];
 
+@viewResources(Ej2BlockEditor)
 export class BlockEditorDemo {
   counts: { [key: string]: number } = {
     created: 0, blockChanged: 0, selectionChanged: 0, focus: 0, blur: 0, outside: 0, blockDragStart: 0,

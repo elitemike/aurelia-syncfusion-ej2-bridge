@@ -1,3 +1,6 @@
+import { Ej2TextBox } from 'widgets/textBox/ej2-textBox';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2TextBox)
 export class TextBoxDemo {
   value = 'initial';
   inputCount = 0;

@@ -1,3 +1,5 @@
+import { Ej2Maps } from 'widgets/maps/ej2-maps';
+import { viewResources } from 'aurelia-framework';
 // A tiny local world: six rectangular "countries" in longitude/latitude, so the demo never needs a network request.
 const rectangle = (name: string, lon1: number, lon2: number, lat1: number, lat2: number) => ({
   type: 'Feature',
@@ -43,6 +45,7 @@ const clustered = [
 
 const baseLayer = (extra: any = {}) => ({ shapeData: world, animationDuration: 0, shapeSettings: { fill: '#c5e1a5', border: { color: '#33691e', width: 1 } }, ...extra });
 
+@viewResources(Ej2Maps)
 export class MapsDemo {
   // basic
   titleSettings = { text: 'Tiny world', textStyle: { size: '16px', color: '#b71c1c', fontWeight: 'bold' }, subtitleSettings: { text: 'six countries' } };

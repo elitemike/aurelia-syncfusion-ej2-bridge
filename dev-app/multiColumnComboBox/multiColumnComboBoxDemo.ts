@@ -1,5 +1,8 @@
 import { DataManager, Query } from '@syncfusion/ej2-data';
+import { Ej2MultiColumnComboBox } from 'widgets/multiColumnComboBox/ej2-multiColumnComboBox';
+import { viewResources } from 'aurelia-framework';
 
+@viewResources(Ej2MultiColumnComboBox)
 export class MultiColumnComboBoxDemo {
   employees = [
     { EmployeeID: 1, Name: 'Andrew Fuller', Designation: 'Team Lead', Country: 'England' },

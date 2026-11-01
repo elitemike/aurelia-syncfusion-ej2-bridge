@@ -2,7 +2,10 @@ import {
   DiagramConstraints, DiagramTools, SnapConstraints, TextElement, SelectorConstraints, Keys, KeyModifiers
 } from '@syncfusion/ej2-diagrams';
 import { logEvent } from './diagramLog';
+import { Ej2Diagram } from 'widgets/diagram/ej2-diagram';
+import { viewResources } from 'aurelia-framework';
 
+@viewResources(Ej2Diagram)
 export class DiagramBasicDemo {
   log = logEvent;
   addInfo = { owner: 'demo' };

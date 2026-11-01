@@ -1,5 +1,8 @@
 import { TextElement, Canvas } from '@syncfusion/ej2-diagrams';
 import { logEvent } from '../diagram/diagramLog';
+import { Ej2Diagram } from 'widgets/diagram/ej2-diagram';
+import { Ej2SymbolPalette } from 'widgets/symbolPalette/ej2-symbolPalette';
+import { viewResources } from 'aurelia-framework';
 
 const count = (name: string) => {
   const w = window as any;
@@ -7,6 +10,7 @@ const count = (name: string) => {
   w.__paletteFn[name] = (w.__paletteFn[name] || 0) + 1;
 };
 
+@viewResources(Ej2Diagram, Ej2SymbolPalette)
 export class SymbolPaletteDemo {
   log = (name: string, e: Event) => logEvent('pal:' + name, e);
 

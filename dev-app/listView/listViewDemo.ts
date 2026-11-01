@@ -1,4 +1,6 @@
 import { DataManager, Query, JsonAdaptor } from '@syncfusion/ej2-data';
+import { Ej2ListView } from 'widgets/listView/ej2-listView';
+import { viewResources } from 'aurelia-framework';
 
 /** Remote style data manager without a backend, it applies the query itself or rejects the request. */
 class StubAdaptor extends JsonAdaptor {
@@ -16,6 +18,7 @@ class StubAdaptor extends JsonAdaptor {
   }
 }
 
+@viewResources(Ej2ListView)
 export class ListViewDemo {
   items = [
     { id: '1', text: 'Documents' }, { id: '2', text: 'Music' }, { id: '3', text: 'Pictures' }, { id: '4', text: 'Videos' }

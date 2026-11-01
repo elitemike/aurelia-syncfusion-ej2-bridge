@@ -1,6 +1,9 @@
 import { stockData, pixel } from '../chart/chartData';
 import { logEvent } from '../chart/chartLog';
+import { Ej2StockChart } from 'widgets/stockChart/ej2-stockChart';
+import { viewResources } from 'aurelia-framework';
 
+@viewResources(Ej2StockChart)
 export class StockChartDemo {
   log = logEvent;
   data = stockData;

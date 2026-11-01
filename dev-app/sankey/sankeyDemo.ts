@@ -1,7 +1,10 @@
 import { logEvent } from './sankeyLog';
+import { Ej2Sankey } from 'widgets/sankey/ej2-sankey';
+import { viewResources } from 'aurelia-framework';
 
 const pixel = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="4" height="4"><rect width="4" height="4" fill="%23fff8e1"/></svg>';
 
+@viewResources(Ej2Sankey)
 export class SankeyDemo {
   log = logEvent;
   sankeyVm: any;

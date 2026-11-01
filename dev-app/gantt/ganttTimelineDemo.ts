@@ -1,7 +1,10 @@
 import { dependencyData, clone } from './ganttData';
 import { logEvent } from './ganttLog';
+import { Ej2Gantt } from 'widgets/gantt/ej2-gantt';
+import { viewResources } from 'aurelia-framework';
 
 /** Timeline, calendars, markers and the taskbar / timeline templates. */
+@viewResources(Ej2Gantt)
 export class GanttTimelineDemo {
   log = logEvent;
   columns = [

@@ -1,3 +1,6 @@
+import { Ej2ContextMenu } from 'widgets/contextMenu/ej2-contextMenu';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2ContextMenu)
 export class ContextMenuDemo {
   // default sample: Cut/Copy/Paste with a nested Find submenu
   items = this.makeItems();

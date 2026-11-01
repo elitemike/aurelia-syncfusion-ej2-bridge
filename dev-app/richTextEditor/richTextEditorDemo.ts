@@ -1,9 +1,12 @@
 import { MarkdownFormatter, RichTextEditor, RichTextEditorModel } from '@syncfusion/ej2/richtexteditor';
 import { IEJ2WidgetBridge } from 'index';
+import { Ej2RichTextEditor } from 'widgets/richTextEditor/ej2-richTextEditor';
+import { viewResources } from 'aurelia-framework';
 
 // 1x1 png used for the image samples
 const pixel = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==';
 
+@viewResources(Ej2RichTextEditor)
 export class RichTextEditorDemo {
   value = '<p>Some content</p>';
   editor: IEJ2WidgetBridge<RichTextEditor> = null;

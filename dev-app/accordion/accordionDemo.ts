@@ -1,3 +1,6 @@
+import { Ej2Accordion } from 'widgets/accordion/ej2-accordion';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2Accordion)
 export class AccordionDemo {
   items = [
     { header: 'ASP.NET', expanded: true, content: 'Microsoft ASP.NET is a set of technologies for building web applications.' },

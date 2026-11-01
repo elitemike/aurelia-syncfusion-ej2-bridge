@@ -1,5 +1,7 @@
 import { ScheduleModel } from '@syncfusion/ej2-schedule';
 import { DataManager, WebApiAdaptor } from '@syncfusion/ej2-data';
+import { Ej2Schedule } from 'widgets/schedule/ej2-schedule';
+import { viewResources } from 'aurelia-framework';
 
 const eventNames = [
   'actionBegin', 'actionComplete', 'actionFailure', 'cellClick', 'cellDoubleClick', 'created', 'dataBinding', 'dataBound',
@@ -9,6 +11,7 @@ const eventNames = [
   'beforeWebMcpToolExecute'
 ];
 
+@viewResources(Ej2Schedule)
 export class ScheduleDemo {
   showSchedule = true;
   selectedDate = new Date(2024, 4, 15);

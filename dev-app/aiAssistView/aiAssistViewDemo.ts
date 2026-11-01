@@ -1,3 +1,5 @@
+import { Ej2AIAssistView } from 'widgets/aiAssistView/ej2-aiAssistView';
+import { viewResources } from 'aurelia-framework';
 const element = (className: string, text: string) => {
   const el = document.createElement('div');
   el.className = className;
@@ -5,6 +7,7 @@ const element = (className: string, text: string) => {
   return [el];
 };
 
+@viewResources(Ej2AIAssistView)
 export class AIAssistViewDemo {
   assist: any;
   templatedAssist: any;

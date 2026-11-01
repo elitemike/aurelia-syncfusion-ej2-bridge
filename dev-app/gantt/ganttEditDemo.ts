@@ -1,7 +1,10 @@
 import { dependencyData, projectData, clone } from './ganttData';
 import { logEvent } from './ganttLog';
+import { Ej2Gantt } from 'widgets/gantt/ej2-gantt';
+import { viewResources } from 'aurelia-framework';
 
 /** Editing, dependencies, undo / redo and custom data binding. */
+@viewResources(Ej2Gantt)
 export class GanttEditDemo {
   log = logEvent;
   columns = [

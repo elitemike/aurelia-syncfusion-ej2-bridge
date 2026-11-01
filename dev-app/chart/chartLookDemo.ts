@@ -1,5 +1,8 @@
 import { salesData, pixel } from './chartData';
+import { Ej2Chart } from 'widgets/chart/ej2-chart';
+import { viewResources } from 'aurelia-framework';
 
+@viewResources(Ej2Chart)
 export class ChartLookDemo {
   sales = salesData;
   pixel = pixel;

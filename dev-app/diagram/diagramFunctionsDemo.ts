@@ -1,5 +1,7 @@
 import { Canvas, TextElement, ToolBase, SelectorConstraints, DiagramConstraints } from '@syncfusion/ej2-diagrams';
 import { logEvent } from './diagramLog';
+import { Ej2Diagram } from 'widgets/diagram/ej2-diagram';
+import { viewResources } from 'aurelia-framework';
 
 const count = (name: string) => {
   const w = window as any;
@@ -14,6 +16,7 @@ class CloneTool extends ToolBase {
   }
 }
 
+@viewResources(Ej2Diagram)
 export class DiagramFunctionsDemo {
   log = logEvent;
   constraints = DiagramConstraints.Default | DiagramConstraints.Tooltip;

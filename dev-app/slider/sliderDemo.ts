@@ -1,3 +1,6 @@
+import { Ej2Slider } from 'widgets/slider/ej2-slider';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2Slider)
 export class SliderDemo {
   value = 40;
   range = [30, 70];

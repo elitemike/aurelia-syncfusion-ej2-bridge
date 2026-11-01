@@ -1,3 +1,6 @@
+import { Ej2Tooltip } from 'widgets/tooltip/ej2-tooltip';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2Tooltip)
 export class TooltipDemo {
   content = 'Hello from the tooltip';
   position = 'TopCenter';

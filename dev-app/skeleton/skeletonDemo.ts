@@ -1,3 +1,6 @@
+import { Ej2Skeleton } from 'widgets/skeleton/ej2-skeleton';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2Skeleton)
 export class SkeletonDemo {
   width = '100px';
   height = '20px';

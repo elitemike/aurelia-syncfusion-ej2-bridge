@@ -1,5 +1,8 @@
 import { DataManager } from '@syncfusion/ej2-data';
+import { Ej2DropDownTree } from 'widgets/dropDownTree/ej2-dropDownTree';
+import { viewResources } from 'aurelia-framework';
 
+@viewResources(Ej2DropDownTree)
 export class DropDownTreeDemo {
   data = [
     { id: '01', name: 'Music', children: [{ id: '01-01', name: 'Gouttes.mp3' }] },

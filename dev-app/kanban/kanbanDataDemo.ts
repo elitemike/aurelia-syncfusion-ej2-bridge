@@ -1,8 +1,11 @@
 import { DataManager, Query, UrlAdaptor } from '@syncfusion/ej2-data';
 import { kanbanData, statusColumns, cardSettings, clone } from './kanbanData';
 import { logEvent } from './kanbanLog';
+import { Ej2Kanban } from 'widgets/kanban/ej2-kanban';
+import { viewResources } from 'aurelia-framework';
 
 /** Data handling: a query, an app owned { result, count } source and a failing remote source. */
+@viewResources(Ej2Kanban)
 export class KanbanDataDemo {
   log = logEvent;
   columns = statusColumns;

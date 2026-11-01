@@ -2,7 +2,7 @@ import { Overview, OverviewModel } from '@syncfusion/ej2-diagrams';
 import { inlineView, customElement } from 'aurelia-framework';
 import { generateBindables } from '../../utilities/decorator';
 import { SyncfusionWrapper } from '../../common/syncfusionWrapper';
-import { moveIdToHost } from '../diagram/diagramHelpers';
+import { moveIdToHost } from '../diagramHelpers';
 
 @generateBindables("overview")
 @inlineView('<template><div element.ref="widgetElement"></div></template>')

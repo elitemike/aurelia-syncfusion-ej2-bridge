@@ -1,8 +1,11 @@
 import { Query } from '@syncfusion/ej2-data';
 import { projectData, clone } from './ganttData';
 import { logEvent } from './ganttLog';
+import { Ej2Gantt } from 'widgets/gantt/ej2-gantt';
+import { viewResources } from 'aurelia-framework';
 
 /** Project level settings: work time units, dates, look and feel, labels, WBS and the like. */
+@viewResources(Ej2Gantt)
 export class GanttSettingsDemo {
   log = logEvent;
   taskFields = {

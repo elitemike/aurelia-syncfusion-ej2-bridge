@@ -1,3 +1,6 @@
+import { Ej2Carousel } from 'widgets/carousel/ej2-carousel';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2Carousel)
 export class CarouselDemo {
   // default sample
   items = this.makeItems();

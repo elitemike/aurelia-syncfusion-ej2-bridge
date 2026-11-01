@@ -1,3 +1,5 @@
+import { Ej2ImageEditor } from 'widgets/imageEditor/ej2-imageEditor';
+import { viewResources } from 'aurelia-framework';
 /** Builds a small local PNG so the demo never needs a network image. */
 function makeImage(width: number, height: number, color: string): string {
   const canvas = document.createElement('canvas');
@@ -15,6 +17,7 @@ function makeImage(width: number, height: number, color: string): string {
   return canvas.toDataURL('image/png');
 }
 
+@viewResources(Ej2ImageEditor)
 export class ImageEditorDemo {
   editor: any;
   templateEditor: any;

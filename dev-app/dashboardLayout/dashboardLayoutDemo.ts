@@ -1,3 +1,6 @@
+import { Ej2DashboardLayout } from 'widgets/dashboardLayout/ej2-dashboardLayout';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2DashboardLayout)
 export class DashboardLayoutDemo {
   columns = 4;
   showGridLines = true;

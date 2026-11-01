@@ -1,3 +1,6 @@
+import { Ej2Dialog } from 'widgets/dialog/ej2-dialog';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2Dialog)
 export class DialogDemo {
   basicVisible = false;
   showClose = true;

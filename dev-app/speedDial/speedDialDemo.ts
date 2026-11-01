@@ -1,3 +1,6 @@
+import { Ej2SpeedDial } from 'widgets/speedDial/ej2-speedDial';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2SpeedDial)
 export class SpeedDialDemo {
   items = [
     { id: 'sd-item-cut', text: 'Cut', iconCss: 'e-icons e-cut' },

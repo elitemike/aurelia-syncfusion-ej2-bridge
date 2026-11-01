@@ -1,7 +1,10 @@
 import { kanbanData, statusColumns, cardSettings, clone } from './kanbanData';
 import { logEvent } from './kanbanLog';
+import { Ej2Kanban } from 'widgets/kanban/ej2-kanban';
+import { viewResources } from 'aurelia-framework';
 
 /** Drag and drop, swimlanes, stacked headers, dialog, tooltip, templates, virtualization and external drop. */
+@viewResources(Ej2Kanban)
 export class KanbanBoardDemo {
   log = logEvent;
   columns = statusColumns;

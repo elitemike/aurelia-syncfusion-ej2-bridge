@@ -1,7 +1,10 @@
 import { logEvent } from '../queryBuilder/qbLog';
 import { createDataSourceSettings } from './pivotData';
+import { Ej2PivotView } from 'widgets/pivotView/ej2-pivotView';
+import { viewResources } from 'aurelia-framework';
 
 /** Templates, hyperlinks, context menu and grouping (Syncfusion "Cell template", "Hyperlink", "Context menu" and "Grouping" samples). */
+@viewResources(Ej2PivotView)
 export class PvTemplatesDemo {
   log = (name: string, e: CustomEvent) => logEvent(name, e);
 

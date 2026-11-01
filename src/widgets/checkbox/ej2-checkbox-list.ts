@@ -1,8 +1,9 @@
-import { bindable, customElement, inlineView, PLATFORM } from "aurelia-framework";
+import { bindable, customElement, inlineView, viewResources, PLATFORM } from "aurelia-framework";
 import { Ej2Checkbox } from "./ej2-checkbox";
 import { constants } from "../../common/constants";
 
 @customElement("ej2-checkbox-list")
+@viewResources(Ej2Checkbox)
 @inlineView(`<template>
   <div repeat.for="option of dataSource" css="\${orientation === 'horizontal' ? 'display: inline;' : ''}">
     <ej2-checkbox view-model.ref="viewModels[$index]" e-label.bind="optionModel? option[optionModel.label]: option"

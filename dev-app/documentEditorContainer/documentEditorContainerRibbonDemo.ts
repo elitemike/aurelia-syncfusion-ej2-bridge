@@ -1,3 +1,6 @@
+import { Ej2DocumentEditorContainer } from 'widgets/documentEditorContainer/ej2-documentEditorContainer';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2DocumentEditorContainer)
 export class DocumentEditorContainerRibbonDemo {
   dcribbonEd: any;
   toolbarMode: any = "Ribbon";

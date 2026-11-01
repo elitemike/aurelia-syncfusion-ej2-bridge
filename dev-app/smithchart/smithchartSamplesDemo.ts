@@ -1,5 +1,8 @@
 import { transmission1, transmission2 } from './smithchartLog';
+import { Ej2Smithchart } from 'widgets/smithchart/ej2-smithchart';
+import { viewResources } from 'aurelia-framework';
 
+@viewResources(Ej2Smithchart)
 export class SmithchartSamplesDemo {
   // Syncfusion "Admittance", "Data labels and markers", "Legend" samples
   admittanceSeries: any[] = [{ points: transmission1, name: 'Admittance line', enableAnimation: false, width: 2, tooltip: { visible: true } }];

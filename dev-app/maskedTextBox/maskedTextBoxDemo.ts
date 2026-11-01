@@ -1,3 +1,6 @@
+import { Ej2MaskedTextBox } from 'widgets/maskedTextBox/ej2-maskedTextBox';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2MaskedTextBox)
 export class MaskedTextBoxDemo {
   phone: string = null;
   changeCount = 0;

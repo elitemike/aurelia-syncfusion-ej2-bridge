@@ -1,3 +1,6 @@
+import { Ej2BulletChart } from 'widgets/bulletChart/ej2-bulletChart';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2BulletChart)
 export class BulletChartLookDemo {
   data = [{ value: 270, target: 250 }];
   ranges = [{ end: 100, color: '#f7c6c6', name: 'Low' }, { end: 200, color: '#f7e3a1', name: 'Average' }, { end: 300, color: '#b7e3b0', name: 'High' }];

@@ -1,3 +1,6 @@
+import { Ej2Menu } from 'widgets/menu/ej2-menu';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2Menu)
 export class MenuDemo {
   // default sample: horizontal menu with submenus
   items = this.makeItems();

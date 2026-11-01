@@ -1,3 +1,6 @@
+import { Ej2Toast } from 'widgets/toast/ej2-toast';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2Toast)
 export class ToastDemo {
   basic: any;
   timeout: any;

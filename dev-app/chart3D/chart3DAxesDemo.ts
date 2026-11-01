@@ -1,5 +1,8 @@
 import { salesData } from './chart3DLog';
+import { Ej2Chart3D } from 'widgets/chart3D/ej2-chart3D';
+import { viewResources } from 'aurelia-framework';
 
+@viewResources(Ej2Chart3D)
 export class Chart3DAxesDemo {
   // Syncfusion "Multiple axes" sample: rows / columns / axes, plus DateTime and Logarithmic value types
   multiSeries: any[] = [

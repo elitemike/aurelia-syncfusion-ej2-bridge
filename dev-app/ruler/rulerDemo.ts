@@ -1,3 +1,6 @@
+import { Ej2Ruler } from 'widgets/ruler/ej2-ruler';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2Ruler)
 export class RulerDemo {
   orientation = 'Horizontal';
   length = 400;

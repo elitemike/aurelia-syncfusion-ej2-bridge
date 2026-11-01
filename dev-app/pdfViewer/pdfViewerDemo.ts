@@ -1,7 +1,10 @@
 import { samplePdf } from './samplePdf';
 import { PLATFORM } from 'aurelia-pal';
 import { logEvent } from './pvLog';
+import { Ej2PdfViewer } from 'widgets/pdfViewer/ej2-pdfViewer';
+import { viewResources } from 'aurelia-framework';
 
+@viewResources(Ej2PdfViewer)
 export class PdfViewerDemo {
   viewer: any;
   parts = [

@@ -1,3 +1,6 @@
+import { Ej2Ribbon } from 'widgets/ribbon/ej2-ribbon';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2Ribbon)
 export class RibbonDemo {
   // default (classic layout)
   tabs = this.makeTabs('d');

@@ -1,3 +1,6 @@
+import { Ej2DropDownButton } from 'widgets/dropDownButton/ej2-dropDownButton';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2DropDownButton)
 export class DropDownButtonDemo {
   items = [
     { text: 'Dashboard', iconCss: 'e-icons e-home' },

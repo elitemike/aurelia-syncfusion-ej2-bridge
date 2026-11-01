@@ -1,6 +1,9 @@
 import { PLATFORM } from 'aurelia-pal';
 import { logEvent } from './gridLog';
+import { Ej2Grid } from 'widgets/grid/ej2-grid';
+import { viewResources } from 'aurelia-framework';
 
+@viewResources(Ej2Grid)
 export class GridDemo {
   log = logEvent;
   parts = [

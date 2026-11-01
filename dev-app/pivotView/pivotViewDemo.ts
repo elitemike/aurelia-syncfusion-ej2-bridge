@@ -1,7 +1,10 @@
 import { PLATFORM } from 'aurelia-pal';
 import { logEvent } from '../queryBuilder/qbLog';
 import { createDataSourceSettings } from './pivotData';
+import { Ej2PivotView } from 'widgets/pivotView/ej2-pivotView';
+import { viewResources } from 'aurelia-framework';
 
+@viewResources(Ej2PivotView)
 export class PivotViewDemo {
   log = (name: string, e: CustomEvent) => logEvent(name, e);
   parts = [

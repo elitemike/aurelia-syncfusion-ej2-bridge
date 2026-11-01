@@ -1,7 +1,10 @@
 import { PLATFORM } from 'aurelia-pal';
 import { logEvent } from '../documentEditor/docLog';
 import { sampleSfdt } from '../documentEditor/sampleSfdt';
+import { Ej2DocumentEditorContainer } from 'widgets/documentEditorContainer/ej2-documentEditorContainer';
+import { viewResources } from 'aurelia-framework';
 
+@viewResources(Ej2DocumentEditorContainer)
 export class DocumentEditorContainerDemo {
   mainContainer: any;
   parts = [

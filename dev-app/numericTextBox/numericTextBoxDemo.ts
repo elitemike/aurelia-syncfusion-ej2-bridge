@@ -1,3 +1,6 @@
+import { Ej2NumericTextBox } from 'widgets/numericTextBox/ej2-numericTextBox';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2NumericTextBox)
 export class NumericTextBoxDemo {
   value = 10;
   price = 12.5;

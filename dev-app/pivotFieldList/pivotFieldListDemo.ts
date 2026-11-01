@@ -1,6 +1,9 @@
 import { logEvent } from '../queryBuilder/qbLog';
 import { createDataSourceSettings } from '../pivotView/pivotData';
+import { Ej2PivotFieldList } from 'widgets/pivotFieldList/ej2-pivotFieldList';
+import { viewResources } from 'aurelia-framework';
 
+@viewResources(Ej2PivotFieldList)
 export class PivotFieldListDemo {
   log = (name: string, e: CustomEvent) => logEvent(name, e);
   destroyedCount = 0;

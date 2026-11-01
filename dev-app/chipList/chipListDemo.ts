@@ -1,3 +1,6 @@
+import { Ej2ChipList } from 'widgets/chipList/ej2-chipList';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2ChipList)
 export class ChipListDemo {
   chips = ['Small', 'Medium', 'Large'];
   enabled = true;

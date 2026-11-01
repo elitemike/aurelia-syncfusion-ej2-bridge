@@ -1,5 +1,8 @@
 import { logEvent } from './bulletChartLog';
+import { Ej2BulletChart } from 'widgets/bulletChart/ej2-bulletChart';
+import { viewResources } from 'aurelia-framework';
 
+@viewResources(Ej2BulletChart)
 export class BulletChartEventsDemo {
   log = logEvent;
   data = [{ value: 270, target: 250 }];

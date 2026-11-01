@@ -1,6 +1,9 @@
 import { salesData, dateData } from './chartData';
 import { logEvent } from './chartLog';
+import { Ej2Chart } from 'widgets/chart/ej2-chart';
+import { viewResources } from 'aurelia-framework';
 
+@viewResources(Ej2Chart)
 export class ChartEventsDemo {
   log = logEvent;
   sales = salesData;

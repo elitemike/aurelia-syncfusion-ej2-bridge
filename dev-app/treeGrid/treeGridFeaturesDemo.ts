@@ -1,7 +1,10 @@
 import { DataManager, Query, UrlAdaptor } from '@syncfusion/ej2-data';
 import { hierarchicalData, selfReferenceData, clone } from './treeGridData';
 import { logEvent } from './treeGridLog';
+import { Ej2TreeGrid } from 'widgets/treeGrid/ej2-treeGrid';
+import { viewResources } from 'aurelia-framework';
 
+@viewResources(Ej2TreeGrid)
 export class TreeGridFeaturesDemo {
   log = logEvent;
   columns = [

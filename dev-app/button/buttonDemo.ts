@@ -1,3 +1,6 @@
+import { Ej2Button } from 'widgets/button/ej2-button';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2Button)
 export class ButtonDemo {
   showButton = true;
   disabled = false;

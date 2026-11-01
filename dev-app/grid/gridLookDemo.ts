@@ -1,6 +1,9 @@
 import { Query } from '@syncfusion/ej2-data';
 import { data } from './gridDemo';
+import { Ej2Grid } from 'widgets/grid/ej2-grid';
+import { viewResources } from 'aurelia-framework';
 
+@viewResources(Ej2Grid)
 export class GridLookDemo {
   rows = (data as any[]).slice(0, 8).map(row => ({ ...row }));
   none: any[] = [];

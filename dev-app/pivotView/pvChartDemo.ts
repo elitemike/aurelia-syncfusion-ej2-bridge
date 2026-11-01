@@ -1,7 +1,10 @@
 import { logEvent } from '../queryBuilder/qbLog';
 import { createDataSourceSettings } from './pivotData';
+import { Ej2PivotView } from 'widgets/pivotView/ej2-pivotView';
+import { viewResources } from 'aurelia-framework';
 
 /** Pivot chart: table / chart display options and every chart event (Syncfusion "Pivot Chart" samples). */
+@viewResources(Ej2PivotView)
 export class PvChartDemo {
   log = (name: string, e: CustomEvent) => logEvent(name, e);
   dsr: any = createDataSourceSettings();

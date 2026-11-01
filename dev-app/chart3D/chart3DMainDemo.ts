@@ -1,8 +1,11 @@
 import { salesData } from './chart3DLog';
+import { Ej2Chart3D } from 'widgets/chart3D/ej2-chart3D';
+import { viewResources } from 'aurelia-framework';
 
 // 1x1 transparent png, a data uri keeps the demo offline
 const pixel = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==';
 
+@viewResources(Ej2Chart3D)
 export class Chart3DMainDemo {
   // Syncfusion "3D Column" sample: a column series with wall, depth, tilt and rotation
   salesData = salesData;

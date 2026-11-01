@@ -1,3 +1,6 @@
+import { Ej2RecurrenceEditor } from 'widgets/recurrenceEditor/ej2-recurrenceEditor';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2RecurrenceEditor)
 export class RecurrenceEditorDemo {
   startDate = new Date(2024, 0, 10);
   rule = 'FREQ=DAILY;INTERVAL=1;COUNT=5';

@@ -1,3 +1,6 @@
+import { Ej2SpeechToText } from 'widgets/speechToText/ej2-speechToText';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2SpeechToText)
 export class SpeechToTextDemo {
   basic: any;
   transcript = '';

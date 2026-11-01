@@ -1,6 +1,9 @@
 import { dependencyData, clone } from './ganttData';
 import { logEvent } from './ganttLog';
+import { Ej2Gantt } from 'widgets/gantt/ej2-gantt';
+import { viewResources } from 'aurelia-framework';
 
+@viewResources(Ej2Gantt)
 export class GanttExportDemo {
   log = logEvent;
   exportGantt: any;

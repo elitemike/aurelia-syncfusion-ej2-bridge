@@ -1,3 +1,6 @@
+import { Ej2Toolbar } from 'widgets/toolbar/ej2-toolbar';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2Toolbar)
 export class ToolbarDemo {
   // default: Syncfusion "Default functionalities" sample
   items = [

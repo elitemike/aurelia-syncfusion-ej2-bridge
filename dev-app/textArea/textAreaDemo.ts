@@ -1,3 +1,6 @@
+import { Ej2TextArea } from 'widgets/textArea/ej2-textArea';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2TextArea)
 export class TextAreaDemo {
   value = 'initial';
   inputCount = 0;

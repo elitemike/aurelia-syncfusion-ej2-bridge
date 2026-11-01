@@ -1,5 +1,7 @@
 import { PLATFORM } from 'aurelia-pal';
 import { logEvent } from '../queryBuilder/qbLog';
+import { Ej2Spreadsheet } from 'widgets/spreadsheet/ej2-spreadsheet';
+import { viewResources } from 'aurelia-framework';
 
 export function createSheets() {
   return [
@@ -20,6 +22,7 @@ export function createSheets() {
   ];
 }
 
+@viewResources(Ej2Spreadsheet)
 export class SpreadsheetDemo {
   log = (name: string, e: CustomEvent) => logEvent(name, e);
   parts = [

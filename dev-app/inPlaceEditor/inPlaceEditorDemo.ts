@@ -1,3 +1,6 @@
+import { Ej2InPlaceEditor } from 'widgets/inPlaceEditor/ej2-inPlaceEditor';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2InPlaceEditor)
 export class InPlaceEditorDemo {
   name = 'Andrew';
   textModel = { placeholder: 'Enter value' };

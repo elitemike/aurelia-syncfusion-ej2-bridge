@@ -1,3 +1,6 @@
+import { Ej2AppBar } from 'widgets/appBar/ej2-appBar';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2AppBar)
 export class AppBarDemo {
   // default
   menuClicks = 0;

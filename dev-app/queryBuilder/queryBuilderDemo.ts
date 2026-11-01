@@ -1,5 +1,8 @@
 import { logEvent } from './qbLog';
+import { Ej2QueryBuilder } from 'widgets/queryBuilder/ej2-queryBuilder';
+import { viewResources } from 'aurelia-framework';
 
+@viewResources(Ej2QueryBuilder)
 export class QueryBuilderDemo {
   log = (name: string, e: CustomEvent) => logEvent(name, e);
 

@@ -1,3 +1,6 @@
+import { Ej2Switch } from 'widgets/switch/ej2-switch';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2Switch)
 export class SwitchDemo {
   showSwitch = true;
   checked = true;

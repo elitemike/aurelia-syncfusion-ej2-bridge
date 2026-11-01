@@ -1,3 +1,6 @@
+import { Ej2TimePicker } from 'widgets/timePicker/ej2-timePicker';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2TimePicker)
 export class TimePickerDemo {
   value = new Date(2024, 4, 15, 9, 30);
   min = new Date(2024, 4, 15, 8, 0);

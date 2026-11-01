@@ -1,8 +1,11 @@
 import { DataManager } from '@syncfusion/ej2-data';
 import { logEvent } from './diagramLog';
+import { Ej2Diagram } from 'widgets/diagram/ej2-diagram';
+import { viewResources } from 'aurelia-framework';
 
 const link = (id: string, from: string, to: string) => ({ id, sourceID: from, targetID: to });
 
+@viewResources(Ej2Diagram)
 export class DiagramLayoutDemo {
   log = (name: string, e: Event) => logEvent('lay:' + name, e);
 

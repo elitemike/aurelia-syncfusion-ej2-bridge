@@ -1,4 +1,6 @@
 import { salesData, numericData, financialData, boxData } from './chartData';
+import { Ej2Chart } from 'widgets/chart/ej2-chart';
+import { viewResources } from 'aurelia-framework';
 
 const rangeData = [
   { x: 'Jan', low: 3, high: 12 }, { x: 'Feb', low: 5, high: 14 }, { x: 'Mar', low: 8, high: 18 }, { x: 'Apr', low: 10, high: 21 }
@@ -50,6 +52,7 @@ export const gallery: any[] = [
   { id: 'MultiColoredArea', series: [category('MultiColoredArea', { segmentAxis: 'X', segments: [{ value: 'Mar', color: 'red' }] })], x: cat }
 ];
 
+@viewResources(Ej2Chart)
 export class ChartSeriesDemo {
   gallery = gallery;
 }

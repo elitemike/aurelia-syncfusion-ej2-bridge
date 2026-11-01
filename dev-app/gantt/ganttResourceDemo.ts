@@ -1,8 +1,11 @@
 import { DataManager, UrlAdaptor } from '@syncfusion/ej2-data';
 import { resourceTaskData, resourceCollection, clone } from './ganttData';
 import { logEvent } from './ganttLog';
+import { Ej2Gantt } from 'widgets/gantt/ej2-gantt';
+import { viewResources } from 'aurelia-framework';
 
 /** Resources, resource view, over allocation, segments and the destroy lifecycle. */
+@viewResources(Ej2Gantt)
 export class GanttResourceDemo {
   log = logEvent;
   columns = [

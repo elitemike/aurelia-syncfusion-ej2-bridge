@@ -1,3 +1,6 @@
+import { Ej2BarcodeGenerator } from 'widgets/barcodeGenerator/ej2-barcodeGenerator';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2BarcodeGenerator)
 export class BarcodeGeneratorDemo {
   samples = [
     { type: 'Code39', value: 'CODE39' },

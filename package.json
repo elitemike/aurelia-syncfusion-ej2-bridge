@@ -29,6 +29,7 @@
     "aurelia-framework": "^1.4.1",
     "aurelia-logging": "^1.5.2",
     "aurelia-metadata": "^1.0.8",
+    "aurelia-pal": "^1.8.2",
     "aurelia-task-queue": "^1.3.3",
     "aurelia-templating": "^1.11.1"
   },
@@ -41,6 +42,7 @@
     "check:bindings": "node tools/check-bindings.js",
     "check:coverage": "node tools/check-coverage.js",
     "check:package": "node tools/check-package.js",
+    "check:isolation": "node tools/check-isolation.js",
     "sync:bindings": "node tools/check-bindings.js --write",
     "prepublishOnly": "yarn build"
   },

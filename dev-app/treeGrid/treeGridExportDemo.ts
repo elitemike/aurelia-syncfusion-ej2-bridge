@@ -1,6 +1,9 @@
 import { hierarchicalData, clone } from './treeGridData';
 import { logEvent } from './treeGridLog';
+import { Ej2TreeGrid } from 'widgets/treeGrid/ej2-treeGrid';
+import { viewResources } from 'aurelia-framework';
 
+@viewResources(Ej2TreeGrid)
 export class TreeGridExportDemo {
   log = logEvent;
   columns = [

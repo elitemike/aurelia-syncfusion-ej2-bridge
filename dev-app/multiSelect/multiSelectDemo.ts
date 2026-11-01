@@ -1,5 +1,8 @@
 import { Query, DataManager } from '@syncfusion/ej2-data';
+import { Ej2MultiSelect } from 'widgets/multiSelect/ej2-multiSelect';
+import { viewResources } from 'aurelia-framework';
 
+@viewResources(Ej2MultiSelect)
 export class MultiSelectDemo {
   sports = [
     { id: 'Game1', game: 'American Football' }, { id: 'Game2', game: 'Badminton' }, { id: 'Game3', game: 'Basketball' },

@@ -1,7 +1,10 @@
 import { PLATFORM } from 'aurelia-pal';
 import { projectData, clone } from './ganttData';
 import { logEvent } from './ganttLog';
+import { Ej2Gantt } from 'widgets/gantt/ej2-gantt';
+import { viewResources } from 'aurelia-framework';
 
+@viewResources(Ej2Gantt)
 export class GanttDemo {
   log = logEvent;
   parts = [

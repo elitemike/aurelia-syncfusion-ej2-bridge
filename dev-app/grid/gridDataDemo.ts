@@ -1,8 +1,11 @@
 import { data } from './gridDemo';
 import { logEvent } from './gridLog';
+import { Ej2Grid } from 'widgets/grid/ej2-grid';
+import { viewResources } from 'aurelia-framework';
 
 const countries = ['France', 'Germany', 'Brazil', 'Belgium', 'Austria'];
 
+@viewResources(Ej2Grid)
 export class GridDataDemo {
   log = logEvent;
 

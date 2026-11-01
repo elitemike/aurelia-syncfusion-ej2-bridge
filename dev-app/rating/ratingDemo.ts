@@ -1,3 +1,6 @@
+import { Ej2Rating } from 'widgets/rating/ej2-rating';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2Rating)
 export class RatingDemo {
   value = 2;
   changeCount = 0;

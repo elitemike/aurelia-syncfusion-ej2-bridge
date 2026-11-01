@@ -1,3 +1,6 @@
+import { Ej2SplitButton } from 'widgets/splitButton/ej2-splitButton';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2SplitButton)
 export class SplitButtonDemo {
   items = [
     { text: 'Dashboard', iconCss: 'e-icons e-home' },

@@ -3,7 +3,7 @@ import { inlineView, customElement } from 'aurelia-framework';
 import { generateBindables } from '../../utilities/decorator';
 import { SyncfusionWrapper } from '../../common/syncfusionWrapper';
 import { refreshOnPropertyChange } from '../visualizationHelpers';
-import { moveIdToHost } from '../diagram/diagramHelpers';
+import { moveIdToHost } from '../diagramHelpers';
 
 @generateBindables("ruler")
 @inlineView('<template><div element.ref="widgetElement"></div></template>')

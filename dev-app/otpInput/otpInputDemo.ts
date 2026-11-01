@@ -1,3 +1,6 @@
+import { Ej2OtpInput } from 'widgets/otpInput/ej2-otpInput';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2OtpInput)
 export class OtpInputDemo {
   value = '';
   changeCount = 0;

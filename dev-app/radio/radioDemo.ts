@@ -1,3 +1,6 @@
+import { Ej2Radio } from 'widgets/radio/ej2-radio';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2Radio)
 export class RadioDemo {
   showRadio = true;
   first = false;

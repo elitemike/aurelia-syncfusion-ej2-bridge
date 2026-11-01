@@ -1,3 +1,6 @@
+import { Ej2FormBuilder } from 'widgets/formBuilder/ej2-formBuilder';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2FormBuilder)
 export class FormBuilderDemo {
   counts: { [key: string]: number } = { dragStarted: 0, dragOver: 0, dropped: 0, propertyChanged: 0 };
   dragType = '';

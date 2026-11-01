@@ -1,8 +1,11 @@
 import { logEvent } from './heatMapLog';
+import { Ej2HeatMap } from 'widgets/heatMap/ej2-heatMap';
+import { viewResources } from 'aurelia-framework';
 
 // the heat map reads dataSource[xIndex][yIndex], the matrices below are written one y label (row) per line
 const transpose = (rows: any[][]) => rows[0].map((_, c) => rows.map((r) => r[c]));
 
+@viewResources(Ej2HeatMap)
 export class HeatMapDemo {
   log = logEvent;
 

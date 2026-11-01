@@ -1,5 +1,8 @@
 import { logEvent, transmission1 } from './smithchartLog';
+import { Ej2Smithchart } from 'widgets/smithchart/ej2-smithchart';
+import { viewResources } from 'aurelia-framework';
 
+@viewResources(Ej2Smithchart)
 export class SmithchartEventsDemo {
   log = logEvent;
   series: any[] = [{

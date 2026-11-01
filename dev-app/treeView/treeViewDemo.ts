@@ -1,4 +1,6 @@
 import { DataManager } from '@syncfusion/ej2-data';
+import { Ej2TreeView } from 'widgets/treeView/ej2-treeView';
+import { viewResources } from 'aurelia-framework';
 
 function disks() {
   return [
@@ -16,6 +18,7 @@ function fieldsFor(data: any[]) {
   return { dataSource: data, id: 'id', text: 'name', child: 'subChild' };
 }
 
+@viewResources(Ej2TreeView)
 export class TreeViewDemo {
   data = disks();
   fields = fieldsFor(this.data);

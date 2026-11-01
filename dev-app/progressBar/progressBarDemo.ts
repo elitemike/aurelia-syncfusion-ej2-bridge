@@ -1,3 +1,6 @@
+import { Ej2ProgressBar } from 'widgets/progressBar/ej2-progressBar';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2ProgressBar)
 export class ProgressBarDemo {
   noAnimation = { enable: false };
   shortAnimation = { enable: true, duration: 300, delay: 0 };

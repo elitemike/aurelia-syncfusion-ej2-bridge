@@ -1,7 +1,10 @@
+import { Ej2ChatUI } from 'widgets/chatUI/ej2-chatUI';
+import { viewResources } from 'aurelia-framework';
 const today = new Date();
 const at = (hour: number, minute: number) => new Date(today.getFullYear(), today.getMonth(), today.getDate(), hour, minute);
 const yesterday = (hour: number) => new Date(today.getFullYear(), today.getMonth(), today.getDate() - 1, hour, 0);
 
+@viewResources(Ej2ChatUI)
 export class ChatUIDemo {
   counts: { [key: string]: number } = {
     created: 0, messageSend: 0, userTyping: 0, mentionSelect: 0, beforeAttachmentUpload: 0,

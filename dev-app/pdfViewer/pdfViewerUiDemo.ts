@@ -1,6 +1,9 @@
 import { samplePdf } from './samplePdf';
 import { logEvent } from './pvLog';
+import { Ej2PdfViewer } from 'widgets/pdfViewer/ej2-pdfViewer';
+import { viewResources } from 'aurelia-framework';
 
+@viewResources(Ej2PdfViewer)
 export class PdfViewerUiDemo {
   viewer: any;
   log = (name: string, args?: any) => logEvent(`pv-ui.${name}`, args);

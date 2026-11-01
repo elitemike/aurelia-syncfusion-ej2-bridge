@@ -1,5 +1,8 @@
 import { DataManager, Query } from '@syncfusion/ej2-data';
+import { Ej2AutoComplete } from 'widgets/autoComplete/ej2-autoComplete';
+import { viewResources } from 'aurelia-framework';
 
+@viewResources(Ej2AutoComplete)
 export class AutoCompleteDemo {
   sports: string[] = ['Badminton', 'Basketball', 'Cricket', 'Football', 'Golf', 'Gymnastics', 'Hockey', 'Rugby', 'Snooker', 'Tennis'];
   records = [

@@ -1,4 +1,6 @@
 import { FileManagerModel } from '@syncfusion/ej2-filemanager';
+import { Ej2FileManager } from 'widgets/fileManager/ej2-fileManager';
+import { viewResources } from 'aurelia-framework';
 
 // Syncfusion's hosted sample service, the e2e tests replace it with a stub.
 const hostUrl = 'https://ej2-azure-aspcore-service.azurewebsites.net/';
@@ -25,6 +27,7 @@ export function createFileSystem() {
   ];
 }
 
+@viewResources(Ej2FileManager)
 export class FileManagerDemo {
   model: FileManagerModel = {
     ajaxSettings: {

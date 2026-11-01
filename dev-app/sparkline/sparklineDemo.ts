@@ -1,6 +1,9 @@
 import { DataManager, Query } from '@syncfusion/ej2-data';
 import { logEvent } from './sparklineLog';
+import { Ej2Sparkline } from 'widgets/sparkline/ej2-sparkline';
+import { viewResources } from 'aurelia-framework';
 
+@viewResources(Ej2Sparkline)
 export class SparklineDemo {
   log = logEvent;
 

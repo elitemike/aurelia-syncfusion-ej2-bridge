@@ -1,6 +1,9 @@
 import { Splitter, SplitterModel } from '@syncfusion/ej2-layouts';
 import { IEJ2WidgetBridge } from './../../src/interfaces/IEJ2WidgetBridge';
+import { Ej2Splitter } from 'widgets/splitter/ej2-splitter';
+import { viewResources } from 'aurelia-framework';
 
+@viewResources(Ej2Splitter)
 export class SplitterDemo {
   splitter: IEJ2WidgetBridge<Splitter> = null;
   collapsed = 0;

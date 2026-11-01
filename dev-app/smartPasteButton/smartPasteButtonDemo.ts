@@ -1,3 +1,6 @@
+import { Ej2SmartPasteButton } from 'widgets/smartPasteButton/ej2-smartPasteButton';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2SmartPasteButton)
 export class SmartPasteButtonDemo {
   iconPosition = 'Left';
   isPrimary = true;

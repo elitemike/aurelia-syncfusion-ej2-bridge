@@ -1,3 +1,6 @@
+import { Ej2DatePicker } from 'widgets/datePicker/ej2-DatePicker';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2DatePicker)
 export class DatePickerDemo {
   value: Date = new Date(2024, 4, 15);
   min = new Date(2024, 4, 1);

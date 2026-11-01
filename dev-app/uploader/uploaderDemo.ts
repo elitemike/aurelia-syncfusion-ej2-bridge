@@ -3,12 +3,15 @@ import { Ej2UploaderDataAdapter } from 'widgets/uploader/ej2-uploader';
 import { HttpClient, json } from 'aurelia-fetch-client';
 import { autoinject } from 'aurelia-framework';
 import { uuid } from 'utilities/uuid';
+import { Ej2Uploader } from 'widgets/uploader/ej2-uploader';
+import { viewResources } from 'aurelia-framework';
 
 // These endpoints need a backend, the e2e tests stub them with page.route.
 const saveUrl = '/api/file/upload/test';
 const removeUrl = '/api/file/remove/test';
 
 @autoinject
+@viewResources(Ej2Uploader)
 export class UploaderDemo {
   files: any[] = [];
   existing: any[] = [{ name: 'existing', size: 3500, type: '.txt', id: 'file-1' }];

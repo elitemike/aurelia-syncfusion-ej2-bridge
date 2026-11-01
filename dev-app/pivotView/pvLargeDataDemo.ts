@@ -1,4 +1,6 @@
 import { createDataSourceSettings } from './pivotData';
+import { Ej2PivotView } from 'widgets/pivotView/ej2-pivotView';
+import { viewResources } from 'aurelia-framework';
 
 /** Virtual scrolling and paging over a generated data set (Syncfusion "Virtual scrolling" and "Paging" samples). */
 function generate() {
@@ -21,6 +23,7 @@ const settings = () => ({
   values: [{ name: 'Sold' }, { name: 'Amount' }], filters: []
 });
 
+@viewResources(Ej2PivotView)
 export class PvLargeDataDemo {
   virtualDsr: any = settings();
   pagingDsr: any = settings();

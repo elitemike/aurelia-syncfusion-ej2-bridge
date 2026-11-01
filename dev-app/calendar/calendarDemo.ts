@@ -1,3 +1,5 @@
+import { Ej2Calendar } from 'widgets/calendar/ej2-calendar';
+import { viewResources } from 'aurelia-framework';
 function iso(date: Date) {
   if (!date) {
     return '';
@@ -6,6 +8,7 @@ function iso(date: Date) {
   return `${date.getFullYear()}-${p(date.getMonth() + 1)}-${p(date.getDate())}`;
 }
 
+@viewResources(Ej2Calendar)
 export class CalendarDemo {
   value = new Date(2024, 4, 15);
   newValue = new Date(2024, 5, 20);

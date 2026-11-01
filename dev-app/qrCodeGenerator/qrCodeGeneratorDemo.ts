@@ -1,6 +1,9 @@
+import { Ej2QRCodeGenerator } from 'widgets/qrCodeGenerator/ej2-qrCodeGenerator';
+import { viewResources } from 'aurelia-framework';
 // 1x1 green pixel PNG, keeps the demo free of external requests
 const logoSource = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M/wHwAEBgIApD5fRAAAAABJRU5ErkJggg==';
 
+@viewResources(Ej2QRCodeGenerator)
 export class QRCodeGeneratorDemo {
   margin = { left: 10, right: 10, top: 10, bottom: 10 };
   displayText = { text: 'Scan me', visibility: true, position: 'Bottom', alignment: 'Center', size: 14 };

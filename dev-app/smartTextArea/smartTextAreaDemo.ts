@@ -1,3 +1,6 @@
+import { Ej2SmartTextArea } from 'widgets/smartTextArea/ej2-smartTextArea';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2SmartTextArea)
 export class SmartTextAreaDemo {
   value = '';
   popupValue = '';

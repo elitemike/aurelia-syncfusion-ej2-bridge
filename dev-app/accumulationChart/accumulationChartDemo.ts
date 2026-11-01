@@ -1,4 +1,6 @@
 import { logEvent } from '../chart/chartLog';
+import { Ej2AccumulationChart } from 'widgets/accumulationChart/ej2-accumulationChart';
+import { viewResources } from 'aurelia-framework';
 
 const pie = [
   { x: 'Chrome', y: 61.3, text: '61.3%' }, { x: 'Safari', y: 24.2, text: '24.2%' }, { x: 'Edge', y: 8.4, text: '8.4%' },
@@ -7,6 +9,7 @@ const pie = [
 const money = [{ x: 'Rent', y: 12000 }, { x: 'Food', y: 4500 }, { x: 'Travel', y: 7800 }];
 const pixel = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==';
 
+@viewResources(Ej2AccumulationChart)
 export class AccumulationChartDemo {
   log = logEvent;
   pie = pie;

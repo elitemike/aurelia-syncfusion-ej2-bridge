@@ -1,4 +1,7 @@
 import { logEvent } from '../diagram/diagramLog';
+import { Ej2Diagram } from 'widgets/diagram/ej2-diagram';
+import { Ej2Overview } from 'widgets/overview/ej2-overview';
+import { viewResources } from 'aurelia-framework';
 
 const grid = (prefix: string) => {
   const nodes: any[] = [];
@@ -8,6 +11,7 @@ const grid = (prefix: string) => {
   return nodes;
 };
 
+@viewResources(Ej2Diagram, Ej2Overview)
 export class OverviewDemo {
   log = (name: string, e: Event) => logEvent('ov:' + name, e);
 

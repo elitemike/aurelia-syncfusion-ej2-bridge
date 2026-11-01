@@ -1,9 +1,12 @@
 import { DiagramConstraints, ConnectorConstraints } from '@syncfusion/ej2-diagrams';
 import { logEvent } from './diagramLog';
+import { Ej2Diagram } from 'widgets/diagram/ej2-diagram';
+import { viewResources } from 'aurelia-framework';
 
 const image = 'data:image/svg+xml;base64,' + btoa(
   '<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60"><rect width="60" height="60" fill="#e76f51"/></svg>');
 
+@viewResources(Ej2Diagram)
 export class DiagramEventsDemo {
   log = (name: string, e: Event) => logEvent('ev:' + name, e);
 

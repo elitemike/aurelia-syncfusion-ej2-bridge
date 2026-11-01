@@ -1,3 +1,6 @@
+import { Ej2Popup } from 'widgets/popup/ej2-popup';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2Popup)
 export class PopupDemo {
   basic: any;
   pos: any;

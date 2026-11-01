@@ -1,5 +1,8 @@
 import { transmission1, transmission2 } from './smithchartLog';
+import { Ej2Smithchart } from 'widgets/smithchart/ej2-smithchart';
+import { viewResources } from 'aurelia-framework';
 
+@viewResources(Ej2Smithchart)
 export class SmithchartMainDemo {
   // Syncfusion "Default functionalities" sample: two transmission lines with markers, labels and tooltips
   renderType = 'Impedance';

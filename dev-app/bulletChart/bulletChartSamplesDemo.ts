@@ -1,5 +1,8 @@
 import { Query } from '@syncfusion/ej2-data';
+import { Ej2BulletChart } from 'widgets/bulletChart/ej2-bulletChart';
+import { viewResources } from 'aurelia-framework';
 
+@viewResources(Ej2BulletChart)
 export class BulletChartSamplesDemo {
   // Syncfusion "Multiple bullet charts / Vertical orientation / Target types / Data binding" samples
   categories = [

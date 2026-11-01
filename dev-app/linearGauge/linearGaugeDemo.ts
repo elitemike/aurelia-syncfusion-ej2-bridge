@@ -1,5 +1,8 @@
+import { Ej2LinearGauge } from 'widgets/linearGauge/ej2-linearGauge';
+import { viewResources } from 'aurelia-framework';
 const label = (extra: any = {}) => ({ font: { size: '12px', fontFamily: 'Arial', color: '#333333' }, ...extra });
 
+@viewResources(Ej2LinearGauge)
 export class LinearGaugeDemo {
   titleStyle = { size: '16px', color: '#b71c1c', fontFamily: 'Arial', fontWeight: 'bold' };
   border = { color: '#1565c0', width: 2 };

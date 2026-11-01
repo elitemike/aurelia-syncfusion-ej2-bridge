@@ -1,5 +1,8 @@
 import { logEvent } from '../documentEditor/docLog';
+import { Ej2DocumentEditor } from 'widgets/documentEditor/ej2-documentEditor';
+import { viewResources } from 'aurelia-framework';
 
+@viewResources(Ej2DocumentEditor)
 export class DocumentEditorServerDemo {
   deserverEd: any;
   log = (name: string, args?: any) => logEvent(`server.${name}`, args);

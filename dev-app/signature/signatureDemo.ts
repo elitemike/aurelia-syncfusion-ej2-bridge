@@ -1,6 +1,9 @@
+import { Ej2Signature } from 'widgets/signature/ej2-signature';
+import { viewResources } from 'aurelia-framework';
 const blueBackground = 'data:image/svg+xml;base64,' + btoa(
   '<svg xmlns="http://www.w3.org/2000/svg" width="400" height="160"><rect width="400" height="160" fill="rgb(0,0,255)"/></svg>');
 
+@viewResources(Ej2Signature)
 export class SignatureDemo {
   basic: any;
   saver: any;

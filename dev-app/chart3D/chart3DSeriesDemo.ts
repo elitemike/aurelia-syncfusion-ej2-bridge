@@ -1,5 +1,8 @@
 import { salesData } from './chart3DLog';
+import { Ej2Chart3D } from 'widgets/chart3D/ej2-chart3D';
+import { viewResources } from 'aurelia-framework';
 
+@viewResources(Ej2Chart3D)
 export class Chart3DSeriesDemo {
   // Syncfusion series samples: Bar, Stacked column / bar, 100% stacked, data labels
   cat = { valueType: 'Category' };

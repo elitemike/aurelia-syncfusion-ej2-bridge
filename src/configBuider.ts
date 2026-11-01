@@ -1,116 +1,8 @@
-import { Ej2BarcodeGenerator } from './widgets/barcodeGenerator/ej2-barcodeGenerator';
-import { Ej2QRCodeGenerator } from './widgets/qrCodeGenerator/ej2-qrCodeGenerator';
-import { Ej2DataMatrixGenerator } from './widgets/dataMatrixGenerator/ej2-dataMatrixGenerator';
-import { Ej2PDF417Generator } from './widgets/pdf417Generator/ej2-pdf417Generator';
-import { Ej2BlockEditor } from './widgets/blockEditor/ej2-blockEditor';
-import { Ej2ChipList } from './widgets/chipList/ej2-chipList';
-import { Ej2Fab } from './widgets/fab/ej2-fab';
-import { Ej2SpeedDial } from './widgets/speedDial/ej2-speedDial';
-import { Ej2SmartPasteButton } from './widgets/smartPasteButton/ej2-smartPasteButton';
-import { Ej2Calendar } from './widgets/calendar/ej2-calendar';
-import { Ej2Chart } from './widgets/chart/ej2-chart';
-import { Ej2AccumulationChart } from './widgets/accumulationChart/ej2-accumulationChart';
-import { Ej2StockChart } from './widgets/stockChart/ej2-stockChart';
-import { Ej2RangeNavigator } from './widgets/rangeNavigator/ej2-rangeNavigator';
-import { Ej2BulletChart } from './widgets/bulletChart/ej2-bulletChart';
-import { Ej2Smithchart } from './widgets/smithchart/ej2-smithchart';
-import { Ej2Sparkline } from './widgets/sparkline/ej2-sparkline';
-import { Ej2Chart3D } from './widgets/chart3D/ej2-chart3D';
-import { Ej2CircularChart3D } from './widgets/circularChart3D/ej2-circularChart3D';
-import { Ej2Sankey } from './widgets/sankey/ej2-sankey';
-import { Ej2CircularGauge } from './widgets/circularGauge/ej2-circularGauge';
-import { Ej2Diagram } from './widgets/diagram/ej2-diagram';
-import { Ej2SymbolPalette } from './widgets/symbolPalette/ej2-symbolPalette';
-import { Ej2Ruler } from './widgets/ruler/ej2-ruler';
-import { Ej2Overview } from './widgets/overview/ej2-overview';
-import { Ej2DocumentEditor } from './widgets/documentEditor/ej2-documentEditor';
-import { Ej2DocumentEditorContainer } from './widgets/documentEditorContainer/ej2-documentEditorContainer';
-import { Ej2ListBox } from './widgets/listBox/ej2-listBox';
-import { Ej2Mention } from './widgets/mention/ej2-mention';
-import { Ej2FormBuilder } from './widgets/formBuilder/ej2-formBuilder';
-import { Ej2FormRenderer } from './widgets/formRenderer/ej2-formRenderer';
-import { Ej2Gantt } from './widgets/gantt/ej2-gantt';
-import { Ej2HeatMap } from './widgets/heatMap/ej2-heatMap';
-import { Ej2ImageEditor } from './widgets/imageEditor/ej2-imageEditor';
-import { Ej2InPlaceEditor } from './widgets/inPlaceEditor/ej2-inPlaceEditor';
-import { Ej2ColorPicker } from './widgets/colorPicker/ej2-colorPicker';
-import { Ej2TextArea } from './widgets/textArea/ej2-textArea';
-import { Ej2SmartTextArea } from './widgets/smartTextArea/ej2-smartTextArea';
-import { Ej2Signature } from './widgets/signature/ej2-signature';
-import { Ej2Rating } from './widgets/rating/ej2-rating';
-import { Ej2OtpInput } from './widgets/otpInput/ej2-otpInput';
-import { Ej2SpeechToText } from './widgets/speechToText/ej2-speechToText';
-import { Ej2AIAssistView } from './widgets/aiAssistView/ej2-aiAssistView';
-import { Ej2ChatUI } from './widgets/chatUI/ej2-chatUI';
-import { Ej2InlineAIAssist } from './widgets/inlineAIAssist/ej2-inlineAIAssist';
-import { Ej2Kanban } from './widgets/kanban/ej2-kanban';
-import { Ej2LinearGauge } from './widgets/linearGauge/ej2-linearGauge';
-import { Ej2Maps } from './widgets/maps/ej2-maps';
-import { Ej2MultiColumnComboBox } from './widgets/multiColumnComboBox/ej2-multiColumnComboBox';
-import { Ej2Toolbar } from './widgets/toolbar/ej2-toolbar';
-import { Ej2ContextMenu } from './widgets/contextMenu/ej2-contextMenu';
-import { Ej2Menu } from './widgets/menu/ej2-menu';
-import { Ej2Tab } from './widgets/tab/ej2-tab';
-import { Ej2Breadcrumb } from './widgets/breadcrumb/ej2-breadcrumb';
-import { Ej2Carousel } from './widgets/carousel/ej2-carousel';
-import { Ej2AppBar } from './widgets/appBar/ej2-appBar';
-import { Ej2Stepper } from './widgets/stepper/ej2-stepper';
-import { Ej2Toast } from './widgets/toast/ej2-toast';
-import { Ej2Message } from './widgets/message/ej2-message';
-import { Ej2Skeleton } from './widgets/skeleton/ej2-skeleton';
-import { Ej2PdfViewer } from './widgets/pdfViewer/ej2-pdfViewer';
-import { Ej2PdfComparer } from './widgets/pdfComparer/ej2-pdfComparer';
-import { Ej2PivotView } from './widgets/pivotView/ej2-pivotView';
-import { Ej2PivotFieldList } from './widgets/pivotFieldList/ej2-pivotFieldList';
-import { Ej2Popup } from './widgets/popup/ej2-popup';
-import { Ej2Dialog } from './widgets/dialog/ej2-dialog';
-import { Ej2Tooltip } from './widgets/tooltip/ej2-tooltip';
-import { Ej2ProgressBar } from './widgets/progressBar/ej2-progressBar';
-import { Ej2QueryBuilder } from './widgets/queryBuilder/ej2-queryBuilder';
-import { Ej2Ribbon } from './widgets/ribbon/ej2-ribbon';
-import { Ej2RichTextEditorUI } from './widgets/richTextEditorUI/ej2-richTextEditorUI';
-import { Ej2RecurrenceEditor } from './widgets/recurrenceEditor/ej2-recurrenceEditor';
-import { Ej2DropDownButton } from './widgets/dropDownButton/ej2-dropDownButton';
-import { Ej2SplitButton } from './widgets/splitButton/ej2-splitButton';
-import { Ej2Spreadsheet } from './widgets/spreadsheet/ej2-spreadsheet';
-import { Ej2TreeGrid } from './widgets/treeGrid/ej2-treeGrid';
-import { Ej2TreeMap } from './widgets/treeMap/ej2-treeMap';
-import { Ej2MultiSelect } from './widgets/multiSelect/ej2-multiSelect';
-import { Ej2Schedule } from './widgets/schedule/ej2-schedule';
-import { Ej2FileManager } from './widgets/fileManager/ej2-fileManager';
-import { Ej2Sidebar } from './widgets/sidebar/ej2-sidebar';
-import { Ej2DatePicker } from './widgets/datePicker/ej2-DatePicker';
 import { PLATFORM } from "aurelia-pal";
-import { Ej2TextBox } from './widgets/textBox/ej2-textBox';
-import { Ej2DateRangePicker } from './widgets/dateRangePicker/ej2-dateRangePicker';
-import { Ej2DateTimePicker } from './widgets/dateTimePicker/ej2-dateTimePicker';
-import { Ej2DashboardLayout } from './widgets/dashboardLayout/ej2-dashboardLayout';
-import { Ej2ComboBox } from './widgets/comboBox/ej2-comboBox';
-import { Ej2CheckboxList } from './widgets/checkbox/ej2-checkbox-list';
-import { Ej2Checkbox } from './widgets/checkbox/ej2-checkbox';
-import { Ej2Button } from './widgets/button/ej2-button';
-import { Ej2AutoComplete } from './widgets/autoComplete/ej2-autoComplete';
-import { Ej2Accordion } from './widgets/accordion/ej2-accordion';
-import { Ej2DropDownList } from './widgets/dropDownList/ej2-dropDownList';
-import { Ej2Grid } from './widgets/grid/ej2-grid';
-import { Ej2ListView } from './widgets/listView/ej2-listView';
-import { Ej2MaskedTextBox } from './widgets/maskedTextBox/ej2-maskedTextBox';
-import { Ej2NumericTextBox } from './widgets/numericTextBox/ej2-numericTextBox';
-import { Ej2Pager } from './widgets/pager/ej2-pager';
-import { Ej2ProgressButton } from './widgets/progressButton/ej2-progress-button';
-import { Ej2Radio } from './widgets/radio/ej2-radio';
-import { Ej2Slider } from './widgets/slider/ej2-slider';
-import { Ej2Switch } from './widgets/switch/ej2-switch';
-import { Ej2TimePicker } from './widgets/timePicker/ej2-timePicker';
-import { Ej2TreeView } from './widgets/treeView/ej2-treeView';
-import { Ej2Uploader } from './widgets/uploader/ej2-uploader';
-import { Ej2Splitter } from './widgets/splitter/ej2-splitter';
-import { Ej2DropDownTree } from './widgets/dropDownTree/ej2-dropDownTree';
-import { Ej2RichTextEditor } from "./widgets/richTextEditor/ej2-richTextEditor";
-import { Ej2Timeline } from "./widgets/timeline/ej2-timeline";
 
 export class ConfigBuilder {
-  public resources: any[] = [];
+  /** Module ids relative to this package, resolved lazily by the loader (nothing here imports a widget). */
+  public resources: string[] = [];
   public useGlobalResources: boolean = true;
 
   /**
@@ -282,548 +174,548 @@ export class ConfigBuilder {
   }
 
   ej2Accordion(): ConfigBuilder {
-    this.resources.push(Ej2Accordion);
+    this.resources.push(PLATFORM.moduleName('./widgets/accordion/ej2-accordion'));
     return this;
   }
 
   ej2AutoComplete(): ConfigBuilder {
-    this.resources.push(Ej2AutoComplete);
+    this.resources.push(PLATFORM.moduleName('./widgets/autoComplete/ej2-autoComplete'));
     return this;
   }
 
   ej2Button(): ConfigBuilder {
-    this.resources.push(Ej2Button);
+    this.resources.push(PLATFORM.moduleName('./widgets/button/ej2-button'));
     return this;
   }
 
   ej2Checkbox(): ConfigBuilder {
-    this.resources.push(Ej2Checkbox);
+    this.resources.push(PLATFORM.moduleName('./widgets/checkbox/ej2-checkbox'));
     return this;
   }
 
   ej2CheckboxList(): ConfigBuilder {
-    this.resources.push(Ej2CheckboxList);
+    this.resources.push(PLATFORM.moduleName('./widgets/checkbox/ej2-checkbox-list'));
     return this;
   }
 
   ej2ComboBox(): ConfigBuilder {
-    this.resources.push(Ej2ComboBox);
+    this.resources.push(PLATFORM.moduleName('./widgets/comboBox/ej2-comboBox'));
     return this;
   }
 
   ej2DashboardLayout(): ConfigBuilder {
-    this.resources.push(Ej2DashboardLayout);
+    this.resources.push(PLATFORM.moduleName('./widgets/dashboardLayout/ej2-dashboardLayout'));
     return this;
   }
 
   ej2DatePicker(): ConfigBuilder {
-    this.resources.push(Ej2DatePicker);
+    this.resources.push(PLATFORM.moduleName('./widgets/datePicker/ej2-DatePicker'));
     return this;
   }
 
   ej2DateRangePicker(): ConfigBuilder {
-    this.resources.push(Ej2DateRangePicker);
+    this.resources.push(PLATFORM.moduleName('./widgets/dateRangePicker/ej2-dateRangePicker'));
     return this;
   }
 
   ej2DateTimePicker(): ConfigBuilder {
-    this.resources.push(Ej2DateTimePicker);
+    this.resources.push(PLATFORM.moduleName('./widgets/dateTimePicker/ej2-dateTimePicker'));
     return this;
   }
 
   ej2DropDownList(): ConfigBuilder {
-    this.resources.push(Ej2DropDownList);
+    this.resources.push(PLATFORM.moduleName('./widgets/dropDownList/ej2-dropDownList'));
     return this;
   }
 
   ej2DropDownTree(): ConfigBuilder {
-    this.resources.push(Ej2DropDownTree);
+    this.resources.push(PLATFORM.moduleName('./widgets/dropDownTree/ej2-dropDownTree'));
     return this;
   }
 
   ej2FileManager(): ConfigBuilder {
-    this.resources.push(Ej2FileManager);
+    this.resources.push(PLATFORM.moduleName('./widgets/fileManager/ej2-fileManager'));
     return this;
   }
 
   ej2Grid(): ConfigBuilder {
-    this.resources.push(Ej2Grid);
+    this.resources.push(PLATFORM.moduleName('./widgets/grid/ej2-grid'));
     return this;
   }
 
   ej2ListView(): ConfigBuilder {
-    this.resources.push(Ej2ListView);
+    this.resources.push(PLATFORM.moduleName('./widgets/listView/ej2-listView'));
     return this;
   }
 
   ej2MaskedTextBox(): ConfigBuilder {
-    this.resources.push(Ej2MaskedTextBox);
+    this.resources.push(PLATFORM.moduleName('./widgets/maskedTextBox/ej2-maskedTextBox'));
     return this;
   }
 
   ej2MultiSelect(): ConfigBuilder {
-    this.resources.push(Ej2MultiSelect);
+    this.resources.push(PLATFORM.moduleName('./widgets/multiSelect/ej2-multiSelect'));
     return this;
   }
 
   ej2NumericTextBox(): ConfigBuilder {
-    this.resources.push(Ej2NumericTextBox);
+    this.resources.push(PLATFORM.moduleName('./widgets/numericTextBox/ej2-numericTextBox'));
     return this;
   }
 
   ej2Pager(): ConfigBuilder {
-    this.resources.push(Ej2Pager);
+    this.resources.push(PLATFORM.moduleName('./widgets/pager/ej2-pager'));
     return this;
   }
 
   ej2ProgressButton(): ConfigBuilder {
-    this.resources.push(Ej2ProgressButton);
+    this.resources.push(PLATFORM.moduleName('./widgets/progressButton/ej2-progress-button'));
     return this;
   }
 
   ej2Radio(): ConfigBuilder {
-    this.resources.push(Ej2Radio);
+    this.resources.push(PLATFORM.moduleName('./widgets/radio/ej2-radio'));
     return this;
   }
 
   ej2Schedule(): ConfigBuilder {
-    this.resources.push(Ej2Schedule);
+    this.resources.push(PLATFORM.moduleName('./widgets/schedule/ej2-schedule'));
     return this;
   }
 
   ej2Sidebar(): ConfigBuilder {
-    this.resources.push(Ej2Sidebar);
+    this.resources.push(PLATFORM.moduleName('./widgets/sidebar/ej2-sidebar'));
     return this;
   }
 
   ej2Slider(): ConfigBuilder {
-    this.resources.push(Ej2Slider);
+    this.resources.push(PLATFORM.moduleName('./widgets/slider/ej2-slider'));
     return this;
   }
 
   ej2Splitter(): ConfigBuilder {
-    this.resources.push(Ej2Splitter);
+    this.resources.push(PLATFORM.moduleName('./widgets/splitter/ej2-splitter'));
     return this;
   }
 
   ej2Switch(): ConfigBuilder {
-    this.resources.push(Ej2Switch);
+    this.resources.push(PLATFORM.moduleName('./widgets/switch/ej2-switch'));
     return this;
   }
 
   ej2TextBox(): ConfigBuilder {
-    this.resources.push(Ej2TextBox);
+    this.resources.push(PLATFORM.moduleName('./widgets/textBox/ej2-textBox'));
     return this;
   }
 
   ej2TimePicker(): ConfigBuilder {
-    this.resources.push(Ej2TimePicker);
+    this.resources.push(PLATFORM.moduleName('./widgets/timePicker/ej2-timePicker'));
     return this;
   }
 
   ej2Timeline(): ConfigBuilder {
-    this.resources.push(Ej2Timeline);
+    this.resources.push(PLATFORM.moduleName('./widgets/timeline/ej2-timeline'));
     return this;
   }
 
 
   ej2TreeView(): ConfigBuilder {
-    this.resources.push(Ej2TreeView);
+    this.resources.push(PLATFORM.moduleName('./widgets/treeView/ej2-treeView'));
     return this;
   }
 
   ej2Uploader(): ConfigBuilder {
-    this.resources.push(Ej2Uploader);
+    this.resources.push(PLATFORM.moduleName('./widgets/uploader/ej2-uploader'));
     return this;
   }
 
   ej2RichTextEditor(): ConfigBuilder {
-    this.resources.push(Ej2RichTextEditor);
+    this.resources.push(PLATFORM.moduleName('./widgets/richTextEditor/ej2-richTextEditor'));
     return this;
   }
 
   ej2BarcodeGenerator(): ConfigBuilder {
-    this.resources.push(Ej2BarcodeGenerator);
+    this.resources.push(PLATFORM.moduleName('./widgets/barcodeGenerator/ej2-barcodeGenerator'));
     return this;
   }
 
   ej2QRCodeGenerator(): ConfigBuilder {
-    this.resources.push(Ej2QRCodeGenerator);
+    this.resources.push(PLATFORM.moduleName('./widgets/qrCodeGenerator/ej2-qrCodeGenerator'));
     return this;
   }
 
   ej2DataMatrixGenerator(): ConfigBuilder {
-    this.resources.push(Ej2DataMatrixGenerator);
+    this.resources.push(PLATFORM.moduleName('./widgets/dataMatrixGenerator/ej2-dataMatrixGenerator'));
     return this;
   }
 
   ej2PDF417Generator(): ConfigBuilder {
-    this.resources.push(Ej2PDF417Generator);
+    this.resources.push(PLATFORM.moduleName('./widgets/pdf417Generator/ej2-pdf417Generator'));
     return this;
   }
 
   ej2BlockEditor(): ConfigBuilder {
-    this.resources.push(Ej2BlockEditor);
+    this.resources.push(PLATFORM.moduleName('./widgets/blockEditor/ej2-blockEditor'));
     return this;
   }
 
   ej2ChipList(): ConfigBuilder {
-    this.resources.push(Ej2ChipList);
+    this.resources.push(PLATFORM.moduleName('./widgets/chipList/ej2-chipList'));
     return this;
   }
 
   ej2Fab(): ConfigBuilder {
-    this.resources.push(Ej2Fab);
+    this.resources.push(PLATFORM.moduleName('./widgets/fab/ej2-fab'));
     return this;
   }
 
   ej2SpeedDial(): ConfigBuilder {
-    this.resources.push(Ej2SpeedDial);
+    this.resources.push(PLATFORM.moduleName('./widgets/speedDial/ej2-speedDial'));
     return this;
   }
 
   ej2SmartPasteButton(): ConfigBuilder {
-    this.resources.push(Ej2SmartPasteButton);
+    this.resources.push(PLATFORM.moduleName('./widgets/smartPasteButton/ej2-smartPasteButton'));
     return this;
   }
 
   ej2Calendar(): ConfigBuilder {
-    this.resources.push(Ej2Calendar);
+    this.resources.push(PLATFORM.moduleName('./widgets/calendar/ej2-calendar'));
     return this;
   }
 
   ej2Chart(): ConfigBuilder {
-    this.resources.push(Ej2Chart);
+    this.resources.push(PLATFORM.moduleName('./widgets/chart/ej2-chart'));
     return this;
   }
 
   ej2AccumulationChart(): ConfigBuilder {
-    this.resources.push(Ej2AccumulationChart);
+    this.resources.push(PLATFORM.moduleName('./widgets/accumulationChart/ej2-accumulationChart'));
     return this;
   }
 
   ej2StockChart(): ConfigBuilder {
-    this.resources.push(Ej2StockChart);
+    this.resources.push(PLATFORM.moduleName('./widgets/stockChart/ej2-stockChart'));
     return this;
   }
 
   ej2RangeNavigator(): ConfigBuilder {
-    this.resources.push(Ej2RangeNavigator);
+    this.resources.push(PLATFORM.moduleName('./widgets/rangeNavigator/ej2-rangeNavigator'));
     return this;
   }
 
   ej2BulletChart(): ConfigBuilder {
-    this.resources.push(Ej2BulletChart);
+    this.resources.push(PLATFORM.moduleName('./widgets/bulletChart/ej2-bulletChart'));
     return this;
   }
 
   ej2Smithchart(): ConfigBuilder {
-    this.resources.push(Ej2Smithchart);
+    this.resources.push(PLATFORM.moduleName('./widgets/smithchart/ej2-smithchart'));
     return this;
   }
 
   ej2Sparkline(): ConfigBuilder {
-    this.resources.push(Ej2Sparkline);
+    this.resources.push(PLATFORM.moduleName('./widgets/sparkline/ej2-sparkline'));
     return this;
   }
 
   ej2Chart3D(): ConfigBuilder {
-    this.resources.push(Ej2Chart3D);
+    this.resources.push(PLATFORM.moduleName('./widgets/chart3D/ej2-chart3D'));
     return this;
   }
 
   ej2CircularChart3D(): ConfigBuilder {
-    this.resources.push(Ej2CircularChart3D);
+    this.resources.push(PLATFORM.moduleName('./widgets/circularChart3D/ej2-circularChart3D'));
     return this;
   }
 
   ej2Sankey(): ConfigBuilder {
-    this.resources.push(Ej2Sankey);
+    this.resources.push(PLATFORM.moduleName('./widgets/sankey/ej2-sankey'));
     return this;
   }
 
   ej2CircularGauge(): ConfigBuilder {
-    this.resources.push(Ej2CircularGauge);
+    this.resources.push(PLATFORM.moduleName('./widgets/circularGauge/ej2-circularGauge'));
     return this;
   }
 
   ej2Diagram(): ConfigBuilder {
-    this.resources.push(Ej2Diagram);
+    this.resources.push(PLATFORM.moduleName('./widgets/diagram/ej2-diagram'));
     return this;
   }
 
   ej2SymbolPalette(): ConfigBuilder {
-    this.resources.push(Ej2SymbolPalette);
+    this.resources.push(PLATFORM.moduleName('./widgets/symbolPalette/ej2-symbolPalette'));
     return this;
   }
 
   ej2Ruler(): ConfigBuilder {
-    this.resources.push(Ej2Ruler);
+    this.resources.push(PLATFORM.moduleName('./widgets/ruler/ej2-ruler'));
     return this;
   }
 
   ej2Overview(): ConfigBuilder {
-    this.resources.push(Ej2Overview);
+    this.resources.push(PLATFORM.moduleName('./widgets/overview/ej2-overview'));
     return this;
   }
 
   ej2DocumentEditor(): ConfigBuilder {
-    this.resources.push(Ej2DocumentEditor);
+    this.resources.push(PLATFORM.moduleName('./widgets/documentEditor/ej2-documentEditor'));
     return this;
   }
 
   ej2DocumentEditorContainer(): ConfigBuilder {
-    this.resources.push(Ej2DocumentEditorContainer);
+    this.resources.push(PLATFORM.moduleName('./widgets/documentEditorContainer/ej2-documentEditorContainer'));
     return this;
   }
 
   ej2ListBox(): ConfigBuilder {
-    this.resources.push(Ej2ListBox);
+    this.resources.push(PLATFORM.moduleName('./widgets/listBox/ej2-listBox'));
     return this;
   }
 
   ej2Mention(): ConfigBuilder {
-    this.resources.push(Ej2Mention);
+    this.resources.push(PLATFORM.moduleName('./widgets/mention/ej2-mention'));
     return this;
   }
 
   ej2FormBuilder(): ConfigBuilder {
-    this.resources.push(Ej2FormBuilder);
+    this.resources.push(PLATFORM.moduleName('./widgets/formBuilder/ej2-formBuilder'));
     return this;
   }
 
   ej2FormRenderer(): ConfigBuilder {
-    this.resources.push(Ej2FormRenderer);
+    this.resources.push(PLATFORM.moduleName('./widgets/formRenderer/ej2-formRenderer'));
     return this;
   }
 
   ej2Gantt(): ConfigBuilder {
-    this.resources.push(Ej2Gantt);
+    this.resources.push(PLATFORM.moduleName('./widgets/gantt/ej2-gantt'));
     return this;
   }
 
   ej2HeatMap(): ConfigBuilder {
-    this.resources.push(Ej2HeatMap);
+    this.resources.push(PLATFORM.moduleName('./widgets/heatMap/ej2-heatMap'));
     return this;
   }
 
   ej2ImageEditor(): ConfigBuilder {
-    this.resources.push(Ej2ImageEditor);
+    this.resources.push(PLATFORM.moduleName('./widgets/imageEditor/ej2-imageEditor'));
     return this;
   }
 
   ej2InPlaceEditor(): ConfigBuilder {
-    this.resources.push(Ej2InPlaceEditor);
+    this.resources.push(PLATFORM.moduleName('./widgets/inPlaceEditor/ej2-inPlaceEditor'));
     return this;
   }
 
   ej2ColorPicker(): ConfigBuilder {
-    this.resources.push(Ej2ColorPicker);
+    this.resources.push(PLATFORM.moduleName('./widgets/colorPicker/ej2-colorPicker'));
     return this;
   }
 
   ej2TextArea(): ConfigBuilder {
-    this.resources.push(Ej2TextArea);
+    this.resources.push(PLATFORM.moduleName('./widgets/textArea/ej2-textArea'));
     return this;
   }
 
   ej2SmartTextArea(): ConfigBuilder {
-    this.resources.push(Ej2SmartTextArea);
+    this.resources.push(PLATFORM.moduleName('./widgets/smartTextArea/ej2-smartTextArea'));
     return this;
   }
 
   ej2Signature(): ConfigBuilder {
-    this.resources.push(Ej2Signature);
+    this.resources.push(PLATFORM.moduleName('./widgets/signature/ej2-signature'));
     return this;
   }
 
   ej2Rating(): ConfigBuilder {
-    this.resources.push(Ej2Rating);
+    this.resources.push(PLATFORM.moduleName('./widgets/rating/ej2-rating'));
     return this;
   }
 
   ej2OtpInput(): ConfigBuilder {
-    this.resources.push(Ej2OtpInput);
+    this.resources.push(PLATFORM.moduleName('./widgets/otpInput/ej2-otpInput'));
     return this;
   }
 
   ej2SpeechToText(): ConfigBuilder {
-    this.resources.push(Ej2SpeechToText);
+    this.resources.push(PLATFORM.moduleName('./widgets/speechToText/ej2-speechToText'));
     return this;
   }
 
   ej2AIAssistView(): ConfigBuilder {
-    this.resources.push(Ej2AIAssistView);
+    this.resources.push(PLATFORM.moduleName('./widgets/aiAssistView/ej2-aiAssistView'));
     return this;
   }
 
   ej2ChatUI(): ConfigBuilder {
-    this.resources.push(Ej2ChatUI);
+    this.resources.push(PLATFORM.moduleName('./widgets/chatUI/ej2-chatUI'));
     return this;
   }
 
   ej2InlineAIAssist(): ConfigBuilder {
-    this.resources.push(Ej2InlineAIAssist);
+    this.resources.push(PLATFORM.moduleName('./widgets/inlineAIAssist/ej2-inlineAIAssist'));
     return this;
   }
 
   ej2Kanban(): ConfigBuilder {
-    this.resources.push(Ej2Kanban);
+    this.resources.push(PLATFORM.moduleName('./widgets/kanban/ej2-kanban'));
     return this;
   }
 
   ej2LinearGauge(): ConfigBuilder {
-    this.resources.push(Ej2LinearGauge);
+    this.resources.push(PLATFORM.moduleName('./widgets/linearGauge/ej2-linearGauge'));
     return this;
   }
 
   ej2Maps(): ConfigBuilder {
-    this.resources.push(Ej2Maps);
+    this.resources.push(PLATFORM.moduleName('./widgets/maps/ej2-maps'));
     return this;
   }
 
   ej2MultiColumnComboBox(): ConfigBuilder {
-    this.resources.push(Ej2MultiColumnComboBox);
+    this.resources.push(PLATFORM.moduleName('./widgets/multiColumnComboBox/ej2-multiColumnComboBox'));
     return this;
   }
 
   ej2Toolbar(): ConfigBuilder {
-    this.resources.push(Ej2Toolbar);
+    this.resources.push(PLATFORM.moduleName('./widgets/toolbar/ej2-toolbar'));
     return this;
   }
 
   ej2ContextMenu(): ConfigBuilder {
-    this.resources.push(Ej2ContextMenu);
+    this.resources.push(PLATFORM.moduleName('./widgets/contextMenu/ej2-contextMenu'));
     return this;
   }
 
   ej2Menu(): ConfigBuilder {
-    this.resources.push(Ej2Menu);
+    this.resources.push(PLATFORM.moduleName('./widgets/menu/ej2-menu'));
     return this;
   }
 
   ej2Tab(): ConfigBuilder {
-    this.resources.push(Ej2Tab);
+    this.resources.push(PLATFORM.moduleName('./widgets/tab/ej2-tab'));
     return this;
   }
 
   ej2Breadcrumb(): ConfigBuilder {
-    this.resources.push(Ej2Breadcrumb);
+    this.resources.push(PLATFORM.moduleName('./widgets/breadcrumb/ej2-breadcrumb'));
     return this;
   }
 
   ej2Carousel(): ConfigBuilder {
-    this.resources.push(Ej2Carousel);
+    this.resources.push(PLATFORM.moduleName('./widgets/carousel/ej2-carousel'));
     return this;
   }
 
   ej2AppBar(): ConfigBuilder {
-    this.resources.push(Ej2AppBar);
+    this.resources.push(PLATFORM.moduleName('./widgets/appBar/ej2-appBar'));
     return this;
   }
 
   ej2Stepper(): ConfigBuilder {
-    this.resources.push(Ej2Stepper);
+    this.resources.push(PLATFORM.moduleName('./widgets/stepper/ej2-stepper'));
     return this;
   }
 
   ej2Toast(): ConfigBuilder {
-    this.resources.push(Ej2Toast);
+    this.resources.push(PLATFORM.moduleName('./widgets/toast/ej2-toast'));
     return this;
   }
 
   ej2Message(): ConfigBuilder {
-    this.resources.push(Ej2Message);
+    this.resources.push(PLATFORM.moduleName('./widgets/message/ej2-message'));
     return this;
   }
 
   ej2Skeleton(): ConfigBuilder {
-    this.resources.push(Ej2Skeleton);
+    this.resources.push(PLATFORM.moduleName('./widgets/skeleton/ej2-skeleton'));
     return this;
   }
 
   ej2PdfViewer(): ConfigBuilder {
-    this.resources.push(Ej2PdfViewer);
+    this.resources.push(PLATFORM.moduleName('./widgets/pdfViewer/ej2-pdfViewer'));
     return this;
   }
 
   ej2PdfComparer(): ConfigBuilder {
-    this.resources.push(Ej2PdfComparer);
+    this.resources.push(PLATFORM.moduleName('./widgets/pdfComparer/ej2-pdfComparer'));
     return this;
   }
 
   ej2PivotView(): ConfigBuilder {
-    this.resources.push(Ej2PivotView);
+    this.resources.push(PLATFORM.moduleName('./widgets/pivotView/ej2-pivotView'));
     return this;
   }
 
   ej2PivotFieldList(): ConfigBuilder {
-    this.resources.push(Ej2PivotFieldList);
+    this.resources.push(PLATFORM.moduleName('./widgets/pivotFieldList/ej2-pivotFieldList'));
     return this;
   }
 
   ej2Popup(): ConfigBuilder {
-    this.resources.push(Ej2Popup);
+    this.resources.push(PLATFORM.moduleName('./widgets/popup/ej2-popup'));
     return this;
   }
 
   ej2Dialog(): ConfigBuilder {
-    this.resources.push(Ej2Dialog);
+    this.resources.push(PLATFORM.moduleName('./widgets/dialog/ej2-dialog'));
     return this;
   }
 
   ej2Tooltip(): ConfigBuilder {
-    this.resources.push(Ej2Tooltip);
+    this.resources.push(PLATFORM.moduleName('./widgets/tooltip/ej2-tooltip'));
     return this;
   }
 
   ej2ProgressBar(): ConfigBuilder {
-    this.resources.push(Ej2ProgressBar);
+    this.resources.push(PLATFORM.moduleName('./widgets/progressBar/ej2-progressBar'));
     return this;
   }
 
   ej2QueryBuilder(): ConfigBuilder {
-    this.resources.push(Ej2QueryBuilder);
+    this.resources.push(PLATFORM.moduleName('./widgets/queryBuilder/ej2-queryBuilder'));
     return this;
   }
 
   ej2Ribbon(): ConfigBuilder {
-    this.resources.push(Ej2Ribbon);
+    this.resources.push(PLATFORM.moduleName('./widgets/ribbon/ej2-ribbon'));
     return this;
   }
 
   ej2RichTextEditorUI(): ConfigBuilder {
-    this.resources.push(Ej2RichTextEditorUI);
+    this.resources.push(PLATFORM.moduleName('./widgets/richTextEditorUI/ej2-richTextEditorUI'));
     return this;
   }
 
   ej2RecurrenceEditor(): ConfigBuilder {
-    this.resources.push(Ej2RecurrenceEditor);
+    this.resources.push(PLATFORM.moduleName('./widgets/recurrenceEditor/ej2-recurrenceEditor'));
     return this;
   }
 
   ej2DropDownButton(): ConfigBuilder {
-    this.resources.push(Ej2DropDownButton);
+    this.resources.push(PLATFORM.moduleName('./widgets/dropDownButton/ej2-dropDownButton'));
     return this;
   }
 
   ej2SplitButton(): ConfigBuilder {
-    this.resources.push(Ej2SplitButton);
+    this.resources.push(PLATFORM.moduleName('./widgets/splitButton/ej2-splitButton'));
     return this;
   }
 
   ej2Spreadsheet(): ConfigBuilder {
-    this.resources.push(Ej2Spreadsheet);
+    this.resources.push(PLATFORM.moduleName('./widgets/spreadsheet/ej2-spreadsheet'));
     return this;
   }
 
   ej2TreeGrid(): ConfigBuilder {
-    this.resources.push(Ej2TreeGrid);
+    this.resources.push(PLATFORM.moduleName('./widgets/treeGrid/ej2-treeGrid'));
     return this;
   }
 
   ej2TreeMap(): ConfigBuilder {
-    this.resources.push(Ej2TreeMap);
+    this.resources.push(PLATFORM.moduleName('./widgets/treeMap/ej2-treeMap'));
     return this;
   }
 }

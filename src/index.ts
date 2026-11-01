@@ -11,7 +11,6 @@ export { ConfigBuilder } from './configBuider';
 // export { Ej2Uploader } from "./controls/uploader/ej2-uploader";
 export { IEj2Uplaoder as Ej2Uploader } from "./interfaces/IEj2Uploader";
 export { IEJ2WidgetBridge } from "./interfaces/IEJ2WidgetBridge";
-export { Ej2UploaderDataAdapter } from "./widgets/uploader/ej2-uploader";
 
 export function configure(aurelia, configCallback?: (builder: ConfigBuilder) => void) {
   let builder = new ConfigBuilder();

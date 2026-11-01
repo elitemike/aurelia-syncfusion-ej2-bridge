@@ -1,6 +1,9 @@
 import { data } from './gridDemo';
 import { logEvent } from './gridLog';
+import { Ej2Grid } from 'widgets/grid/ej2-grid';
+import { viewResources } from 'aurelia-framework';
 
+@viewResources(Ej2Grid)
 export class GridSelectionDemo {
   log = logEvent;
   rows = (data as any[]).slice(0, 6).map(row => ({ ...row }));

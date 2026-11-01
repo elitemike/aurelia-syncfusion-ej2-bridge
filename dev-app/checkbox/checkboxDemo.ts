@@ -1,5 +1,9 @@
 import { IOptionModel } from 'widgets/checkbox/ej2-checkbox-list';
+import { Ej2Checkbox } from 'widgets/checkbox/ej2-checkbox';
+import { Ej2CheckboxList } from 'widgets/checkbox/ej2-checkbox-list';
+import { viewResources } from 'aurelia-framework';
 
+@viewResources(Ej2Checkbox, Ej2CheckboxList)
 export class CheckboxDemo {
   label = 'Accept terms';
   checked = false;

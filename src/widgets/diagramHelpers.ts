@@ -1,4 +1,4 @@
-import { ensureHostId } from '../visualizationHelpers';
+import { ensureHostId } from './visualizationHelpers';
 
 /**
  * The diagram family (Diagram, SymbolPalette, Overview, Ruler) is wired together by element id (`sourceID`,

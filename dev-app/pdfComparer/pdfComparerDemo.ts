@@ -1,5 +1,8 @@
 import { samplePdf, modifiedSamplePdf } from '../pdfViewer/samplePdf';
+import { Ej2PdfComparer } from 'widgets/pdfComparer/ej2-pdfComparer';
+import { viewResources } from 'aurelia-framework';
 
+@viewResources(Ej2PdfComparer)
 export class PdfComparerDemo {
   comparer: any;
   originalDocumentPath = samplePdf;

@@ -1,7 +1,10 @@
 import { logEvent } from '../queryBuilder/qbLog';
 import { createDataSourceSettings, pivotData } from './pivotData';
+import { Ej2PivotView } from 'widgets/pivotView/ej2-pivotView';
+import { viewResources } from 'aurelia-framework';
 
 /** Drill through and editing of the underlying records (Syncfusion "Drill through" and "Editing" samples). */
+@viewResources(Ej2PivotView)
 export class PvEditDemo {
   log = (name: string, e: CustomEvent) => logEvent(name, e);
   drillDsr: any = createDataSourceSettings();

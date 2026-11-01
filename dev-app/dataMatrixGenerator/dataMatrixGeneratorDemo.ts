@@ -1,3 +1,6 @@
+import { Ej2DataMatrixGenerator } from 'widgets/dataMatrixGenerator/ej2-dataMatrixGenerator';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2DataMatrixGenerator)
 export class DataMatrixGeneratorDemo {
   margin = { left: 10, right: 10, top: 10, bottom: 10 };
   displayText = { text: 'Scan me', visibility: true, position: 'Bottom', alignment: 'Center', size: 14 };

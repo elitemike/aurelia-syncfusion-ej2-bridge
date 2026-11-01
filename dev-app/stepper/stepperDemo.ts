@@ -1,3 +1,6 @@
+import { Ej2Stepper } from 'widgets/stepper/ej2-stepper';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2Stepper)
 export class StepperDemo {
   // default
   steps = this.makeSteps();

@@ -1,3 +1,6 @@
+import { Ej2Tab } from 'widgets/tab/ej2-tab';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2Tab)
 export class TabDemo {
   // default sample with two-way selectedItem
   items = this.makeItems();

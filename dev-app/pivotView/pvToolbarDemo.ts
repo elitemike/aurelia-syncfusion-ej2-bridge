@@ -1,7 +1,10 @@
 import { logEvent } from '../queryBuilder/qbLog';
 import { createDataSourceSettings } from './pivotData';
+import { Ej2PivotView } from 'widgets/pivotView/ej2-pivotView';
+import { viewResources } from 'aurelia-framework';
 
 /** Report management, export, formatting and print from the toolbar (Syncfusion "Toolbar" and "Export" samples). */
+@viewResources(Ej2PivotView)
 export class PvToolbarDemo {
   log = (name: string, e: CustomEvent) => logEvent(name, e);
   dsr: any = createDataSourceSettings();

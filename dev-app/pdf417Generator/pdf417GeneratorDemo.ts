@@ -1,3 +1,6 @@
+import { Ej2PDF417Generator } from 'widgets/pdf417Generator/ej2-pdf417Generator';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2PDF417Generator)
 export class PDF417GeneratorDemo {
   margin = { left: 10, right: 10, top: 10, bottom: 10 };
   displayText = { text: 'Scan me', visibility: true, position: 'Bottom', alignment: 'Center', size: 14 };

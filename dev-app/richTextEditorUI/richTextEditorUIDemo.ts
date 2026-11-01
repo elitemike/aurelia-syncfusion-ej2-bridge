@@ -1,5 +1,8 @@
 import { computedFrom } from 'aurelia-framework';
+import { Ej2RichTextEditorUI } from 'widgets/richTextEditorUI/ej2-richTextEditorUI';
+import { viewResources } from 'aurelia-framework';
 
+@viewResources(Ej2RichTextEditorUI)
 export class RichTextEditorUIDemo {
   value = '<p>Hello <b>Rich Text Editor UI</b></p>';
   counts: { [key: string]: number } = {

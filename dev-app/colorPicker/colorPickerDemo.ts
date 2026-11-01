@@ -1,3 +1,6 @@
+import { Ej2ColorPicker } from 'widgets/colorPicker/ej2-colorPicker';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2ColorPicker)
 export class ColorPickerDemo {
   value = '#008000ff';
   showButtons = true;

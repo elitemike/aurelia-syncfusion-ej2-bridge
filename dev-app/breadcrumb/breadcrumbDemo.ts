@@ -1,3 +1,6 @@
+import { Ej2Breadcrumb } from 'widgets/breadcrumb/ej2-breadcrumb';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2Breadcrumb)
 export class BreadcrumbDemo {
   items = this.makeItems();
   activeItem = 'http://bc.example.test/crumb';

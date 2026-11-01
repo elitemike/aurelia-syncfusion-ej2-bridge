@@ -1,5 +1,7 @@
 import { DataManager, Query } from '@syncfusion/ej2-data';
 import { logEvent } from './rangeNavigatorLog';
+import { Ej2RangeNavigator } from 'widgets/rangeNavigator/ej2-rangeNavigator';
+import { viewResources } from 'aurelia-framework';
 
 const day = 24 * 3600 * 1000;
 const start = new Date(2024, 0, 1).getTime();
@@ -7,6 +9,7 @@ const dailyData = Array.from({ length: 120 }, (_, i) => ({ x: new Date(start + i
 const numericData = Array.from({ length: 50 }, (_, i) => ({ x: i, y: Math.round(20 + 15 * Math.cos(i / 5) + i / 2) }));
 const logData = [{ x: 1, y: 10 }, { x: 10, y: 40 }, { x: 100, y: 25 }, { x: 1000, y: 60 }, { x: 10000, y: 35 }];
 
+@viewResources(Ej2RangeNavigator)
 export class RangeNavigatorDemo {
   log = logEvent;
   rangeVm: any;

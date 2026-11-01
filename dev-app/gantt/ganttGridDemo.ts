@@ -1,7 +1,10 @@
 import { projectData, dependencyData, clone } from './ganttData';
 import { logEvent } from './ganttLog';
+import { Ej2Gantt } from 'widgets/gantt/ej2-gantt';
+import { viewResources } from 'aurelia-framework';
 
 /** The grid half of the gantt: sorting, filtering, searching, menus, columns, splitter and drag and drop. */
+@viewResources(Ej2Gantt)
 export class GanttGridDemo {
   log = logEvent;
   taskFields = {

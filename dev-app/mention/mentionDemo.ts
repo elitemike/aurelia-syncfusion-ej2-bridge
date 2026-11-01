@@ -1,5 +1,8 @@
 import { DataManager, Query } from '@syncfusion/ej2-data';
+import { Ej2Mention } from 'widgets/mention/ej2-mention';
+import { viewResources } from 'aurelia-framework';
 
+@viewResources(Ej2Mention)
 export class MentionDemo {
   people = [
     { Name: 'Selma Rose', EmailId: 'selma@mail.com' },

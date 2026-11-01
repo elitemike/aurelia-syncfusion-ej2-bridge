@@ -1,3 +1,6 @@
+import { Ej2Diagram } from 'widgets/diagram/ej2-diagram';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2Diagram)
 export class DiagramShapesDemo {
   // UML sequence diagram, the `model` option
   sequence = {

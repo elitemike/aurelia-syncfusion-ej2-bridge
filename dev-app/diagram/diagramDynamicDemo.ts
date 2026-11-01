@@ -1,5 +1,8 @@
 import { DiagramConstraints, DiagramTools, SnapConstraints } from '@syncfusion/ej2-diagrams';
+import { Ej2Diagram } from 'widgets/diagram/ej2-diagram';
+import { viewResources } from 'aurelia-framework';
 
+@viewResources(Ej2Diagram)
 export class DiagramDynamicDemo {
   width = '500px';
   height = '320px';

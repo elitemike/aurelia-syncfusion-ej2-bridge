@@ -1,6 +1,9 @@
 import { DropDownListModel } from '@syncfusion/ej2-dropdowns';
 import { DataManager, Query } from '@syncfusion/ej2-data';
+import { Ej2DropDownList } from 'widgets/dropDownList/ej2-dropDownList';
+import { viewResources } from 'aurelia-framework';
 
+@viewResources(Ej2DropDownList)
 export class DropDownListDemo {
   sports = [
     { text: 'American Football', value: 'Game1' },

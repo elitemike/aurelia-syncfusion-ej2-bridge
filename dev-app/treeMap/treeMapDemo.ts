@@ -1,4 +1,6 @@
 import { DataManager, Query } from '@syncfusion/ej2-data';
+import { Ej2TreeMap } from 'widgets/treeMap/ej2-treeMap';
+import { viewResources } from 'aurelia-framework';
 
 const countries = [
   { Continent: 'Asia', Country: 'China', Population: 1412, Density: 147, Color: '#c62828' },
@@ -12,6 +14,7 @@ const countries = [
   { Continent: 'Africa', Country: 'Egypt', Population: 109, Density: 109, Color: '#4e342e' }
 ];
 
+@viewResources(Ej2TreeMap)
 export class TreeMapDemo {
   countries = countries;
 

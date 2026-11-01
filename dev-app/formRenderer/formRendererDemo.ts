@@ -1,3 +1,6 @@
+import { Ej2FormRenderer } from 'widgets/formRenderer/ej2-formRenderer';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2FormRenderer)
 export class FormRendererDemo {
   counts: { [key: string]: number } = { created: 0, change: 0, submit: 0, buttonClick: 0, failure: 0 };
   changeField = '';

@@ -1,3 +1,6 @@
+import { Ej2Message } from 'widgets/message/ej2-message';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2Message)
 export class MessageDemo {
   severities = ['Normal', 'Success', 'Info', 'Warning', 'Error'];
   variants = ['Text', 'Outlined', 'Filled'];

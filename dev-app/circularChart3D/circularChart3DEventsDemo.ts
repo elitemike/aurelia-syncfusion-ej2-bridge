@@ -1,5 +1,8 @@
 import { logEvent, browsers } from './circularChart3DLog';
+import { Ej2CircularChart3D } from 'widgets/circularChart3D/ej2-circularChart3D';
+import { viewResources } from 'aurelia-framework';
 
+@viewResources(Ej2CircularChart3D)
 export class CircularChart3DEventsDemo {
   log = logEvent;
   series: any[] = [{

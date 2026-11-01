@@ -1,3 +1,6 @@
+import { Ej2Pager } from 'widgets/pager/ej2-pager';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2Pager)
 export class PagerDemo {
   total = 100;
   pageSize = 10;

@@ -1,5 +1,8 @@
 import { DataManager, Query } from '@syncfusion/ej2-data';
+import { Ej2ListBox } from 'widgets/listBox/ej2-listBox';
+import { viewResources } from 'aurelia-framework';
 
+@viewResources(Ej2ListBox)
 export class ListBoxDemo {
   sports = ['Badminton', 'Basketball', 'Cricket', 'Football', 'Golf', 'Tennis'];
   value: string[] = ['Football'];

@@ -1,6 +1,9 @@
 import { IEJ2WidgetBridge } from './../../src/interfaces/IEJ2WidgetBridge';
 import { ProgressButtonModel, ProgressButton } from '@syncfusion/ej2-splitbuttons';
+import { Ej2ProgressButton } from 'widgets/progressButton/ej2-progress-button';
+import { viewResources } from 'aurelia-framework';
 
+@viewResources(Ej2ProgressButton)
 export class ProgressButtonDemo {
   showButton = true;
   clickCount = 0;

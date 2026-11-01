@@ -8,7 +8,7 @@ import { inlineView, customElement } from 'aurelia-framework';
 import { generateBindables } from '../../utilities/decorator';
 import { SyncfusionWrapper } from '../../common/syncfusionWrapper';
 import { constants } from '../../common/constants';
-import { moveIdToHost, assignEventPlaceholders } from './diagramHelpers';
+import { moveIdToHost, assignEventPlaceholders } from '../diagramHelpers';
 
 @generateBindables("diagram")
 @inlineView('<template><div element.ref="widgetElement"></div></template>')

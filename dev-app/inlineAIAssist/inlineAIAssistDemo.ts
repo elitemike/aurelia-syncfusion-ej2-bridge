@@ -1,3 +1,5 @@
+import { Ej2InlineAIAssist } from 'widgets/inlineAIAssist/ej2-inlineAIAssist';
+import { viewResources } from 'aurelia-framework';
 const element = (className: string, text: string) => {
   const el = document.createElement('div');
   el.className = className;
@@ -5,6 +7,7 @@ const element = (className: string, text: string) => {
   return [el];
 };
 
+@viewResources(Ej2InlineAIAssist)
 export class InlineAIAssistDemo {
   defaultAssist: any;
   popupAssist: any;

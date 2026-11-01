@@ -1,6 +1,9 @@
 import { SelectorConstraints } from '@syncfusion/ej2-diagrams';
 import { logEvent } from './diagramLog';
+import { Ej2Diagram } from 'widgets/diagram/ej2-diagram';
+import { viewResources } from 'aurelia-framework';
 
+@viewResources(Ej2Diagram)
 export class DiagramTemplatesDemo {
   log = logEvent;
   // ES template strings, evaluated with the node / annotation / handle as data

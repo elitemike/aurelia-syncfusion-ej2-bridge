@@ -1,3 +1,6 @@
+import { Ej2DateRangePicker } from 'widgets/dateRangePicker/ej2-dateRangePicker';
+import { viewResources } from 'aurelia-framework';
+@viewResources(Ej2DateRangePicker)
 export class DateRangePickerDemo {
   startDate = new Date(2024, 4, 10);
   endDate = new Date(2024, 4, 20);

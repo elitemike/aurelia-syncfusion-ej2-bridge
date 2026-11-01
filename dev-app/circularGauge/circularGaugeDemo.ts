@@ -1,7 +1,10 @@
+import { Ej2CircularGauge } from 'widgets/circularGauge/ej2-circularGauge';
+import { viewResources } from 'aurelia-framework';
 const label = (extra: any = {}) => ({
   position: 'Inside', useRangeColor: false, font: { size: '12px', fontFamily: 'Arial', fontWeight: 'Regular', color: '#333333' }, ...extra
 });
 
+@viewResources(Ej2CircularGauge)
 export class CircularGaugeDemo {
   titleStyle = { size: '18px', color: '#b71c1c', fontFamily: 'Arial', fontWeight: 'bold' };
   border = { color: '#1565c0', width: 2 };
