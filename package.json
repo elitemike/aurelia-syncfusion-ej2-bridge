@@ -1,10 +1,12 @@
 {
   "name": "@refactored-ts/aurelia-syncfusion-ej2-bridge",
-  "description": "An Aurelia plugin wrapper for syncfusion EJ2 controls",
-  "version": "2.0.0",
+  "description": "Aurelia 1 plugin wrapping Syncfusion EJ2 controls (not for Aurelia 2)",
+  "version": "1.0.0",
   "keywords": [
     "aurelia",
-    "syncfusion"
+    "aurelia1",
+    "syncfusion",
+    "ej2"
   ],
   "license": "MIT",
   "author": {

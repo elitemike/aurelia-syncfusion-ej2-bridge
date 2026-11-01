@@ -1,5 +1,7 @@
 # `aurelia-syncfusion-ej-2-bridge`
 
+Syncfusion EJ2 controls for **Aurelia 1** (`aurelia-framework` 1.x). It does not work with Aurelia 2.
+
 This wrapper is not fully supported, use at your own risk
 
 # Supported controls
@@ -65,7 +67,7 @@ Syncfusion package (the slider needs `@syncfusion/ej2-inputs`, the grid `@syncfu
 How the lazy modules end up in separate files depends on your bundler, the dev app does it with `tools/gen-bundles.js`
 (one bundle per control and per Syncfusion package).
 
-`Ej2UploaderDataAdapter` is no longer exported from the entry, import it from `.../widgets/uploader/ej2-uploader`.
+`Ej2UploaderDataAdapter` is not exported from the entry (that would load the uploader), import it from `.../widgets/uploader/ej2-uploader`.
 
 # Dev app and end-to-end tests
 `yarn start` serves the dev app on http://localhost:8090. Each control has a page of feature samples
